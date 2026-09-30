@@ -48,7 +48,7 @@
     "python": "class Solution:\n    def maximumProfit(self, present: List[int], future: List[int], budget: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maximumProfit(vector<int>& present, vector<int>& future, int budget) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maximumProfit(int[] present, int[] future, int budget) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maximumProfit(present: number[], future: number[], budget: number): number {\n    const f = new Array(budget + 1).fill(0);\n    for (let i = 0; i < present.length; ++i) {\n        const [a, b] = [present[i], future[i]];\n        for (let j = budget; j >= a; --j) {\n            f[j] = Math.max(f[j], f[j - a] + b - a);\n        }\n    }\n    return f[budget];\n}"
+    "javascript": "function maximumProfit(present: number[], future: number[], budget: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumProfit(self, present: List[int], future: List[int], budget: int) -> int:\n        f = [[0] * (budget + 1) for _ in range(len(present) + 1)]\n        for i, w in enumerate(present, 1):\n            for j in range(budget + 1):\n                f[i][j] = f[i - 1][j]\n                if j >= w and future[i - 1] > w:\n                    f[i][j] = max(f[i][j], f[i - 1][j - w] + future[i - 1] - w)\n        return f[-1][-1]",

@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def equalizeWater(self, buckets: List[int], loss: int) -> float:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    double equalizeWater(vector<int>& buckets, int loss) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public double equalizeWater(int[] buckets, int loss) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function equalizeWater(buckets: number[], loss: number): number {\n    let l = 0;\n    let r = Math.max(...buckets);\n    const check = (v: number): boolean => {\n        let [a, b] = [0, 0];\n        for (const x of buckets) {\n            if (x >= v) {\n                a += x - v;\n            } else {\n                b += ((v - x) * 100) / (100 - loss);\n            }\n        }\n        return a >= b;\n    };\n    while (r - l > 1e-5) {\n        const mid = (l + r) / 2;\n        if (check(mid)) {\n            l = mid;\n        } else {\n            r = mid;\n        }\n    }\n    return l;\n}"
+    "javascript": "function equalizeWater(buckets: number[], loss: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def equalizeWater(self, buckets: List[int], loss: int) -> float:\n        def check(v):\n            a = b = 0\n            for x in buckets:\n                if x >= v:\n                    a += x - v\n                else:\n                    b += (v - x) * 100 / (100 - loss)\n            return a >= b\n\n        l, r = 0, max(buckets)\n        while r - l > 1e-5:\n            mid = (l + r) / 2\n            if check(mid):\n                l = mid\n            else:\n                r = mid\n        return l",

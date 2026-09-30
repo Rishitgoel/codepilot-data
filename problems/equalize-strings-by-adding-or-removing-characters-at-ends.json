@@ -29,7 +29,7 @@
     "python": "class Solution:\n    def minOperations(self, initial: str, target: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minOperations(string initial, string target) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minOperations(String initial, String target) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minOperations(initial: string, target: string): number {\n    const m = initial.length;\n    const n = target.length;\n    const f: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));\n    let mx: number = 0;\n    for (let i = 1; i <= m; ++i) {\n        for (let j = 1; j <= n; ++j) {\n            if (initial[i - 1] === target[j - 1]) {\n                f[i][j] = f[i - 1][j - 1] + 1;\n                mx = Math.max(mx, f[i][j]);\n            }\n        }\n    }\n    return m + n - 2 * mx;\n}"
+    "javascript": "function minOperations(initial: string, target: string): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minOperations(self, initial: str, target: str) -> int:\n        m, n = len(initial), len(target)\n        f = [[0] * (n + 1) for _ in range(m + 1)]\n        mx = 0\n        for i, a in enumerate(initial, 1):\n            for j, b in enumerate(target, 1):\n                if a == b:\n                    f[i][j] = f[i - 1][j - 1] + 1\n                    mx = max(mx, f[i][j])\n        return m + n - mx * 2",

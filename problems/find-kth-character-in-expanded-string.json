@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def kthCharacter(self, s: str, k: int) -> str:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    char kthCharacter(string s, long long k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public char kthCharacter(String s, long k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function kthCharacter(s: string, k: number): string {\n    for (const w of s.split(' ')) {\n        const m = ((1 + w.length) * w.length) / 2;\n        if (k === m) {\n            return ' ';\n        }\n        if (k > m) {\n            k -= m + 1;\n        } else {\n            let cur = 0;\n            for (let i = 0; ; ++i) {\n                cur += i + 1;\n                if (k < cur) {\n                    return w[i];\n                }\n            }\n        }\n    }\n    return ' ';\n}"
+    "javascript": "function kthCharacter(s: string, k: number): string {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def kthCharacter(self, s: str, k: int) -> str:\n        for w in s.split():\n            m = (1 + len(w)) * len(w) // 2\n            if k == m:\n                return \" \"\n            if k > m:\n                k -= m + 1\n            else:\n                cur = 0\n                for i in range(len(w)):\n                    cur += i + 1\n                    if k < cur:\n                        return w[i]",

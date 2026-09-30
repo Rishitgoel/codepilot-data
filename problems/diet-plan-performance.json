@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def dietPlanPerformance(\n        self, calories: List[int], k: int, lower: int, upper: int\n    ) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int dietPlanPerformance(vector<int>& calories, int k, int lower, int upper) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function dietPlanPerformance(calories: number[], k: number, lower: number, upper: number): number {\n    const n = calories.length;\n    const s: number[] = new Array(n + 1).fill(0);\n    for (let i = 0; i < n; ++i) {\n        s[i + 1] = s[i] + calories[i];\n    }\n    let ans = 0;\n    for (let i = 0; i < n - k + 1; ++i) {\n        const t = s[i + k] - s[i];\n        if (t < lower) {\n            --ans;\n        } else if (t > upper) {\n            ++ans;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function dietPlanPerformance(calories: number[], k: number, lower: number, upper: number): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def dietPlanPerformance(\n        self, calories: List[int], k: int, lower: int, upper: int\n    ) -> int:\n        s = list(accumulate(calories, initial=0))\n        ans, n = 0, len(calories)\n        for i in range(n - k + 1):\n            t = s[i + k] - s[i]\n            if t < lower:\n                ans -= 1\n            elif t > upper:\n                ans += 1\n        return ans",

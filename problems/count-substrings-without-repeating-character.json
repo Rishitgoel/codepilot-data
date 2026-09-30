@@ -40,7 +40,7 @@
     "python": "class Solution:\n    def numberOfSpecialSubstrings(self, s: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int numberOfSpecialSubstrings(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int numberOfSpecialSubstrings(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function numberOfSpecialSubstrings(s: string): number {\n    const idx = (c: string) => c.charCodeAt(0) - 'a'.charCodeAt(0);\n    const n = s.length;\n    const cnt: number[] = Array(26).fill(0);\n    let ans = 0;\n    for (let i = 0, j = 0; i < n; ++i) {\n        const k = idx(s[i]);\n        ++cnt[k];\n        while (cnt[k] > 1) {\n            --cnt[idx(s[j++])];\n        }\n        ans += i - j + 1;\n    }\n    return ans;\n}"
+    "javascript": "function numberOfSpecialSubstrings(s: string): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfSpecialSubstrings(self, s: str) -> int:\n        cnt = Counter()\n        ans = j = 0\n        for i, c in enumerate(s):\n            cnt[c] += 1\n            while cnt[c] > 1:\n                cnt[s[j]] -= 1\n                j += 1\n            ans += i - j + 1\n        return ans",

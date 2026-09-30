@@ -32,7 +32,7 @@
   "starterTemplates": {
     "python": "# Definition of commonBits API.\r\n# def commonBits(num: int) -> int:\r\n\r\n\r\nclass Solution:\r\n    def findNumber(self) -> int:\r\n        pass\n",
     "cpp": "/**\r\n * Definition of commonBits API.\r\n * int commonBits(int num);\r\n */\r\n\r\nclass Solution {\r\npublic:\r\n    int findNumber() {\r\n        // Your code here\n    }\n};\n",
-    "java": "/**\r\n * Definition of commonBits API (defined in the parent class Problem).\r\n * int commonBits(int num);\r\n */\r\n\r\npublic class Solution extends Problem {\r\n    public int findNumber() {\r\n        int n = 0;\r\n        for (int i = 0; i < 32; ++i) {\r\n            int count1 = commonBits(1 << i);\r\n            int count2 = commonBits(1 << i);\r\n            if (count1 > count2) {\r\n                n |= 1 << i;\r\n            }\r\n        }\r\n        return n;\r\n    }\r\n}"
+    "java": "/**\n * Definition of commonBits API (defined in the parent class Problem).\n * int commonBits(int num);\n */\n\npublic class Solution extends Problem {\n    public int findNumber() {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "# Definition of commonBits API.\r\n# def commonBits(num: int) -> int:\r\n\r\n\r\nclass Solution:\r\n    def findNumber(self) -> int:\r\n        n = 0\r\n        for i in range(32):\r\n            count1 = commonBits(1 << i)\r\n            count2 = commonBits(1 << i)\r\n            if count1 > count2:\r\n                n |= 1 << i\r\n        return n",

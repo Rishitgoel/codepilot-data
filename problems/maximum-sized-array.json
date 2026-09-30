@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Sized%20Array"
   },
-  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n &times; n &times; n`, where each element `A[i][j][k]` is defined as:\n\n\t`A[i][j][k] = i * (j OR k)`, where `0 \n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
+  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n x n x n`, where each element `A[i][j][k]` is defined as:\n\n\t`A[i][j][k] = i * (j OR k)`, where `0 \n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
   "examples": [
     {
       "input": "Input per specifications",
@@ -28,10 +28,10 @@
     "0 <= s <= 10^15"
   ],
   "starterTemplates": {
-    "python": "mx = 1330\r\nf = [0] * mx\r\nfor i in range(1, mx):\r\n    f[i] = f[i - 1] + i\r\n    for j in range(i):\r\n        f[i] += 2 * (i | j)\r\n\r\n\r\nclass Solution:\r\n    def maxSizedArray(self, s: int) -> int:\r\n        pass\n",
-    "cpp": "const int MX = 1330;\r\nlong long f[MX];\r\nauto init = [] {\r\n    f[0] = 0;\r\n    for (int i = 1; i < MX; ++i) {\r\n        f[i] = f[i - 1] + i;\r\n        for (int j = 0; j < i; ++j) {\r\n            f[i] += 2 * (i | j);\r\n        }\r\n    }\r\n    return 0;\r\n}();\r\n\r\nclass Solution {\r\npublic:\r\n    int maxSizedArray(long long s) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    private static final int MX = 1330;\r\n    private static final long[] f = new long[MX];\r\n    static {\r\n        for (int i = 1; i < MX; ++i) {\r\n            f[i] = f[i - 1] + i;\r\n            for (int j = 0; j < i; ++j) {\r\n                f[i] += 2 * (i | j);\r\n            }\r\n        }\r\n    }\r\n    public int maxSizedArray(long s) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "const MX = 1330;\nconst f: bigint[] = Array(MX).fill(0n);\n(() => {\n    f[0] = 0n;\n    for (let i = 1; i < MX; i++) {\n        f[i] = f[i - 1] + BigInt(i);\n        for (let j = 0; j < i; j++) {\n            f[i] += BigInt(2) * BigInt(i | j);\n        }\n    }\n})();\n\nfunction maxSizedArray(s: number): number {\n    let l = 1,\n        r = MX;\n    const target = BigInt(s);\n\n    while (l < r) {\n        const m = (l + r + 1) >> 1;\n        if ((f[m - 1] * BigInt(m - 1) * BigInt(m)) / BigInt(2) <= target) {\n            l = m;\n        } else {\n            r = m - 1;\n        }\n    }\n    return l;\n}"
+    "python": "class Solution:\r\n    def maxSizedArray(self, s: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxSizedArray(long long s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxSizedArray(long s) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxSizedArray(s: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "mx = 1330\r\nf = [0] * mx\r\nfor i in range(1, mx):\r\n    f[i] = f[i - 1] + i\r\n    for j in range(i):\r\n        f[i] += 2 * (i | j)\r\n\r\n\r\nclass Solution:\r\n    def maxSizedArray(self, s: int) -> int:\r\n        l, r = 1, mx\r\n        while l < r:\r\n            m = (l + r + 1) >> 1\r\n            if f[m - 1] * (m - 1) * m // 2 <= s:\r\n                l = m\r\n            else:\r\n                r = m - 1\r\n        return l",

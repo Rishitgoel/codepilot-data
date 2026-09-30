@@ -37,7 +37,7 @@
     "python": "class Solution:\n    def colorRed(self, n: int) -> List[List[int]]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<vector<int>> colorRed(int n) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[][] colorRed(int n) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function colorRed(n: number): number[][] {\n    const ans: number[][] = [[1, 1]];\n    for (let i = n, k = 0; i > 1; --i, k = (k + 1) % 4) {\n        if (k === 0) {\n            for (let j = 1; j < i << 1; j += 2) {\n                ans.push([i, j]);\n            }\n        } else if (k === 1) {\n            ans.push([i, 2]);\n        } else if (k === 2) {\n            for (let j = 3; j < i << 1; j += 2) {\n                ans.push([i, j]);\n            }\n        } else {\n            ans.push([i, 1]);\n        }\n    }\n    return ans;\n}"
+    "javascript": "function colorRed(n: number): number[][] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def colorRed(self, n: int) -> List[List[int]]:\n        ans = [[1, 1]]\n        k = 0\n        for i in range(n, 1, -1):\n            if k == 0:\n                for j in range(1, i << 1, 2):\n                    ans.append([i, j])\n            elif k == 1:\n                ans.append([i, 2])\n            elif k == 2:\n                for j in range(3, i << 1, 2):\n                    ans.append([i, j])\n            else:\n                ans.append([i, 1])\n            k = (k + 1) % 4\n        return ans",

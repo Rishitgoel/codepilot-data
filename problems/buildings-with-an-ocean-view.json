@@ -47,7 +47,7 @@
     "python": "class Solution:\n    def findBuildings(self, heights: List[int]) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> findBuildings(vector<int>& heights) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] findBuildings(int[] heights) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function findBuildings(heights: number[]): number[] {\n    const ans: number[] = [];\n    let mx = 0;\n    for (let i = heights.length - 1; ~i; --i) {\n        if (heights[i] > mx) {\n            ans.push(i);\n            mx = heights[i];\n        }\n    }\n    return ans.reverse();\n}"
+    "javascript": "function findBuildings(heights: number[]): number[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findBuildings(self, heights: List[int]) -> List[int]:\n        ans = []\n        mx = 0\n        for i in range(len(heights) - 1, -1, -1):\n            if heights[i] > mx:\n                ans.append(i)\n                mx = heights[i]\n        return ans[::-1]",

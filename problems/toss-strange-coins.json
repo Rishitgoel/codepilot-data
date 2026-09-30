@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def probabilityOfHeads(self, prob: List[float], target: int) -> float:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    double probabilityOfHeads(vector<double>& prob, int target) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public double probabilityOfHeads(double[] prob, int target) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function probabilityOfHeads(prob: number[], target: number): number {\n    const n = prob.length;\n    const f = new Array(n + 1).fill(0).map(() => new Array(target + 1).fill(0));\n    f[0][0] = 1;\n    for (let i = 1; i <= n; ++i) {\n        for (let j = 0; j <= target; ++j) {\n            f[i][j] = f[i - 1][j] * (1 - prob[i - 1]);\n            if (j) {\n                f[i][j] += f[i - 1][j - 1] * prob[i - 1];\n            }\n        }\n    }\n    return f[n][target];\n}"
+    "javascript": "function probabilityOfHeads(prob: number[], target: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def probabilityOfHeads(self, prob: List[float], target: int) -> float:\n        n = len(prob)\n        f = [[0] * (target + 1) for _ in range(n + 1)]\n        f[0][0] = 1\n        for i, p in enumerate(prob, 1):\n            for j in range(min(i, target) + 1):\n                f[i][j] = (1 - p) * f[i - 1][j]\n                if j:\n                    f[i][j] += p * f[i - 1][j - 1]\n        return f[n][target]",

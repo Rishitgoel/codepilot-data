@@ -37,7 +37,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def minimumLines(self, points: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumLines(vector<vector<int>>& points) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private int[] f;\n    private int[][] points;\n    private int n;\n\n    public int minimumLines(int[][] points) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int minimumLines(int[][] points) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumLines(self, points: List[List[int]]) -> int:\n        def check(i, j, k):\n            x1, y1 = points[i]\n            x2, y2 = points[j]\n            x3, y3 = points[k]\n            return (x2 - x1) * (y3 - y1) == (x3 - x1) * (y2 - y1)\n\n        @cache\n        def dfs(state):\n            if state == (1 << n) - 1:\n                return 0\n            ans = inf\n            for i in range(n):\n                if not (state >> i & 1):\n                    for j in range(i + 1, n):\n                        nxt = state | 1 << i | 1 << j\n                        for k in range(j + 1, n):\n                            if not (nxt >> k & 1) and check(i, j, k):\n                                nxt |= 1 << k\n                        ans = min(ans, dfs(nxt) + 1)\n                    if i == n - 1:\n                        ans = min(ans, dfs(state | 1 << i) + 1)\n            return ans\n\n        n = len(points)\n        return dfs(0)",

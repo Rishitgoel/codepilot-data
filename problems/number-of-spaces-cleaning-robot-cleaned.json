@@ -32,7 +32,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def numberOfCleanRooms(self, room: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int numberOfCleanRooms(vector<vector<int>>& room) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private boolean[][][] vis;\n    private int[][] room;\n    private int ans;\n\n    public int numberOfCleanRooms(int[][] room) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int numberOfCleanRooms(int[][] room) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfCleanRooms(self, room: List[List[int]]) -> int:\n        def dfs(i, j, k):\n            if (i, j, k) in vis:\n                return\n            nonlocal ans\n            ans += room[i][j] == 0\n            room[i][j] = -1\n            vis.add((i, j, k))\n            x, y = i + dirs[k], j + dirs[k + 1]\n            if 0 <= x < len(room) and 0 <= y < len(room[0]) and room[x][y] != 1:\n                dfs(x, y, k)\n            else:\n                dfs(i, j, (k + 1) % 4)\n\n        vis = set()\n        dirs = (0, 1, 0, -1, 0)\n        ans = 0\n        dfs(0, 0, 0)\n        return ans",

@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def minimumKeypresses(self, s: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumKeypresses(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minimumKeypresses(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumKeypresses(s: string): number {\n    const cnt: number[] = Array(26).fill(0);\n    const a = 'a'.charCodeAt(0);\n    for (const c of s) {\n        ++cnt[c.charCodeAt(0) - a];\n    }\n    cnt.sort((a, b) => b - a);\n    let [ans, k] = [0, 1];\n    for (let i = 1; i <= 26; ++i) {\n        ans += k * cnt[i - 1];\n        if (i % 9 === 0) {\n            ++k;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function minimumKeypresses(s: string): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumKeypresses(self, s: str) -> int:\n        cnt = Counter(s)\n        ans, k = 0, 1\n        for i, x in enumerate(sorted(cnt.values(), reverse=True), 1):\n            ans += k * x\n            if i % 9 == 0:\n                k += 1\n        return ans",

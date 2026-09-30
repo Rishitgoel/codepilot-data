@@ -39,7 +39,7 @@
     "python": "class Solution:\r\n    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:\r\n        pass\n",
     "cpp": "class Solution {\r\npublic:\r\n    int findMaxConsecutiveOnes(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\r\n    public int findMaxConsecutiveOnes(int[] nums) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function findMaxConsecutiveOnes(nums: number[]): number {\n    let [l, cnt] = [0, 0];\n    for (const x of nums) {\n        cnt += x ^ 1;\n        if (cnt > 1) {\n            cnt -= nums[l++] ^ 1;\n        }\n    }\n    return nums.length - l;\n}"
+    "javascript": "function findMaxConsecutiveOnes(nums: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:\r\n        l = cnt = 0\r\n        for x in nums:\r\n            cnt += x ^ 1\r\n            if cnt > 1:\r\n                cnt -= nums[l] ^ 1\r\n                l += 1\r\n        return len(nums) - l",

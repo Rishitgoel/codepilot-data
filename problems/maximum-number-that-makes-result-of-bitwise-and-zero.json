@@ -26,8 +26,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxNumber(self, n: int) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    long long maxNumber(long long n) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public long maxNumber(long n) {\r\n        // Your code here\n    }\n}\n"
+    "cpp": "class Solution {\npublic:\n    long long maxNumber(long long n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maxNumber(long n) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maxNumber(self, n: int) -> int:\r\n        return (1 << (n.bit_length() - 1)) - 1",

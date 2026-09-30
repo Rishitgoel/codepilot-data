@@ -32,7 +32,7 @@
     "leaf exist in the tree."
   ],
   "starterTemplates": {
-    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        pass\n",
+    "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def flipBinaryTree(self, root: \"Node\", leaf: \"Node\") -> \"Node\":\n        pass\n",
     "cpp": "/*\n// Definition for a Node->\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        // Your code here\n    }\n};\n",
     "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node flipBinaryTree(Node root, Node leaf) {\n        // Your code here\n    }\n}\n"
   },

@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def phonePrefix(self, numbers: List[str]) -> bool:\r\n        pass\n",
-    "cpp": "#include <ranges>\r\n\r\nclass Solution {\r\npublic:\r\n    bool phonePrefix(vector<string>& numbers) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public boolean phonePrefix(String[] numbers) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function phonePrefix(numbers: string[]): boolean {\n    numbers.sort((a, b) => a.length - b.length);\n    for (let i = 0; i < numbers.length; i++) {\n        for (let j = 0; j < i; j++) {\n            if (numbers[i].startsWith(numbers[j])) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
+    "cpp": "class Solution {\npublic:\n    bool phonePrefix(vector<string>& numbers) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean phonePrefix(String[] numbers) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function phonePrefix(numbers: string[]): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def phonePrefix(self, numbers: List[str]) -> bool:\r\n        numbers.sort(key=len)\r\n        for i, s in enumerate(numbers):\r\n            if any(s.startswith(t) for t in numbers[:i]):\r\n                return False\r\n        return True",

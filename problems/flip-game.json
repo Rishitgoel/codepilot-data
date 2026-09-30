@@ -33,7 +33,7 @@
     "python": "class Solution:\n    def generatePossibleNextMoves(self, currentState: str) -> List[str]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<string> generatePossibleNextMoves(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public List<String> generatePossibleNextMoves(String currentState) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function generatePossibleNextMoves(currentState: string): string[] {\n    const s = currentState.split('');\n    const ans: string[] = [];\n    for (let i = 0; i < s.length - 1; ++i) {\n        if (s[i] === '+' && s[i + 1] === '+') {\n            s[i] = s[i + 1] = '-';\n            ans.push(s.join(''));\n            s[i] = s[i + 1] = '+';\n        }\n    }\n    return ans;\n}"
+    "javascript": "function generatePossibleNextMoves(currentState: string): string[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def generatePossibleNextMoves(self, currentState: str) -> List[str]:\n        s = list(currentState)\n        ans = []\n        for i, (a, b) in enumerate(pairwise(s)):\n            if a == b == \"+\":\n                s[i] = s[i + 1] = \"-\"\n                ans.append(\"\".join(s))\n                s[i] = s[i + 1] = \"+\"\n        return ans",

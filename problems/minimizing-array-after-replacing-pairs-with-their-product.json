@@ -36,7 +36,7 @@
     "python": "class Solution:\n    def minArrayLength(self, nums: List[int], k: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minArrayLength(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minArrayLength(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minArrayLength(nums: number[], k: number): number {\n    let [ans, y] = [1, nums[0]];\n    for (const x of nums.slice(1)) {\n        if (x === 0) {\n            return 1;\n        }\n        if (x * y <= k) {\n            y *= x;\n        } else {\n            y = x;\n            ++ans;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function minArrayLength(nums: number[], k: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minArrayLength(self, nums: List[int], k: int) -> int:\n        ans, y = 1, nums[0]\n        for x in nums[1:]:\n            if x == 0:\n                return 1\n            if x * y <= k:\n                y *= x\n            else:\n                y = x\n                ans += 1\n        return ans",

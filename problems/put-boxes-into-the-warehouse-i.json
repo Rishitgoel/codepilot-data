@@ -43,7 +43,7 @@
     "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxBoxesInWarehouse(vector<int>& boxes, vector<int>& warehouse) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxBoxesInWarehouse(boxes: number[], warehouse: number[]): number {\n    const n = warehouse.length;\n    const left: number[] = new Array(n);\n    left[0] = warehouse[0];\n    for (let i = 1; i < n; ++i) {\n        left[i] = Math.min(left[i - 1], warehouse[i]);\n    }\n    boxes.sort((a, b) => a - b);\n    let i = 0;\n    let j = n - 1;\n    while (i < boxes.length) {\n        while (j >= 0 && left[j] < boxes[i]) {\n            --j;\n        }\n        if (j < 0) {\n            break;\n        }\n        ++i;\n        --j;\n    }\n    return i;\n}"
+    "javascript": "function maxBoxesInWarehouse(boxes: number[], warehouse: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        n = len(warehouse)\n        left = [warehouse[0]] * n\n        for i in range(1, n):\n            left[i] = min(left[i - 1], warehouse[i])\n        boxes.sort()\n        i, j = 0, n - 1\n        while i < len(boxes):\n            while j >= 0 and left[j] < boxes[i]:\n                j -= 1\n            if j < 0:\n                break\n            i, j = i + 1, j - 1\n        return i",

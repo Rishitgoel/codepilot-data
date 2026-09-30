@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int maxScore(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    private Integer[] f;\r\n    private int[] nums;\r\n    private int n;\r\n\r\n    public int maxScore(int[] nums) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxScore(nums: number[]): number {\n    const n = nums.length;\n    const f: number[] = Array(n).fill(0);\n    const dfs = (i: number): number => {\n        if (f[i]) {\n            return f[i];\n        }\n        for (let j = i + 1; j < n; ++j) {\n            f[i] = Math.max(f[i], (j - i) * nums[j] + dfs(j));\n        }\n        return f[i];\n    };\n    return dfs(0);\n}"
+    "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxScore(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxScore(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        @cache\r\n        def dfs(i: int) -> int:\r\n            return max(\r\n                [(j - i) * nums[j] + dfs(j) for j in range(i + 1, len(nums))] or [0]\r\n            )\r\n\r\n        return dfs(0)",

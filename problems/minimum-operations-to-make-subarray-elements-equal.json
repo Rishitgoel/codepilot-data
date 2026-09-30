@@ -31,8 +31,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int], k: int) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    long long minOperations(vector<int>& nums, int k) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public long minOperations(int[] nums, int k) {\r\n        // Your code here\n    }\n}\n"
+    "cpp": "class Solution {\npublic:\n    long long minOperations(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long minOperations(int[] nums, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int], k: int) -> int:\r\n        l = SortedList()\r\n        r = SortedList()\r\n        s1 = s2 = 0\r\n        ans = inf\r\n        for i, x in enumerate(nums):\r\n            l.add(x)\r\n            s1 += x\r\n            y = l.pop()\r\n            s1 -= y\r\n            r.add(y)\r\n            s2 += y\r\n            if len(r) - len(l) > 1:\r\n                y = r.pop(0)\r\n                s2 -= y\r\n                l.add(y)\r\n                s1 += y\r\n            if i >= k - 1:\r\n                ans = min(ans, s2 - r[0] * len(r) + r[0] * len(l) - s1)\r\n                j = i - k + 1\r\n                if nums[j] in r:\r\n                    r.remove(nums[j])\r\n                    s2 -= nums[j]\r\n                else:\r\n                    l.remove(nums[j])\r\n                    s1 -= nums[j]\r\n        return ans",

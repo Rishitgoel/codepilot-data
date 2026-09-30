@@ -48,7 +48,7 @@
     "python": "class Solution:\n    def divisibleTripletCount(self, nums: List[int], d: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int divisibleTripletCount(vector<int>& nums, int d) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int divisibleTripletCount(int[] nums, int d) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function divisibleTripletCount(nums: number[], d: number): number {\n    const n = nums.length;\n    const cnt: Map<number, number> = new Map();\n    let ans = 0;\n    for (let j = 0; j < n; ++j) {\n        for (let k = j + 1; k < n; ++k) {\n            const x = (d - ((nums[j] + nums[k]) % d)) % d;\n            ans += cnt.get(x) || 0;\n        }\n        cnt.set(nums[j] % d, (cnt.get(nums[j] % d) || 0) + 1);\n    }\n    return ans;\n}"
+    "javascript": "function divisibleTripletCount(nums: number[], d: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def divisibleTripletCount(self, nums: List[int], d: int) -> int:\n        cnt = defaultdict(int)\n        ans, n = 0, len(nums)\n        for j in range(n):\n            for k in range(j + 1, n):\n                x = (d - (nums[j] + nums[k]) % d) % d\n                ans += cnt[x]\n            cnt[nums[j] % d] += 1\n        return ans",

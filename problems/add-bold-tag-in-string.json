@@ -18,7 +18,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Add%20Bold%20Tag%20in%20String"
   },
-  "description": "You are given a string `s` and an array of strings `words`.\n\nYou should add a closed pair of bold tag `` and `` to wrap the substrings in `s` that exist in `words`.\n\n\tIf two such substrings overlap, you should wrap them together with only one pair of closed bold-tag.\n\tIf two substrings wrapped by bold tags are consecutive, you should combine them.\n\nReturn `s` *after adding the bold tags*.",
+  "description": "You are given a string `s` and an array of strings `words`.\n\nYou should add a closed pair of bold tag `<b>` and `</b>` to wrap the substrings in `s` that exist in `words`.\n\n\tIf two such substrings overlap, you should wrap them together with only one pair of closed bold-tag.\n\tIf two substrings wrapped by bold tags are consecutive, you should combine them.\n\nReturn `s` *after adding the bold tags*.",
   "examples": [
     {
       "input": "s = \"abcxyz123\", words = [\"abc\",\"123\"]",
@@ -39,7 +39,7 @@
     "All the values of words are unique."
   ],
   "starterTemplates": {
-    "python": "class Trie:\n    def __init__(self):\n        pass\n",
+    "python": "class Solution:\n    def addBoldTag(self, s: str, words: List[str]) -> str:\n        pass\n",
     "cpp": "class Trie {\npublic:\n    vector<Trie*> children;\n    bool isEnd;\n\n    Trie() {\n        children.resize(128);\n        isEnd = false;\n    }\n\n    void insert(string word) {\n        Trie* node = this;\n        for (char c : word) {\n            if (!node->children[c]) node->children[c] = new Trie();\n            node = node->children[c];\n        }\n        node->isEnd = true;\n    }\n};\n\nclass Solution {\npublic:\n    string addBoldTag(string s, vector<string>& words) {\n        // Your code here\n    }\n};\n",
     "java": "class Trie {\n    Trie[] children = new Trie[128];\n    boolean isEnd;\n\n    public void insert(String word) {\n        Trie node = this;\n        for (char c : word.toCharArray()) {\n            if (node.children[c] == null) {\n                node.children[c] = new Trie();\n            }\n            node = node.children[c];\n        }\n        node.isEnd = true;\n    }\n}\n\nclass Solution {\n    public String addBoldTag(String s, String[] words) {\n        // Your code here\n    }\n}\n"
   },

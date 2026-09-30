@@ -39,7 +39,7 @@
     "python": "class Solution:\n    def findLonelyPixel(self, picture: List[List[str]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int findLonelyPixel(vector<vector<char>>& picture) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int findLonelyPixel(char[][] picture) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function findLonelyPixel(picture: string[][]): number {\n    const m = picture.length;\n    const n = picture[0].length;\n    const rows: number[] = Array(m).fill(0);\n    const cols: number[] = Array(n).fill(0);\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            if (picture[i][j] === 'B') {\n                ++rows[i];\n                ++cols[j];\n            }\n        }\n    }\n    let ans = 0;\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            if (picture[i][j] === 'B' && rows[i] === 1 && cols[j] === 1) {\n                ++ans;\n            }\n        }\n    }\n    return ans;\n}"
+    "javascript": "function findLonelyPixel(picture: string[][]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findLonelyPixel(self, picture: List[List[str]]) -> int:\n        rows = [0] * len(picture)\n        cols = [0] * len(picture[0])\n        for i, row in enumerate(picture):\n            for j, x in enumerate(row):\n                if x == \"B\":\n                    rows[i] += 1\n                    cols[j] += 1\n        ans = 0\n        for i, row in enumerate(picture):\n            for j, x in enumerate(row):\n                if x == \"B\" and rows[i] == 1 and cols[j] == 1:\n                    ans += 1\n        return ans",

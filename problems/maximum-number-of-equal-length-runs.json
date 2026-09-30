@@ -32,7 +32,7 @@
     "python": "class Solution:\n    def maxSameLengthRuns(self, s: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxSameLengthRuns(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxSameLengthRuns(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxSameLengthRuns(s: string): number {\n    const cnt: Record<number, number> = {};\n    const n = s.length;\n    let ans = 0;\n    for (let i = 0; i < n;) {\n        let j = i + 1;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n        }\n        const m = j - i;\n        cnt[m] = (cnt[m] || 0) + 1;\n        ans = Math.max(ans, cnt[m]);\n        i = j;\n    }\n    return ans;\n}"
+    "javascript": "function maxSameLengthRuns(s: string): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSameLengthRuns(self, s: str) -> int:\n        cnt = Counter()\n        for _, g in groupby(s):\n            cnt[len(list(g))] += 1\n        return max(cnt.values())",

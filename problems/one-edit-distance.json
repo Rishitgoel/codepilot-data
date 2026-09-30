@@ -39,7 +39,7 @@
     "python": "class Solution:\n    def isOneEditDistance(self, s: str, t: str) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool isOneEditDistance(string s, string t) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean isOneEditDistance(String s, String t) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function isOneEditDistance(s: string, t: string): boolean {\n    const [m, n] = [s.length, t.length];\n    if (m < n) {\n        return isOneEditDistance(t, s);\n    }\n    if (m - n > 1) {\n        return false;\n    }\n    for (let i = 0; i < n; ++i) {\n        if (s[i] !== t[i]) {\n            return s.slice(i + 1) === t.slice(i + (m === n ? 1 : 0));\n        }\n    }\n    return m === n + 1;\n}"
+    "javascript": "function isOneEditDistance(s: string, t: string): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def isOneEditDistance(self, s: str, t: str) -> bool:\n        if len(s) < len(t):\n            return self.isOneEditDistance(t, s)\n        m, n = len(s), len(t)\n        if m - n > 1:\n            return False\n        for i, c in enumerate(t):\n            if c != s[i]:\n                return s[i + 1 :] == t[i + 1 :] if m == n else s[i + 1 :] == t[i:]\n        return m == n + 1",

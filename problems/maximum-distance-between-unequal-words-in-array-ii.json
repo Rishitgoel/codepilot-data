@@ -33,7 +33,7 @@
     "python": "class Solution:\n    def maxDistance(self, words: List[str]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxDistance(vector<string>& words) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxDistance(String[] words) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxDistance(words: string[]): number {\n    const n = words.length;\n    let ans = 0;\n    for (let i = 0; i < n; i++) {\n        if (words[i] !== words[0]) {\n            ans = Math.max(ans, i + 1);\n        }\n        if (words[i] !== words[n - 1]) {\n            ans = Math.max(ans, n - i);\n        }\n    }\n    return ans;\n}"
+    "javascript": "function maxDistance(words: string[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxDistance(self, words: List[str]) -> int:\n        n = len(words)\n        ans = 0\n        for i in range(n):\n            if words[i] != words[0]:\n                ans = max(ans, i + 1)\n            if words[i] != words[-1]:\n                ans = max(ans, n - i)\n        return ans",

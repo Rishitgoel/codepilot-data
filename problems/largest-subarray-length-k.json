@@ -40,7 +40,7 @@
     "python": "class Solution:\n    def largestSubarray(self, nums: List[int], k: int) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> largestSubarray(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] largestSubarray(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function largestSubarray(nums: number[], k: number): number[] {\n    let j = 0;\n    for (let i = 1; i < nums.length - k + 1; ++i) {\n        if (nums[j] < nums[i]) {\n            j = i;\n        }\n    }\n    return nums.slice(j, j + k);\n}"
+    "javascript": "function largestSubarray(nums: number[], k: number): number[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def largestSubarray(self, nums: List[int], k: int) -> List[int]:\n        i = nums.index(max(nums[: len(nums) - k + 1]))\n        return nums[i : i + k]",

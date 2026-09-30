@@ -32,7 +32,7 @@
     "python": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minOperations(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minOperations(nums: number[]): number {\n    let f = new Map<number, number>();\n    f.set(nums[0], 0);\n\n    for (let i = 1; i < nums.length; i++) {\n        const x = nums[i];\n        const g = new Map<number, number>();\n\n        for (const [pre, s] of f.entries()) {\n            let cur = Math.floor((x + pre - 1) / pre) * pre;\n            while (cur <= 100) {\n                const val = s + (cur - x);\n                const old = g.get(cur);\n                if (old === undefined || old > val) {\n                    g.set(cur, val);\n                }\n                cur += pre;\n            }\n        }\n        f = g;\n    }\n\n    return Math.min(...f.values());\n}"
+    "javascript": "function minOperations(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        f = {nums[0]: 0}\n        for x in nums[1:]:\n            g = {}\n            for pre, s in f.items():\n                cur = (x + pre - 1) // pre * pre\n                while cur <= 100:\n                    if cur not in g or g[cur] > s + cur - x:\n                        g[cur] = s + cur - x\n                    cur += pre\n            f = g\n        return min(f.values())",

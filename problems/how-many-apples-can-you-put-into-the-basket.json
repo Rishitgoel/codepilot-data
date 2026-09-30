@@ -36,7 +36,7 @@
     "python": "class Solution:\n    def maxNumberOfApples(self, weight: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxNumberOfApples(vector<int>& weight) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxNumberOfApples(int[] weight) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxNumberOfApples(weight: number[]): number {\n    weight.sort((a, b) => a - b);\n    let s = 0;\n    for (let i = 0; i < weight.length; ++i) {\n        s += weight[i];\n        if (s > 5000) {\n            return i;\n        }\n    }\n    return weight.length;\n}"
+    "javascript": "function maxNumberOfApples(weight: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxNumberOfApples(self, weight: List[int]) -> int:\n        weight.sort()\n        s = 0\n        for i, x in enumerate(weight):\n            s += x\n            if s > 5000:\n                return i\n        return len(weight)",

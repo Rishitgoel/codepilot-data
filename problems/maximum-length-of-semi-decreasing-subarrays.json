@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def maxSubarrayLength(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxSubarrayLength(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxSubarrayLength(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxSubarrayLength(nums: number[]): number {\n    const d: Map<number, number[]> = new Map();\n    for (let i = 0; i < nums.length; ++i) {\n        if (!d.has(nums[i])) {\n            d.set(nums[i], []);\n        }\n        d.get(nums[i])!.push(i);\n    }\n    const keys = Array.from(d.keys()).sort((a, b) => b - a);\n    let ans = 0;\n    let k = Infinity;\n    for (const x of keys) {\n        const idx = d.get(x)!;\n        ans = Math.max(ans, idx.at(-1) - k + 1);\n        k = Math.min(k, idx[0]);\n    }\n    return ans;\n}"
+    "javascript": "function maxSubarrayLength(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSubarrayLength(self, nums: List[int]) -> int:\n        d = defaultdict(list)\n        for i, x in enumerate(nums):\n            d[x].append(i)\n        ans, k = 0, inf\n        for x in sorted(d, reverse=True):\n            ans = max(ans, d[x][-1] - k + 1)\n            k = min(k, d[x][0])\n        return ans",

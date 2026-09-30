@@ -37,7 +37,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def maximumInvitations(self, grid: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maximumInvitations(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private int[][] grid;\n    private boolean[] vis;\n    private int[] match;\n    private int n;\n\n    public int maximumInvitations(int[][] grid) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int maximumInvitations(int[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumInvitations(self, grid: List[List[int]]) -> int:\n        def find(i):\n            for j, v in enumerate(grid[i]):\n                if v and j not in vis:\n                    vis.add(j)\n                    if match[j] == -1 or find(match[j]):\n                        match[j] = i\n                        return True\n            return False\n\n        m, n = len(grid), len(grid[0])\n        match = [-1] * n\n        ans = 0\n        for i in range(m):\n            vis = set()\n            ans += find(i)\n        return ans",

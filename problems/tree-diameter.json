@@ -43,8 +43,8 @@
   "starterTemplates": {
     "python": "class Solution:\n    def treeDiameter(self, edges: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int treeDiameter(vector<vector<int>>& edges) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private List<Integer>[] g;\n    private int ans;\n    private int a;\n\n    public int treeDiameter(int[][] edges) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function treeDiameter(edges: number[][]): number {\n    const n = edges.length + 1;\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of edges) {\n        g[a].push(b);\n        g[b].push(a);\n    }\n    let [ans, a] = [0, 0];\n    const dfs = (i: number, fa: number, t: number): void => {\n        for (const j of g[i]) {\n            if (j !== fa) {\n                dfs(j, i, t + 1);\n            }\n        }\n        if (ans < t) {\n            ans = t;\n            a = i;\n        }\n    };\n    dfs(0, -1, 0);\n    dfs(a, -1, 0);\n    return ans;\n}"
+    "java": "class Solution {\n    public int treeDiameter(int[][] edges) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function treeDiameter(edges: number[][]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def treeDiameter(self, edges: List[List[int]]) -> int:\n        def dfs(i: int, fa: int, t: int):\n            for j in g[i]:\n                if j != fa:\n                    dfs(j, i, t + 1)\n            nonlocal ans, a\n            if ans < t:\n                ans = t\n                a = i\n\n        g = defaultdict(list)\n        for a, b in edges:\n            g[a].append(b)\n            g[b].append(a)\n        ans = a = 0\n        dfs(0, -1, 0)\n        dfs(a, -1, 0)\n        return ans",

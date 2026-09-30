@@ -33,7 +33,7 @@
     "python": "class Solution:\r\n    def numberOfSubstrings(self, s: str, k: int) -> int:\r\n        pass\n",
     "cpp": "class Solution {\r\npublic:\r\n    long long numberOfSubstrings(string s, int k) {\r\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\r\n    public long numberOfSubstrings(String s, int k) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function numberOfSubstrings(s: string, k: number): number {\n    let [ans, l] = [0, 0];\n    const cnt: number[] = Array(26).fill(0);\n    for (const c of s) {\n        const x = c.charCodeAt(0) - 97;\n        ++cnt[x];\n        while (cnt[x] >= k) {\n            --cnt[s[l++].charCodeAt(0) - 97];\n        }\n        ans += l;\n    }\n    return ans;\n}"
+    "javascript": "function numberOfSubstrings(s: string, k: number): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def numberOfSubstrings(self, s: str, k: int) -> int:\r\n        cnt = Counter()\r\n        ans = l = 0\r\n        for c in s:\r\n            cnt[c] += 1\r\n            while cnt[c] >= k:\r\n                cnt[s[l]] -= 1\r\n                l += 1\r\n            ans += l\r\n        return ans",

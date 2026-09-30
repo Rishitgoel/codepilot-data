@@ -39,7 +39,7 @@
     "python": "class Solution:\n    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int shortestDistance(vector<string>& wordsDict, string word1, string word2) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int shortestDistance(String[] wordsDict, String word1, String word2) {\n        // Your code here\n    }\n}\n",
-    "javascript": "var solution = function() {\n    \n};"
+    "javascript": "var solution = function() {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        i = j = -1\n        ans = inf\n        for k, w in enumerate(wordsDict):\n            if w == word1:\n                i = k\n            if w == word2:\n                j = k\n            if i != -1 and j != -1:\n                ans = min(ans, abs(i - j))\n        return ans",

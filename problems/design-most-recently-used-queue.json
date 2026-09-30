@@ -29,7 +29,7 @@
     "At most 2000 calls will be made to fetch."
   ],
   "starterTemplates": {
-    "python": "class MRUQueue:\n    def __init__(self, n: int):\n        pass\n"
+    "python": "class MRUQueue:\n    def __init__(self, n: int):\n        pass\n\n    def fetch(self, k: int) -> int:\n        pass\n\n# Your MRUQueue object will be instantiated and called as such:\n# obj = MRUQueue(n)\n# param_1 = obj.fetch(k)\n"
   },
   "snippets": {
     "python": "class MRUQueue:\n    def __init__(self, n: int):\n        self.q = list(range(1, n + 1))\n\n    def fetch(self, k: int) -> int:\n        ans = self.q[k - 1]\n        self.q[k - 1 : k] = []\n        self.q.append(ans)\n        return ans\n\n\n# Your MRUQueue object will be instantiated and called as such:\n# obj = MRUQueue(n)\n# param_1 = obj.fetch(k)"

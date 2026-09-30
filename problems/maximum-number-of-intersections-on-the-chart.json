@@ -35,7 +35,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def maxIntersectionCount(self, y: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxIntersectionCount(vector<int>& y) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int maxIntersectionCount(int[] y) {\r\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int maxIntersectionCount(int[] y) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxIntersectionCount(self, y: List[int]) -> int:\n        n = len(y)\n        line = defaultdict(int)\n        for i in range(1, n):\n            start = 2 * y[i - 1]\n            end = 2 * y[i] + (0 if i == n - 1 else (-1 if y[i] > y[i - 1] else 1))\n            line[min(start, end)] += 1\n            line[max(start, end) + 1] -= 1\n        ans = intersection = 0\n        for _, count in sorted(line.items()):\n            intersection += count\n            ans = max(ans, intersection)\n        return ans",

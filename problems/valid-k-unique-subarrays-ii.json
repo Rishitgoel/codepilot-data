@@ -25,11 +25,11 @@
     }
   ],
   "constraints": [
-    "2 <= n == nums.length <= 5 &times; 10^5",
-    "1 <= nums[i] <= 5 &times; 10^5",
+    "2 <= n == nums.length <= 5 * 10^5",
+    "1 <= nums[i] <= 5 * 10^5",
     "1 <= k <= n",
     "0 <= l0 < r0 <= n - 1",
-    "1 <= q <= 5 &times; 10^5"
+    "1 <= q <= 5 * 10^5"
   ],
   "starterTemplates": {},
   "snippets": {},

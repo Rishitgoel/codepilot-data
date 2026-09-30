@@ -33,7 +33,7 @@
     "python": "class Solution:\n    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    long long minEliminationTime(vector<int>& timeReq, int splitTime) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public long minEliminationTime(int[] timeReq, int splitTime) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minEliminationTime(timeReq: number[], splitTime: number): number {\n    const pq = new MinPriorityQueue<number>();\n    for (const b of timeReq) {\n        pq.enqueue(b);\n    }\n    while (pq.size() > 1) {\n        pq.dequeue();\n        pq.enqueue(pq.dequeue() + splitTime);\n    }\n    return pq.dequeue();\n}"
+    "javascript": "function minEliminationTime(timeReq: number[], splitTime: number): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:\n        heapify(timeReq)\n        while len(timeReq) > 1:\n            heappop(timeReq)\n            heappush(timeReq, heappop(timeReq) + splitTime)\n        return timeReq[0]",

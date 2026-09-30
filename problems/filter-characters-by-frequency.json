@@ -30,7 +30,7 @@
     "python": "class Solution:\n    def filterCharacters(self, s: str, k: int) -> str:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    string filterCharacters(string s, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public String filterCharacters(String s, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function filterCharacters(s: string, k: number): string {\n    const cnt: Record<string, number> = {};\n    for (const c of s) {\n        cnt[c] = (cnt[c] || 0) + 1;\n    }\n    const ans: string[] = [];\n    for (const c of s) {\n        if (cnt[c] < k) {\n            ans.push(c);\n        }\n    }\n    return ans.join('');\n}"
+    "javascript": "function filterCharacters(s: string, k: number): string {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def filterCharacters(self, s: str, k: int) -> str:\n        cnt = Counter(s)\n        ans = []\n        for c in s:\n            if cnt[c] < k:\n                ans.append(c)\n        return \"\".join(ans)",

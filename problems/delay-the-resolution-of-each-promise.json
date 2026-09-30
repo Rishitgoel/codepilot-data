@@ -40,7 +40,7 @@
     "1 <= functions.length <= 10"
   ],
   "starterTemplates": {
-    "javascript": "function delayAll(functions: Function[], ms: number): Function[] {\n    return functions.map(fn => {\n        return async function () {\n            await new Promise(resolve => setTimeout(resolve, ms));\n            return fn();\n        };\n    });\n}"
+    "javascript": "function delayAll(functions: Function[], ms: number): Function[] {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function delayAll(functions: Function[], ms: number): Function[] {\n    return functions.map(fn => {\n        return async function () {\n            await new Promise(resolve => setTimeout(resolve, ms));\n            return fn();\n        };\n    });\n}"

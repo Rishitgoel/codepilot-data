@@ -43,8 +43,8 @@
   "starterTemplates": {
     "python": "class Solution:\n    def nimGame(self, piles: List[int]) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool nimGame(vector<int>& piles) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private Map<Integer, Boolean> memo = new HashMap<>();\n    private int[] p = new int[8];\n\n    public Solution() {\n        // Your code here\n    }\n}\n",
-    "javascript": "function nimGame(piles: number[]): boolean {\n    const p: number[] = Array(8).fill(1);\n    for (let i = 1; i < 8; ++i) {\n        p[i] = p[i - 1] * 8;\n    }\n    const f = (piles: number[]): number => {\n        let st = 0;\n        for (let i = 0; i < piles.length; ++i) {\n            st += piles[i] * p[i];\n        }\n        return st;\n    };\n    const memo: Map<number, boolean> = new Map();\n    const dfs = (piles: number[]): boolean => {\n        const st = f(piles);\n        if (memo.has(st)) {\n            return memo.get(st)!;\n        }\n        for (let i = 0; i < piles.length; ++i) {\n            for (let j = 1; j <= piles[i]; ++j) {\n                piles[i] -= j;\n                if (!dfs(piles)) {\n                    piles[i] += j;\n                    memo.set(st, true);\n                    return true;\n                }\n                piles[i] += j;\n            }\n        }\n        memo.set(st, false);\n        return false;\n    };\n    return dfs(piles);\n}"
+    "java": "class Solution {\n    public boolean nimGame(int[] piles) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function nimGame(piles: number[]): boolean {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def nimGame(self, piles: List[int]) -> bool:\n        @cache\n        def dfs(st):\n            lst = list(st)\n            for i, x in enumerate(lst):\n                for j in range(1, x + 1):\n                    lst[i] -= j\n                    if not dfs(tuple(lst)):\n                        return True\n                    lst[i] += j\n            return False\n\n        return dfs(tuple(piles))",

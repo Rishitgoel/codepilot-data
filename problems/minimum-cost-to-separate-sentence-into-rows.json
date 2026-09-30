@@ -43,8 +43,8 @@
   "starterTemplates": {
     "python": "class Solution:\n    def minimumCost(self, sentence: str, k: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumCost(string sentence, int k) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private Integer[] f;\n    private int[] s;\n    private int k;\n    private int n;\n\n    public int minimumCost(String sentence, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumCost(sentence: string, k: number): number {\n    const s: number[] = [0];\n    for (const w of sentence.split(' ')) {\n        s.push(s.at(-1)! + w.length);\n    }\n    const n = s.length - 1;\n    const f: number[] = Array(n).fill(-1);\n    const dfs = (i: number): number => {\n        if (s[n] - s[i] + n - i - 1 <= k) {\n            return 0;\n        }\n        if (f[i] !== -1) {\n            return f[i];\n        }\n        let ans = Infinity;\n        for (let j = i + 1; j < n && s[j] - s[i] + j - i - 1 <= k; ++j) {\n            const m = s[j] - s[i] + j - i - 1;\n            ans = Math.min(ans, dfs(j) + (k - m) ** 2);\n        }\n        return (f[i] = ans);\n    };\n    return dfs(0);\n}"
+    "java": "class Solution {\n    public int minimumCost(String sentence, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minimumCost(sentence: string, k: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumCost(self, sentence: str, k: int) -> int:\n        @cache\n        def dfs(i: int) -> int:\n            if s[n] - s[i] + n - i - 1 <= k:\n                return 0\n            ans = inf\n            j = i + 1\n            while j < n and (m := s[j] - s[i] + j - i - 1) <= k:\n                ans = min(ans, dfs(j) + (k - m) ** 2)\n                j += 1\n            return ans\n\n        nums = [len(s) for s in sentence.split()]\n        n = len(nums)\n        s = list(accumulate(nums, initial=0))\n        return dfs(0)",

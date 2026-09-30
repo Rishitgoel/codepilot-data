@@ -39,7 +39,7 @@
     "python": "class Solution:\n    def reverseWords(self, s: List[str]) -> None:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    void reverseWords(vector<char>& s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public void reverseWords(char[] s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "/**\n Do not return anything, modify s in-place instead.\n */\nfunction reverseWords(s: string[]): void {\n    const n = s.length;\n    const reverse = (i: number, j: number): void => {\n        for (; i < j; ++i, --j) {\n            [s[i], s[j]] = [s[j], s[i]];\n        }\n    };\n    for (let i = 0, j = 0; j <= n; ++j) {\n        if (s[j] === ' ') {\n            reverse(i, j - 1);\n            i = j + 1;\n        } else if (j === n - 1) {\n            reverse(i, j);\n        }\n    }\n    reverse(0, n - 1);\n}"
+    "javascript": "/**\n Do not return anything, modify s in-place instead.\n */\n\nfunction reverseWords(s: string[]): void {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def reverseWords(self, s: List[str]) -> None:\n        def reverse(i: int, j: int):\n            while i < j:\n                s[i], s[j] = s[j], s[i]\n                i, j = i + 1, j - 1\n\n        i, n = 0, len(s)\n        for j, c in enumerate(s):\n            if c == \" \":\n                reverse(i, j - 1)\n                i = j + 1\n            elif j == n - 1:\n                reverse(i, j)\n        reverse(0, n - 1)",

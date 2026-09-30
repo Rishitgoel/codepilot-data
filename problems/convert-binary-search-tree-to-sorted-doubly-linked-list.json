@@ -36,7 +36,7 @@
     "All the values of the tree are unique."
   ],
   "starterTemplates": {
-    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        pass\n",
+    "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':\n        pass\n",
     "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        left = NULL;\n        right = NULL;\n    }\n\n    Node(int _val, Node* _left, Node* _right) {\n        val = _val;\n        left = _left;\n        right = _right;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* prev;\n    Node* head;\n\n    Node* treeToDoublyList(Node* root) {\n        // Your code here\n    }\n};\n",
     "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n\n    public Node() {}\n\n    public Node(int _val) {\n        val = _val;\n    }\n\n    public Node(int _val,Node _left,Node _right) {\n        val = _val;\n        left = _left;\n        right = _right;\n    }\n};\n*/\n\nclass Solution {\n    private Node prev;\n    private Node head;\n\n    public Node treeToDoublyList(Node root) {\n        // Your code here\n    }\n}\n"
   },

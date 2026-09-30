@@ -41,7 +41,7 @@
     "2 <= JSON.stringify(obj).length <= 10^5"
   ],
   "starterTemplates": {
-    "javascript": "function invertObject(obj: Record<any, any>): Record<any, any> {\n    const ans: Record<any, any> = {};\n    for (const key in obj) {\n        if (ans.hasOwnProperty(obj[key])) {\n            if (Array.isArray(ans[obj[key]])) {\n                ans[obj[key]].push(key);\n            } else {\n                ans[obj[key]] = [ans[obj[key]], key];\n            }\n        } else {\n            ans[obj[key]] = key;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function invertObject(obj: Record<any, any>): Record<any, any> {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function invertObject(obj: Record<any, any>): Record<any, any> {\n    const ans: Record<any, any> = {};\n    for (const key in obj) {\n        if (ans.hasOwnProperty(obj[key])) {\n            if (Array.isArray(ans[obj[key]])) {\n                ans[obj[key]].push(key);\n            } else {\n                ans[obj[key]] = [ans[obj[key]], key];\n            }\n        } else {\n            ans[obj[key]] = key;\n        }\n    }\n    return ans;\n}"

@@ -33,7 +33,7 @@
     "python": "class Solution:\n    def maxWeight(self, weights: List[int], w1: int, w2: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxWeight(vector<int>& weights, int w1, int w2) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxWeight(int[] weights, int w1, int w2) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxWeight(weights: number[], w1: number, w2: number): number {\n    const f: number[][] = Array.from({ length: w1 + 1 }, () => Array(w2 + 1).fill(0));\n    for (const x of weights) {\n        for (let j = w1; j >= 0; j--) {\n            for (let k = w2; k >= 0; k--) {\n                if (x <= j) {\n                    f[j][k] = Math.max(f[j][k], f[j - x][k] + x);\n                }\n                if (x <= k) {\n                    f[j][k] = Math.max(f[j][k], f[j][k - x] + x);\n                }\n            }\n        }\n    }\n    return f[w1][w2];\n}"
+    "javascript": "function maxWeight(weights: number[], w1: number, w2: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxWeight(self, weights: List[int], w1: int, w2: int) -> int:\n        f = [[0] * (w2 + 1) for _ in range(w1 + 1)]\n        max = lambda a, b: a if a > b else b\n        for x in weights:\n            for j in range(w1, -1, -1):\n                for k in range(w2, -1, -1):\n                    if x <= j:\n                        f[j][k] = max(f[j][k], f[j - x][k] + x)\n                    if x <= k:\n                        f[j][k] = max(f[j][k], f[j][k - x] + x)\n        return f[w1][w2]",

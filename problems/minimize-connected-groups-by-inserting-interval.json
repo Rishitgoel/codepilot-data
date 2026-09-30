@@ -29,9 +29,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int minConnectedGroups(vector<vector<int>>& intervals, int k) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int minConnectedGroups(int[][] intervals, int k) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function minConnectedGroups(intervals: number[][], k: number): number {\n    intervals.sort((a, b) => a[0] - b[0]);\n    const merged: number[][] = [];\n    for (const interval of intervals) {\n        const [s, e] = interval;\n        if (merged.length === 0 || merged.at(-1)![1] < s) {\n            merged.push(interval);\n        } else {\n            merged.at(-1)![1] = Math.max(merged.at(-1)![1], e);\n        }\n    }\n    const search = (x: number): number => {\n        let [l, r] = [0, merged.length];\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (merged[mid][0] >= x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    };\n    let ans = merged.length;\n    for (let i = 0; i < merged.length; ++i) {\n        const j = search(merged[i][1] + k + 1);\n        ans = Math.min(ans, merged.length - (j - i - 1));\n    }\n    return ans;\n}"
+    "cpp": "class Solution {\npublic:\n    int minConnectedGroups(vector<vector<int>>& intervals, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minConnectedGroups(int[][] intervals, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minConnectedGroups(intervals: number[][], k: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:\r\n        intervals.sort()\r\n        merged = [intervals[0]]\r\n        for s, e in intervals[1:]:\r\n            if merged[-1][1] < s:\r\n                merged.append([s, e])\r\n            else:\r\n                merged[-1][1] = max(merged[-1][1], e)\r\n        ans = len(merged)\r\n        for i, (_, e) in enumerate(merged):\r\n            j = bisect_left(merged, [e + k + 1, 0])\r\n            ans = min(ans, len(merged) - (j - i - 1))\r\n        return ans",

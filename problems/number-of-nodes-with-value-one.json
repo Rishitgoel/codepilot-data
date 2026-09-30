@@ -35,7 +35,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def numberOfNodes(self, n: int, queries: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int numberOfNodes(int n, vector<int>& queries) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private int[] tree;\n\n    public int numberOfNodes(int n, int[] queries) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int numberOfNodes(int n, int[] queries) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfNodes(self, n: int, queries: List[int]) -> int:\n        def dfs(i):\n            if i > n:\n                return\n            tree[i] ^= 1\n            dfs(i << 1)\n            dfs(i << 1 | 1)\n\n        tree = [0] * (n + 1)\n        cnt = Counter(queries)\n        for i, v in cnt.items():\n            if v & 1:\n                dfs(i)\n        return sum(tree)",

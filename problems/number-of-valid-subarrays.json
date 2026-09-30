@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def validSubarrays(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int validSubarrays(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int validSubarrays(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function validSubarrays(nums: number[]): number {\n    const n = nums.length;\n    const right: number[] = Array(n).fill(n);\n    const stk: number[] = [];\n    for (let i = n - 1; ~i; --i) {\n        while (stk.length && nums[stk.at(-1)] >= nums[i]) {\n            stk.pop();\n        }\n        if (stk.length) {\n            right[i] = stk.at(-1)!;\n        }\n        stk.push(i);\n    }\n    let ans = 0;\n    for (let i = 0; i < n; ++i) {\n        ans += right[i] - i;\n    }\n    return ans;\n}"
+    "javascript": "function validSubarrays(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def validSubarrays(self, nums: List[int]) -> int:\n        n = len(nums)\n        right = [n] * n\n        stk = []\n        for i in range(n - 1, -1, -1):\n            while stk and nums[stk[-1]] >= nums[i]:\n                stk.pop()\n            if stk:\n                right[i] = stk[-1]\n            stk.append(i)\n        return sum(j - i for i, j in enumerate(right))",

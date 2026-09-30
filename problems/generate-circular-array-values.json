@@ -42,7 +42,7 @@
     "0 <= startIndex < arr.length"
   ],
   "starterTemplates": {
-    "javascript": "function* cycleGenerator(arr: number[], startIndex: number): Generator<number, void, number> {\n    const n = arr.length;\n    while (true) {\n        const jump = yield arr[startIndex];\n        startIndex = (((startIndex + jump) % n) + n) % n;\n    }\n}\n/**\n *  const gen = cycleGenerator([1,2,3,4,5], 0);\n *  gen.next().value  // 1\n *  gen.next(1).value // 2\n *  gen.next(2).value // 4\n *  gen.next(6).value // 5\n */"
+    "javascript": "function* cycleGenerator(arr: number[], startIndex: number): Generator<number, void, number> {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function* cycleGenerator(arr: number[], startIndex: number): Generator<number, void, number> {\n    const n = arr.length;\n    while (true) {\n        const jump = yield arr[startIndex];\n        startIndex = (((startIndex + jump) % n) + n) % n;\n    }\n}\n/**\n *  const gen = cycleGenerator([1,2,3,4,5], 0);\n *  gen.next().value  // 1\n *  gen.next(1).value // 2\n *  gen.next(2).value // 4\n *  gen.next(6).value // 5\n */"

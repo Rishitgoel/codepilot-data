@@ -40,7 +40,7 @@
     "python": "class Solution:\n    def isConsecutive(self, nums: List[int]) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool isConsecutive(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean isConsecutive(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function isConsecutive(nums: number[]): boolean {\n    let [mi, mx] = [nums[0], 0];\n    const s = new Set<number>();\n    for (const x of nums) {\n        if (s.has(x)) {\n            return false;\n        }\n        s.add(x);\n        mi = Math.min(mi, x);\n        mx = Math.max(mx, x);\n    }\n    return mx - mi + 1 === nums.length;\n}"
+    "javascript": "function isConsecutive(nums: number[]): boolean {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def isConsecutive(self, nums: List[int]) -> bool:\n        mi, mx = min(nums), max(nums)\n        return len(set(nums)) == mx - mi + 1 == len(nums)",

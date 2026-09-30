@@ -34,7 +34,7 @@
     "python": "class Solution:\n    def reverseSubarrays(self, nums: list[int], k: int) -> list[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> reverseSubarrays(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] reverseSubarrays(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function reverseSubarrays(nums: number[], k: number): number[] {\n    const n = nums.length;\n    const m = Math.floor(n / k);\n    for (let i = 0; i < n; i += m) {\n        let l = i,\n            r = i + m - 1;\n        while (l < r) {\n            const t = nums[l];\n            nums[l++] = nums[r];\n            nums[r--] = t;\n        }\n    }\n    return nums;\n}"
+    "javascript": "function reverseSubarrays(nums: number[], k: number): number[] {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def reverseSubarrays(self, nums: list[int], k: int) -> list[int]:\n        n = len(nums)\n        m = n // k\n        for i in range(0, n, m):\n            nums[i : i + m] = nums[i : i + m][::-1]\n        return nums",

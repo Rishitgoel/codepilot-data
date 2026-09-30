@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def makePalindrome(self, s: str) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool makePalindrome(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean makePalindrome(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function makePalindrome(s: string): boolean {\n    let cnt = 0;\n    let i = 0;\n    let j = s.length - 1;\n    for (; i < j; ++i, --j) {\n        if (s[i] != s[j]) {\n            ++cnt;\n        }\n    }\n    return cnt <= 2;\n}"
+    "javascript": "function makePalindrome(s: string): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def makePalindrome(self, s: str) -> bool:\n        i, j = 0, len(s) - 1\n        cnt = 0\n        while i < j:\n            cnt += s[i] != s[j]\n            i, j = i + 1, j - 1\n        return cnt <= 2",

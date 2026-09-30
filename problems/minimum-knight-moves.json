@@ -21,11 +21,13 @@
   "examples": [
     {
       "input": "x = 2, y = 1",
-      "output": "1\nExplanation: [0, 0] &rarr; [2, 1]"
+      "output": "1",
+      "explanation": "[0, 0] -> [2, 1]"
     },
     {
       "input": "x = 5, y = 5",
-      "output": "4\nExplanation: [0, 0] &rarr; [2, 1] &rarr; [4, 2] &rarr; [3, 4] &rarr; [5, 5]"
+      "output": "4",
+      "explanation": "[0, 0] -> [2, 1] -> [4, 2] -> [3, 4] -> [5, 5]"
     }
   ],
   "constraints": [
@@ -45,11 +47,11 @@
   "testcases": [
     {
       "input": "2, y = 1",
-      "expected": "1\nExplanation: [0, 0] &rarr; [2, 1]"
+      "expected": "1"
     },
     {
       "input": "5, y = 5",
-      "expected": "4\nExplanation: [0, 0] &rarr; [2, 1] &rarr; [4, 2] &rarr; [3, 4] &rarr; [5, 5]"
+      "expected": "4"
     }
   ],
   "hints": [

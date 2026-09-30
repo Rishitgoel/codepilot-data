@@ -36,7 +36,7 @@
     "python": "class Solution:\n    def maximumSumScore(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    long long maximumSumScore(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public long maximumSumScore(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maximumSumScore(nums: number[]): number {\n    let l = 0;\n    let r = nums.reduce((a, b) => a + b, 0);\n    let ans = -Infinity;\n    for (const x of nums) {\n        l += x;\n        ans = Math.max(ans, l, r);\n        r -= x;\n    }\n    return ans;\n}"
+    "javascript": "function maximumSumScore(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumSumScore(self, nums: List[int]) -> int:\n        l, r = 0, sum(nums)\n        ans = -inf\n        for x in nums:\n            l += x\n            ans = max(ans, l, r)\n            r -= x\n        return ans",

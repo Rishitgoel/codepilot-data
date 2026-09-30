@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def timeTaken(self, arrival: List[int], state: List[int]) -> List[int]:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    vector<int> timeTaken(vector<int>& arrival, vector<int>& state) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int[] timeTaken(int[] arrival, int[] state) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function timeTaken(arrival: number[], state: number[]): number[] {\n    const n = arrival.length;\n    const q: number[][] = [[], []];\n    let [t, i, st] = [0, 0, 1];\n    const ans: number[] = Array(n).fill(0);\n\n    while (i < n || q[0].length || q[1].length) {\n        while (i < n && arrival[i] <= t) {\n            q[state[i]].push(i++);\n        }\n\n        if (q[0].length && q[1].length) {\n            ans[q[st][0]] = t;\n            q[st].shift();\n        } else if (q[0].length || q[1].length) {\n            st = q[0].length ? 0 : 1;\n            ans[q[st][0]] = t;\n            q[st].shift();\n        } else {\n            st = 1;\n        }\n\n        t++;\n    }\n\n    return ans;\n}"
+    "cpp": "class Solution {\npublic:\n    vector<int> timeTaken(vector<int>& arrival, vector<int>& state) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] timeTaken(int[] arrival, int[] state) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function timeTaken(arrival: number[], state: number[]): number[] {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def timeTaken(self, arrival: List[int], state: List[int]) -> List[int]:\r\n        q = [deque(), deque()]\r\n        n = len(arrival)\r\n        t = i = 0\r\n        st = 1\r\n        ans = [0] * n\r\n        while i < n or q[0] or q[1]:\r\n            while i < n and arrival[i] <= t:\r\n                q[state[i]].append(i)\r\n                i += 1\r\n            if q[0] and q[1]:\r\n                ans[q[st].popleft()] = t\r\n            elif q[0] or q[1]:\r\n                st = 0 if q[0] else 1\r\n                ans[q[st].popleft()] = t\r\n            else:\r\n                st = 1\r\n            t += 1\r\n        return ans",

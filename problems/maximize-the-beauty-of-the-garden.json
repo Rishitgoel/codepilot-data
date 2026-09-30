@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def maximumBeauty(self, flowers: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maximumBeauty(vector<int>& flowers) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maximumBeauty(int[] flowers) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maximumBeauty(flowers: number[]): number {\n    const n = flowers.length;\n    const s: number[] = Array(n + 1).fill(0);\n    const d: Map<number, number> = new Map();\n    let ans = -Infinity;\n    for (let i = 0; i < n; ++i) {\n        const v = flowers[i];\n        if (d.has(v)) {\n            ans = Math.max(ans, s[i] - s[d.get(v)! + 1] + v * 2);\n        } else {\n            d.set(v, i);\n        }\n        s[i + 1] = s[i] + Math.max(v, 0);\n    }\n    return ans;\n}"
+    "javascript": "function maximumBeauty(flowers: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumBeauty(self, flowers: List[int]) -> int:\n        s = [0] * (len(flowers) + 1)\n        d = {}\n        ans = -inf\n        for i, v in enumerate(flowers):\n            if v in d:\n                ans = max(ans, s[i] - s[d[v] + 1] + v * 2)\n            else:\n                d[v] = i\n            s[i + 1] = s[i] + max(v, 0)\n        return ans",

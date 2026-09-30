@@ -29,7 +29,7 @@
     "python": "class Solution:\n    def maxScore(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int maxScore(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxScore(nums: number[]): number {\n    const inf = Infinity;\n    const n = nums.length;\n    let [s, mi, t] = [0, inf, inf];\n    for (let i = 0; i < n; ++i) {\n        s += nums[i];\n        mi = Math.min(mi, nums[i]);\n        if (i + 1 < n) {\n            t = Math.min(t, nums[i] + nums[i + 1]);\n        }\n    }\n    return n % 2 ? s - mi : s - t;\n}"
+    "javascript": "function maxScore(nums: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxScore(self, nums: List[int]) -> int:\n        s = sum(nums)\n        if len(nums) & 1:\n            return s - min(nums)\n        return s - min(a + b for a, b in pairwise(nums))",

@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def largestUniqueNumber(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int largestUniqueNumber(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int largestUniqueNumber(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function largestUniqueNumber(nums: number[]): number {\n    const cnt = Array(1001).fill(0);\n    for (const x of nums) {\n        ++cnt[x];\n    }\n    for (let x = 1000; x >= 0; --x) {\n        if (cnt[x] === 1) {\n            return x;\n        }\n    }\n    return -1;\n}"
+    "javascript": "function largestUniqueNumber(nums: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def largestUniqueNumber(self, nums: List[int]) -> int:\n        cnt = Counter(nums)\n        return max((x for x, v in cnt.items() if v == 1), default=-1)",

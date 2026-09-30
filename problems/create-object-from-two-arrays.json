@@ -41,7 +41,7 @@
     "keysArr.length === valuesArr.length"
   ],
   "starterTemplates": {
-    "javascript": "function createObject(keysArr: any[], valuesArr: any[]): Record<string, any> {\n    const ans: Record<string, any> = {};\n    for (let i = 0; i < keysArr.length; ++i) {\n        const k = String(keysArr[i]);\n        if (ans[k] === undefined) {\n            ans[k] = valuesArr[i];\n        }\n    }\n    return ans;\n}"
+    "javascript": "function createObject(keysArr: any[], valuesArr: any[]): Record<string, any> {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function createObject(keysArr: any[], valuesArr: any[]): Record<string, any> {\n    const ans: Record<string, any> = {};\n    for (let i = 0; i < keysArr.length; ++i) {\n        const k = String(keysArr[i]);\n        if (ans[k] === undefined) {\n            ans[k] = valuesArr[i];\n        }\n    }\n    return ans;\n}"

@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int connectSticks(vector<int>& sticks) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int connectSticks(int[] sticks) {\n        // Your code here\n    }\n}\n",
-    "javascript": "var connectSticks = function(sticks) {\n    // Simple min-heap simulation or sorting\n    sticks.sort((a, b) => a - b);\n    let totalCost = 0;\n    while (sticks.length > 1) {\n        const cost = sticks.shift() + sticks.shift();\n        totalCost += cost;\n        // insert cost keeping sorted\n        let idx = 0;\n        while (idx < sticks.length && sticks[idx] < cost) idx++;\n        sticks.splice(idx, 0, cost);\n    }\n    return totalCost;\n};"
+    "javascript": "var connectSticks = function(sticks) {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        heapq.heapify(sticks)\n        total_cost = 0\n        while len(sticks) > 1:\n            x = heapq.heappop(sticks)\n            y = heapq.heappop(sticks)\n            cost = x + y\n            total_cost += cost\n            heapq.heappush(sticks, cost)\n        return total_cost",

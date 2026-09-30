@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def makePrefSumNonNegative(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int makePrefSumNonNegative(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int makePrefSumNonNegative(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function makePrefSumNonNegative(nums: number[]): number {\n    const pq = new MinPriorityQueue<number>();\n    let ans = 0;\n    let s = 0;\n    for (const x of nums) {\n        s += x;\n        if (x < 0) {\n            pq.enqueue(x);\n        }\n        while (s < 0) {\n            s -= pq.dequeue();\n            ++ans;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function makePrefSumNonNegative(nums: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def makePrefSumNonNegative(self, nums: List[int]) -> int:\n        h = []\n        ans = s = 0\n        for x in nums:\n            s += x\n            if x < 0:\n                heappush(h, x)\n            while s < 0:\n                s -= heappop(h)\n                ans += 1\n        return ans",

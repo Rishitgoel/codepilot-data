@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def badSensor(self, sensor1: List[int], sensor2: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int badSensor(vector<int>& sensor1, vector<int>& sensor2) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int badSensor(int[] sensor1, int[] sensor2) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function badSensor(sensor1: number[], sensor2: number[]): number {\n    let i = 0;\n    const n = sensor1.length;\n    while (i < n - 1) {\n        if (sensor1[i] !== sensor2[i]) {\n            break;\n        }\n        ++i;\n    }\n    while (i < n - 1) {\n        if (sensor1[i + 1] !== sensor2[i]) {\n            return 1;\n        }\n        if (sensor1[i] !== sensor2[i + 1]) {\n            return 2;\n        }\n        ++i;\n    }\n    return -1;\n}"
+    "javascript": "function badSensor(sensor1: number[], sensor2: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def badSensor(self, sensor1: List[int], sensor2: List[int]) -> int:\n        i, n = 0, len(sensor1)\n        while i < n - 1:\n            if sensor1[i] != sensor2[i]:\n                break\n            i += 1\n        while i < n - 1:\n            if sensor1[i + 1] != sensor2[i]:\n                return 1\n            if sensor1[i] != sensor2[i + 1]:\n                return 2\n            i += 1\n        return -1",

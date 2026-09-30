@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def isPreorder(self, nodes: List[List[int]]) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool isPreorder(vector<vector<int>>& nodes) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    private Map<Integer, List<Integer>> g = new HashMap<>();\n    private List<List<Integer>> nodes;\n    private int k;\n\n    public boolean isPreorder(List<List<Integer>> nodes) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function isPreorder(nodes: number[][]): boolean {\n    let k = 0;\n    const g: Map<number, number[]> = new Map();\n    for (const [i, p] of nodes) {\n        if (!g.has(p)) {\n            g.set(p, []);\n        }\n        g.get(p)!.push(i);\n    }\n    const dfs = (i: number): boolean => {\n        if (i !== nodes[k][0]) {\n            return false;\n        }\n        ++k;\n        for (const j of g.get(i) ?? []) {\n            if (!dfs(j)) {\n                return false;\n            }\n        }\n        return true;\n    };\n    return dfs(nodes[0][0]) && k === nodes.length;\n}"
+    "javascript": "function isPreorder(nodes: number[][]): boolean {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def isPreorder(self, nodes: List[List[int]]) -> bool:\n        def dfs(i: int) -> int:\n            nonlocal k\n            if i != nodes[k][0]:\n                return False\n            k += 1\n            return all(dfs(j) for j in g[i])\n\n        g = defaultdict(list)\n        for i, p in nodes:\n            g[p].append(i)\n        k = 0\n        return dfs(nodes[0][0]) and k == len(nodes)",

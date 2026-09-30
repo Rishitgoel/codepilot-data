@@ -16,7 +16,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Swaps%20to%20Group%20All%201's%20Together"
   },
-  "description": "Given a binary array `data`, return the minimum number of swaps required to group all `1`&rsquo;s present in the array together in **any place** in the array.",
+  "description": "Given a binary array `data`, return the minimum number of swaps required to group all `1`'s present in the array together in **any place** in the array.",
   "examples": [
     {
       "input": "data = [1,0,1,0,1]",
@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& data) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minSwaps(int[] data) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minSwaps(data: number[]): number {\n    const k = data.reduce((acc, cur) => acc + cur, 0);\n    let t = data.slice(0, k).reduce((acc, cur) => acc + cur, 0);\n    let mx = t;\n    for (let i = k; i < data.length; ++i) {\n        t += data[i] - data[i - k];\n        mx = Math.max(mx, t);\n    }\n    return k - mx;\n}"
+    "javascript": "function minSwaps(data: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        k = data.count(1)\n        mx = t = sum(data[:k])\n        for i in range(k, len(data)):\n            t += data[i]\n            t -= data[i - k]\n            mx = max(mx, t)\n        return k - mx",

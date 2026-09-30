@@ -36,10 +36,10 @@
     "rooms[i][j] is -1, 0, or 2147483647."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    def wallsAndGates(self, rooms: List[List[int]]) -> None:\n        pass\n",
+    "python": "class Solution:\n    def wallsAndGates(self, rooms: List[List[int]]) -> None:\n        \"\"\"Do not return anything, modify rooms in-place instead.\"\"\"\n        pass\n",
     "cpp": "class Solution {\npublic:\n    void wallsAndGates(vector<vector<int>>& rooms) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public void wallsAndGates(int[][] rooms) {\n        // Your code here\n    }\n}\n",
-    "javascript": "var wallsAndGates = function(rooms) {\n    const m = rooms.length, n = rooms[0].length;\n    const q = [];\n    for (let r = 0; r < m; r++)\n        for (let c = 0; c < n; c++)\n            if (rooms[r][c] === 0) q.push([r, c]);\n    const dirs = [[0,1],[0,-1],[1,0],[-1,0]];\n    while (q.length) {\n        const [r, c] = q.shift();\n        for (const [dr, dc] of dirs) {\n            const nr = r + dr, nc = c + dc;\n            if (nr >= 0 && nr < m && nc >= 0 && nc < n && rooms[nr][nc] === 2147483647) {\n                rooms[nr][nc] = rooms[r][c] + 1;\n                q.push([nr, nc]);\n            }\n        }\n    }\n};"
+    "javascript": "var wallsAndGates = function(rooms) {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def wallsAndGates(self, rooms: List[List[int]]) -> None:\n        \"\"\"Do not return anything, modify rooms in-place instead.\"\"\"\n        if not rooms: return\n        m, n = len(rooms), len(rooms[0])\n        q = deque()\n        for r in range(m):\n            for c in range(n):\n                if rooms[r][c] == 0:\n                    q.append((r, c))\n        while q:\n            r, c = q.popleft()\n            for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:\n                nr, nc = r + dr, c + dc\n                if 0 <= nr < m and 0 <= nc < n and rooms[nr][nc] == 2147483647:\n                    rooms[nr][nc] = rooms[r][c] + 1\n                    q.append((nr, nc))",

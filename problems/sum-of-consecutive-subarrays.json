@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int getSum(int[] nums) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function getSum(nums: number[]): number {\n    const mod = 10 ** 9 + 7;\n    let f = 1,\n        g = 1;\n    let s = nums[0],\n        t = nums[0];\n    let ans = nums[0];\n\n    for (let i = 1; i < nums.length; i++) {\n        const x = nums[i - 1];\n        const y = nums[i];\n\n        if (y - x === 1) {\n            f++;\n            s += f * y;\n            ans = (ans + s) % mod;\n        } else {\n            f = 1;\n            s = y;\n        }\n\n        if (y - x === -1) {\n            g++;\n            t += g * y;\n            ans = (ans + t) % mod;\n        } else {\n            g = 1;\n            t = y;\n        }\n\n        if (Math.abs(y - x) !== 1) {\n            ans = (ans + y) % mod;\n        }\n    }\n\n    return ans;\n}"
+    "cpp": "class Solution {\npublic:\n    int getSum(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int getSum(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function getSum(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        mod = 10**9 + 7\r\n        f = g = 1\r\n        s = t = nums[0]\r\n        ans = nums[0]\r\n        for x, y in pairwise(nums):\r\n            if y - x == 1:\r\n                f += 1\r\n                s += f * y\r\n                ans = (ans + s) % mod\r\n            else:\r\n                f = 1\r\n                s = y\r\n            if y - x == -1:\r\n                g += 1\r\n                t += g * y\r\n                ans = (ans + t) % mod\r\n            else:\r\n                g = 1\r\n                t = y\r\n            if abs(y - x) != 1:\r\n                ans = (ans + y) % mod\r\n        return ans",

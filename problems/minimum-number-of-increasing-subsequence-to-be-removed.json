@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int minOperations(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int minOperations(int[] nums) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function minOperations(nums: number[]): number {\n    const g: number[] = [];\n    for (const x of nums) {\n        let [l, r] = [0, g.length];\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (g[mid] < x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        if (l === g.length) {\n            g.push(x);\n        } else {\n            g[l] = x;\n        }\n    }\n    return g.length;\n}"
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minOperations(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minOperations(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int]) -> int:\r\n        g = []\r\n        for x in nums:\r\n            l, r = 0, len(g)\r\n            while l < r:\r\n                mid = (l + r) >> 1\r\n                if g[mid] < x:\r\n                    r = mid\r\n                else:\r\n                    l = mid + 1\r\n            if l == len(g):\r\n                g.append(x)\r\n            else:\r\n                g[l] = x\r\n        return len(g)",

@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Elements%20in%20Array%20After%20Removing%20and%20Replacing%20Elements"
   },
-  "description": "You are given a **0-indexed** integer array `nums`. Initially on minute `0`, the array is unchanged. Every minute, the **leftmost** element in `nums` is removed until no elements remain. Then, every minute, one element is appended to the **end** of `nums`, in the order they were removed in, until the original array is restored. This process repeats indefinitely.\n\n\tFor example, the array `[0,1,2]` would change as follows: `[0,1,2] &rarr; [1,2] &rarr; [2] &rarr; [] &rarr; [0] &rarr; [0,1] &rarr; [0,1,2] &rarr; [1,2] &rarr; [2] &rarr; [] &rarr; [0] &rarr; [0,1] &rarr; [0,1,2] &rarr; ...`\n\nYou are also given a 2D integer array `queries` of size `n` where `queries[j] = [timej, indexj]`. The answer to the `j^th` query is:\n\n\t`nums[indexj]` if `indexj j`\n\t`-1` if `indexj >= nums.length` at minute `timej`\n\nReturn *an integer array `ans` of size *`n` *where *`ans[j]`* is the answer to the *`j^th`* query*.",
+  "description": "You are given a **0-indexed** integer array `nums`. Initially on minute `0`, the array is unchanged. Every minute, the **leftmost** element in `nums` is removed until no elements remain. Then, every minute, one element is appended to the **end** of `nums`, in the order they were removed in, until the original array is restored. This process repeats indefinitely.\n\n\tFor example, the array `[0,1,2]` would change as follows: `[0,1,2] -> [1,2] -> [2] -> [] -> [0] -> [0,1] -> [0,1,2] -> [1,2] -> [2] -> [] -> [0] -> [0,1] -> [0,1,2] -> ...`\n\nYou are also given a 2D integer array `queries` of size `n` where `queries[j] = [timej, indexj]`. The answer to the `j^th` query is:\n\n\t`nums[indexj]` if `indexj j`\n\t`-1` if `indexj >= nums.length` at minute `timej`\n\nReturn *an integer array `ans` of size *`n` *where *`ans[j]`* is the answer to the *`j^th`* query*.",
   "examples": [
     {
       "input": "nums = [0,1,2], queries = [[0,2],[2,0],[3,2],[5,0]]",
@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] elementInNums(int[] nums, int[][] queries) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    const n = nums.length;\n    const m = queries.length;\n    const ans: number[] = Array(m).fill(-1);\n    for (let j = 0; j < m; ++j) {\n        let [t, i] = queries[j];\n        t %= 2 * n;\n        if (t < n && i < n - t) {\n            ans[j] = nums[i + t];\n        } else if (t >= n && i < t - n) {\n            ans[j] = nums[i];\n        }\n    }\n    return ans;\n}"
+    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        n, m = len(nums), len(queries)\n        ans = [-1] * m\n        for j, (t, i) in enumerate(queries):\n            t %= 2 * n\n            if t < n and i < n - t:\n                ans[j] = nums[i + t]\n            elif t > n and i < t - n:\n                ans[j] = nums[i]\n        return ans",

@@ -31,7 +31,7 @@
     "python": "class Solution:\n    def minCost(self, n: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    long long minCost(int n) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public long minCost(int n) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minCost(n: number): number {\n    return (n * (n - 1)) / 2;\n}"
+    "javascript": "function minCost(n: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minCost(self, n: int) -> int:\n        return n * (n - 1) // 2",

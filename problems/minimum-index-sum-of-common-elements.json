@@ -32,7 +32,7 @@
     "python": "class Solution:\n    def minimumSum(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumSum(vector<int>& nums1, vector<int>& nums2) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minimumSum(int[] nums1, int[] nums2) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumSum(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    const inf = 1 << 30;\n    const d = new Map<number, number>();\n    for (let i = 0; i < n; i++) {\n        if (!d.has(nums2[i])) {\n            d.set(nums2[i], i);\n        }\n    }\n    let ans = inf;\n    for (let i = 0; i < n; i++) {\n        if (d.has(nums1[i])) {\n            ans = Math.min(ans, i + (d.get(nums1[i]) as number));\n        }\n    }\n    return ans === inf ? -1 : ans;\n}"
+    "javascript": "function minimumSum(nums1: number[], nums2: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumSum(self, nums1: List[int], nums2: List[int]) -> int:\n        d = {}\n        for i, x in enumerate(nums2):\n            if x not in d:\n                d[x] = i\n        ans = inf\n        for i, x in enumerate(nums1):\n            if x in d:\n                ans = min(ans, i + d[x])\n        return -1 if ans == inf else ans",

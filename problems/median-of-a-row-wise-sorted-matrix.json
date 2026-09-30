@@ -38,7 +38,7 @@
   "starterTemplates": {
     "python": "class Solution:\n    def matrixMedian(self, grid: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int matrixMedian(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private int[][] grid;\n\n    public int matrixMedian(int[][] grid) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public int matrixMedian(int[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def matrixMedian(self, grid: List[List[int]]) -> int:\n        def count(x):\n            return sum(bisect_right(row, x) for row in grid)\n\n        m, n = len(grid), len(grid[0])\n        target = (m * n + 1) >> 1\n        return bisect_left(range(10**6 + 1), target, key=count)",

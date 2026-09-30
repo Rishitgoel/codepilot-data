@@ -37,7 +37,7 @@
     "It is guaranteed that there will be an answer for the given input nums."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        pass\n",
+    "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        pass\n",
     "cpp": "class Solution {\npublic:\n    void wiggleSort(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        // Your code here\n    }\n}\n"
   },

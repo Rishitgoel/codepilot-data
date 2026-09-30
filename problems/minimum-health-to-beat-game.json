@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def minimumHealth(self, damage: List[int], armor: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    long long minimumHealth(vector<int>& damage, int armor) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public long minimumHealth(int[] damage, int armor) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumHealth(damage: number[], armor: number): number {\n    let s = 0;\n    let mx = 0;\n    for (const v of damage) {\n        mx = Math.max(mx, v);\n        s += v;\n    }\n    return s - Math.min(mx, armor) + 1;\n}"
+    "javascript": "function minimumHealth(damage: number[], armor: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumHealth(self, damage: List[int], armor: int) -> int:\n        return sum(damage) - min(max(damage), armor) + 1",

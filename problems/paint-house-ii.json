@@ -40,7 +40,7 @@
     "python": "class Solution:\n    def minCostII(self, costs: List[List[int]]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minCostII(vector<vector<int>>& costs) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minCostII(int[][] costs) {\n        // Your code here\n    }\n}\n",
-    "javascript": "var solution = function() {\n    \n};"
+    "javascript": "var solution = function() {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minCostII(self, costs: List[List[int]]) -> int:\n        n, k = len(costs), len(costs[0])\n        f = costs[0][:]\n        for i in range(1, n):\n            g = costs[i][:]\n            for j in range(k):\n                t = min(f[h] for h in range(k) if h != j)\n                g[j] += t\n            f = g\n        return min(f)",

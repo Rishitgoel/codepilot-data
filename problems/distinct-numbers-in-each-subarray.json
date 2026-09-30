@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def distinctNumbers(self, nums: List[int], k: int) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> distinctNumbers(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] distinctNumbers(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function distinctNumbers(nums: number[], k: number): number[] {\n    const cnt: Map<number, number> = new Map();\n    for (let i = 0; i < k; ++i) {\n        cnt.set(nums[i], (cnt.get(nums[i]) ?? 0) + 1);\n    }\n    const ans: number[] = [cnt.size];\n    for (let i = k; i < nums.length; ++i) {\n        cnt.set(nums[i], (cnt.get(nums[i]) ?? 0) + 1);\n        cnt.set(nums[i - k], cnt.get(nums[i - k])! - 1);\n        if (cnt.get(nums[i - k]) === 0) {\n            cnt.delete(nums[i - k]);\n        }\n        ans.push(cnt.size);\n    }\n    return ans;\n}"
+    "javascript": "function distinctNumbers(nums: number[], k: number): number[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def distinctNumbers(self, nums: List[int], k: int) -> List[int]:\n        cnt = Counter(nums[:k])\n        ans = [len(cnt)]\n        for i in range(k, len(nums)):\n            cnt[nums[i]] += 1\n            cnt[nums[i - k]] -= 1\n            if cnt[nums[i - k]] == 0:\n                cnt.pop(nums[i - k])\n            ans.append(len(cnt))\n        return ans",

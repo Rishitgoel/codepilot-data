@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> longestCommonSubsequence(vector<vector<int>>& arrays) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public List<Integer> longestCommonSubsequence(int[][] arrays) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function longestCommonSubsequence(arrays: number[][]): number[] {\n    const cnt: number[] = Array(101).fill(0);\n    for (const row of arrays) {\n        for (const x of row) {\n            ++cnt[x];\n        }\n    }\n    const ans: number[] = [];\n    for (let i = 0; i < 101; ++i) {\n        if (cnt[i] === arrays.length) {\n            ans.push(i);\n        }\n    }\n    return ans;\n}"
+    "javascript": "function longestCommonSubsequence(arrays: number[][]): number[] {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:\n        cnt = [0] * 101\n        for row in arrays:\n            for x in row:\n                cnt[x] += 1\n        return [x for x, v in enumerate(cnt) if v == len(arrays)]",

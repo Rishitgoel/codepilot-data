@@ -21,7 +21,8 @@
   "examples": [
     {
       "input": "nums = [1,12,-5,-6,50,3], k = 4",
-      "output": "12.75000\nExplanation:\n- When the length is 4, averages are [0.5, 12.75, 10.5] and the maximum average is 12.75\n- When the length is 5, averages are [10.4, 10.8] and the maximum average is 10.8\n- When the length is 6, averages are [9.16667] and the maximum average is 9.16667\nThe maximum average is when we choose a subarray of length 4 (i.e., the sub array [12, -5, -6, 50]) which has the max average 12.75, so we return 12.75\nNote that we do not consider the subarrays of length < 4."
+      "output": "12.75000",
+      "explanation": "- When the length is 4, averages are [0.5, 12.75, 10.5] and the maximum average is 12.75\n- When the length is 5, averages are [10.4, 10.8] and the maximum average is 10.8\n- When the length is 6, averages are [9.16667] and the maximum average is 9.16667\nThe maximum average is when we choose a subarray of length 4 (i.e., the sub array [12, -5, -6, 50]) which has the max average 12.75, so we return 12.75\nNote that we do not consider the subarrays of length < 4."
     },
     {
       "input": "nums = [5], k = 1",
@@ -37,7 +38,7 @@
     "python": "class Solution:\n    def findMaxAverage(self, nums: List[int], k: int) -> float:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    double findMaxAverage(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public double findMaxAverage(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function findMaxAverage(nums: number[], k: number): number {\n    const eps = 1e-5;\n    let l = Math.min(...nums);\n    let r = Math.max(...nums);\n    const check = (v: number): boolean => {\n        let s = nums.slice(0, k).reduce((a, b) => a + b) - v * k;\n        if (s >= 0) {\n            return true;\n        }\n        let t = 0;\n        let mi = 0;\n        for (let i = k; i < nums.length; ++i) {\n            s += nums[i] - v;\n            t += nums[i - k] - v;\n            mi = Math.min(mi, t);\n            if (s >= mi) {\n                return true;\n            }\n        }\n        return false;\n    };\n    while (r - l >= eps) {\n        const mid = (l + r) / 2;\n        if (check(mid)) {\n            l = mid;\n        } else {\n            r = mid;\n        }\n    }\n    return l;\n}"
+    "javascript": "function findMaxAverage(nums: number[], k: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findMaxAverage(self, nums: List[int], k: int) -> float:\n        def check(v: float) -> bool:\n            s = sum(nums[:k]) - k * v\n            if s >= 0:\n                return True\n            t = mi = 0\n            for i in range(k, len(nums)):\n                s += nums[i] - v\n                t += nums[i - k] - v\n                mi = min(mi, t)\n                if s >= mi:\n                    return True\n            return False\n\n        eps = 1e-5\n        l, r = min(nums), max(nums)\n        while r - l >= eps:\n            mid = (l + r) / 2\n            if check(mid):\n                l = mid\n            else:\n                r = mid\n        return l",
@@ -48,7 +49,7 @@
   "testcases": [
     {
       "input": "[1,12,-5,-6,50,3], k = 4",
-      "expected": "12.75000\nExplanation:\n- When the length is 4, averages are [0.5, 12.75, 10.5] and the maximum average is 12.75\n- When the length is 5, averages are [10.4, 10.8] and the maximum average is 10.8\n- When the length is 6, averages are [9.16667] and the maximum average is 9.16667\nThe maximum average is when we choose a subarray of length 4 (i.e., the sub array [12, -5, -6, 50]) which has the max average 12.75, so we return 12.75\nNote that we do not consider the subarrays of length < 4."
+      "expected": "12.75000"
     },
     {
       "input": "[5], k = 1",

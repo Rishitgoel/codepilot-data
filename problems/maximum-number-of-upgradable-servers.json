@@ -29,7 +29,7 @@
     "python": "class Solution:\n    def maxUpgrades(\n        self, count: List[int], upgrade: List[int], sell: List[int], money: List[int]\n    ) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> maxUpgrades(vector<int>& count, vector<int>& upgrade, vector<int>& sell, vector<int>& money) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int[] maxUpgrades(int[] count, int[] upgrade, int[] sell, int[] money) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function maxUpgrades(\n    count: number[],\n    upgrade: number[],\n    sell: number[],\n    money: number[],\n): number[] {\n    const n = count.length;\n    const ans: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        const x = ((count[i] * sell[i] + money[i]) / (upgrade[i] + sell[i])) | 0;\n        ans.push(Math.min(x, count[i]));\n    }\n    return ans;\n}"
+    "javascript": "function maxUpgrades(\n    count: number[],\n    upgrade: number[],\n    sell: number[],\n    money: number[],\n): number[] {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxUpgrades(\n        self, count: List[int], upgrade: List[int], sell: List[int], money: List[int]\n    ) -> List[int]:\n        ans = []\n        for cnt, cost, income, cash in zip(count, upgrade, sell, money):\n            ans.append(min(cnt, (cnt * income + cash) // (cost + income)))\n        return ans",

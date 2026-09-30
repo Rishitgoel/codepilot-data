@@ -38,7 +38,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumBooks(self, books: List[int]) -> int:\n        pass\n",
-    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long maximumBooks(vector<int>& books) {\n        // Your code here\n    }\n};\n",
+    "cpp": "class Solution {\npublic:\n    long long maximumBooks(vector<int>& books) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public long maximumBooks(int[] books) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {

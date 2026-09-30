@@ -28,7 +28,7 @@
     "Standard algorithmic limits apply."
   ],
   "starterTemplates": {
-    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_standings(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+    "python": "import pandas as pd\r\n\ndef calculate_team_standings(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n    pass\n"
   },
   "snippets": {
     "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_standings(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n    team_stats[\"points\"] = team_stats[\"wins\"] * 3 + team_stats[\"draws\"]\r\n    team_stats[\"position\"] = team_stats[\"points\"].rank(method=\"min\", ascending=False)\r\n    team_stats = team_stats.sort_values(\r\n        by=[\"points\", \"team_name\"], ascending=[False, True]\r\n    )\r\n    return team_stats[[\"team_id\", \"team_name\", \"points\", \"position\"]]"

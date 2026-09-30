@@ -38,7 +38,7 @@
     "python": "class Solution:\n    def minimumSplits(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumSplits(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minimumSplits(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumSplits(nums: number[]): number {\n    let ans = 1;\n    let g = 0;\n    for (const x of nums) {\n        g = gcd(g, x);\n        if (g == 1) {\n            ++ans;\n            g = x;\n        }\n    }\n    return ans;\n}\n\nfunction gcd(a: number, b: number): number {\n    return b ? gcd(b, a % b) : a;\n}"
+    "javascript": "function minimumSplits(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumSplits(self, nums: List[int]) -> int:\n        ans, g = 1, 0\n        for x in nums:\n            g = gcd(g, x)\n            if g == 1:\n                ans += 1\n                g = x\n        return ans",

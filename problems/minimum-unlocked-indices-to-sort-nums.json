@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int minUnlockedIndices(vector<int>& nums, vector<int>& locked) {\r\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\r\n    public int minUnlockedIndices(int[] nums, int[] locked) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function minUnlockedIndices(nums: number[], locked: number[]): number {\n    const n = nums.length;\n    let [first2, first3] = [n, n];\n    let [last1, last2] = [-1, -1];\n\n    for (let i = 0; i < n; i++) {\n        if (nums[i] === 1) {\n            last1 = i;\n        } else if (nums[i] === 2) {\n            first2 = Math.min(first2, i);\n            last2 = i;\n        } else {\n            first3 = Math.min(first3, i);\n        }\n    }\n\n    if (first3 < last1) {\n        return -1;\n    }\n\n    let ans = 0;\n    for (let i = 0; i < n; i++) {\n        if (locked[i] === 1 && ((first2 <= i && i < last1) || (first3 <= i && i < last2))) {\n            ans++;\n        }\n    }\n\n    return ans;\n}"
+    "cpp": "class Solution {\npublic:\n    int minUnlockedIndices(vector<int>& nums, vector<int>& locked) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minUnlockedIndices(int[] nums, int[] locked) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minUnlockedIndices(nums: number[], locked: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:\r\n        n = len(nums)\r\n        first2 = first3 = n\r\n        last1 = last2 = -1\r\n        for i, x in enumerate(nums):\r\n            if x == 1:\r\n                last1 = i\r\n            elif x == 2:\r\n                first2 = min(first2, i)\r\n                last2 = i\r\n            else:\r\n                first3 = min(first3, i)\r\n        if first3 < last1:\r\n            return -1\r\n        return sum(\r\n            st and (first2 <= i < last1 or first3 <= i < last2)\r\n            for i, st in enumerate(locked)\r\n        )",

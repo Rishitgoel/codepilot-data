@@ -32,7 +32,7 @@
     "python": "class Solution:\n    def countSteppingNumbers(self, low: int, high: int) -> List[int]:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    vector<int> countSteppingNumbers(int low, int high) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public List<Integer> countSteppingNumbers(int low, int high) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function countSteppingNumbers(low: number, high: number): number[] {\n    const ans: number[] = [];\n    if (low === 0) {\n        ans.push(0);\n    }\n    const q: number[] = [];\n    for (let i = 1; i < 10; ++i) {\n        q.push(i);\n    }\n    while (q.length) {\n        const v = q.shift()!;\n        if (v > high) {\n            break;\n        }\n        if (v >= low) {\n            ans.push(v);\n        }\n        const x = v % 10;\n        if (x > 0) {\n            q.push(v * 10 + x - 1);\n        }\n        if (x < 9) {\n            q.push(v * 10 + x + 1);\n        }\n    }\n    return ans;\n}"
+    "javascript": "function countSteppingNumbers(low: number, high: number): number[] {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def countSteppingNumbers(self, low: int, high: int) -> List[int]:\n        ans = []\n        if low == 0:\n            ans.append(0)\n        q = deque(range(1, 10))\n        while q:\n            v = q.popleft()\n            if v > high:\n                break\n            if v >= low:\n                ans.append(v)\n            x = v % 10\n            if x:\n                q.append(v * 10 + x - 1)\n            if x < 9:\n                q.append(v * 10 + x + 1)\n        return ans",

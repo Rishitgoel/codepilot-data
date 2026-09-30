@@ -39,7 +39,7 @@
     "-10^6 <= Node.val, insertVal <= 10^6"
   ],
   "starterTemplates": {
-    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, next=None):\n        pass\n",
+    "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':\n        pass\n",
     "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* next;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        next = NULL;\n    }\n\n    Node(int _val, Node* _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* insert(Node* head, int insertVal) {\n        // Your code here\n    }\n};\n",
     "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node next;\n\n    public Node() {}\n\n    public Node(int _val) {\n        val = _val;\n    }\n\n    public Node(int _val, Node _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\n    public Node insert(Node head, int insertVal) {\n        // Your code here\n    }\n}\n"
   },

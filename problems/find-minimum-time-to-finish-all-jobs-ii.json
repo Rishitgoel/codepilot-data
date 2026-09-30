@@ -36,7 +36,7 @@
     "python": "class Solution:\n    def minimumTime(self, jobs: List[int], workers: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumTime(vector<int>& jobs, vector<int>& workers) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minimumTime(int[] jobs, int[] workers) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumTime(jobs: number[], workers: number[]): number {\n    jobs.sort((a, b) => a - b);\n    workers.sort((a, b) => a - b);\n    let ans = 0;\n    const n = jobs.length;\n    for (let i = 0; i < n; ++i) {\n        ans = Math.max(ans, Math.ceil(jobs[i] / workers[i]));\n    }\n    return ans;\n}"
+    "javascript": "function minimumTime(jobs: number[], workers: number[]): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumTime(self, jobs: List[int], workers: List[int]) -> int:\n        jobs.sort()\n        workers.sort()\n        return max((a + b - 1) // b for a, b in zip(jobs, workers))",

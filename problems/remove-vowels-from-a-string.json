@@ -33,7 +33,7 @@
     "python": "class Solution:\n    def removeVowels(self, s: str) -> str:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    string removeVowels(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public String removeVowels(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function removeVowels(s: string): string {\n    return s.replace(/[aeiou]/g, '');\n}"
+    "javascript": "function removeVowels(s: string): string {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def removeVowels(self, s: str) -> str:\n        return \"\".join(c for c in s if c not in \"aeiou\")",

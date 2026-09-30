@@ -35,7 +35,7 @@
     "0 <= inputs.length <= 100"
   ],
   "starterTemplates": {
-    "javascript": "type Fn = (...args) => any;\n\ndeclare global {\n    interface Function {\n        bindPolyfill(obj: Record<any, any>): Fn;\n    }\n}\n\nFunction.prototype.bindPolyfill = function (obj) {\n    return (...args) => {\n        return this.call(obj, ...args);\n    };\n};"
+    "javascript": "type Fn = (...args) => any;\n\ndeclare global {\n    interface Function {\n        bindPolyfill(obj: Record<any, any>): Fn;\n    }\n}\n\nFunction.prototype.bindPolyfill = function (obj) {\n    // Your code here\n};\n"
   },
   "snippets": {
     "javascript": "type Fn = (...args) => any;\n\ndeclare global {\n    interface Function {\n        bindPolyfill(obj: Record<any, any>): Fn;\n    }\n}\n\nFunction.prototype.bindPolyfill = function (obj) {\n    return (...args) => {\n        return this.call(obj, ...args);\n    };\n};"

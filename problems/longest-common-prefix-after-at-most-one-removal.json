@@ -33,7 +33,7 @@
     "python": "class Solution:\r\n    def longestCommonPrefix(self, s: str, t: str) -> int:\r\n        pass\n",
     "cpp": "class Solution {\r\npublic:\r\n    int longestCommonPrefix(string s, string t) {\r\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\r\n    public int longestCommonPrefix(String s, String t) {\r\n        // Your code here\n    }\n}\n",
-    "javascript": "function longestCommonPrefix(s: string, t: string): number {\n    const [n, m] = [s.length, t.length];\n    let [i, j] = [0, 0];\n    let rem: boolean = false;\n    while (i < n && j < m) {\n        if (s[i] !== t[j]) {\n            if (rem) {\n                break;\n            }\n            rem = true;\n        } else {\n            ++j;\n        }\n        ++i;\n    }\n    return j;\n}"
+    "javascript": "function longestCommonPrefix(s: string, t: string): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def longestCommonPrefix(self, s: str, t: str) -> int:\r\n        n, m = len(s), len(t)\r\n        i = j = 0\r\n        rem = False\r\n        while i < n and j < m:\r\n            if s[i] != t[j]:\r\n                if rem:\r\n                    break\r\n                rem = True\r\n            else:\r\n                j += 1\r\n            i += 1\r\n        return j",

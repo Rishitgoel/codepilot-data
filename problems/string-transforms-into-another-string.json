@@ -39,7 +39,7 @@
     "python": "class Solution:\n    def canConvert(self, str1: str, str2: str) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool canConvert(string str1, string str2) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean canConvert(String str1, String str2) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function canConvert(str1: string, str2: string): boolean {\n    if (str1 === str2) {\n        return true;\n    }\n    if (new Set(str2).size === 26) {\n        return false;\n    }\n    const d: Map<string, string> = new Map();\n    for (const [i, c] of str1.split('').entries()) {\n        if (!d.has(c)) {\n            d.set(c, str2[i]);\n        } else if (d.get(c) !== str2[i]) {\n            return false;\n        }\n    }\n    return true;\n}"
+    "javascript": "function canConvert(str1: string, str2: string): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def canConvert(self, str1: str, str2: str) -> bool:\n        if str1 == str2:\n            return True\n        if len(set(str2)) == 26:\n            return False\n        d = {}\n        for a, b in zip(str1, str2):\n            if a not in d:\n                d[a] = b\n            elif d[a] != b:\n                return False\n        return True",

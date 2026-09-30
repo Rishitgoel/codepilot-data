@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool canPermutePalindrome(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean canPermutePalindrome(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function canPermutePalindrome(s: string): boolean {\n    const cnt: number[] = Array(26).fill(0);\n    for (const c of s) {\n        ++cnt[c.charCodeAt(0) - 97];\n    }\n    return cnt.filter(c => c % 2 === 1).length < 2;\n}"
+    "javascript": "function canPermutePalindrome(s: string): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        return sum(v & 1 for v in Counter(s).values()) < 2",

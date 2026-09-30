@@ -47,7 +47,7 @@
     "python": "class Solution:\n    def threeSumSmaller(self, nums: List[int], target: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int threeSumSmaller(vector<int>& nums, int target) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int threeSumSmaller(int[] nums, int target) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function threeSumSmaller(nums: number[], target: number): number {\n    nums.sort((a, b) => a - b);\n    const n = nums.length;\n    let ans = 0;\n    for (let i = 0; i < n - 2; ++i) {\n        let [j, k] = [i + 1, n - 1];\n        while (j < k) {\n            const x = nums[i] + nums[j] + nums[k];\n            if (x < target) {\n                ans += k - j;\n                ++j;\n            } else {\n                --k;\n            }\n        }\n    }\n    return ans;\n}"
+    "javascript": "function threeSumSmaller(nums: number[], target: number): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def threeSumSmaller(self, nums: List[int], target: int) -> int:\n        nums.sort()\n        ans, n = 0, len(nums)\n        for i in range(n - 2):\n            j, k = i + 1, n - 1\n            while j < k:\n                x = nums[i] + nums[j] + nums[k]\n                if x < target:\n                    ans += k - j\n                    j += 1\n                else:\n                    k -= 1\n        return ans",

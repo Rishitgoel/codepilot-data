@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def minimumSwaps(self, nums: List[int]) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minimumSwaps(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minimumSwaps(int[] nums) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minimumSwaps(nums: number[]): number {\n    let i = 0;\n    let j = 0;\n    const n = nums.length;\n    for (let k = 0; k < n; ++k) {\n        if (nums[k] < nums[i] || (nums[k] == nums[i] && k < i)) {\n            i = k;\n        }\n        if (nums[k] > nums[j] || (nums[k] == nums[j] && k > j)) {\n            j = k;\n        }\n    }\n    return i == j ? 0 : i + n - 1 - j - (i > j ? 1 : 0);\n}"
+    "javascript": "function minimumSwaps(nums: number[]): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumSwaps(self, nums: List[int]) -> int:\n        i = j = 0\n        for k, v in enumerate(nums):\n            if v < nums[i] or (v == nums[i] and k < i):\n                i = k\n            if v >= nums[j] or (v == nums[j] and k > j):\n                j = k\n        return 0 if i == j else i + len(nums) - 1 - j - (i > j)",

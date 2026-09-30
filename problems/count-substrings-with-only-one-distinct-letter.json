@@ -35,7 +35,7 @@
     "python": "class Solution:\n    def countLetters(self, s: str) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int countLetters(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int countLetters(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function countLetters(s: string): number {\n    let ans = 0;\n    const n = s.length;\n    for (let i = 0; i < n;) {\n        let j = i;\n        let cnt = 0;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n            ans += ++cnt;\n        }\n        i = j;\n    }\n    return ans;\n}"
+    "javascript": "function countLetters(s: string): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countLetters(self, s: str) -> int:\n        n = len(s)\n        i = ans = 0\n        while i < n:\n            j = i\n            while j < n and s[j] == s[i]:\n                j += 1\n            ans += (1 + j - i) * (j - i) // 2\n            i = j\n        return ans",

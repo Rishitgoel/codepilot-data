@@ -41,7 +41,7 @@
     "python": "class Solution:\n    def minBuildTime(self, blocks: List[int], split: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int minBuildTime(vector<int>& blocks, int split) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int minBuildTime(int[] blocks, int split) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function minBuildTime(blocks: number[], split: number): number {\n    const pq = new MinPriorityQueue<number>();\n    for (const x of blocks) {\n        pq.enqueue(x);\n    }\n    while (pq.size() > 1) {\n        pq.dequeue();\n        pq.enqueue(pq.dequeue() + split);\n    }\n    return pq.dequeue();\n}"
+    "javascript": "function minBuildTime(blocks: number[], split: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minBuildTime(self, blocks: List[int], split: int) -> int:\n        heapify(blocks)\n        while len(blocks) > 1:\n            heappop(blocks)\n            heappush(blocks, heappop(blocks) + split)\n        return blocks[0]",

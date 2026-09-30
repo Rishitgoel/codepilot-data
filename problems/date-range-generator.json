@@ -42,7 +42,7 @@
     "1 <= step <= 1000"
   ],
   "starterTemplates": {
-    "javascript": "function* dateRangeGenerator(start: string, end: string, step: number): Generator<string> {\n    const startDate = new Date(start);\n    const endDate = new Date(end);\n    let currentDate = startDate;\n    while (currentDate <= endDate) {\n        yield currentDate.toISOString().slice(0, 10);\n        currentDate.setDate(currentDate.getDate() + step);\n    }\n}\n\n/**\n * const g = dateRangeGenerator('2023-04-01', '2023-04-04', 1);\n * g.next().value; // '2023-04-01'\n * g.next().value; // '2023-04-02'\n * g.next().value; // '2023-04-03'\n * g.next().value; // '2023-04-04'\n * g.next().done; // true\n */"
+    "javascript": "function* dateRangeGenerator(start: string, end: string, step: number): Generator<string> {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function* dateRangeGenerator(start: string, end: string, step: number): Generator<string> {\n    const startDate = new Date(start);\n    const endDate = new Date(end);\n    let currentDate = startDate;\n    while (currentDate <= endDate) {\n        yield currentDate.toISOString().slice(0, 10);\n        currentDate.setDate(currentDate.getDate() + step);\n    }\n}\n\n/**\n * const g = dateRangeGenerator('2023-04-01', '2023-04-04', 1);\n * g.next().value; // '2023-04-01'\n * g.next().value; // '2023-04-02'\n * g.next().value; // '2023-04-03'\n * g.next().value; // '2023-04-04'\n * g.next().done; // true\n */"

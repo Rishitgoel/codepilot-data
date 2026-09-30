@@ -37,7 +37,7 @@
     "python": "class Solution:\n    def findContestMatch(self, n: int) -> str:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    string findContestMatch(int n) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public String findContestMatch(int n) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function findContestMatch(n: number): string {\n    const s: string[] = Array.from({ length: n }, (_, i) => (i + 1).toString());\n    for (; n > 1; n >>= 1) {\n        for (let i = 0; i < n >> 1; ++i) {\n            s[i] = `(${s[i]},${s[n - i - 1]})`;\n        }\n    }\n    return s[0];\n}"
+    "javascript": "function findContestMatch(n: number): string {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findContestMatch(self, n: int) -> str:\n        s = [str(i + 1) for i in range(n)]\n        while n > 1:\n            for i in range(n >> 1):\n                s[i] = f\"({s[i]},{s[n - i - 1]})\"\n            n >>= 1\n        return s[0]",

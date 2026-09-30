@@ -24,11 +24,13 @@
   "examples": [
     {
       "input": "nums = [34,23,1,24,75,33,54,8], k = 60",
-      "output": "58\nExplanation: We can use 34 and 24 to sum 58 which is less than 60."
+      "output": "58",
+      "explanation": "We can use 34 and 24 to sum 58 which is less than 60."
     },
     {
       "input": "nums = [10,20,30], k = 15",
-      "output": "-1\nExplanation: In this case it is not possible to get a pair sum less that 15."
+      "output": "-1",
+      "explanation": "In this case it is not possible to get a pair sum less that 15."
     }
   ],
   "constraints": [
@@ -40,7 +42,7 @@
     "python": "class Solution:\n    def twoSumLessThanK(self, nums: List[int], k: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int twoSumLessThanK(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int twoSumLessThanK(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function twoSumLessThanK(nums: number[], k: number): number {\n    nums.sort((a, b) => a - b);\n    let ans = -1;\n    for (let i = 0, j = nums.length - 1; i < j;) {\n        const s = nums[i] + nums[j];\n        if (s < k) {\n            ans = Math.max(ans, s);\n            ++i;\n        } else {\n            --j;\n        }\n    }\n    return ans;\n}"
+    "javascript": "function twoSumLessThanK(nums: number[], k: number): number {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def twoSumLessThanK(self, nums: List[int], k: int) -> int:\n        nums.sort()\n        ans = -1\n        for i, x in enumerate(nums):\n            j = bisect_left(nums, k - x, lo=i + 1) - 1\n            if i < j:\n                ans = max(ans, x + nums[j])\n        return ans",
@@ -51,11 +53,11 @@
   "testcases": [
     {
       "input": "[34,23,1,24,75,33,54,8], k = 60",
-      "expected": "58\nExplanation: We can use 34 and 24 to sum 58 which is less than 60."
+      "expected": "58"
     },
     {
       "input": "[10,20,30], k = 15",
-      "expected": "-1\nExplanation: In this case it is not possible to get a pair sum less that 15."
+      "expected": "-1"
     }
   ],
   "hints": [

@@ -36,7 +36,7 @@
     "python": "class Solution:\n    def numKLenSubstrNoRepeats(self, s: str, k: int) -> int:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    int numKLenSubstrNoRepeats(string s, int k) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public int numKLenSubstrNoRepeats(String s, int k) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function numKLenSubstrNoRepeats(s: string, k: number): number {\n    const n = s.length;\n    if (n < k) {\n        return 0;\n    }\n    const cnt: Map<string, number> = new Map();\n    for (let i = 0; i < k; ++i) {\n        cnt.set(s[i], (cnt.get(s[i]) ?? 0) + 1);\n    }\n    let ans = cnt.size === k ? 1 : 0;\n    for (let i = k; i < n; ++i) {\n        cnt.set(s[i], (cnt.get(s[i]) ?? 0) + 1);\n        cnt.set(s[i - k], (cnt.get(s[i - k]) ?? 0) - 1);\n        if (cnt.get(s[i - k]) === 0) {\n            cnt.delete(s[i - k]);\n        }\n        ans += cnt.size === k ? 1 : 0;\n    }\n    return ans;\n}"
+    "javascript": "function numKLenSubstrNoRepeats(s: string, k: number): number {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def numKLenSubstrNoRepeats(self, s: str, k: int) -> int:\n        cnt = Counter(s[:k])\n        ans = int(len(cnt) == k)\n        for i in range(k, len(s)):\n            cnt[s[i]] += 1\n            cnt[s[i - k]] -= 1\n            if cnt[s[i - k]] == 0:\n                cnt.pop(s[i - k])\n            ans += int(len(cnt) == k)\n        return ans",

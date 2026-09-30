@@ -42,7 +42,7 @@
     "python": "class Solution:\n    def validWordSquare(self, words: List[str]) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool validWordSquare(vector<string>& words) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean validWordSquare(List<String> words) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function validWordSquare(words: string[]): boolean {\n    const m = words.length;\n    for (let i = 0; i < m; ++i) {\n        const n = words[i].length;\n        for (let j = 0; j < n; ++j) {\n            if (j >= m || i >= words[j].length || words[i][j] !== words[j][i]) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
+    "javascript": "function validWordSquare(words: string[]): boolean {\n    // Your code here\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def validWordSquare(self, words: List[str]) -> bool:\n        m = len(words)\n        for i, w in enumerate(words):\n            for j, c in enumerate(w):\n                if j >= m or i >= len(words[j]) or c != words[j][i]:\n                    return False\n        return True",

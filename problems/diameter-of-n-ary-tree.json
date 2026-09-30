@@ -39,7 +39,7 @@
     "The total number of nodes is between [1, 10^4]."
   ],
   "starterTemplates": {
-    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, children=None):\n        pass\n",
+    "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def diameter(self, root: 'Node') -> int:\n        pass\n",
     "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n    }\n\n    Node(int _val, vector<Node*> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    int ans;\n\n    int diameter(Node* root) {\n        // Your code here\n    }\n};\n",
     "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> children;\n\n\n    public Node() {\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val) {\n        val = _val;\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val,ArrayList<Node> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\n    private int ans;\n\n    public int diameter(Node root) {\n        // Your code here\n    }\n}\n"
   },

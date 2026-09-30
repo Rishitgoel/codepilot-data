@@ -34,7 +34,7 @@
     "new Date(date) is a valid date object"
   ],
   "starterTemplates": {
-    "javascript": "declare global {\n    interface Date {\n        nextDay(): string;\n    }\n}\n\nDate.prototype.nextDay = function () {\n    const date = new Date(this.valueOf());\n    date.setDate(date.getDate() + 1);\n    return date.toISOString().slice(0, 10);\n};\n\n/**\n * const date = new Date(\"2014-06-20\");\n * date.nextDay(); // \"2014-06-21\"\n */"
+    "javascript": "declare global {\n    interface Date {\n        nextDay(): string;\n    }\n}\n\nDate.prototype.nextDay = function () {\n    // Your code here\n};\n\n/**\n * const date = new Date(\"2014-06-20\");\n * date.nextDay(); // \"2014-06-21\"\n */\n"
   },
   "snippets": {
     "javascript": "declare global {\n    interface Date {\n        nextDay(): string;\n    }\n}\n\nDate.prototype.nextDay = function () {\n    const date = new Date(this.valueOf());\n    date.setDate(date.getDate() + 1);\n    return date.toISOString().slice(0, 10);\n};\n\n/**\n * const date = new Date(\"2014-06-20\");\n * date.nextDay(); // \"2014-06-21\"\n */"

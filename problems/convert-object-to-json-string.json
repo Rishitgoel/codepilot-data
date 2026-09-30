@@ -45,7 +45,7 @@
     "all strings contain only alphanumeric characters"
   ],
   "starterTemplates": {
-    "javascript": "function jsonStringify(object: any): string {\n    if (object === null) {\n        return 'null';\n    }\n    if (typeof object === 'string') {\n        return `\"${object}\"`;\n    }\n    if (typeof object === 'number' || typeof object === 'boolean') {\n        return object.toString();\n    }\n    if (Array.isArray(object)) {\n        return `[${object.map(jsonStringify).join(',')}]`;\n    }\n    if (typeof object === 'object') {\n        return `{${Object.entries(object)\n            .map(([key, value]) => `${jsonStringify(key)}:${jsonStringify(value)}`)\n            .join(',')}}`;\n    }\n    return '';\n}"
+    "javascript": "function jsonStringify(object: any): string {\n    // Your code here\n}"
   },
   "snippets": {
     "javascript": "function jsonStringify(object: any): string {\n    if (object === null) {\n        return 'null';\n    }\n    if (typeof object === 'string') {\n        return `\"${object}\"`;\n    }\n    if (typeof object === 'number' || typeof object === 'boolean') {\n        return object.toString();\n    }\n    if (Array.isArray(object)) {\n        return `[${object.map(jsonStringify).join(',')}]`;\n    }\n    if (typeof object === 'object') {\n        return `{${Object.entries(object)\n            .map(([key, value]) => `${jsonStringify(key)}:${jsonStringify(value)}`)\n            .join(',')}}`;\n    }\n    return '';\n}"

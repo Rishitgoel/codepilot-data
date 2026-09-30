@@ -43,7 +43,7 @@
     "python": "class Solution:\n    def isDecomposable(self, s: str) -> bool:\n        pass\n",
     "cpp": "class Solution {\npublic:\n    bool isDecomposable(string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Solution {\n    public boolean isDecomposable(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function isDecomposable(s: string): boolean {\n    const n = s.length;\n    let cnt2 = 0;\n    for (let i = 0; i < n;) {\n        let j = i;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n        }\n        if ((j - i) % 3 === 1) {\n            return false;\n        }\n        if ((j - i) % 3 === 2 && ++cnt2 > 1) {\n            return false;\n        }\n        i = j;\n    }\n    return cnt2 === 1;\n}"
+    "javascript": "function isDecomposable(s: string): boolean {\n    // Your code here\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def isDecomposable(self, s: str) -> bool:\n        i, n = 0, len(s)\n        cnt2 = 0\n        while i < n:\n            j = i\n            while j < n and s[j] == s[i]:\n                j += 1\n            if (j - i) % 3 == 1:\n                return False\n            cnt2 += (j - i) % 3 == 2\n            if cnt2 > 1:\n                return False\n            i = j\n        return cnt2 == 1",

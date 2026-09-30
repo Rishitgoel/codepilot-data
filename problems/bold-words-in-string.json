@@ -14,7 +14,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Bold%20Words%20in%20String"
   },
-  "description": "Given an array of keywords `words` and a string `s`, make all appearances of all keywords `words[i]` in `s` bold. Any letters between `` and `` tags become bold.\n\nReturn `s` *after adding the bold tags*. The returned string should use the least number of tags possible, and the tags should form a valid combination.",
+  "description": "Given an array of keywords `words` and a string `s`, make all appearances of all keywords `words[i]` in `s` bold. Any letters between `<b>` and `</b>` tags become bold.\n\nReturn `s` *after adding the bold tags*. The returned string should use the least number of tags possible, and the tags should form a valid combination.",
   "examples": [
     {
       "input": "words = [\"ab\",\"bc\"], s = \"aabcd\"",
@@ -33,7 +33,7 @@
     "s and words[i] consist of lowercase English letters."
   ],
   "starterTemplates": {
-    "python": "class Trie:\n    def __init__(self):\n        pass\n",
+    "python": "class Solution:\n    def boldWords(self, words: List[str], s: str) -> str:\n        pass\n",
     "cpp": "class Trie {\npublic:\n    vector<Trie*> children;\n    bool isEnd;\n\n    Trie() {\n        children.resize(128);\n        isEnd = false;\n    }\n\n    void insert(string word) {\n        Trie* node = this;\n        for (char c : word) {\n            if (!node->children[c]) node->children[c] = new Trie();\n            node = node->children[c];\n        }\n        node->isEnd = true;\n    }\n};\n\nclass Solution {\npublic:\n    string boldWords(vector<string>& words, string s) {\n        // Your code here\n    }\n};\n",
     "java": "class Trie {\n    Trie[] children = new Trie[128];\n    boolean isEnd;\n\n    public void insert(String word) {\n        Trie node = this;\n        for (char c : word.toCharArray()) {\n            if (node.children[c] == null) {\n                node.children[c] = new Trie();\n            }\n            node = node.children[c];\n        }\n        node.isEnd = true;\n    }\n}\n\nclass Solution {\n    public String boldWords(String[] words, String s) {\n        // Your code here\n    }\n}\n"
   },

@@ -36,7 +36,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def nextClosestTime(self, time: str) -> str:\n        pass\n",
-    "java": "class Solution {\n    private int t;\n    private int d;\n    private String ans;\n    private Set<Character> s;\n\n    public String nextClosestTime(String time) {\n        // Your code here\n    }\n}\n"
+    "java": "class Solution {\n    public String nextClosestTime(String time) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def nextClosestTime(self, time: str) -> str:\n        def check(t):\n            h, m = int(t[:2]), int(t[2:])\n            return 0 <= h < 24 and 0 <= m < 60\n\n        def dfs(curr):\n            if len(curr) == 4:\n                if not check(curr):\n                    return\n                nonlocal ans, d\n                p = int(curr[:2]) * 60 + int(curr[2:])\n                if t < p < t + d:\n                    d = p - t\n                    ans = curr[:2] + ':' + curr[2:]\n                return\n            for c in s:\n                dfs(curr + c)\n\n        s = {c for c in time if c != ':'}\n        t = int(time[:2]) * 60 + int(time[3:])\n        d = inf\n        ans = None\n        dfs('')\n        if ans is None:\n            mi = min(int(c) for c in s)\n            ans = f'{mi}{mi}:{mi}{mi}'\n        return ans",
