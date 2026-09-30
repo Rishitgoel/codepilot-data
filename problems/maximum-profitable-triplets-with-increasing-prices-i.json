@@ -1,0 +1,73 @@
+{
+  "id": 2907,
+  "slug": "maximum-profitable-triplets-with-increasing-prices-i",
+  "title": "Maximum Profitable Triplets With Increasing Prices I",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "IBM"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Profitable%20Triplets%20With%20Increasing%20Prices%20I"
+  },
+  "description": "Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the `i^th` item has a price of `prices[i]` and a profit of `profits[i]`.\n\nWe have to pick three items with the following condition:\n\n\t`prices[i] \n\nIf we pick items with indices `i`, `j` and `k` satisfying the above condition, the profit would be `profits[i] + profits[j] + profits[k]`.\n\nReturn* the **maximum profit** we can get, and *`-1`* if it's not possible to pick three items with the given condition.*",
+  "examples": [
+    {
+      "input": "prices = [10,2,3,4], profits = [100,2,7,10]",
+      "output": "19",
+      "explanation": "We can't pick the item with index i=0 since there are no indices j and k such that the condition holds.\nSo the only triplet we can pick, are the items with indices 1, 2 and 3 and it's a valid pick since prices[1] < prices[2] < prices[3].\nThe answer would be sum of their profits which is 2 + 7 + 10 = 19."
+    },
+    {
+      "input": "prices = [1,2,3,4,5], profits = [1,5,3,4,6]",
+      "output": "15",
+      "explanation": "We can select any triplet of items since for each triplet of indices i, j and k such that i < j < k, the condition holds.\nTherefore the maximum profit we can get would be the 3 most profitable items which are indices 1, 3 and 4.\nThe answer would be sum of their profits which is 5 + 4 + 6 = 15."
+    },
+    {
+      "input": "prices = [4,3,2,1], profits = [33,20,19,87]",
+      "output": "-1",
+      "explanation": "We can't select any triplet of indices such that the condition holds, so we return -1."
+    }
+  ],
+  "constraints": [
+    "3 <= prices.length == profits.length <= 2000",
+    "1 <= prices[i] <= 10^6",
+    "1 <= profits[i] <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxProfit(self, prices: List[int], profits: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, vector<int>& profits) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxProfit(int[] prices, int[] profits) {\n        \n    }\n};\n",
+    "javascript": "function maxProfit(prices: number[], profits: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxProfit(self, prices: List[int], profits: List[int]) -> int:\n        n = len(prices)\n        ans = -1\n        for j, x in enumerate(profits):\n            left = right = 0\n            for i in range(j):\n                if prices[i] < prices[j] and left < profits[i]:\n                    left = profits[i]\n            for k in range(j + 1, n):\n                if prices[j] < prices[k] and right < profits[k]:\n                    right = profits[k]\n            if left and right:\n                ans = max(ans, left + x + right)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, vector<int>& profits) {\n        int n = prices.size();\n        int ans = -1;\n        for (int j = 0; j < n; ++j) {\n            int left = 0, right = 0;\n            for (int i = 0; i < j; ++i) {\n                if (prices[i] < prices[j]) {\n                    left = max(left, profits[i]);\n                }\n            }\n            for (int k = j + 1; k < n; ++k) {\n                if (prices[j] < prices[k]) {\n                    right = max(right, profits[k]);\n                }\n            }\n            if (left && right) {\n                ans = max(ans, left + profits[j] + right);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxProfit(int[] prices, int[] profits) {\n        int n = prices.length;\n        int ans = -1;\n        for (int j = 0; j < n; ++j) {\n            int left = 0, right = 0;\n            for (int i = 0; i < j; ++i) {\n                if (prices[i] < prices[j]) {\n                    left = Math.max(left, profits[i]);\n                }\n            }\n            for (int k = j + 1; k < n; ++k) {\n                if (prices[j] < prices[k]) {\n                    right = Math.max(right, profits[k]);\n                }\n            }\n            if (left > 0 && right > 0) {\n                ans = Math.max(ans, left + profits[j] + right);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxProfit(prices: number[], profits: number[]): number {\n    const n = prices.length;\n    let ans = -1;\n    for (let j = 0; j < n; ++j) {\n        let [left, right] = [0, 0];\n        for (let i = 0; i < j; ++i) {\n            if (prices[i] < prices[j]) {\n                left = Math.max(left, profits[i]);\n            }\n        }\n        for (let k = j + 1; k < n; ++k) {\n            if (prices[j] < prices[k]) {\n                right = Math.max(right, profits[k]);\n            }\n        }\n        if (left > 0 && right > 0) {\n            ans = Math.max(ans, left + profits[j] + right);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[10,2,3,4], profits = [100,2,7,10]",
+      "expected": "19"
+    },
+    {
+      "input": "[1,2,3,4,5], profits = [1,5,3,4,6]",
+      "expected": "15"
+    },
+    {
+      "input": "[4,3,2,1], profits = [33,20,19,87]",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Profitable Triplets With Increasing Prices I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

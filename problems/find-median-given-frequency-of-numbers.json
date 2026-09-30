@@ -1,0 +1,43 @@
+{
+  "id": 571,
+  "slug": "find-median-given-frequency-of-numbers",
+  "title": "Find Median Given Frequency of Numbers",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Pinterest"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Median%20Given%20Frequency%20of%20Numbers"
+  },
+  "description": "Table: `Numbers`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| num         | int  |\n| frequency   | int  |\n+-------------+------+\nnum is the primary key (column with unique values) for this table.\nEach row of this table shows the frequency of a number in the database.\n\n \n\nThe **median** is the value separating the higher half from the lower half of a data sample.\n\nWrite a solution to report the **median** of all the numbers in the database after decompressing the `Numbers` table. Round the median to **one decimal point**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Numbers table:\n+-----+-----------+\n| num | frequency |\n+-----+-----------+\n| 0   | 7         |\n| 1   | 1         |\n| 2   | 3         |\n| 3   | 1         |\n+-----+-----------+",
+      "output": "+--------+\n| median |\n+--------+\n| 0.0    |\n+--------+",
+      "explanation": "If we decompress the Numbers table, we will get [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3], so the median is (0 + 0) / 2 = 0."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Numbers table:\n+-----+-----------+\n| num | frequency |\n+-----+-----------+\n| 0   | 7         |\n| 1   | 1         |\n| 2   | 3         |\n| 3   | 1         |\n+-----+-----------+",
+      "expected": "+--------+\n| median |\n+--------+\n| 0.0    |\n+--------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Median Given Frequency of Numbers.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

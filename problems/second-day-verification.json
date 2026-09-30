@@ -1,0 +1,45 @@
+{
+  "id": 3172,
+  "slug": "second-day-verification",
+  "title": "Second Day Verification",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Second%20Day%20Verification"
+  },
+  "description": "Table: `emails`\n\n+-------------+----------+\n| Column Name | Type     | \n+-------------+----------+\n| email_id    | int      |\n| user_id     | int      |\n| signup_date | datetime |\n+-------------+----------+\n(email_id, user_id) is the primary key (combination of columns with unique values) for this table.\nEach row of this table contains the email ID, user ID, and signup date.\n\nTable: `texts`\n\n+---------------+----------+\n| Column Name   | Type     | \n+---------------+----------+\n| text_id       | int      |\n| email_id      | int      |\n| signup_action | enum     |\n| action_date   | datetime |\n+---------------+----------+\n(text_id, email_id) is the primary key (combination of columns with unique values) for this table. \nsignup_action is an enum type of ('Verified', 'Not Verified'). \nEach row of this table contains the text ID, email ID, signup action, and action date.\n\nWrite a Solution to find the user IDs of those who **verified** their **sign-up** on the **second day**.\n\nReturn *the result table ordered by* `user_id` *in **ascending** order*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Second Day Verification.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

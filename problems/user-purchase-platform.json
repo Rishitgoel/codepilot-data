@@ -1,0 +1,43 @@
+{
+  "id": 1127,
+  "slug": "user-purchase-platform",
+  "title": "User Purchase Platform",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "LinkedIn"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=User%20Purchase%20Platform"
+  },
+  "description": "Table: `Spending`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| spend_date  | date    |\n| platform    | enum    | \n| amount      | int     |\n+-------------+---------+\nThe table logs the history of the spending of users that make purchases from an online shopping website that has a desktop and a mobile application.\n(user_id, spend_date, platform) is the primary key (combination of columns with unique values) of this table.\nThe platform column is an ENUM (category) type of ('desktop', 'mobile').\n\n \n\nWrite a solution to find the total number of users and the total amount spent using the mobile only, the desktop only, and both mobile and desktop together for each date.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Spending table:\n+---------+------------+----------+--------+\n| user_id | spend_date | platform | amount |\n+---------+------------+----------+--------+\n| 1       | 2019-07-01 | mobile   | 100    |\n| 1       | 2019-07-01 | desktop  | 100    |\n| 2       | 2019-07-01 | mobile   | 100    |\n| 2       | 2019-07-02 | mobile   | 100    |\n| 3       | 2019-07-01 | desktop  | 100    |\n| 3       | 2019-07-02 | desktop  | 100    |\n+---------+------------+----------+--------+",
+      "output": "+------------+----------+--------------+-------------+\n| spend_date | platform | total_amount | total_users |\n+------------+----------+--------------+-------------+\n| 2019-07-01 | desktop  | 100          | 1           |\n| 2019-07-01 | mobile   | 100          | 1           |\n| 2019-07-01 | both     | 200          | 1           |\n| 2019-07-02 | desktop  | 100          | 1           |\n| 2019-07-02 | mobile   | 100          | 1           |\n| 2019-07-02 | both     | 0            | 0           |\n+------------+----------+--------------+-------------+",
+      "explanation": "On 2019-07-01, user 1 purchased using both desktop and mobile, user 2 purchased using mobile only and user 3 purchased using desktop only.\nOn 2019-07-02, user 2 purchased using mobile only, user 3 purchased using desktop only and no one purchased using both platforms."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Spending table:\n+---------+------------+----------+--------+\n| user_id | spend_date | platform | amount |\n+---------+------------+----------+--------+\n| 1       | 2019-07-01 | mobile   | 100    |\n| 1       | 2019-07-01 | desktop  | 100    |\n| 2       | 2019-07-01 | mobile   | 100    |\n| 2       | 2019-07-02 | mobile   | 100    |\n| 3       | 2019-07-01 | desktop  | 100    |\n| 3       | 2019-07-02 | desktop  | 100    |\n+---------+------------+----------+--------+",
+      "expected": "+------------+----------+--------------+-------------+\n| spend_date | platform | total_amount | total_users |\n+------------+----------+--------------+-------------+\n| 2019-07-01 | desktop  | 100          | 1           |\n| 2019-07-01 | mobile   | 100          | 1           |\n| 2019-07-01 | both     | 200          | 1           |\n| 2019-07-02 | desktop  | 100          | 1           |\n| 2019-07-02 | mobile   | 100          | 1           |\n| 2019-07-02 | both     | 0            | 0           |\n+------------+----------+--------------+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for User Purchase Platform.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

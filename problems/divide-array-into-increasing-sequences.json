@@ -1,0 +1,62 @@
+{
+  "id": 1121,
+  "slug": "divide-array-into-increasing-sequences",
+  "title": "Divide Array Into Increasing Sequences",
+  "difficulty": "Hard",
+  "rating": 1665,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Divide%20Array%20Into%20Increasing%20Sequences"
+  },
+  "description": "Given an integer array `nums` sorted in non-decreasing order and an integer `k`, return `true`* if this array can be divided into one or more disjoint increasing subsequences of length at least *`k`*, or *`false`* otherwise*.",
+  "examples": [
+    {
+      "input": "nums = [1,2,2,3,3,4,4], k = 3",
+      "output": "true",
+      "explanation": "The array can be divided into two subsequences [1,2,3,4] and [2,3,4] with lengths at least 3 each."
+    },
+    {
+      "input": "nums = [5,6,6,7,8], k = 3",
+      "output": "false",
+      "explanation": "There is no way to divide the array using the conditions required."
+    }
+  ],
+  "constraints": [
+    "1 <= k <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "nums is sorted in non-decreasing order."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool canDivideIntoSubsequences(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean canDivideIntoSubsequences(int[] nums, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:\n        mx = max(len(list(x)) for _, x in groupby(nums))\n        return mx * k <= len(nums)",
+    "cpp": "class Solution {\npublic:\n    bool canDivideIntoSubsequences(vector<int>& nums, int k) {\n        int cnt = 0;\n        int a = 0;\n        for (int& b : nums) {\n            cnt = a == b ? cnt + 1 : 1;\n            if (cnt * k > nums.size()) {\n                return false;\n            }\n            a = b;\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean canDivideIntoSubsequences(int[] nums, int k) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        int mx = 0;\n        for (int x : nums) {\n            mx = Math.max(mx, cnt.merge(x, 1, Integer::sum));\n        }\n        return mx * k <= nums.length;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,2,3,3,4,4], k = 3",
+      "expected": "true"
+    },
+    {
+      "input": "[5,6,6,7,8], k = 3",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Divide Array Into Increasing Sequences.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

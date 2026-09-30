@@ -1,0 +1,74 @@
+{
+  "id": 2633,
+  "slug": "convert-object-to-json-string",
+  "title": "Convert Object to JSON String",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Apple"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20Object%20to%20JSON%20String"
+  },
+  "description": "Given a value, return a valid JSON string of that value. The value can be a string, number, array, object, boolean, or null. The returned string should not include extra spaces. The order of keys should be the same as the order returned by `Object.keys()`.\n\nPlease solve it without using the built-in `JSON.stringify` method.",
+  "examples": [
+    {
+      "input": "object = {\"y\":1,\"x\":2}",
+      "output": "{\"y\":1,\"x\":2}",
+      "explanation": "Return the JSON representation.\nNote that the order of keys should be the same as the order returned by Object.keys()."
+    },
+    {
+      "input": "object = {\"a\":\"str\",\"b\":-12,\"c\":true,\"d\":null}",
+      "output": "{\"a\":\"str\",\"b\":-12,\"c\":true,\"d\":null}",
+      "explanation": "The primitives of JSON are strings, numbers, booleans, and null."
+    },
+    {
+      "input": "object = {\"key\":{\"a\":1,\"b\":[{},null,\"Hello\"]}}",
+      "output": "{\"key\":{\"a\":1,\"b\":[{},null,\"Hello\"]}}",
+      "explanation": "Objects and arrays can include other objects and arrays."
+    },
+    {
+      "input": "object = true",
+      "output": "true",
+      "explanation": "Primitive types are valid inputs."
+    }
+  ],
+  "constraints": [
+    "value is a valid JSON value",
+    "1 <= JSON.stringify(object).length <= 10^5",
+    "maxNestingLevel <= 1000",
+    "all strings contain only alphanumeric characters"
+  ],
+  "starterTemplates": {
+    "javascript": "function jsonStringify(object: any): string {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function jsonStringify(object: any): string {\n    if (object === null) {\n        return 'null';\n    }\n    if (typeof object === 'string') {\n        return `\"${object}\"`;\n    }\n    if (typeof object === 'number' || typeof object === 'boolean') {\n        return object.toString();\n    }\n    if (Array.isArray(object)) {\n        return `[${object.map(jsonStringify).join(',')}]`;\n    }\n    if (typeof object === 'object') {\n        return `{${Object.entries(object)\n            .map(([key, value]) => `${jsonStringify(key)}:${jsonStringify(value)}`)\n            .join(',')}}`;\n    }\n    return '';\n}"
+  },
+  "testcases": [
+    {
+      "input": "{\"y\":1,\"x\":2}",
+      "expected": "{\"y\":1,\"x\":2}"
+    },
+    {
+      "input": "{\"a\":\"str\",\"b\":-12,\"c\":true,\"d\":null}",
+      "expected": "{\"a\":\"str\",\"b\":-12,\"c\":true,\"d\":null}"
+    },
+    {
+      "input": "{\"key\":{\"a\":1,\"b\":[{},null,\"Hello\"]}}",
+      "expected": "{\"key\":{\"a\":1,\"b\":[{},null,\"Hello\"]}}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert Object to JSON String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

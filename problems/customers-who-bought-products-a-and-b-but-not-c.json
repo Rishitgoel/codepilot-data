@@ -1,0 +1,44 @@
+{
+  "id": 1398,
+  "slug": "customers-who-bought-products-a-and-b-but-not-c",
+  "title": "Customers Who Bought Products A and B but Not C",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Customers%20Who%20Bought%20Products%20A%20and%20B%20but%20Not%20C"
+  },
+  "description": "Table: `Customers`\n\n+---------------------+---------+\n| Column Name         | Type    |\n+---------------------+---------+\n| customer_id         | int     |\n| customer_name       | varchar |\n+---------------------+---------+\ncustomer_id is the column with unique values for this table.\ncustomer_name is the name of the customer.\n\n \n\nTable: `Orders`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| order_id      | int     |\n| customer_id   | int     |\n| product_name  | varchar |\n+---------------+---------+\norder_id is the column with unique values for this table.\ncustomer_id is the id of the customer who bought the product \"product_name\".\n\n \n\nWrite a solution to report the customer_id and customer_name of customers who bought products **\"A\"**, **\"B\"** but did not buy the product **\"C\"** since we want to recommend them to purchase this product.\n\nReturn the result table **ordered** by `customer_id`.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Customers table:\n+-------------+---------------+\n| customer_id | customer_name |\n+-------------+---------------+\n| 1           | Daniel        |\n| 2           | Diana         |\n| 3           | Elizabeth     |\n| 4           | Jhon          |\n+-------------+---------------+\nOrders table:\n+------------+--------------+---------------+\n| order_id   | customer_id  | product_name  |\n+------------+--------------+---------------+\n| 10         |     1        |     A         |\n| 20         |     1        |     B         |\n| 30         |     1        |     D         |\n| 40         |     1        |     C         |\n| 50         |     2        |     A         |\n| 60         |     3        |     A         |\n| 70         |     3        |     B         |\n| 80         |     3        |     D         |\n| 90         |     4        |     C         |\n+------------+--------------+---------------+",
+      "output": "+-------------+---------------+\n| customer_id | customer_name |\n+-------------+---------------+\n| 3           | Elizabeth     |\n+-------------+---------------+",
+      "explanation": "Only the customer_id with id 3 bought the product A and B but not the product C."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Customers table:\n+-------------+---------------+\n| customer_id | customer_name |\n+-------------+---------------+\n| 1           | Daniel        |\n| 2           | Diana         |\n| 3           | Elizabeth     |\n| 4           | Jhon          |\n+-------------+---------------+\nOrders table:\n+------------+--------------+---------------+\n| order_id   | customer_id  | product_name  |\n+------------+--------------+---------------+\n| 10         |     1        |     A         |\n| 20         |     1        |     B         |\n| 30         |     1        |     D         |\n| 40         |     1        |     C         |\n| 50         |     2        |     A         |\n| 60         |     3        |     A         |\n| 70         |     3        |     B         |\n| 80         |     3        |     D         |\n| 90         |     4        |     C         |\n+------------+--------------+---------------+",
+      "expected": "+-------------+---------------+\n| customer_id | customer_name |\n+-------------+---------------+\n| 3           | Elizabeth     |\n+-------------+---------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Customers Who Bought Products A and B but Not C.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

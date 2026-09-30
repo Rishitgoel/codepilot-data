@@ -1,0 +1,67 @@
+{
+  "id": 2674,
+  "slug": "split-a-circular-linked-list",
+  "title": "Split a Circular Linked List",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Split%20a%20Circular%20Linked%20List"
+  },
+  "description": "Given a **circular linked list** `list` of positive integers, your task is to split it into 2 **circular linked lists** so that the first one contains the **first half** of the nodes in `list` (exactly `ceil(list.length / 2)` nodes) in the same order they appeared in `list`, and the second one contains **the rest** of the nodes in `list` in the same order they appeared in `list`.\n\nReturn *an array answer of length 2 in which the first element is a **circular linked list** representing the **first half** and the second element is a **circular linked list** representing the **second half**.*\n\nA **circular linked list** is a normal linked list with the only difference being that the last node's next node, is the first node.",
+  "examples": [
+    {
+      "input": "nums = [1,5,7]",
+      "output": "[[1,5],[7]]",
+      "explanation": "The initial list has 3 nodes so the first half would be the first 2 elements since ceil(3 / 2) = 2 and the rest which is 1 node is in the second half."
+    },
+    {
+      "input": "nums = [2,6,1,5]",
+      "output": "[[2,6],[1,5]]",
+      "explanation": "The initial list has 4 nodes so the first half would be the first 2 elements since ceil(4 / 2) = 2 and the rest which is 2 nodes are in the second half."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in list is in the range [2, 10^5]",
+    "0 <= Node.val <= 10^9",
+    "LastNode.next = FirstNode where LastNode is the last node of the list and FirstNode is the first one"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n        pass\n",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode[] splitCircularLinkedList(ListNode list) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction splitCircularLinkedList(list: ListNode | null): Array<ListNode | null> {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def splitCircularLinkedList(\n        self, list: Optional[ListNode]\n    ) -> List[Optional[ListNode]]:\n        a = b = list\n        while b.next != list and b.next.next != list:\n            a = a.next\n            b = b.next.next\n        if b.next != list:\n            b = b.next\n        list2 = a.next\n        b.next = list2\n        a.next = list\n        return [list, list2]",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    vector<ListNode*> splitCircularLinkedList(ListNode* list) {\n        ListNode* a = list;\n        ListNode* b = list;\n        while (b->next != list && b->next->next != list) {\n            a = a->next;\n            b = b->next->next;\n        }\n        if (b->next != list) {\n            b = b->next;\n        }\n        ListNode* list2 = a->next;\n        b->next = list2;\n        a->next = list;\n        return {list, list2};\n    }\n};",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode[] splitCircularLinkedList(ListNode list) {\n        ListNode a = list, b = list;\n        while (b.next != list && b.next.next != list) {\n            a = a.next;\n            b = b.next.next;\n        }\n        if (b.next != list) {\n            b = b.next;\n        }\n        ListNode list2 = a.next;\n        b.next = list2;\n        a.next = list;\n        return new ListNode[] {list, list2};\n    }\n}",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction splitCircularLinkedList(list: ListNode | null): Array<ListNode | null> {\n    let a = list;\n    let b = list;\n    while (b.next !== list && b.next.next !== list) {\n        a = a.next;\n        b = b.next.next;\n    }\n    if (b.next !== list) {\n        b = b.next;\n    }\n    const list2 = a.next;\n    b.next = list2;\n    a.next = list;\n    return [list, list2];\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,5,7]",
+      "expected": "[[1,5],[7]]"
+    },
+    {
+      "input": "[2,6,1,5]",
+      "expected": "[[2,6],[1,5]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Split a Circular Linked List.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,78 @@
+{
+  "id": 2868,
+  "slug": "the-wording-game",
+  "title": "The Wording Game",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Wording%20Game"
+  },
+  "description": "Alice and Bob each have a **lexicographically sorted** array of strings named `a` and `b` respectively.\n\nThey are playing a wording game with the following rules:\n\n\tOn each turn, the current player should play a word from their list such that the new word is **closely greater** than the last played word; then it's the other player's turn.\n\tIf a player can't play a word on their turn, they lose.\n\nAlice starts the game by playing her **lexicographically ****smallest **word.\n\nGiven `a` and `b`, return `true` *if Alice can win knowing that both players play their best, and* `false` *otherwise.*\n\nA word `w` is **closely greater** than a word `z` if the following conditions are met:\n\n\t`w` is **lexicographically greater** than `z`.\n\tIf `w1` is the first letter of `w` and `z1` is the first letter of `z`, `w1` should either be **equal** to `z1` or be the **letter after** `z1` in the alphabet.\n\tFor example, the word `\"care\"` is closely greater than `\"book\"` and `\"car\"`, but is not closely greater than `\"ant\"` or `\"cook\"`.\n\nA string `s` is lexicographically **greater** than a string `t` if in the first position where `s` and `t` differ, string `s` has a letter that appears later in the alphabet than the corresponding letter in `t`. If the first `min(s.length, t.length)` characters do not differ, then the longer string is the lexicographically greater one.",
+  "examples": [
+    {
+      "input": "a = [\"avokado\",\"dabar\"], b = [\"brazil\"]",
+      "output": "false",
+      "explanation": "Alice must start the game by playing the word \"avokado\" since it's her smallest word, then Bob plays his only word, \"brazil\", which he can play because its first letter, 'b', is the letter after Alice's word's first letter, 'a'.\nAlice can't play a word since the first letter of the only word left is not equal to 'b' or the letter after 'b', 'c'.\nSo, Alice loses, and the game ends."
+    },
+    {
+      "input": "a = [\"ananas\",\"atlas\",\"banana\"], b = [\"albatros\",\"cikla\",\"nogomet\"]",
+      "output": "true",
+      "explanation": "Alice must start the game by playing the word \"ananas\".\nBob can't play a word since the only word he has that starts with the letter 'a' or 'b' is \"albatros\", which is smaller than Alice's word.\nSo Alice wins, and the game ends."
+    },
+    {
+      "input": "a = [\"hrvatska\",\"zastava\"], b = [\"bijeli\",\"galeb\"]",
+      "output": "true",
+      "explanation": "Alice must start the game by playing the word \"hrvatska\".\nBob can't play a word since the first letter of both of his words are smaller than the first letter of Alice's word, 'h'.\nSo Alice wins, and the game ends."
+    }
+  ],
+  "constraints": [
+    "1 <= a.length, b.length <= 10^5",
+    "a[i] and b[i] consist only of lowercase English letters.",
+    "a and b are lexicographically sorted.",
+    "All the words in a and b combined are distinct.",
+    "The sum of the lengths of all the words in a and b combined does not exceed 10^6."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def canAliceWin(self, a: List[str], b: List[str]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool canAliceWin(vector<string>& a, vector<string>& b) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean canAliceWin(String[] a, String[] b) {\n        \n    }\n};\n",
+    "javascript": "function canAliceWin(a: string[], b: string[]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def canAliceWin(self, a: List[str], b: List[str]) -> bool:\n        i, j, k = 1, 0, 1\n        w = a[0]\n        while 1:\n            if k:\n                if j == len(b):\n                    return True\n                if (b[j][0] == w[0] and b[j] > w) or ord(b[j][0]) - ord(w[0]) == 1:\n                    w = b[j]\n                    k ^= 1\n                j += 1\n            else:\n                if i == len(a):\n                    return False\n                if (a[i][0] == w[0] and a[i] > w) or ord(a[i][0]) - ord(w[0]) == 1:\n                    w = a[i]\n                    k ^= 1\n                i += 1",
+    "cpp": "class Solution {\npublic:\n    bool canAliceWin(vector<string>& a, vector<string>& b) {\n        int i = 1, j = 0, k = 1;\n        string w = a[0];\n        while (1) {\n            if (k) {\n                if (j == b.size()) {\n                    return true;\n                }\n                if ((b[j][0] == w[0] && w < b[j]) || b[j][0] - w[0] == 1) {\n                    w = b[j];\n                    k ^= 1;\n                }\n                ++j;\n            } else {\n                if (i == a.size()) {\n                    return false;\n                }\n                if ((a[i][0] == w[0] && w < a[i]) || a[i][0] - w[0] == 1) {\n                    w = a[i];\n                    k ^= 1;\n                }\n                ++i;\n            }\n        }\n    }\n};",
+    "java": "class Solution {\n    public boolean canAliceWin(String[] a, String[] b) {\n        int i = 1, j = 0;\n        boolean k = true;\n        String w = a[0];\n        while (true) {\n            if (k) {\n                if (j == b.length) {\n                    return true;\n                }\n                if ((b[j].charAt(0) == w.charAt(0) && w.compareTo(b[j]) < 0)\n                    || b[j].charAt(0) - w.charAt(0) == 1) {\n                    w = b[j];\n                    k = !k;\n                }\n                ++j;\n            } else {\n                if (i == a.length) {\n                    return false;\n                }\n                if ((a[i].charAt(0) == w.charAt(0) && w.compareTo(a[i]) < 0)\n                    || a[i].charAt(0) - w.charAt(0) == 1) {\n                    w = a[i];\n                    k = !k;\n                }\n                ++i;\n            }\n        }\n    }\n}",
+    "javascript": "function canAliceWin(a: string[], b: string[]): boolean {\n    let [i, j, k] = [1, 0, 1];\n    let w = a[0];\n    while (1) {\n        if (k) {\n            if (j === b.length) {\n                return true;\n            }\n            if ((b[j][0] === w[0] && w < b[j]) || b[j].charCodeAt(0) - w.charCodeAt(0) === 1) {\n                w = b[j];\n                k ^= 1;\n            }\n            ++j;\n        } else {\n            if (i === a.length) {\n                return false;\n            }\n            if ((a[i][0] === w[0] && w < a[i]) || a[i].charCodeAt(0) - w.charCodeAt(0) === 1) {\n                w = a[i];\n                k ^= 1;\n            }\n            ++i;\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"avokado\",\"dabar\"], b = [\"brazil\"]",
+      "expected": "false"
+    },
+    {
+      "input": "[\"ananas\",\"atlas\",\"banana\"], b = [\"albatros\",\"cikla\",\"nogomet\"]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"hrvatska\",\"zastava\"], b = [\"bijeli\",\"galeb\"]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Wording Game.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,56 @@
+{
+  "id": 3616,
+  "slug": "number-of-student-replacements",
+  "title": "Number of Student Replacements",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Student%20Replacements"
+  },
+  "description": "You are given an integer array `ranks` where `ranks[i]` represents the rank of the `i^th` student arriving **in order**. A lower number indicates a **better** rank.\n\nInitially, the first student is **selected** by default.\n\nA **replacement** occurs when a student with a **strictly** better rank arrives and **replaces** the current selection.\n\nReturn the total number of replacements made.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= ranks.length <= 10^5​​​​​​​",
+    "1 <= ranks[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def totalReplacements(self, ranks: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int totalReplacements(vector<int>& ranks) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int totalReplacements(int[] ranks) {\n        \n    }\n};\n",
+    "javascript": "function totalReplacements(ranks: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def totalReplacements(self, ranks: List[int]) -> int:\n        ans, cur = 0, ranks[0]\n        for x in ranks:\n            if x < cur:\n                cur = x\n                ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int totalReplacements(vector<int>& ranks) {\n        int ans = 0;\n        int cur = ranks[0];\n        for (int x : ranks) {\n            if (x < cur) {\n                cur = x;\n                ++ans;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int totalReplacements(int[] ranks) {\n        int ans = 0;\n        int cur = ranks[0];\n        for (int x : ranks) {\n            if (x < cur) {\n                cur = x;\n                ++ans;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function totalReplacements(ranks: number[]): number {\n    let [ans, cur] = [0, ranks[0]];\n    for (const x of ranks) {\n        if (x < cur) {\n            cur = x;\n            ans++;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Student Replacements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

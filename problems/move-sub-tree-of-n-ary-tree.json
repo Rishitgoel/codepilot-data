@@ -1,0 +1,70 @@
+{
+  "id": 1516,
+  "slug": "move-sub-tree-of-n-ary-tree",
+  "title": "Move Sub-Tree of N-Ary Tree",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Move%20Sub-Tree%20of%20N-Ary%20Tree"
+  },
+  "description": "Given the `root` of an N-ary tree of unique values, and two nodes of the tree `p` and `q`.\n\nYou should move the subtree of the node `p` to become a direct child of node `q`. If `p` is already a direct child of `q`, do not change anything. Node `p` **must be** the last child in the children list of node `q`.\n\nReturn *the root of the tree* after adjusting it.\n\n \n\nThere are 3 cases for nodes `p` and `q`:\n\n\tNode `q` is in the sub-tree of node `p`.\n\tNode `p` is in the sub-tree of node `q`.\n\tNeither node `p` is in the sub-tree of node `q` nor node `q` is in the sub-tree of node `p`.\n\nIn cases 2 and 3, you just need to move `p` (with its sub-tree) to be a child of `q`, but in case 1 the tree may be disconnected, thus you need to reconnect the tree again. **Please read the examples carefully before solving this problem.**\n\n \n\n*Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).*\n\nFor example, the above tree is serialized as `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`.",
+  "examples": [
+    {
+      "input": "root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 4, q = 1",
+      "output": "[1,null,2,3,4,null,5,null,6,null,7,8]",
+      "explanation": "This example follows the second case as node p is in the sub-tree of node q. We move node p with its sub-tree to be a direct child of node q.\nNotice that node 4 is the last child of node 1."
+    },
+    {
+      "input": "root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 7, q = 4",
+      "output": "[1,null,2,3,null,4,5,null,6,null,7,8]",
+      "explanation": "Node 7 is already a direct child of node 4. We don't change anything."
+    },
+    {
+      "input": "root = [1,null,2,3,null,4,5,null,6,null,7,8], p = 3, q = 8",
+      "output": "[1,null,2,null,4,5,null,7,8,null,null,null,3,null,6]",
+      "explanation": "This example follows case 3 because node p is not in the sub-tree of node q and vice-versa. We can move node 3 with its sub-tree and make it as node 8's child."
+    },
+    {
+      "input": "root = [1,null,2,3,null,4], p = 1, q = 4",
+      "output": "[4,null,1,null,2,3]",
+      "explanation": "This example follows case 1 because node q is in the sub-tree of node p. Disconnect 4 with its parent and move node 1 with its sub-tree and make it as node 4's child."
+    }
+  ],
+  "constraints": [
+    "The total number of nodes is between [2, 1000].",
+    "Each node has a unique value.",
+    "p != null",
+    "q != null",
+    "p and q are two different nodes (i.e. p != q)."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "[1,null,2,3,null,4,5,null,6,null,7,8], p = 4, q = 1",
+      "expected": "[1,null,2,3,4,null,5,null,6,null,7,8]"
+    },
+    {
+      "input": "[1,null,2,3,null,4,5,null,6,null,7,8], p = 7, q = 4",
+      "expected": "[1,null,2,3,null,4,5,null,6,null,7,8]"
+    },
+    {
+      "input": "[1,null,2,3,null,4,5,null,6,null,7,8], p = 3, q = 8",
+      "expected": "[1,null,2,null,4,5,null,7,8,null,null,null,3,null,6]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Move Sub-Tree of N-Ary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,46 @@
+{
+  "id": 2377,
+  "slug": "sort-the-olympic-table",
+  "title": "Sort the Olympic Table",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20the%20Olympic%20Table"
+  },
+  "description": "Table: `Olympic`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| country       | varchar |\n| gold_medals   | int     |\n| silver_medals | int     |\n| bronze_medals | int     |\n+---------------+---------+\nIn SQL, country is the primary key for this table.\nEach row in this table shows a country name and the number of gold, silver, and bronze medals it won in the Olympic games.\n\n \n\nThe Olympic table is sorted according to the following rules:\n\n\tThe country with more gold medals comes first.\n\tIf there is a tie in the gold medals, the country with more silver medals comes first.\n\tIf there is a tie in the silver medals, the country with more bronze medals comes first.\n\tIf there is a tie in the bronze medals, the countries with the tie are sorted in ascending order lexicographically.\n\nWrite a solution to sort the Olympic table.\n\nThe result format is shown in the following example.",
+  "examples": [
+    {
+      "input": "Olympic table:\n+-------------+-------------+---------------+---------------+\n| country     | gold_medals | silver_medals | bronze_medals |\n+-------------+-------------+---------------+---------------+\n| China       | 10          | 10            | 20            |\n| South Sudan | 0           | 0             | 1             |\n| USA         | 10          | 10            | 20            |\n| Israel      | 2           | 2             | 3             |\n| Egypt       | 2           | 2             | 2             |\n+-------------+-------------+---------------+---------------+",
+      "output": "+-------------+-------------+---------------+---------------+\n| country     | gold_medals | silver_medals | bronze_medals |\n+-------------+-------------+---------------+---------------+\n| China       | 10          | 10            | 20            |\n| USA         | 10          | 10            | 20            |\n| Israel      | 2           | 2             | 3             |\n| Egypt       | 2           | 2             | 2             |\n| South Sudan | 0           | 0             | 1             |\n+-------------+-------------+---------------+---------------+",
+      "explanation": "The tie between China and USA is broken by their lexicographical names. Since \"China\" is lexicographically smaller than \"USA\", it comes first.\nIsrael comes before Egypt because it has more bronze medals."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Olympic table:\n+-------------+-------------+---------------+---------------+\n| country     | gold_medals | silver_medals | bronze_medals |\n+-------------+-------------+---------------+---------------+\n| China       | 10          | 10            | 20            |\n| South Sudan | 0           | 0             | 1             |\n| USA         | 10          | 10            | 20            |\n| Israel      | 2           | 2             | 3             |\n| Egypt       | 2           | 2             | 2             |\n+-------------+-------------+---------------+---------------+",
+      "expected": "+-------------+-------------+---------------+---------------+\n| country     | gold_medals | silver_medals | bronze_medals |\n+-------------+-------------+---------------+---------------+\n| China       | 10          | 10            | 20            |\n| USA         | 10          | 10            | 20            |\n| Israel      | 2           | 2             | 3             |\n| Egypt       | 2           | 2             | 2             |\n| South Sudan | 0           | 0             | 1             |\n+-------------+-------------+---------------+---------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sort the Olympic Table.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,46 @@
+{
+  "id": 615,
+  "slug": "average-salary-departments-vs-company",
+  "title": "Average Salary: Departments VS Company",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Average%20Salary%3A%20Departments%20VS%20Company"
+  },
+  "description": "Table: `Salary`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| employee_id | int  |\n| amount      | int  |\n| pay_date    | date |\n+-------------+------+\nIn SQL, id is the primary key column for this table.\nEach row of this table indicates the salary of an employee in one month.\nemployee_id is a foreign key (reference column) from the Employee table.\n\n \n\nTable: `Employee`\n\n+---------------+------+\n| Column Name   | Type |\n+---------------+------+\n| employee_id   | int  |\n| department_id | int  |\n+---------------+------+\nIn SQL, employee_id is the primary key column for this table.\nEach row of this table indicates the department of an employee.\n\n \n\nFind the comparison result **(higher/lower/same)** of the average salary of employees in a department to the company's average salary.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Salary table:\n+----+-------------+--------+------------+\n| id | employee_id | amount | pay_date   |\n+----+-------------+--------+------------+\n| 1  | 1           | 9000   | 2017/03/31 |\n| 2  | 2           | 6000   | 2017/03/31 |\n| 3  | 3           | 10000  | 2017/03/31 |\n| 4  | 1           | 7000   | 2017/02/28 |\n| 5  | 2           | 6000   | 2017/02/28 |\n| 6  | 3           | 8000   | 2017/02/28 |\n+----+-------------+--------+------------+\nEmployee table:\n+-------------+---------------+\n| employee_id | department_id |\n+-------------+---------------+\n| 1           | 1             |\n| 2           | 2             |\n| 3           | 2             |\n+-------------+---------------+",
+      "output": "+-----------+---------------+------------+\n| pay_month | department_id | comparison |\n+-----------+---------------+------------+\n| 2017-02   | 1             | same       |\n| 2017-03   | 1             | higher     |\n| 2017-02   | 2             | same       |\n| 2017-03   | 2             | lower      |\n+-----------+---------------+------------+",
+      "explanation": "In March, the company's average salary is (9000+6000+10000)/3 = 8333.33...\nThe average salary for department '1' is 9000, which is the salary of employee_id '1' since there is only one employee in this department. So the comparison result is 'higher' since 9000 > 8333.33 obviously.\nThe average salary of department '2' is (6000 + 10000)/2 = 8000, which is the average of employee_id '2' and '3'. So the comparison result is 'lower' since 8000 < 8333.33.\n\nWith he same formula for the average salary comparison in February, the result is 'same' since both the department '1' and '2' have the same average salary with the company, which is 7000."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Salary table:\n+----+-------------+--------+------------+\n| id | employee_id | amount | pay_date   |\n+----+-------------+--------+------------+\n| 1  | 1           | 9000   | 2017/03/31 |\n| 2  | 2           | 6000   | 2017/03/31 |\n| 3  | 3           | 10000  | 2017/03/31 |\n| 4  | 1           | 7000   | 2017/02/28 |\n| 5  | 2           | 6000   | 2017/02/28 |\n| 6  | 3           | 8000   | 2017/02/28 |\n+----+-------------+--------+------------+\nEmployee table:\n+-------------+---------------+\n| employee_id | department_id |\n+-------------+---------------+\n| 1           | 1             |\n| 2           | 2             |\n| 3           | 2             |\n+-------------+---------------+",
+      "expected": "+-----------+---------------+------------+\n| pay_month | department_id | comparison |\n+-----------+---------------+------------+\n| 2017-02   | 1             | same       |\n| 2017-03   | 1             | higher     |\n| 2017-02   | 2             | same       |\n| 2017-03   | 2             | lower      |\n+-----------+---------------+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Average Salary: Departments VS Company.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

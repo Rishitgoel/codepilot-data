@@ -1,0 +1,68 @@
+{
+  "id": 2803,
+  "slug": "factorial-generator",
+  "title": "Factorial Generator",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Factorial%20Generator"
+  },
+  "description": "Write a generator function that takes an integer `n` as an argument and returns a generator object which yields the **factorial sequence**.\n\nThe **factorial sequence** is defined by the relation `n! = n * (n-1) * (n-2) * ... * 2 * 1​​​.`\n\nThe factorial of 0 is defined as 1.",
+  "examples": [
+    {
+      "input": "n = 5",
+      "output": "[1,2,6,24,120]",
+      "explanation": "const gen = factorial(5)\ngen.next().value // 1\ngen.next().value // 2\ngen.next().value // 6\ngen.next().value // 24\ngen.next().value // 120"
+    },
+    {
+      "input": "n = 2",
+      "output": "[1,2]",
+      "explanation": "const gen = factorial(2) \ngen.next().value // 1 \ngen.next().value // 2"
+    },
+    {
+      "input": "n = 0",
+      "output": "[1]",
+      "explanation": "const gen = factorial(0) \ngen.next().value // 1"
+    }
+  ],
+  "constraints": [
+    "0 <= n <= 18"
+  ],
+  "starterTemplates": {
+    "javascript": "function* factorial(n: number): Generator<number> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function* factorial(n: number): Generator<number> {\n    if (n === 0) {\n        yield 1;\n    }\n    let ans = 1;\n    for (let i = 1; i <= n; ++i) {\n        ans *= i;\n        yield ans;\n    }\n}\n\n/**\n * const gen = factorial(2);\n * gen.next().value; // 1\n * gen.next().value; // 2\n */"
+  },
+  "testcases": [
+    {
+      "input": "5",
+      "expected": "[1,2,6,24,120]"
+    },
+    {
+      "input": "2",
+      "expected": "[1,2]"
+    },
+    {
+      "input": "0",
+      "expected": "[1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Factorial Generator.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

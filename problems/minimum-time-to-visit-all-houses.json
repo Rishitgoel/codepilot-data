@@ -1,0 +1,48 @@
+{
+  "id": 3540,
+  "slug": "minimum-time-to-visit-all-houses",
+  "title": "Minimum Time to Visit All Houses",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Time%20to%20Visit%20All%20Houses"
+  },
+  "description": "You are given two integer arrays `forward` and `backward`, both of size `n`. You are also given another integer array `queries`.\n\nThere are `n` houses *arranged in a circle*. The houses are connected via roads in a special arrangement:\n\n\tFor all `0 \n\tFor all `1 \n\nYou can walk at a pace of **one** meter per second. Starting from house 0, find the **minimum** time taken to visit each house in the order specified by `queries`.\n\nReturn the **minimum** total time taken to visit the houses.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 10^5",
+    "n == forward.length == backward.length",
+    "1 <= forward[i], backward[i] <= 10^5",
+    "1 <= queries.length <= 10^5",
+    "0 <= queries[i] < n",
+    "queries[i] != queries[i + 1]",
+    "queries[0] is not 0."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Time to Visit All Houses.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

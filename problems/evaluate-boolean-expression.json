@@ -1,0 +1,43 @@
+{
+  "id": 1440,
+  "slug": "evaluate-boolean-expression",
+  "title": "Evaluate Boolean Expression",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Point72"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Evaluate%20Boolean%20Expression"
+  },
+  "description": "Table `Variables`:\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| name          | varchar |\n| value         | int     |\n+---------------+---------+\nIn SQL, name is the primary key for this table.\nThis table contains the stored variables and their values.\n\n \n\nTable `Expressions`:\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| left_operand  | varchar |\n| operator      | enum    |\n| right_operand | varchar |\n+---------------+---------+\nIn SQL, (left_operand, operator, right_operand) is the primary key for this table.\nThis table contains a boolean expression that should be evaluated.\noperator is an enum that takes one of the values ('', '=')\nThe values of left_operand and right_operand are guaranteed to be in the Variables table.\n\n \n\nEvaluate the boolean expressions in `Expressions` table.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Variables table:\n+------+-------+\n| name | value |\n+------+-------+\n| x    | 66    |\n| y    | 77    |\n+------+-------+\nExpressions table:\n+--------------+----------+---------------+\n| left_operand | operator | right_operand |\n+--------------+----------+---------------+\n| x            | >        | y             |\n| x            | <        | y             |\n| x            | =        | y             |\n| y            | >        | x             |\n| y            | <        | x             |\n| x            | =        | x             |\n+--------------+----------+---------------+",
+      "output": "+--------------+----------+---------------+-------+\n| left_operand | operator | right_operand | value |\n+--------------+----------+---------------+-------+\n| x            | >        | y             | false |\n| x            | <        | y             | true  |\n| x            | =        | y             | false |\n| y            | >        | x             | true  |\n| y            | <        | x             | false |\n| x            | =        | x             | true  |\n+--------------+----------+---------------+-------+",
+      "explanation": "As shown, you need to find the value of each boolean expression in the table using the variables table."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Variables table:\n+------+-------+\n| name | value |\n+------+-------+\n| x    | 66    |\n| y    | 77    |\n+------+-------+\nExpressions table:\n+--------------+----------+---------------+\n| left_operand | operator | right_operand |\n+--------------+----------+---------------+\n| x            | >        | y             |\n| x            | <        | y             |\n| x            | =        | y             |\n| y            | >        | x             |\n| y            | <        | x             |\n| x            | =        | x             |\n+--------------+----------+---------------+",
+      "expected": "+--------------+----------+---------------+-------+\n| left_operand | operator | right_operand | value |\n+--------------+----------+---------------+-------+\n| x            | >        | y             | false |\n| x            | <        | y             | true  |\n| x            | =        | y             | false |\n| y            | >        | x             | true  |\n| y            | <        | x             | false |\n| x            | =        | x             | true  |\n+--------------+----------+---------------+-------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Evaluate Boolean Expression.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

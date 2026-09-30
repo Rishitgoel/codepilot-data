@@ -1,0 +1,45 @@
+{
+  "id": 3990,
+  "slug": "create-grid-with-exactly-k-paths-ii",
+  "title": "Create Grid With Exactly K Paths II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Create%20Grid%20With%20Exactly%20K%20Paths%20II"
+  },
+  "description": "You are given an integer `k`.\n\nConstruct **any** grid consisting only of the characters `'.'` and `'#'`, where:\n\n\t`'.'` represents a free cell.\n\t`'#'` represents an obstacle cell.\n\nThe grid must contain **at most** 25 rows and **at most** 25 columns.\n\nA **valid path** is a sequence of free cells that:\n\n\tStarts at the top-left cell `(0, 0)`.\n\tEnds at the bottom-right cell `(m - 1, n - 1)`, where `m` and `n` are the dimensions of your constructed grid.\n\tMoves only:\n\t\n\t\tRight, from `(i, j)` to `(i, j + 1)`, or\n\t\tDown, from `(i, j)` to `(i + 1, j)`.\n\t\n\t\n\nReturn any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= k <= 1000"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Create Grid With Exactly K Paths II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

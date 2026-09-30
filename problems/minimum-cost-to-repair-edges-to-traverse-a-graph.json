@@ -1,0 +1,61 @@
+{
+  "id": 3807,
+  "slug": "minimum-cost-to-repair-edges-to-traverse-a-graph",
+  "title": "Minimum Cost to Repair Edges to Traverse a Graph",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Cost%20to%20Repair%20Edges%20to%20Traverse%20a%20Graph"
+  },
+  "description": "You are given an **undirected graph** with `n` nodes labeled from 0 to `n - 1`. The graph consists of `m` edges represented by a 2D integer array `edges`, where `edges[i] = [ui, vi, wi]` indicates that there is an edge between nodes `ui` and `vi` with a repair cost of `wi`.\n\nYou are also given an integer `k`. Initially, **all** edges are damaged.\n\nYou may choose a non-negative integer `money` and repair **all** edges whose repair cost is **less than or equal** to `money`. All other edges remain damaged and cannot be used.\n\nYou want to travel from node 0 to node `n - 1` using at most `k` edges.\n\nReturn an integer denoting the **minimum** amount of money required to make this possible, or return -1 if it is impossible.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 5 * 10^4",
+    "1 <= edges.length == m <= 10^5",
+    "edges[i] = [ui, vi, wi]",
+    "0 <= ui, vi < n",
+    "1 <= wi <= 10^9",
+    "1 <= k <= n",
+    "There are no self-loops or duplicate edges in the graph."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minCost(self, n: int, edges: List[List[int]], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minCost(int n, vector<vector<int>>& edges, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int n;\n    private int[][] edges;\n    private int k;\n\n    public int minCost(int n, int[][] edges, int k) {\n        \n    }\n};\n",
+    "javascript": "function minCost(n: number, edges: number[][], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minCost(self, n: int, edges: List[List[int]], k: int) -> int:\n        def check(idx: int) -> bool:\n            g = [[] for _ in range(n)]\n            for u, v, _ in edges[: idx + 1]:\n                g[u].append(v)\n                g[v].append(u)\n            q = [0]\n            dist = 0\n            vis = [False] * n\n            vis[0] = True\n            while q:\n                nq = []\n                for u in q:\n                    if u == n - 1:\n                        return dist <= k\n                    for v in g[u]:\n                        if not vis[v]:\n                            vis[v] = True\n                            nq.append(v)\n                q = nq\n                dist += 1\n            return False\n\n        m = len(edges)\n        edges.sort(key=lambda x: x[2])\n        l, r = 0, m - 1\n        while l < r:\n            mid = (l + r) >> 1\n            if check(mid):\n                r = mid\n            else:\n                l = mid + 1\n        return edges[l][2] if check(l) else -1",
+    "cpp": "class Solution {\npublic:\n    int minCost(int n, vector<vector<int>>& edges, int k) {\n        sort(edges.begin(), edges.end(),\n            [](const vector<int>& a, const vector<int>& b) {\n                return a[2] < b[2];\n            });\n\n        auto check = [&](int idx) -> bool {\n            vector<vector<int>> g(n);\n            for (int i = 0; i <= idx; ++i) {\n                int u = edges[i][0], v = edges[i][1];\n                g[u].push_back(v);\n                g[v].push_back(u);\n            }\n\n            vector<int> q;\n            q.push_back(0);\n            vector<char> vis(n, 0);\n            vis[0] = 1;\n\n            int dist = 0;\n            while (!q.empty()) {\n                vector<int> nq;\n                for (int u : q) {\n                    if (u == n - 1) {\n                        return dist <= k;\n                    }\n                    for (int v : g[u]) {\n                        if (!vis[v]) {\n                            vis[v] = 1;\n                            nq.push_back(v);\n                        }\n                    }\n                }\n                q.swap(nq);\n                ++dist;\n            }\n            return false;\n        };\n\n        int m = edges.size();\n        int l = 0, r = m - 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return check(l) ? edges[l][2] : -1;\n    }\n};",
+    "java": "class Solution {\n    private int n;\n    private int[][] edges;\n    private int k;\n\n    public int minCost(int n, int[][] edges, int k) {\n        this.n = n;\n        this.edges = edges;\n        this.k = k;\n        Arrays.sort(edges, (a, b) -> a[2] - b[2]);\n        int l = 0, r = edges.length - 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return check(l) ? edges[l][2] : -1;\n    }\n\n    private boolean check(int idx) {\n        List<Integer>[] g = new List[n];\n        Arrays.setAll(g, i -> new ArrayList<>());\n        for (int i = 0; i <= idx; ++i) {\n            int u = edges[i][0], v = edges[i][1];\n            g[u].add(v);\n            g[v].add(u);\n        }\n        List<Integer> q = new ArrayList<>();\n        q.add(0);\n        int dist = 0;\n        boolean[] vis = new boolean[n];\n        vis[0] = true;\n        while (!q.isEmpty()) {\n            List<Integer> nq = new ArrayList<>();\n            for (int u : q) {\n                if (u == n - 1) {\n                    return dist <= k;\n                }\n                for (int v : g[u]) {\n                    if (!vis[v]) {\n                        vis[v] = true;\n                        nq.add(v);\n                    }\n                }\n            }\n            q = nq;\n            ++dist;\n        }\n        return false;\n    }\n}",
+    "javascript": "function minCost(n: number, edges: number[][], k: number): number {\n    edges.sort((a, b) => a[2] - b[2]);\n\n    const check = (idx: number): boolean => {\n        const g: number[][] = Array.from({ length: n }, () => []);\n        for (let i = 0; i <= idx; i++) {\n            const [u, v] = edges[i];\n            g[u].push(v);\n            g[v].push(u);\n        }\n\n        let q: number[] = [0];\n        const vis: boolean[] = Array(n).fill(false);\n        vis[0] = true;\n\n        let dist = 0;\n        while (q.length > 0) {\n            const nq: number[] = [];\n            for (const u of q) {\n                if (u === n - 1) {\n                    return dist <= k;\n                }\n                for (const v of g[u]) {\n                    if (!vis[v]) {\n                        vis[v] = true;\n                        nq.push(v);\n                    }\n                }\n            }\n            q = nq;\n            dist++;\n        }\n        return false;\n    };\n\n    let [l, r] = [0, edges.length - 1];\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (check(mid)) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return check(l) ? edges[l][2] : -1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Cost to Repair Edges to Traverse a Graph.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

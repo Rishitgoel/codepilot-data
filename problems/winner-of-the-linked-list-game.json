@@ -1,0 +1,59 @@
+{
+  "id": 3062,
+  "slug": "winner-of-the-linked-list-game",
+  "title": "Winner of the Linked List Game",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Winner%20of%20the%20Linked%20List%20Game"
+  },
+  "description": "You are given the `head` of a linked list of **even** length containing integers.\n\nEach **odd-indexed** node contains an odd integer and each **even-indexed** node contains an even integer.\n\nWe call each even-indexed node and its next node a **pair**, e.g., the nodes with indices `0` and `1` are a pair, the nodes with indices `2` and `3` are a pair, and so on.\n\nFor every **pair**, we compare the values of the nodes in the pair:\n\n\tIf the odd-indexed node is higher, the `\"Odd\"` team gets a point.\n\tIf the even-indexed node is higher, the `\"Even\"` team gets a point.\n\nReturn *the name of the team with the **higher** points, if the points are equal, return* `\"Tie\"`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is in the range [2, 100].",
+    "The number of nodes in the list is even.",
+    "1 <= Node.val <= 100",
+    "The value of each odd-indexed node is odd.",
+    "The value of each even-indexed node is even."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for singly-linked list.\r\n# class ListNode:\r\n#     def __init__(self, val=0, next=None):\r\n        pass\n",
+    "cpp": "/**\r\n * Definition for singly-linked list.\r\n * struct ListNode {\r\n *     int val;\r\n *     ListNode *next;\r\n *     ListNode() : val(0), next(nullptr) {}\r\n        \n    }\n};\n",
+    "java": "/**\r\n * Definition for singly-linked list.\r\n * public class ListNode {\r\n *     int val;\r\n *     ListNode next;\r\n *     ListNode() {}\r\n *     ListNode(int val) { this.val = val; }\r\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\r\n * }\r\n */\r\nclass Solution {\r\n    public String gameResult(ListNode head) {\r\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction gameResult(head: ListNode | null): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for singly-linked list.\r\n# class ListNode:\r\n#     def __init__(self, val=0, next=None):\r\n#         self.val = val\r\n#         self.next = next\r\nclass Solution:\r\n    def gameResult(self, head: Optional[ListNode]) -> str:\r\n        odd = even = 0\r\n        while head:\r\n            a = head.val\r\n            b = head.next.val\r\n            odd += a < b\r\n            even += a > b\r\n            head = head.next.next\r\n        if odd > even:\r\n            return \"Odd\"\r\n        if odd < even:\r\n            return \"Even\"\r\n        return \"Tie\"",
+    "cpp": "/**\r\n * Definition for singly-linked list.\r\n * struct ListNode {\r\n *     int val;\r\n *     ListNode *next;\r\n *     ListNode() : val(0), next(nullptr) {}\r\n *     ListNode(int x) : val(x), next(nullptr) {}\r\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\r\n * };\r\n */\r\nclass Solution {\r\npublic:\r\n    string gameResult(ListNode* head) {\r\n        int odd = 0, even = 0;\r\n        for (; head != nullptr; head = head->next->next) {\r\n            int a = head->val;\r\n            int b = head->next->val;\r\n            odd += a < b;\r\n            even += a > b;\r\n        }\r\n        if (odd > even) {\r\n            return \"Odd\";\r\n        }\r\n        if (odd < even) {\r\n            return \"Even\";\r\n        }\r\n        return \"Tie\";\r\n    }\r\n};",
+    "java": "/**\r\n * Definition for singly-linked list.\r\n * public class ListNode {\r\n *     int val;\r\n *     ListNode next;\r\n *     ListNode() {}\r\n *     ListNode(int val) { this.val = val; }\r\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\r\n * }\r\n */\r\nclass Solution {\r\n    public String gameResult(ListNode head) {\r\n        int odd = 0, even = 0;\r\n        for (; head != null; head = head.next.next) {\r\n            int a = head.val;\r\n            int b = head.next.val;\r\n            odd += a < b ? 1 : 0;\r\n            even += a > b ? 1 : 0;\r\n        }\r\n        if (odd > even) {\r\n            return \"Odd\";\r\n        }\r\n        if (odd < even) {\r\n            return \"Even\";\r\n        }\r\n        return \"Tie\";\r\n    }\r\n}",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction gameResult(head: ListNode | null): string {\n    let [odd, even] = [0, 0];\n    for (; head; head = head.next.next) {\n        const [a, b] = [head.val, head.next.val];\n        odd += a < b ? 1 : 0;\n        even += a > b ? 1 : 0;\n    }\n    if (odd > even) {\n        return 'Odd';\n    }\n    if (odd < even) {\n        return 'Even';\n    }\n    return 'Tie';\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Winner of the Linked List Game.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

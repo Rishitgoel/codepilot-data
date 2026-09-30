@@ -1,0 +1,60 @@
+{
+  "id": 3991,
+  "slug": "sort-array-using-prefix-reversals",
+  "title": "Sort Array Using Prefix Reversals",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20Array%20Using%20Prefix%20Reversals"
+  },
+  "description": "You are given an integer array `nums` of length `n`, where `nums` is a permutation of the integers in the range `[0, n - 1]`.\n\nYou are also given an integer array `pre`, where each `pre[i]` is a valid prefix length.\n\nIn one operation, you may choose any length `x` from `pre` and reverse the first `x` elements of `nums`.\n\nFor example, applying a prefix reversal of length `3` on `[4, 1, 2, 3]` results in `[2, 1, 4, 3]`.\n\nReturn the minimum number of operations required to sort `nums` in ascending order. If it is impossible to sort `nums`, return `-1`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == nums.length <= 8",
+    "0 <= nums[i] <= n - 1",
+    "1 <= pre.length <= n",
+    "1 <= pre[i] <= n",
+    "​​​​​​​nums is a permutation of integers from 0 to n - 1.",
+    "pre consists of unique integers."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sortArray(self, nums: List[int], pre: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums, vector<int>& pre) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int sortArray(int[] nums, int[] pre) {\n        \n    }\n};\n",
+    "javascript": "function sortArray(nums: number[], pre: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sortArray(self, nums: List[int], pre: List[int]) -> int:\n        n = len(nums)\n        target = tuple(range(n))\n        start = tuple(nums)\n\n        if start == target:\n            return 0\n\n        vis = {start}\n        q = deque([(start, 0)])\n\n        while q:\n            state, dist = q.popleft()\n            nd = dist + 1\n            for x in pre:\n                nxt = state[:x][::-1] + state[x:]\n                if nxt == target:\n                    return nd\n                if nxt not in vis:\n                    vis.add(nxt)\n                    q.append((nxt, nd))\n        return -1",
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums, vector<int>& pre) {\n        int n = nums.size();\n\n        int target = 0;\n        for (int i = 0; i < n; i++) {\n            target = target * 8 + i;\n        }\n\n        int start = 0;\n        for (int x : nums) {\n            start = start * 8 + x;\n        }\n\n        if (start == target) {\n            return 0;\n        }\n\n        unordered_set<int> vis;\n        vis.insert(start);\n\n        queue<pair<vector<int>, int>> q;\n        q.emplace(nums, 0);\n\n        while (!q.empty()) {\n            auto [state, dist] = q.front();\n            q.pop();\n\n            int nd = dist + 1;\n\n            for (int x : pre) {\n                vector<int> nxt = state;\n                reverse(nxt.begin(), nxt.begin() + x);\n\n                int key = 0;\n                for (int v : nxt) {\n                    key = key * 8 + v;\n                }\n\n                if (key == target) {\n                    return nd;\n                }\n\n                if (vis.insert(key).second) {\n                    q.emplace(move(nxt), nd);\n                }\n            }\n        }\n\n        return -1;\n    }\n};",
+    "java": "class Solution {\n    public int sortArray(int[] nums, int[] pre) {\n        int n = nums.length;\n\n        int target = 0;\n        for (int i = 0; i < n; i++) {\n            target = target * 8 + i;\n        }\n\n        int start = 0;\n        for (int x : nums) {\n            start = start * 8 + x;\n        }\n\n        if (start == target) {\n            return 0;\n        }\n\n        Set<Integer> vis = new HashSet<>();\n        vis.add(start);\n\n        Deque<int[]> q = new ArrayDeque<>();\n        Deque<Integer> dist = new ArrayDeque<>();\n        q.offer(nums.clone());\n        dist.offer(0);\n\n        while (!q.isEmpty()) {\n            int[] state = q.poll();\n            int d = dist.poll();\n            int nd = d + 1;\n\n            for (int x : pre) {\n                int[] nxt = state.clone();\n\n                int l = 0, r = x - 1;\n                while (l < r) {\n                    int t = nxt[l];\n                    nxt[l] = nxt[r];\n                    nxt[r] = t;\n                    l++;\n                    r--;\n                }\n\n                int key = 0;\n                for (int v : nxt) {\n                    key = key * 8 + v;\n                }\n\n                if (key == target) {\n                    return nd;\n                }\n\n                if (vis.add(key)) {\n                    q.offer(nxt);\n                    dist.offer(nd);\n                }\n            }\n        }\n\n        return -1;\n    }\n}",
+    "javascript": "function sortArray(nums: number[], pre: number[]): number {\n    const n = nums.length;\n\n    let target = 0;\n    for (let i = 0; i < n; i++) {\n        target = target * 8 + i;\n    }\n\n    let start = 0;\n    for (const x of nums) {\n        start = start * 8 + x;\n    }\n\n    if (start === target) {\n        return 0;\n    }\n\n    const vis = new Set<number>();\n    vis.add(start);\n\n    const q: [number[], number][] = [[nums.slice(), 0]];\n\n    while (q.length) {\n        const [state, dist] = q.shift()!;\n        const nd = dist + 1;\n\n        for (const x of pre) {\n            const nxt = state.slice();\n\n            for (let l = 0, r = x - 1; l < r; l++, r--) {\n                [nxt[l], nxt[r]] = [nxt[r], nxt[l]];\n            }\n\n            let key = 0;\n            for (const v of nxt) {\n                key = key * 8 + v;\n            }\n\n            if (key === target) {\n                return nd;\n            }\n\n            if (!vis.has(key)) {\n                vis.add(key);\n                q.push([nxt, nd]);\n            }\n        }\n    }\n\n    return -1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sort Array Using Prefix Reversals.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

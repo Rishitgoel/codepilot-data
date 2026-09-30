@@ -1,0 +1,76 @@
+{
+  "id": 1062,
+  "slug": "longest-repeating-substring",
+  "title": "Longest Repeating Substring",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "VMware",
+    "Coupang"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Repeating%20Substring"
+  },
+  "description": "Given a string `s`, return *the length of the longest repeating substrings*. If no repeating substring exists, return `0`.",
+  "examples": [
+    {
+      "input": "s = \"abcd\"",
+      "output": "0",
+      "explanation": "There is no repeating substring."
+    },
+    {
+      "input": "s = \"abbaba\"",
+      "output": "2",
+      "explanation": "The longest repeating substrings are \"ab\" and \"ba\", each of which occurs twice."
+    },
+    {
+      "input": "s = \"aabcaabdaab\"",
+      "output": "3",
+      "explanation": "The longest repeating substring is \"aab\", which occurs 3 times."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 2000",
+    "s consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def longestRepeatingSubstring(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int longestRepeatingSubstring(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int longestRepeatingSubstring(String s) {\n        \n    }\n};\n",
+    "javascript": "function longestRepeatingSubstring(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def longestRepeatingSubstring(self, s: str) -> int:\n        n = len(s)\n        f = [[0] * n for _ in range(n)]\n        ans = 0\n        for i in range(1, n):\n            for j in range(i):\n                if s[i] == s[j]:\n                    f[i][j] = 1 + (f[i - 1][j - 1] if j else 0)\n                    ans = max(ans, f[i][j])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int longestRepeatingSubstring(string s) {\n        int n = s.length();\n        int f[n][n];\n        memset(f, 0, sizeof(f));\n        int ans = 0;\n        for (int i = 1; i < n; ++i) {\n            for (int j = 0; j < i; ++j) {\n                if (s[i] == s[j]) {\n                    f[i][j] = 1 + (j > 0 ? f[i - 1][j - 1] : 0);\n                    ans = max(ans, f[i][j]);\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int longestRepeatingSubstring(String s) {\n        int n = s.length();\n        int[][] f = new int[n][n];\n        int ans = 0;\n        for (int i = 1; i < n; ++i) {\n            for (int j = 0; j < i; ++j) {\n                if (s.charAt(i) == s.charAt(j)) {\n                    f[i][j] = 1 + (j > 0 ? f[i - 1][j - 1] : 0);\n                    ans = Math.max(ans, f[i][j]);\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function longestRepeatingSubstring(s: string): number {\n    const n = s.length;\n    const f: number[][] = Array.from({ length: n }).map(() => Array(n).fill(0));\n    let ans = 0;\n    for (let i = 1; i < n; ++i) {\n        for (let j = 0; j < i; ++j) {\n            if (s[i] === s[j]) {\n                f[i][j] = 1 + (f[i - 1][j - 1] || 0);\n                ans = Math.max(ans, f[i][j]);\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcd\"",
+      "expected": "0"
+    },
+    {
+      "input": "\"abbaba\"",
+      "expected": "2"
+    },
+    {
+      "input": "\"aabcaabdaab\"",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Repeating Substring.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

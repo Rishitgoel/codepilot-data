@@ -1,0 +1,64 @@
+{
+  "id": 2143,
+  "slug": "choose-numbers-from-two-arrays-in-range",
+  "title": "Choose Numbers From Two Arrays in Range",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Choose%20Numbers%20From%20Two%20Arrays%20in%20Range"
+  },
+  "description": "You are given two **0-indexed** integer arrays `nums1` and `nums2` of length `n`.\n\nA range `[l, r]` (**inclusive**) where `0 \n\tFor every `i` in the range `[l, r]`, you pick either `nums1[i]` or `nums2[i]`.\n\tThe sum of the numbers you pick from `nums1` equals to the sum of the numbers you pick from `nums2` (the sum is considered to be `0` if you pick no numbers from an array).\n\nTwo **balanced** ranges from `[l1, r1]` and `[l2, r2]` are considered to be **different** if at least one of the following is true:\n\n\t`l1 != l2`\n\t`r1 != r2`\n\t`nums1[i]` is picked in the first range, and `nums2[i]` is picked in the second range or **vice versa** for at least one `i`.\n\nReturn *the number of **different** ranges that are balanced. *Since the answer may be very large, return it **modulo** `10^9 + 7`*.*",
+  "examples": [
+    {
+      "input": "nums1 = [1,2,5], nums2 = [2,6,3]",
+      "output": "3",
+      "explanation": "The balanced ranges are:\n- [0, 1] where we choose nums2[0], and nums1[1].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 2 = 2.\n- [0, 2] where we choose nums1[0], nums2[1], and nums1[2].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 1 + 5 = 6.\n- [0, 2] where we choose nums1[0], nums1[1], and nums2[2].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 1 + 2 = 3.\nNote that the second and third balanced ranges are different.\nIn the second balanced range, we choose nums2[1] and in the third balanced range, we choose nums1[1]."
+    },
+    {
+      "input": "nums1 = [0,1], nums2 = [1,0]",
+      "output": "4",
+      "explanation": "The balanced ranges are:\n- [0, 0] where we choose nums1[0].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 0 = 0.\n- [1, 1] where we choose nums2[1].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 0 = 0.\n- [0, 1] where we choose nums1[0] and nums2[1].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 0 = 0.\n- [0, 1] where we choose nums2[0] and nums1[1].\n  The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 1 = 1."
+    }
+  ],
+  "constraints": [
+    "n == nums1.length == nums2.length",
+    "1 <= n <= 100",
+    "0 <= nums1[i], nums2[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countSubranges(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int countSubranges(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int countSubranges(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
+    "javascript": "function countSubranges(nums1: number[], nums2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countSubranges(self, nums1: List[int], nums2: List[int]) -> int:\n        n = len(nums1)\n        s1, s2 = sum(nums1), sum(nums2)\n        f = [[0] * (s1 + s2 + 1) for _ in range(n)]\n        ans = 0\n        mod = 10**9 + 7\n        for i, (a, b) in enumerate(zip(nums1, nums2)):\n            f[i][a + s2] += 1\n            f[i][-b + s2] += 1\n            if i:\n                for j in range(s1 + s2 + 1):\n                    if j >= a:\n                        f[i][j] = (f[i][j] + f[i - 1][j - a]) % mod\n                    if j + b < s1 + s2 + 1:\n                        f[i][j] = (f[i][j] + f[i - 1][j + b]) % mod\n            ans = (ans + f[i][s2]) % mod\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int countSubranges(vector<int>& nums1, vector<int>& nums2) {\n        int n = nums1.size();\n        int s1 = accumulate(nums1.begin(), nums1.end(), 0);\n        int s2 = accumulate(nums2.begin(), nums2.end(), 0);\n        int f[n][s1 + s2 + 1];\n        memset(f, 0, sizeof(f));\n        int ans = 0;\n        const int mod = 1e9 + 7;\n        for (int i = 0; i < n; ++i) {\n            int a = nums1[i], b = nums2[i];\n            f[i][a + s2]++;\n            f[i][-b + s2]++;\n            if (i) {\n                for (int j = 0; j <= s1 + s2; ++j) {\n                    if (j >= a) {\n                        f[i][j] = (f[i][j] + f[i - 1][j - a]) % mod;\n                    }\n                    if (j + b <= s1 + s2) {\n                        f[i][j] = (f[i][j] + f[i - 1][j + b]) % mod;\n                    }\n                }\n            }\n            ans = (ans + f[i][s2]) % mod;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int countSubranges(int[] nums1, int[] nums2) {\n        int n = nums1.length;\n        int s1 = Arrays.stream(nums1).sum();\n        int s2 = Arrays.stream(nums2).sum();\n        int[][] f = new int[n][s1 + s2 + 1];\n        int ans = 0;\n        final int mod = (int) 1e9 + 7;\n        for (int i = 0; i < n; ++i) {\n            int a = nums1[i], b = nums2[i];\n            f[i][a + s2]++;\n            f[i][-b + s2]++;\n            if (i > 0) {\n                for (int j = 0; j <= s1 + s2; ++j) {\n                    if (j >= a) {\n                        f[i][j] = (f[i][j] + f[i - 1][j - a]) % mod;\n                    }\n                    if (j + b <= s1 + s2) {\n                        f[i][j] = (f[i][j] + f[i - 1][j + b]) % mod;\n                    }\n                }\n            }\n            ans = (ans + f[i][s2]) % mod;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countSubranges(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    const s1 = nums1.reduce((a, b) => a + b, 0);\n    const s2 = nums2.reduce((a, b) => a + b, 0);\n    const f: number[][] = Array(n)\n        .fill(0)\n        .map(() => Array(s1 + s2 + 1).fill(0));\n    const mod = 1e9 + 7;\n    let ans = 0;\n    for (let i = 0; i < n; ++i) {\n        const [a, b] = [nums1[i], nums2[i]];\n        f[i][a + s2]++;\n        f[i][-b + s2]++;\n        if (i) {\n            for (let j = 0; j <= s1 + s2; ++j) {\n                if (j >= a) {\n                    f[i][j] = (f[i][j] + f[i - 1][j - a]) % mod;\n                }\n                if (j + b <= s1 + s2) {\n                    f[i][j] = (f[i][j] + f[i - 1][j + b]) % mod;\n                }\n            }\n        }\n        ans = (ans + f[i][s2]) % mod;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,5], nums2 = [2,6,3]",
+      "expected": "3"
+    },
+    {
+      "input": "[0,1], nums2 = [1,0]",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Choose Numbers From Two Arrays in Range.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

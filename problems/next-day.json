@@ -1,0 +1,59 @@
+{
+  "id": 2758,
+  "slug": "next-day",
+  "title": "Next Day",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Next%20Day"
+  },
+  "description": "Write code that enhances all date objects such that you can call the `date.nextDay()` method on any date object and it will return the next day in the format *YYYY-MM-DD* as a string.",
+  "examples": [
+    {
+      "input": "date = \"2014-06-20\"",
+      "output": "\"2014-06-21\"",
+      "explanation": "const date = new Date(\"2014-06-20\");\ndate.nextDay(); // \"2014-06-21\""
+    },
+    {
+      "input": "date = \"2017-10-31\"",
+      "output": "\"2017-11-01\"",
+      "explanation": "The day after 2017-10-31 is 2017-11-01."
+    }
+  ],
+  "constraints": [
+    "new Date(date) is a valid date object"
+  ],
+  "starterTemplates": {
+    "javascript": "declare global {\n    interface Date {\n        nextDay(): string;\n    }\n}\n\nDate.prototype.nextDay = function () {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "declare global {\n    interface Date {\n        nextDay(): string;\n    }\n}\n\nDate.prototype.nextDay = function () {\n    const date = new Date(this.valueOf());\n    date.setDate(date.getDate() + 1);\n    return date.toISOString().slice(0, 10);\n};\n\n/**\n * const date = new Date(\"2014-06-20\");\n * date.nextDay(); // \"2014-06-21\"\n */"
+  },
+  "testcases": [
+    {
+      "input": "\"2014-06-20\"",
+      "expected": "\"2014-06-21\""
+    },
+    {
+      "input": "\"2017-10-31\"",
+      "expected": "\"2017-11-01\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Next Day.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

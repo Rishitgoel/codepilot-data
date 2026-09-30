@@ -1,0 +1,43 @@
+{
+  "id": 3052,
+  "slug": "maximize-items",
+  "title": "Maximize Items",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Hashedin"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximize%20Items"
+  },
+  "description": "Table: `Inventory`\n\n+----------------+---------+ \n| Column Name    | Type    | \n+----------------+---------+ \n| item_id        | int     | \n| item_type      | varchar |\n| item_category  | varchar |\n| square_footage | decimal |\n+----------------+---------+\nitem_id is the column of unique values for this table.\nEach row includes item id, item type, item category and sqaure footage.\n\nLeetcode warehouse wants to maximize the number of items it can stock in a `500,000` square feet warehouse. It wants to stock as many **prime** items as possible, and afterwards use the **remaining** square footage to stock the most number of **non-prime** items.\n\nWrite a solution to find the number of **prime** and **non-prime** items that can be **stored** in the `500,000` square feet warehouse. Output the item type with `prime_eligible` followed by `not_prime` and the maximum number of items that can be stocked.\n\n**Note:**\n\n\tItem **count** must be a whole number (integer).\n\tIf the count for the **not_prime** category is `0`, you should **output** `0` for that particular category.\n\nReturn *the result table ordered by item count in **descending order***.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Inventory table:\n+---------+----------------+---------------+----------------+\n| item_id | item_type      | item_category | square_footage | \n+---------+----------------+---------------+----------------+\n| 1374    | prime_eligible | Watches       | 68.00          | \n| 4245    | not_prime      | Art           | 26.40          | \n| 5743    | prime_eligible | Software      | 325.00         | \n| 8543    | not_prime      | Clothing      | 64.50          |  \n| 2556    | not_prime      | Shoes         | 15.00          |\n| 2452    | prime_eligible | Scientific    | 85.00          |\n| 3255    | not_prime      | Furniture     | 22.60          | \n| 1672    | prime_eligible | Beauty        | 8.50           |  \n| 4256    | prime_eligible | Furniture     | 55.50          |\n| 6325    | prime_eligible | Food          | 13.20          | \n+---------+----------------+---------------+----------------+",
+      "output": "+----------------+-------------+\n| item_type      | item_count  | \n+----------------+-------------+\n| prime_eligible | 5400        | \n| not_prime      | 8           | \n+----------------+-------------+",
+      "explanation": "- The prime-eligible category comprises a total of 6 items, amounting to a combined square footage of 555.20 (68 + 325 + 85 + 8.50 + 55.50 + 13.20). It is possible to store 900 combinations of these 6 items, totaling 5400 items and occupying 499,680 square footage.\n- In the not_prime category, there are a total of 4 items with a combined square footage of 128.50. After deducting the storage used by prime-eligible items (500,000 - 499,680 = 320), there is room for 2 combinations of non-prime items, accommodating a total of 8 non-prime items within the available 320 square footage.\nOutput table is ordered by item count in descending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Inventory table:\n+---------+----------------+---------------+----------------+\n| item_id | item_type      | item_category | square_footage | \n+---------+----------------+---------------+----------------+\n| 1374    | prime_eligible | Watches       | 68.00          | \n| 4245    | not_prime      | Art           | 26.40          | \n| 5743    | prime_eligible | Software      | 325.00         | \n| 8543    | not_prime      | Clothing      | 64.50          |  \n| 2556    | not_prime      | Shoes         | 15.00          |\n| 2452    | prime_eligible | Scientific    | 85.00          |\n| 3255    | not_prime      | Furniture     | 22.60          | \n| 1672    | prime_eligible | Beauty        | 8.50           |  \n| 4256    | prime_eligible | Furniture     | 55.50          |\n| 6325    | prime_eligible | Food          | 13.20          | \n+---------+----------------+---------------+----------------+",
+      "expected": "+----------------+-------------+\n| item_type      | item_count  | \n+----------------+-------------+\n| prime_eligible | 5400        | \n| not_prime      | 8           | \n+----------------+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximize Items.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

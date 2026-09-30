@@ -1,0 +1,55 @@
+{
+  "id": 3119,
+  "slug": "maximum-number-of-potholes-that-can-be-fixed",
+  "title": "Maximum Number of Potholes That Can Be Fixed",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft",
+    "GEICO"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Potholes%20That%20Can%20Be%20Fixed"
+  },
+  "description": "You are given a string `road`, consisting only of characters `\"x\"` and `\".\"`, where each `\"x\"` denotes a *pothole* and each `\".\"` denotes a smooth road, and an integer `budget`.\n\nIn one repair operation, you can repair `n` **consecutive** potholes for a price of `n + 1`.\n\nReturn the **maximum** number of potholes that can be fixed such that the sum of the prices of all of the fixes **doesn't go over** the given budget.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= road.length <= 10^5",
+    "1 <= budget <= 10^5 + 1",
+    "road consists only of characters '.' and 'x'."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxPotholes(self, road: str, budget: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxPotholes(string road, int budget) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int maxPotholes(String road, int budget) {\r\n        \n    }\n};\n",
+    "javascript": "function maxPotholes(road: string, budget: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxPotholes(self, road: str, budget: int) -> int:\r\n        road += \".\"\r\n        n = len(road)\r\n        cnt = [0] * n\r\n        k = 0\r\n        for c in road:\r\n            if c == \"x\":\r\n                k += 1\r\n            elif k:\r\n                cnt[k] += 1\r\n                k = 0\r\n        ans = 0\r\n        for k in range(n - 1, 0, -1):\r\n            if cnt[k] == 0:\r\n                continue\r\n            t = min(budget // (k + 1), cnt[k])\r\n            ans += t * k\r\n            budget -= t * (k + 1)\r\n            if budget == 0:\r\n                break\r\n            cnt[k - 1] += cnt[k] - t\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxPotholes(string road, int budget) {\r\n        road.push_back('.');\r\n        int n = road.size();\r\n        vector<int> cnt(n);\r\n        int k = 0;\r\n        for (char& c : road) {\r\n            if (c == 'x') {\r\n                ++k;\r\n            } else if (k) {\r\n                ++cnt[k];\r\n                k = 0;\r\n            }\r\n        }\r\n        int ans = 0;\r\n        for (k = n - 1; k && budget; --k) {\r\n            int t = min(budget / (k + 1), cnt[k]);\r\n            ans += t * k;\r\n            budget -= t * (k + 1);\r\n            cnt[k - 1] += cnt[k] - t;\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int maxPotholes(String road, int budget) {\r\n        road += \".\";\r\n        int n = road.length();\r\n        int[] cnt = new int[n];\r\n        int k = 0;\r\n        for (char c : road.toCharArray()) {\r\n            if (c == 'x') {\r\n                ++k;\r\n            } else if (k > 0) {\r\n                ++cnt[k];\r\n                k = 0;\r\n            }\r\n        }\r\n        int ans = 0;\r\n        for (k = n - 1; k > 0 && budget > 0; --k) {\r\n            int t = Math.min(budget / (k + 1), cnt[k]);\r\n            ans += t * k;\r\n            budget -= t * (k + 1);\r\n            cnt[k - 1] += cnt[k] - t;\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maxPotholes(road: string, budget: number): number {\n    road += '.';\n    const n = road.length;\n    const cnt: number[] = Array(n).fill(0);\n    let k = 0;\n    for (const c of road) {\n        if (c === 'x') {\n            ++k;\n        } else if (k) {\n            ++cnt[k];\n            k = 0;\n        }\n    }\n    let ans = 0;\n    for (k = n - 1; k && budget; --k) {\n        const t = Math.min(Math.floor(budget / (k + 1)), cnt[k]);\n        ans += t * k;\n        budget -= t * (k + 1);\n        cnt[k - 1] += cnt[k] - t;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Potholes That Can Be Fixed.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

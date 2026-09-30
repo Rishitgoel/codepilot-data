@@ -1,0 +1,46 @@
+{
+  "id": 613,
+  "slug": "shortest-distance-in-a-line",
+  "title": "Shortest Distance in a Line",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Shortest%20Distance%20in%20a%20Line"
+  },
+  "description": "Table: `Point`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| x           | int  |\n+-------------+------+\nIn SQL, x is the primary key column for this table.\nEach row of this table indicates the position of a point on the X-axis.\n\n \n\nFind the shortest distance between any two points from the `Point` table.\n\nIt is guaranteed that the `Point` table contains **at least **two rows.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Point table:\n+----+\n| x  |\n+----+\n| -1 |\n| 0  |\n| 2  |\n+----+",
+      "output": "+----------+\n| shortest |\n+----------+\n| 1        |\n+----------+",
+      "explanation": "The shortest distance is between points -1 and 0 which is |(-1) - 0| = 1."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Point table:\n+----+\n| x  |\n+----+\n| -1 |\n| 0  |\n| 2  |\n+----+",
+      "expected": "+----------+\n| shortest |\n+----------+\n| 1        |\n+----------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Shortest Distance in a Line.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,73 @@
+{
+  "id": 2067,
+  "slug": "number-of-equal-count-substrings",
+  "title": "Number of Equal Count Substrings",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Cisco"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Equal%20Count%20Substrings"
+  },
+  "description": "You are given a **0-indexed** string `s` consisting of only lowercase English letters, and an integer `count`. A **substring** of `s` is said to be an **equal count substring** if, for each **unique** letter in the substring, it appears exactly `count` times in the substring.\n\nReturn *the number of **equal count substrings** in *`s`.\n\nA **substring** is a contiguous non-empty sequence of characters within a string.",
+  "examples": [
+    {
+      "input": "s = \"aaabcbbcc\", count = 3",
+      "output": "3",
+      "explanation": "The substring that starts at index 0 and ends at index 2 is \"aaa\".\nThe letter 'a' in the substring appears exactly 3 times.\nThe substring that starts at index 3 and ends at index 8 is \"bcbbcc\".\nThe letters 'b' and 'c' in the substring appear exactly 3 times.\nThe substring that starts at index 0 and ends at index 8 is \"aaabcbbcc\".\nThe letters 'a', 'b', and 'c' in the substring appear exactly 3 times."
+    },
+    {
+      "input": "s = \"abcd\", count = 2",
+      "output": "0",
+      "explanation": "The number of times each letter appears in s is less than count.\nTherefore, no substrings in s are equal count substrings, so return 0."
+    },
+    {
+      "input": "s = \"a\", count = 5",
+      "output": "0",
+      "explanation": "The number of times each letter appears in s is less than count.\nTherefore, no substrings in s are equal count substrings, so return 0"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 3 * 10^4",
+    "1 <= count <= 3 * 10^4",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def equalCountSubstrings(self, s: str, count: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int equalCountSubstrings(string s, int count) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int equalCountSubstrings(String s, int count) {\n        \n    }\n};\n",
+    "javascript": "function equalCountSubstrings(s: string, count: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def equalCountSubstrings(self, s: str, count: int) -> int:\n        ans = 0\n        for i in range(1, 27):\n            k = i * count\n            if k > len(s):\n                break\n            cnt = Counter()\n            t = 0\n            for j, c in enumerate(s):\n                cnt[c] += 1\n                t += cnt[c] == count\n                t -= cnt[c] == count + 1\n                if j >= k:\n                    cnt[s[j - k]] -= 1\n                    t += cnt[s[j - k]] == count\n                    t -= cnt[s[j - k]] == count - 1\n                ans += i == t\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int equalCountSubstrings(string s, int count) {\n        int ans = 0;\n        int n = s.size();\n        int cnt[26];\n        for (int i = 1; i < 27 && i * count <= n; ++i) {\n            int k = i * count;\n            memset(cnt, 0, sizeof(cnt));\n            int t = 0;\n            for (int j = 0; j < n; ++j) {\n                int a = s[j] - 'a';\n                t += ++cnt[a] == count;\n                t -= cnt[a] == count + 1;\n                if (j >= k) {\n                    int b = s[j - k] - 'a';\n                    t += --cnt[b] == count;\n                    t -= cnt[b] == count - 1;\n                }\n                ans += i == t;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int equalCountSubstrings(String s, int count) {\n        int ans = 0;\n        int[] cnt = new int[26];\n        int n = s.length();\n        for (int i = 1; i < 27 && i * count <= n; ++i) {\n            int k = i * count;\n            Arrays.fill(cnt, 0);\n            int t = 0;\n            for (int j = 0; j < n; ++j) {\n                int a = s.charAt(j) - 'a';\n                ++cnt[a];\n                t += cnt[a] == count ? 1 : 0;\n                t -= cnt[a] == count + 1 ? 1 : 0;\n                if (j - k >= 0) {\n                    int b = s.charAt(j - k) - 'a';\n                    --cnt[b];\n                    t += cnt[b] == count ? 1 : 0;\n                    t -= cnt[b] == count - 1 ? 1 : 0;\n                }\n                ans += i == t ? 1 : 0;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function equalCountSubstrings(s: string, count: number): number {\n    const n = s.length;\n    let ans = 0;\n    for (let i = 1; i < 27 && i * count <= n; ++i) {\n        const k = i * count;\n        const cnt: number[] = Array(26).fill(0);\n        let t = 0;\n        for (let j = 0; j < n; ++j) {\n            const a = s.charCodeAt(j) - 97;\n            t += ++cnt[a] === count ? 1 : 0;\n            t -= cnt[a] === count + 1 ? 1 : 0;\n            if (j >= k) {\n                const b = s.charCodeAt(j - k) - 97;\n                t += --cnt[b] === count ? 1 : 0;\n                t -= cnt[b] === count - 1 ? 1 : 0;\n            }\n            ans += i === t ? 1 : 0;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"aaabcbbcc\", count = 3",
+      "expected": "3"
+    },
+    {
+      "input": "\"abcd\", count = 2",
+      "expected": "0"
+    },
+    {
+      "input": "\"a\", count = 5",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Equal Count Substrings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

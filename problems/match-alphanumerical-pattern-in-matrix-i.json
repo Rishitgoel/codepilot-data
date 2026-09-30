@@ -1,0 +1,58 @@
+{
+  "id": 3078,
+  "slug": "match-alphanumerical-pattern-in-matrix-i",
+  "title": "Match Alphanumerical Pattern in Matrix I",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber",
+    "Visa"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Match%20Alphanumerical%20Pattern%20in%20Matrix%20I"
+  },
+  "description": "You are given a 2D integer matrix `board` and a 2D character matrix `pattern`. Where `0 submatrix of `board` that **matches** `pattern`.\n\nAn integer matrix `part` matches `pattern` if we can replace cells containing letters in `pattern` with some digits (each **distinct** letter with a **unique** digit) in such a way that the resulting matrix becomes identical to the integer matrix `part`. In other words,\n\n\tThe matrices have identical dimensions.\n\tIf `pattern[r][c]` is a digit, then `part[r][c]` must be the **same** digit.\n\tIf `pattern[r][c]` is a letter `x`:\n\t\n\t\tFor every `pattern[i][j] == x`, `part[i][j]` must be the **same** as `part[r][c]`.\n\t\tFor every `pattern[i][j] != x`, `part[i][j]` must be **different** than `part[r][c]`. \n\t\n\t\n\nReturn *an array of length *`2`* containing the row number and column number of the upper-left corner of a submatrix of *`board`* which matches *`pattern`*. If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return* `[-1, -1]`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= board.length <= 50",
+    "1 <= board[i].length <= 50",
+    "0 <= board[i][j] <= 9",
+    "1 <= pattern.length <= 50",
+    "1 <= pattern[i].length <= 50",
+    "pattern[i][j] is either a digit represented as a string or a lowercase English letter."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def findPattern(self, board: List[List[int]], pattern: List[str]) -> List[int]:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> findPattern(vector<vector<int>>& board, vector<string>& pattern) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int[] findPattern(int[][] board, String[] pattern) {\r\n        \n    }\n};\n",
+    "javascript": "function findPattern(board: number[][], pattern: string[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def findPattern(self, board: List[List[int]], pattern: List[str]) -> List[int]:\r\n        def check(i: int, j: int) -> bool:\r\n            d1 = {}\r\n            d2 = {}\r\n            for a in range(r):\r\n                for b in range(c):\r\n                    x, y = i + a, j + b\r\n                    if pattern[a][b].isdigit():\r\n                        if int(pattern[a][b]) != board[x][y]:\r\n                            return False\r\n                    else:\r\n                        if pattern[a][b] in d1 and d1[pattern[a][b]] != board[x][y]:\r\n                            return False\r\n                        if board[x][y] in d2 and d2[board[x][y]] != pattern[a][b]:\r\n                            return False\r\n                        d1[pattern[a][b]] = board[x][y]\r\n                        d2[board[x][y]] = pattern[a][b]\r\n            return True\r\n\r\n        m, n = len(board), len(board[0])\r\n        r, c = len(pattern), len(pattern[0])\r\n        for i in range(m - r + 1):\r\n            for j in range(n - c + 1):\r\n                if check(i, j):\r\n                    return [i, j]\r\n        return [-1, -1]",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> findPattern(vector<vector<int>>& board, vector<string>& pattern) {\r\n        int m = board.size(), n = board[0].size();\r\n        int r = pattern.size(), c = pattern[0].size();\r\n        auto check = [&](int i, int j) {\r\n            vector<int> d1(26, -1);\r\n            vector<int> d2(10, -1);\r\n            for (int a = 0; a < r; ++a) {\r\n                for (int b = 0; b < c; ++b) {\r\n                    int x = i + a, y = j + b;\r\n                    if (isdigit(pattern[a][b])) {\r\n                        int v = pattern[a][b] - '0';\r\n                        if (v != board[x][y]) {\r\n                            return false;\r\n                        }\r\n                    } else {\r\n                        int v = pattern[a][b] - 'a';\r\n                        if (d1[v] != -1 && d1[v] != board[x][y]) {\r\n                            return false;\r\n                        }\r\n                        if (d2[board[x][y]] != -1 && d2[board[x][y]] != v) {\r\n                            return false;\r\n                        }\r\n                        d1[v] = board[x][y];\r\n                        d2[board[x][y]] = v;\r\n                    }\r\n                }\r\n            }\r\n            return true;\r\n        };\r\n        for (int i = 0; i < m - r + 1; ++i) {\r\n            for (int j = 0; j < n - c + 1; ++j) {\r\n                if (check(i, j)) {\r\n                    return {i, j};\r\n                }\r\n            }\r\n        }\r\n        return {-1, -1};\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int[] findPattern(int[][] board, String[] pattern) {\r\n        int m = board.length, n = board[0].length;\r\n        int r = pattern.length, c = pattern[0].length();\r\n        for (int i = 0; i < m - r + 1; ++i) {\r\n            for (int j = 0; j < n - c + 1; ++j) {\r\n                if (check(board, pattern, i, j)) {\r\n                    return new int[] {i, j};\r\n                }\r\n            }\r\n        }\r\n        return new int[] {-1, -1};\r\n    }\r\n\r\n    private boolean check(int[][] board, String[] pattern, int i, int j) {\r\n        int[] d1 = new int[26];\r\n        int[] d2 = new int[10];\r\n        Arrays.fill(d1, -1);\r\n        Arrays.fill(d2, -1);\r\n        for (int a = 0; a < pattern.length; ++a) {\r\n            for (int b = 0; b < pattern[0].length(); ++b) {\r\n                int x = i + a, y = j + b;\r\n                if (Character.isDigit(pattern[a].charAt(b))) {\r\n                    int v = pattern[a].charAt(b) - '0';\r\n                    if (v != board[x][y]) {\r\n                        return false;\r\n                    }\r\n                } else {\r\n                    int v = pattern[a].charAt(b) - 'a';\r\n                    if (d1[v] != -1 && d1[v] != board[x][y]) {\r\n                        return false;\r\n                    }\r\n                    if (d2[board[x][y]] != -1 && d2[board[x][y]] != v) {\r\n                        return false;\r\n                    }\r\n                    d1[v] = board[x][y];\r\n                    d2[board[x][y]] = v;\r\n                }\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}",
+    "javascript": "function findPattern(board: number[][], pattern: string[]): number[] {\n    const m: number = board.length;\n    const n: number = board[0].length;\n    const r: number = pattern.length;\n    const c: number = pattern[0].length;\n\n    const check = (i: number, j: number): boolean => {\n        const d1: number[] = Array(26).fill(-1);\n        const d2: number[] = Array(10).fill(-1);\n\n        for (let a = 0; a < r; ++a) {\n            for (let b = 0; b < c; ++b) {\n                const x: number = i + a;\n                const y: number = j + b;\n\n                if (!isNaN(Number(pattern[a][b]))) {\n                    const v: number = Number(pattern[a][b]);\n                    if (v !== board[x][y]) {\n                        return false;\n                    }\n                } else {\n                    const v: number = pattern[a].charCodeAt(b) - 'a'.charCodeAt(0);\n                    if (d1[v] !== -1 && d1[v] !== board[x][y]) {\n                        return false;\n                    }\n                    if (d2[board[x][y]] !== -1 && d2[board[x][y]] !== v) {\n                        return false;\n                    }\n                    d1[v] = board[x][y];\n                    d2[board[x][y]] = v;\n                }\n            }\n        }\n        return true;\n    };\n\n    for (let i = 0; i < m - r + 1; ++i) {\n        for (let j = 0; j < n - c + 1; ++j) {\n            if (check(i, j)) {\n                return [i, j];\n            }\n        }\n    }\n    return [-1, -1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Match Alphanumerical Pattern in Matrix I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

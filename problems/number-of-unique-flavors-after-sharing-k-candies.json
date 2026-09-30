@@ -1,0 +1,74 @@
+{
+  "id": 2107,
+  "slug": "number-of-unique-flavors-after-sharing-k-candies",
+  "title": "Number of Unique Flavors After Sharing K Candies",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft",
+    "Ciena"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Unique%20Flavors%20After%20Sharing%20K%20Candies"
+  },
+  "description": "You are given a **0-indexed** integer array `candies`, where `candies[i]` represents the flavor of the `i^th` candy. Your mom wants you to share these candies with your little sister by giving her `k` **consecutive** candies, but you want to keep as many flavors of candies as possible.\n\nReturn *the **maximum** number of **unique** flavors of candy you can keep after sharing ** with your sister.*",
+  "examples": [
+    {
+      "input": "candies = [1,2,2,3,4,3], k = 3",
+      "output": "3",
+      "explanation": "Give the candies in the range [1, 3] (inclusive) with flavors [2,2,3].\nYou can eat candies with flavors [1,4,3].\nThere are 3 unique flavors, so return 3."
+    },
+    {
+      "input": "candies = [2,2,2,2,3,3], k = 2",
+      "output": "2",
+      "explanation": "Give the candies in the range [3, 4] (inclusive) with flavors [2,3].\nYou can eat candies with flavors [2,2,2,3].\nThere are 2 unique flavors, so return 2.\nNote that you can also share the candies with flavors [2,2] and eat the candies with flavors [2,2,3,3]."
+    },
+    {
+      "input": "candies = [2,4,5], k = 0",
+      "output": "3",
+      "explanation": "You do not have to give any candies.\nYou can eat the candies with flavors [2,4,5].\nThere are 3 unique flavors, so return 3."
+    }
+  ],
+  "constraints": [
+    "0 <= candies.length <= 10^5",
+    "1 <= candies[i] <= 10^5",
+    "0 <= k <= candies.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def shareCandies(self, candies: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int shareCandies(vector<int>& candies, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int shareCandies(int[] candies, int k) {\n        \n    }\n};\n",
+    "javascript": "function shareCandies(candies: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def shareCandies(self, candies: List[int], k: int) -> int:\n        cnt = Counter(candies[k:])\n        ans = len(cnt)\n        for i in range(k, len(candies)):\n            cnt[candies[i - k]] += 1\n            cnt[candies[i]] -= 1\n            if cnt[candies[i]] == 0:\n                cnt.pop(candies[i])\n            ans = max(ans, len(cnt))\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int shareCandies(vector<int>& candies, int k) {\n        unordered_map<int, int> cnt;\n        int n = candies.size();\n        for (int i = k; i < n; ++i) {\n            ++cnt[candies[i]];\n        }\n        int ans = cnt.size();\n        for (int i = k; i < n; ++i) {\n            ++cnt[candies[i - k]];\n            if (--cnt[candies[i]] == 0) {\n                cnt.erase(candies[i]);\n            }\n            ans = max(ans, (int) cnt.size());\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int shareCandies(int[] candies, int k) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        int n = candies.length;\n        for (int i = k; i < n; ++i) {\n            cnt.merge(candies[i], 1, Integer::sum);\n        }\n        int ans = cnt.size();\n        for (int i = k; i < n; ++i) {\n            cnt.merge(candies[i - k], 1, Integer::sum);\n            if (cnt.merge(candies[i], -1, Integer::sum) == 0) {\n                cnt.remove(candies[i]);\n            }\n            ans = Math.max(ans, cnt.size());\n        }\n        return ans;\n    }\n}",
+    "javascript": "function shareCandies(candies: number[], k: number): number {\n    const cnt: Map<number, number> = new Map();\n    for (const x of candies.slice(k)) {\n        cnt.set(x, (cnt.get(x) || 0) + 1);\n    }\n    let ans = cnt.size;\n    for (let i = k; i < candies.length; ++i) {\n        cnt.set(candies[i - k], (cnt.get(candies[i - k]) || 0) + 1);\n        cnt.set(candies[i], (cnt.get(candies[i]) || 0) - 1);\n        if (cnt.get(candies[i]) === 0) {\n            cnt.delete(candies[i]);\n        }\n        ans = Math.max(ans, cnt.size);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,2,3,4,3], k = 3",
+      "expected": "3"
+    },
+    {
+      "input": "[2,2,2,2,3,3], k = 2",
+      "expected": "2"
+    },
+    {
+      "input": "[2,4,5], k = 0",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Unique Flavors After Sharing K Candies.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

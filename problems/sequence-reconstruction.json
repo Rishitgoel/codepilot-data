@@ -1,0 +1,80 @@
+{
+  "id": 444,
+  "slug": "sequence-reconstruction",
+  "title": "Sequence Reconstruction",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sequence%20Reconstruction"
+  },
+  "description": "You are given an integer array `nums` of length `n` where `nums` is a permutation of the integers in the range `[1, n]`. You are also given a 2D integer array `sequences` where `sequences[i]` is a subsequence of `nums`.\n\nCheck if `nums` is the shortest possible and the only **supersequence**. The shortest **supersequence** is a sequence **with the shortest length** and has all `sequences[i]` as subsequences. There could be multiple valid **supersequences** for the given array `sequences`.\n\n\tFor example, for `sequences = [[1,2],[1,3]]`, there are two shortest **supersequences**, `[1,2,3]` and `[1,3,2]`.\n\tWhile for `sequences = [[1,2],[1,3],[1,2,3]]`, the only shortest **supersequence** possible is `[1,2,3]`. `[1,2,3,4]` is a possible supersequence but not the shortest.\n\nReturn `true`* if *`nums`* is the only shortest **supersequence** for *`sequences`*, or *`false`* otherwise*.\n\nA **subsequence** is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.",
+  "examples": [
+    {
+      "input": "nums = [1,2,3], sequences = [[1,2],[1,3]]",
+      "output": "false",
+      "explanation": "There are two possible supersequences: [1,2,3] and [1,3,2].\nThe sequence [1,2] is a subsequence of both: [1,2,3] and [1,3,2].\nThe sequence [1,3] is a subsequence of both: [1,2,3] and [1,3,2].\nSince nums is not the only shortest supersequence, we return false."
+    },
+    {
+      "input": "nums = [1,2,3], sequences = [[1,2]]",
+      "output": "false",
+      "explanation": "The shortest possible supersequence is [1,2].\nThe sequence [1,2] is a subsequence of it: [1,2].\nSince nums is not the shortest supersequence, we return false."
+    },
+    {
+      "input": "nums = [1,2,3], sequences = [[1,2],[1,3],[2,3]]",
+      "output": "true",
+      "explanation": "The shortest possible supersequence is [1,2,3].\nThe sequence [1,2] is a subsequence of it: [1,2,3].\nThe sequence [1,3] is a subsequence of it: [1,2,3].\nThe sequence [2,3] is a subsequence of it: [1,2,3].\nSince nums is the only shortest supersequence, we return true."
+    }
+  ],
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^4",
+    "nums is a permutation of all the integers in the range [1, n].",
+    "1 <= sequences.length <= 10^4",
+    "1 <= sequences[i].length <= 10^4",
+    "1 <= sum(sequences[i].length) <= 10^5",
+    "1 <= sequences[i][j] <= n",
+    "All the arrays of sequences are unique.",
+    "sequences[i] is a subsequence of nums."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sequenceReconstruction(\n        self, nums: List[int], sequences: List[List[int]]\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool sequenceReconstruction(vector<int>& nums, vector<vector<int>>& sequences) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean sequenceReconstruction(int[] nums, List<List<Integer>> sequences) {\n        \n    }\n};\n",
+    "javascript": "function sequenceReconstruction(nums: number[], sequences: number[][]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sequenceReconstruction(\n        self, nums: List[int], sequences: List[List[int]]\n    ) -> bool:\n        n = len(nums)\n        g = [[] for _ in range(n)]\n        indeg = [0] * n\n        for seq in sequences:\n            for a, b in pairwise(seq):\n                a, b = a - 1, b - 1\n                g[a].append(b)\n                indeg[b] += 1\n        q = deque(i for i, x in enumerate(indeg) if x == 0)\n        while len(q) == 1:\n            i = q.popleft()\n            for j in g[i]:\n                indeg[j] -= 1\n                if indeg[j] == 0:\n                    q.append(j)\n        return len(q) == 0",
+    "cpp": "class Solution {\npublic:\n    bool sequenceReconstruction(vector<int>& nums, vector<vector<int>>& sequences) {\n        int n = nums.size();\n        vector<int> indeg(n);\n        vector<int> g[n];\n        for (auto& seq : sequences) {\n            for (int i = 1; i < seq.size(); ++i) {\n                int a = seq[i - 1] - 1, b = seq[i] - 1;\n                g[a].push_back(b);\n                ++indeg[b];\n            }\n        }\n        queue<int> q;\n        for (int i = 0; i < n; ++i) {\n            if (indeg[i] == 0) {\n                q.push(i);\n            }\n        }\n        while (q.size() == 1) {\n            int i = q.front();\n            q.pop();\n            for (int j : g[i]) {\n                if (--indeg[j] == 0) {\n                    q.push(j);\n                }\n            }\n        }\n        return q.empty();\n    }\n};",
+    "java": "class Solution {\n    public boolean sequenceReconstruction(int[] nums, List<List<Integer>> sequences) {\n        int n = nums.length;\n        int[] indeg = new int[n];\n        List<Integer>[] g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (var seq : sequences) {\n            for (int i = 1; i < seq.size(); ++i) {\n                int a = seq.get(i - 1) - 1, b = seq.get(i) - 1;\n                g[a].add(b);\n                ++indeg[b];\n            }\n        }\n        Deque<Integer> q = new ArrayDeque<>();\n        for (int i = 0; i < n; ++i) {\n            if (indeg[i] == 0) {\n                q.offer(i);\n            }\n        }\n        while (q.size() == 1) {\n            int i = q.poll();\n            for (int j : g[i]) {\n                if (--indeg[j] == 0) {\n                    q.offer(j);\n                }\n            }\n        }\n        return q.isEmpty();\n    }\n}",
+    "javascript": "function sequenceReconstruction(nums: number[], sequences: number[][]): boolean {\n    const n = nums.length;\n    const g: number[][] = Array.from({ length: n }, () => []);\n    const indeg: number[] = Array(n).fill(0);\n    for (const seq of sequences) {\n        for (let i = 1; i < seq.length; ++i) {\n            const [a, b] = [seq[i - 1] - 1, seq[i] - 1];\n            g[a].push(b);\n            ++indeg[b];\n        }\n    }\n    const q: number[] = indeg.map((v, i) => (v === 0 ? i : -1)).filter(v => v !== -1);\n    while (q.length === 1) {\n        const i = q.pop()!;\n        for (const j of g[i]) {\n            if (--indeg[j] === 0) {\n                q.push(j);\n            }\n        }\n    }\n    return q.length === 0;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3], sequences = [[1,2],[1,3]]",
+      "expected": "false"
+    },
+    {
+      "input": "[1,2,3], sequences = [[1,2]]",
+      "expected": "false"
+    },
+    {
+      "input": "[1,2,3], sequences = [[1,2],[1,3],[2,3]]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sequence Reconstruction.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

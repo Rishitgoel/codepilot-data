@@ -1,0 +1,76 @@
+{
+  "id": 2052,
+  "slug": "minimum-cost-to-separate-sentence-into-rows",
+  "title": "Minimum Cost to Separate Sentence Into Rows",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Cost%20to%20Separate%20Sentence%20Into%20Rows"
+  },
+  "description": "You are given a string `sentence` containing words separated by spaces, and an integer `k`. Your task is to separate `sentence` into **rows** where the number of characters in each row is **at most **`k`. You may assume that `sentence` does not begin or end with a space, and the words in `sentence` are separated by a single space.\n\nYou can split `sentence` into rows by inserting line breaks between words in `sentence`. A word **cannot** be split between two rows. Each word must be used exactly once, and the word order cannot be rearranged. Adjacent words in a row should be separated by a single space, and rows should not begin or end with spaces.\n\nThe **cost** of a row with length `n` is `(k - n)^2`, and the **total cost** is the sum of the **costs** for all rows **except** the last one.\n\n\tFor example if `sentence = \"i love leetcode\"` and `k = 12`:\n\n    \n    \tSeparating `sentence` into `\"i\"`, `\"love\"`, and `\"leetcode\"` has a cost of `(12 - 1)^2 + (12 - 4)^2 = 185`.\n    \tSeparating `sentence` into `\"i love\"`, and `\"leetcode\"` has a cost of `(12 - 6)^2 = 36`.\n    \tSeparating `sentence` into `\"i\"`, and `\"love leetcode\"` is not possible because the length of `\"love leetcode\"` is greater than `k`.\n    \n    \n\nReturn *the **minimum** possible total cost of separating** *`sentence`* into rows.*",
+  "examples": [
+    {
+      "input": "sentence = \"i love leetcode\", k = 12",
+      "output": "36",
+      "explanation": "Separating sentence into \"i\", \"love\", and \"leetcode\" has a cost of (12 - 1)2 + (12 - 4)2 = 185.\nSeparating sentence into \"i love\", and \"leetcode\" has a cost of (12 - 6)2 = 36.\nSeparating sentence into \"i\", \"love leetcode\" is not possible because \"love leetcode\" has length 13.\n36 is the minimum possible total cost so return it."
+    },
+    {
+      "input": "sentence = \"apples and bananas taste great\", k = 7",
+      "output": "21",
+      "explanation": "Separating sentence into \"apples\", \"and\", \"bananas\", \"taste\", and \"great\" has a cost of (7 - 6)2 + (7 - 3)2 + (7 - 7)2 + (7 - 5)2 = 21.\n21 is the minimum possible total cost so return it."
+    },
+    {
+      "input": "sentence = \"a\", k = 5",
+      "output": "0",
+      "explanation": "The cost of the last row is not included in the total cost, and since there is only one row, return 0."
+    }
+  ],
+  "constraints": [
+    "1 <= sentence.length <= 5000",
+    "1 <= k <= 5000",
+    "The length of each word in sentence is at most k.",
+    "sentence consists of only lowercase English letters and spaces.",
+    "sentence does not begin or end with a space.",
+    "Words in sentence are separated by a single space."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumCost(self, sentence: str, k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumCost(string sentence, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private Integer[] f;\n    private int[] s;\n    private int k;\n    private int n;\n\n    public int minimumCost(String sentence, int k) {\n        \n    }\n};\n",
+    "javascript": "function minimumCost(sentence: string, k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumCost(self, sentence: str, k: int) -> int:\n        @cache\n        def dfs(i: int) -> int:\n            if s[n] - s[i] + n - i - 1 <= k:\n                return 0\n            ans = inf\n            j = i + 1\n            while j < n and (m := s[j] - s[i] + j - i - 1) <= k:\n                ans = min(ans, dfs(j) + (k - m) ** 2)\n                j += 1\n            return ans\n\n        nums = [len(s) for s in sentence.split()]\n        n = len(nums)\n        s = list(accumulate(nums, initial=0))\n        return dfs(0)",
+    "cpp": "class Solution {\npublic:\n    int minimumCost(string sentence, int k) {\n        istringstream iss(sentence);\n        vector<int> s = {0};\n        string w;\n        while (iss >> w) {\n            s.push_back(s.back() + w.size());\n        }\n        int n = s.size() - 1;\n        int f[n];\n        memset(f, -1, sizeof(f));\n        auto dfs = [&](this auto&& dfs, int i) -> int {\n            if (s[n] - s[i] + n - i - 1 <= k) {\n                return 0;\n            }\n            if (f[i] != -1) {\n                return f[i];\n            }\n            int ans = INT_MAX;\n            for (int j = i + 1; j < n && s[j] - s[i] + j - i - 1 <= k; ++j) {\n                int m = s[j] - s[i] + j - i - 1;\n                ans = min(ans, dfs(j) + (k - m) * (k - m));\n            }\n            return f[i] = ans;\n        };\n        return dfs(0);\n    }\n};",
+    "java": "class Solution {\n    private Integer[] f;\n    private int[] s;\n    private int k;\n    private int n;\n\n    public int minimumCost(String sentence, int k) {\n        this.k = k;\n        String[] words = sentence.split(\" \");\n        n = words.length;\n        f = new Integer[n];\n        s = new int[n + 1];\n        for (int i = 0; i < n; ++i) {\n            s[i + 1] = s[i] + words[i].length();\n        }\n        return dfs(0);\n    }\n\n    private int dfs(int i) {\n        if (s[n] - s[i] + n - i - 1 <= k) {\n            return 0;\n        }\n        if (f[i] != null) {\n            return f[i];\n        }\n        int ans = Integer.MAX_VALUE;\n        for (int j = i + 1; j < n && s[j] - s[i] + j - i - 1 <= k; ++j) {\n            int m = s[j] - s[i] + j - i - 1;\n            ans = Math.min(ans, dfs(j) + (k - m) * (k - m));\n        }\n        return f[i] = ans;\n    }\n}",
+    "javascript": "function minimumCost(sentence: string, k: number): number {\n    const s: number[] = [0];\n    for (const w of sentence.split(' ')) {\n        s.push(s.at(-1)! + w.length);\n    }\n    const n = s.length - 1;\n    const f: number[] = Array(n).fill(-1);\n    const dfs = (i: number): number => {\n        if (s[n] - s[i] + n - i - 1 <= k) {\n            return 0;\n        }\n        if (f[i] !== -1) {\n            return f[i];\n        }\n        let ans = Infinity;\n        for (let j = i + 1; j < n && s[j] - s[i] + j - i - 1 <= k; ++j) {\n            const m = s[j] - s[i] + j - i - 1;\n            ans = Math.min(ans, dfs(j) + (k - m) ** 2);\n        }\n        return (f[i] = ans);\n    };\n    return dfs(0);\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"i love leetcode\", k = 12",
+      "expected": "36"
+    },
+    {
+      "input": "\"apples and bananas taste great\", k = 7",
+      "expected": "21"
+    },
+    {
+      "input": "\"a\", k = 5",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Cost to Separate Sentence Into Rows.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,56 @@
+{
+  "id": 3682,
+  "slug": "minimum-index-sum-of-common-elements",
+  "title": "Minimum Index Sum of Common Elements",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Index%20Sum%20of%20Common%20Elements"
+  },
+  "description": "You are given two integer arrays `nums1` and `nums2` of equal length `n`.\n\nWe define a pair of indices `(i, j)` as a **good pair** if `nums1[i] == nums2[j]`.\n\nReturn the **minimum index sum** `i + j` among all possible good pairs. If no such pairs exist, return -1.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums1.length == nums2.length <= 10^5",
+    "-10^5 <= nums1[i], nums2[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumSum(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumSum(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumSum(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
+    "javascript": "function minimumSum(nums1: number[], nums2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumSum(self, nums1: List[int], nums2: List[int]) -> int:\n        d = {}\n        for i, x in enumerate(nums2):\n            if x not in d:\n                d[x] = i\n        ans = inf\n        for i, x in enumerate(nums1):\n            if x in d:\n                ans = min(ans, i + d[x])\n        return -1 if ans == inf else ans",
+    "cpp": "class Solution {\npublic:\n    int minimumSum(vector<int>& nums1, vector<int>& nums2) {\n        int n = nums1.size();\n        const int inf = INT_MAX;\n        unordered_map<int, int> d;\n        for (int i = 0; i < n; i++) {\n            if (!d.contains(nums2[i])) {\n                d[nums2[i]] = i;\n            }\n        }\n        int ans = inf;\n        for (int i = 0; i < n; i++) {\n            if (d.contains(nums1[i])) {\n                ans = min(ans, i + d[nums1[i]]);\n            }\n        }\n        return ans == inf ? -1 : ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumSum(int[] nums1, int[] nums2) {\n        int n = nums1.length;\n        final int inf = 1 << 30;\n        Map<Integer, Integer> d = new HashMap<>();\n        for (int i = 0; i < n; i++) {\n            d.putIfAbsent(nums2[i], i);\n        }\n        int ans = inf;\n        for (int i = 0; i < n; i++) {\n            if (d.containsKey(nums1[i])) {\n                ans = Math.min(ans, i + d.get(nums1[i]));\n            }\n        }\n        return ans == inf ? -1 : ans;\n    }\n}",
+    "javascript": "function minimumSum(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    const inf = 1 << 30;\n    const d = new Map<number, number>();\n    for (let i = 0; i < n; i++) {\n        if (!d.has(nums2[i])) {\n            d.set(nums2[i], i);\n        }\n    }\n    let ans = inf;\n    for (let i = 0; i < n; i++) {\n        if (d.has(nums1[i])) {\n            ans = Math.min(ans, i + (d.get(nums1[i]) as number));\n        }\n    }\n    return ans === inf ? -1 : ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Index Sum of Common Elements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

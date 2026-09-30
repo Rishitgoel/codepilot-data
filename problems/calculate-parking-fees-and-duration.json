@@ -1,0 +1,45 @@
+{
+  "id": 3166,
+  "slug": "calculate-parking-fees-and-duration",
+  "title": "Calculate Parking Fees and Duration",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Calculate%20Parking%20Fees%20and%20Duration"
+  },
+  "description": "Table: `ParkingTransactions`\n\n+--------------+-----------+\n| Column Name  | Type      |\n+--------------+-----------+\n| lot_id       | int       |\n| car_id       | int       |\n| entry_time   | datetime  |\n| exit_time    | datetime  |\n| fee_paid     | decimal   |\n+--------------+-----------+\n(lot_id, car_id, entry_time) is the primary key (combination of columns with unique values) for this table.\nEach row of this table contains the ID of the parking lot, the ID of the car, the entry and exit times, and the fee paid for the parking duration.\n\nWrite a solution to find the **total parking fee** paid by each car **across all parking lots**, and the **average hourly fee** (rounded to `2` decimal places) paid by **each** car. Also, find the **parking lot** where each car spent the **most total time**.\n\nReturn *the result table ordered by *`car_id`* in ascending ** order.*\n\n**Note:** Test cases are generated in such a way that an individual car cannot be in multiple parking lots at the same time.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Calculate Parking Fees and Duration.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

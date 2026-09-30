@@ -1,0 +1,63 @@
+{
+  "id": 2510,
+  "slug": "check-if-there-is-a-path-with-equal-number-of-0s-and-1s",
+  "title": "Check if There is a Path With Equal Number of 0's And 1's",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Check%20if%20There%20is%20a%20Path%20With%20Equal%20Number%20of%200's%20And%201's"
+  },
+  "description": "You are given a **0-indexed** `m x n` **binary** matrix `grid`. You can move from a cell `(row, col)` to any of the cells `(row + 1, col)` or `(row, col + 1)`.\n\nReturn `true`* if there is a path from *`(0, 0)`* to *`(m - 1, n - 1)`* that visits an **equal** number of *`0`*'s and *`1`*'s*. Otherwise return `false`.",
+  "examples": [
+    {
+      "input": "grid = [[0,1,0,0],[0,1,0,0],[1,0,1,0]]",
+      "output": "true",
+      "explanation": "The path colored in blue in the above diagram is a valid path because we have 3 cells with a value of 1 and 3 with a value of 0. Since there is a valid path, we return true."
+    },
+    {
+      "input": "grid = [[1,1,0],[0,0,1],[1,0,0]]",
+      "output": "false",
+      "explanation": "There is no path in this grid with an equal number of 0's and 1's."
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "2 <= m, n <= 100",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isThereAPath(self, grid: List[List[int]]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isThereAPath(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int s;\n    private int m;\n    private int n;\n    private int[][] grid;\n    private Boolean[][][] f;\n\n    public boolean isThereAPath(int[][] grid) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isThereAPath(self, grid: List[List[int]]) -> bool:\n        @cache\n        def dfs(i, j, k):\n            if i >= m or j >= n:\n                return False\n            k += grid[i][j]\n            if k > s or i + j + 1 - k > s:\n                return False\n            if i == m - 1 and j == n - 1:\n                return k == s\n            return dfs(i + 1, j, k) or dfs(i, j + 1, k)\n\n        m, n = len(grid), len(grid[0])\n        s = m + n - 1\n        if s & 1:\n            return False\n        s >>= 1\n        return dfs(0, 0, 0)",
+    "cpp": "class Solution {\npublic:\n    bool isThereAPath(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        int s = m + n - 1;\n        if (s & 1) return false;\n        int f[m][n][s];\n        s >>= 1;\n        memset(f, -1, sizeof f);\n        function<bool(int, int, int)> dfs = [&](int i, int j, int k) -> bool {\n            if (i >= m || j >= n) return false;\n            k += grid[i][j];\n            if (f[i][j][k] != -1) return f[i][j][k];\n            if (k > s || i + j + 1 - k > s) return false;\n            if (i == m - 1 && j == n - 1) return k == s;\n            f[i][j][k] = dfs(i + 1, j, k) || dfs(i, j + 1, k);\n            return f[i][j][k];\n        };\n        return dfs(0, 0, 0);\n    }\n};",
+    "java": "class Solution {\n    private int s;\n    private int m;\n    private int n;\n    private int[][] grid;\n    private Boolean[][][] f;\n\n    public boolean isThereAPath(int[][] grid) {\n        m = grid.length;\n        n = grid[0].length;\n        this.grid = grid;\n        s = m + n - 1;\n        f = new Boolean[m][n][s];\n        if (s % 2 == 1) {\n            return false;\n        }\n        s >>= 1;\n        return dfs(0, 0, 0);\n    }\n\n    private boolean dfs(int i, int j, int k) {\n        if (i >= m || j >= n) {\n            return false;\n        }\n        k += grid[i][j];\n        if (f[i][j][k] != null) {\n            return f[i][j][k];\n        }\n        if (k > s || i + j + 1 - k > s) {\n            return false;\n        }\n        if (i == m - 1 && j == n - 1) {\n            return k == s;\n        }\n        f[i][j][k] = dfs(i + 1, j, k) || dfs(i, j + 1, k);\n        return f[i][j][k];\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,1,0,0],[0,1,0,0],[1,0,1,0]]",
+      "expected": "true"
+    },
+    {
+      "input": "[[1,1,0],[0,0,1],[1,0,0]]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Check if There is a Path With Equal Number of 0's And 1's.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

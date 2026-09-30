@@ -1,0 +1,70 @@
+{
+  "id": 1228,
+  "slug": "missing-number-in-arithmetic-progression",
+  "title": "Missing Number In Arithmetic Progression",
+  "difficulty": "Easy",
+  "rating": 1244,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "Samsung",
+    "VMware",
+    "BNY Mellon",
+    "Audible",
+    "De Shaw And Co."
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Missing%20Number%20In%20Arithmetic%20Progression"
+  },
+  "description": "In some array `arr`, the values were in arithmetic progression: the values `arr[i + 1] - arr[i]` are all equal for every `0 <= i < arr.length - 1`.\n\nA value from `arr` was removed that **was not the first or last value in the array**.\n\nGiven `arr`, return *the removed value*.",
+  "examples": [
+    {
+      "input": "arr = [5,7,11,13]",
+      "output": "9",
+      "explanation": "The previous array was [5,7,9,11,13]."
+    },
+    {
+      "input": "arr = [15,13,12]",
+      "output": "14",
+      "explanation": "The previous array was [15,14,13,12]."
+    }
+  ],
+  "constraints": [
+    "3 <= arr.length <= 1000",
+    "0 <= arr[i] <= 10^5",
+    "The given array is guaranteed to be a valid array."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def missingNumber(self, arr: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int missingNumber(vector<int>& arr) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int missingNumber(int[] arr) {\n        \n    }\n};\n",
+    "javascript": "function missingNumber(arr: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def missingNumber(self, arr: List[int]) -> int:\n        return (arr[0] + arr[-1]) * (len(arr) + 1) // 2 - sum(arr)",
+    "cpp": "class Solution {\npublic:\n    int missingNumber(vector<int>& arr) {\n        int n = arr.size();\n        int x = (arr[0] + arr[n - 1]) * (n + 1) / 2;\n        int y = accumulate(arr.begin(), arr.end(), 0);\n        return x - y;\n    }\n};",
+    "java": "class Solution {\n    public int missingNumber(int[] arr) {\n        int n = arr.length;\n        int x = (arr[0] + arr[n - 1]) * (n + 1) / 2;\n        int y = Arrays.stream(arr).sum();\n        return x - y;\n    }\n}",
+    "javascript": "function missingNumber(arr: number[]): number {\n    const x = ((arr[0] + arr.at(-1)!) * (arr.length + 1)) >> 1;\n    const y = arr.reduce((acc, cur) => acc + cur, 0);\n    return x - y;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,7,11,13]",
+      "expected": "9"
+    },
+    {
+      "input": "[15,13,12]",
+      "expected": "14"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Missing Number In Arithmetic Progression.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

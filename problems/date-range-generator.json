@@ -1,0 +1,71 @@
+{
+  "id": 2777,
+  "slug": "date-range-generator",
+  "title": "Date Range Generator",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Date%20Range%20Generator"
+  },
+  "description": "Given a start date `start`, an end date `end`, and a positive integer `step`, return a generator object that yields dates in the range from `start` to `end` inclusive.\n\nThe value of `step` indicates the number of days between consecutive yielded values.\n\nAll yielded dates must be in the string format `YYYY-MM-DD`.",
+  "examples": [
+    {
+      "input": "start = \"2023-04-01\", end = \"2023-04-04\", step = 1",
+      "output": "[\"2023-04-01\",\"2023-04-02\",\"2023-04-03\",\"2023-04-04\"]",
+      "explanation": "const g = dateRangeGenerator(start, end, step);\ng.next().value // '2023-04-01'\ng.next().value // '2023-04-02'\ng.next().value // '2023-04-03'\ng.next().value // '2023-04-04'"
+    },
+    {
+      "input": "start = \"2023-04-10\", end = \"2023-04-20\", step = 3",
+      "output": "[\"2023-04-10\",\"2023-04-13\",\"2023-04-16\",\"2023-04-19\"]",
+      "explanation": "const g = dateRangeGenerator(start, end, step);\ng.next().value // '2023-04-10'\ng.next().value // '2023-04-13'\ng.next().value // '2023-04-16'\ng.next().value // '2023-04-19'"
+    },
+    {
+      "input": "start = \"2023-04-10\", end = \"2023-04-10\", step = 1",
+      "output": "[\"2023-04-10\"]",
+      "explanation": "const g = dateRangeGenerator(start, end, step);\ng.next().value // '2023-04-10'"
+    }
+  ],
+  "constraints": [
+    "new Date(start) <= new Date(end)",
+    "start and end dates are in the string format YYYY-MM-DD",
+    "0 <= The difference in days between the start date and the end date <= 1500",
+    "1 <= step <= 1000"
+  ],
+  "starterTemplates": {
+    "javascript": "function* dateRangeGenerator(start: string, end: string, step: number): Generator<string> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function* dateRangeGenerator(start: string, end: string, step: number): Generator<string> {\n    const startDate = new Date(start);\n    const endDate = new Date(end);\n    let currentDate = startDate;\n    while (currentDate <= endDate) {\n        yield currentDate.toISOString().slice(0, 10);\n        currentDate.setDate(currentDate.getDate() + step);\n    }\n}\n\n/**\n * const g = dateRangeGenerator('2023-04-01', '2023-04-04', 1);\n * g.next().value; // '2023-04-01'\n * g.next().value; // '2023-04-02'\n * g.next().value; // '2023-04-03'\n * g.next().value; // '2023-04-04'\n * g.next().done; // true\n */"
+  },
+  "testcases": [
+    {
+      "input": "\"2023-04-01\", end = \"2023-04-04\", step = 1",
+      "expected": "[\"2023-04-01\",\"2023-04-02\",\"2023-04-03\",\"2023-04-04\"]"
+    },
+    {
+      "input": "\"2023-04-10\", end = \"2023-04-20\", step = 3",
+      "expected": "[\"2023-04-10\",\"2023-04-13\",\"2023-04-16\",\"2023-04-19\"]"
+    },
+    {
+      "input": "\"2023-04-10\", end = \"2023-04-10\", step = 1",
+      "expected": "[\"2023-04-10\"]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Date Range Generator.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

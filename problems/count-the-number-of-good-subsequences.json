@@ -1,0 +1,74 @@
+{
+  "id": 2539,
+  "slug": "count-the-number-of-good-subsequences",
+  "title": "Count the Number of Good Subsequences",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Oracle",
+    "Nvidia",
+    "Palantir",
+    "Ukg",
+    "TuSimple"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20the%20Number%20of%20Good%20Subsequences"
+  },
+  "description": "A **subsequence** of a string is good if it is not empty and the frequency of each one of its characters is the same.\n\nGiven a string `s`, return *the number of good subsequences of* `s`. Since the answer may be too large, return it modulo `10^9 + 7`.\n\nA **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.",
+  "examples": [
+    {
+      "input": "s = \"aabb\"",
+      "output": "11",
+      "explanation": "The total number of subsequences is 24. There are five subsequences which are not good: \"aabb\", \"aabb\", \"aabb\", \"aabb\", and the empty subsequence. Hence, the number of good subsequences is 24-5 = 11."
+    },
+    {
+      "input": "s = \"leet\"",
+      "output": "12",
+      "explanation": "There are four subsequences which are not good: \"leet\", \"leet\", \"leet\", and the empty subsequence. Hence, the number of good subsequences is 24-4 = 12."
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "15",
+      "explanation": "All of the non-empty subsequences are good subsequences. Hence, the number of good subsequences is 24-1 = 15."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "N = 10001\nMOD = 10**9 + 7\nf = [1] * N\ng = [1] * N\nfor i in range(1, N):\n    f[i] = f[i - 1] * i % MOD\n    g[i] = pow(f[i], MOD - 2, MOD)\n\n\ndef comb(n, k):\n        pass\n",
+    "cpp": "int N = 10001;\nint MOD = 1e9 + 7;\nlong f[10001];\nlong g[10001];\n\nlong qmi(long a, long k, long p) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private static final int N = 10001;\n    private static final int MOD = (int) 1e9 + 7;\n    private static final long[] F = new long[N];\n    private static final long[] G = new long[N];\n\n    static {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "N = 10001\nMOD = 10**9 + 7\nf = [1] * N\ng = [1] * N\nfor i in range(1, N):\n    f[i] = f[i - 1] * i % MOD\n    g[i] = pow(f[i], MOD - 2, MOD)\n\n\ndef comb(n, k):\n    return f[n] * g[k] * g[n - k] % MOD\n\n\nclass Solution:\n    def countGoodSubsequences(self, s: str) -> int:\n        cnt = Counter(s)\n        ans = 0\n        for i in range(1, max(cnt.values()) + 1):\n            x = 1\n            for v in cnt.values():\n                if v >= i:\n                    x = x * (comb(v, i) + 1) % MOD\n            ans = (ans + x - 1) % MOD\n        return ans",
+    "cpp": "int N = 10001;\nint MOD = 1e9 + 7;\nlong f[10001];\nlong g[10001];\n\nlong qmi(long a, long k, long p) {\n    long res = 1;\n    while (k != 0) {\n        if ((k & 1) == 1) {\n            res = res * a % p;\n        }\n        k >>= 1;\n        a = a * a % p;\n    }\n    return res;\n}\n\nint init = []() {\n    f[0] = 1;\n    g[0] = 1;\n    for (int i = 1; i < N; ++i) {\n        f[i] = f[i - 1] * i % MOD;\n        g[i] = qmi(f[i], MOD - 2, MOD);\n    }\n    return 0;\n}();\n\nint comb(int n, int k) {\n    return (f[n] * g[k] % MOD) * g[n - k] % MOD;\n}\n\nclass Solution {\npublic:\n    int countGoodSubsequences(string s) {\n        int cnt[26]{};\n        int mx = 1;\n        for (char& c : s) {\n            mx = max(mx, ++cnt[c - 'a']);\n        }\n        long ans = 0;\n        for (int i = 1; i <= mx; ++i) {\n            long x = 1;\n            for (int j = 0; j < 26; ++j) {\n                if (cnt[j] >= i) {\n                    x = (x * (comb(cnt[j], i) + 1)) % MOD;\n                }\n            }\n            ans = (ans + x - 1) % MOD;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private static final int N = 10001;\n    private static final int MOD = (int) 1e9 + 7;\n    private static final long[] F = new long[N];\n    private static final long[] G = new long[N];\n\n    static {\n        F[0] = 1;\n        G[0] = 1;\n        for (int i = 1; i < N; ++i) {\n            F[i] = F[i - 1] * i % MOD;\n            G[i] = qmi(F[i], MOD - 2, MOD);\n        }\n    }\n\n    public static long qmi(long a, long k, long p) {\n        long res = 1;\n        while (k != 0) {\n            if ((k & 1) == 1) {\n                res = res * a % p;\n            }\n            k >>= 1;\n            a = a * a % p;\n        }\n        return res;\n    }\n\n    public static long comb(int n, int k) {\n        return (F[n] * G[k] % MOD) * G[n - k] % MOD;\n    }\n\n    public int countGoodSubsequences(String s) {\n        int[] cnt = new int[26];\n        int mx = 1;\n        for (int i = 0; i < s.length(); ++i) {\n            mx = Math.max(mx, ++cnt[s.charAt(i) - 'a']);\n        }\n        long ans = 0;\n        for (int i = 1; i <= mx; ++i) {\n            long x = 1;\n            for (int j = 0; j < 26; ++j) {\n                if (cnt[j] >= i) {\n                    x = x * (comb(cnt[j], i) + 1) % MOD;\n                }\n            }\n            ans = (ans + x - 1) % MOD;\n        }\n        return (int) ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"aabb\"",
+      "expected": "11"
+    },
+    {
+      "input": "\"leet\"",
+      "expected": "12"
+    },
+    {
+      "input": "\"abcd\"",
+      "expected": "15"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count the Number of Good Subsequences.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

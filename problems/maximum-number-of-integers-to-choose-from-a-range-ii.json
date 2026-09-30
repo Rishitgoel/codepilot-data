@@ -1,0 +1,62 @@
+{
+  "id": 2557,
+  "slug": "maximum-number-of-integers-to-choose-from-a-range-ii",
+  "title": "Maximum Number of Integers to Choose From a Range II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "PayPal"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Integers%20to%20Choose%20From%20a%20Range%20II"
+  },
+  "description": "You are given an integer array `banned` and two integers `n` and `maxSum`. You are choosing some number of integers following the below rules:\n\n\tThe chosen integers have to be in the range `[1, n]`.\n\tEach integer can be chosen **at most once**.\n\tThe chosen integers should not be in the array `banned`.\n\tThe sum of the chosen integers should not exceed `maxSum`.\n\nReturn *the **maximum** number of integers you can choose following the mentioned rules*.",
+  "examples": [
+    {
+      "input": "banned = [1,4,6], n = 6, maxSum = 4",
+      "output": "1",
+      "explanation": "You can choose the integer 3.\n3 is in the range [1, 6], and do not appear in banned. The sum of the chosen integers is 3, which does not exceed maxSum."
+    },
+    {
+      "input": "banned = [4,3,5,6], n = 7, maxSum = 18",
+      "output": "3",
+      "explanation": "You can choose the integers 1, 2, and 7.\nAll these integers are in the range [1, 7], all do not appear in banned, and their sum is 10, which does not exceed maxSum."
+    }
+  ],
+  "constraints": [
+    "1 <= banned.length <= 10^5",
+    "1 <= banned[i] <= n <= 10^9",
+    "1 <= maxSum <= 10^15"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxCount(vector<int>& banned, int n, long long maxSum) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxCount(int[] banned, int n, long maxSum) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:\n        banned.extend([0, n + 1])\n        ban = sorted(set(banned))\n        ans = 0\n        for i, j in pairwise(ban):\n            left, right = 0, j - i - 1\n            while left < right:\n                mid = (left + right + 1) >> 1\n                if (i + 1 + i + mid) * mid // 2 <= maxSum:\n                    left = mid\n                else:\n                    right = mid - 1\n            ans += left\n            maxSum -= (i + 1 + i + left) * left // 2\n            if maxSum <= 0:\n                break\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxCount(vector<int>& banned, int n, long long maxSum) {\n        banned.push_back(0);\n        banned.push_back(n + 1);\n        sort(banned.begin(), banned.end());\n        banned.erase(unique(banned.begin(), banned.end()), banned.end());\n        int ans = 0;\n        for (int k = 1; k < banned.size(); ++k) {\n            int i = banned[k - 1], j = banned[k];\n            int left = 0, right = j - i - 1;\n            while (left < right) {\n                int mid = left + ((right - left + 1) / 2);\n                if ((i + 1 + i + mid) * 1LL * mid / 2 <= maxSum) {\n                    left = mid;\n                } else {\n                    right = mid - 1;\n                }\n            }\n            ans += left;\n            maxSum -= (i + 1 + i + left) * 1LL * left / 2;\n            if (maxSum <= 0) {\n                break;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxCount(int[] banned, int n, long maxSum) {\n        Set<Integer> black = new HashSet<>();\n        black.add(0);\n        black.add(n + 1);\n        for (int x : banned) {\n            black.add(x);\n        }\n        List<Integer> ban = new ArrayList<>(black);\n        Collections.sort(ban);\n        int ans = 0;\n        for (int k = 1; k < ban.size(); ++k) {\n            int i = ban.get(k - 1), j = ban.get(k);\n            int left = 0, right = j - i - 1;\n            while (left < right) {\n                int mid = (left + right + 1) >>> 1;\n                if ((i + 1 + i + mid) * 1L * mid / 2 <= maxSum) {\n                    left = mid;\n                } else {\n                    right = mid - 1;\n                }\n            }\n            ans += left;\n            maxSum -= (i + 1 + i + left) * 1L * left / 2;\n            if (maxSum <= 0) {\n                break;\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,4,6], n = 6, maxSum = 4",
+      "expected": "1"
+    },
+    {
+      "input": "[4,3,5,6], n = 7, maxSum = 18",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Integers to Choose From a Range II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,57 @@
+{
+  "id": 3491,
+  "slug": "phone-number-prefix",
+  "title": "Phone Number Prefix",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Phone%20Number%20Prefix"
+  },
+  "description": "You are given a string array `numbers` that represents phone numbers. Return `true` if no phone number is a prefix of any other phone number; otherwise, return `false`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= numbers.length <= 50",
+    "1 <= numbers[i].length <= 50",
+    "All numbers contain only digits '0' to '9'."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def phonePrefix(self, numbers: List[str]) -> bool:\r\n        pass\n",
+    "cpp": "#include <ranges>\r\n\r\nclass Solution {\r\npublic:\r\n    bool phonePrefix(vector<string>& numbers) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public boolean phonePrefix(String[] numbers) {\r\n        \n    }\n};\n",
+    "javascript": "function phonePrefix(numbers: string[]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def phonePrefix(self, numbers: List[str]) -> bool:\r\n        numbers.sort(key=len)\r\n        for i, s in enumerate(numbers):\r\n            if any(s.startswith(t) for t in numbers[:i]):\r\n                return False\r\n        return True",
+    "cpp": "#include <ranges>\r\n\r\nclass Solution {\r\npublic:\r\n    bool phonePrefix(vector<string>& numbers) {\r\n        ranges::sort(numbers, [](const string& a, const string& b) {\r\n            return a.size() < b.size();\r\n        });\r\n        for (int i = 0; i < numbers.size(); i++) {\r\n            if (ranges::any_of(numbers | views::take(i), [&](const string& t) {\r\n                    return numbers[i].starts_with(t);\r\n                })) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public boolean phonePrefix(String[] numbers) {\r\n        Arrays.sort(numbers, (a, b) -> Integer.compare(a.length(), b.length()));\r\n        for (int i = 0; i < numbers.length; i++) {\r\n            String s = numbers[i];\r\n            for (int j = 0; j < i; j++) {\r\n                if (s.startsWith(numbers[j])) {\r\n                    return false;\r\n                }\r\n            }\r\n        }\r\n        return true;\r\n    }\r\n}",
+    "javascript": "function phonePrefix(numbers: string[]): boolean {\n    numbers.sort((a, b) => a.length - b.length);\n    for (let i = 0; i < numbers.length; i++) {\n        for (let j = 0; j < i; j++) {\n            if (numbers[i].startsWith(numbers[j])) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Phone Number Prefix.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

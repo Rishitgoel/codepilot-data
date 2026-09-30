@@ -1,0 +1,69 @@
+{
+  "id": 1056,
+  "slug": "confusing-number",
+  "title": "Confusing Number",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Confusing%20Number"
+  },
+  "description": "A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.\n\nWe can rotate digits of a number by `180` degrees to form new digits.\n\n\tWhen `0`, `1`, `6`, `8`, and `9` are rotated `180` degrees, they become `0`, `1`, `9`, `8`, and `6` respectively.\n\tWhen `2`, `3`, `4`, `5`, and `7` are rotated `180` degrees, they become **invalid**.\n\nNote that after rotating a number, we can ignore leading zeros.\n\n\tFor example, after rotating `8000`, we have `0008` which is considered as just `8`.\n\nGiven an integer `n`, return `true`* if it is a **confusing number**, or *`false`* otherwise*.",
+  "examples": [
+    {
+      "input": "n = 6",
+      "output": "true",
+      "explanation": "We get 9 after rotating 6, 9 is a valid number, and 9 != 6."
+    },
+    {
+      "input": "n = 89",
+      "output": "true",
+      "explanation": "We get 68 after rotating 89, 68 is a valid number and 68 != 89."
+    },
+    {
+      "input": "n = 11",
+      "output": "false",
+      "explanation": "We get 11 after rotating 11, 11 is a valid number but the value remains the same, thus 11 is not a confusing number"
+    }
+  ],
+  "constraints": [
+    "0 <= n <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def confusingNumber(self, n: int) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool confusingNumber(int n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean confusingNumber(int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def confusingNumber(self, n: int) -> bool:\n        x, y = n, 0\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        while x:\n            x, v = divmod(x, 10)\n            if d[v] < 0:\n                return False\n            y = y * 10 + d[v]\n        return y != n",
+    "cpp": "class Solution {\npublic:\n    bool confusingNumber(int n) {\n        vector<int> d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n        int x = n, y = 0;\n        while (x) {\n            int v = x % 10;\n            if (d[v] < 0) {\n                return false;\n            }\n            y = y * 10 + d[v];\n            x /= 10;\n        }\n        return y != n;\n    }\n};",
+    "java": "class Solution {\n    public boolean confusingNumber(int n) {\n        int[] d = new int[] {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n        int x = n, y = 0;\n        while (x > 0) {\n            int v = x % 10;\n            if (d[v] < 0) {\n                return false;\n            }\n            y = y * 10 + d[v];\n            x /= 10;\n        }\n        return y != n;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "6",
+      "expected": "true"
+    },
+    {
+      "input": "89",
+      "expected": "true"
+    },
+    {
+      "input": "11",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Confusing Number.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

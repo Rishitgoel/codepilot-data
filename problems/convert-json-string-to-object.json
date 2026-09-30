@@ -1,0 +1,67 @@
+{
+  "id": 2759,
+  "slug": "convert-json-string-to-object",
+  "title": "Convert JSON String to Object",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Mongodb",
+    "Verizon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20JSON%20String%20to%20Object"
+  },
+  "description": "Given a string `str`, return parsed JSON `parsedStr`. You may assume the `str` is a valid JSON string hence it only includes strings, numbers, arrays, objects, booleans, and null. `str` will not include invisible characters and escape characters. \n\nPlease solve it without using the built-in `JSON.parse` method.",
+  "examples": [
+    {
+      "input": "str = '{\"a\":2,\"b\":[1,2,3]}'",
+      "output": "{\"a\":2,\"b\":[1,2,3]}",
+      "explanation": " Returns the object represented by the JSON string."
+    },
+    {
+      "input": "str = 'true'",
+      "output": "true",
+      "explanation": "Primitive types are valid JSON."
+    },
+    {
+      "input": "str = '[1,5,\"false\",{\"a\":2}]'",
+      "output": "[1,5,\"false\",{\"a\":2}]",
+      "explanation": "Returns the array represented by the JSON string."
+    }
+  ],
+  "constraints": [
+    "str is a valid JSON string",
+    "1 <= str.length <= 10^5"
+  ],
+  "starterTemplates": {
+    "javascript": "function jsonParse(str: string): any {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function jsonParse(str: string): any {\n    const n = str.length;\n    let i = 0;\n\n    const parseTrue = (): boolean => {\n        i += 4;\n        return true;\n    };\n\n    const parseFalse = (): boolean => {\n        i += 5;\n        return false;\n    };\n\n    const parseNull = (): null => {\n        i += 4;\n        return null;\n    };\n\n    const parseNumber = (): number => {\n        let s = '';\n        while (i < n) {\n            const c = str[i];\n            if (c === ',' || c === '}' || c === ']') {\n                break;\n            }\n            s += c;\n            i++;\n        }\n        return Number(s);\n    };\n\n    const parseArray = (): any[] => {\n        const arr: any[] = [];\n        i++;\n        while (i < n) {\n            const c = str[i];\n            if (c === ']') {\n                i++;\n                break;\n            }\n            if (c === ',') {\n                i++;\n                continue;\n            }\n            const value = parseValue();\n            arr.push(value);\n        }\n        return arr;\n    };\n\n    const parseString = (): string => {\n        let s = '';\n        i++;\n        while (i < n) {\n            const c = str[i];\n            if (c === '\"') {\n                i++;\n                break;\n            }\n            if (c === '\\\\') {\n                i++;\n                s += str[i];\n            } else {\n                s += c;\n            }\n            i++;\n        }\n        return s;\n    };\n\n    const parseObject = (): any => {\n        const obj: any = {};\n        i++;\n        while (i < n) {\n            const c = str[i];\n            if (c === '}') {\n                i++;\n                break;\n            }\n            if (c === ',') {\n                i++;\n                continue;\n            }\n            const key = parseString();\n            i++;\n            const value = parseValue();\n            obj[key] = value;\n        }\n        return obj;\n    };\n    const parseValue = (): any => {\n        const c = str[i];\n        if (c === '{') {\n            return parseObject();\n        }\n        if (c === '[') {\n            return parseArray();\n        }\n        if (c === '\"') {\n            return parseString();\n        }\n        if (c === 't') {\n            return parseTrue();\n        }\n        if (c === 'f') {\n            return parseFalse();\n        }\n        if (c === 'n') {\n            return parseNull();\n        }\n        return parseNumber();\n    };\n    return parseValue();\n}"
+  },
+  "testcases": [
+    {
+      "input": "'{\"a\":2,\"b\":[1,2,3]}'",
+      "expected": "{\"a\":2,\"b\":[1,2,3]}"
+    },
+    {
+      "input": "'true'",
+      "expected": "true"
+    },
+    {
+      "input": "'[1,5,\"false\",{\"a\":2}]'",
+      "expected": "[1,5,\"false\",{\"a\":2}]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert JSON String to Object.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

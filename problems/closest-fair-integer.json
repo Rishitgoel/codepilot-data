@@ -1,0 +1,63 @@
+{
+  "id": 2417,
+  "slug": "closest-fair-integer",
+  "title": "Closest Fair Integer",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Closest%20Fair%20Integer"
+  },
+  "description": "You are given a **positive** integer `n`.\n\nWe call an integer `k` fair if the number of **even** digits in `k` is equal to the number of **odd** digits in it.\n\nReturn *the **smallest** fair integer that is **greater than or equal** to *`n`.",
+  "examples": [
+    {
+      "input": "n = 2",
+      "output": "10",
+      "explanation": "The smallest fair integer that is greater than or equal to 2 is 10.\n10 is fair because it has an equal number of even and odd digits (one odd digit and one even digit)."
+    },
+    {
+      "input": "n = 403",
+      "output": "1001",
+      "explanation": "The smallest fair integer that is greater than or equal to 403 is 1001.\n1001 is fair because it has an equal number of even and odd digits (two odd digits and two even digits)."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def closestFair(self, n: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int closestFair(int n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int closestFair(int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def closestFair(self, n: int) -> int:\n        a = b = k = 0\n        t = n\n        while t:\n            if (t % 10) & 1:\n                a += 1\n            else:\n                b += 1\n            t //= 10\n            k += 1\n        if k & 1:\n            x = 10**k\n            y = int('1' * (k >> 1) or '0')\n            return x + y\n        if a == b:\n            return n\n        return self.closestFair(n + 1)",
+    "cpp": "class Solution {\npublic:\n    int closestFair(int n) {\n        int a = 0, b = 0;\n        int t = n, k = 0;\n        while (t) {\n            if ((t % 10) & 1) {\n                ++a;\n            } else {\n                ++b;\n            }\n            ++k;\n            t /= 10;\n        }\n        if (a == b) {\n            return n;\n        }\n        if (k % 2 == 1) {\n            int x = pow(10, k);\n            int y = 0;\n            for (int i = 0; i < k >> 1; ++i) {\n                y = y * 10 + 1;\n            }\n            return x + y;\n        }\n        return closestFair(n + 1);\n    }\n};",
+    "java": "class Solution {\n    public int closestFair(int n) {\n        int a = 0, b = 0;\n        int k = 0, t = n;\n        while (t > 0) {\n            if ((t % 10) % 2 == 1) {\n                ++a;\n            } else {\n                ++b;\n            }\n            t /= 10;\n            ++k;\n        }\n        if (k % 2 == 1) {\n            int x = (int) Math.pow(10, k);\n            int y = 0;\n            for (int i = 0; i < k >> 1; ++i) {\n                y = y * 10 + 1;\n            }\n            return x + y;\n        }\n        if (a == b) {\n            return n;\n        }\n        return closestFair(n + 1);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "2",
+      "expected": "10"
+    },
+    {
+      "input": "403",
+      "expected": "1001"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Closest Fair Integer.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

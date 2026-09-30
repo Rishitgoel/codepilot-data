@@ -1,0 +1,75 @@
+{
+  "id": 1933,
+  "slug": "check-if-string-is-decomposable-into-value-equal-substrings",
+  "title": "Check if String Is Decomposable Into Value-Equal Substrings",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Check%20if%20String%20Is%20Decomposable%20Into%20Value-Equal%20Substrings"
+  },
+  "description": "A **value-equal** string is a string where **all** characters are the same.\n\n\tFor example, `\"1111\"` and `\"33\"` are value-equal strings.\n\tIn contrast, `\"123\"` is not a value-equal string.\n\nGiven a digit string `s`, decompose the string into some number of **consecutive value-equal** substrings where **exactly one** substring has a **length of **`2` and the remaining substrings have a **length of **`3`.\n\nReturn `true`* if you can decompose *`s`* according to the above rules. Otherwise, return *`false`.\n\nA **substring** is a contiguous sequence of characters in a string.",
+  "examples": [
+    {
+      "input": "s = \"000111000\"",
+      "output": "false",
+      "explanation": "s cannot be decomposed according to the rules because [\"000\", \"111\", \"000\"] does not have a substring of length 2."
+    },
+    {
+      "input": "s = \"00011111222\"",
+      "output": "true",
+      "explanation": "s can be decomposed into [\"000\", \"111\", \"11\", \"222\"]."
+    },
+    {
+      "input": "s = \"011100022233\"",
+      "output": "false",
+      "explanation": "s cannot be decomposed according to the rules because of the first '0'."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of only digits '0' through '9'."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isDecomposable(self, s: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isDecomposable(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isDecomposable(String s) {\n        \n    }\n};\n",
+    "javascript": "function isDecomposable(s: string): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isDecomposable(self, s: str) -> bool:\n        i, n = 0, len(s)\n        cnt2 = 0\n        while i < n:\n            j = i\n            while j < n and s[j] == s[i]:\n                j += 1\n            if (j - i) % 3 == 1:\n                return False\n            cnt2 += (j - i) % 3 == 2\n            if cnt2 > 1:\n                return False\n            i = j\n        return cnt2 == 1",
+    "cpp": "class Solution {\npublic:\n    bool isDecomposable(string s) {\n        int cnt2 = 0;\n        for (int i = 0, n = s.size(); i < n;) {\n            int j = i;\n            while (j < n && s[j] == s[i]) {\n                ++j;\n            }\n            if ((j - i) % 3 == 1) {\n                return false;\n            }\n            cnt2 += (j - i) % 3 == 2;\n            if (cnt2 > 1) {\n                return false;\n            }\n            i = j;\n        }\n        return cnt2 == 1;\n    }\n};",
+    "java": "class Solution {\n    public boolean isDecomposable(String s) {\n        int i = 0, n = s.length();\n        int cnt2 = 0;\n        while (i < n) {\n            int j = i;\n            while (j < n && s.charAt(j) == s.charAt(i)) {\n                ++j;\n            }\n            if ((j - i) % 3 == 1) {\n                return false;\n            }\n            if ((j - i) % 3 == 2 && ++cnt2 > 1) {\n                return false;\n            }\n            i = j;\n        }\n        return cnt2 == 1;\n    }\n}",
+    "javascript": "function isDecomposable(s: string): boolean {\n    const n = s.length;\n    let cnt2 = 0;\n    for (let i = 0; i < n;) {\n        let j = i;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n        }\n        if ((j - i) % 3 === 1) {\n            return false;\n        }\n        if ((j - i) % 3 === 2 && ++cnt2 > 1) {\n            return false;\n        }\n        i = j;\n    }\n    return cnt2 === 1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"000111000\"",
+      "expected": "false"
+    },
+    {
+      "input": "\"00011111222\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"011100022233\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Check if String Is Decomposable Into Value-Equal Substrings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

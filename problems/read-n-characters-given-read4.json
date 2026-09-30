@@ -1,0 +1,78 @@
+{
+  "id": 157,
+  "slug": "read-n-characters-given-read4",
+  "title": "Read N Characters Given Read4",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "Facebook",
+    "Rubrik",
+    "Lyft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Read%20N%20Characters%20Given%20Read4"
+  },
+  "description": "Given a `file` and assume that you can only read the file using a given method `read4`, implement a method to read `n` characters.\n\n**Method read4: **\n\nThe API `read4` reads **four consecutive characters** from `file`, then writes those characters into the buffer array `buf4`.\n\nThe return value is the number of actual characters read.\n\nNote that `read4()` has its own file pointer, much like `FILE *fp` in C.\n\n**Definition of read4:**\n\n    Parameter:  char[] buf4\n    Returns:    int\n\nbuf4[] is a destination, not a source. The results from read4 will be copied to buf4[].\n\nBelow is a high-level example of how `read4` works:\n\nFile file(\"abcde`\"); // File is \"`abcde\", initially file pointer (fp) points to 'a'\nchar[] buf4 = new char[4]; // Create buffer with enough space to store characters\nread4(buf4); // read4 returns 4. Now buf4 = \"abcd\", fp points to 'e'\nread4(buf4); // read4 returns 1. Now buf4 = \"e\", fp points to end of file\nread4(buf4); // read4 returns 0. Now buf4 = \"\", fp points to end of file\n\n \n\n**Method read:**\n\nBy using the `read4` method, implement the method read that reads `n` characters from `file` and store it in the buffer array `buf`. Consider that you cannot manipulate `file` directly.\n\nThe return value is the number of actual characters read.\n\n**Definition of read: **\n\n    Parameters:\tchar[] buf, int n\n    Returns:\tint\n\nbuf[] is a destination, not a source. You will need to write the results to buf[].\n\n**Note:**\n\n\tConsider that you cannot manipulate the file directly. The file is only accessible for `read4` but not for `read`.\n\tThe `read` function will only be called once for each test case.\n\tYou may assume the destination buffer array, `buf`, is guaranteed to have enough space for storing `n` characters.",
+  "examples": [
+    {
+      "input": "file = \"abc\", n = 4",
+      "output": "3",
+      "explanation": "After calling your read method, buf should contain \"abc\". We read a total of 3 characters from the file, so return 3.\nNote that \"abc\" is the file's content, not buf. buf is the destination buffer that you will have to write the results to."
+    },
+    {
+      "input": "file = \"abcde\", n = 5",
+      "output": "5",
+      "explanation": "After calling your read method, buf should contain \"abcde\". We read a total of 5 characters from the file, so return 5."
+    },
+    {
+      "input": "file = \"abcdABCD1234\", n = 12",
+      "output": "12",
+      "explanation": "After calling your read method, buf should contain \"abcdABCD1234\". We read a total of 12 characters from the file, so return 12."
+    }
+  ],
+  "constraints": [
+    "1 <= file.length <= 500",
+    "file consist of English letters and digits.",
+    "1 <= n <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\nThe read4 API is already defined for you.\n\n    @param buf4, a list of characters\n    @return an integer\n    def read4(buf4):\n        pass\n",
+    "cpp": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char *buf4);\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char[] buf4);\n */\n\npublic class Solution extends Reader4 {\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    public int read(char[] buf, int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\nThe read4 API is already defined for you.\n\n    @param buf4, a list of characters\n    @return an integer\n    def read4(buf4):\n\n# Below is an example of how the read4 API can be called.\nfile = File(\"abcdefghijk\") # File is \"abcdefghijk\", initially file pointer (fp) points to 'a'\nbuf4 = [' '] * 4 # Create buffer with enough space to store characters\nread4(buf4) # read4 returns 4. Now buf = ['a','b','c','d'], fp points to 'e'\nread4(buf4) # read4 returns 4. Now buf = ['e','f','g','h'], fp points to 'i'\nread4(buf4) # read4 returns 3. Now buf = ['i','j','k',...], fp points to end of file\n\"\"\"\n\n\nclass Solution:\n    def read(self, buf, n):\n        \"\"\"\n        :type buf: Destination buffer (List[str])\n        :type n: Number of characters to read (int)\n        :rtype: The number of actual characters read (int)\n        \"\"\"\n        i = 0\n        buf4 = [0] * 4\n        v = 5\n        while v >= 4:\n            v = read4(buf4)\n            for j in range(v):\n                buf[i] = buf4[j]\n                i += 1\n                if i >= n:\n                    return n\n        return i",
+    "cpp": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char *buf4);\n */\n\nclass Solution {\npublic:\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    int read(char* buf, int n) {\n        char buf4[4];\n        int i = 0, v = 5;\n        while (v >= 4) {\n            v = read4(buf4);\n            for (int j = 0; j < v; ++j) {\n                buf[i++] = buf4[j];\n                if (i >= n) {\n                    return n;\n                }\n            }\n        }\n        return i;\n    }\n};",
+    "java": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char[] buf4);\n */\n\npublic class Solution extends Reader4 {\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    public int read(char[] buf, int n) {\n        char[] buf4 = new char[4];\n        int i = 0, v = 5;\n        while (v >= 4) {\n            v = read4(buf4);\n            for (int j = 0; j < v; ++j) {\n                buf[i++] = buf4[j];\n                if (i >= n) {\n                    return n;\n                }\n            }\n        }\n        return i;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abc\", n = 4",
+      "expected": "3"
+    },
+    {
+      "input": "\"abcde\", n = 5",
+      "expected": "5"
+    },
+    {
+      "input": "\"abcdABCD1234\", n = 12",
+      "expected": "12"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Read N Characters Given Read4.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

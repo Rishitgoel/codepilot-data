@@ -1,0 +1,61 @@
+{
+  "id": 1666,
+  "slug": "change-the-root-of-a-binary-tree",
+  "title": "Change the Root of a Binary Tree",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Change%20the%20Root%20of%20a%20Binary%20Tree"
+  },
+  "description": "Given the `root` of a binary tree and a `leaf` node, reroot the tree so that the `leaf` is the new root.\n\nYou can reroot the tree with the following steps for each node `cur` on the path **starting from the **`leaf` up to the `root`​​​ **excluding the root**:\n\n\tIf `cur` has a left child, then that child becomes `cur`'s right child.\n\t`cur`'s original parent becomes `cur`'s left child. Note that in this process the original parent's pointer to `cur` becomes `null`, making it have at most one child.\n\nReturn *the new root **of the rerooted tree.*\n\n**Note:** Ensure that your solution sets the `Node.parent` pointers correctly after rerooting or you will receive \"Wrong Answer\".",
+  "examples": [
+    {
+      "input": "root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 7",
+      "output": "[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]"
+    },
+    {
+      "input": "root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 0",
+      "output": "[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [2, 100].",
+    "-10^9 <= Node.val <= 10^9",
+    "All Node.val are unique.",
+    "leaf exist in the tree."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node->\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node flipBinaryTree(Node root, Node leaf) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\"\"\"\n\n\nclass Solution:\n    def flipBinaryTree(self, root: \"Node\", leaf: \"Node\") -> \"Node\":\n        cur = leaf\n        p = cur.parent\n        while cur != root:\n            gp = p.parent\n            if cur.left:\n                cur.right = cur.left\n            cur.left = p\n            p.parent = cur\n            if p.left == cur:\n                p.left = None\n            elif p.right == cur:\n                p.right = None\n            cur = p\n            p = gp\n        leaf.parent = None\n        return leaf",
+    "cpp": "/*\n// Definition for a Node->\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        Node* cur = leaf;\n        Node* p = cur->parent;\n        while (cur != root) {\n            Node* gp = p->parent;\n            if (cur->left) {\n                cur->right = cur->left;\n            }\n            cur->left = p;\n            p->parent = cur;\n            if (p->left == cur) {\n                p->left = nullptr;\n            } else if (p->right == cur) {\n                p->right = nullptr;\n            }\n            cur = p;\n            p = gp;\n        }\n        leaf->parent = nullptr;\n        return leaf;\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node flipBinaryTree(Node root, Node leaf) {\n        Node cur = leaf;\n        Node p = cur.parent;\n        while (cur != root) {\n            Node gp = p.parent;\n            if (cur.left != null) {\n                cur.right = cur.left;\n            }\n            cur.left = p;\n            p.parent = cur;\n            if (p.left == cur) {\n                p.left = null;\n            } else if (p.right == cur) {\n                p.right = null;\n            }\n            cur = p;\n            p = gp;\n        }\n        leaf.parent = null;\n        return leaf;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,5,1,6,2,0,8,null,null,7,4], leaf = 7",
+      "expected": "[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8]"
+    },
+    {
+      "input": "[3,5,1,6,2,0,8,null,null,7,4], leaf = 0",
+      "expected": "[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Change the Root of a Binary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

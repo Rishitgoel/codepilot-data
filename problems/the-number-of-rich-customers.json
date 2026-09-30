@@ -1,0 +1,43 @@
+{
+  "id": 2082,
+  "slug": "the-number-of-rich-customers",
+  "title": "The Number of Rich Customers",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Athenahealth"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Number%20of%20Rich%20Customers"
+  },
+  "description": "Table: `Store`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| bill_id     | int  |\n| customer_id | int  |\n| amount      | int  |\n+-------------+------+\nbill_id is the primary key (column with unique values) for this table.\nEach row contains information about the amount of one bill and the customer associated with it.\n\n \n\nWrite a solution to report the number of customers who had **at least one** bill with an amount **strictly greater** than `500`.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Store table:\n+---------+-------------+--------+\n| bill_id | customer_id | amount |\n+---------+-------------+--------+\n| 6       | 1           | 549    |\n| 8       | 1           | 834    |\n| 4       | 2           | 394    |\n| 11      | 3           | 657    |\n| 13      | 3           | 257    |\n+---------+-------------+--------+",
+      "output": "+------------+\n| rich_count |\n+------------+\n| 2          |\n+------------+",
+      "explanation": "Customer 1 has two bills with amounts strictly greater than 500.\nCustomer 2 does not have any bills with an amount strictly greater than 500.\nCustomer 3 has one bill with an amount strictly greater than 500."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Store table:\n+---------+-------------+--------+\n| bill_id | customer_id | amount |\n+---------+-------------+--------+\n| 6       | 1           | 549    |\n| 8       | 1           | 834    |\n| 4       | 2           | 394    |\n| 11      | 3           | 657    |\n| 13      | 3           | 257    |\n+---------+-------------+--------+",
+      "expected": "+------------+\n| rich_count |\n+------------+\n| 2          |\n+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Number of Rich Customers.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

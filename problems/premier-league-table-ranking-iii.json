@@ -1,0 +1,49 @@
+{
+  "id": 3322,
+  "slug": "premier-league-table-ranking-iii",
+  "title": "Premier League Table Ranking III",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Premier%20League%20Table%20Ranking%20III"
+  },
+  "description": "Table: `SeasonStats`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| season_id        | int     |\n| team_id          | int     |\n| team_name        | varchar |\n| matches_played   | int     |\n| wins             | int     |\n| draws            | int     |\n| losses           | int     |\n| goals_for        | int     |\n| goals_against    | int     |\n+------------------+---------+\n(season_id, team_id) is the unique key for this table.\nThis table contains season id, team id, team name, matches played, wins, draws, losses, goals scored (goals_for), and goals conceded (goals_against) for each team in each season.\n\nWrite a solution to calculate the **points**, **goal difference**, and position for **each team** in **each season**. The position ranking should be determined as follows:\n\n\tTeams are first ranked by their total points (highest to lowest)\n\tIf points are tied, teams are then ranked by their goal difference (highest to lowest)\n\tIf goal difference is also tied, teams are then ranked alphabetically by team name\n\nPoints are calculated as follows:\n\n\t`3` points for a **win**\n\t`1` point for a **draw**\n\t`0` points for a **loss**\n\nGoal difference is calculated as: `goals_for - goals_against`\n\nReturn *the result table ordered by* `season_id` *in **ascending** order, then by* position *in **ascending** order, and finally by* `team_name` *in **ascending** order.*\n\nThe query result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef process_team_standings(season_stats: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef process_team_standings(season_stats: pd.DataFrame) -> pd.DataFrame:\r\n    season_stats[\"points\"] = season_stats[\"wins\"] * 3 + season_stats[\"draws\"]\r\n    season_stats[\"goal_difference\"] = (\r\n        season_stats[\"goals_for\"] - season_stats[\"goals_against\"]\r\n    )\r\n\r\n    season_stats = season_stats.sort_values(\r\n        [\"season_id\", \"points\", \"goal_difference\", \"team_name\"],\r\n        ascending=[True, False, False, True],\r\n    )\r\n\r\n    season_stats[\"position\"] = season_stats.groupby(\"season_id\").cumcount() + 1\r\n\r\n    return season_stats[\r\n        [\"season_id\", \"team_id\", \"team_name\", \"points\", \"goal_difference\", \"position\"]\r\n    ]"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Premier League Table Ranking III.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

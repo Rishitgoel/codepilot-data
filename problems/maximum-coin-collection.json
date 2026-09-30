@@ -1,0 +1,53 @@
+{
+  "id": 3466,
+  "slug": "maximum-coin-collection",
+  "title": "Maximum Coin Collection ",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Coin%20Collection%20"
+  },
+  "description": "Mario drives on a two-lane freeway with coins every mile. You are given two integer arrays, `lane1` and `lane2`, where the value at the `i^th` index represents the number of coins he *gains or loses* in the `i^th` mile in that lane.\n\n\tIf Mario is in lane 1 at mile `i` and `lane1[i] > 0`, Mario gains `lane1[i]` coins.\n\tIf Mario is in lane 1 at mile `i` and `lane1[i] \n\tThe same rules apply for `lane2`.\n\nMario can enter the freeway anywhere and exit anytime after traveling **at least** one mile. Mario always enters the freeway on lane 1 but can switch lanes **at most** 2 times.\n\nA **lane switch** is when Mario goes from lane 1 to lane 2 or vice versa.\n\nReturn the **maximum** number of coins Mario can earn after performing **at most 2 lane switches**.\n\n**Note:** Mario can switch lanes immediately upon entering or just before exiting the freeway.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= lane1.length == lane2.length <= 10^5",
+    "-10^9 <= lane1[i], lane2[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxCoins(self, lane1: List[int], lane2: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxCoins(vector<int>& lane1, vector<int>& lane2) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    private int n;\r\n    private int[] lane1;\r\n    private int[] lane2;\r\n    private Long[][][] f;\r\n\r\n    public long maxCoins(int[] lane1, int[] lane2) {\r\n        \n    }\n};\n",
+    "javascript": "function maxCoins(lane1: number[], lane2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxCoins(self, lane1: List[int], lane2: List[int]) -> int:\r\n        @cache\r\n        def dfs(i: int, j: int, k: int) -> int:\r\n            if i >= n:\r\n                return 0\r\n            x = lane1[i] if j == 0 else lane2[i]\r\n            ans = max(x, dfs(i + 1, j, k) + x)\r\n            if k > 0:\r\n                ans = max(ans, dfs(i + 1, j ^ 1, k - 1) + x)\r\n                ans = max(ans, dfs(i, j ^ 1, k - 1))\r\n            return ans\r\n\r\n        n = len(lane1)\r\n        ans = -inf\r\n        for i in range(n):\r\n            ans = max(ans, dfs(i, 0, 2))\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxCoins(vector<int>& lane1, vector<int>& lane2) {\r\n        int n = lane1.size();\r\n        long long ans = -1e18;\r\n        vector<vector<vector<long long>>> f(n, vector<vector<long long>>(2, vector<long long>(3, -1e18)));\r\n        auto dfs = [&](this auto&& dfs, int i, int j, int k) -> long long {\r\n            if (i >= n) {\r\n                return 0LL;\r\n            }\r\n            if (f[i][j][k] != -1e18) {\r\n                return f[i][j][k];\r\n            }\r\n            int x = j == 0 ? lane1[i] : lane2[i];\r\n            long long ans = max((long long) x, dfs(i + 1, j, k) + x);\r\n            if (k > 0) {\r\n                ans = max(ans, dfs(i + 1, j ^ 1, k - 1) + x);\r\n                ans = max(ans, dfs(i, j ^ 1, k - 1));\r\n            }\r\n            return f[i][j][k] = ans;\r\n        };\r\n        for (int i = 0; i < n; ++i) {\r\n            ans = max(ans, dfs(i, 0, 2));\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    private int n;\r\n    private int[] lane1;\r\n    private int[] lane2;\r\n    private Long[][][] f;\r\n\r\n    public long maxCoins(int[] lane1, int[] lane2) {\r\n        n = lane1.length;\r\n        this.lane1 = lane1;\r\n        this.lane2 = lane2;\r\n        f = new Long[n][2][3];\r\n        long ans = Long.MIN_VALUE;\r\n        for (int i = 0; i < n; ++i) {\r\n            ans = Math.max(ans, dfs(i, 0, 2));\r\n        }\r\n        return ans;\r\n    }\r\n\r\n    private long dfs(int i, int j, int k) {\r\n        if (i >= n) {\r\n            return 0;\r\n        }\r\n        if (f[i][j][k] != null) {\r\n            return f[i][j][k];\r\n        }\r\n        int x = j == 0 ? lane1[i] : lane2[i];\r\n        long ans = Math.max(x, dfs(i + 1, j, k) + x);\r\n        if (k > 0) {\r\n            ans = Math.max(ans, dfs(i + 1, j ^ 1, k - 1) + x);\r\n            ans = Math.max(ans, dfs(i, j ^ 1, k - 1));\r\n        }\r\n        return f[i][j][k] = ans;\r\n    }\r\n}",
+    "javascript": "function maxCoins(lane1: number[], lane2: number[]): number {\n    const n = lane1.length;\n    const NEG_INF = -1e18;\n    const f: number[][][] = Array.from({ length: n }, () =>\n        Array.from({ length: 2 }, () => Array(3).fill(NEG_INF)),\n    );\n    const dfs = (dfs: Function, i: number, j: number, k: number): number => {\n        if (i >= n) {\n            return 0;\n        }\n        if (f[i][j][k] !== NEG_INF) {\n            return f[i][j][k];\n        }\n        const x = j === 0 ? lane1[i] : lane2[i];\n        let ans = Math.max(x, dfs(dfs, i + 1, j, k) + x);\n        if (k > 0) {\n            ans = Math.max(ans, dfs(dfs, i + 1, j ^ 1, k - 1) + x);\n            ans = Math.max(ans, dfs(dfs, i, j ^ 1, k - 1));\n        }\n        f[i][j][k] = ans;\n        return ans;\n    };\n    let ans = NEG_INF;\n    for (let i = 0; i < n; ++i) {\n        ans = Math.max(ans, dfs(dfs, i, 0, 2));\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Coin Collection .",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

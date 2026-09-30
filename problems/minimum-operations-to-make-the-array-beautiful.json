@@ -1,0 +1,56 @@
+{
+  "id": 3717,
+  "slug": "minimum-operations-to-make-the-array-beautiful",
+  "title": "Minimum Operations to Make the Array Beautiful",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20the%20Array%20Beautiful"
+  },
+  "description": "You are given an integer array `nums`.\n\nAn array is called **beautiful** if for every index `i > 0`, the value at `nums[i]` is **divisible** by `nums[i - 1]`.\n\nIn one operation, you may **increment** any element `nums[i]` (with `i > 0`) by `1`.\n\nReturn the **minimum number of operations** required to make the array beautiful.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i] <= 50​​​"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minOperations(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function minOperations(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        f = {nums[0]: 0}\n        for x in nums[1:]:\n            g = {}\n            for pre, s in f.items():\n                cur = (x + pre - 1) // pre * pre\n                while cur <= 100:\n                    if cur not in g or g[cur] > s + cur - x:\n                        g[cur] = s + cur - x\n                    cur += pre\n            f = g\n        return min(f.values())",
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums) {\n        unordered_map<int, int> f;\n        f[nums[0]] = 0;\n\n        for (int i = 1; i < nums.size(); i++) {\n            int x = nums[i];\n            unordered_map<int, int> g;\n            for (auto [pre, s] : f) {\n                int cur = (x + pre - 1) / pre * pre;\n                while (cur <= 100) {\n                    int val = s + (cur - x);\n                    auto jt = g.find(cur);\n                    if (jt == g.end() || jt->second > val) {\n                        g[cur] = val;\n                    }\n                    cur += pre;\n                }\n            }\n            f = move(g);\n        }\n\n        int ans = INT_MAX;\n        for (auto& it : f) {\n            ans = min(ans, it.second);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minOperations(int[] nums) {\n        Map<Integer, Integer> f = new HashMap<>();\n        f.put(nums[0], 0);\n\n        for (int i = 1; i < nums.length; i++) {\n            int x = nums[i];\n            Map<Integer, Integer> g = new HashMap<>();\n\n            for (var entry : f.entrySet()) {\n                int pre = entry.getKey();\n                int s = entry.getValue();\n\n                int cur = (x + pre - 1) / pre * pre;\n                while (cur <= 100) {\n                    int val = s + (cur - x);\n                    if (!g.containsKey(cur) || g.get(cur) > val) {\n                        g.put(cur, val);\n                    }\n                    cur += pre;\n                }\n            }\n            f = g;\n        }\n\n        int ans = Integer.MAX_VALUE;\n        for (int v : f.values()) {\n            ans = Math.min(ans, v);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minOperations(nums: number[]): number {\n    let f = new Map<number, number>();\n    f.set(nums[0], 0);\n\n    for (let i = 1; i < nums.length; i++) {\n        const x = nums[i];\n        const g = new Map<number, number>();\n\n        for (const [pre, s] of f.entries()) {\n            let cur = Math.floor((x + pre - 1) / pre) * pre;\n            while (cur <= 100) {\n                const val = s + (cur - x);\n                const old = g.get(cur);\n                if (old === undefined || old > val) {\n                    g.set(cur, val);\n                }\n                cur += pre;\n            }\n        }\n        f = g;\n    }\n\n    return Math.min(...f.values());\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Operations to Make the Array Beautiful.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

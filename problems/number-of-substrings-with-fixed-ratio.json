@@ -1,0 +1,62 @@
+{
+  "id": 2489,
+  "slug": "number-of-substrings-with-fixed-ratio",
+  "title": "Number of Substrings With Fixed Ratio",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Intuit"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Substrings%20With%20Fixed%20Ratio"
+  },
+  "description": "You are given a binary string `s`, and two integers `num1` and `num2`. `num1` and `num2` are coprime numbers.\n\nA **ratio substring** is a substring of s where the ratio between the number of `0`'s and the number of `1`'s in the substring is exactly `num1 : num2`.\n\n\tFor example, if `num1 = 2` and `num2 = 3`, then `\"01011\"` and `\"1110000111\"` are ratio substrings, while `\"11000\"` is not.\n\nReturn *the number of **non-empty** ratio substrings of *`s`.\n\n**Note** that:\n\n\tA **substring** is a contiguous sequence of characters within a string.\n\tTwo values `x` and `y` are **coprime** if `gcd(x, y) == 1` where `gcd(x, y)` is the greatest common divisor of `x` and `y`.",
+  "examples": [
+    {
+      "input": "s = \"0110011\", num1 = 1, num2 = 2",
+      "output": "4",
+      "explanation": "There exist 4 non-empty ratio substrings.\n- The substring s[0..2]: \"0110011\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[1..4]: \"0110011\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[4..6]: \"0110011\". It contains one 0 and two 1's. The ratio is 1 : 2.\n- The substring s[1..6]: \"0110011\". It contains two 0's and four 1's. The ratio is 2 : 4 == 1 : 2.\nIt can be shown that there are no more ratio substrings."
+    },
+    {
+      "input": "s = \"10101\", num1 = 3, num2 = 1",
+      "output": "0",
+      "explanation": "There is no ratio substrings of s. We return 0."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= num1, num2 <= s.length",
+    "num1 and num2 are coprime integers."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def fixedRatio(self, s: str, num1: int, num2: int) -> int:\n        pass\n",
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long fixedRatio(string s, int num1, int num2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long fixedRatio(String s, int num1, int num2) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def fixedRatio(self, s: str, num1: int, num2: int) -> int:\n        n0 = n1 = 0\n        ans = 0\n        cnt = Counter({0: 1})\n        for c in s:\n            n0 += c == '0'\n            n1 += c == '1'\n            x = n1 * num1 - n0 * num2\n            ans += cnt[x]\n            cnt[x] += 1\n        return ans",
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long fixedRatio(string s, int num1, int num2) {\n        ll n0 = 0, n1 = 0;\n        ll ans = 0;\n        unordered_map<ll, ll> cnt;\n        cnt[0] = 1;\n        for (char& c : s) {\n            n0 += c == '0';\n            n1 += c == '1';\n            ll x = n1 * num1 - n0 * num2;\n            ans += cnt[x];\n            ++cnt[x];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long fixedRatio(String s, int num1, int num2) {\n        long n0 = 0, n1 = 0;\n        long ans = 0;\n        Map<Long, Long> cnt = new HashMap<>();\n        cnt.put(0L, 1L);\n        for (char c : s.toCharArray()) {\n            n0 += c == '0' ? 1 : 0;\n            n1 += c == '1' ? 1 : 0;\n            long x = n1 * num1 - n0 * num2;\n            ans += cnt.getOrDefault(x, 0L);\n            cnt.put(x, cnt.getOrDefault(x, 0L) + 1);\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"0110011\", num1 = 1, num2 = 2",
+      "expected": "4"
+    },
+    {
+      "input": "\"10101\", num1 = 3, num2 = 1",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Substrings With Fixed Ratio.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

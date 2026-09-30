@@ -1,0 +1,74 @@
+{
+  "id": 2936,
+  "slug": "number-of-equal-numbers-blocks",
+  "title": "Number of Equal Numbers Blocks",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Equal%20Numbers%20Blocks"
+  },
+  "description": "You are given a **0-indexed** array of integers, `nums`. The following property holds for `nums`:\n\n\tAll occurrences of a value are adjacent. In other words, if there are two indices `i \n\nSince `nums` is a very large array, you are given an instance of the class `BigArray` which has the following functions:\n\n\t`int at(long long index)`: Returns the value of `nums[i]`.\n\t`void size()`: Returns `nums.length`.\n\nLet's partition the array into **maximal** blocks such that each block contains **equal values**. Return* the number of these blocks.*\n\n**Note** that if you want to test your solution using a custom test, behavior for tests with `nums.length > 10` is undefined.",
+  "examples": [
+    {
+      "input": "nums = [3,3,3,3,3]",
+      "output": "1",
+      "explanation": "There is only one block here which is the whole array (because all numbers are equal) and that is: [3,3,3,3,3]. So the answer would be 1."
+    },
+    {
+      "input": "nums = [1,1,1,3,9,9,9,2,10,10]",
+      "output": "5",
+      "explanation": "There are 5 blocks here:\nBlock number 1: [1,1,1,3,9,9,9,2,10,10]\nBlock number 2: [1,1,1,3,9,9,9,2,10,10]\nBlock number 3: [1,1,1,3,9,9,9,2,10,10]\nBlock number 4: [1,1,1,3,9,9,9,2,10,10]\nBlock number 5: [1,1,1,3,9,9,9,2,10,10]\nSo the answer would be 5."
+    },
+    {
+      "input": "nums = [1,2,3,4,5,6,7]",
+      "output": "7",
+      "explanation": "Since all numbers are distinct, there are 7 blocks here and each element representing one block. So the answer would be 7."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^15",
+    "1 <= nums[i] <= 10^9",
+    "The input is generated such that all equal values are adjacent.",
+    "The sum of the elements of nums is at most 10^15."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for BigArray.\n# class BigArray:\n#     def at(self, index: long) -> int:\n        pass\n",
+    "cpp": "/**\n * Definition for BigArray.\n * class BigArray {\n * public:\n *     BigArray(vector<int> elements);\n *     int at(long long index);\n *     long long size();\n * };\n */\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * Definition for BigArray.\n * class BigArray {\n *     public BigArray(int[] elements);\n *     public int at(long index);\n *     public long size();\n * }\n */\nclass Solution {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for BigArray.\n * class BigArray {\n *     constructor(elements: number[]);\n *     public at(index: number): number;\n *     public size(): number;\n * }\n */\nfunction countBlocks(nums: BigArray | null): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for BigArray.\n# class BigArray:\n#     def at(self, index: long) -> int:\n#         pass\n#     def size(self) -> long:\n#         pass\nclass Solution(object):\n    def countBlocks(self, nums: Optional[\"BigArray\"]) -> int:\n        i, n = 0, nums.size()\n        ans = 0\n        while i < n:\n            ans += 1\n            x = nums.at(i)\n            if i + 1 < n and nums.at(i + 1) != x:\n                i += 1\n            else:\n                i += bisect_left(range(i, n), True, key=lambda j: nums.at(j) != x)\n        return ans",
+    "cpp": "/**\n * Definition for BigArray.\n * class BigArray {\n * public:\n *     BigArray(vector<int> elements);\n *     int at(long long index);\n *     long long size();\n * };\n */\nclass Solution {\npublic:\n    int countBlocks(BigArray* nums) {\n        int ans = 0;\n        using ll = long long;\n        ll n = nums->size();\n        auto search = [&](ll l) {\n            ll r = n;\n            int x = nums->at(l);\n            while (l < r) {\n                ll mid = (l + r) >> 1;\n                if (nums->at(mid) != x) {\n                    r = mid;\n                } else {\n                    l = mid + 1;\n                }\n            }\n            return l;\n        };\n        for (long long i = 0; i < n; ++ans) {\n            i = search(i);\n        }\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for BigArray.\n * class BigArray {\n *     public BigArray(int[] elements);\n *     public int at(long index);\n *     public long size();\n * }\n */\nclass Solution {\n    public int countBlocks(BigArray nums) {\n        int ans = 0;\n        for (long i = 0, n = nums.size(); i < n; ++ans) {\n            i = search(nums, i, n);\n        }\n        return ans;\n    }\n\n    private long search(BigArray nums, long l, long n) {\n        long r = n;\n        int x = nums.at(l);\n        while (l < r) {\n            long mid = (l + r) >> 1;\n            if (nums.at(mid) != x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n}",
+    "javascript": "/**\n * Definition for BigArray.\n * class BigArray {\n *     constructor(elements: number[]);\n *     public at(index: number): number;\n *     public size(): number;\n * }\n */\nfunction countBlocks(nums: BigArray | null): number {\n    const n = nums.size();\n    const search = (l: number): number => {\n        let r = n;\n        const x = nums.at(l);\n        while (l < r) {\n            const mid = l + Math.floor((r - l) / 2);\n            if (nums.at(mid) !== x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    };\n\n    let ans = 0;\n    for (let i = 0; i < n; ++ans) {\n        i = search(i);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,3,3,3,3]",
+      "expected": "1"
+    },
+    {
+      "input": "[1,1,1,3,9,9,9,2,10,10]",
+      "expected": "5"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7]",
+      "expected": "7"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Equal Numbers Blocks.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,51 @@
+{
+  "id": 3711,
+  "slug": "maximum-transactions-without-negative-balance",
+  "title": "Maximum Transactions Without Negative Balance",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Paytm"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Transactions%20Without%20Negative%20Balance"
+  },
+  "description": "You are given an integer array `transactions`, where `transactions[i]` represents the amount of the `i^th` transaction:\n\n\tA positive value means money is **received**.\n\tA negative value means money is **sent**.\n\nThe account starts with a balance of 0, and the balance **must never become negative**. Transactions must be considered in the given order, but you are allowed to skip some transactions.\n\nReturn an integer denoting the **maximum number of transactions** that can be performed without the balance ever going negative.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= transactions.length <= 10^5",
+    "-10^9 <= transactions[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxTransactions(self, transactions: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxTransactions(vector<int>& transactions) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxTransactions(int[] transactions) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxTransactions(self, transactions: List[int]) -> int:\n        st = SortedList()\n        s = 0\n        ans = len(transactions)\n        for x in transactions:\n            s += x\n            st.add(x)\n            while s < 0:\n                y = st.pop(0)\n                s -= y\n                ans -= 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxTransactions(vector<int>& transactions) {\n        multiset<int> st;\n        int ans = transactions.size();\n        long long s = 0;\n        for (int x : transactions) {\n            s += x;\n            st.insert(x);\n            while (s < 0) {\n                auto it = st.begin();\n                int y = *it;\n                st.erase(it);\n                s -= y;\n                --ans;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxTransactions(int[] transactions) {\n        TreeMap<Integer, Integer> tm = new TreeMap<>();\n        int ans = transactions.length;\n        long s = 0;\n        for (int x : transactions) {\n            s += x;\n            tm.merge(x, 1, Integer::sum);\n            while (s < 0) {\n                int y = tm.firstKey();\n                s -= y;\n                --ans;\n                if (tm.merge(y, -1, Integer::sum) == 0) {\n                    tm.remove(y);\n                }\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Transactions Without Negative Balance.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

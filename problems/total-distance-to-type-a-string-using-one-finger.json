@@ -1,0 +1,56 @@
+{
+  "id": 3846,
+  "slug": "total-distance-to-type-a-string-using-one-finger",
+  "title": "Total Distance to Type a String Using One Finger",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Total%20Distance%20to%20Type%20a%20String%20Using%20One%20Finger"
+  },
+  "description": "There is a special keyboard where keys are arranged in a rectangular grid as follows.\n\n\t\n\t\t\n\t\t\tq\n\t\t\tw\n\t\t\te\n\t\t\tr\n\t\t\tt\n\t\t\ty\n\t\t\tu\n\t\t\ti\n\t\t\to\n\t\t\tp\n\t\t\n\t\t\n\t\t\ta\n\t\t\ts\n\t\t\td\n\t\t\tf\n\t\t\tg\n\t\t\th\n\t\t\tj\n\t\t\tk\n\t\t\tl\n\t\t\t \n\t\t\n\t\t\n\t\t\tz\n\t\t\tx\n\t\t\tc\n\t\t\tv\n\t\t\tb\n\t\t\tn\n\t\t\tm\n\t\t\t \n\t\t\t \n\t\t\t \n\t\t\n\t\n\nYou are given a string `s` that consists of lowercase English letters only. Return an integer denoting the total **distance** to type `s` using only one finger. Your finger starts on the key `'a'`.\n\nThe **distance** between two keys at `(r1, c1)` and `(r2, c2)` is `|r1 - r2| + |c1 - c2|`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^4",
+    "s consists of lowercase English letters only."
+  ],
+  "starterTemplates": {
+    "python": "pos = {}\nkeys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']\nfor i, row in enumerate(keys):\n    for j, key in enumerate(row):\n        pos[key] = (i, j)\n\n\nclass Solution:\n    def totalDistance(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int totalDistance(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private static final Map<Character, int[]> pos = new HashMap<>();\n\n    static {\n        \n    }\n};\n",
+    "javascript": "const pos: Record<string, [number, number]> = {};\n\nconst keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];\nkeys.forEach((row, i) => {\n    [...row].forEach((key, j) => {\n        pos[key] = [i, j];\n    });\n});\n\nfunction totalDistance(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "pos = {}\nkeys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']\nfor i, row in enumerate(keys):\n    for j, key in enumerate(row):\n        pos[key] = (i, j)\n\n\nclass Solution:\n    def totalDistance(self, s: str) -> int:\n        pre = 'a'\n        ans = 0\n        for cur in s:\n            x1, y1 = pos[pre]\n            x2, y2 = pos[cur]\n            dist = abs(x1 - x2) + abs(y1 - y2)\n            ans += dist\n            pre = cur\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int totalDistance(string s) {\n        static unordered_map<char, pair<int, int>> pos = [] {\n            unordered_map<char, pair<int, int>> m;\n            vector<string> keys = {\"qwertyuiop\", \"asdfghjkl\", \"zxcvbnm\"};\n            for (int i = 0; i < keys.size(); ++i) {\n                for (int j = 0; j < keys[i].size(); ++j) {\n                    m[keys[i][j]] = {i, j};\n                }\n            }\n            return m;\n        }();\n\n        char pre = 'a';\n        int ans = 0;\n\n        for (char cur : s) {\n            auto [x1, y1] = pos[pre];\n            auto [x2, y2] = pos[cur];\n            ans += abs(x1 - x2) + abs(y1 - y2);\n            pre = cur;\n        }\n\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private static final Map<Character, int[]> pos = new HashMap<>();\n\n    static {\n        String[] keys = {\"qwertyuiop\", \"asdfghjkl\", \"zxcvbnm\"};\n        for (int i = 0; i < keys.length; i++) {\n            for (int j = 0; j < keys[i].length(); j++) {\n                pos.put(keys[i].charAt(j), new int[] {i, j});\n            }\n        }\n    }\n\n    public int totalDistance(String s) {\n        char pre = 'a';\n        int ans = 0;\n\n        for (char cur : s.toCharArray()) {\n            int[] p1 = pos.get(pre);\n            int[] p2 = pos.get(cur);\n            ans += Math.abs(p1[0] - p2[0]) + Math.abs(p1[1] - p2[1]);\n            pre = cur;\n        }\n\n        return ans;\n    }\n}",
+    "javascript": "const pos: Record<string, [number, number]> = {};\n\nconst keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];\nkeys.forEach((row, i) => {\n    [...row].forEach((key, j) => {\n        pos[key] = [i, j];\n    });\n});\n\nfunction totalDistance(s: string): number {\n    let pre = 'a';\n    let ans = 0;\n\n    for (const cur of s) {\n        const [x1, y1] = pos[pre];\n        const [x2, y2] = pos[cur];\n        ans += Math.abs(x1 - x2) + Math.abs(y1 - y2);\n        pre = cur;\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Total Distance to Type a String Using One Finger.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

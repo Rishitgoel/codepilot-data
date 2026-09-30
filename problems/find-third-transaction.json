@@ -1,0 +1,43 @@
+{
+  "id": 2986,
+  "slug": "find-third-transaction",
+  "title": "Find Third Transaction",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Cisco"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Third%20Transaction"
+  },
+  "description": "Table: `Transactions`\n\n+------------------+----------+\n| Column Name      | Type     |\n+------------------+----------+\n| user_id          | int      |\n| spend            | decimal  |\n| transaction_date | datetime |\n+------------------+----------+\n(user_id, transaction_date) is column of unique values for this table.\nThis table contains user_id, spend, and transaction_date.\n\nWrite a solution to find the **third transaction **(if they have at least three transactions) of every user, where the **spending** on the preceding **two transactions** is **lower** than the spending on the **third** transaction.\n\nReturn *the result table by *`user_id`* in **ascending** order**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Transactions table:\n+---------+--------+---------------------+\n| user_id | spend  | transaction_date    | \n+---------+--------+---------------------+\n| 1       | 65.56  | 2023-11-18 13:49:42 | \n| 1       | 96.0   | 2023-11-30 02:47:26 |     \n| 1       | 7.44   | 2023-11-02 12:15:23 | \n| 1       | 49.78  | 2023-11-12 00:13:46 | \n| 2       | 40.89  | 2023-11-21 04:39:15 |  \n| 2       | 100.44 | 2023-11-20 07:39:34 | \n| 3       | 37.33  | 2023-11-03 06:22:02 | \n| 3       | 13.89  | 2023-11-11 16:00:14 | \n| 3       | 7.0    | 2023-11-29 22:32:36 | \n+---------+--------+---------------------+",
+      "output": "+---------+-------------------------+------------------------+\n| user_id | third_transaction_spend | third_transaction_date | \n+---------+-------------------------+------------------------+\n| 1       | 65.56                   | 2023-11-18 13:49:42    |  \n+---------+-------------------------+------------------------+",
+      "explanation": "- For user_id 1, their third transaction occurred on 2023-11-18 at 13:49:42 with an amount of $65.56, surpassing the expenditures of the previous two transactions which were $7.44 on 2023-11-02 at 12:15:23 and $49.78 on 2023-11-12 at 00:13:46. Thus, this third transaction will be included in the output table.\n- user_id 2 only has a total of 2 transactions, so there isn't a third transaction to consider.\n- For user_id 3, the amount of $7.0 for their third transaction is less than that of the preceding two transactions, so it won't be included.\nOutput table is ordered by user_id in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Transactions table:\n+---------+--------+---------------------+\n| user_id | spend  | transaction_date    | \n+---------+--------+---------------------+\n| 1       | 65.56  | 2023-11-18 13:49:42 | \n| 1       | 96.0   | 2023-11-30 02:47:26 |     \n| 1       | 7.44   | 2023-11-02 12:15:23 | \n| 1       | 49.78  | 2023-11-12 00:13:46 | \n| 2       | 40.89  | 2023-11-21 04:39:15 |  \n| 2       | 100.44 | 2023-11-20 07:39:34 | \n| 3       | 37.33  | 2023-11-03 06:22:02 | \n| 3       | 13.89  | 2023-11-11 16:00:14 | \n| 3       | 7.0    | 2023-11-29 22:32:36 | \n+---------+--------+---------------------+",
+      "expected": "+---------+-------------------------+------------------------+\n| user_id | third_transaction_spend | third_transaction_date | \n+---------+-------------------------+------------------------+\n| 1       | 65.56                   | 2023-11-18 13:49:42    |  \n+---------+-------------------------+------------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Third Transaction.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

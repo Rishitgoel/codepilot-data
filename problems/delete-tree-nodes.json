@@ -1,0 +1,64 @@
+{
+  "id": 1273,
+  "slug": "delete-tree-nodes",
+  "title": "Delete Tree Nodes",
+  "difficulty": "Medium",
+  "rating": 1733,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Delete%20Tree%20Nodes"
+  },
+  "description": "A tree rooted at node 0 is given as follows:\n\n\tThe number of nodes is `nodes`;\n\tThe value of the `i^th` node is `value[i]`;\n\tThe parent of the `i^th` node is `parent[i]`.\n\nRemove every subtree whose sum of values of nodes is zero.\n\nReturn *the number of the remaining nodes in the tree*.",
+  "examples": [
+    {
+      "input": "nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]",
+      "output": "2"
+    },
+    {
+      "input": "nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-2]",
+      "output": "6"
+    }
+  ],
+  "constraints": [
+    "1 <= nodes <= 10^4",
+    "parent.length == nodes",
+    "0 <= parent[i] <= nodes - 1",
+    "parent[0] == -1 which indicates that 0 is the root.",
+    "value.length == nodes",
+    "-10^5 <= value[i] <= 10^5",
+    "The given input is guaranteed to represent a valid tree."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] value;\n\n    public int deleteTreeNodes(int nodes, int[] parent, int[] value) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:\n        def dfs(i):\n            s, m = value[i], 1\n            for j in g[i]:\n                t, n = dfs(j)\n                s += t\n                m += n\n            if s == 0:\n                m = 0\n            return (s, m)\n\n        g = defaultdict(list)\n        for i in range(1, nodes):\n            g[parent[i]].append(i)\n        return dfs(0)[1]",
+    "cpp": "class Solution {\npublic:\n    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {\n        vector<vector<int>> g(nodes);\n        for (int i = 1; i < nodes; ++i) {\n            g[parent[i]].emplace_back(i);\n        }\n        function<pair<int, int>(int)> dfs = [&](int i) -> pair<int, int> {\n            int s = value[i], m = 1;\n            for (int j : g[i]) {\n                auto [t, n] = dfs(j);\n                s += t;\n                m += n;\n            }\n            if (s == 0) {\n                m = 0;\n            }\n            return pair<int, int>{s, m};\n        };\n        return dfs(0).second;\n    }\n};",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] value;\n\n    public int deleteTreeNodes(int nodes, int[] parent, int[] value) {\n        g = new List[nodes];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int i = 1; i < nodes; ++i) {\n            g[parent[i]].add(i);\n        }\n        this.value = value;\n        return dfs(0)[1];\n    }\n\n    private int[] dfs(int i) {\n        int[] res = new int[] {value[i], 1};\n        for (int j : g[i]) {\n            int[] t = dfs(j);\n            res[0] += t[0];\n            res[1] += t[1];\n        }\n        if (res[0] == 0) {\n            res[1] = 0;\n        }\n        return res;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]",
+      "expected": "2"
+    },
+    {
+      "input": "7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-2]",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Delete Tree Nodes.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

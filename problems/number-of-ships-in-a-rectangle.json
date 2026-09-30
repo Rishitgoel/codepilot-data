@@ -1,0 +1,56 @@
+{
+  "id": 1274,
+  "slug": "number-of-ships-in-a-rectangle",
+  "title": "Number of Ships in a Rectangle",
+  "difficulty": "Hard",
+  "rating": 1997,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Bloomberg",
+    "Applied Intuition"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Ships%20in%20a%20Rectangle"
+  },
+  "description": "*(This problem is an **interactive problem**.)*\n\nEach ship is located at an integer point on the sea represented by a cartesian plane, and each integer point may contain at most 1 ship.\n\nYou have a function `Sea.hasShips(topRight, bottomLeft)` which takes two points as arguments and returns `true` If there is at least one ship in the rectangle represented by the two points, including on the boundary.\n\nGiven two points: the top right and bottom left corners of a rectangle, return the number of ships present in that rectangle. It is guaranteed that there are **at most 10 ships** in that rectangle.\n\nSubmissions making **more than 400 calls** to `hasShips` will be judged *Wrong Answer*. Also, any solutions that attempt to circumvent the judge will result in disqualification.",
+  "examples": [
+    {
+      "input": "ans = [[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]",
+      "output": "3"
+    }
+  ],
+  "constraints": [
+    "On the input ships is only given to initialize the map internally. You must solve this problem \"blindfolded\". In other words, you must find the answer using the given hasShips API, without knowing the ships position.",
+    "0 <= bottomLeft[0] <= topRight[0] <= 1000",
+    "0 <= bottomLeft[1] <= topRight[1] <= 1000",
+    "topRight != bottomLeft"
+  ],
+  "starterTemplates": {
+    "python": "# \"\"\"\n# This is Sea's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class Sea:\n#    def hasShips(self, topRight: 'Point', bottomLeft: 'Point') -> bool:\n        pass\n",
+    "cpp": "/**\n * // This is Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *   public:\n *     bool hasShips(vector<int> topRight, vector<int> bottomLeft);\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *     public boolean hasShips(int[] topRight, int[] bottomLeft);\n * }\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "javascript": "/**\n * // This is the Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *      hasShips(topRight: number[], bottomLeft: number[]): boolean {}\n * }\n */\n\nfunction countShips(sea: Sea, topRight: number[], bottomLeft: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# \"\"\"\n# This is Sea's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class Sea:\n#    def hasShips(self, topRight: 'Point', bottomLeft: 'Point') -> bool:\n#\n# class Point:\n# \tdef __init__(self, x: int, y: int):\n# \t\tself.x = x\n# \t\tself.y = y\n\n\nclass Solution:\n    def countShips(self, sea: \"Sea\", topRight: \"Point\", bottomLeft: \"Point\") -> int:\n        def dfs(topRight, bottomLeft):\n            x1, y1 = bottomLeft.x, bottomLeft.y\n            x2, y2 = topRight.x, topRight.y\n            if x1 > x2 or y1 > y2:\n                return 0\n            if not sea.hasShips(topRight, bottomLeft):\n                return 0\n            if x1 == x2 and y1 == y2:\n                return 1\n            midx = (x1 + x2) >> 1\n            midy = (y1 + y2) >> 1\n            a = dfs(topRight, Point(midx + 1, midy + 1))\n            b = dfs(Point(midx, y2), Point(x1, midy + 1))\n            c = dfs(Point(midx, midy), bottomLeft)\n            d = dfs(Point(x2, midy), Point(midx + 1, y1))\n            return a + b + c + d\n\n        return dfs(topRight, bottomLeft)",
+    "cpp": "/**\n * // This is Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *   public:\n *     bool hasShips(vector<int> topRight, vector<int> bottomLeft);\n * };\n */\n\nclass Solution {\npublic:\n    int countShips(Sea sea, vector<int> topRight, vector<int> bottomLeft) {\n        int x1 = bottomLeft[0], y1 = bottomLeft[1];\n        int x2 = topRight[0], y2 = topRight[1];\n        if (x1 > x2 || y1 > y2) {\n            return 0;\n        }\n        if (!sea.hasShips(topRight, bottomLeft)) {\n            return 0;\n        }\n        if (x1 == x2 && y1 == y2) {\n            return 1;\n        }\n        int midx = (x1 + x2) >> 1;\n        int midy = (y1 + y2) >> 1;\n        int a = countShips(sea, topRight, {midx + 1, midy + 1});\n        int b = countShips(sea, {midx, y2}, {x1, midy + 1});\n        int c = countShips(sea, {midx, midy}, bottomLeft);\n        int d = countShips(sea, {x2, midy}, {midx + 1, y1});\n        return a + b + c + d;\n    }\n};",
+    "java": "/**\n * // This is Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *     public boolean hasShips(int[] topRight, int[] bottomLeft);\n * }\n */\n\nclass Solution {\n    public int countShips(Sea sea, int[] topRight, int[] bottomLeft) {\n        int x1 = bottomLeft[0], y1 = bottomLeft[1];\n        int x2 = topRight[0], y2 = topRight[1];\n        if (x1 > x2 || y1 > y2) {\n            return 0;\n        }\n        if (!sea.hasShips(topRight, bottomLeft)) {\n            return 0;\n        }\n        if (x1 == x2 && y1 == y2) {\n            return 1;\n        }\n        int midx = (x1 + x2) >> 1;\n        int midy = (y1 + y2) >> 1;\n        int a = countShips(sea, topRight, new int[] {midx + 1, midy + 1});\n        int b = countShips(sea, new int[] {midx, y2}, new int[] {x1, midy + 1});\n        int c = countShips(sea, new int[] {midx, midy}, bottomLeft);\n        int d = countShips(sea, new int[] {x2, midy}, new int[] {midx + 1, y1});\n        return a + b + c + d;\n    }\n}",
+    "javascript": "/**\n * // This is the Sea's API interface.\n * // You should not implement it, or speculate about its implementation\n * class Sea {\n *      hasShips(topRight: number[], bottomLeft: number[]): boolean {}\n * }\n */\n\nfunction countShips(sea: Sea, topRight: number[], bottomLeft: number[]): number {\n    const [x1, y1] = bottomLeft;\n    const [x2, y2] = topRight;\n    if (x1 > x2 || y1 > y2 || !sea.hasShips(topRight, bottomLeft)) {\n        return 0;\n    }\n    if (x1 === x2 && y1 === y2) {\n        return 1;\n    }\n    const midx = (x1 + x2) >> 1;\n    const midy = (y1 + y2) >> 1;\n    const a = countShips(sea, topRight, [midx + 1, midy + 1]);\n    const b = countShips(sea, [midx, y2], [x1, midy + 1]);\n    const c = countShips(sea, [midx, midy], bottomLeft);\n    const d = countShips(sea, [x2, midy], [midx + 1, y1]);\n    return a + b + c + d;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Ships in a Rectangle.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

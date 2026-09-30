@@ -1,0 +1,62 @@
+{
+  "id": 681,
+  "slug": "next-closest-time",
+  "title": "Next Closest Time",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Next%20Closest%20Time"
+  },
+  "description": "Given a `time` represented in the format `\"HH:MM\"`, form the next closest time by reusing the current digits. There is no limit on how many times a digit can be reused.\n\nYou may assume the given input string is always valid. For example, `\"01:34\"`, `\"12:09\"` are all valid. `\"1:34\"`, `\"12:9\"` are all invalid.",
+  "examples": [
+    {
+      "input": "time = \"19:34\"",
+      "output": "\"19:39\"",
+      "explanation": "The next closest time choosing from digits 1, 9, 3, 4, is 19:39, which occurs 5 minutes later.\nIt is not 19:33, because this occurs 23 hours and 59 minutes later."
+    },
+    {
+      "input": "time = \"23:59\"",
+      "output": "\"22:22\"",
+      "explanation": "The next closest time choosing from digits 2, 3, 5, 9, is 22:22.\nIt may be assumed that the returned time is next day's time since it is smaller than the input time numerically."
+    }
+  ],
+  "constraints": [
+    "time.length == 5",
+    "time is a valid time in the form \"HH:MM\".",
+    "0 <= HH < 24",
+    "0 <= MM < 60"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def nextClosestTime(self, time: str) -> str:\n        pass\n",
+    "java": "class Solution {\n    private int t;\n    private int d;\n    private String ans;\n    private Set<Character> s;\n\n    public String nextClosestTime(String time) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def nextClosestTime(self, time: str) -> str:\n        def check(t):\n            h, m = int(t[:2]), int(t[2:])\n            return 0 <= h < 24 and 0 <= m < 60\n\n        def dfs(curr):\n            if len(curr) == 4:\n                if not check(curr):\n                    return\n                nonlocal ans, d\n                p = int(curr[:2]) * 60 + int(curr[2:])\n                if t < p < t + d:\n                    d = p - t\n                    ans = curr[:2] + ':' + curr[2:]\n                return\n            for c in s:\n                dfs(curr + c)\n\n        s = {c for c in time if c != ':'}\n        t = int(time[:2]) * 60 + int(time[3:])\n        d = inf\n        ans = None\n        dfs('')\n        if ans is None:\n            mi = min(int(c) for c in s)\n            ans = f'{mi}{mi}:{mi}{mi}'\n        return ans",
+    "java": "class Solution {\n    private int t;\n    private int d;\n    private String ans;\n    private Set<Character> s;\n\n    public String nextClosestTime(String time) {\n        t = Integer.parseInt(time.substring(0, 2)) * 60 + Integer.parseInt(time.substring(3));\n        d = Integer.MAX_VALUE;\n        s = new HashSet<>();\n        char mi = 'z';\n        for (char c : time.toCharArray()) {\n            if (c != ':') {\n                s.add(c);\n                if (c < mi) {\n                    mi = c;\n                }\n            }\n        }\n        ans = null;\n        dfs(\"\");\n        if (ans == null) {\n            ans = \"\" + mi + mi + \":\" + mi + mi;\n        }\n        return ans;\n    }\n\n    private void dfs(String curr) {\n        if (curr.length() == 4) {\n            if (!check(curr)) {\n                return;\n            }\n            int p\n                = Integer.parseInt(curr.substring(0, 2)) * 60 + Integer.parseInt(curr.substring(2));\n            if (p > t && p - t < d) {\n                d = p - t;\n                ans = curr.substring(0, 2) + \":\" + curr.substring(2);\n            }\n            return;\n        }\n        for (char c : s) {\n            dfs(curr + c);\n        }\n    }\n\n    private boolean check(String t) {\n        int h = Integer.parseInt(t.substring(0, 2));\n        int m = Integer.parseInt(t.substring(2));\n        return 0 <= h && h < 24 && 0 <= m && m < 60;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"19:34\"",
+      "expected": "\"19:39\""
+    },
+    {
+      "input": "\"23:59\"",
+      "expected": "\"22:22\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Next Closest Time.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

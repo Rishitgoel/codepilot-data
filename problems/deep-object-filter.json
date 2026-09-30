@@ -1,0 +1,74 @@
+{
+  "id": 2823,
+  "slug": "deep-object-filter",
+  "title": "Deep Object Filter",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Deep%20Object%20Filter"
+  },
+  "description": "Given an object or an array `obj` and a function `fn`, return a filtered object or array `filteredObject`. \n\nFunction `deepFilter` should perform a deep filter operation on the `obj`. The deep filter operation should remove properties for which the output of the filter function `fn` is `false`, as well as any empty objects or arrays that remain after the keys have been removed.\n\nIf the deep filter operation results in an empty object or array, with no remaining properties, `deepFilter` should return `undefined` to indicate that there is no valid data left in the `filteredObject`.",
+  "examples": [
+    {
+      "input": "obj = [-5, -4, -3, -2, -1, 0, 1], \nfn = (x) => x > 0",
+      "output": "[1]",
+      "explanation": "All values that were not greater than 0 were removed."
+    },
+    {
+      "input": "obj = {\"a\": 1, \"b\": \"2\", \"c\": 3, \"d\": \"4\", \"e\": 5, \"f\": 6, \"g\": {\"a\": 1}}, \nfn = (x) => typeof x === \"string\"",
+      "output": "{\"b\":\"2\",\"d\":\"4\"}",
+      "explanation": "All keys with values that were not a string were removed. When the object keys were removed during the filtering process, any resulting empty objects were also removed."
+    },
+    {
+      "input": "obj = [-1, [-1, -1, 5, -1, 10], -1, [-1], [-5]], \nfn = (x) => x > 0",
+      "output": "[[5,10]]",
+      "explanation": "All values that were not greater than 0 were removed. When the values were removed during the filtering process, any resulting empty arrays were also removed."
+    },
+    {
+      "input": "obj = [[[[5]]]], \nfn = (x) => Array.isArray(x)",
+      "output": "undefined"
+    }
+  ],
+  "constraints": [
+    "fn is a function that returns a boolean value",
+    "obj is a valid JSON object or array",
+    "2 <= JSON.stringify(obj).length <= 10^5"
+  ],
+  "starterTemplates": {
+    "javascript": "function deepFilter(obj: Record<string, any>, fn: Function): Record<string, any> | undefined {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function deepFilter(obj: Record<string, any>, fn: Function): Record<string, any> | undefined {\n    const dfs = (data: any): any => {\n        if (Array.isArray(data)) {\n            const res = data.map(dfs).filter((item: any) => item !== undefined);\n            return res.length > 0 ? res : undefined;\n        }\n        if (typeof data === 'object' && data !== null) {\n            const res: Record<string, any> = {};\n            for (const key in data) {\n                if (data.hasOwnProperty(key)) {\n                    const filteredValue = dfs(data[key]);\n                    if (filteredValue !== undefined) {\n                        res[key] = filteredValue;\n                    }\n                }\n            }\n            return Object.keys(res).length > 0 ? res : undefined;\n        }\n        return fn(data) ? data : undefined;\n    };\n\n    return dfs(obj);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[-5, -4, -3, -2, -1, 0, 1], \nfn = (x) => x > 0",
+      "expected": "[1]"
+    },
+    {
+      "input": "{\"a\": 1, \"b\": \"2\", \"c\": 3, \"d\": \"4\", \"e\": 5, \"f\": 6, \"g\": {\"a\": 1}}, \nfn = (x) => typeof x === \"string\"",
+      "expected": "{\"b\":\"2\",\"d\":\"4\"}"
+    },
+    {
+      "input": "[-1, [-1, -1, 5, -1, 10], -1, [-1], [-5]], \nfn = (x) => x > 0",
+      "expected": "[[5,10]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Deep Object Filter.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

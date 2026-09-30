@@ -1,0 +1,46 @@
+{
+  "id": 2298,
+  "slug": "tasks-count-in-the-weekend",
+  "title": "Tasks Count in the Weekend",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Tasks%20Count%20in%20the%20Weekend"
+  },
+  "description": "Table: `Tasks`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| task_id     | int  |\n| assignee_id | int  |\n| submit_date | date |\n+-------------+------+\ntask_id is the primary key (column with unique values) for this table.\nEach row in this table contains the ID of a task, the id of the assignee, and the submission date.\n\n \n\nWrite a solution to report:\n\n\tthe number of tasks that were submitted during the weekend (Saturday, Sunday) as `weekend_cnt`, and\n\tthe number of tasks that were submitted during the working days as `working_cnt`.\n\nReturn the result table in **any order**.\n\nThe result format is shown in the following example.",
+  "examples": [
+    {
+      "input": "Tasks table:\n+---------+-------------+-------------+\n| task_id | assignee_id | submit_date |\n+---------+-------------+-------------+\n| 1       | 1           | 2022-06-13  |\n| 2       | 6           | 2022-06-14  |\n| 3       | 6           | 2022-06-15  |\n| 4       | 3           | 2022-06-18  |\n| 5       | 5           | 2022-06-19  |\n| 6       | 7           | 2022-06-19  |\n+---------+-------------+-------------+",
+      "output": "+-------------+-------------+\n| weekend_cnt | working_cnt |\n+-------------+-------------+\n| 3           | 3           |\n+-------------+-------------+",
+      "explanation": "Task 1 was submitted on Monday.\nTask 2 was submitted on Tuesday.\nTask 3 was submitted on Wednesday.\nTask 4 was submitted on Saturday.\nTask 5 was submitted on Sunday.\nTask 6 was submitted on Sunday.\n3 tasks were submitted during the weekend.\n3 tasks were submitted during the working days."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Tasks table:\n+---------+-------------+-------------+\n| task_id | assignee_id | submit_date |\n+---------+-------------+-------------+\n| 1       | 1           | 2022-06-13  |\n| 2       | 6           | 2022-06-14  |\n| 3       | 6           | 2022-06-15  |\n| 4       | 3           | 2022-06-18  |\n| 5       | 5           | 2022-06-19  |\n| 6       | 7           | 2022-06-19  |\n+---------+-------------+-------------+",
+      "expected": "+-------------+-------------+\n| weekend_cnt | working_cnt |\n+-------------+-------------+\n| 3           | 3           |\n+-------------+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Tasks Count in the Weekend.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

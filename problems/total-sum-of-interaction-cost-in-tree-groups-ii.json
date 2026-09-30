@@ -1,0 +1,51 @@
+{
+  "id": 4018,
+  "slug": "total-sum-of-interaction-cost-in-tree-groups-ii",
+  "title": "Total Sum of Interaction Cost in Tree Groups II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Total%20Sum%20of%20Interaction%20Cost%20in%20Tree%20Groups%20II"
+  },
+  "description": "You are given an integer `n` and an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`. The tree is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an undirected edge between nodes `ui` and `vi`.\n\nYou are also given an integer array `group` of length `n`, where `group[i]` denotes the group label assigned to node `i`.\n\n\tTwo nodes `u` and `v` belong to the same group if and only if `group[u] == group[v]`.\n\tThe **interaction cost** between two nodes is the **shortest** distance between them in the tree.\n\nReturn the sum of interaction costs over all pairs of node indices `(u, v)` such that `0 <= u < v < n` and `group[u] == group[v]`.\n\nThe **shortest** distance between two nodes is the number of edges on the unique path connecting them in the tree.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^5",
+    "edges.length == n - 1",
+    "edges[i] = [ui, vi]",
+    "0 <= ui, vi <= n - 1",
+    "group.length == n",
+    "1 <= group[i] <= n",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Total Sum of Interaction Cost in Tree Groups II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

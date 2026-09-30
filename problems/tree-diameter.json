@@ -1,0 +1,72 @@
+{
+  "id": 1245,
+  "slug": "tree-diameter",
+  "title": "Tree Diameter",
+  "difficulty": "Medium",
+  "rating": 1792,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Facebook",
+    "TikTok",
+    "Goldman Sachs",
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Tree%20Diameter"
+  },
+  "description": "The **diameter** of a tree is **the number of edges** in the longest path in that tree.\n\nThere is an undirected tree of `n` nodes labeled from `0` to `n - 1`. You are given a 2D array `edges` where `edges.length == n - 1` and `edges[i] = [ai, bi]` indicates that there is an undirected edge between nodes `ai` and `bi` in the tree.\n\nReturn *the **diameter** of the tree*.",
+  "examples": [
+    {
+      "input": "edges = [[0,1],[0,2]]",
+      "output": "2",
+      "explanation": "The longest path of the tree is the path 1 - 0 - 2."
+    },
+    {
+      "input": "edges = [[0,1],[1,2],[2,3],[1,4],[4,5]]",
+      "output": "4",
+      "explanation": "The longest path of the tree is the path 3 - 2 - 1 - 4 - 5."
+    }
+  ],
+  "constraints": [
+    "n == edges.length + 1",
+    "1 <= n <= 10^4",
+    "0 <= ai, bi < n",
+    "ai != bi"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def treeDiameter(self, edges: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int treeDiameter(vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int ans;\n    private int a;\n\n    public int treeDiameter(int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "function treeDiameter(edges: number[][]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def treeDiameter(self, edges: List[List[int]]) -> int:\n        def dfs(i: int, fa: int, t: int):\n            for j in g[i]:\n                if j != fa:\n                    dfs(j, i, t + 1)\n            nonlocal ans, a\n            if ans < t:\n                ans = t\n                a = i\n\n        g = defaultdict(list)\n        for a, b in edges:\n            g[a].append(b)\n            g[b].append(a)\n        ans = a = 0\n        dfs(0, -1, 0)\n        dfs(a, -1, 0)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int treeDiameter(vector<vector<int>>& edges) {\n        int n = edges.size() + 1;\n        vector<int> g[n];\n        for (auto& e : edges) {\n            int a = e[0], b = e[1];\n            g[a].push_back(b);\n            g[b].push_back(a);\n        }\n        int ans = 0, a = 0;\n        auto dfs = [&](this auto&& dfs, int i, int fa, int t) -> void {\n            for (int j : g[i]) {\n                if (j != fa) {\n                    dfs(j, i, t + 1);\n                }\n            }\n            if (ans < t) {\n                ans = t;\n                a = i;\n            }\n        };\n        dfs(0, -1, 0);\n        dfs(a, -1, 0);\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int ans;\n    private int a;\n\n    public int treeDiameter(int[][] edges) {\n        int n = edges.length + 1;\n        g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (var e : edges) {\n            int a = e[0], b = e[1];\n            g[a].add(b);\n            g[b].add(a);\n        }\n        dfs(0, -1, 0);\n        dfs(a, -1, 0);\n        return ans;\n    }\n\n    private void dfs(int i, int fa, int t) {\n        for (int j : g[i]) {\n            if (j != fa) {\n                dfs(j, i, t + 1);\n            }\n        }\n        if (ans < t) {\n            ans = t;\n            a = i;\n        }\n    }\n}",
+    "javascript": "function treeDiameter(edges: number[][]): number {\n    const n = edges.length + 1;\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of edges) {\n        g[a].push(b);\n        g[b].push(a);\n    }\n    let [ans, a] = [0, 0];\n    const dfs = (i: number, fa: number, t: number): void => {\n        for (const j of g[i]) {\n            if (j !== fa) {\n                dfs(j, i, t + 1);\n            }\n        }\n        if (ans < t) {\n            ans = t;\n            a = i;\n        }\n    };\n    dfs(0, -1, 0);\n    dfs(a, -1, 0);\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,1],[0,2]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[0,1],[1,2],[2,3],[1,4],[4,5]]",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Tree Diameter.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,60 @@
+{
+  "id": 663,
+  "slug": "equal-tree-partition",
+  "title": "Equal Tree Partition",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Equal%20Tree%20Partition"
+  },
+  "description": "Given the `root` of a binary tree, return `true`* if you can partition the tree into two trees with equal sums of values after removing exactly one edge on the original tree*.",
+  "examples": [
+    {
+      "input": "root = [5,10,10,null,null,2,3]",
+      "output": "true"
+    },
+    {
+      "input": "root = [1,2,10,null,null,2,20]",
+      "output": "false",
+      "explanation": "You cannot split the tree into two trees with equal sums after removing exactly one edge on the tree."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> seen;\n\n    public boolean checkEqualTree(TreeNode root) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def checkEqualTree(self, root: TreeNode) -> bool:\n        def sum(root):\n            if root is None:\n                return 0\n            l, r = sum(root.left), sum(root.right)\n            seen.append(l + r + root.val)\n            return seen[-1]\n\n        seen = []\n        s = sum(root)\n        if s % 2 == 1:\n            return False\n        seen.pop()\n        return s // 2 in seen",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> seen;\n\n    bool checkEqualTree(TreeNode* root) {\n        int s = sum(root);\n        if (s % 2 != 0) return false;\n        seen.pop_back();\n        return count(seen.begin(), seen.end(), s / 2);\n    }\n\n    int sum(TreeNode* root) {\n        if (!root) return 0;\n        int l = sum(root->left), r = sum(root->right);\n        int s = l + r + root->val;\n        seen.push_back(s);\n        return s;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> seen;\n\n    public boolean checkEqualTree(TreeNode root) {\n        seen = new ArrayList<>();\n        int s = sum(root);\n        if (s % 2 != 0) {\n            return false;\n        }\n        seen.remove(seen.size() - 1);\n        return seen.contains(s / 2);\n    }\n\n    private int sum(TreeNode root) {\n        if (root == null) {\n            return 0;\n        }\n        int l = sum(root.left);\n        int r = sum(root.right);\n        int s = l + r + root.val;\n        seen.add(s);\n        return s;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,10,10,null,null,2,3]",
+      "expected": "true"
+    },
+    {
+      "input": "[1,2,10,null,null,2,20]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Equal Tree Partition.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

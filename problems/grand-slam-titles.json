@@ -1,0 +1,43 @@
+{
+  "id": 1783,
+  "slug": "grand-slam-titles",
+  "title": "Grand Slam Titles",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Grand%20Slam%20Titles"
+  },
+  "description": "Table: `Players`\n\n+----------------+---------+\n| Column Name    | Type    |\n+----------------+---------+\n| player_id      | int     |\n| player_name    | varchar |\n+----------------+---------+\nplayer_id is the primary key (column with unique values) for this table.\nEach row in this table contains the name and the ID of a tennis player.\n\n \n\nTable: `Championships`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| year          | int     |\n| Wimbledon     | int     |\n| Fr_open       | int     |\n| US_open       | int     |\n| Au_open       | int     |\n+---------------+---------+\nyear is the primary key (column with unique values) for this table.\nEach row of this table contains the IDs of the players who won one each tennis tournament of the grand slam.\n\n \n\nWrite a solution to report the number of grand slam tournaments won by each player. Do not include the players who did not win any tournament.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Players table:\n+-----------+-------------+\n| player_id | player_name |\n+-----------+-------------+\n| 1         | Nadal       |\n| 2         | Federer     |\n| 3         | Novak       |\n+-----------+-------------+\nChampionships table:\n+------+-----------+---------+---------+---------+\n| year | Wimbledon | Fr_open | US_open | Au_open |\n+------+-----------+---------+---------+---------+\n| 2018 | 1         | 1       | 1       | 1       |\n| 2019 | 1         | 1       | 2       | 2       |\n| 2020 | 2         | 1       | 2       | 2       |\n+------+-----------+---------+---------+---------+",
+      "output": "+-----------+-------------+-------------------+\n| player_id | player_name | grand_slams_count |\n+-----------+-------------+-------------------+\n| 2         | Federer     | 5                 |\n| 1         | Nadal       | 7                 |\n+-----------+-------------+-------------------+",
+      "explanation": "Player 1 (Nadal) won 7 titles: Wimbledon (2018, 2019), Fr_open (2018, 2019, 2020), US_open (2018), and Au_open (2018).\nPlayer 2 (Federer) won 5 titles: Wimbledon (2020), US_open (2019, 2020), and Au_open (2019, 2020).\nPlayer 3 (Novak) did not win anything, we did not include them in the result table."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Players table:\n+-----------+-------------+\n| player_id | player_name |\n+-----------+-------------+\n| 1         | Nadal       |\n| 2         | Federer     |\n| 3         | Novak       |\n+-----------+-------------+\nChampionships table:\n+------+-----------+---------+---------+---------+\n| year | Wimbledon | Fr_open | US_open | Au_open |\n+------+-----------+---------+---------+---------+\n| 2018 | 1         | 1       | 1       | 1       |\n| 2019 | 1         | 1       | 2       | 2       |\n| 2020 | 2         | 1       | 2       | 2       |\n+------+-----------+---------+---------+---------+",
+      "expected": "+-----------+-------------+-------------------+\n| player_id | player_name | grand_slams_count |\n+-----------+-------------+-------------------+\n| 2         | Federer     | 5                 |\n| 1         | Nadal       | 7                 |\n+-----------+-------------+-------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Grand Slam Titles.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

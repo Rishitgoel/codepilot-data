@@ -1,0 +1,84 @@
+{
+  "id": 2737,
+  "slug": "find-the-closest-marked-node",
+  "title": "Find the Closest Marked Node",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20the%20Closest%20Marked%20Node"
+  },
+  "description": "You are given a positive integer `n` which is the number of nodes of a **0-indexed directed weighted** graph and a **0-indexed** **2D array** `edges` where `edges[i] = [ui, vi, wi]` indicates that there is an edge from node `ui` to node `vi` with weight `wi`.\n\nYou are also given a node `s` and a node array `marked`; your task is to find the **minimum** distance from `s` to **any** of the nodes in `marked`.\n\nReturn *an integer denoting the minimum distance from *`s`* to any node in *`marked`* or *`-1`* if there are no paths from s to any of the marked nodes*.",
+  "examples": [
+    {
+      "input": "n = 4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]",
+      "output": "4",
+      "explanation": "There is one path from node 0 (the green node) to node 2 (a red node), which is 0->1->2, and has a distance of 1 + 3 = 4.\nThere are two paths from node 0 to node 3 (a red node), which are 0->1->2->3 and 0->3, the first one has a distance of 1 + 3 + 2 = 6 and the second one has a distance of 4.\nThe minimum of them is 4."
+    },
+    {
+      "input": "n = 5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]",
+      "output": "3",
+      "explanation": "There are no paths from node 1 (the green node) to node 0 (a red node).\nThere is one path from node 1 to node 4 (a red node), which is 1->3->4, and has a distance of 1 + 2 = 3.\nSo the answer is 3."
+    },
+    {
+      "input": "n = 4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]",
+      "output": "-1",
+      "explanation": "There are no paths from node 3 (the green node) to any of the marked nodes (the red nodes), so the answer is -1."
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 500",
+    "1 <= edges.length <= 10^4",
+    "edges[i].length = 3",
+    "0 <= edges[i][0], edges[i][1] <= n - 1",
+    "1 <= edges[i][2] <= 10^6",
+    "1 <= marked.length <= n - 1",
+    "0 <= s, marked[i] <= n - 1",
+    "s != marked[i]",
+    "marked[i] != marked[j] for every i != j",
+    "The graph might have repeated edges.",
+    "The graph is generated such that it has no self-loops."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumDistance(\n        self, n: int, edges: List[List[int]], s: int, marked: List[int]\n    ) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumDistance(int n, vector<vector<int>>& edges, int s, vector<int>& marked) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumDistance(int n, List<List<Integer>> edges, int s, int[] marked) {\n        \n    }\n};\n",
+    "javascript": "function minimumDistance(n: number, edges: number[][], s: number, marked: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumDistance(\n        self, n: int, edges: List[List[int]], s: int, marked: List[int]\n    ) -> int:\n        g = [[inf] * n for _ in range(n)]\n        for u, v, w in edges:\n            g[u][v] = min(g[u][v], w)\n        dist = [inf] * n\n        vis = [False] * n\n        dist[s] = 0\n        for _ in range(n):\n            t = -1\n            for j in range(n):\n                if not vis[j] and (t == -1 or dist[t] > dist[j]):\n                    t = j\n            vis[t] = True\n            for j in range(n):\n                dist[j] = min(dist[j], dist[t] + g[t][j])\n        ans = min(dist[i] for i in marked)\n        return -1 if ans >= inf else ans",
+    "cpp": "class Solution {\npublic:\n    int minimumDistance(int n, vector<vector<int>>& edges, int s, vector<int>& marked) {\n        const int inf = 1 << 29;\n        vector<vector<int>> g(n, vector<int>(n, inf));\n        vector<int> dist(n, inf);\n        dist[s] = 0;\n        vector<bool> vis(n);\n        for (auto& e : edges) {\n            int u = e[0], v = e[1], w = e[2];\n            g[u][v] = min(g[u][v], w);\n        }\n        for (int i = 0; i < n; ++i) {\n            int t = -1;\n            for (int j = 0; j < n; ++j) {\n                if (!vis[j] && (t == -1 || dist[t] > dist[j])) {\n                    t = j;\n                }\n            }\n            vis[t] = true;\n            for (int j = 0; j < n; ++j) {\n                dist[j] = min(dist[j], dist[t] + g[t][j]);\n            }\n        }\n        int ans = inf;\n        for (int i : marked) {\n            ans = min(ans, dist[i]);\n        }\n        return ans >= inf ? -1 : ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumDistance(int n, List<List<Integer>> edges, int s, int[] marked) {\n        final int inf = 1 << 29;\n        int[][] g = new int[n][n];\n        for (var e : g) {\n            Arrays.fill(e, inf);\n        }\n        for (var e : edges) {\n            int u = e.get(0), v = e.get(1), w = e.get(2);\n            g[u][v] = Math.min(g[u][v], w);\n        }\n        int[] dist = new int[n];\n        Arrays.fill(dist, inf);\n        dist[s] = 0;\n        boolean[] vis = new boolean[n];\n        for (int i = 0; i < n; ++i) {\n            int t = -1;\n            for (int j = 0; j < n; ++j) {\n                if (!vis[j] && (t == -1 || dist[t] > dist[j])) {\n                    t = j;\n                }\n            }\n            vis[t] = true;\n            for (int j = 0; j < n; ++j) {\n                dist[j] = Math.min(dist[j], dist[t] + g[t][j]);\n            }\n        }\n        int ans = inf;\n        for (int i : marked) {\n            ans = Math.min(ans, dist[i]);\n        }\n        return ans >= inf ? -1 : ans;\n    }\n}",
+    "javascript": "function minimumDistance(n: number, edges: number[][], s: number, marked: number[]): number {\n    const inf = 1 << 29;\n    const g: number[][] = Array(n)\n        .fill(0)\n        .map(() => Array(n).fill(inf));\n    const dist: number[] = Array(n).fill(inf);\n    const vis: boolean[] = Array(n).fill(false);\n    for (const [u, v, w] of edges) {\n        g[u][v] = Math.min(g[u][v], w);\n    }\n    dist[s] = 0;\n    for (let i = 0; i < n; ++i) {\n        let t = -1;\n        for (let j = 0; j < n; ++j) {\n            if (!vis[j] && (t == -1 || dist[t] > dist[j])) {\n                t = j;\n            }\n        }\n        vis[t] = true;\n        for (let j = 0; j < n; ++j) {\n            dist[j] = Math.min(dist[j], dist[t] + g[t][j]);\n        }\n    }\n    let ans = inf;\n    for (const i of marked) {\n        ans = Math.min(ans, dist[i]);\n    }\n    return ans >= inf ? -1 : ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "4, edges = [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], s = 0, marked = [2,3]",
+      "expected": "4"
+    },
+    {
+      "input": "5, edges = [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], s = 1, marked = [0,4]",
+      "expected": "3"
+    },
+    {
+      "input": "4, edges = [[0,1,1],[1,2,3],[2,3,2]], s = 3, marked = [0,1]",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find the Closest Marked Node.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

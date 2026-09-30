@@ -1,0 +1,65 @@
+{
+  "id": 702,
+  "slug": "search-in-a-sorted-array-of-unknown-size",
+  "title": "Search in a Sorted Array of Unknown Size",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "instacart"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Search%20in%20a%20Sorted%20Array%20of%20Unknown%20Size"
+  },
+  "description": "This is an ***interactive problem***.\n\nYou have a sorted array of **unique** elements and an **unknown size**. You do not have an access to the array but you can use the `ArrayReader` interface to access it. You can call `ArrayReader.get(i)` that:\n\n\treturns the value at the `i^th` index (**0-indexed**) of the secret array (i.e., `secret[i]`), or\n\treturns `2^31 - 1` if the `i` is out of the boundary of the array.\n\nYou are also given an integer `target`.\n\nReturn the index `k` of the hidden array where `secret[k] == target` or return `-1` otherwise.\n\nYou must write an algorithm with `O(log n)` runtime complexity.",
+  "examples": [
+    {
+      "input": "secret = [-1,0,3,5,9,12], target = 9",
+      "output": "4",
+      "explanation": "9 exists in secret and its index is 4."
+    },
+    {
+      "input": "secret = [-1,0,3,5,9,12], target = 2",
+      "output": "-1",
+      "explanation": "2 does not exist in secret so return -1."
+    }
+  ],
+  "constraints": [
+    "1 <= secret.length <= 10^4",
+    "-10^4 <= secret[i], target <= 10^4",
+    "secret is sorted in a strictly increasing order."
+  ],
+  "starterTemplates": {
+    "python": "# \"\"\"\n# This is ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader:\n#    def get(self, index: int) -> int:\n        pass\n",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     int get(int index);\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *     public int get(int index) {}\n        \n    }\n};\n",
+    "javascript": "/**\n * class ArrayReader {\n *\t\t// This is the ArrayReader's API interface.\n *\t\t// You should not implement it, or speculate about its implementation\n *\t\tget(index: number): number {};\n *  };\n */\n\nfunction search(reader: ArrayReader, target: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# \"\"\"\n# This is ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader:\n#    def get(self, index: int) -> int:\n\n\nclass Solution:\n    def search(self, reader: \"ArrayReader\", target: int) -> int:\n        r = 1\n        while reader.get(r) < target:\n            r <<= 1\n        l = r >> 1\n        while l < r:\n            mid = (l + r) >> 1\n            if reader.get(mid) >= target:\n                r = mid\n            else:\n                l = mid + 1\n        return l if reader.get(l) == target else -1",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     int get(int index);\n * };\n */\n\nclass Solution {\npublic:\n    int search(const ArrayReader& reader, int target) {\n        int r = 1;\n        while (reader.get(r) < target) {\n            r <<= 1;\n        }\n        int l = r >> 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (reader.get(mid) >= target) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return reader.get(l) == target ? l : -1;\n    }\n};",
+    "java": "/**\n * // This is ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *     public int get(int index) {}\n * }\n */\n\nclass Solution {\n    public int search(ArrayReader reader, int target) {\n        int r = 1;\n        while (reader.get(r) < target) {\n            r <<= 1;\n        }\n        int l = r >> 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (reader.get(mid) >= target) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return reader.get(l) == target ? l : -1;\n    }\n}",
+    "javascript": "/**\n * class ArrayReader {\n *\t\t// This is the ArrayReader's API interface.\n *\t\t// You should not implement it, or speculate about its implementation\n *\t\tget(index: number): number {};\n *  };\n */\n\nfunction search(reader: ArrayReader, target: number): number {\n    let r = 1;\n    while (reader.get(r) < target) {\n        r <<= 1;\n    }\n    let l = r >> 1;\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (reader.get(mid) >= target) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return reader.get(l) === target ? l : -1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[-1,0,3,5,9,12], target = 9",
+      "expected": "4"
+    },
+    {
+      "input": "[-1,0,3,5,9,12], target = 2",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Search in a Sorted Array of Unknown Size.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

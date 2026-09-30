@@ -1,0 +1,43 @@
+{
+  "id": 1747,
+  "slug": "leetflex-banned-accounts",
+  "title": "Leetflex Banned Accounts",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Audible"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Leetflex%20Banned%20Accounts"
+  },
+  "description": "Table: `LogInfo`\n\n+-------------+----------+\n| Column Name | Type     |\n+-------------+----------+\n| account_id  | int      |\n| ip_address  | int      |\n| login       | datetime |\n| logout      | datetime |\n+-------------+----------+\nThis table may contain duplicate rows.\nThe table contains information about the login and logout dates of Leetflex accounts. It also contains the IP address from which the account was logged in and out.\nIt is guaranteed that the logout time is after the login time.\n\n \n\nWrite a solution to find the `account_id` of the accounts that should be banned from Leetflex. An account should be banned if it was logged in at some moment from two different IP addresses.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "LogInfo table:\n+------------+------------+---------------------+---------------------+\n| account_id | ip_address | login               | logout              |\n+------------+------------+---------------------+---------------------+\n| 1          | 1          | 2021-02-01 09:00:00 | 2021-02-01 09:30:00 |\n| 1          | 2          | 2021-02-01 08:00:00 | 2021-02-01 11:30:00 |\n| 2          | 6          | 2021-02-01 20:30:00 | 2021-02-01 22:00:00 |\n| 2          | 7          | 2021-02-02 20:30:00 | 2021-02-02 22:00:00 |\n| 3          | 9          | 2021-02-01 16:00:00 | 2021-02-01 16:59:59 |\n| 3          | 13         | 2021-02-01 17:00:00 | 2021-02-01 17:59:59 |\n| 4          | 10         | 2021-02-01 16:00:00 | 2021-02-01 17:00:00 |\n| 4          | 11         | 2021-02-01 17:00:00 | 2021-02-01 17:59:59 |\n+------------+------------+---------------------+---------------------+",
+      "output": "+------------+\n| account_id |\n+------------+\n| 1          |\n| 4          |\n+------------+",
+      "explanation": "Account ID 1 --> The account was active from \"2021-02-01 09:00:00\" to \"2021-02-01 09:30:00\" with two different IP addresses (1 and 2). It should be banned.\nAccount ID 2 --> The account was active from two different addresses (6, 7) but in two different times.\nAccount ID 3 --> The account was active from two different addresses (9, 13) on the same day but they do not intersect at any moment.\nAccount ID 4 --> The account was active from \"2021-02-01 17:00:00\" to \"2021-02-01 17:00:00\" with two different IP addresses (10 and 11). It should be banned."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "LogInfo table:\n+------------+------------+---------------------+---------------------+\n| account_id | ip_address | login               | logout              |\n+------------+------------+---------------------+---------------------+\n| 1          | 1          | 2021-02-01 09:00:00 | 2021-02-01 09:30:00 |\n| 1          | 2          | 2021-02-01 08:00:00 | 2021-02-01 11:30:00 |\n| 2          | 6          | 2021-02-01 20:30:00 | 2021-02-01 22:00:00 |\n| 2          | 7          | 2021-02-02 20:30:00 | 2021-02-02 22:00:00 |\n| 3          | 9          | 2021-02-01 16:00:00 | 2021-02-01 16:59:59 |\n| 3          | 13         | 2021-02-01 17:00:00 | 2021-02-01 17:59:59 |\n| 4          | 10         | 2021-02-01 16:00:00 | 2021-02-01 17:00:00 |\n| 4          | 11         | 2021-02-01 17:00:00 | 2021-02-01 17:59:59 |\n+------------+------------+---------------------+---------------------+",
+      "expected": "+------------+\n| account_id |\n+------------+\n| 1          |\n| 4          |\n+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Leetflex Banned Accounts.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

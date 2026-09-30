@@ -1,0 +1,74 @@
+{
+  "id": 2128,
+  "slug": "remove-all-ones-with-row-and-column-flips",
+  "title": "Remove All Ones With Row and Column Flips",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Remove%20All%20Ones%20With%20Row%20and%20Column%20Flips"
+  },
+  "description": "You are given an `m x n` binary matrix `grid`.\n\nIn one operation, you can choose **any** row or column and flip each value in that row or column (i.e., changing all `0`'s to `1`'s, and all `1`'s to `0`'s).\n\nReturn `true`* if it is possible to remove all *`1`*'s from *`grid` using **any** number of operations or `false` otherwise.",
+  "examples": [
+    {
+      "input": "grid = [[0,1,0],[1,0,1],[0,1,0]]",
+      "output": "true",
+      "explanation": "One possible way to remove all 1's from grid is to:\n- Flip the middle row\n- Flip the middle column"
+    },
+    {
+      "input": "grid = [[1,1,0],[0,0,0],[0,0,0]]",
+      "output": "false",
+      "explanation": "It is impossible to remove all 1's from grid."
+    },
+    {
+      "input": "grid = [[0]]",
+      "output": "true",
+      "explanation": "There are no 1's in grid."
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 300",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool removeOnes(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean removeOnes(int[][] grid) {\n        \n    }\n};\n",
+    "javascript": "function removeOnes(grid: number[][]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> bool:\n        s = set()\n        for row in grid:\n            t = tuple(row) if row[0] == grid[0][0] else tuple(x ^ 1 for x in row)\n            s.add(t)\n        return len(s) == 1",
+    "cpp": "class Solution {\npublic:\n    bool removeOnes(vector<vector<int>>& grid) {\n        unordered_set<string> s;\n        for (auto& row : grid) {\n            string t;\n            for (int x : row) {\n                t.push_back('0' + (row[0] == 0 ? x : x ^ 1));\n            }\n            s.insert(t);\n        }\n        return s.size() == 1;\n    }\n};",
+    "java": "class Solution {\n    public boolean removeOnes(int[][] grid) {\n        Set<String> s = new HashSet<>();\n        int n = grid[0].length;\n        for (var row : grid) {\n            var cs = new char[n];\n            for (int i = 0; i < n; ++i) {\n                cs[i] = (char) (row[0] ^ row[i]);\n            }\n            s.add(String.valueOf(cs));\n        }\n        return s.size() == 1;\n    }\n}",
+    "javascript": "function removeOnes(grid: number[][]): boolean {\n    const s = new Set<string>();\n    for (const row of grid) {\n        if (row[0] === 1) {\n            for (let i = 0; i < row.length; i++) {\n                row[i] ^= 1;\n            }\n        }\n        const t = row.join('');\n        s.add(t);\n    }\n    return s.size === 1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,1,0],[1,0,1],[0,1,0]]",
+      "expected": "true"
+    },
+    {
+      "input": "[[1,1,0],[0,0,0],[0,0,0]]",
+      "expected": "false"
+    },
+    {
+      "input": "[[0]]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Remove All Ones With Row and Column Flips.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,69 @@
+{
+  "id": 2796,
+  "slug": "repeat-string",
+  "title": "Repeat String",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Repeat%20String"
+  },
+  "description": "Write code that enhances all strings such that you can call the `string.replicate(x)` method on any string and it will return repeated string `x` times.\n\nTry to implement it without using the built-in method `string.repeat`.",
+  "examples": [
+    {
+      "input": "str = \"hello\", times = 2",
+      "output": "\"hellohello\"",
+      "explanation": "\"hello\" is repeated 2 times"
+    },
+    {
+      "input": "str = \"code\", times = 3",
+      "output": "\"codecodecode\"",
+      "explanation": "\"code\" is repeated 3 times"
+    },
+    {
+      "input": "str = \"js\", times = 1",
+      "output": "\"js\"",
+      "explanation": "\"js\" is repeated 1 time"
+    }
+  ],
+  "constraints": [
+    "1 <= times <= 10^5",
+    "1 <= str.length <= 1000"
+  ],
+  "starterTemplates": {
+    "javascript": "declare global {\n    interface String {\n        replicate(times: number): string;\n    }\n}\n\nString.prototype.replicate = function (times: number) {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "declare global {\n    interface String {\n        replicate(times: number): string;\n    }\n}\n\nString.prototype.replicate = function (times: number) {\n    return new Array(times).fill(this).join('');\n};"
+  },
+  "testcases": [
+    {
+      "input": "\"hello\", times = 2",
+      "expected": "\"hellohello\""
+    },
+    {
+      "input": "\"code\", times = 3",
+      "expected": "\"codecodecode\""
+    },
+    {
+      "input": "\"js\", times = 1",
+      "expected": "\"js\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Repeat String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

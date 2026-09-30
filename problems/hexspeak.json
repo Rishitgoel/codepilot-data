@@ -1,0 +1,62 @@
+{
+  "id": 1271,
+  "slug": "hexspeak",
+  "title": "Hexspeak",
+  "difficulty": "Easy",
+  "rating": 1384,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Virtu Financial",
+    "Virtu"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Hexspeak"
+  },
+  "description": "A decimal number can be converted to its **Hexspeak representation** by first converting it to an uppercase hexadecimal string, then replacing all occurrences of the digit `'0'` with the letter `'O'`, and the digit `'1'` with the letter `'I'`. Such a representation is valid if and only if it consists only of the letters in the set `{'A', 'B', 'C', 'D', 'E', 'F', 'I', 'O'}`.\n\nGiven a string `num` representing a decimal integer `n`, *return the **Hexspeak representation** of *`n`* if it is valid, otherwise return *`\"ERROR\"`.",
+  "examples": [
+    {
+      "input": "num = \"257\"",
+      "output": "\"IOI\"",
+      "explanation": "257 is 101 in hexadecimal."
+    },
+    {
+      "input": "num = \"3\"",
+      "output": "\"ERROR\""
+    }
+  ],
+  "constraints": [
+    "1 <= num.length <= 12",
+    "num does not contain leading zeros.",
+    "num represents an integer in the range [1, 10^12]."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def toHexspeak(self, num: str) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string toHexspeak(string num) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private static final Set<Character> S = Set.of('A', 'B', 'C', 'D', 'E', 'F', 'I', 'O');\n\n    public String toHexspeak(String num) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def toHexspeak(self, num: str) -> str:\n        s = set('ABCDEFIO')\n        t = hex(int(num))[2:].upper().replace('0', 'O').replace('1', 'I')\n        return t if all(c in s for c in t) else 'ERROR'",
+    "cpp": "class Solution {\npublic:\n    string toHexspeak(string num) {\n        stringstream ss;\n        ss << hex << stol(num);\n        string t = ss.str();\n        for (int i = 0; i < t.size(); ++i) {\n            if (t[i] >= '2' && t[i] <= '9') return \"ERROR\";\n            if (t[i] == '0')\n                t[i] = 'O';\n            else if (t[i] == '1')\n                t[i] = 'I';\n            else\n                t[i] = t[i] - 32;\n        }\n        return t;\n    }\n};",
+    "java": "class Solution {\n    private static final Set<Character> S = Set.of('A', 'B', 'C', 'D', 'E', 'F', 'I', 'O');\n\n    public String toHexspeak(String num) {\n        String t\n            = Long.toHexString(Long.valueOf(num)).toUpperCase().replace(\"0\", \"O\").replace(\"1\", \"I\");\n        for (char c : t.toCharArray()) {\n            if (!S.contains(c)) {\n                return \"ERROR\";\n            }\n        }\n        return t;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"257\"",
+      "expected": "\"IOI\""
+    },
+    {
+      "input": "\"3\"",
+      "expected": "\"ERROR\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Hexspeak.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

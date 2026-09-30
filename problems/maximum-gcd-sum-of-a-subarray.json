@@ -1,0 +1,65 @@
+{
+  "id": 2941,
+  "slug": "maximum-gcd-sum-of-a-subarray",
+  "title": "Maximum GCD-Sum of a Subarray",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Thought works"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20GCD-Sum%20of%20a%20Subarray"
+  },
+  "description": "You are given an array of integers `nums` and an integer `k`.\n\nThe **gcd-sum** of an array `a` is calculated as follows:\n\n\tLet `s` be the sum of all the elements of `a`.\n\tLet `g` be the **greatest common divisor** of all the elements of `a`.\n\tThe gcd-sum of `a` is equal to `s * g`.\n\nReturn *the **maximum gcd-sum** of a subarray of* `nums` *with at least* `k` *elements.*",
+  "examples": [
+    {
+      "input": "nums = [2,1,4,4,4,2], k = 2",
+      "output": "48",
+      "explanation": "We take the subarray [4,4,4], the gcd-sum of this array is 4 * (4 + 4 + 4) = 48.\nIt can be shown that we can not select any other subarray with a gcd-sum greater than 48."
+    },
+    {
+      "input": "nums = [7,3,9,4], k = 1",
+      "output": "81",
+      "explanation": "We take the subarray [9], the gcd-sum of this array is 9 * 9 = 81.\nIt can be shown that we can not select any other subarray with a gcd-sum greater than 81."
+    }
+  ],
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^5",
+    "1 <= nums[i] <= 10^6",
+    "1 <= k <= n"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxGcdSum(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maxGcdSum(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maxGcdSum(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function maxGcdSum(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxGcdSum(self, nums: List[int], k: int) -> int:\n        s = list(accumulate(nums, initial=0))\n        f = []\n        ans = 0\n        for i, v in enumerate(nums):\n            g = []\n            for j, x in f:\n                y = gcd(x, v)\n                if not g or g[-1][1] != y:\n                    g.append((j, y))\n            f = g\n            f.append((i, v))\n            for j, x in f:\n                if i - j + 1 >= k:\n                    ans = max(ans, (s[i + 1] - s[j]) * x)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long maxGcdSum(vector<int>& nums, int k) {\n        int n = nums.size();\n        long long s[n + 1];\n        s[0] = 0;\n        for (int i = 1; i <= n; ++i) {\n            s[i] = s[i - 1] + nums[i - 1];\n        }\n        vector<pair<int, int>> f;\n        long long ans = 0;\n        for (int i = 0; i < n; ++i) {\n            vector<pair<int, int>> g;\n            for (auto [j, x] : f) {\n                int y = gcd(x, nums[i]);\n                if (g.empt() || g.back().second != y) {\n                    g.emplace_back(j, y);\n                }\n            }\n            f = move(g);\n            f.emplace_back(i, nums[i]);\n            for (auto [j, x] : f) {\n                if (i - j + 1 >= k) {\n                    ans = max(ans, (s[i + 1] - s[j]) * x);\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maxGcdSum(int[] nums, int k) {\n        int n = nums.length;\n        long[] s = new long[n + 1];\n        for (int i = 1; i <= n; ++i) {\n            s[i] = s[i - 1] + nums[i - 1];\n        }\n        List<int[]> f = new ArrayList<>();\n        long ans = 0;\n        for (int i = 0; i < n; ++i) {\n            List<int[]> g = new ArrayList<>();\n            for (var e : f) {\n                int j = e[0], x = e[1];\n                int y = gcd(x, nums[i]);\n                if (g.isEmpty() || g.get(g.size() - 1)[1] != y) {\n                    g.add(new int[] {j, y});\n                }\n            }\n            f = g;\n            f.add(new int[] {i, nums[i]});\n            for (var e : f) {\n                int j = e[0], x = e[1];\n                if (i - j + 1 >= k) {\n                    ans = Math.max(ans, (s[i + 1] - s[j]) * x);\n                }\n            }\n        }\n        return ans;\n    }\n\n    private int gcd(int a, int b) {\n        return b == 0 ? a : gcd(b, a % b);\n    }\n}",
+    "javascript": "function maxGcdSum(nums: number[], k: number): number {\n    const n: number = nums.length;\n    const s: number[] = Array(n + 1).fill(0);\n    for (let i = 1; i <= n; i++) {\n        s[i] = s[i - 1] + nums[i - 1];\n    }\n\n    let f: [number, number][] = [];\n    let ans: number = 0;\n\n    for (let i = 0; i < n; ++i) {\n        const g: [number, number][] = [];\n        for (const [j, x] of f) {\n            const y: number = gcd(x, nums[i]);\n            if (g.length === 0 || g.at(-1)[1] !== y) {\n                g.push([j, y]);\n            }\n        }\n        f = g;\n        f.push([i, nums[i]]);\n        for (const [j, x] of f) {\n            if (i - j + 1 >= k) {\n                ans = Math.max(ans, (s[i + 1] - s[j]) * x);\n            }\n        }\n    }\n\n    return ans;\n}\n\nfunction gcd(a: number, b: number): number {\n    return b === 0 ? a : gcd(b, a % b);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,1,4,4,4,2], k = 2",
+      "expected": "48"
+    },
+    {
+      "input": "[7,3,9,4], k = 1",
+      "expected": "81"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum GCD-Sum of a Subarray.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

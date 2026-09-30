@@ -1,0 +1,52 @@
+{
+  "id": 3967,
+  "slug": "finish-time-of-tasks-ii",
+  "title": "Finish Time of Tasks II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Finish%20Time%20of%20Tasks%20II"
+  },
+  "description": "You are given an integer `n` representing the number of tasks in a project, numbered from 0 to `n - 1`. These tasks are connected as an undirected** tree**. This is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an undirected connection between task `ui` and task `vi`.\n\nYou are also given an array `baseTime` of length `n`, where `baseTime[i]` represents the time to complete task `i`.\n\nFor any chosen task as the root, the **finish time** of each task is calculated as follows:\n\n\tLeaf task: The finish time is `baseTime[i]`.\n\tNon-leaf task:\n\t\n\t\tLet `earliest` be the **minimum** finish time among its children, and `latest` be the **maximum** finish time among its children.\n\t\tLet `ownDuration` be `(latest - earliest) + baseTime[i]`.\n\t\tFinish time of task `i` is `latest + ownDuration`.\n\t\n\t\n\nChoose **any** task as the root and compute the finish time of that root based on the rules above.\n\nReturn the **minimum** possible finish time among all choices of root.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^5",
+    "edges.length = n - 1",
+    "edges[i] == [ui, vi]",
+    "0 <= ui, vi <= n - 1",
+    "ui != vi",
+    "The input is generated such that edges represents a valid undirected tree.",
+    "baseTime.length == n",
+    "1 <= baseTime[i] <= 10^5"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Finish Time of Tasks II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

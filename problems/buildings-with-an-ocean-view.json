@@ -1,0 +1,79 @@
+{
+  "id": 1762,
+  "slug": "buildings-with-an-ocean-view",
+  "title": "Buildings With an Ocean View",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Facebook",
+    "Uber",
+    "TikTok",
+    "Anduril"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Buildings%20With%20an%20Ocean%20View"
+  },
+  "description": "There are `n` buildings in a line. You are given an integer array `heights` of size `n` that represents the heights of the buildings in the line.\n\nThe ocean is to the right of the buildings. A building has an ocean view if the building can see the ocean without obstructions. Formally, a building has an ocean view if all the buildings to its right have a **smaller** height.\n\nReturn a list of indices **(0-indexed)** of buildings that have an ocean view, sorted in increasing order.",
+  "examples": [
+    {
+      "input": "heights = [4,2,3,1]",
+      "output": "[0,2,3]",
+      "explanation": "Building 1 (0-indexed) does not have an ocean view because building 2 is taller."
+    },
+    {
+      "input": "heights = [4,3,2,1]",
+      "output": "[0,1,2,3]",
+      "explanation": "All the buildings have an ocean view."
+    },
+    {
+      "input": "heights = [1,3,2,4]",
+      "output": "[3]",
+      "explanation": "Only building 3 has an ocean view."
+    }
+  ],
+  "constraints": [
+    "1 <= heights.length <= 10^5",
+    "1 <= heights[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findBuildings(self, heights: List[int]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> findBuildings(vector<int>& heights) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] findBuildings(int[] heights) {\n        \n    }\n};\n",
+    "javascript": "function findBuildings(heights: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findBuildings(self, heights: List[int]) -> List[int]:\n        ans = []\n        mx = 0\n        for i in range(len(heights) - 1, -1, -1):\n            if heights[i] > mx:\n                ans.append(i)\n                mx = heights[i]\n        return ans[::-1]",
+    "cpp": "class Solution {\npublic:\n    vector<int> findBuildings(vector<int>& heights) {\n        vector<int> ans;\n        int mx = 0;\n        for (int i = heights.size() - 1; ~i; --i) {\n            if (heights[i] > mx) {\n                ans.push_back(i);\n                mx = heights[i];\n            }\n        }\n        reverse(ans.begin(), ans.end());\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] findBuildings(int[] heights) {\n        int n = heights.length;\n        List<Integer> ans = new ArrayList<>();\n        int mx = 0;\n        for (int i = heights.length - 1; i >= 0; --i) {\n            if (heights[i] > mx) {\n                ans.add(i);\n                mx = heights[i];\n            }\n        }\n        Collections.reverse(ans);\n        return ans.stream().mapToInt(Integer::intValue).toArray();\n    }\n}",
+    "javascript": "function findBuildings(heights: number[]): number[] {\n    const ans: number[] = [];\n    let mx = 0;\n    for (let i = heights.length - 1; ~i; --i) {\n        if (heights[i] > mx) {\n            ans.push(i);\n            mx = heights[i];\n        }\n    }\n    return ans.reverse();\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,2,3,1]",
+      "expected": "[0,2,3]"
+    },
+    {
+      "input": "[4,3,2,1]",
+      "expected": "[0,1,2,3]"
+    },
+    {
+      "input": "[1,3,2,4]",
+      "expected": "[3]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Buildings With an Ocean View.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

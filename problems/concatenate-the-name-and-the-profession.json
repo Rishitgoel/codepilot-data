@@ -1,0 +1,46 @@
+{
+  "id": 2504,
+  "slug": "concatenate-the-name-and-the-profession",
+  "title": "Concatenate the Name and the Profession",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Concatenate%20the%20Name%20and%20the%20Profession"
+  },
+  "description": "Table: `Person`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| person_id   | int     |\n| name        | varchar |\n| profession  | ENUM    |\n+-------------+---------+\nperson_id is the primary key (column with a unique value) for this table.\nEach row in this table contains a person's ID, name, and profession.\nThe profession column in an enum of the type ('Doctor', 'Singer', 'Actor', 'Player', 'Engineer', or 'Lawyer')\n\n \n\nWrite a solution to report each person's name followed by the first letter of their profession enclosed in parentheses.\n\nReturn the result table **ordered** by `person_id` in **descending order**.\n\nThe result format is shown in the following example.",
+  "examples": [
+    {
+      "input": "Person table:\n+-----------+-------+------------+\n| person_id | name  | profession |\n+-----------+-------+------------+\n| 1         | Alex  | Singer     |\n| 3         | Alice | Actor      |\n| 2         | Bob   | Player     |\n| 4         | Messi | Doctor     |\n| 6         | Tyson | Engineer   |\n| 5         | Meir  | Lawyer     |\n+-----------+-------+------------+",
+      "output": "+-----------+----------+\n| person_id | name     |\n+-----------+----------+\n| 6         | Tyson(E) |\n| 5         | Meir(L)  |\n| 4         | Messi(D) |\n| 3         | Alice(A) |\n| 2         | Bob(P)   |\n| 1         | Alex(S)  |\n+-----------+----------+",
+      "explanation": "Note that there should not be any white space between the name and the first letter of the profession."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Person table:\n+-----------+-------+------------+\n| person_id | name  | profession |\n+-----------+-------+------------+\n| 1         | Alex  | Singer     |\n| 3         | Alice | Actor      |\n| 2         | Bob   | Player     |\n| 4         | Messi | Doctor     |\n| 6         | Tyson | Engineer   |\n| 5         | Meir  | Lawyer     |\n+-----------+-------+------------+",
+      "expected": "+-----------+----------+\n| person_id | name     |\n+-----------+----------+\n| 6         | Tyson(E) |\n| 5         | Meir(L)  |\n| 4         | Messi(D) |\n| 3         | Alice(A) |\n| 2         | Bob(P)   |\n| 1         | Alex(S)  |\n+-----------+----------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Concatenate the Name and the Profession.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,53 @@
+{
+  "id": 3205,
+  "slug": "maximum-array-hopping-score-i",
+  "title": "Maximum Array Hopping Score I",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Zluri"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Array%20Hopping%20Score%20I"
+  },
+  "description": "Given an array `nums`, you have to get the **maximum** score starting from index 0 and **hopping** until you reach the last element of the array.\n\nIn each **hop**, you can jump from index `i` to an index `j > i`, and you get a **score** of `(j - i) * nums[j]`.\n\nReturn the *maximum score* you can get.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= nums.length <= 10^3",
+    "1 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxScore(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    private Integer[] f;\r\n    private int[] nums;\r\n    private int n;\r\n\r\n    public int maxScore(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function maxScore(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        @cache\r\n        def dfs(i: int) -> int:\r\n            return max(\r\n                [(j - i) * nums[j] + dfs(j) for j in range(i + 1, len(nums))] or [0]\r\n            )\r\n\r\n        return dfs(0)",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxScore(vector<int>& nums) {\r\n        int n = nums.size();\r\n        vector<int> f(n);\r\n        auto dfs = [&](this auto&& dfs, int i) -> int {\r\n            if (f[i]) {\r\n                return f[i];\r\n            }\r\n            for (int j = i + 1; j < n; ++j) {\r\n                f[i] = max(f[i], (j - i) * nums[j] + dfs(j));\r\n            }\r\n            return f[i];\r\n        };\r\n        return dfs(0);\r\n    }\r\n};",
+    "java": "class Solution {\r\n    private Integer[] f;\r\n    private int[] nums;\r\n    private int n;\r\n\r\n    public int maxScore(int[] nums) {\r\n        n = nums.length;\r\n        f = new Integer[n];\r\n        this.nums = nums;\r\n        return dfs(0);\r\n    }\r\n\r\n    private int dfs(int i) {\r\n        if (f[i] != null) {\r\n            return f[i];\r\n        }\r\n        f[i] = 0;\r\n        for (int j = i + 1; j < n; ++j) {\r\n            f[i] = Math.max(f[i], (j - i) * nums[j] + dfs(j));\r\n        }\r\n        return f[i];\r\n    }\r\n}",
+    "javascript": "function maxScore(nums: number[]): number {\n    const n = nums.length;\n    const f: number[] = Array(n).fill(0);\n    const dfs = (i: number): number => {\n        if (f[i]) {\n            return f[i];\n        }\n        for (let j = i + 1; j < n; ++j) {\n            f[i] = Math.max(f[i], (j - i) * nums[j] + dfs(j));\n        }\n        return f[i];\n    };\n    return dfs(0);\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Array Hopping Score I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,43 @@
+{
+  "id": 1972,
+  "slug": "first-and-last-call-on-the-same-day",
+  "title": "First and Last Call On the Same Day",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=First%20and%20Last%20Call%20On%20the%20Same%20Day"
+  },
+  "description": "Table: `Calls`\n\n+--------------+----------+\n| Column Name  | Type     |\n+--------------+----------+\n| caller_id    | int      |\n| recipient_id | int      |\n| call_time    | datetime |\n+--------------+----------+\n(caller_id, recipient_id, call_time) is the primary key (combination of columns with unique values) for this table.\nEach row contains information about the time of a phone call between caller_id and recipient_id.\n\n \n\nWrite a solution to report the IDs of the users whose first and last calls on **any day** were with **the same person**. Calls are counted regardless of being the caller or the recipient.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Calls table:\n+-----------+--------------+---------------------+\n| caller_id | recipient_id | call_time           |\n+-----------+--------------+---------------------+\n| 8         | 4            | 2021-08-24 17:46:07 |\n| 4         | 8            | 2021-08-24 19:57:13 |\n| 5         | 1            | 2021-08-11 05:28:44 |\n| 8         | 3            | 2021-08-17 04:04:15 |\n| 11        | 3            | 2021-08-17 13:07:00 |\n| 8         | 11           | 2021-08-17 22:22:22 |\n+-----------+--------------+---------------------+",
+      "output": "+---------+\n| user_id |\n+---------+\n| 1       |\n| 4       |\n| 5       |\n| 8       |\n+---------+",
+      "explanation": "On 2021-08-24, the first and last call of this day for user 8 was with user 4. User 8 should be included in the answer.\nSimilarly, user 4 on 2021-08-24 had their first and last call with user 8. User 4 should be included in the answer.\nOn 2021-08-11, user 1 and 5 had a call. This call was the only call for both of them on this day. Since this call is the first and last call of the day for both of them, they should both be included in the answer."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Calls table:\n+-----------+--------------+---------------------+\n| caller_id | recipient_id | call_time           |\n+-----------+--------------+---------------------+\n| 8         | 4            | 2021-08-24 17:46:07 |\n| 4         | 8            | 2021-08-24 19:57:13 |\n| 5         | 1            | 2021-08-11 05:28:44 |\n| 8         | 3            | 2021-08-17 04:04:15 |\n| 11        | 3            | 2021-08-17 13:07:00 |\n| 8         | 11           | 2021-08-17 22:22:22 |\n+-----------+--------------+---------------------+",
+      "expected": "+---------+\n| user_id |\n+---------+\n| 1       |\n| 4       |\n| 5       |\n| 8       |\n+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for First and Last Call On the Same Day.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

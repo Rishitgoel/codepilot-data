@@ -1,0 +1,46 @@
+{
+  "id": 1831,
+  "slug": "maximum-transaction-each-day",
+  "title": "Maximum Transaction Each Day",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Transaction%20Each%20Day"
+  },
+  "description": "Table: `Transactions`\n\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| transaction_id | int      |\n| day            | datetime |\n| amount         | int      |\n+----------------+----------+\ntransaction_id is the column with unique values for this table.\nEach row contains information about one transaction.\n\n \n\nWrite a solution to report the IDs of the transactions with the **maximum** `amount` on their respective day. If in one day there are multiple such transactions, return all of them.\n\nReturn the result table **ordered by** `transaction_id` ** in ascending order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Transactions table:\n+----------------+--------------------+--------+\n| transaction_id | day                | amount |\n+----------------+--------------------+--------+\n| 8              | 2021-4-3 15:57:28  | 57     |\n| 9              | 2021-4-28 08:47:25 | 21     |\n| 1              | 2021-4-29 13:28:30 | 58     |\n| 5              | 2021-4-28 16:39:59 | 40     |\n| 6              | 2021-4-29 23:39:28 | 58     |\n+----------------+--------------------+--------+",
+      "output": "+----------------+\n| transaction_id |\n+----------------+\n| 1              |\n| 5              |\n| 6              |\n| 8              |\n+----------------+",
+      "explanation": "\"2021-4-3\"  --> We have one transaction with ID 8, so we add 8 to the result table.\n\"2021-4-28\" --> We have two transactions with IDs 5 and 9. The transaction with ID 5 has an amount of 40, while the transaction with ID 9 has an amount of 21. We only include the transaction with ID 5 as it has the maximum amount this day.\n\"2021-4-29\" --> We have two transactions with IDs 1 and 6. Both transactions have the same amount of 58, so we include both in the result table.\nWe order the result table by transaction_id after collecting these IDs."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Transactions table:\n+----------------+--------------------+--------+\n| transaction_id | day                | amount |\n+----------------+--------------------+--------+\n| 8              | 2021-4-3 15:57:28  | 57     |\n| 9              | 2021-4-28 08:47:25 | 21     |\n| 1              | 2021-4-29 13:28:30 | 58     |\n| 5              | 2021-4-28 16:39:59 | 40     |\n| 6              | 2021-4-29 23:39:28 | 58     |\n+----------------+--------------------+--------+",
+      "expected": "+----------------+\n| transaction_id |\n+----------------+\n| 1              |\n| 5              |\n| 6              |\n| 8              |\n+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Transaction Each Day.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

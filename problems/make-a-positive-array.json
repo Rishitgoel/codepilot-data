@@ -1,0 +1,53 @@
+{
+  "id": 3511,
+  "slug": "make-a-positive-array",
+  "title": "Make a Positive Array",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Ukg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Make%20a%20Positive%20Array"
+  },
+  "description": "You are given an array `nums`. An array is considered **positive** if the sum of all numbers in each **subarray** with **more than two** elements is positive.\n\nYou can perform the following operation any number of times:\n\n\tReplace **one** element in `nums` with any integer between -10^18 and 10^18.\n\nFind the **minimum** number of operations needed to make `nums` **positive**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "3 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def makeArrayPositive(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int makeArrayPositive(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int makeArrayPositive(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function makeArrayPositive(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def makeArrayPositive(self, nums: List[int]) -> int:\n        l = -1\n        ans = pre_mx = s = 0\n        for r, x in enumerate(nums):\n            s += x\n            if r - l > 2 and s <= pre_mx:\n                ans += 1\n                l = r\n                pre_mx = s = 0\n            elif r - l >= 2:\n                pre_mx = max(pre_mx, s - x - nums[r - 1])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int makeArrayPositive(vector<int>& nums) {\n        int ans = 0;\n        long long preMx = 0, s = 0;\n        for (int l = -1, r = 0; r < nums.size(); r++) {\n            int x = nums[r];\n            s += x;\n            if (r - l > 2 && s <= preMx) {\n                ans++;\n                l = r;\n                preMx = s = 0;\n            } else if (r - l >= 2) {\n                preMx = max(preMx, s - x - nums[r - 1]);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int makeArrayPositive(int[] nums) {\n        int ans = 0;\n        long preMx = 0, s = 0;\n        for (int l = -1, r = 0; r < nums.length; r++) {\n            int x = nums[r];\n            s += x;\n            if (r - l > 2 && s <= preMx) {\n                ans++;\n                l = r;\n                preMx = s = 0;\n            } else if (r - l >= 2) {\n                preMx = Math.max(preMx, s - x - nums[r - 1]);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function makeArrayPositive(nums: number[]): number {\n    let l = -1;\n    let [ans, preMx, s] = [0, 0, 0];\n    for (let r = 0; r < nums.length; r++) {\n        const x = nums[r];\n        s += x;\n        if (r - l > 2 && s <= preMx) {\n            ans++;\n            l = r;\n            preMx = 0;\n            s = 0;\n        } else if (r - l >= 2) {\n            preMx = Math.max(preMx, s - x - nums[r - 1]);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Make a Positive Array.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

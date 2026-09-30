@@ -1,0 +1,61 @@
+{
+  "id": 2072,
+  "slug": "the-winner-university",
+  "title": "The Winner University",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Walmart Labs"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Winner%20University"
+  },
+  "description": "Table: `NewYork`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| student_id  | int  |\n| score       | int  |\n+-------------+------+\nIn SQL, student_id is the primary key for this table.\nEach row contains information about the score of one student from New York University in an exam.\n\n \n\nTable: `California`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| student_id  | int  |\n| score       | int  |\n+-------------+------+\nIn SQL, student_id is the primary key for this table.\nEach row contains information about the score of one student from California University in an exam.\n\n \n\nThere is a competition between New York University and California University. The competition is held between the same number of students from both universities. The university that has more **excellent students** wins the competition. If the two universities have the same number of **excellent students**, the competition ends in a draw.\n\nAn **excellent student** is a student that scored `90%` or more in the exam.\n\nReturn:\n\n\t**\"New York University\"** if New York University wins the competition.\n\t**\"California University\"** if California University wins the competition.\n\t**\"No Winner\"** if the competition ends in a draw.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 90    |\n| 2          | 87    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 89    |\n| 3          | 88    |\n+------------+-------+",
+      "output": "+---------------------+\n| winner              |\n+---------------------+\n| New York University |\n+---------------------+",
+      "explanation": "New York University has 1 excellent student, and California University has 0 excellent students."
+    },
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 89    |\n| 2          | 88    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 90    |\n| 3          | 87    |\n+------------+-------+",
+      "output": "+-----------------------+\n| winner                |\n+-----------------------+\n| California University |\n+-----------------------+",
+      "explanation": "New York University has 0 excellent students, and California University has 1 excellent student."
+    },
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 89    |\n| 2          | 90    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 87    |\n| 3          | 99    |\n+------------+-------+",
+      "output": "+-----------+\n| winner    |\n+-----------+\n| No Winner |\n+-----------+",
+      "explanation": "Both New York University and California University have 1 excellent student."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 90    |\n| 2          | 87    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 89    |\n| 3          | 88    |\n+------------+-------+",
+      "expected": "+---------------------+\n| winner              |\n+---------------------+\n| New York University |\n+---------------------+"
+    },
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 89    |\n| 2          | 88    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 90    |\n| 3          | 87    |\n+------------+-------+",
+      "expected": "+-----------------------+\n| winner                |\n+-----------------------+\n| California University |\n+-----------------------+"
+    },
+    {
+      "input": "NewYork table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 1          | 89    |\n| 2          | 90    |\n+------------+-------+\nCalifornia table:\n+------------+-------+\n| student_id | score |\n+------------+-------+\n| 2          | 87    |\n| 3          | 99    |\n+------------+-------+",
+      "expected": "+-----------+\n| winner    |\n+-----------+\n| No Winner |\n+-----------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Winner University.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

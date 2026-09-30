@@ -1,0 +1,43 @@
+{
+  "id": 3051,
+  "slug": "find-candidates-for-data-scientist-position",
+  "title": "Find Candidates for Data Scientist Position",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Hashedin"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Candidates%20for%20Data%20Scientist%20Position"
+  },
+  "description": "Table: `Candidates`\n\n+--------------+---------+ \n| Column Name  | Type    | \n+--------------+---------+ \n| candidate_id | int     | \n| skill        | varchar |\n+--------------+---------+\n(candidate_id, skill) is the primary key (columns with unique values) for this table.\nEach row includes candidate_id and skill.\n\nWrite a query to find the **candidates** best suited for a Data Scientist position. The candidate must be proficient in **Python**, **Tableau**, and **PostgreSQL**.\n\nReturn *the result table ordered by *`candidate_id` *in **ascending order***.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Candidates table:\n+---------------+--------------+\n| candidate_id  | skill        | \n+---------------+--------------+\n| 123           | Python       |\n| 234           | R            | \n| 123           | Tableau      | \n| 123           | PostgreSQL   | \n| 234           | PowerBI      | \n| 234           | SQL Server   | \n| 147           | Python       | \n| 147           | Tableau      | \n| 147           | Java         |\n| 147           | PostgreSQL   |\n| 256           | Tableau      |\n| 102           | DataAnalysis |\n+---------------+--------------+",
+      "output": "+--------------+\n| candidate_id |  \n+--------------+\n| 123          |  \n| 147          | \n+--------------+",
+      "explanation": "- Candidates 123 and 147 possess the necessary skills in Python, Tableau, and PostgreSQL for the data scientist position.\n- Candidates 234 and 102 do not possess any of the required skills for this position.\n- Candidate 256 has proficiency in Tableau but is missing skills in Python and PostgreSQL.\nThe output table is sorted by candidate_id in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Candidates table:\n+---------------+--------------+\n| candidate_id  | skill        | \n+---------------+--------------+\n| 123           | Python       |\n| 234           | R            | \n| 123           | Tableau      | \n| 123           | PostgreSQL   | \n| 234           | PowerBI      | \n| 234           | SQL Server   | \n| 147           | Python       | \n| 147           | Tableau      | \n| 147           | Java         |\n| 147           | PostgreSQL   |\n| 256           | Tableau      |\n| 102           | DataAnalysis |\n+---------------+--------------+",
+      "expected": "+--------------+\n| candidate_id |  \n+--------------+\n| 123          |  \n| 147          | \n+--------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Candidates for Data Scientist Position.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,49 @@
+{
+  "id": 3103,
+  "slug": "find-trending-hashtags-ii",
+  "title": "Find Trending Hashtags II ",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Trending%20Hashtags%20II%20"
+  },
+  "description": "Table: `Tweets`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| tweet_id    | int     |\n| tweet_date  | date    |\n| tweet       | varchar |\n+-------------+---------+\ntweet_id is the primary key (column with unique values) for this table.\nEach row of this table contains user_id, tweet_id, tweet_date and tweet.\nIt is guaranteed that all tweet_date are valid dates in February 2024.\n\nWrite a solution to find the **top** `3` trending **hashtags** in **February** `2024`. Every tweet may contain **several** **hashtags**.\n\nReturn *the result table ordered by count of hashtag, hashtag in ***descending*** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_trending_hashtags(tweets: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_trending_hashtags(tweets: pd.DataFrame) -> pd.DataFrame:\r\n    # Filter tweets for February 2024\r\n    tweets_feb_2024 = tweets[tweets[\"tweet_date\"].between(\"2024-02-01\", \"2024-02-29\")]\r\n\r\n    # Extract hashtags from tweets\r\n    hashtags = tweets_feb_2024[\"tweet\"].str.findall(r\"#\\w+\")\r\n\r\n    # Flatten list of hashtags\r\n    all_hashtags = [tag for sublist in hashtags for tag in sublist]\r\n\r\n    # Count occurrences of each hashtag\r\n    hashtag_counts = pd.Series(all_hashtags).value_counts().reset_index()\r\n    hashtag_counts.columns = [\"hashtag\", \"count\"]\r\n\r\n    # Sort by count of hashtag in descending order\r\n    hashtag_counts = hashtag_counts.sort_values(\r\n        by=[\"count\", \"hashtag\"], ascending=[False, False]\r\n    )\r\n\r\n    # Get top 3 trending hashtags\r\n    top_3_hashtags = hashtag_counts.head(3)\r\n\r\n    return top_3_hashtags"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Trending Hashtags II .",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,46 @@
+{
+  "id": 3916,
+  "slug": "number-of-zigzag-arrays-iii",
+  "title": "Number of ZigZag Arrays III",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20ZigZag%20Arrays%20III"
+  },
+  "description": "You are given three integers `n`, `l`, and `r`.\n\nA **ZigZag** array of length `n` is defined as follows:\n\n\tEach element lies in the range `[l, r]`.\n\tNo **two** adjacent elements are equal.\n\tNo **three** consecutive elements form a **strictly increasing** or **strictly decreasing** sequence.\n\nReturn the total number of valid **ZigZag** arrays.\n\nSince the answer may be large, return it **modulo** `10^9 + 7`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "3 <= n <= 200",
+    "1 <= l < r <= 10^​​​​​​​9"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of ZigZag Arrays III.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

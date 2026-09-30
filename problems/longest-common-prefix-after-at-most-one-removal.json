@@ -1,0 +1,57 @@
+{
+  "id": 3460,
+  "slug": "longest-common-prefix-after-at-most-one-removal",
+  "title": "Longest Common Prefix After at Most One Removal",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Common%20Prefix%20After%20at%20Most%20One%20Removal"
+  },
+  "description": "You are given two strings `s` and `t`.\n\nReturn the **length** of the **longest common prefix** between `s` and `t` after removing **at most** one character from `s`.\n\n**Note:** `s` can be left without any removal.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "1 <= t.length <= 10^5",
+    "s and t contain only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def longestCommonPrefix(self, s: str, t: str) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int longestCommonPrefix(string s, string t) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int longestCommonPrefix(String s, String t) {\r\n        \n    }\n};\n",
+    "javascript": "function longestCommonPrefix(s: string, t: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def longestCommonPrefix(self, s: str, t: str) -> int:\r\n        n, m = len(s), len(t)\r\n        i = j = 0\r\n        rem = False\r\n        while i < n and j < m:\r\n            if s[i] != t[j]:\r\n                if rem:\r\n                    break\r\n                rem = True\r\n            else:\r\n                j += 1\r\n            i += 1\r\n        return j",
+    "cpp": "class Solution {\r\npublic:\r\n    int longestCommonPrefix(string s, string t) {\r\n        int n = s.length(), m = t.length();\r\n        int i = 0, j = 0;\r\n        bool rem = false;\r\n        while (i < n && j < m) {\r\n            if (s[i] != t[j]) {\r\n                if (rem) {\r\n                    break;\r\n                }\r\n                rem = true;\r\n            } else {\r\n                ++j;\r\n            }\r\n            ++i;\r\n        }\r\n        return j;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int longestCommonPrefix(String s, String t) {\r\n        int n = s.length(), m = t.length();\r\n        int i = 0, j = 0;\r\n        boolean rem = false;\r\n        while (i < n && j < m) {\r\n            if (s.charAt(i) != t.charAt(j)) {\r\n                if (rem) {\r\n                    break;\r\n                }\r\n                rem = true;\r\n            } else {\r\n                ++j;\r\n            }\r\n            ++i;\r\n        }\r\n        return j;\r\n    }\r\n}",
+    "javascript": "function longestCommonPrefix(s: string, t: string): number {\n    const [n, m] = [s.length, t.length];\n    let [i, j] = [0, 0];\n    let rem: boolean = false;\n    while (i < n && j < m) {\n        if (s[i] !== t[j]) {\n            if (rem) {\n                break;\n            }\n            rem = true;\n        } else {\n            ++j;\n        }\n        ++i;\n    }\n    return j;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Common Prefix After at Most One Removal.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

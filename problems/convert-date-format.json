@@ -1,0 +1,46 @@
+{
+  "id": 1853,
+  "slug": "convert-date-format",
+  "title": "Convert Date Format",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20Date%20Format"
+  },
+  "description": "Table: `Days`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| day         | date |\n+-------------+------+\nday is the column with unique values for this table.\n\n \n\nWrite a solution to convert each date in `Days` into a string formatted as `\"day_name, month_name day, year\"`.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Days table:\n+------------+\n| day        |\n+------------+\n| 2022-04-12 |\n| 2021-08-09 |\n| 2020-06-26 |\n+------------+",
+      "output": "+-------------------------+\n| day                     |\n+-------------------------+\n| Tuesday, April 12, 2022 |\n| Monday, August 9, 2021  |\n| Friday, June 26, 2020   |\n+-------------------------+",
+      "explanation": "Please note that the output is case-sensitive."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Days table:\n+------------+\n| day        |\n+------------+\n| 2022-04-12 |\n| 2021-08-09 |\n| 2020-06-26 |\n+------------+",
+      "expected": "+-------------------------+\n| day                     |\n+-------------------------+\n| Tuesday, April 12, 2022 |\n| Monday, August 9, 2021  |\n| Friday, June 26, 2020   |\n+-------------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert Date Format.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

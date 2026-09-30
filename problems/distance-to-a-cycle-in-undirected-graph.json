@@ -1,0 +1,71 @@
+{
+  "id": 2204,
+  "slug": "distance-to-a-cycle-in-undirected-graph",
+  "title": "Distance to a Cycle in Undirected Graph",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft",
+    "Oracle",
+    "Akuna Capital"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Distance%20to%20a%20Cycle%20in%20Undirected%20Graph"
+  },
+  "description": "You are given a positive integer `n` representing the number of nodes in a **connected undirected graph** containing **exactly one** cycle. The nodes are numbered from `0` to `n - 1` (**inclusive**).\n\nYou are also given a 2D integer array `edges`, where `edges[i] = [node1i, node2i]` denotes that there is a **bidirectional** edge connecting `node1i` and `node2i` in the graph.\n\nThe distance between two nodes `a` and `b` is defined to be the **minimum** number of edges that are needed to go from `a` to `b`.\n\nReturn *an integer array `answer`** of size *`n`*, where *`answer[i]`* is the **minimum** distance between the *`i^th`* node and **any** node in the cycle.*",
+  "examples": [
+    {
+      "input": "n = 7, edges = [[1,2],[2,4],[4,3],[3,1],[0,1],[5,2],[6,5]]",
+      "output": "[1,0,0,0,0,1,2]",
+      "explanation": "The nodes 1, 2, 3, and 4 form the cycle.\nThe distance from 0 to 1 is 1.\nThe distance from 1 to 1 is 0.\nThe distance from 2 to 2 is 0.\nThe distance from 3 to 3 is 0.\nThe distance from 4 to 4 is 0.\nThe distance from 5 to 2 is 1.\nThe distance from 6 to 2 is 2."
+    },
+    {
+      "input": "n = 9, edges = [[0,1],[1,2],[0,2],[2,6],[6,7],[6,8],[0,3],[3,4],[3,5]]",
+      "output": "[0,0,0,1,2,2,1,2,2]",
+      "explanation": "The nodes 0, 1, and 2 form the cycle.\nThe distance from 0 to 0 is 0.\nThe distance from 1 to 1 is 0.\nThe distance from 2 to 2 is 0.\nThe distance from 3 to 1 is 1.\nThe distance from 4 to 1 is 2.\nThe distance from 5 to 1 is 2.\nThe distance from 6 to 2 is 1.\nThe distance from 7 to 2 is 2.\nThe distance from 8 to 2 is 2."
+    }
+  ],
+  "constraints": [
+    "3 <= n <= 10^5",
+    "edges.length == n",
+    "edges[i].length == 2",
+    "0 <= node1i, node2i <= n - 1",
+    "node1i != node2i",
+    "The graph is connected.",
+    "The graph has exactly one cycle.",
+    "There is at most one edge between any pair of vertices."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def distanceToCycle(self, n: int, edges: List[List[int]]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> distanceToCycle(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] distanceToCycle(int n, int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "function distanceToCycle(n: number, edges: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def distanceToCycle(self, n: int, edges: List[List[int]]) -> List[int]:\n        g = defaultdict(set)\n        for a, b in edges:\n            g[a].add(b)\n            g[b].add(a)\n        q = deque(i for i in range(n) if len(g[i]) == 1)\n        f = [0] * n\n        seq = []\n        while q:\n            i = q.popleft()\n            seq.append(i)\n            for j in g[i]:\n                g[j].remove(i)\n                f[i] = j\n                if len(g[j]) == 1:\n                    q.append(j)\n            g[i].clear()\n        ans = [0] * n\n        for i in seq[::-1]:\n            ans[i] = ans[f[i]] + 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> distanceToCycle(int n, vector<vector<int>>& edges) {\n        unordered_set<int> g[n];\n        for (auto& e : edges) {\n            int a = e[0], b = e[1];\n            g[a].insert(b);\n            g[b].insert(a);\n        }\n        queue<int> q;\n        for (int i = 0; i < n; ++i) {\n            if (g[i].size() == 1) {\n                q.push(i);\n            }\n        }\n        int f[n];\n        int seq[n];\n        int k = 0;\n        while (!q.empty()) {\n            int i = q.front();\n            q.pop();\n            seq[k++] = i;\n            for (int j : g[i]) {\n                g[j].erase(i);\n                f[i] = j;\n                if (g[j].size() == 1) {\n                    q.push(j);\n                }\n            }\n            g[i].clear();\n        }\n        vector<int> ans(n);\n        for (; k; --k) {\n            int i = seq[k - 1];\n            ans[i] = ans[f[i]] + 1;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] distanceToCycle(int n, int[][] edges) {\n        Set<Integer>[] g = new Set[n];\n        Arrays.setAll(g, k -> new HashSet<>());\n        for (var e : edges) {\n            int a = e[0], b = e[1];\n            g[a].add(b);\n            g[b].add(a);\n        }\n        Deque<Integer> q = new ArrayDeque<>();\n        for (int i = 0; i < n; ++i) {\n            if (g[i].size() == 1) {\n                q.offer(i);\n            }\n        }\n        int[] f = new int[n];\n        Deque<Integer> seq = new ArrayDeque<>();\n        while (!q.isEmpty()) {\n            int i = q.poll();\n            seq.push(i);\n            for (int j : g[i]) {\n                g[j].remove(i);\n                f[i] = j;\n                if (g[j].size() == 1) {\n                    q.offer(j);\n                }\n            }\n        }\n        int[] ans = new int[n];\n        while (!seq.isEmpty()) {\n            int i = seq.pop();\n            ans[i] = ans[f[i]] + 1;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function distanceToCycle(n: number, edges: number[][]): number[] {\n    const g: Set<number>[] = new Array(n).fill(0).map(() => new Set<number>());\n    for (const [a, b] of edges) {\n        g[a].add(b);\n        g[b].add(a);\n    }\n    const q: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        if (g[i].size === 1) {\n            q.push(i);\n        }\n    }\n    const f: number[] = Array(n).fill(0);\n    const seq: number[] = [];\n    while (q.length) {\n        const i = q.pop()!;\n        seq.push(i);\n        for (const j of g[i]) {\n            g[j].delete(i);\n            f[i] = j;\n            if (g[j].size === 1) {\n                q.push(j);\n            }\n        }\n        g[i].clear();\n    }\n    const ans: number[] = Array(n).fill(0);\n    while (seq.length) {\n        const i = seq.pop()!;\n        ans[i] = ans[f[i]] + 1;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "7, edges = [[1,2],[2,4],[4,3],[3,1],[0,1],[5,2],[6,5]]",
+      "expected": "[1,0,0,0,0,1,2]"
+    },
+    {
+      "input": "9, edges = [[0,1],[1,2],[0,2],[2,6],[6,7],[6,8],[0,3],[3,4],[3,5]]",
+      "expected": "[0,0,0,1,2,2,1,2,2]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Distance to a Cycle in Undirected Graph.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

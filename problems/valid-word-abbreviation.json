@@ -1,0 +1,73 @@
+{
+  "id": 408,
+  "slug": "valid-word-abbreviation",
+  "title": "Valid Word Abbreviation",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Facebook",
+    "TikTok",
+    "Snowflake",
+    "Datadog",
+    "Rokt"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Word%20Abbreviation"
+  },
+  "description": "A string can be **abbreviated** by replacing any number of **non-adjacent**, **non-empty** substrings with their lengths. The lengths **should not** have leading zeros.\n\nFor example, a string such as `\"substitution\"` could be abbreviated as (but not limited to):\n\n\t`\"s10n\"` (`\"s ubstitutio n\"`)\n\t`\"sub4u4\"` (`\"sub stit u tion\"`)\n\t`\"12\"` (`\"substitution\"`)\n\t`\"su3i1u2on\"` (`\"su bst i t u ti on\"`)\n\t`\"substitution\"` (no substrings replaced)\n\nThe following are **not valid** abbreviations:\n\n\t`\"s55n\"` (`\"s ubsti tutio n\"`, the replaced substrings are adjacent)\n\t`\"s010n\"` (has leading zeros)\n\t`\"s0ubstitution\"` (replaces an empty substring)\n\nGiven a string `word` and an abbreviation `abbr`, return *whether the string **matches** the given abbreviation*.\n\nA **substring** is a contiguous **non-empty** sequence of characters within a string.",
+  "examples": [
+    {
+      "input": "word = \"internationalization\", abbr = \"i12iz4n\"",
+      "output": "true",
+      "explanation": "The word \"internationalization\" can be abbreviated as \"i12iz4n\" (\"i nternational iz atio n\")."
+    },
+    {
+      "input": "word = \"apple\", abbr = \"a2e\"",
+      "output": "false",
+      "explanation": "The word \"apple\" cannot be abbreviated as \"a2e\"."
+    }
+  ],
+  "constraints": [
+    "1 <= word.length <= 20",
+    "word consists of only lowercase English letters.",
+    "1 <= abbr.length <= 10",
+    "abbr consists of lowercase English letters and digits.",
+    "All the integers in abbr will fit in a 32-bit integer."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def validWordAbbreviation(self, word: str, abbr: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool validWordAbbreviation(string word, string abbr) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean validWordAbbreviation(String word, String abbr) {\n        \n    }\n};\n",
+    "javascript": "function validWordAbbreviation(word: string, abbr: string): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def validWordAbbreviation(self, word: str, abbr: str) -> bool:\n        m, n = len(word), len(abbr)\n        i = j = x = 0\n        while i < m and j < n:\n            if abbr[j].isdigit():\n                if abbr[j] == \"0\" and x == 0:\n                    return False\n                x = x * 10 + int(abbr[j])\n            else:\n                i += x\n                x = 0\n                if i >= m or word[i] != abbr[j]:\n                    return False\n                i += 1\n            j += 1\n        return i + x == m and j == n",
+    "cpp": "class Solution {\npublic:\n    bool validWordAbbreviation(string word, string abbr) {\n        int m = word.size(), n = abbr.size();\n        int i = 0, j = 0, x = 0;\n        for (; i < m && j < n; ++j) {\n            if (isdigit(abbr[j])) {\n                if (abbr[j] == '0' && x == 0) {\n                    return false;\n                }\n                x = x * 10 + (abbr[j] - '0');\n            } else {\n                i += x;\n                x = 0;\n                if (i >= m || word[i] != abbr[j]) {\n                    return false;\n                }\n                ++i;\n            }\n        }\n        return i + x == m && j == n;\n    }\n};",
+    "java": "class Solution {\n    public boolean validWordAbbreviation(String word, String abbr) {\n        int m = word.length(), n = abbr.length();\n        int i = 0, j = 0, x = 0;\n        for (; i < m && j < n; ++j) {\n            char c = abbr.charAt(j);\n            if (Character.isDigit(c)) {\n                if (c == '0' && x == 0) {\n                    return false;\n                }\n                x = x * 10 + (c - '0');\n            } else {\n                i += x;\n                x = 0;\n                if (i >= m || word.charAt(i) != c) {\n                    return false;\n                }\n                ++i;\n            }\n        }\n        return i + x == m && j == n;\n    }\n}",
+    "javascript": "function validWordAbbreviation(word: string, abbr: string): boolean {\n    const [m, n] = [word.length, abbr.length];\n    let [i, j, x] = [0, 0, 0];\n    for (; i < m && j < n; ++j) {\n        if (abbr[j] >= '0' && abbr[j] <= '9') {\n            if (abbr[j] === '0' && x === 0) {\n                return false;\n            }\n            x = x * 10 + Number(abbr[j]);\n        } else {\n            i += x;\n            x = 0;\n            if (i >= m || word[i++] !== abbr[j]) {\n                return false;\n            }\n        }\n    }\n    return i + x === m && j === n;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"internationalization\", abbr = \"i12iz4n\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"apple\", abbr = \"a2e\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Word Abbreviation.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

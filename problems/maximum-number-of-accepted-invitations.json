@@ -1,0 +1,64 @@
+{
+  "id": 1820,
+  "slug": "maximum-number-of-accepted-invitations",
+  "title": "Maximum Number of Accepted Invitations",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Accepted%20Invitations"
+  },
+  "description": "There are `m` boys and `n` girls in a class attending an upcoming party.\n\nYou are given an `m x n` integer matrix `grid`, where `grid[i][j]` equals `0` or `1`. If `grid[i][j] == 1`, then that means the `i^th` boy can invite the `j^th` girl to the party. A boy can invite at most** one girl**, and a girl can accept at most **one invitation** from a boy.\n\nReturn *the **maximum** possible number of accepted invitations.*",
+  "examples": [
+    {
+      "input": "grid = [[1,1,1],\n               [1,0,1],\n               [0,0,1]]",
+      "output": "3",
+      "explanation": "The invitations are sent as follows:\n- The 1st boy invites the 2nd girl.\n- The 2nd boy invites the 1st girl.\n- The 3rd boy invites the 3rd girl."
+    },
+    {
+      "input": "grid = [[1,0,1,0],\n               [1,0,0,0],\n               [0,0,1,0],\n               [1,1,1,0]]",
+      "output": "3",
+      "explanation": "The invitations are sent as follows:\n-The 1st boy invites the 3rd girl.\n-The 2nd boy invites the 1st girl.\n-The 3rd boy invites no one.\n-The 4th boy invites the 2nd girl."
+    }
+  ],
+  "constraints": [
+    "grid.length == m",
+    "grid[i].length == n",
+    "1 <= m, n <= 200",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumInvitations(self, grid: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maximumInvitations(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[][] grid;\n    private boolean[] vis;\n    private int[] match;\n    private int n;\n\n    public int maximumInvitations(int[][] grid) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumInvitations(self, grid: List[List[int]]) -> int:\n        def find(i):\n            for j, v in enumerate(grid[i]):\n                if v and j not in vis:\n                    vis.add(j)\n                    if match[j] == -1 or find(match[j]):\n                        match[j] = i\n                        return True\n            return False\n\n        m, n = len(grid), len(grid[0])\n        match = [-1] * n\n        ans = 0\n        for i in range(m):\n            vis = set()\n            ans += find(i)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maximumInvitations(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        bool vis[210];\n        int match[210];\n        memset(match, -1, sizeof match);\n        int ans = 0;\n        function<bool(int)> find = [&](int i) -> bool {\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j] && !vis[j]) {\n                    vis[j] = true;\n                    if (match[j] == -1 || find(match[j])) {\n                        match[j] = i;\n                        return true;\n                    }\n                }\n            }\n            return false;\n        };\n        for (int i = 0; i < m; ++i) {\n            memset(vis, 0, sizeof vis);\n            ans += find(i);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private int[][] grid;\n    private boolean[] vis;\n    private int[] match;\n    private int n;\n\n    public int maximumInvitations(int[][] grid) {\n        int m = grid.length;\n        n = grid[0].length;\n        this.grid = grid;\n        vis = new boolean[n];\n        match = new int[n];\n        Arrays.fill(match, -1);\n        int ans = 0;\n        for (int i = 0; i < m; ++i) {\n            Arrays.fill(vis, false);\n            if (find(i)) {\n                ++ans;\n            }\n        }\n        return ans;\n    }\n\n    private boolean find(int i) {\n        for (int j = 0; j < n; ++j) {\n            if (grid[i][j] == 1 && !vis[j]) {\n                vis[j] = true;\n                if (match[j] == -1 || find(match[j])) {\n                    match[j] = i;\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1,1],\n               [1,0,1],\n               [0,0,1]]",
+      "expected": "3"
+    },
+    {
+      "input": "[[1,0,1,0],\n               [1,0,0,0],\n               [0,0,1,0],\n               [1,1,1,0]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Accepted Invitations.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

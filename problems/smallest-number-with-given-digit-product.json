@@ -1,0 +1,69 @@
+{
+  "id": 2847,
+  "slug": "smallest-number-with-given-digit-product",
+  "title": "Smallest Number With Given Digit Product",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Smallest%20Number%20With%20Given%20Digit%20Product"
+  },
+  "description": "Given a **positive** integer `n`, return *a string representing the **smallest positive** integer such that the product of its digits is equal to* `n`*, or *`\"-1\"`* if no such number exists*.",
+  "examples": [
+    {
+      "input": "n = 105",
+      "output": "\"357\"",
+      "explanation": "3 * 5 * 7 = 105. It can be shown that 357 is the smallest number with a product of digits equal to 105. So the answer would be \"357\"."
+    },
+    {
+      "input": "n = 7",
+      "output": "\"7\"",
+      "explanation": "Since 7 has only one digit, its product of digits would be 7. We will show that 7 is the smallest number with a product of digits equal to 7. Since the product of numbers 1 to 6 is 1 to 6 respectively, so \"7\" would be the answer."
+    },
+    {
+      "input": "n = 44",
+      "output": "\"-1\"",
+      "explanation": "It can be shown that there is no number such that its product of digits is equal to 44. So the answer would be \"-1\"."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^18"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def smallestNumber(self, n: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string smallestNumber(long long n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String smallestNumber(long n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def smallestNumber(self, n: int) -> str:\n        cnt = [0] * 10\n        for i in range(9, 1, -1):\n            while n % i == 0:\n                n //= i\n                cnt[i] += 1\n        if n > 1:\n            return \"-1\"\n        ans = \"\".join(str(i) * cnt[i] for i in range(2, 10))\n        return ans if ans else \"1\"",
+    "cpp": "class Solution {\npublic:\n    string smallestNumber(long long n) {\n        int cnt[10]{};\n        for (int i = 9; i > 1; --i) {\n            while (n % i == 0) {\n                n /= i;\n                ++cnt[i];\n            }\n        }\n        if (n > 1) {\n            return \"-1\";\n        }\n        string ans;\n        for (int i = 2; i < 10; ++i) {\n            ans += string(cnt[i], '0' + i);\n        }\n        return ans == \"\" ? \"1\" : ans;\n    }\n};",
+    "java": "class Solution {\n    public String smallestNumber(long n) {\n        int[] cnt = new int[10];\n        for (int i = 9; i > 1; --i) {\n            while (n % i == 0) {\n                ++cnt[i];\n                n /= i;\n            }\n        }\n        if (n > 1) {\n            return \"-1\";\n        }\n        StringBuilder sb = new StringBuilder();\n        for (int i = 2; i < 10; ++i) {\n            while (cnt[i] > 0) {\n                sb.append(i);\n                --cnt[i];\n            }\n        }\n        String ans = sb.toString();\n        return ans.isEmpty() ? \"1\" : ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "105",
+      "expected": "\"357\""
+    },
+    {
+      "input": "7",
+      "expected": "\"7\""
+    },
+    {
+      "input": "44",
+      "expected": "\"-1\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Smallest Number With Given Digit Product.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

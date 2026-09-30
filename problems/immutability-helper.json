@@ -1,0 +1,66 @@
+{
+  "id": 2691,
+  "slug": "immutability-helper",
+  "title": "Immutability Helper",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Immutability%20Helper"
+  },
+  "description": "Creating clones of immutable objects with minor alterations can be a tedious process. Write a class `ImmutableHelper` that serves as a tool to help with this requirement. The constructor accepts an immutable object `obj` which will be a JSON object or array.\n\nThe class has a single method `produce` which accepts a function `mutator`. The function returns a new object which is similar to the original except it has those mutations applied.\n\n`mutator` accepts a **proxied** version of `obj`. A user of this function can (appear to) mutate this object, but the original object `obj` should not actually be effected.\n\nFor example, a user could write code like this:\n\nconst originalObj = {\"x\": 5};\nconst helper = new ImmutableHelper(originalObj);\nconst newObj = helper.produce((proxy) => {\n  proxy.x = proxy.x + 1;\n});\nconsole.log(originalObj); // {\"x\": 5}\nconsole.log(newObj); // {\"x\": 6}\n\nProperties of the `mutator` function:\n\n\tIt will always return `undefined`.\n\tIt will never access keys that don't exist.\n\tIt will never delete keys (`delete obj.key`)\n\tIt will never call methods on a proxied object (`push`, `shift`, etc).\n\tIt will never set keys to objects (`proxy.x = {}`)\n\n**Note on how the solution will be tested:** the solution validator will only analyze differences between what was returned and the original `obj`. Doing a full comparison would be too computationally expensive. Also, any mutations to the original object will result in a wrong answer.",
+  "examples": [
+    {
+      "input": "obj = {\"val\": 10}, \nmutators = [\n  proxy => { proxy.val += 1; },\n  proxy => { proxy.val -= 1; }\n]",
+      "output": "[\n  {\"val\": 11},\n  {\"val\": 9}\n]",
+      "explanation": "const helper = new ImmutableHelper({val: 10});\nhelper.produce(proxy => { proxy.val += 1; }); // { \"val\": 11 }\nhelper.produce(proxy => { proxy.val -= 1; }); // { \"val\": 9 }"
+    },
+    {
+      "input": "obj = {\"arr\": [1, 2, 3]} \nmutators = [\n proxy => { \n   proxy.arr[0] = 5; \n   proxy.newVal = proxy.arr[0] + proxy.arr[1];\n }\n]",
+      "output": "[\n  {\"arr\": [5, 2, 3], \"newVal\": 7 } \n]",
+      "explanation": "Two edits were made to the original array. The first element in the array was to set 5. Then a new key was added with a value of 7."
+    },
+    {
+      "input": "obj = {\"obj\": {\"val\": {\"x\": 10, \"y\": 20}}}\nmutators = [\n  proxy => { \n    let data = proxy.obj.val; \n    let temp = data.x; \n    data.x = data.y; \n    data.y = temp; \n  }\n]",
+      "output": "[\n  {\"obj\": {\"val\": {\"x\": 20, \"y\": 10}}}\n]",
+      "explanation": "The values of \"x\" and \"y\" were swapped."
+    }
+  ],
+  "constraints": [
+    "2 <= JSON.stringify(obj).length <= 4 * 10^5",
+    "mutators is an array of functions",
+    "total calls to produce() < 10^5"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "{\"val\": 10}, \nmutators = [\n  proxy => { proxy.val += 1; },\n  proxy => { proxy.val -= 1; }\n]",
+      "expected": "[\n  {\"val\": 11},\n  {\"val\": 9}\n]"
+    },
+    {
+      "input": "{\"arr\": [1, 2, 3]} \nmutators = [\n proxy => { \n   proxy.arr[0] = 5; \n   proxy.newVal = proxy.arr[0] + proxy.arr[1];\n }\n]",
+      "expected": "[\n  {\"arr\": [5, 2, 3], \"newVal\": 7 } \n]"
+    },
+    {
+      "input": "{\"obj\": {\"val\": {\"x\": 10, \"y\": 20}}}\nmutators = [\n  proxy => { \n    let data = proxy.obj.val; \n    let temp = data.x; \n    data.x = data.y; \n    data.y = temp; \n  }\n]",
+      "expected": "[\n  {\"obj\": {\"val\": {\"x\": 20, \"y\": 10}}}\n]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Immutability Helper.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

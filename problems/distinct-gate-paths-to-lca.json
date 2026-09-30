@@ -1,0 +1,55 @@
+{
+  "id": 3973,
+  "slug": "distinct-gate-paths-to-lca",
+  "title": "Distinct Gate Paths to LCA",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Distinct%20Gate%20Paths%20to%20LCA"
+  },
+  "description": "You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`, represented by an array `parent` where `parent[i]` is the parent of node `i`.\n\nEach node `i` has three types of gates, given in a 2D array `gates` where `gates[i] = [redi, bluei, whitei]` which represents the number of **red**, **blue**, and **white** gates at node `i`.\n\n\t**Red** gate: usable only with a **red** card.\n\t**Blue** gate: usable only with a **blue** card.\n\t**White** gate: usable with **either** card, but **flips** the card color when used.\n\nAlice and Bob start at given nodes with either a red or blue card (`1` = red, `0` = blue). They must **independently** move **upward** to their **lowest common ancestor (LCA)**.\n\nAt each node, a person may move to their parent **only if** they can use **at least** one gate at that node with their current card. **White** gates may be used any number of times to flip the card color.\n\n**Movement rules (one move = from `u` to `parent[u]`):**\n\n\tMovement is only upward toward the root.\n\tAt node `u`, pick **exactly** one specific gate instance. Identical gates are treated as **separate** and counted individually.\n\tIf holding a **red** card: use a red gate to remain red, or a white gate to **change** to blue.\n\tIf holding a **blue** card: use a blue gate to remain blue, or a white gate to **change** to red.\n\tIf no usable gate exists at `u`, the sequence ends.\n\nYou are also given a 2D array `queries` where `queries[i] = [aNodei, aCardi, bNodei, bCardi]`:\n\n\t`aNodei`, `aCardi`: Alice's starting node and card.\n\t`bNodei`, `bCardi`: Bob's starting node and card.\n\nFor each query, count the number of **distinct** valid ways **modulo** `10^9 + 7` for both to reach their **LCA**.\n\nAfter computing the result for all queries, return the **bitwise XOR** of those values.\n\n**Note:**\n\n\tTwo ways are distinct if the set of gates used **differs** for either Alice or Bob.\n\tIf any person is already at the **LCA**, then the number of ways for them is 1.\n\tThe **lowest common ancestor (LCA)** is defined between two nodes `a` and `b` as the lowest node in a tree that has both `a` and `b` as descendants (where a node is allowed to be a descendant of itself).",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 2 * 10^4",
+    "n == parent.length == gates.length",
+    "parent[0] == -1",
+    "0 <= parent[i] < n for i in [1, n - 1]",
+    "gates[i] == [redi, bluei, whitei]",
+    "0 <= redi, bluei, whitei <= 10",
+    "1 <= queries.length <= 2 * 10^4",
+    "queries[i] = [aNodei, aCardi, bNodei, bCardi]",
+    "0 <= aNodei, bNodei <= n - 1",
+    "0 <= aCardi, bCardi <= 1",
+    "The input is generated such that the array parent represents a valid tree."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Distinct Gate Paths to LCA.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

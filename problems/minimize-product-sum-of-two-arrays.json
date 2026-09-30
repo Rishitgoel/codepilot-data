@@ -1,0 +1,64 @@
+{
+  "id": 1874,
+  "slug": "minimize-product-sum-of-two-arrays",
+  "title": "Minimize Product Sum of Two Arrays",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimize%20Product%20Sum%20of%20Two%20Arrays"
+  },
+  "description": "The product sum of two equal-length arrays `a` and `b` is equal to the sum of `a[i] * b[i]` for all `0 \n\tFor example, if `a = [1,2,3,4]` and `b = [5,2,3,1]`, the **product sum** would be `1*5 + 2*2 + 3*3 + 4*1 = 22`.\n\nGiven two arrays `nums1` and `nums2` of length `n`, return *the **minimum product sum** if you are allowed to **rearrange** the **order** of the elements in *`nums1`.",
+  "examples": [
+    {
+      "input": "nums1 = [5,3,4,2], nums2 = [4,2,2,5]",
+      "output": "40",
+      "explanation": " We can rearrange nums1 to become [3,5,4,2]. The product sum of [3,5,4,2] and [4,2,2,5] is 3*4 + 5*2 + 4*2 + 2*5 = 40."
+    },
+    {
+      "input": "nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]",
+      "output": "65",
+      "explanation": "We can rearrange nums1 to become [5,7,4,1,2]. The product sum of [5,7,4,1,2] and [3,2,4,8,6] is 5*3 + 7*2 + 4*4 + 1*8 + 2*6 = 65."
+    }
+  ],
+  "constraints": [
+    "n == nums1.length == nums2.length",
+    "1 <= n <= 10^5",
+    "1 <= nums1[i], nums2[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minProductSum(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minProductSum(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minProductSum(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
+    "javascript": "function minProductSum(nums1: number[], nums2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minProductSum(self, nums1: List[int], nums2: List[int]) -> int:\n        nums1.sort()\n        nums2.sort(reverse=True)\n        return sum(x * y for x, y in zip(nums1, nums2))",
+    "cpp": "class Solution {\npublic:\n    int minProductSum(vector<int>& nums1, vector<int>& nums2) {\n        ranges::sort(nums1);\n        ranges::sort(nums2, greater<int>());\n        int n = nums1.size();\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            ans += nums1[i] * nums2[i];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minProductSum(int[] nums1, int[] nums2) {\n        Arrays.sort(nums1);\n        Arrays.sort(nums2);\n        int n = nums1.length;\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            ans += nums1[i] * nums2[n - i - 1];\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minProductSum(nums1: number[], nums2: number[]): number {\n    nums1.sort((a, b) => a - b);\n    nums2.sort((a, b) => b - a);\n    let ans = 0;\n    for (let i = 0; i < nums1.length; ++i) {\n        ans += nums1[i] * nums2[i];\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,3,4,2], nums2 = [4,2,2,5]",
+      "expected": "40"
+    },
+    {
+      "input": "[2,1,4,5,7], nums2 = [3,2,4,8,6]",
+      "expected": "65"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimize Product Sum of Two Arrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

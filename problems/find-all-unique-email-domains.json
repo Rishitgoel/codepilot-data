@@ -1,0 +1,50 @@
+{
+  "id": 3059,
+  "slug": "find-all-unique-email-domains",
+  "title": "Find All Unique Email Domains",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20All%20Unique%20Email%20Domains"
+  },
+  "description": "Table: `Emails`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| email       | varchar |\n+-------------+---------+\nid is the primary key (column with unique values) for this table.\nEach row of this table contains an email. The emails will not contain uppercase letters.\n\nWrite a solution to find all **unique email domains** and count the number of **individuals** associated with each domain. **Consider only** those domains that **end** with **.com**.\n\nReturn *the result table orderd by email domains in ***ascending*** order*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Emails table:\n+-----+-----------------------+\n| id  | email                 |\n+-----+-----------------------+\n| 336 | hwkiy@test.edu        |\n| 489 | adcmaf@outlook.com    |\n| 449 | vrzmwyum@yahoo.com    |\n| 95  | tof@test.edu          |\n| 320 | jxhbagkpm@example.org |\n| 411 | zxcf@outlook.com      |\n+----+------------------------+",
+      "output": "+--------------+-------+\n| email_domain | count |\n+--------------+-------+\n| outlook.com  | 2     |\n| yahoo.com    | 1     |  \n+--------------+-------+",
+      "explanation": "- The valid domains ending with \".com\" are only \"outlook.com\" and \"yahoo.com\", with respective counts of 2 and 1.\nOutput table is ordered by email_domains in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_unique_email_domains(emails: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_unique_email_domains(emails: pd.DataFrame) -> pd.DataFrame:\r\n    emails[\"email_domain\"] = emails[\"email\"].str.split(\"@\").str[-1]\r\n    emails = emails[emails[\"email\"].str.contains(\".com\")]\r\n    return (\r\n        emails.groupby(\"email_domain\")\r\n        .size()\r\n        .reset_index(name=\"count\")\r\n        .sort_values(by=\"email_domain\")\r\n    )"
+  },
+  "testcases": [
+    {
+      "input": "Emails table:\n+-----+-----------------------+\n| id  | email                 |\n+-----+-----------------------+\n| 336 | hwkiy@test.edu        |\n| 489 | adcmaf@outlook.com    |\n| 449 | vrzmwyum@yahoo.com    |\n| 95  | tof@test.edu          |\n| 320 | jxhbagkpm@example.org |\n| 411 | zxcf@outlook.com      |\n+----+------------------------+",
+      "expected": "+--------------+-------+\n| email_domain | count |\n+--------------+-------+\n| outlook.com  | 2     |\n| yahoo.com    | 1     |  \n+--------------+-------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find All Unique Email Domains.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

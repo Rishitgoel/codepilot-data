@@ -1,0 +1,46 @@
+{
+  "id": 2308,
+  "slug": "arrange-table-by-gender",
+  "title": "Arrange Table by Gender",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Arrange%20Table%20by%20Gender"
+  },
+  "description": "Table: `Genders`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| gender      | varchar |\n+-------------+---------+\nuser_id is the primary key (column with unique values) for this table.\ngender is ENUM (category) of type 'female', 'male', or 'other'.\nEach row in this table contains the ID of a user and their gender.\nThe table has an equal number of 'female', 'male', and 'other'.\n\n \n\nWrite a solution to rearrange the `Genders` table such that the rows alternate between `'female'`, `'other'`, and `'male'` in order. The table should be rearranged such that the IDs of each gender are sorted in ascending order.\n\nReturn the result table in **the mentioned order**.\n\nThe result format is shown in the following example.",
+  "examples": [
+    {
+      "input": "Genders table:\n+---------+--------+\n| user_id | gender |\n+---------+--------+\n| 4       | male   |\n| 7       | female |\n| 2       | other  |\n| 5       | male   |\n| 3       | female |\n| 8       | male   |\n| 6       | other  |\n| 1       | other  |\n| 9       | female |\n+---------+--------+",
+      "output": "+---------+--------+\n| user_id | gender |\n+---------+--------+\n| 3       | female |\n| 1       | other  |\n| 4       | male   |\n| 7       | female |\n| 2       | other  |\n| 5       | male   |\n| 9       | female |\n| 6       | other  |\n| 8       | male   |\n+---------+--------+",
+      "explanation": "Female gender: IDs 3, 7, and 9.\nOther gender: IDs 1, 2, and 6.\nMale gender: IDs 4, 5, and 8.\nWe arrange the table alternating between 'female', 'other', and 'male'.\nNote that the IDs of each gender are sorted in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Genders table:\n+---------+--------+\n| user_id | gender |\n+---------+--------+\n| 4       | male   |\n| 7       | female |\n| 2       | other  |\n| 5       | male   |\n| 3       | female |\n| 8       | male   |\n| 6       | other  |\n| 1       | other  |\n| 9       | female |\n+---------+--------+",
+      "expected": "+---------+--------+\n| user_id | gender |\n+---------+--------+\n| 3       | female |\n| 1       | other  |\n| 4       | male   |\n| 7       | female |\n| 2       | other  |\n| 5       | male   |\n| 9       | female |\n| 6       | other  |\n| 8       | male   |\n+---------+--------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Arrange Table by Gender.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

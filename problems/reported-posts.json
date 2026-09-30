@@ -1,0 +1,44 @@
+{
+  "id": 1113,
+  "slug": "reported-posts",
+  "title": "Reported Posts",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Reported%20Posts"
+  },
+  "description": "Table: `Actions`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| user_id       | int     |\n| post_id       | int     |\n| action_date   | date    | \n| action        | enum    |\n| extra         | varchar |\n+---------------+---------+\nThis table may have duplicate rows.\nThe action column is an ENUM (category) type of ('view', 'like', 'reaction', 'comment', 'report', 'share').\nThe extra column has optional information about the action, such as a reason for the report or a type of reaction.\n\n \n\nWrite a solution to report the number of posts reported yesterday for each report reason. Assume today is `2019-07-05`.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Actions table:\n+---------+---------+-------------+--------+--------+\n| user_id | post_id | action_date | action | extra  |\n+---------+---------+-------------+--------+--------+\n| 1       | 1       | 2019-07-01  | view   | null   |\n| 1       | 1       | 2019-07-01  | like   | null   |\n| 1       | 1       | 2019-07-01  | share  | null   |\n| 2       | 4       | 2019-07-04  | view   | null   |\n| 2       | 4       | 2019-07-04  | report | spam   |\n| 3       | 4       | 2019-07-04  | view   | null   |\n| 3       | 4       | 2019-07-04  | report | spam   |\n| 4       | 3       | 2019-07-02  | view   | null   |\n| 4       | 3       | 2019-07-02  | report | spam   |\n| 5       | 2       | 2019-07-04  | view   | null   |\n| 5       | 2       | 2019-07-04  | report | racism |\n| 5       | 5       | 2019-07-04  | view   | null   |\n| 5       | 5       | 2019-07-04  | report | racism |\n+---------+---------+-------------+--------+--------+",
+      "output": "+---------------+--------------+\n| report_reason | report_count |\n+---------------+--------------+\n| spam          | 1            |\n| racism        | 2            |\n+---------------+--------------+",
+      "explanation": "Note that we only care about report reasons with non-zero number of reports."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Actions table:\n+---------+---------+-------------+--------+--------+\n| user_id | post_id | action_date | action | extra  |\n+---------+---------+-------------+--------+--------+\n| 1       | 1       | 2019-07-01  | view   | null   |\n| 1       | 1       | 2019-07-01  | like   | null   |\n| 1       | 1       | 2019-07-01  | share  | null   |\n| 2       | 4       | 2019-07-04  | view   | null   |\n| 2       | 4       | 2019-07-04  | report | spam   |\n| 3       | 4       | 2019-07-04  | view   | null   |\n| 3       | 4       | 2019-07-04  | report | spam   |\n| 4       | 3       | 2019-07-02  | view   | null   |\n| 4       | 3       | 2019-07-02  | report | spam   |\n| 5       | 2       | 2019-07-04  | view   | null   |\n| 5       | 2       | 2019-07-04  | report | racism |\n| 5       | 5       | 2019-07-04  | view   | null   |\n| 5       | 5       | 2019-07-04  | report | racism |\n+---------+---------+-------------+--------+--------+",
+      "expected": "+---------------+--------------+\n| report_reason | report_count |\n+---------------+--------------+\n| spam          | 1            |\n| racism        | 2            |\n+---------------+--------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Reported Posts.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

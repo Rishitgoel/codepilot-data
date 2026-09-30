@@ -1,0 +1,64 @@
+{
+  "id": 2219,
+  "slug": "maximum-sum-score-of-array",
+  "title": "Maximum Sum Score of Array",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Sum%20Score%20of%20Array"
+  },
+  "description": "You are given a **0-indexed** integer array `nums` of length `n`.\n\nThe **sum ****score** of `nums` at an index `i` where `0 \n\tThe sum of the **first** `i + 1` elements of `nums`.\n\tThe sum of the **last** `n - i` elements of `nums`.\n\nReturn *the **maximum** **sum ****score** of *`nums`* at any index.*",
+  "examples": [
+    {
+      "input": "nums = [4,3,-2,5]",
+      "output": "10",
+      "explanation": "The sum score at index 0 is max(4, 4 + 3 + -2 + 5) = max(4, 10) = 10.\nThe sum score at index 1 is max(4 + 3, 3 + -2 + 5) = max(7, 6) = 7.\nThe sum score at index 2 is max(4 + 3 + -2, -2 + 5) = max(5, 3) = 5.\nThe sum score at index 3 is max(4 + 3 + -2 + 5, 5) = max(10, 5) = 10.\nThe maximum sum score of nums is 10."
+    },
+    {
+      "input": "nums = [-3,-5]",
+      "output": "-3",
+      "explanation": "The sum score at index 0 is max(-3, -3 + -5) = max(-3, -8) = -3.\nThe sum score at index 1 is max(-3 + -5, -5) = max(-8, -5) = -5.\nThe maximum sum score of nums is -3."
+    }
+  ],
+  "constraints": [
+    "n == nums.length",
+    "1 <= n <= 10^5",
+    "-10^5 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumSumScore(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maximumSumScore(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maximumSumScore(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function maximumSumScore(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumSumScore(self, nums: List[int]) -> int:\n        l, r = 0, sum(nums)\n        ans = -inf\n        for x in nums:\n            l += x\n            ans = max(ans, l, r)\n            r -= x\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long maximumSumScore(vector<int>& nums) {\n        long long l = 0, r = accumulate(nums.begin(), nums.end(), 0LL);\n        long long ans = -1e18;\n        for (int x : nums) {\n            l += x;\n            ans = max({ans, l, r});\n            r -= x;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maximumSumScore(int[] nums) {\n        long l = 0, r = 0;\n        for (int x : nums) {\n            r += x;\n        }\n        long ans = Long.MIN_VALUE;\n        for (int x : nums) {\n            l += x;\n            ans = Math.max(ans, Math.max(l, r));\n            r -= x;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maximumSumScore(nums: number[]): number {\n    let l = 0;\n    let r = nums.reduce((a, b) => a + b, 0);\n    let ans = -Infinity;\n    for (const x of nums) {\n        l += x;\n        ans = Math.max(ans, l, r);\n        r -= x;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,3,-2,5]",
+      "expected": "10"
+    },
+    {
+      "input": "[-3,-5]",
+      "expected": "-3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Sum Score of Array.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,42 @@
+{
+  "id": 3214,
+  "slug": "year-on-year-growth-rate",
+  "title": "Year on Year Growth Rate",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Year%20on%20Year%20Growth%20Rate"
+  },
+  "description": "Table: `user_transactions`\n\n+------------------+----------+\n| Column Name      | Type     | \n+------------------+----------+\n| transaction_id   | integer  |\n| product_id       | integer  |\n| spend            | decimal  |\n| transaction_date | datetime |\n+------------------+----------+\nThe transaction_id column uniquely identifies each row in this table.\nEach row of this table contains the transaction ID, product ID, the spend amount, and the transaction date.\n\nWrite a solution to calculate the **year-on-year growth rate** for the total spend **for each product**.\n\nThe result table should include the following columns:\n\n\t`year`: The year of the transaction.\n\t`product_id`: The ID of the product.\n\t`curr_year_spend`: The total spend for the current year.\n\t`prev_year_spend`: The total spend for the previous year.\n\t`yoy_rate`: The year-on-year growth rate percentage, rounded to `2` decimal places.\n\nReturn *the result table ordered by* `product_id`,`year` *in **ascending** order*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Year on Year Growth Rate.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

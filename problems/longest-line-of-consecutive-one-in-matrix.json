@@ -1,0 +1,62 @@
+{
+  "id": 562,
+  "slug": "longest-line-of-consecutive-one-in-matrix",
+  "title": "Longest Line of Consecutive One in Matrix",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Line%20of%20Consecutive%20One%20in%20Matrix"
+  },
+  "description": "Given an `m x n` binary matrix `mat`, return *the length of the longest line of consecutive one in the matrix*.\n\nThe line could be horizontal, vertical, diagonal, or anti-diagonal.",
+  "examples": [
+    {
+      "input": "mat = [[0,1,1,0],[0,1,1,0],[0,0,0,1]]",
+      "output": "3"
+    },
+    {
+      "input": "mat = [[1,1,1,1],[0,1,1,0],[0,0,0,1]]",
+      "output": "4"
+    }
+  ],
+  "constraints": [
+    "m == mat.length",
+    "n == mat[i].length",
+    "1 <= m, n <= 10^4",
+    "1 <= m * n <= 10^4",
+    "mat[i][j] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def longestLine(self, mat: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int longestLine(vector<vector<int>>& mat) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int longestLine(int[][] mat) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def longestLine(self, mat: List[List[int]]) -> int:\n        m, n = len(mat), len(mat[0])\n        a = [[0] * (n + 2) for _ in range(m + 2)]\n        b = [[0] * (n + 2) for _ in range(m + 2)]\n        c = [[0] * (n + 2) for _ in range(m + 2)]\n        d = [[0] * (n + 2) for _ in range(m + 2)]\n        ans = 0\n        for i in range(1, m + 1):\n            for j in range(1, n + 1):\n                if mat[i - 1][j - 1]:\n                    a[i][j] = a[i - 1][j] + 1\n                    b[i][j] = b[i][j - 1] + 1\n                    c[i][j] = c[i - 1][j - 1] + 1\n                    d[i][j] = d[i - 1][j + 1] + 1\n                    ans = max(ans, a[i][j], b[i][j], c[i][j], d[i][j])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int longestLine(vector<vector<int>>& mat) {\n        int m = mat.size(), n = mat[0].size();\n        vector<vector<int>> a(m + 2, vector<int>(n + 2));\n        vector<vector<int>> b(m + 2, vector<int>(n + 2));\n        vector<vector<int>> c(m + 2, vector<int>(n + 2));\n        vector<vector<int>> d(m + 2, vector<int>(n + 2));\n        int ans = 0;\n        for (int i = 1; i <= m; ++i) {\n            for (int j = 1; j <= n; ++j) {\n                if (mat[i - 1][j - 1]) {\n                    a[i][j] = a[i - 1][j] + 1;\n                    b[i][j] = b[i][j - 1] + 1;\n                    c[i][j] = c[i - 1][j - 1] + 1;\n                    d[i][j] = d[i - 1][j + 1] + 1;\n                    ans = max(ans, max(a[i][j], max(b[i][j], max(c[i][j], d[i][j]))));\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int longestLine(int[][] mat) {\n        int m = mat.length, n = mat[0].length;\n        int[][] a = new int[m + 2][n + 2];\n        int[][] b = new int[m + 2][n + 2];\n        int[][] c = new int[m + 2][n + 2];\n        int[][] d = new int[m + 2][n + 2];\n        int ans = 0;\n        for (int i = 1; i <= m; ++i) {\n            for (int j = 1; j <= n; ++j) {\n                if (mat[i - 1][j - 1] == 1) {\n                    a[i][j] = a[i - 1][j] + 1;\n                    b[i][j] = b[i][j - 1] + 1;\n                    c[i][j] = c[i - 1][j - 1] + 1;\n                    d[i][j] = d[i - 1][j + 1] + 1;\n                    ans = max(ans, a[i][j], b[i][j], c[i][j], d[i][j]);\n                }\n            }\n        }\n        return ans;\n    }\n\n    private int max(int... arr) {\n        int ans = 0;\n        for (int v : arr) {\n            ans = Math.max(ans, v);\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,1,1,0],[0,1,1,0],[0,0,0,1]]",
+      "expected": "3"
+    },
+    {
+      "input": "[[1,1,1,1],[0,1,1,0],[0,0,0,1]]",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Line of Consecutive One in Matrix.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,55 @@
+{
+  "id": 2061,
+  "slug": "number-of-spaces-cleaning-robot-cleaned",
+  "title": "Number of Spaces Cleaning Robot Cleaned",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft",
+    "GEICO"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Spaces%20Cleaning%20Robot%20Cleaned"
+  },
+  "description": "A room is represented by a **0-indexed** 2D binary matrix `room` where a `0` represents an **empty** space and a `1` represents a space with an **object**. The top left corner of the room will be empty in all test cases.\n\nA cleaning robot starts at the top left corner of the room and is facing right. The robot will continue heading straight until it reaches the edge of the room or it hits an object, after which it will turn 90 degrees **clockwise** and repeat this process. The starting space and all spaces that the robot visits are **cleaned** by it.\n\nReturn *the number of **clean** spaces in the room if the robot runs indefinitely.*",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "m == room.length",
+    "n == room[r].length",
+    "1 <= m, n <= 300",
+    "room[r][c] is either 0 or 1.",
+    "room[0][0] == 0"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def numberOfCleanRooms(self, room: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int numberOfCleanRooms(vector<vector<int>>& room) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private boolean[][][] vis;\n    private int[][] room;\n    private int ans;\n\n    public int numberOfCleanRooms(int[][] room) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def numberOfCleanRooms(self, room: List[List[int]]) -> int:\n        def dfs(i, j, k):\n            if (i, j, k) in vis:\n                return\n            nonlocal ans\n            ans += room[i][j] == 0\n            room[i][j] = -1\n            vis.add((i, j, k))\n            x, y = i + dirs[k], j + dirs[k + 1]\n            if 0 <= x < len(room) and 0 <= y < len(room[0]) and room[x][y] != 1:\n                dfs(x, y, k)\n            else:\n                dfs(i, j, (k + 1) % 4)\n\n        vis = set()\n        dirs = (0, 1, 0, -1, 0)\n        ans = 0\n        dfs(0, 0, 0)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int numberOfCleanRooms(vector<vector<int>>& room) {\n        int m = room.size(), n = room[0].size();\n        bool vis[m][n][4];\n        memset(vis, false, sizeof(vis));\n        int dirs[5] = {0, 1, 0, -1, 0};\n        int ans = 0;\n        function<void(int, int, int)> dfs = [&](int i, int j, int k) {\n            if (vis[i][j][k]) {\n                return;\n            }\n            ans += room[i][j] == 0;\n            room[i][j] = -1;\n            vis[i][j][k] = true;\n            int x = i + dirs[k], y = j + dirs[k + 1];\n            if (x >= 0 && x < m && y >= 0 && y < n && room[x][y] != 1) {\n                dfs(x, y, k);\n            } else {\n                dfs(i, j, (k + 1) % 4);\n            }\n        };\n        dfs(0, 0, 0);\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private boolean[][][] vis;\n    private int[][] room;\n    private int ans;\n\n    public int numberOfCleanRooms(int[][] room) {\n        vis = new boolean[room.length][room[0].length][4];\n        this.room = room;\n        dfs(0, 0, 0);\n        return ans;\n    }\n\n    private void dfs(int i, int j, int k) {\n        if (vis[i][j][k]) {\n            return;\n        }\n        int[] dirs = {0, 1, 0, -1, 0};\n        ans += room[i][j] == 0 ? 1 : 0;\n        room[i][j] = -1;\n        vis[i][j][k] = true;\n        int x = i + dirs[k], y = j + dirs[k + 1];\n        if (x >= 0 && x < room.length && y >= 0 && y < room[0].length && room[x][y] != 1) {\n            dfs(x, y, k);\n        } else {\n            dfs(i, j, (k + 1) % 4);\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Spaces Cleaning Robot Cleaned.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,43 @@
+{
+  "id": 1990,
+  "slug": "count-the-number-of-experiments",
+  "title": "Count the Number of Experiments",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Strava"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20the%20Number%20of%20Experiments"
+  },
+  "description": "Table: `Experiments`\n\n+-----------------+------+\n| Column Name     | Type |\n+-----------------+------+\n| experiment_id   | int  |\n| platform        | enum |\n| experiment_name | enum |\n+-----------------+------+\nexperiment_id is the column with unique values for this table.\nplatform is an enum (category) type of values ('Android', 'IOS', 'Web').\nexperiment_name is an enum (category) type of values ('Reading', 'Sports', 'Programming').\nThis table contains information about the ID of an experiment done with a random person, the platform used to do the experiment, and the name of the experiment.\n\n \n\nWrite a solution to report the **number of experiments** done on each of the three platforms for each of the three given experiments. Notice that all the pairs of (platform, experiment) should be included in the output **including** the pairs with **zero experiments**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Experiments table:\n+---------------+----------+-----------------+\n| experiment_id | platform | experiment_name |\n+---------------+----------+-----------------+\n| 4             | IOS      | Programming     |\n| 13            | IOS      | Sports          |\n| 14            | Android  | Reading         |\n| 8             | Web      | Reading         |\n| 12            | Web      | Reading         |\n| 18            | Web      | Programming     |\n+---------------+----------+-----------------+",
+      "output": "+----------+-----------------+-----------------+\n| platform | experiment_name | num_experiments |\n+----------+-----------------+-----------------+\n| Android  | Reading         | 1               |\n| Android  | Sports          | 0               |\n| Android  | Programming     | 0               |\n| IOS      | Reading         | 0               |\n| IOS      | Sports          | 1               |\n| IOS      | Programming     | 1               |\n| Web      | Reading         | 2               |\n| Web      | Sports          | 0               |\n| Web      | Programming     | 1               |\n+----------+-----------------+-----------------+",
+      "explanation": "On the platform \"Android\", we had only one \"Reading\" experiment.\nOn the platform \"IOS\", we had one \"Sports\" experiment and one \"Programming\" experiment.\nOn the platform \"Web\", we had two \"Reading\" experiments and one \"Programming\" experiment."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Experiments table:\n+---------------+----------+-----------------+\n| experiment_id | platform | experiment_name |\n+---------------+----------+-----------------+\n| 4             | IOS      | Programming     |\n| 13            | IOS      | Sports          |\n| 14            | Android  | Reading         |\n| 8             | Web      | Reading         |\n| 12            | Web      | Reading         |\n| 18            | Web      | Programming     |\n+---------------+----------+-----------------+",
+      "expected": "+----------+-----------------+-----------------+\n| platform | experiment_name | num_experiments |\n+----------+-----------------+-----------------+\n| Android  | Reading         | 1               |\n| Android  | Sports          | 0               |\n| Android  | Programming     | 0               |\n| IOS      | Reading         | 0               |\n| IOS      | Sports          | 1               |\n| IOS      | Programming     | 1               |\n| Web      | Reading         | 2               |\n| Web      | Sports          | 0               |\n| Web      | Programming     | 1               |\n+----------+-----------------+-----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count the Number of Experiments.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,52 @@
+{
+  "id": 3949,
+  "slug": "subtree-inversion-sum-ii",
+  "title": "Subtree Inversion Sum II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Subtree%20Inversion%20Sum%20II"
+  },
+  "description": "You are given an undirected tree rooted at node 0, with `n` nodes numbered from 0 to `n - 1`. The tree is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an edge between nodes `ui` and `vi`.\n\nYou are also given an integer array `nums` of length `n`, where `nums[i]` represents the value at node `i`, and an integer `k`.\n\nYou may perform **inversion operations** on a subset of nodes subject to the following rules:\n\n\t\n\tSubtree Inversion Operation:\n\n    \n    \t\n    \tWhen you invert a node, every value in the subtree rooted at that node is multiplied by -1.\n\n    \t\n    \n    \n    \n    Distance Constraint on Inversions:\n\n    \n    \t\n    \tYou may only invert a node if it is &ldquo;sufficiently far&rdquo; from any other inverted node.\n\n    \t\n    \t\n    \tIf you invert two nodes `a` and `b`, the **distance** (the number of edges on the unique path between them) must be **at least** `k`.\n\n    \t\n    \n    \n\nReturn the **maximum** possible **sum** of the tree&rsquo;s node values after applying **inversion operations**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "nums.length == n",
+    "edges.length == n - 1",
+    "2 <= n <= 5 * 10^4",
+    "edges[i].length == 2",
+    "0 <= edges[i][0], edges[i][1] < n",
+    "-4 * 10^4 <= nums[i] <= 4 * 10^4",
+    "1 <= k <= 50",
+    "It is guaranteed that edges forms a tree."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Subtree Inversion Sum II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,70 @@
+{
+  "id": 545,
+  "slug": "boundary-of-binary-tree",
+  "title": "Boundary of Binary Tree",
+  "difficulty": "Medium",
+  "rating": 1690,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Bloomberg",
+    "Facebook",
+    "Uber",
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Boundary%20of%20Binary%20Tree"
+  },
+  "description": "The **boundary** of a binary tree is the concatenation of the **root**, the **left boundary**, the **leaves** ordered from left-to-right, and the **reverse order** of the **right boundary**.\n\nThe **left boundary** is the set of nodes defined by the following:\n\n\tThe root node's left child is in the left boundary. If the root does not have a left child, then the left boundary is **empty**.\n\tIf a node is in the left boundary and has a left child, then the left child is in the left boundary.\n\tIf a node is in the left boundary, has **no** left child, but has a right child, then the right child is in the left boundary.\n\tThe leftmost leaf is **not** in the left boundary.\n\nThe **right boundary** is similar to the **left boundary**, except it is the right side of the root's right subtree. Again, the leaf is **not** part of the **right boundary**, and the **right boundary** is empty if the root does not have a right child.\n\nThe **leaves** are nodes that do not have any children. For this problem, the root is **not** a leaf.\n\nGiven the `root` of a binary tree, return *the values of its **boundary***.",
+  "examples": [
+    {
+      "input": "root = [1,null,2,3,4]",
+      "output": "[1,3,4,2]",
+      "explanation": "- The left boundary is empty because the root does not have a left child.\n- The right boundary follows the path starting from the root's right child 2 -> 4.\n  4 is a leaf, so the right boundary is [2].\n- The leaves from left to right are [3,4].\nConcatenating everything results in [1] + [] + [3,4] + [2] = [1,3,4,2]."
+    },
+    {
+      "input": "root = [1,2,3,4,5,6,null,null,null,7,8,9,10]",
+      "output": "[1,2,4,7,8,9,10,6,3]",
+      "explanation": "- The left boundary follows the path starting from the root's left child 2 -> 4.\n  4 is a leaf, so the left boundary is [2].\n- The right boundary follows the path starting from the root's right child 3 -> 6 -> 10.\n  10 is a leaf, so the right boundary is [3,6], and in reverse order is [6,3].\n- The leaves from left to right are [4,7,8,9,10].\nConcatenating everything results in [1] + [2] + [4,7,8,9,10] + [6,3] = [1,2,4,7,8,9,10,6,3]."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-1000 <= Node.val <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\r\n * Definition for a binary tree node.\r\n * struct TreeNode {\r\n *     int val;\r\n *     TreeNode *left;\r\n *     TreeNode *right;\r\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\r\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> boundaryOfBinaryTree(TreeNode root) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction boundaryOfBinaryTree(root: TreeNode | null): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def boundaryOfBinaryTree(self, root: Optional[TreeNode]) -> List[int]:\n        def dfs(nums: List[int], root: Optional[TreeNode], i: int):\n            if root is None:\n                return\n            if i == 0:\n                if root.left != root.right:\n                    nums.append(root.val)\n                    if root.left:\n                        dfs(nums, root.left, i)\n                    else:\n                        dfs(nums, root.right, i)\n            elif i == 1:\n                if root.left == root.right:\n                    nums.append(root.val)\n                else:\n                    dfs(nums, root.left, i)\n                    dfs(nums, root.right, i)\n            else:\n                if root.left != root.right:\n                    nums.append(root.val)\n                    if root.right:\n                        dfs(nums, root.right, i)\n                    else:\n                        dfs(nums, root.left, i)\n\n        ans = [root.val]\n        if root.left == root.right:\n            return ans\n        left, leaves, right = [], [], []\n        dfs(left, root.left, 0)\n        dfs(leaves, root, 1)\n        dfs(right, root.right, 2)\n        ans += left + leaves + right[::-1]\n        return ans",
+    "cpp": "/**\r\n * Definition for a binary tree node.\r\n * struct TreeNode {\r\n *     int val;\r\n *     TreeNode *left;\r\n *     TreeNode *right;\r\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\r\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\r\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\r\n * };\r\n */\r\nclass Solution {\r\npublic:\r\n    vector<int> boundaryOfBinaryTree(TreeNode* root) {\r\n        auto dfs = [&](this auto&& dfs, vector<int>& nums, TreeNode* root, int i) -> void {\r\n            if (!root) {\r\n                return;\r\n            }\r\n            if (i == 0) {\r\n                if (root->left != root->right) {\r\n                    nums.push_back(root->val);\r\n                    if (root->left) {\r\n                        dfs(nums, root->left, i);\r\n                    } else {\r\n                        dfs(nums, root->right, i);\r\n                    }\r\n                }\r\n            } else if (i == 1) {\r\n                if (root->left == root->right) {\r\n                    nums.push_back(root->val);\r\n                } else {\r\n                    dfs(nums, root->left, i);\r\n                    dfs(nums, root->right, i);\r\n                }\r\n            } else {\r\n                if (root->left != root->right) {\r\n                    nums.push_back(root->val);\r\n                    if (root->right) {\r\n                        dfs(nums, root->right, i);\r\n                    } else {\r\n                        dfs(nums, root->left, i);\r\n                    }\r\n                }\r\n            }\r\n        };\r\n        vector<int> ans = {root->val};\r\n        if (root->left == root->right) {\r\n            return ans;\r\n        }\r\n        vector<int> left, right, leaves;\r\n        dfs(left, root->left, 0);\r\n        dfs(leaves, root, 1);\r\n        dfs(right, root->right, 2);\r\n        ans.insert(ans.end(), left.begin(), left.end());\r\n        ans.insert(ans.end(), leaves.begin(), leaves.end());\r\n        ans.insert(ans.end(), right.rbegin(), right.rend());\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\n    public List<Integer> boundaryOfBinaryTree(TreeNode root) {\n        List<Integer> ans = new ArrayList<>();\n        ans.add(root.val);\n        if (root.left == root.right) {\n            return ans;\n        }\n        List<Integer> left = new ArrayList<>();\n        List<Integer> leaves = new ArrayList<>();\n        List<Integer> right = new ArrayList<>();\n        dfs(left, root.left, 0);\n        dfs(leaves, root, 1);\n        dfs(right, root.right, 2);\n\n        ans.addAll(left);\n        ans.addAll(leaves);\n        Collections.reverse(right);\n        ans.addAll(right);\n        return ans;\n    }\n\n    private void dfs(List<Integer> nums, TreeNode root, int i) {\n        if (root == null) {\n            return;\n        }\n        if (i == 0) {\n            if (root.left != root.right) {\n                nums.add(root.val);\n                if (root.left != null) {\n                    dfs(nums, root.left, i);\n                } else {\n                    dfs(nums, root.right, i);\n                }\n            }\n        } else if (i == 1) {\n            if (root.left == root.right) {\n                nums.add(root.val);\n            } else {\n                dfs(nums, root.left, i);\n                dfs(nums, root.right, i);\n            }\n        } else {\n            if (root.left != root.right) {\n                nums.add(root.val);\n                if (root.right != null) {\n                    dfs(nums, root.right, i);\n                } else {\n                    dfs(nums, root.left, i);\n                }\n            }\n        }\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction boundaryOfBinaryTree(root: TreeNode | null): number[] {\n    const ans: number[] = [root.val];\n    if (root.left === root.right) {\n        return ans;\n    }\n\n    const left: number[] = [];\n    const leaves: number[] = [];\n    const right: number[] = [];\n\n    const dfs = function (nums: number[], root: TreeNode | null, i: number) {\n        if (!root) {\n            return;\n        }\n        if (i === 0) {\n            if (root.left !== root.right) {\n                nums.push(root.val);\n                if (root.left) {\n                    dfs(nums, root.left, i);\n                } else {\n                    dfs(nums, root.right, i);\n                }\n            }\n        } else if (i === 1) {\n            if (root.left === root.right) {\n                nums.push(root.val);\n            } else {\n                dfs(nums, root.left, i);\n                dfs(nums, root.right, i);\n            }\n        } else {\n            if (root.left !== root.right) {\n                nums.push(root.val);\n                if (root.right) {\n                    dfs(nums, root.right, i);\n                } else {\n                    dfs(nums, root.left, i);\n                }\n            }\n        }\n    };\n\n    dfs(left, root.left, 0);\n    dfs(leaves, root, 1);\n    dfs(right, root.right, 2);\n\n    return ans.concat(left).concat(leaves).concat(right.reverse());\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,null,2,3,4]",
+      "expected": "[1,3,4,2]"
+    },
+    {
+      "input": "[1,2,3,4,5,6,null,null,null,7,8,9,10]",
+      "expected": "[1,2,4,7,8,9,10,6,3]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Boundary of Binary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

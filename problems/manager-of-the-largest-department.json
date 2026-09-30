@@ -1,0 +1,43 @@
+{
+  "id": 2988,
+  "slug": "manager-of-the-largest-department",
+  "title": "Manager of the Largest Department",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Dassault Sysetmes"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Manager%20of%20the%20Largest%20Department"
+  },
+  "description": "Table: `Employees`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| emp_id      | int     |\n| emp_name    | varchar |\n| dep_id      | int     |\n| position    | varchar |\n+-------------+---------+\nemp_id is column of unique values for this table.\nThis table contains emp_id, emp_name, dep_id, and position.\n\nWrite a solution to find the **name** of the **manager** from the **largest department**. There may be multiple largest departments when the number of employees in those departments is the same.\n\nReturn *the result table sorted by *`dep_id`* in **ascending** order**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Employees table:\n+--------+----------+--------+---------------+\n| emp_id | emp_name | dep_id | position      | \n+--------+----------+--------+---------------+\n| 156    | Michael  | 107    | Manager       |\n| 112    | Lucas    | 107    | Consultant    |    \n| 8      | Isabella | 101    | Manager       | \n| 160    | Joseph   | 100    | Manager       | \n| 80     | Aiden    | 100    | Engineer      | \n| 190    | Skylar   | 100    | Freelancer    | \n| 196    | Stella   | 101    | Coordinator   |\n| 167    | Audrey   | 100    | Consultant    |\n| 97     | Nathan   | 101    | Supervisor    |\n| 128    | Ian      | 101    | Administrator |\n| 81     | Ethan    | 107    | Administrator |\n+--------+----------+--------+---------------+",
+      "output": "+--------------+--------+\n| manager_name | dep_id | \n+--------------+--------+\n| Joseph       | 100    | \n| Isabella     | 101    | \n+--------------+--------+",
+      "explanation": "- Departments with IDs 100 and 101 each has a total of 4 employees, while department 107 has 3 employees. Since both departments 100 and 101 have an equal number of employees, their respective managers will be included.\nOutput table is ordered by dep_id in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Employees table:\n+--------+----------+--------+---------------+\n| emp_id | emp_name | dep_id | position      | \n+--------+----------+--------+---------------+\n| 156    | Michael  | 107    | Manager       |\n| 112    | Lucas    | 107    | Consultant    |    \n| 8      | Isabella | 101    | Manager       | \n| 160    | Joseph   | 100    | Manager       | \n| 80     | Aiden    | 100    | Engineer      | \n| 190    | Skylar   | 100    | Freelancer    | \n| 196    | Stella   | 101    | Coordinator   |\n| 167    | Audrey   | 100    | Consultant    |\n| 97     | Nathan   | 101    | Supervisor    |\n| 128    | Ian      | 101    | Administrator |\n| 81     | Ethan    | 107    | Administrator |\n+--------+----------+--------+---------------+",
+      "expected": "+--------------+--------+\n| manager_name | dep_id | \n+--------------+--------+\n| Joseph       | 100    | \n| Isabella     | 101    | \n+--------------+--------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Manager of the Largest Department.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

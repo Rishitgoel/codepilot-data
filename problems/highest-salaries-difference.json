@@ -1,0 +1,46 @@
+{
+  "id": 2853,
+  "slug": "highest-salaries-difference",
+  "title": "Highest Salaries Difference",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Highest%20Salaries%20Difference"
+  },
+  "description": "Table: `Salaries`\n\n+-------------+---------+ \n| Column Name | Type    | \n+-------------+---------+ \n| emp_name    | varchar | \n| department  | varchar | \n| salary      | int     |\n+-------------+---------+\n(emp_name, department) is the primary key (combination of unique values) for this table.\nEach row of this table contains emp_name, department and salary. There will be **at least one** entry for the engineering and marketing departments.\n\nWrite a solution to calculate the difference between the **highest** salaries in the **marketing** and **engineering** `department`. Output the absolute difference in salaries.\n\nReturn* the result table.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Salaries table:\n+----------+-------------+--------+\n| emp_name | department  | salary |\n+----------+-------------+--------+\n| Kathy    | Engineering | 50000  |\n| Roy      | Marketing   | 30000  |\n| Charles  | Engineering | 45000  |\n| Jack     | Engineering | 85000  | \n| Benjamin | Marketing   | 34000  |\n| Anthony  | Marketing   | 42000  |\n| Edward   | Engineering | 102000 |\n| Terry    | Engineering | 44000  |\n| Evelyn   | Marketing   | 53000  |\n| Arthur   | Engineering | 32000  |\n+----------+-------------+--------+",
+      "output": "+-------------------+\n| salary_difference | \n+-------------------+\n| 49000             | \n+-------------------+",
+      "explanation": "- The Engineering and Marketing departments have the highest salaries of 102,000 and 53,000, respectively. Resulting in an absolute difference of 49,000."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Salaries table:\n+----------+-------------+--------+\n| emp_name | department  | salary |\n+----------+-------------+--------+\n| Kathy    | Engineering | 50000  |\n| Roy      | Marketing   | 30000  |\n| Charles  | Engineering | 45000  |\n| Jack     | Engineering | 85000  | \n| Benjamin | Marketing   | 34000  |\n| Anthony  | Marketing   | 42000  |\n| Edward   | Engineering | 102000 |\n| Terry    | Engineering | 44000  |\n| Evelyn   | Marketing   | 53000  |\n| Arthur   | Engineering | 32000  |\n+----------+-------------+--------+",
+      "expected": "+-------------------+\n| salary_difference | \n+-------------------+\n| 49000             | \n+-------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Highest Salaries Difference.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,70 @@
+{
+  "id": 2822,
+  "slug": "inversion-of-object",
+  "title": "Inversion of Object",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Inversion%20of%20Object"
+  },
+  "description": "Given an object or an array `obj`, return an inverted object or array `invertedObj`.\n\nThe `invertedObj` should have the keys of `obj` as values and the values of `obj` as keys. The indices of array should be treated as keys.\n\nThe function should handle duplicates, meaning that if there are multiple keys in `obj` with the same value, the `invertedObj` should map the value to an array containing all corresponding keys.\n\nIt is guaranteed that the values in `obj` are only strings.",
+  "examples": [
+    {
+      "input": "obj = {\"a\": \"1\", \"b\": \"2\", \"c\": \"3\", \"d\": \"4\"}",
+      "output": "invertedObj = {\"1\": \"a\", \"2\": \"b\", \"3\": \"c\", \"4\": \"d\"}",
+      "explanation": "The keys from obj become the values in invertedObj, and the values from obj become the keys in invertedObj."
+    },
+    {
+      "input": "obj = {\"a\": \"1\", \"b\": \"2\", \"c\": \"2\", \"d\": \"4\"}",
+      "output": "invertedObj = {\"1\": \"a\", \"2\": [\"b\", \"c\"], \"4\": \"d\"}",
+      "explanation": "There are two keys in obj with the same value, the invertedObj mapped the value to an array containing all corresponding keys."
+    },
+    {
+      "input": "obj = [\"1\", \"2\", \"3\", \"4\"]",
+      "output": "invertedObj = {\"1\": \"0\", \"2\": \"1\", \"3\": \"2\", \"4\": \"3\"}",
+      "explanation": "Arrays are also objects therefore array has changed to an object and the keys (indices) from obj become the values in invertedObj, and the values from obj become the keys in invertedObj."
+    }
+  ],
+  "constraints": [
+    "obj is a valid JSON object or array",
+    "typeof obj[key] === \"string\"",
+    "2 <= JSON.stringify(obj).length <= 10^5"
+  ],
+  "starterTemplates": {
+    "javascript": "function invertObject(obj: Record<any, any>): Record<any, any> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function invertObject(obj: Record<any, any>): Record<any, any> {\n    const ans: Record<any, any> = {};\n    for (const key in obj) {\n        if (ans.hasOwnProperty(obj[key])) {\n            if (Array.isArray(ans[obj[key]])) {\n                ans[obj[key]].push(key);\n            } else {\n                ans[obj[key]] = [ans[obj[key]], key];\n            }\n        } else {\n            ans[obj[key]] = key;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "{\"a\": \"1\", \"b\": \"2\", \"c\": \"3\", \"d\": \"4\"}",
+      "expected": "invertedObj = {\"1\": \"a\", \"2\": \"b\", \"3\": \"c\", \"4\": \"d\"}"
+    },
+    {
+      "input": "{\"a\": \"1\", \"b\": \"2\", \"c\": \"2\", \"d\": \"4\"}",
+      "expected": "invertedObj = {\"1\": \"a\", \"2\": [\"b\", \"c\"], \"4\": \"d\"}"
+    },
+    {
+      "input": "[\"1\", \"2\", \"3\", \"4\"]",
+      "expected": "invertedObj = {\"1\": \"0\", \"2\": \"1\", \"3\": \"2\", \"4\": \"3\"}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Inversion of Object.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,66 @@
+{
+  "id": 1087,
+  "slug": "brace-expansion",
+  "title": "Brace Expansion",
+  "difficulty": "Medium",
+  "rating": 1480,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "DoorDash",
+    "Anduril",
+    "Stripe",
+    "Niantic"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Brace%20Expansion"
+  },
+  "description": "You are given a string `s` representing a list of words. Each letter in the word has one or more options.\n\n\tIf there is one option, the letter is represented as is.\n\tIf there is more than one option, then curly braces delimit the options. For example, `\"{a,b,c}\"` represents options `[\"a\", \"b\", \"c\"]`.\n\nFor example, if `s = \"a{b,c}\"`, the first character is always `'a'`, but the second character can be `'b'` or `'c'`. The original list is `[\"ab\", \"ac\"]`.\n\nReturn all words that can be formed in this manner, **sorted** in lexicographical order.",
+  "examples": [
+    {
+      "input": "s = \"{a,b}c{d,e}f\"",
+      "output": "[\"acdf\",\"acef\",\"bcdf\",\"bcef\"]"
+    },
+    {
+      "input": "s = \"abcd\"",
+      "output": "[\"abcd\"]"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 50",
+    "s consists of curly brackets '{}', commas ',', and lowercase English letters.",
+    "s is guaranteed to be a valid input.",
+    "There are no nested curly brackets.",
+    "All characters inside a pair of consecutive opening and ending curly brackets are different."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def expand(self, s: str) -> List[str]:\n        pass\n",
+    "java": "class Solution {\n    private List<String> ans;\n    private List<String[]> items;\n\n    public String[] expand(String s) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def expand(self, s: str) -> List[str]:\n        def convert(s):\n            if not s:\n                return\n            if s[0] == '{':\n                j = s.find('}')\n                items.append(s[1:j].split(','))\n                convert(s[j + 1 :])\n            else:\n                j = s.find('{')\n                if j != -1:\n                    items.append(s[:j].split(','))\n                    convert(s[j:])\n                else:\n                    items.append(s.split(','))\n\n        def dfs(i, t):\n            if i == len(items):\n                ans.append(''.join(t))\n                return\n            for c in items[i]:\n                t.append(c)\n                dfs(i + 1, t)\n                t.pop()\n\n        items = []\n        convert(s)\n        ans = []\n        dfs(0, [])\n        ans.sort()\n        return ans",
+    "java": "class Solution {\n    private List<String> ans;\n    private List<String[]> items;\n\n    public String[] expand(String s) {\n        ans = new ArrayList<>();\n        items = new ArrayList<>();\n        convert(s);\n        dfs(0, new ArrayList<>());\n        Collections.sort(ans);\n        return ans.toArray(new String[0]);\n    }\n\n    private void convert(String s) {\n        if (\"\".equals(s)) {\n            return;\n        }\n        if (s.charAt(0) == '{') {\n            int j = s.indexOf(\"}\");\n            items.add(s.substring(1, j).split(\",\"));\n            convert(s.substring(j + 1));\n        } else {\n            int j = s.indexOf(\"{\");\n            if (j != -1) {\n                items.add(s.substring(0, j).split(\",\"));\n                convert(s.substring(j));\n            } else {\n                items.add(s.split(\",\"));\n            }\n        }\n    }\n\n    private void dfs(int i, List<String> t) {\n        if (i == items.size()) {\n            ans.add(String.join(\"\", t));\n            return;\n        }\n        for (String c : items.get(i)) {\n            t.add(c);\n            dfs(i + 1, t);\n            t.remove(t.size() - 1);\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"{a,b}c{d,e}f\"",
+      "expected": "[\"acdf\",\"acef\",\"bcdf\",\"bcef\"]"
+    },
+    {
+      "input": "\"abcd\"",
+      "expected": "[\"abcd\"]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Brace Expansion.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

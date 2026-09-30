@@ -1,0 +1,74 @@
+{
+  "id": 2802,
+  "slug": "find-the-k-th-lucky-number",
+  "title": "Find The K-th Lucky Number",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20The%20K-th%20Lucky%20Number"
+  },
+  "description": "We know that `4` and `7` are **lucky** digits. Also, a number is called **lucky** if it contains **only** lucky digits.\n\nYou are given an integer `k`, return* the *`k^th`* lucky number represented as a **string**.*",
+  "examples": [
+    {
+      "input": "k = 4",
+      "output": "\"47\"",
+      "explanation": "The first lucky number is 4, the second one is 7, the third one is 44 and the fourth one is 47."
+    },
+    {
+      "input": "k = 10",
+      "output": "\"477\"",
+      "explanation": "Here are lucky numbers sorted in increasing order:\n4, 7, 44, 47, 74, 77, 444, 447, 474, 477. So the 10th lucky number is 477."
+    },
+    {
+      "input": "k = 1000",
+      "output": "\"777747447\"",
+      "explanation": "It can be shown that the 1000th lucky number is 777747447."
+    }
+  ],
+  "constraints": [
+    "1 <= k <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def kthLuckyNumber(self, k: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string kthLuckyNumber(int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String kthLuckyNumber(int k) {\n        \n    }\n};\n",
+    "javascript": "function kthLuckyNumber(k: number): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def kthLuckyNumber(self, k: int) -> str:\n        n = 1\n        while k > 1 << n:\n            k -= 1 << n\n            n += 1\n        ans = []\n        while n:\n            n -= 1\n            if k <= 1 << n:\n                ans.append(\"4\")\n            else:\n                ans.append(\"7\")\n                k -= 1 << n\n        return \"\".join(ans)",
+    "cpp": "class Solution {\npublic:\n    string kthLuckyNumber(int k) {\n        int n = 1;\n        while (k > 1 << n) {\n            k -= 1 << n;\n            ++n;\n        }\n        string ans;\n        while (n--) {\n            if (k <= 1 << n) {\n                ans.push_back('4');\n            } else {\n                ans.push_back('7');\n                k -= 1 << n;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public String kthLuckyNumber(int k) {\n        int n = 1;\n        while (k > 1 << n) {\n            k -= 1 << n;\n            ++n;\n        }\n        StringBuilder ans = new StringBuilder();\n        while (n-- > 0) {\n            if (k <= 1 << n) {\n                ans.append('4');\n            } else {\n                ans.append('7');\n                k -= 1 << n;\n            }\n        }\n        return ans.toString();\n    }\n}",
+    "javascript": "function kthLuckyNumber(k: number): string {\n    let n = 1;\n    while (k > 1 << n) {\n        k -= 1 << n;\n        ++n;\n    }\n    const ans: string[] = [];\n    while (n-- > 0) {\n        if (k <= 1 << n) {\n            ans.push('4');\n        } else {\n            ans.push('7');\n            k -= 1 << n;\n        }\n    }\n    return ans.join('');\n}"
+  },
+  "testcases": [
+    {
+      "input": "4",
+      "expected": "\"47\""
+    },
+    {
+      "input": "10",
+      "expected": "\"477\""
+    },
+    {
+      "input": "1000",
+      "expected": "\"777747447\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find The K-th Lucky Number.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

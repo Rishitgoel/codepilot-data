@@ -1,0 +1,46 @@
+{
+  "id": 2783,
+  "slug": "flight-occupancy-and-waitlist-analysis",
+  "title": "Flight Occupancy and Waitlist Analysis",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Flight%20Occupancy%20and%20Waitlist%20Analysis"
+  },
+  "description": "Table: `Flights`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| flight_id   | int  |\n| capacity    | int  |\n+-------------+------+\n`flight_id` is the column with unique values for this table.\nEach row of this table contains flight id and its capacity.\n\nTable: `Passengers`\n\n+--------------+------+\n| Column Name  | Type |\n+--------------+------+\n| passenger_id | int  |\n| flight_id    | int  |\n+--------------+------+\npassenger_id is the column with unique values for this table.\nEach row of this table contains passenger id and flight id.\n\nPassengers book tickets for flights in advance. If a passenger books a ticket for a flight and there are still empty seats available on the flight, the passenger ticket will be **confirmed**. However, the passenger will be on a **waitlist** if the flight is already at full capacity.\n\nWrite a solution to report the number of passengers who successfully booked a flight (got a seat) and the number of passengers who are on the waitlist for each flight.\n\nReturn the result table ordered by* *`flight_id` in **ascending***** order**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Flights table:\n+-----------+----------+\n| flight_id | capacity |\n+-----------+----------+\n| 1         | 2        |\n| 2         | 2        |\n| 3         | 1        |\n+-----------+----------+\nPassengers table:\n+--------------+-----------+\n| passenger_id | flight_id |\n+--------------+-----------+\n| 101          | 1         |\n| 102          | 1         |\n| 103          | 1         |\n| 104          | 2         |\n| 105          | 2         |\n| 106          | 3         |\n| 107          | 3         |\n+--------------+-----------+",
+      "output": "+-----------+------------+--------------+\n| flight_id | booked_cnt | waitlist_cnt |\n+-----------+------------+--------------+\n| 1         | 2          | 1            |\n| 2         | 2          | 0            |\n| 3         | 1          | 1            |\n+-----------+------------+--------------+",
+      "explanation": "- Flight 1 has a capacity of 2. As there are 3 passengers who have booked tickets, only 2 passengers can get a seat. Therefore, 2 passengers are successfully booked, and 1 passenger is on the waitlist.\n- Flight 2 has a capacity of 2. Since there are exactly 2 passengers who booked tickets, everyone can secure a seat. As a result, 2 passengers successfully booked their seats and there are no passengers on the waitlist.\n- Flight 3 has a capacity of 1. As there are 2 passengers who have booked tickets, only 1 passenger can get a seat. Therefore, 1 passenger is successfully booked, and 1 passenger is on the waitlist."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Flights table:\n+-----------+----------+\n| flight_id | capacity |\n+-----------+----------+\n| 1         | 2        |\n| 2         | 2        |\n| 3         | 1        |\n+-----------+----------+\nPassengers table:\n+--------------+-----------+\n| passenger_id | flight_id |\n+--------------+-----------+\n| 101          | 1         |\n| 102          | 1         |\n| 103          | 1         |\n| 104          | 2         |\n| 105          | 2         |\n| 106          | 3         |\n| 107          | 3         |\n+--------------+-----------+",
+      "expected": "+-----------+------------+--------------+\n| flight_id | booked_cnt | waitlist_cnt |\n+-----------+------------+--------------+\n| 1         | 2          | 1            |\n| 2         | 2          | 0            |\n| 3         | 1          | 1            |\n+-----------+------------+--------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Flight Occupancy and Waitlist Analysis.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

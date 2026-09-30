@@ -1,0 +1,74 @@
+{
+  "id": 2174,
+  "slug": "remove-all-ones-with-row-and-column-flips-ii",
+  "title": "Remove All Ones With Row and Column Flips II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "LinkedIn"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Remove%20All%20Ones%20With%20Row%20and%20Column%20Flips%20II"
+  },
+  "description": "You are given a **0-indexed** `m x n` **binary** matrix `grid`.\n\nIn one operation, you can choose any `i` and `j` that meet the following conditions:\n\n\t`0 \n\t`0 \n\t`grid[i][j] == 1`\n\nand change the values of **all** cells in row `i` and column `j` to zero.\n\nReturn *the **minimum** number of operations needed to remove all *`1`*'s from *`grid`*.*",
+  "examples": [
+    {
+      "input": "grid = [[1,1,1],[1,1,1],[0,1,0]]",
+      "output": "2",
+      "explanation": "In the first operation, change all cell values of row 1 and column 1 to zero.\nIn the second operation, change all cell values of row 0 and column 0 to zero."
+    },
+    {
+      "input": "grid = [[0,1,0],[1,0,1],[0,1,0]]",
+      "output": "2",
+      "explanation": "In the first operation, change all cell values of row 1 and column 0 to zero.\nIn the second operation, change all cell values of row 2 and column 1 to zero.\nNote that we cannot perform an operation using row 1 and column 1 because grid[1][1] != 1."
+    },
+    {
+      "input": "grid = [[0,0],[0,0]]",
+      "output": "0",
+      "explanation": "There are no 1's to remove so return 0."
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 15",
+    "1 <= m * n <= 15",
+    "grid[i][j] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int removeOnes(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int removeOnes(int[][] grid) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> int:\n        m, n = len(grid), len(grid[0])\n        state = sum(1 << (i * n + j) for i in range(m) for j in range(n) if grid[i][j])\n        q = deque([state])\n        vis = {state}\n        ans = 0\n        while q:\n            for _ in range(len(q)):\n                state = q.popleft()\n                if state == 0:\n                    return ans\n                for i in range(m):\n                    for j in range(n):\n                        if grid[i][j] == 0:\n                            continue\n                        nxt = state\n                        for r in range(m):\n                            nxt &= ~(1 << (r * n + j))\n                        for c in range(n):\n                            nxt &= ~(1 << (i * n + c))\n                        if nxt not in vis:\n                            vis.add(nxt)\n                            q.append(nxt)\n            ans += 1\n        return -1",
+    "cpp": "class Solution {\npublic:\n    int removeOnes(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        int state = 0;\n        for (int i = 0; i < m; ++i)\n            for (int j = 0; j < n; ++j)\n                if (grid[i][j])\n                    state |= (1 << (i * n + j));\n        queue<int> q{{state}};\n        unordered_set<int> vis{{state}};\n        int ans = 0;\n        while (!q.empty()) {\n            for (int k = q.size(); k > 0; --k) {\n                state = q.front();\n                q.pop();\n                if (state == 0) return ans;\n                for (int i = 0; i < m; ++i) {\n                    for (int j = 0; j < n; ++j) {\n                        if (grid[i][j] == 0) continue;\n                        int nxt = state;\n                        for (int r = 0; r < m; ++r) nxt &= ~(1 << (r * n + j));\n                        for (int c = 0; c < n; ++c) nxt &= ~(1 << (i * n + c));\n                        if (!vis.count(nxt)) {\n                            vis.insert(nxt);\n                            q.push(nxt);\n                        }\n                    }\n                }\n            }\n            ++ans;\n        }\n        return -1;\n    }\n};",
+    "java": "class Solution {\n    public int removeOnes(int[][] grid) {\n        int m = grid.length, n = grid[0].length;\n        int state = 0;\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j] == 1) {\n                    state |= 1 << (i * n + j);\n                }\n            }\n        }\n        Deque<Integer> q = new ArrayDeque<>();\n        q.offer(state);\n        Set<Integer> vis = new HashSet<>();\n        vis.add(state);\n        int ans = 0;\n        while (!q.isEmpty()) {\n            for (int k = q.size(); k > 0; --k) {\n                state = q.poll();\n                if (state == 0) {\n                    return ans;\n                }\n                for (int i = 0; i < m; ++i) {\n                    for (int j = 0; j < n; ++j) {\n                        if (grid[i][j] == 0) {\n                            continue;\n                        }\n                        int nxt = state;\n                        for (int r = 0; r < m; ++r) {\n                            nxt &= ~(1 << (r * n + j));\n                        }\n                        for (int c = 0; c < n; ++c) {\n                            nxt &= ~(1 << (i * n + c));\n                        }\n                        if (!vis.contains(nxt)) {\n                            vis.add(nxt);\n                            q.offer(nxt);\n                        }\n                    }\n                }\n            }\n            ++ans;\n        }\n        return -1;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1,1],[1,1,1],[0,1,0]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[0,1,0],[1,0,1],[0,1,0]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[0,0],[0,0]]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Remove All Ones With Row and Column Flips II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

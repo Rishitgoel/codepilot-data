@@ -1,0 +1,58 @@
+{
+  "id": 3431,
+  "slug": "minimum-unlocked-indices-to-sort-nums",
+  "title": "Minimum Unlocked Indices to Sort Nums",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Unlocked%20Indices%20to%20Sort%20Nums"
+  },
+  "description": "You are given an array `nums` consisting of integers between 1 and 3, and a **binary** array `locked` of the same size.\n\nWe consider `nums` **sortable** if it can be sorted using adjacent swaps, where a swap between two indices `i` and `i + 1` is allowed if `nums[i] - nums[i + 1] == 1` and `locked[i] == 0`.\n\nIn one operation, you can unlock any index `i` by setting `locked[i]` to 0.\n\nReturn the **minimum** number of operations needed to make `nums` **sortable**. If it is not possible to make `nums` sortable, return -1.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 3",
+    "locked.length == nums.length",
+    "0 <= locked[i] <= 1"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int minUnlockedIndices(vector<int>& nums, vector<int>& locked) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int minUnlockedIndices(int[] nums, int[] locked) {\r\n        \n    }\n};\n",
+    "javascript": "function minUnlockedIndices(nums: number[], locked: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def minUnlockedIndices(self, nums: List[int], locked: List[int]) -> int:\r\n        n = len(nums)\r\n        first2 = first3 = n\r\n        last1 = last2 = -1\r\n        for i, x in enumerate(nums):\r\n            if x == 1:\r\n                last1 = i\r\n            elif x == 2:\r\n                first2 = min(first2, i)\r\n                last2 = i\r\n            else:\r\n                first3 = min(first3, i)\r\n        if first3 < last1:\r\n            return -1\r\n        return sum(\r\n            st and (first2 <= i < last1 or first3 <= i < last2)\r\n            for i, st in enumerate(locked)\r\n        )",
+    "cpp": "class Solution {\r\npublic:\r\n    int minUnlockedIndices(vector<int>& nums, vector<int>& locked) {\r\n        int n = nums.size();\r\n        int first2 = n, first3 = n;\r\n        int last1 = -1, last2 = -1;\r\n\r\n        for (int i = 0; i < n; ++i) {\r\n            if (nums[i] == 1) {\r\n                last1 = i;\r\n            } else if (nums[i] == 2) {\r\n                first2 = min(first2, i);\r\n                last2 = i;\r\n            } else {\r\n                first3 = min(first3, i);\r\n            }\r\n        }\r\n\r\n        if (first3 < last1) {\r\n            return -1;\r\n        }\r\n\r\n        int ans = 0;\r\n        for (int i = 0; i < n; ++i) {\r\n            if (locked[i] == 1 && ((first2 <= i && i < last1) || (first3 <= i && i < last2))) {\r\n                ++ans;\r\n            }\r\n        }\r\n\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int minUnlockedIndices(int[] nums, int[] locked) {\r\n        int n = nums.length;\r\n        int first2 = n, first3 = n;\r\n        int last1 = -1, last2 = -1;\r\n        for (int i = 0; i < n; ++i) {\r\n            if (nums[i] == 1) {\r\n                last1 = i;\r\n            } else if (nums[i] == 2) {\r\n                first2 = Math.min(first2, i);\r\n                last2 = i;\r\n            } else {\r\n                first3 = Math.min(first3, i);\r\n            }\r\n        }\r\n        if (first3 < last1) {\r\n            return -1;\r\n        }\r\n        int ans = 0;\r\n        for (int i = 0; i < n; ++i) {\r\n            if (locked[i] == 1 && ((first2 <= i && i < last1) || (first3 <= i && i < last2))) {\r\n                ++ans;\r\n            }\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function minUnlockedIndices(nums: number[], locked: number[]): number {\n    const n = nums.length;\n    let [first2, first3] = [n, n];\n    let [last1, last2] = [-1, -1];\n\n    for (let i = 0; i < n; i++) {\n        if (nums[i] === 1) {\n            last1 = i;\n        } else if (nums[i] === 2) {\n            first2 = Math.min(first2, i);\n            last2 = i;\n        } else {\n            first3 = Math.min(first3, i);\n        }\n    }\n\n    if (first3 < last1) {\n        return -1;\n    }\n\n    let ans = 0;\n    for (let i = 0; i < n; i++) {\n        if (locked[i] === 1 && ((first2 <= i && i < last1) || (first3 <= i && i < last2))) {\n            ans++;\n        }\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Unlocked Indices to Sort Nums.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

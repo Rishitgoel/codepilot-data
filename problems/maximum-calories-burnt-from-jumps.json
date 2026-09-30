@@ -1,0 +1,53 @@
+{
+  "id": 3730,
+  "slug": "maximum-calories-burnt-from-jumps",
+  "title": "Maximum Calories Burnt from Jumps",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Calories%20Burnt%20from%20Jumps"
+  },
+  "description": "You are given an integer array `heights` of size `n`, where `heights[i]` represents the height of the `i^th` block in an exercise routine.\n\nYou start on the ground (height 0) and **must** jump onto each block **exactly once** in any order.\n\n\tThe **calories burned** for a jump from a block of height `a` to a block of height `b` is `(a - b)^2`.\n\tThe **calories burned** for the first jump from the ground to the chosen first block `heights[i]` is `(0 - heights[i])^2`.\n\nReturn the **maximum** total calories you can burn by selecting an optimal jumping sequence.\n\n**Note:** Once you jump onto the first block, you cannot return to the ground.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == heights.length <= 10^5",
+    "1 <= heights[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxCaloriesBurnt(self, heights: list[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maxCaloriesBurnt(vector<int>& heights) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maxCaloriesBurnt(int[] heights) {\n        \n    }\n};\n",
+    "javascript": "function maxCaloriesBurnt(heights: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxCaloriesBurnt(self, heights: list[int]) -> int:\n        heights.sort()\n        pre = 0\n        l, r = 0, len(heights) - 1\n        ans = 0\n        while l < r:\n            ans += (heights[r] - pre) ** 2\n            ans += (heights[l] - heights[r]) ** 2\n            pre = heights[l]\n            l, r = l + 1, r - 1\n        ans += (heights[r] - pre) ** 2\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long maxCaloriesBurnt(vector<int>& heights) {\n        ranges::sort(heights);\n        long long ans = 0;\n        int pre = 0;\n        int r = heights.size() - 1;\n        for (int l = 0; l < r; ++l, --r) {\n            ans += 1LL * (heights[r] - pre) * (heights[r] - pre);\n            ans += 1LL * (heights[l] - heights[r]) * (heights[l] - heights[r]);\n            pre = heights[l];\n        }\n        ans += 1LL * (heights[r] - pre) * (heights[r] - pre);\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maxCaloriesBurnt(int[] heights) {\n        Arrays.sort(heights);\n        long ans = 0;\n        int pre = 0;\n        int r = heights.length - 1;\n        for (int l = 0; l < r; ++l, --r) {\n            ans += 1L * (heights[r] - pre) * (heights[r] - pre);\n            ans += 1L * (heights[l] - heights[r]) * (heights[l] - heights[r]);\n            pre = heights[l];\n        }\n        ans += 1L * (heights[r] - pre) * (heights[r] - pre);\n        return ans;\n    }\n}",
+    "javascript": "function maxCaloriesBurnt(heights: number[]): number {\n    heights.sort((a, b) => a - b);\n    let ans = 0;\n    let pre = 0;\n    let [l, r] = [0, heights.length - 1];\n    while (l < r) {\n        ans += (heights[r] - pre) ** 2;\n        ans += (heights[l] - heights[r]) ** 2;\n        pre = heights[l];\n        l++;\n        r--;\n    }\n    ans += (heights[r] - pre) ** 2;\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Calories Burnt from Jumps.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

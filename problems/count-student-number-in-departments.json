@@ -1,0 +1,42 @@
+{
+  "id": 580,
+  "slug": "count-student-number-in-departments",
+  "title": "Count Student Number in Departments",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Twitter"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Student%20Number%20in%20Departments"
+  },
+  "description": "Table: `Student`\n\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| student_id   | int     |\n| student_name | varchar |\n| gender       | varchar |\n| dept_id      | int     |\n+--------------+---------+\nstudent_id is the primary key (column with unique values) for this table.\ndept_id is a foreign key (reference column) to dept_id in the Department tables.\nEach row of this table indicates the name of a student, their gender, and the id of their department.\n\n \n\nTable: `Department`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| dept_id     | int     |\n| dept_name   | varchar |\n+-------------+---------+\ndept_id is the primary key (column with unique values) for this table.\nEach row of this table contains the id and the name of a department.\n\n \n\nWrite a solution to report the respective department name and number of students majoring in each department for all departments in the `Department` table (even ones with no current students).\n\nReturn the result table **ordered** by `student_number` **in descending order**. In case of a tie, order them by `dept_name` **alphabetically**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Student table:\n+------------+--------------+--------+---------+\n| student_id | student_name | gender | dept_id |\n+------------+--------------+--------+---------+\n| 1          | Jack         | M      | 1       |\n| 2          | Jane         | F      | 1       |\n| 3          | Mark         | M      | 2       |\n+------------+--------------+--------+---------+\nDepartment table:\n+---------+-------------+\n| dept_id | dept_name   |\n+---------+-------------+\n| 1       | Engineering |\n| 2       | Science     |\n| 3       | Law         |\n+---------+-------------+",
+      "output": "+-------------+----------------+\n| dept_name   | student_number |\n+-------------+----------------+\n| Engineering | 2              |\n| Science     | 1              |\n| Law         | 0              |\n+-------------+----------------+"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Student table:\n+------------+--------------+--------+---------+\n| student_id | student_name | gender | dept_id |\n+------------+--------------+--------+---------+\n| 1          | Jack         | M      | 1       |\n| 2          | Jane         | F      | 1       |\n| 3          | Mark         | M      | 2       |\n+------------+--------------+--------+---------+\nDepartment table:\n+---------+-------------+\n| dept_id | dept_name   |\n+---------+-------------+\n| 1       | Engineering |\n| 2       | Science     |\n| 3       | Law         |\n+---------+-------------+",
+      "expected": "+-------------+----------------+\n| dept_name   | student_number |\n+-------------+----------------+\n| Engineering | 2              |\n| Science     | 1              |\n| Law         | 0              |\n+-------------+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Student Number in Departments.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

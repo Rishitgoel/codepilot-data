@@ -1,0 +1,57 @@
+{
+  "id": 3269,
+  "slug": "constructing-two-increasing-arrays",
+  "title": "Constructing Two Increasing Arrays",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Constructing%20Two%20Increasing%20Arrays"
+  },
+  "description": "Given 2 integer arrays `nums1` and `nums2` consisting only of 0 and 1, your task is to calculate the **minimum** possible **largest** number in arrays `nums1` and `nums2`, after doing the following.\n\nReplace every 0 with an *even positive integer* and every 1 with an *odd positive integer*. After replacement, both arrays should be **increasing** and each integer should be used **at most** once.\n\nReturn the *minimum possible largest number* after applying the changes.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "0 <= nums1.length <= 1000",
+    "1 <= nums2.length <= 1000",
+    "nums1 and nums2 consist only of 0 and 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def minLargest(self, nums1: List[int], nums2: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int minLargest(vector<int>& nums1, vector<int>& nums2) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int minLargest(int[] nums1, int[] nums2) {\r\n        \n    }\n};\n",
+    "javascript": "function minLargest(nums1: number[], nums2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def minLargest(self, nums1: List[int], nums2: List[int]) -> int:\r\n        def nxt(x: int, y: int) -> int:\r\n            return x + 1 if (x & 1 ^ y) == 1 else x + 2\r\n\r\n        m, n = len(nums1), len(nums2)\r\n        f = [[0] * (n + 1) for _ in range(m + 1)]\r\n        for i, x in enumerate(nums1, 1):\r\n            f[i][0] = nxt(f[i - 1][0], x)\r\n        for j, y in enumerate(nums2, 1):\r\n            f[0][j] = nxt(f[0][j - 1], y)\r\n        for i, x in enumerate(nums1, 1):\r\n            for j, y in enumerate(nums2, 1):\r\n                f[i][j] = min(nxt(f[i - 1][j], x), nxt(f[i][j - 1], y))\r\n        return f[m][n]",
+    "cpp": "class Solution {\r\npublic:\r\n    int minLargest(vector<int>& nums1, vector<int>& nums2) {\r\n        int m = nums1.size(), n = nums2.size();\r\n        int f[m + 1][n + 1];\r\n        memset(f, 0, sizeof(f));\r\n        auto nxt = [](int x, int y) -> int {\r\n            return (x & 1 ^ y) == 1 ? x + 1 : x + 2;\r\n        };\r\n        for (int i = 1; i <= m; ++i) {\r\n            f[i][0] = nxt(f[i - 1][0], nums1[i - 1]);\r\n        }\r\n        for (int j = 1; j <= n; ++j) {\r\n            f[0][j] = nxt(f[0][j - 1], nums2[j - 1]);\r\n        }\r\n        for (int i = 1; i <= m; ++i) {\r\n            for (int j = 1; j <= n; ++j) {\r\n                int x = nxt(f[i - 1][j], nums1[i - 1]);\r\n                int y = nxt(f[i][j - 1], nums2[j - 1]);\r\n                f[i][j] = min(x, y);\r\n            }\r\n        }\r\n        return f[m][n];\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int minLargest(int[] nums1, int[] nums2) {\r\n        int m = nums1.length, n = nums2.length;\r\n        int[][] f = new int[m + 1][n + 1];\r\n        for (int i = 1; i <= m; ++i) {\r\n            f[i][0] = nxt(f[i - 1][0], nums1[i - 1]);\r\n        }\r\n        for (int j = 1; j <= n; ++j) {\r\n            f[0][j] = nxt(f[0][j - 1], nums2[j - 1]);\r\n        }\r\n        for (int i = 1; i <= m; ++i) {\r\n            for (int j = 1; j <= n; ++j) {\r\n                int x = nxt(f[i - 1][j], nums1[i - 1]);\r\n                int y = nxt(f[i][j - 1], nums2[j - 1]);\r\n                f[i][j] = Math.min(x, y);\r\n            }\r\n        }\r\n        return f[m][n];\r\n    }\r\n\r\n    private int nxt(int x, int y) {\r\n        return (x & 1 ^ y) == 1 ? x + 1 : x + 2;\r\n    }\r\n}",
+    "javascript": "function minLargest(nums1: number[], nums2: number[]): number {\n    const m = nums1.length;\n    const n = nums2.length;\n    const f: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));\n    const nxt = (x: number, y: number): number => {\n        return (x & 1) ^ y ? x + 1 : x + 2;\n    };\n    for (let i = 1; i <= m; ++i) {\n        f[i][0] = nxt(f[i - 1][0], nums1[i - 1]);\n    }\n    for (let j = 1; j <= n; ++j) {\n        f[0][j] = nxt(f[0][j - 1], nums2[j - 1]);\n    }\n    for (let i = 1; i <= m; ++i) {\n        for (let j = 1; j <= n; ++j) {\n            f[i][j] = Math.min(nxt(f[i - 1][j], nums1[i - 1]), nxt(f[i][j - 1], nums2[j - 1]));\n        }\n    }\n    return f[m][n];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Constructing Two Increasing Arrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

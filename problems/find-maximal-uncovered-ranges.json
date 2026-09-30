@@ -1,0 +1,75 @@
+{
+  "id": 2655,
+  "slug": "find-maximal-uncovered-ranges",
+  "title": "Find Maximal Uncovered Ranges",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Maximal%20Uncovered%20Ranges"
+  },
+  "description": "You are given an integer `n` which is the length of a **0-indexed** array `nums`, and a **0-indexed** 2D-array `ranges`, which is a list of sub-ranges of `nums` (sub-ranges may **overlap**).\n\nEach row `ranges[i]` has exactly 2 cells:\n\n\t`ranges[i][0]`, which shows the start of the i^th range (inclusive)\n\t`ranges[i][1]`, which shows the end of the i^th range (inclusive)\n\nThese ranges cover some cells of `nums` and leave some cells uncovered. Your task is to find all of the uncovered ranges with **maximal** length.\n\nReturn *a 2D-array *`answer`* of the uncovered ranges, **sorted** by the starting point in **ascending order**.*\n\nBy all of the **uncovered** ranges with **maximal** length, we mean satisfying two conditions:\n\n\tEach uncovered cell should belong to **exactly** one sub-range\n\tThere should **not exist** two ranges (l1, r1) and (l2, r2) such that r1 + 1 = l2",
+  "examples": [
+    {
+      "input": "n = 10, ranges = [[3,5],[7,8]]",
+      "output": "[[0,2],[6,6],[9,9]]",
+      "explanation": "The ranges (3, 5) and (7, 8) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [0,0,0,1,1,1,0,1,1,0] in which we can observe that the ranges (0, 2), (6, 6) and (9, 9) aren't covered."
+    },
+    {
+      "input": "n = 3, ranges = [[0,2]]",
+      "output": "[]",
+      "explanation": "In this example, the whole of the array nums is covered and there are no uncovered cells so the output is an empty array."
+    },
+    {
+      "input": "n = 7, ranges = [[2,4],[0,3]]",
+      "output": "[[5,6]]",
+      "explanation": "The ranges (0, 3) and (2, 4) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [1,1,1,1,1,0,0] in which we can observe that the range (5, 6) is uncovered."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^9",
+    "0 <= ranges.length <= 10^6",
+    "ranges[i].length = 2",
+    "0 <= ranges[i][j] <= n - 1",
+    "ranges[i][0] <= ranges[i][1]"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findMaximalUncoveredRanges(\n        self, n: int, ranges: List[List[int]]\n    ) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMaximalUncoveredRanges(int n, vector<vector<int>>& ranges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[][] findMaximalUncoveredRanges(int n, int[][] ranges) {\n        \n    }\n};\n",
+    "javascript": "function findMaximalUncoveredRanges(n: number, ranges: number[][]): number[][] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findMaximalUncoveredRanges(\n        self, n: int, ranges: List[List[int]]\n    ) -> List[List[int]]:\n        ranges.sort()\n        last = -1\n        ans = []\n        for l, r in ranges:\n            if last + 1 < l:\n                ans.append([last + 1, l - 1])\n            last = max(last, r)\n        if last + 1 < n:\n            ans.append([last + 1, n - 1])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMaximalUncoveredRanges(int n, vector<vector<int>>& ranges) {\n        sort(ranges.begin(), ranges.end(), [](const vector<int>& a, const vector<int>& b) {\n            return a[0] < b[0];\n        });\n        int last = -1;\n        vector<vector<int>> ans;\n        for (auto& range : ranges) {\n            int l = range[0], r = range[1];\n            if (last + 1 < l) {\n                ans.push_back({last + 1, l - 1});\n            }\n            last = max(last, r);\n        }\n        if (last + 1 < n) {\n            ans.push_back({last + 1, n - 1});\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[][] findMaximalUncoveredRanges(int n, int[][] ranges) {\n        Arrays.sort(ranges, (a, b) -> a[0] - b[0]);\n        int last = -1;\n        List<int[]> ans = new ArrayList<>();\n        for (int[] range : ranges) {\n            int l = range[0], r = range[1];\n            if (last + 1 < l) {\n                ans.add(new int[] {last + 1, l - 1});\n            }\n            last = Math.max(last, r);\n        }\n        if (last + 1 < n) {\n            ans.add(new int[] {last + 1, n - 1});\n        }\n        return ans.toArray(new int[0][]);\n    }\n}",
+    "javascript": "function findMaximalUncoveredRanges(n: number, ranges: number[][]): number[][] {\n    ranges.sort((a, b) => a[0] - b[0]);\n    let last = -1;\n    const ans: number[][] = [];\n    for (const [l, r] of ranges) {\n        if (last + 1 < l) {\n            ans.push([last + 1, l - 1]);\n        }\n        last = Math.max(last, r);\n    }\n    if (last + 1 < n) {\n        ans.push([last + 1, n - 1]);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "10, ranges = [[3,5],[7,8]]",
+      "expected": "[[0,2],[6,6],[9,9]]"
+    },
+    {
+      "input": "3, ranges = [[0,2]]",
+      "expected": "[]"
+    },
+    {
+      "input": "7, ranges = [[2,4],[0,3]]",
+      "expected": "[[5,6]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Maximal Uncovered Ranges.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

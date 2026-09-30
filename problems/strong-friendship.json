@@ -1,0 +1,45 @@
+{
+  "id": 1949,
+  "slug": "strong-friendship",
+  "title": "Strong Friendship",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Strong%20Friendship"
+  },
+  "description": "Table: `Friendship`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| user1_id    | int  |\n| user2_id    | int  |\n+-------------+------+\n(user1_id, user2_id) is the primary key (combination of columns with unique values) for this table.\nEach row of this table indicates that the users user1_id and user2_id are friends.\nNote that user1_id \n\n \n\nA friendship between a pair of friends `x` and `y` is **strong** if `x` and `y` have **at least three** common friends.\n\nWrite a solution to find all the **strong friendships**.\n\nNote that the result table should not contain duplicates with `user1_id < user2_id`.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Friendship table:\n+----------+----------+\n| user1_id | user2_id |\n+----------+----------+\n| 1        | 2        |\n| 1        | 3        |\n| 2        | 3        |\n| 1        | 4        |\n| 2        | 4        |\n| 1        | 5        |\n| 2        | 5        |\n| 1        | 7        |\n| 3        | 7        |\n| 1        | 6        |\n| 3        | 6        |\n| 2        | 6        |\n+----------+----------+",
+      "output": "+----------+----------+---------------+\n| user1_id | user2_id | common_friend |\n+----------+----------+---------------+\n| 1        | 2        | 4             |\n| 1        | 3        | 3             |\n+----------+----------+---------------+",
+      "explanation": "Users 1 and 2 have 4 common friends (3, 4, 5, and 6).\nUsers 1 and 3 have 3 common friends (2, 6, and 7).\nWe did not include the friendship of users 2 and 3 because they only have two common friends (1 and 6)."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Friendship table:\n+----------+----------+\n| user1_id | user2_id |\n+----------+----------+\n| 1        | 2        |\n| 1        | 3        |\n| 2        | 3        |\n| 1        | 4        |\n| 2        | 4        |\n| 1        | 5        |\n| 2        | 5        |\n| 1        | 7        |\n| 3        | 7        |\n| 1        | 6        |\n| 3        | 6        |\n| 2        | 6        |\n+----------+----------+",
+      "expected": "+----------+----------+---------------+\n| user1_id | user2_id | common_friend |\n+----------+----------+---------------+\n| 1        | 2        | 4             |\n| 1        | 3        | 3             |\n+----------+----------+---------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Strong Friendship.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

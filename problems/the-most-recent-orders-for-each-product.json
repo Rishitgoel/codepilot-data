@@ -1,0 +1,43 @@
+{
+  "id": 1549,
+  "slug": "the-most-recent-orders-for-each-product",
+  "title": "The Most Recent Orders for Each Product",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Most%20Recent%20Orders%20for%20Each%20Product"
+  },
+  "description": "Table: `Customers`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| customer_id   | int     |\n| name          | varchar |\n+---------------+---------+\ncustomer_id is the column with unique values for this table.\nThis table contains information about the customers.\n\n \n\nTable: `Orders`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| order_id      | int     |\n| order_date    | date    |\n| customer_id   | int     |\n| product_id    | int     |\n+---------------+---------+\norder_id is the column with unique values for this table.\nThis table contains information about the orders made by customer_id.\nThere will be no product ordered by the same user **more than once** in one day.\n\n \n\nTable: `Products`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| product_id    | int     |\n| product_name  | varchar |\n| price         | int     |\n+---------------+---------+\nproduct_id is the column with unique values for this table.\nThis table contains information about the Products.\n\n \n\nWrite a solution to find the most recent order(s) of each product.\n\nReturn the result table ordered by `product_name` in ascending order and in case of a tie by the `product_id` in **ascending order**. If there still a tie, order them by `order_id` in **ascending order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Customers table:\n+-------------+-----------+\n| customer_id | name      |\n+-------------+-----------+\n| 1           | Winston   |\n| 2           | Jonathan  |\n| 3           | Annabelle |\n| 4           | Marwan    |\n| 5           | Khaled    |\n+-------------+-----------+\nOrders table:\n+----------+------------+-------------+------------+\n| order_id | order_date | customer_id | product_id |\n+----------+------------+-------------+------------+\n| 1        | 2020-07-31 | 1           | 1          |\n| 2        | 2020-07-30 | 2           | 2          |\n| 3        | 2020-08-29 | 3           | 3          |\n| 4        | 2020-07-29 | 4           | 1          |\n| 5        | 2020-06-10 | 1           | 2          |\n| 6        | 2020-08-01 | 2           | 1          |\n| 7        | 2020-08-01 | 3           | 1          |\n| 8        | 2020-08-03 | 1           | 2          |\n| 9        | 2020-08-07 | 2           | 3          |\n| 10       | 2020-07-15 | 1           | 2          |\n+----------+------------+-------------+------------+\nProducts table:\n+------------+--------------+-------+\n| product_id | product_name | price |\n+------------+--------------+-------+\n| 1          | keyboard     | 120   |\n| 2          | mouse        | 80    |\n| 3          | screen       | 600   |\n| 4          | hard disk    | 450   |\n+------------+--------------+-------+",
+      "output": "+--------------+------------+----------+------------+\n| product_name | product_id | order_id | order_date |\n+--------------+------------+----------+------------+\n| keyboard     | 1          | 6        | 2020-08-01 |\n| keyboard     | 1          | 7        | 2020-08-01 |\n| mouse        | 2          | 8        | 2020-08-03 |\n| screen       | 3          | 3        | 2020-08-29 |\n+--------------+------------+----------+------------+",
+      "explanation": "keyboard's most recent order is in 2020-08-01, it was ordered two times this day.\nmouse's most recent order is in 2020-08-03, it was ordered only once this day.\nscreen's most recent order is in 2020-08-29, it was ordered only once this day.\nThe hard disk was never ordered and we do not include it in the result table."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Customers table:\n+-------------+-----------+\n| customer_id | name      |\n+-------------+-----------+\n| 1           | Winston   |\n| 2           | Jonathan  |\n| 3           | Annabelle |\n| 4           | Marwan    |\n| 5           | Khaled    |\n+-------------+-----------+\nOrders table:\n+----------+------------+-------------+------------+\n| order_id | order_date | customer_id | product_id |\n+----------+------------+-------------+------------+\n| 1        | 2020-07-31 | 1           | 1          |\n| 2        | 2020-07-30 | 2           | 2          |\n| 3        | 2020-08-29 | 3           | 3          |\n| 4        | 2020-07-29 | 4           | 1          |\n| 5        | 2020-06-10 | 1           | 2          |\n| 6        | 2020-08-01 | 2           | 1          |\n| 7        | 2020-08-01 | 3           | 1          |\n| 8        | 2020-08-03 | 1           | 2          |\n| 9        | 2020-08-07 | 2           | 3          |\n| 10       | 2020-07-15 | 1           | 2          |\n+----------+------------+-------------+------------+\nProducts table:\n+------------+--------------+-------+\n| product_id | product_name | price |\n+------------+--------------+-------+\n| 1          | keyboard     | 120   |\n| 2          | mouse        | 80    |\n| 3          | screen       | 600   |\n| 4          | hard disk    | 450   |\n+------------+--------------+-------+",
+      "expected": "+--------------+------------+----------+------------+\n| product_name | product_id | order_id | order_date |\n+--------------+------------+----------+------------+\n| keyboard     | 1          | 6        | 2020-08-01 |\n| keyboard     | 1          | 7        | 2020-08-01 |\n| mouse        | 2          | 8        | 2020-08-03 |\n| screen       | 3          | 3        | 2020-08-29 |\n+--------------+------------+----------+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Most Recent Orders for Each Product.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

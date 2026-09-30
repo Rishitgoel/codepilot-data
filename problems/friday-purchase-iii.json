@@ -1,0 +1,45 @@
+{
+  "id": 3118,
+  "slug": "friday-purchase-iii",
+  "title": "Friday Purchase III ",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Friday%20Purchase%20III%20"
+  },
+  "description": "Table: `Purchases`\n\n+---------------+------+\n| Column Name   | Type |\n+---------------+------+\n| user_id       | int  |\n| purchase_date | date |\n| amount_spend  | int  |\n+---------------+------+\n(user_id, purchase_date, amount_spend) is the primary key (combination of columns with unique values) for this table.\npurchase_date will range from November 1, 2023, to November 30, 2023, inclusive of both dates.\nEach row contains user_id, purchase_date, and amount_spend.\n\nTable: `Users`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| user_id     | int  |\n| membership  | enum |\n+-------------+------+\nuser_id is the primary key for this table.\nmembership is an ENUM (category) type of ('Standard', 'Premium', 'VIP').\nEach row of this table indicates the user_id, membership type.\n\nWrite a solution to calculate the **total spending** by `Premium` and `VIP` members on **each Friday of every week** in November 2023.  If there are **no purchases** on a **particular Friday** by `Premium` or `VIP` members, it should be considered as `0`.\n\nReturn *the result table* *ordered by week of the month,  and *`membership`* in **ascending** order*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Friday Purchase III .",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

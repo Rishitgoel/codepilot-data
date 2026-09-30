@@ -1,0 +1,55 @@
+{
+  "id": 3183,
+  "slug": "the-number-of-ways-to-make-the-sum",
+  "title": "The Number of Ways to Make the Sum",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Number%20of%20Ways%20to%20Make%20the%20Sum"
+  },
+  "description": "You have an **infinite** number of coins with values 1, 2, and 6, and **only** 2 coins with value 4.\n\nGiven an integer `n`, return the number of ways to make the sum of `n` with the coins you have.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.\n\n**Note** that the order of the coins doesn't matter and `[2, 2, 3]` is the same as `[2, 3, 2]`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def numberOfWays(self, n: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int numberOfWays(int n) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int numberOfWays(int n) {\r\n        \n    }\n};\n",
+    "javascript": "function numberOfWays(n: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def numberOfWays(self, n: int) -> int:\r\n        mod = 10**9 + 7\r\n        coins = [1, 2, 6]\r\n        f = [0] * (n + 1)\r\n        f[0] = 1\r\n        for x in coins:\r\n            for j in range(x, n + 1):\r\n                f[j] = (f[j] + f[j - x]) % mod\r\n        ans = f[n]\r\n        if n >= 4:\r\n            ans = (ans + f[n - 4]) % mod\r\n        if n >= 8:\r\n            ans = (ans + f[n - 8]) % mod\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    int numberOfWays(int n) {\r\n        const int mod = 1e9 + 7;\r\n        int coins[3] = {1, 2, 6};\r\n        int f[n + 1];\r\n        memset(f, 0, sizeof(f));\r\n        f[0] = 1;\r\n        for (int x : coins) {\r\n            for (int j = x; j <= n; ++j) {\r\n                f[j] = (f[j] + f[j - x]) % mod;\r\n            }\r\n        }\r\n        int ans = f[n];\r\n        if (n >= 4) {\r\n            ans = (ans + f[n - 4]) % mod;\r\n        }\r\n        if (n >= 8) {\r\n            ans = (ans + f[n - 8]) % mod;\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int numberOfWays(int n) {\r\n        final int mod = (int) 1e9 + 7;\r\n        int[] coins = {1, 2, 6};\r\n        int[] f = new int[n + 1];\r\n        f[0] = 1;\r\n        for (int x : coins) {\r\n            for (int j = x; j <= n; ++j) {\r\n                f[j] = (f[j] + f[j - x]) % mod;\r\n            }\r\n        }\r\n        int ans = f[n];\r\n        if (n >= 4) {\r\n            ans = (ans + f[n - 4]) % mod;\r\n        }\r\n        if (n >= 8) {\r\n            ans = (ans + f[n - 8]) % mod;\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function numberOfWays(n: number): number {\n    const mod = 10 ** 9 + 7;\n    const f: number[] = Array(n + 1).fill(0);\n    f[0] = 1;\n    for (const x of [1, 2, 6]) {\n        for (let j = x; j <= n; ++j) {\n            f[j] = (f[j] + f[j - x]) % mod;\n        }\n    }\n    let ans = f[n];\n    if (n >= 4) {\n        ans = (ans + f[n - 4]) % mod;\n    }\n    if (n >= 8) {\n        ans = (ans + f[n - 8]) % mod;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Number of Ways to Make the Sum.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

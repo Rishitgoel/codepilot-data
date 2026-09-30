@@ -1,0 +1,72 @@
+{
+  "id": 2403,
+  "slug": "minimum-time-to-kill-all-monsters",
+  "title": "Minimum Time to Kill All Monsters",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Trilogy"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Time%20to%20Kill%20All%20Monsters"
+  },
+  "description": "You are given an integer array `power` where `power[i]` is the power of the `i^th` monster.\n\nYou start with `0` mana points, and each day you increase your mana points by `gain` where `gain` initially is equal to `1`.\n\nEach day, after gaining `gain` mana, you can defeat a monster if your mana points are greater than or equal to the power of that monster. When you defeat a monster:\n\n\tyour mana points will be reset to `0`, and\n\tthe value of `gain` increases by `1`.\n\nReturn *the **minimum** number of days needed to defeat all the monsters.*",
+  "examples": [
+    {
+      "input": "power = [3,1,4]",
+      "output": "4",
+      "explanation": "The optimal way to beat all the monsters is to:\n- Day 1: Gain 1 mana point to get a total of 1 mana point. Spend all mana points to kill the 2nd monster.\n- Day 2: Gain 2 mana points to get a total of 2 mana points.\n- Day 3: Gain 2 mana points to get a total of 4 mana points. Spend all mana points to kill the 3rd monster.\n- Day 4: Gain 3 mana points to get a total of 3 mana points. Spend all mana points to kill the 1st monster.\nIt can be proven that 4 is the minimum number of days needed."
+    },
+    {
+      "input": "power = [1,1,4]",
+      "output": "4",
+      "explanation": "The optimal way to beat all the monsters is to:\n- Day 1: Gain 1 mana point to get a total of 1 mana point. Spend all mana points to kill the 1st monster.\n- Day 2: Gain 2 mana points to get a total of 2 mana points. Spend all mana points to kill the 2nd monster.\n- Day 3: Gain 3 mana points to get a total of 3 mana points.\n- Day 4: Gain 3 mana points to get a total of 6 mana points. Spend all mana points to kill the 3rd monster.\nIt can be proven that 4 is the minimum number of days needed."
+    },
+    {
+      "input": "power = [1,2,4,9]",
+      "output": "6",
+      "explanation": "The optimal way to beat all the monsters is to:\n- Day 1: Gain 1 mana point to get a total of 1 mana point. Spend all mana points to kill the 1st monster.\n- Day 2: Gain 2 mana points to get a total of 2 mana points. Spend all mana points to kill the 2nd monster.\n- Day 3: Gain 3 mana points to get a total of 3 mana points.\n- Day 4: Gain 3 mana points to get a total of 6 mana points.\n- Day 5: Gain 3 mana points to get a total of 9 mana points. Spend all mana points to kill the 4th monster.\n- Day 6: Gain 4 mana points to get a total of 4 mana points. Spend all mana points to kill the 3rd monster.\nIt can be proven that 6 is the minimum number of days needed."
+    }
+  ],
+  "constraints": [
+    "1 <= power.length <= 17",
+    "1 <= power[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumTime(self, power: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long minimumTime(vector<int>& power) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int n;\n    private int[] power;\n    private Long[] f;\n\n    public long minimumTime(int[] power) {\n        \n    }\n};\n",
+    "javascript": "function minimumTime(power: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumTime(self, power: List[int]) -> int:\n        @cache\n        def dfs(mask: int) -> int:\n            if mask == 0:\n                return 0\n            ans = inf\n            gain = 1 + (n - mask.bit_count())\n            for i, x in enumerate(power):\n                if mask >> i & 1:\n                    ans = min(ans, dfs(mask ^ (1 << i)) + (x + gain - 1) // gain)\n            return ans\n\n        n = len(power)\n        return dfs((1 << n) - 1)",
+    "cpp": "class Solution {\npublic:\n    long long minimumTime(vector<int>& power) {\n        int n = power.size();\n        long long f[1 << n];\n        memset(f, -1, sizeof(f));\n        auto dfs = [&](this auto&& dfs, int mask) -> long long {\n            if (mask == 0) {\n                return 0;\n            }\n            if (f[mask] != -1) {\n                return f[mask];\n            }\n            f[mask] = LLONG_MAX;\n            int gain = 1 + (n - __builtin_popcount(mask));\n            for (int i = 0; i < n; ++i) {\n                if (mask >> i & 1) {\n                    f[mask] = min(f[mask], dfs(mask ^ (1 << i)) + (power[i] + gain - 1) / gain);\n                }\n            }\n            return f[mask];\n        };\n        return dfs((1 << n) - 1);\n    }\n};",
+    "java": "class Solution {\n    private int n;\n    private int[] power;\n    private Long[] f;\n\n    public long minimumTime(int[] power) {\n        n = power.length;\n        this.power = power;\n        f = new Long[1 << n];\n        return dfs((1 << n) - 1);\n    }\n\n    private long dfs(int mask) {\n        if (mask == 0) {\n            return 0;\n        }\n        if (f[mask] != null) {\n            return f[mask];\n        }\n        f[mask] = Long.MAX_VALUE;\n        int gain = 1 + (n - Integer.bitCount(mask));\n        for (int i = 0; i < n; ++i) {\n            if ((mask >> i & 1) == 1) {\n                f[mask] = Math.min(f[mask], dfs(mask ^ 1 << i) + (power[i] + gain - 1) / gain);\n            }\n        }\n        return f[mask];\n    }\n}",
+    "javascript": "function minimumTime(power: number[]): number {\n    const n = power.length;\n    const f: number[] = Array(1 << n).fill(-1);\n    const dfs = (mask: number): number => {\n        if (mask === 0) {\n            return 0;\n        }\n        if (f[mask] !== -1) {\n            return f[mask];\n        }\n        f[mask] = Infinity;\n        const gain = 1 + (n - bitCount(mask));\n        for (let i = 0; i < n; ++i) {\n            if ((mask >> i) & 1) {\n                f[mask] = Math.min(f[mask], dfs(mask ^ (1 << i)) + Math.ceil(power[i] / gain));\n            }\n        }\n        return f[mask];\n    };\n    return dfs((1 << n) - 1);\n}\n\nfunction bitCount(i: number): number {\n    i = i - ((i >>> 1) & 0x55555555);\n    i = (i & 0x33333333) + ((i >>> 2) & 0x33333333);\n    i = (i + (i >>> 4)) & 0x0f0f0f0f;\n    i = i + (i >>> 8);\n    i = i + (i >>> 16);\n    return i & 0x3f;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,1,4]",
+      "expected": "4"
+    },
+    {
+      "input": "[1,1,4]",
+      "expected": "4"
+    },
+    {
+      "input": "[1,2,4,9]",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Time to Kill All Monsters.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

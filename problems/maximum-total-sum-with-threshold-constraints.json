@@ -1,0 +1,58 @@
+{
+  "id": 3763,
+  "slug": "maximum-total-sum-with-threshold-constraints",
+  "title": "Maximum Total Sum with Threshold Constraints",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Total%20Sum%20with%20Threshold%20Constraints"
+  },
+  "description": "You are given two integer arrays `nums` and `threshold`, both of length `n`.\n\nStarting at `step = 1`, you perform the following repeatedly:\n\n\tChoose an **unused** index `i` such that `threshold[i] \n    \tIf no such index exists, the process ends.\n    \n    \n    Add `nums[i]` to your running total.\n    Mark index `i` as used and increment `step` by 1.\n\nReturn the **maximum** **total sum** you can obtain by choosing indices optimally.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "n == nums.length == threshold.length",
+    "1 <= n <= 10^5",
+    "1 <= nums[i] <= 10^9",
+    "1 <= threshold[i] <= n"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxSum(self, nums: List[int], threshold: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, vector<int>& threshold) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maxSum(int[] nums, int[] threshold) {\n        \n    }\n};\n",
+    "javascript": "function maxSum(nums: number[], threshold: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxSum(self, nums: List[int], threshold: List[int]) -> int:\n        n = len(nums)\n        idx = sorted(range(n), key=lambda i: threshold[i])\n        sl = SortedList()\n        step = 1\n        ans = i = 0\n        while True:\n            while i < n and threshold[idx[i]] <= step:\n                sl.add(nums[idx[i]])\n                i += 1\n            if not sl:\n                break\n            ans += sl.pop()\n            step += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, vector<int>& threshold) {\n        int n = nums.size();\n        vector<int> idx(n);\n        iota(idx.begin(), idx.end(), 0);\n        sort(idx.begin(), idx.end(), [&](int a, int b) { return threshold[a] < threshold[b]; });\n\n        multiset<int> ms;\n        long long ans = 0;\n        int i = 0;\n\n        for (int step = 1;; ++step) {\n            while (i < n && threshold[idx[i]] <= step) {\n                ms.insert(nums[idx[i]]);\n                ++i;\n            }\n            if (ms.empty()) {\n                break;\n            }\n\n            auto it = prev(ms.end());\n            ans += *it;\n            ms.erase(it);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maxSum(int[] nums, int[] threshold) {\n        int n = nums.length;\n        Integer[] idx = new Integer[n];\n        Arrays.setAll(idx, i -> i);\n        Arrays.sort(idx, Comparator.comparingInt(i -> threshold[i]));\n        TreeMap<Integer, Integer> tm = new TreeMap<>();\n        long ans = 0;\n        for (int i = 0, step = 1;; ++step) {\n            while (i < n && threshold[idx[i]] <= step) {\n                tm.merge(nums[idx[i]], 1, Integer::sum);\n                ++i;\n            }\n            if (tm.isEmpty()) {\n                break;\n            }\n            int x = tm.lastKey();\n            ans += x;\n            if (tm.merge(x, -1, Integer::sum) == 0) {\n                tm.remove(x);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxSum(nums: number[], threshold: number[]): number {\n    const n = nums.length;\n    const idx = Array.from({ length: n }, (_, i) => i).sort((a, b) => threshold[a] - threshold[b]);\n    const pq = new MaxPriorityQueue<number>();\n    let ans = 0;\n    for (let i = 0, step = 1; ; ++step) {\n        while (i < n && threshold[idx[i]] <= step) {\n            pq.enqueue(nums[idx[i]]);\n            ++i;\n        }\n        if (pq.isEmpty()) {\n            break;\n        }\n        ans += pq.dequeue();\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Total Sum with Threshold Constraints.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

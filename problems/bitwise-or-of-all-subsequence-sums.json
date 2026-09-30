@@ -1,0 +1,61 @@
+{
+  "id": 2505,
+  "slug": "bitwise-or-of-all-subsequence-sums",
+  "title": "Bitwise OR of All Subsequence Sums",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Zomato"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Bitwise%20OR%20of%20All%20Subsequence%20Sums"
+  },
+  "description": "Given an integer array `nums`, return *the value of the bitwise ***OR*** of the sum of all possible **subsequences** in the array*.\n\nA **subsequence** is a sequence that can be derived from another sequence by removing zero or more elements without changing the order of the remaining elements.",
+  "examples": [
+    {
+      "input": "nums = [2,1,0,3]",
+      "output": "7",
+      "explanation": "All possible subsequence sums that we can have are: 0, 1, 2, 3, 4, 5, 6.\nAnd we have 0 OR 1 OR 2 OR 3 OR 4 OR 5 OR 6 = 7, so we return 7."
+    },
+    {
+      "input": "nums = [0,0,0]",
+      "output": "0",
+      "explanation": "0 is the only possible subsequence sum we can have, so we return 0."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def subsequenceSumOr(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long subsequenceSumOr(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long subsequenceSumOr(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def subsequenceSumOr(self, nums: List[int]) -> int:\n        cnt = [0] * 64\n        ans = 0\n        for v in nums:\n            for i in range(31):\n                if (v >> i) & 1:\n                    cnt[i] += 1\n        for i in range(63):\n            if cnt[i]:\n                ans |= 1 << i\n            cnt[i + 1] += cnt[i] // 2\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long subsequenceSumOr(vector<int>& nums) {\n        vector<long long> cnt(64);\n        long long ans = 0;\n        for (int v : nums) {\n            for (int i = 0; i < 31; ++i) {\n                if (v >> i & 1) {\n                    ++cnt[i];\n                }\n            }\n        }\n        for (int i = 0; i < 63; ++i) {\n            if (cnt[i]) {\n                ans |= 1ll << i;\n            }\n            cnt[i + 1] += cnt[i] / 2;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long subsequenceSumOr(int[] nums) {\n        long[] cnt = new long[64];\n        long ans = 0;\n        for (int v : nums) {\n            for (int i = 0; i < 31; ++i) {\n                if (((v >> i) & 1) == 1) {\n                    ++cnt[i];\n                }\n            }\n        }\n        for (int i = 0; i < 63; ++i) {\n            if (cnt[i] > 0) {\n                ans |= 1l << i;\n            }\n            cnt[i + 1] += cnt[i] / 2;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,1,0,3]",
+      "expected": "7"
+    },
+    {
+      "input": "[0,0,0]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Bitwise OR of All Subsequence Sums.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

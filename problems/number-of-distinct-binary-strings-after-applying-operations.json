@@ -1,0 +1,61 @@
+{
+  "id": 2450,
+  "slug": "number-of-distinct-binary-strings-after-applying-operations",
+  "title": "Number of Distinct Binary Strings After Applying Operations",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Distinct%20Binary%20Strings%20After%20Applying%20Operations"
+  },
+  "description": "You are given a **binary** string `s` and a positive integer `k`.\n\nYou can apply the following operation on the string **any** number of times:\n\n\tChoose any substring of size `k` from `s` and **flip** all its characters, that is, turn all `1`'s into `0`'s, and all `0`'s into `1`'s.\n\nReturn *the number of **distinct** strings you can obtain*. Since the answer may be too large, return it **modulo** `10^9 + 7`.\n\n**Note** that:\n\n\tA binary string is a string that consists **only** of the characters `0` and `1`.\n\tA substring is a contiguous part of a string.",
+  "examples": [
+    {
+      "input": "s = \"1001\", k = 3",
+      "output": "4",
+      "explanation": "We can obtain the following strings:\n- Applying no operation on the string gives s = \"1001\".\n- Applying one operation on the substring starting at index 0 gives s = \"0111\".\n- Applying one operation on the substring starting at index 1 gives s = \"1110\".\n- Applying one operation on both the substrings starting at indices 0 and 1 gives s = \"0000\".\nIt can be shown that we cannot obtain any other string, so the answer is 4."
+    },
+    {
+      "input": "s = \"10110\", k = 5",
+      "output": "2",
+      "explanation": "We can obtain the following strings:\n- Applying no operation on the string gives s = \"10110\".\n- Applying one operation on the whole string gives s = \"01001\".\nIt can be shown that we cannot obtain any other string, so the answer is 2."
+    }
+  ],
+  "constraints": [
+    "1 <= k <= s.length <= 10^5",
+    "s[i] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countDistinctStrings(self, s: str, k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    const int mod = 1e9 + 7;\n\n    int countDistinctStrings(string s, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public static final int MOD = (int) 1e9 + 7;\n\n    public int countDistinctStrings(String s, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countDistinctStrings(self, s: str, k: int) -> int:\n        return pow(2, len(s) - k + 1) % (10**9 + 7)",
+    "cpp": "class Solution {\npublic:\n    const int mod = 1e9 + 7;\n\n    int countDistinctStrings(string s, int k) {\n        int ans = 1;\n        for (int i = 0; i < s.size() - k + 1; ++i) {\n            ans = (ans * 2) % mod;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public static final int MOD = (int) 1e9 + 7;\n\n    public int countDistinctStrings(String s, int k) {\n        int ans = 1;\n        for (int i = 0; i < s.length() - k + 1; ++i) {\n            ans = (ans * 2) % MOD;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"1001\", k = 3",
+      "expected": "4"
+    },
+    {
+      "input": "\"10110\", k = 5",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Distinct Binary Strings After Applying Operations.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

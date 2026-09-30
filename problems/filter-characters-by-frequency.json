@@ -1,0 +1,54 @@
+{
+  "id": 3662,
+  "slug": "filter-characters-by-frequency",
+  "title": "Filter Characters by Frequency",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "OpenText"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Filter%20Characters%20by%20Frequency"
+  },
+  "description": "You are given a string `s` consisting of lowercase English letters and an integer `k`.\n\nYour task is to construct a new string that contains only those characters from `s` which appear **fewer** than `k` times in the entire string. The order of characters in the new string must be the **same** as their **order** in `s`.\n\nReturn the resulting string. If no characters qualify, return an empty string.\n\nNote: **Every occurrence** of a character that occurs fewer than `k` times is kept.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of lowercase English letters.",
+    "1 <= k <= s.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def filterCharacters(self, s: str, k: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string filterCharacters(string s, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String filterCharacters(String s, int k) {\n        \n    }\n};\n",
+    "javascript": "function filterCharacters(s: string, k: number): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def filterCharacters(self, s: str, k: int) -> str:\n        cnt = Counter(s)\n        ans = []\n        for c in s:\n            if cnt[c] < k:\n                ans.append(c)\n        return \"\".join(ans)",
+    "cpp": "class Solution {\npublic:\n    string filterCharacters(string s, int k) {\n        int cnt[26]{};\n        for (char c : s) {\n            ++cnt[c - 'a'];\n        }\n        string ans;\n        for (char c : s) {\n            if (cnt[c - 'a'] < k) {\n                ans.push_back(c);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public String filterCharacters(String s, int k) {\n        int[] cnt = new int[26];\n        for (char c : s.toCharArray()) {\n            ++cnt[c - 'a'];\n        }\n        StringBuilder ans = new StringBuilder();\n        for (char c : s.toCharArray()) {\n            if (cnt[c - 'a'] < k) {\n                ans.append(c);\n            }\n        }\n        return ans.toString();\n    }\n}",
+    "javascript": "function filterCharacters(s: string, k: number): string {\n    const cnt: Record<string, number> = {};\n    for (const c of s) {\n        cnt[c] = (cnt[c] || 0) + 1;\n    }\n    const ans: string[] = [];\n    for (const c of s) {\n        if (cnt[c] < k) {\n            ans.push(c);\n        }\n    }\n    return ans.join('');\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Filter Characters by Frequency.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

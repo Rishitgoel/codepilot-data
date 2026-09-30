@@ -1,0 +1,67 @@
+{
+  "id": 2378,
+  "slug": "choose-edges-to-maximize-score-in-a-tree",
+  "title": "Choose Edges to Maximize Score in a Tree",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Sprinklr"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Choose%20Edges%20to%20Maximize%20Score%20in%20a%20Tree"
+  },
+  "description": "You are given a **weighted** tree consisting of `n` nodes numbered from `0` to `n - 1`.\n\nThe tree is **rooted** at node `0` and represented with a **2D** array `edges` of size `n` where `edges[i] = [pari, weighti]` indicates that node `pari` is the **parent** of node `i`, and the edge between them has a weight equal to `weighti`. Since the root does **not** have a parent, you have `edges[0] = [-1, -1]`.\n\nChoose some edges from the tree such that no two chosen edges are **adjacent** and the **sum** of the weights of the chosen edges is maximized.\n\nReturn *the **maximum** sum of the chosen edges*.\n\n**Note**:\n\n\tYou are allowed to **not** choose any edges in the tree, the sum of weights in this case will be `0`.\n\tTwo edges `Edge1` and `Edge2` in the tree are **adjacent** if they have a **common** node.\n\t\n\t\tIn other words, they are adjacent if `Edge1` connects nodes `a` and `b` and `Edge2` connects nodes `b` and `c`.",
+  "examples": [
+    {
+      "input": "edges = [[-1,-1],[0,5],[0,10],[2,6],[2,4]]",
+      "output": "11",
+      "explanation": "The above diagram shows the edges that we have to choose colored in red.\nThe total score is 5 + 6 = 11.\nIt can be shown that no better score can be obtained."
+    },
+    {
+      "input": "edges = [[-1,-1],[0,5],[0,-6],[0,7]]",
+      "output": "7",
+      "explanation": "We choose the edge with weight 7.\nNote that we cannot choose more than one edge because all edges are adjacent to each other."
+    }
+  ],
+  "constraints": [
+    "n == edges.length",
+    "1 <= n <= 10^5",
+    "edges[i].length == 2",
+    "par0 == weight0 == -1",
+    "0 <= pari <= n - 1 for all i >= 1.",
+    "pari != i",
+    "-10^6 <= weighti <= 10^6 for all i >= 1.",
+    "edges represents a valid tree."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxScore(self, edges: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private List<int[]>[] g;\n\n    public long maxScore(int[][] edges) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxScore(self, edges: List[List[int]]) -> int:\n        def dfs(i):\n            a = b = t = 0\n            for j, w in g[i]:\n                x, y = dfs(j)\n                a += y\n                b += y\n                t = max(t, x - y + w)\n            b += t\n            return a, b\n\n        g = defaultdict(list)\n        for i, (p, w) in enumerate(edges[1:], 1):\n            g[p].append((i, w))\n        return dfs(0)[1]",
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<vector<int>>& edges) {\n        int n = edges.size();\n        vector<vector<pair<int, int>>> g(n);\n        for (int i = 1; i < n; ++i) {\n            int p = edges[i][0], w = edges[i][1];\n            g[p].emplace_back(i, w);\n        }\n        using ll = long long;\n        using pll = pair<ll, ll>;\n        function<pll(int)> dfs = [&](int i) -> pll {\n            ll a = 0, b = 0, t = 0;\n            for (auto& [j, w] : g[i]) {\n                auto [x, y] = dfs(j);\n                a += y;\n                b += y;\n                t = max(t, x - y + w);\n            }\n            b += t;\n            return make_pair(a, b);\n        };\n        return dfs(0).second;\n    }\n};",
+    "java": "class Solution {\n    private List<int[]>[] g;\n\n    public long maxScore(int[][] edges) {\n        int n = edges.length;\n        g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int i = 1; i < n; ++i) {\n            int p = edges[i][0], w = edges[i][1];\n            g[p].add(new int[] {i, w});\n        }\n        return dfs(0)[1];\n    }\n\n    private long[] dfs(int i) {\n        long a = 0, b = 0, t = 0;\n        for (int[] nxt : g[i]) {\n            int j = nxt[0], w = nxt[1];\n            long[] s = dfs(j);\n            a += s[1];\n            b += s[1];\n            t = Math.max(t, s[0] - s[1] + w);\n        }\n        b += t;\n        return new long[] {a, b};\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[-1,-1],[0,5],[0,10],[2,6],[2,4]]",
+      "expected": "11"
+    },
+    {
+      "input": "[[-1,-1],[0,5],[0,-6],[0,7]]",
+      "expected": "7"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Choose Edges to Maximize Score in a Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,46 @@
+{
+  "id": 3656,
+  "slug": "determine-if-a-simple-graph-exists",
+  "title": "Determine if a Simple Graph Exists",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Determine%20if%20a%20Simple%20Graph%20Exists"
+  },
+  "description": "You are given an integer array `degrees`, where `degrees[i]` represents the desired degree of the `i^th` vertex.\n\nYour task is to determine if there exists an **undirected simple** graph with **exactly** these vertex degrees.\n\nA **simple** graph has no self-loops or parallel edges between the same pair of vertices.\n\nReturn `true` if such a graph exists, otherwise return `false`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == degrees.length <= 10^​​​​​​​5",
+    "0 <= degrees[i] <= n - 1"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Determine if a Simple Graph Exists.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

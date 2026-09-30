@@ -1,0 +1,56 @@
+{
+  "id": 3231,
+  "slug": "minimum-number-of-increasing-subsequence-to-be-removed",
+  "title": "Minimum Number of Increasing Subsequence to Be Removed",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Number%20of%20Increasing%20Subsequence%20to%20Be%20Removed"
+  },
+  "description": "Given an array of integers `nums`, you are allowed to perform the following operation any number of times:\n\n\tRemove a **strictly increasing** subsequence from the array.\n\nYour task is to find the **minimum** number of operations required to make the array **empty**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def minOperations(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int minOperations(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int minOperations(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function minOperations(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def minOperations(self, nums: List[int]) -> int:\r\n        g = []\r\n        for x in nums:\r\n            l, r = 0, len(g)\r\n            while l < r:\r\n                mid = (l + r) >> 1\r\n                if g[mid] < x:\r\n                    r = mid\r\n                else:\r\n                    l = mid + 1\r\n            if l == len(g):\r\n                g.append(x)\r\n            else:\r\n                g[l] = x\r\n        return len(g)",
+    "cpp": "class Solution {\r\npublic:\r\n    int minOperations(vector<int>& nums) {\r\n        vector<int> g;\r\n        for (int x : nums) {\r\n            int l = 0, r = g.size();\r\n            while (l < r) {\r\n                int mid = (l + r) >> 1;\r\n                if (g[mid] < x) {\r\n                    r = mid;\r\n                } else {\r\n                    l = mid + 1;\r\n                }\r\n            }\r\n            if (l == g.size()) {\r\n                g.push_back(x);\r\n            } else {\r\n                g[l] = x;\r\n            }\r\n        }\r\n        return g.size();\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int minOperations(int[] nums) {\r\n        List<Integer> g = new ArrayList<>();\r\n        for (int x : nums) {\r\n            int l = 0, r = g.size();\r\n            while (l < r) {\r\n                int mid = (l + r) >> 1;\r\n                if (g.get(mid) < x) {\r\n                    r = mid;\r\n                } else {\r\n                    l = mid + 1;\r\n                }\r\n            }\r\n            if (l == g.size()) {\r\n                g.add(x);\r\n            } else {\r\n                g.set(l, x);\r\n            }\r\n        }\r\n        return g.size();\r\n    }\r\n}",
+    "javascript": "function minOperations(nums: number[]): number {\n    const g: number[] = [];\n    for (const x of nums) {\n        let [l, r] = [0, g.length];\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (g[mid] < x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        if (l === g.length) {\n            g.push(x);\n        } else {\n            g[l] = x;\n        }\n    }\n    return g.length;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Number of Increasing Subsequence to Be Removed.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

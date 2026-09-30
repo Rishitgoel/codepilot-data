@@ -1,0 +1,54 @@
+{
+  "id": 3837,
+  "slug": "delayed-count-of-equal-elements",
+  "title": "Delayed Count of Equal Elements",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Mitsogo"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Delayed%20Count%20of%20Equal%20Elements"
+  },
+  "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nFor each index `i`, define the **delayed count** as the number of indices `j` such that:\n\n\t`i + k \n\t`nums[j] == nums[i]`\n\nReturn an array `ans` where `ans[i]` is the **delayed count** of index `i`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "0 <= k <= n - 1"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def delayedCount(self, nums: List[int], k: int) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> delayedCount(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] delayedCount(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function delayedCount(nums: number[], k: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def delayedCount(self, nums: List[int], k: int) -> List[int]:\n        n = len(nums)\n        cnt = Counter()\n        ans = [0] * n\n        for i in range(n - k - 2, -1, -1):\n            cnt[nums[i + k + 1]] += 1\n            ans[i] = cnt[nums[i]]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> delayedCount(vector<int>& nums, int k) {\n        int n = nums.size();\n        unordered_map<int, int> cnt;\n        vector<int> ans(n);\n        for (int i = n - k - 2; i >= 0; --i) {\n            ++cnt[nums[i + k + 1]];\n            ans[i] = cnt[nums[i]];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] delayedCount(int[] nums, int k) {\n        int n = nums.length;\n        var cnt = new HashMap<Integer, Integer>();\n        int[] ans = new int[n];\n        for (int i = n - k - 2; i >= 0; --i) {\n            cnt.merge(nums[i + k + 1], 1, Integer::sum);\n            ans[i] = cnt.getOrDefault(nums[i], 0);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function delayedCount(nums: number[], k: number): number[] {\n    const n = nums.length;\n    const cnt = new Map<number, number>();\n    const ans = Array(n).fill(0);\n    for (let i = n - k - 2; i >= 0; i--) {\n        cnt.set(nums[i + k + 1], (cnt.get(nums[i + k + 1]) ?? 0) + 1);\n        ans[i] = cnt.get(nums[i]) ?? 0;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Delayed Count of Equal Elements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

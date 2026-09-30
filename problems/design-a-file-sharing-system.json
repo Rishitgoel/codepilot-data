@@ -1,0 +1,55 @@
+{
+  "id": 1500,
+  "slug": "design-a-file-sharing-system",
+  "title": "Design a File Sharing System",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Twitch"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20a%20File%20Sharing%20System"
+  },
+  "description": "We will use a file-sharing system to share a very large file which consists of `m` small chunks with IDs from `1` to `m`.\n\nWhen users join the system, the system should assign a unique ID to them. The unique ID should be used once for each user, but when a user leaves the system, the ID can be reused again.\n\nUsers can request a certain chunk of the file, the system should return a list of IDs of all the users who own this chunk. If the user receives a non-empty list of IDs, they receive the requested chunk successfully.\n\nImplement the `FileSharing` class:\n\n\t`FileSharing(int m)` Initializes the object with a file of `m` chunks.\n\t`int join(int[] ownedChunks)`: A new user joined the system owning some chunks of the file, the system should assign an id to the user which is the smallest positive integer not taken by any other user. Return the assigned id.\n\t`void leave(int userID)`: The user with `userID` will leave the system, you cannot take file chunks from them anymore.\n\t`int[] request(int userID, int chunkID)`: The user `userID` requested the file chunk with `chunkID`. Return a list of the IDs of all users that own this chunk sorted in ascending order.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= m <= 10^5",
+    "0 <= ownedChunks.length <= min(100, m)",
+    "1 <= ownedChunks[i] <= m",
+    "Values of ownedChunks are unique.",
+    "1 <= chunkID <= m",
+    "userID is guaranteed to be a user in the system if you assign the IDs correctly.",
+    "At most 10^4 calls will be made to join, leave and request.",
+    "Each call to leave will have a matching call for join."
+  ],
+  "starterTemplates": {
+    "python": "class FileSharing:\n    def __init__(self, m: int):\n        pass\n",
+    "java": "class FileSharing {\n    private int chunks;\n    private int cur;\n    private TreeSet<Integer> reused;\n    private TreeMap<Integer, Set<Integer>> userChunks;\n\n    public FileSharing(int m) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class FileSharing:\n    def __init__(self, m: int):\n        self.cur = 0\n        self.chunks = m\n        self.reused = []\n        self.user_chunks = defaultdict(set)\n\n    def join(self, ownedChunks: List[int]) -> int:\n        if self.reused:\n            userID = heappop(self.reused)\n        else:\n            self.cur += 1\n            userID = self.cur\n        self.user_chunks[userID] = set(ownedChunks)\n        return userID\n\n    def leave(self, userID: int) -> None:\n        heappush(self.reused, userID)\n        self.user_chunks.pop(userID)\n\n    def request(self, userID: int, chunkID: int) -> List[int]:\n        if chunkID < 1 or chunkID > self.chunks:\n            return []\n        res = []\n        for k, v in self.user_chunks.items():\n            if chunkID in v:\n                res.append(k)\n        if res:\n            self.user_chunks[userID].add(chunkID)\n        return sorted(res)\n\n\n# Your FileSharing object will be instantiated and called as such:\n# obj = FileSharing(m)\n# param_1 = obj.join(ownedChunks)\n# obj.leave(userID)\n# param_3 = obj.request(userID,chunkID)",
+    "java": "class FileSharing {\n    private int chunks;\n    private int cur;\n    private TreeSet<Integer> reused;\n    private TreeMap<Integer, Set<Integer>> userChunks;\n\n    public FileSharing(int m) {\n        cur = 0;\n        chunks = m;\n        reused = new TreeSet<>();\n        userChunks = new TreeMap<>();\n    }\n\n    public int join(List<Integer> ownedChunks) {\n        int userID;\n        if (reused.isEmpty()) {\n            ++cur;\n            userID = cur;\n        } else {\n            userID = reused.pollFirst();\n        }\n        userChunks.put(userID, new HashSet<>(ownedChunks));\n        return userID;\n    }\n\n    public void leave(int userID) {\n        reused.add(userID);\n        userChunks.remove(userID);\n    }\n\n    public List<Integer> request(int userID, int chunkID) {\n        if (chunkID < 1 || chunkID > chunks) {\n            return Collections.emptyList();\n        }\n        List<Integer> res = new ArrayList<>();\n        for (Map.Entry<Integer, Set<Integer>> entry : userChunks.entrySet()) {\n            if (entry.getValue().contains(chunkID)) {\n                res.add(entry.getKey());\n            }\n        }\n        if (!res.isEmpty()) {\n            userChunks.computeIfAbsent(userID, k -> new HashSet<>()).add(chunkID);\n        }\n        return res;\n    }\n}\n\n/**\n * Your FileSharing object will be instantiated and called as such:\n * FileSharing obj = new FileSharing(m);\n * int param_1 = obj.join(ownedChunks);\n * obj.leave(userID);\n * List<Integer> param_3 = obj.request(userID,chunkID);\n */"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design a File Sharing System.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,56 @@
+{
+  "id": 3902,
+  "slug": "zigzag-level-sum-of-binary-tree",
+  "title": "Zigzag Level Sum of Binary Tree",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Zigzag%20Level%20Sum%20of%20Binary%20Tree"
+  },
+  "description": "You are given the `root` of a **binary tree**.\n\nTraverse the tree level by level using a zigzag pattern:\n\n\tAt **odd**-numbered levels (1-indexed), traverse nodes from **left to right**.\n\tAt **even**-numbered levels, traverse nodes from **right to left**.\n\nWhile traversing a level in the specified direction, process nodes in order and **stop** immediately before the first node that violates the condition:\n\n\tAt **odd** levels: the node does not have a **left** child.\n\tAt **even** levels: the node does not have a **right** child.\n\nOnly the nodes processed before this stopping condition contribute to the level sum.\n\nReturn an integer array `ans` where `ans[i]` is the **sum** of the node values that are processed at level `i + 1`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^5].",
+    "-10^5 <= Node.val <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public List<Long> zigzagLevelSum(TreeNode root) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\nfunction zigzagLevelSum(root: TreeNode | null): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def zigzagLevelSum(self, root: TreeNode | None) -> list[int]:\n        q = [root]\n        ans = []\n        left = True\n        while q:\n            nq = []\n            for node in q:\n                if node.left:\n                    nq.append(node.left)\n                if node.right:\n                    nq.append(node.right)\n            m = len(q)\n            s = 0\n            for i in range(m):\n                node = q[i] if left else q[m - i - 1]\n                child = node.left if left else node.right\n                if not child:\n                    break\n                s += node.val\n            ans.append(s)\n            left = not left\n            q = nq\n        return ans",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<long long> zigzagLevelSum(TreeNode* root) {\n        vector<long long> ans;\n        vector<TreeNode*> q = {root};\n        bool left = true;\n        while (!q.empty()) {\n            vector<TreeNode*> nq;\n            for (TreeNode* node : q) {\n                if (node->left != nullptr) {\n                    nq.push_back(node->left);\n                }\n                if (node->right != nullptr) {\n                    nq.push_back(node->right);\n                }\n            }\n            int m = q.size();\n            long long s = 0;\n            for (int i = 0; i < m; i++) {\n                TreeNode* node = left ? q[i] : q[m - i - 1];\n                TreeNode* child = left ? node->left : node->right;\n                if (child == nullptr) {\n                    break;\n                }\n                s += node->val;\n            }\n            ans.push_back(s);\n            left = !left;\n            q = nq;\n        }\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public List<Long> zigzagLevelSum(TreeNode root) {\n        List<Long> ans = new ArrayList<>();\n        List<TreeNode> q = new ArrayList<>();\n        q.add(root);\n        boolean left = true;\n        while (!q.isEmpty()) {\n            List<TreeNode> nq = new ArrayList<>();\n            for (TreeNode node : q) {\n                if (node.left != null) {\n                    nq.add(node.left);\n                }\n                if (node.right != null) {\n                    nq.add(node.right);\n                }\n            }\n            int m = q.size();\n            long s = 0;\n            for (int i = 0; i < m; i++) {\n                TreeNode node = left ? q.get(i) : q.get(m - i - 1);\n                TreeNode child = left ? node.left : node.right;\n                if (child == null) {\n                    break;\n                }\n                s += node.val;\n            }\n            ans.add(s);\n            left = !left;\n            q = nq;\n        }\n        return ans;\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\nfunction zigzagLevelSum(root: TreeNode | null): number[] {\n    let q: TreeNode[] = [root];\n    const ans: number[] = [];\n    let left = true;\n    while (q.length > 0) {\n        const nq: TreeNode[] = [];\n        for (const { left, right } of q) {\n            if (left !== null) {\n                nq.push(left);\n            }\n            if (right !== null) {\n                nq.push(right);\n            }\n        }\n        const m = q.length;\n        let s = 0;\n        for (let i = 0; i < m; i++) {\n            const node = left ? q[i] : q[m - i - 1];\n            const child = left ? node.left : node.right;\n            if (child === null) {\n                break;\n            }\n            s += node.val;\n        }\n        ans.push(s);\n        left = !left;\n        q = nq;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Zigzag Level Sum of Binary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

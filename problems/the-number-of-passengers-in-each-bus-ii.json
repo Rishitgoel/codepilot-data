@@ -1,0 +1,46 @@
+{
+  "id": 2153,
+  "slug": "the-number-of-passengers-in-each-bus-ii",
+  "title": "The Number of Passengers in Each Bus II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Number%20of%20Passengers%20in%20Each%20Bus%20II"
+  },
+  "description": "Table: `Buses`\n\n+--------------+------+\n| Column Name  | Type |\n+--------------+------+\n| bus_id       | int  |\n| arrival_time | int  |\n| capacity     | int  |\n+--------------+------+\nbus_id contains unique values.\nEach row of this table contains information about the arrival time of a bus at the LeetCode station and its capacity (the number of empty seats it has).\nNo two buses will arrive at the same time and all bus capacities will be positive integers.\n\n \n\nTable: `Passengers`\n\n+--------------+------+\n| Column Name  | Type |\n+--------------+------+\n| passenger_id | int  |\n| arrival_time | int  |\n+--------------+------+\npassenger_id contains unique values.\nEach row of this table contains information about the arrival time of a passenger at the LeetCode station.\n\n \n\nBuses and passengers arrive at the LeetCode station. If a bus arrives at the station at a time `tbus` and a passenger arrived at a time `tpassenger` where `tpassenger bus` and the passenger did not catch any bus, the passenger will use that bus. In addition, each bus has a capacity. If at the moment the bus arrives at the station there are more passengers waiting than its capacity `capacity`, only `capacity` passengers will use the bus.\n\nWrite a solution to report the number of users that used each bus.\n\nReturn the result table ordered by `bus_id` in **ascending order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Buses table:\n+--------+--------------+----------+\n| bus_id | arrival_time | capacity |\n+--------+--------------+----------+\n| 1      | 2            | 1        |\n| 2      | 4            | 10       |\n| 3      | 7            | 2        |\n+--------+--------------+----------+\nPassengers table:\n+--------------+--------------+\n| passenger_id | arrival_time |\n+--------------+--------------+\n| 11           | 1            |\n| 12           | 1            |\n| 13           | 5            |\n| 14           | 6            |\n| 15           | 7            |\n+--------------+--------------+",
+      "output": "+--------+----------------+\n| bus_id | passengers_cnt |\n+--------+----------------+\n| 1      | 1              |\n| 2      | 1              |\n| 3      | 2              |\n+--------+----------------+",
+      "explanation": "- Passenger 11 arrives at time 1.\n- Passenger 12 arrives at time 1.\n- Bus 1 arrives at time 2 and collects passenger 11 as it has one empty seat.\n\n- Bus 2 arrives at time 4 and collects passenger 12 as it has ten empty seats.\n\n- Passenger 12 arrives at time 5.\n- Passenger 13 arrives at time 6.\n- Passenger 14 arrives at time 7.\n- Bus 3 arrives at time 7 and collects passengers 12 and 13 as it has two empty seats."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Buses table:\n+--------+--------------+----------+\n| bus_id | arrival_time | capacity |\n+--------+--------------+----------+\n| 1      | 2            | 1        |\n| 2      | 4            | 10       |\n| 3      | 7            | 2        |\n+--------+--------------+----------+\nPassengers table:\n+--------------+--------------+\n| passenger_id | arrival_time |\n+--------------+--------------+\n| 11           | 1            |\n| 12           | 1            |\n| 13           | 5            |\n| 14           | 6            |\n| 15           | 7            |\n+--------------+--------------+",
+      "expected": "+--------+----------------+\n| bus_id | passengers_cnt |\n+--------+----------------+\n| 1      | 1              |\n| 2      | 1              |\n| 3      | 2              |\n+--------+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Number of Passengers in Each Bus II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

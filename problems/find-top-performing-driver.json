@@ -1,0 +1,45 @@
+{
+  "id": 3308,
+  "slug": "find-top-performing-driver",
+  "title": "Find Top Performing Driver",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Top%20Performing%20Driver"
+  },
+  "description": "Table: `Drivers`\n\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| driver_id    | int     |\n| name         | varchar |\n| age          | int     |\n| experience   | int     |\n| accidents    | int     |\n+--------------+---------+\n(driver_id) is the unique key for this table.\nEach row includes a driver's ID, their name, age, years of driving experience, and the number of accidents they&rsquo;ve had.\n\nTable: `Vehicles`\n\n+--------------+---------+\n| vehicle_id   | int     |\n| driver_id    | int     |\n| model        | varchar |\n| fuel_type    | varchar |\n| mileage      | int     |\n+--------------+---------+\n(vehicle_id, driver_id, fuel_type) is the unique key for this table.\nEach row includes the vehicle's ID, the driver who operates it, the model, fuel type, and mileage.\n\nTable: `Trips`\n\n+--------------+---------+\n| trip_id      | int     |\n| vehicle_id   | int     |\n| distance     | int     |\n| duration     | int     |\n| rating       | int     |\n+--------------+---------+\n(trip_id) is the unique key for this table.\nEach row includes a trip's ID, the vehicle used, the distance covered (in miles), the trip duration (in minutes), and the passenger's rating (1-5).\n\nUber is analyzing drivers based on their trips. Write a solution to find the **top-performing driver** for **each fuel type** based on the following criteria:\n\n\tA driver's performance is calculated as the **average rating** across all their trips. Average rating should be rounded to `2` decimal places.\n\tIf two drivers have the same average rating, the driver with the **longer total distance** traveled should be ranked higher.\n\tIf there is **still a tie**, choose the driver with the **fewest accidents**.\n\nReturn *the result table ordered by* `fuel_type` *in ***ascending*** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Top Performing Driver.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

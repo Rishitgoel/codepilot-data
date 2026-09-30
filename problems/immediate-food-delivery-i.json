@@ -1,0 +1,43 @@
+{
+  "id": 1173,
+  "slug": "immediate-food-delivery-i",
+  "title": "Immediate Food Delivery I",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "DoorDash"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Immediate%20Food%20Delivery%20I"
+  },
+  "description": "Table: `Delivery`\n\n+-----------------------------+---------+\n| Column Name                 | Type    |\n+-----------------------------+---------+\n| delivery_id                 | int     |\n| customer_id                 | int     |\n| order_date                  | date    |\n| customer_pref_delivery_date | date    |\n+-----------------------------+---------+\ndelivery_id is the primary key (column with unique values) of this table.\nThe table holds information about food delivery to customers that make orders at some date and specify a preferred delivery date (on the same order date or after it).\n\n \n\nIf the customer's preferred delivery date is the same as the order date, then the order is called **immediate;** otherwise, it is called **scheduled**.\n\nWrite a solution to find the percentage of immediate orders in the table, **rounded to 2 decimal places**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Delivery table:\n+-------------+-------------+------------+-----------------------------+\n| delivery_id | customer_id | order_date | customer_pref_delivery_date |\n+-------------+-------------+------------+-----------------------------+\n| 1           | 1           | 2019-08-01 | 2019-08-02                  |\n| 2           | 5           | 2019-08-02 | 2019-08-02                  |\n| 3           | 1           | 2019-08-11 | 2019-08-11                  |\n| 4           | 3           | 2019-08-24 | 2019-08-26                  |\n| 5           | 4           | 2019-08-21 | 2019-08-22                  |\n| 6           | 2           | 2019-08-11 | 2019-08-13                  |\n+-------------+-------------+------------+-----------------------------+",
+      "output": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 33.33                |\n+----------------------+",
+      "explanation": "The orders with delivery id 2 and 3 are immediate while the others are scheduled."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Delivery table:\n+-------------+-------------+------------+-----------------------------+\n| delivery_id | customer_id | order_date | customer_pref_delivery_date |\n+-------------+-------------+------------+-----------------------------+\n| 1           | 1           | 2019-08-01 | 2019-08-02                  |\n| 2           | 5           | 2019-08-02 | 2019-08-02                  |\n| 3           | 1           | 2019-08-11 | 2019-08-11                  |\n| 4           | 3           | 2019-08-24 | 2019-08-26                  |\n| 5           | 4           | 2019-08-21 | 2019-08-22                  |\n| 6           | 2           | 2019-08-11 | 2019-08-13                  |\n+-------------+-------------+------------+-----------------------------+",
+      "expected": "+----------------------+\n| immediate_percentage |\n+----------------------+\n| 33.33                |\n+----------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Immediate Food Delivery I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

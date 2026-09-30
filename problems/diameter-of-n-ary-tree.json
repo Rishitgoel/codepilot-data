@@ -1,0 +1,72 @@
+{
+  "id": 1522,
+  "slug": "diameter-of-n-ary-tree",
+  "title": "Diameter of N-Ary Tree",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta",
+    "Facebook",
+    "Goldman Sachs",
+    "Salesforce",
+    "DoorDash"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Diameter%20of%20N-Ary%20Tree"
+  },
+  "description": "Given a `root` of an `N-ary tree`, you need to compute the length of the diameter of the tree.\n\nThe diameter of an N-ary tree is the length of the **longest** path between any two nodes in the tree. This path may or may not pass through the root.\n\n(*Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value.)*",
+  "examples": [
+    {
+      "input": "root = [1,null,3,2,4,null,5,6]",
+      "output": "3",
+      "explanation": "Diameter is shown in red color."
+    },
+    {
+      "input": "root = [1,null,2,null,3,4,null,5,null,6]",
+      "output": "4"
+    },
+    {
+      "input": "root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+      "output": "7"
+    }
+  ],
+  "constraints": [
+    "The depth of the n-ary tree is less than or equal to 1000.",
+    "The total number of nodes is between [1, 10^4]."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, children=None):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> children;\n\n\n    public Node() {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, children=None):\n        self.val = val\n        self.children = children if children is not None else []\n\"\"\"\n\n\nclass Solution:\n    def diameter(self, root: 'Node') -> int:\n        \"\"\"\n        :type root: 'Node'\n        :rtype: int\n        \"\"\"\n\n        def dfs(root):\n            if root is None:\n                return 0\n            nonlocal ans\n            m1 = m2 = 0\n            for child in root.children:\n                t = dfs(child)\n                if t > m1:\n                    m2, m1 = m1, t\n                elif t > m2:\n                    m2 = t\n            ans = max(ans, m1 + m2)\n            return 1 + m1\n\n        ans = 0\n        dfs(root)\n        return ans",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n    }\n\n    Node(int _val, vector<Node*> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    int ans;\n\n    int diameter(Node* root) {\n        ans = 0;\n        dfs(root);\n        return ans;\n    }\n\n    int dfs(Node* root) {\n        if (!root) return 0;\n        int m1 = 0, m2 = 0;\n        for (Node* child : root->children) {\n            int t = dfs(child);\n            if (t > m1) {\n                m2 = m1;\n                m1 = t;\n            } else if (t > m2)\n                m2 = t;\n        }\n        ans = max(ans, m1 + m2);\n        return 1 + m1;\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> children;\n\n\n    public Node() {\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val) {\n        val = _val;\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val,ArrayList<Node> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\n    private int ans;\n\n    public int diameter(Node root) {\n        ans = 0;\n        dfs(root);\n        return ans;\n    }\n\n    private int dfs(Node root) {\n        if (root == null) {\n            return 0;\n        }\n        int m1 = 0, m2 = 0;\n        for (Node child : root.children) {\n            int t = dfs(child);\n            if (t > m1) {\n                m2 = m1;\n                m1 = t;\n            } else if (t > m2) {\n                m2 = t;\n            }\n        }\n        ans = Math.max(ans, m1 + m2);\n        return 1 + m1;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,null,3,2,4,null,5,6]",
+      "expected": "3"
+    },
+    {
+      "input": "[1,null,2,null,3,4,null,5,null,6]",
+      "expected": "4"
+    },
+    {
+      "input": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+      "expected": "7"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Diameter of N-Ary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

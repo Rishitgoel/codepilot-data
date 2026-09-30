@@ -1,0 +1,49 @@
+{
+  "id": 3087,
+  "slug": "find-trending-hashtags",
+  "title": "Find Trending Hashtags",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Trending%20Hashtags"
+  },
+  "description": "Table: `Tweets`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| tweet_id    | int     |\n| tweet_date  | date    |\n| tweet       | varchar |\n+-------------+---------+\ntweet_id is the primary key (column with unique values) for this table.\nEach row of this table contains user_id, tweet_id, tweet_date and tweet.\n\nWrite a solution to find the **top** `3` trending **hashtags** in **February** `2024`. Each tweet only contains one hashtag.\n\nReturn *the result table orderd by count of hashtag, hashtag in ***descending*** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_trending_hashtags(tweets: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_trending_hashtags(tweets: pd.DataFrame) -> pd.DataFrame:\r\n    tweets = tweets[tweets[\"tweet_date\"].dt.strftime(\"%Y%m\") == \"202402\"]\r\n    tweets[\"hashtag\"] = \"#\" + tweets[\"tweet\"].str.extract(r\"#(\\w+)\")\r\n    hashtag_counts = tweets[\"hashtag\"].value_counts().reset_index()\r\n    hashtag_counts.columns = [\"hashtag\", \"hashtag_count\"]\r\n    hashtag_counts = hashtag_counts.sort_values(\r\n        by=[\"hashtag_count\", \"hashtag\"], ascending=[False, False]\r\n    )\r\n    top_3_hashtags = hashtag_counts.head(3)\r\n    return top_3_hashtags"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Trending Hashtags.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

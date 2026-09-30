@@ -1,0 +1,67 @@
+{
+  "id": 510,
+  "slug": "inorder-successor-in-bst-ii",
+  "title": "Inorder Successor in BST II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Arista Networks"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Inorder%20Successor%20in%20BST%20II"
+  },
+  "description": "Given a `node` in a binary search tree, return *the in-order successor of that node in the BST*. If that node has no in-order successor, return `null`.\n\nThe successor of a `node` is the node with the smallest key greater than `node.val`.\n\nYou will have direct access to the node but not to the root of the tree. Each node will have a reference to its parent node. Below is the definition for `Node`:\n\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n}",
+  "examples": [
+    {
+      "input": "tree = [2,1,3], node = 1",
+      "output": "2",
+      "explanation": "1's in-order successor node is 2. Note that both the node and the return value is of Node type."
+    },
+    {
+      "input": "tree = [5,3,6,2,4,null,null,1], node = 6",
+      "output": "null",
+      "explanation": "There is no in-order successor of the current node, so the answer is null."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "All Nodes will have unique values."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* inorderSuccessor(Node* node) {\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node inorderSuccessor(Node node) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     parent: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, parent?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.parent = (parent===undefined ? null : parent)\n *     }\n * }\n */\n\nfunction inorderSuccessor(node: Node | null): Node | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\"\"\"\n\n\nclass Solution:\n    def inorderSuccessor(self, node: \"Node\") -> \"Optional[Node]\":\n        if node.right:\n            node = node.right\n            while node.left:\n                node = node.left\n            return node\n        while node.parent and node.parent.right is node:\n            node = node.parent\n        return node.parent",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* inorderSuccessor(Node* node) {\n        if (node->right) {\n            node = node->right;\n            while (node->left) {\n                node = node->left;\n            }\n            return node;\n        }\n        while (node->parent && node->parent->right == node) {\n            node = node->parent;\n        }\n        return node->parent;\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node inorderSuccessor(Node node) {\n        if (node.right != null) {\n            node = node.right;\n            while (node.left != null) {\n                node = node.left;\n            }\n            return node;\n        }\n        while (node.parent != null && node.parent.right == node) {\n            node = node.parent;\n        }\n        return node.parent;\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     parent: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, parent?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.parent = (parent===undefined ? null : parent)\n *     }\n * }\n */\n\nfunction inorderSuccessor(node: Node | null): Node | null {\n    if (node.right) {\n        node = node.right;\n        while (node.left) {\n            node = node.left;\n        }\n        return node;\n    }\n    while (node.parent && node === node.parent.right) {\n        node = node.parent;\n    }\n    return node.parent;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,1,3], node = 1",
+      "expected": "2"
+    },
+    {
+      "input": "[5,3,6,2,4,null,null,1], node = 6",
+      "expected": "null"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Inorder Successor in BST II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

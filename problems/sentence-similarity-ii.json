@@ -1,0 +1,78 @@
+{
+  "id": 737,
+  "slug": "sentence-similarity-ii",
+  "title": "Sentence Similarity II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Apple",
+    "Rippling"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sentence%20Similarity%20II"
+  },
+  "description": "We can represent a sentence as an array of words, for example, the sentence `\"I am happy with leetcode\"` can be represented as `arr = [\"I\",\"am\",happy\",\"with\",\"leetcode\"]`.\n\nGiven two sentences `sentence1` and `sentence2` each represented as a string array and given an array of string pairs `similarPairs` where `similarPairs[i] = [xi, yi]` indicates that the two words `xi` and `yi` are similar.\n\nReturn `true`* if `sentence1` and `sentence2` are similar, or *`false`* if they are not similar*.\n\nTwo sentences are similar if:\n\n\tThey have **the same length** (i.e., the same number of words)\n\t`sentence1[i]` and `sentence2[i]` are similar.\n\nNotice that a word is always similar to itself, also notice that the similarity relation is transitive. For example, if the words `a` and `b` are similar, and the words `b` and `c` are similar, then `a` and `c` are **similar**.",
+  "examples": [
+    {
+      "input": "sentence1 = [\"great\",\"acting\",\"skills\"], sentence2 = [\"fine\",\"drama\",\"talent\"], similarPairs = [[\"great\",\"good\"],[\"fine\",\"good\"],[\"drama\",\"acting\"],[\"skills\",\"talent\"]]",
+      "output": "true",
+      "explanation": "The two sentences have the same length and each word i of sentence1 is also similar to the corresponding word in sentence2."
+    },
+    {
+      "input": "sentence1 = [\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"onepiece\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+      "output": "true",
+      "explanation": "\"leetcode\" --> \"platform\" --> \"anime\" --> \"manga\" --> \"onepiece\".\nSince \"leetcode is similar to \"onepiece\" and the first two words are the same, the two sentences are similar."
+    },
+    {
+      "input": "sentence1 = [\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"hunterXhunter\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+      "output": "false",
+      "explanation": "\"leetcode\" is not similar to \"onepiece\"."
+    }
+  ],
+  "constraints": [
+    "1 <= sentence1.length, sentence2.length <= 1000",
+    "1 <= sentence1[i].length, sentence2[i].length <= 20",
+    "sentence1[i] and sentence2[i] consist of lower-case and upper-case English letters.",
+    "0 <= similarPairs.length <= 2000",
+    "similarPairs[i].length == 2",
+    "1 <= xi.length, yi.length <= 20",
+    "xi and yi consist of English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def areSentencesSimilarTwo(\n        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> p;\n    bool areSentencesSimilarTwo(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] p;\n\n    public boolean areSentencesSimilarTwo(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def areSentencesSimilarTwo(\n        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]\n    ) -> bool:\n        if len(sentence1) != len(sentence2):\n            return False\n        n = len(similarPairs)\n        p = list(range(n << 1))\n\n        def find(x):\n            if p[x] != x:\n                p[x] = find(p[x])\n            return p[x]\n\n        words = {}\n        idx = 0\n        for a, b in similarPairs:\n            if a not in words:\n                words[a] = idx\n                idx += 1\n            if b not in words:\n                words[b] = idx\n                idx += 1\n            p[find(words[a])] = find(words[b])\n\n        for i in range(len(sentence1)):\n            if sentence1[i] == sentence2[i]:\n                continue\n            if (\n                sentence1[i] not in words\n                or sentence2[i] not in words\n                or find(words[sentence1[i]]) != find(words[sentence2[i]])\n            ):\n                return False\n        return True",
+    "cpp": "class Solution {\npublic:\n    vector<int> p;\n    bool areSentencesSimilarTwo(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        if (sentence1.size() != sentence2.size())\n            return false;\n        int n = similarPairs.size();\n        p.resize(n << 1);\n        for (int i = 0; i < p.size(); ++i)\n            p[i] = i;\n        unordered_map<string, int> words;\n        int idx = 0;\n        for (auto e : similarPairs) {\n            string a = e[0], b = e[1];\n            if (!words.count(a))\n                words[a] = idx++;\n            if (!words.count(b))\n                words[b] = idx++;\n            p[find(words[a])] = find(words[b]);\n        }\n        for (int i = 0; i < sentence1.size(); ++i) {\n            if (sentence1[i] == sentence2[i])\n                continue;\n            if (!words.count(sentence1[i]) || !words.count(sentence2[i]) || find(words[sentence1[i]]) != find(words[sentence2[i]]))\n                return false;\n        }\n        return true;\n    }\n\n    int find(int x) {\n        if (p[x] != x)\n            p[x] = find(p[x]);\n        return p[x];\n    }\n};",
+    "java": "class Solution {\n    private int[] p;\n\n    public boolean areSentencesSimilarTwo(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        if (sentence1.length != sentence2.length) {\n            return false;\n        }\n        int n = similarPairs.size();\n        p = new int[n << 1];\n        for (int i = 0; i < p.length; ++i) {\n            p[i] = i;\n        }\n        Map<String, Integer> words = new HashMap<>();\n        int idx = 0;\n        for (List<String> e : similarPairs) {\n            String a = e.get(0), b = e.get(1);\n            if (!words.containsKey(a)) {\n                words.put(a, idx++);\n            }\n            if (!words.containsKey(b)) {\n                words.put(b, idx++);\n            }\n            p[find(words.get(a))] = find(words.get(b));\n        }\n        for (int i = 0; i < sentence1.length; ++i) {\n            if (Objects.equals(sentence1[i], sentence2[i])) {\n                continue;\n            }\n            if (!words.containsKey(sentence1[i]) || !words.containsKey(sentence2[i])\n                || find(words.get(sentence1[i])) != find(words.get(sentence2[i]))) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    private int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"great\",\"acting\",\"skills\"], sentence2 = [\"fine\",\"drama\",\"talent\"], similarPairs = [[\"great\",\"good\"],[\"fine\",\"good\"],[\"drama\",\"acting\"],[\"skills\",\"talent\"]]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"onepiece\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"I\",\"love\",\"leetcode\"], sentence2 = [\"I\",\"love\",\"onepiece\"], similarPairs = [[\"manga\",\"hunterXhunter\"],[\"platform\",\"anime\"],[\"leetcode\",\"platform\"],[\"anime\",\"manga\"]]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sentence Similarity II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

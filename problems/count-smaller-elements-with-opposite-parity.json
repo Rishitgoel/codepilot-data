@@ -1,0 +1,56 @@
+{
+  "id": 3907,
+  "slug": "count-smaller-elements-with-opposite-parity",
+  "title": "Count Smaller Elements With Opposite Parity",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Smaller%20Elements%20With%20Opposite%20Parity"
+  },
+  "description": "You are given an integer array `nums` of length `n`.\n\nThe **score** of an index `i` is defined as the number of indices `j` such that:\n\n\t`i \n\t`nums[j] \n\t`nums[i]` and `nums[j]` have different parity (one is even and the other is odd).\n\nReturn an integer array `answer` of length `n`, where `answer[i]` is the score of index `i`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9​​​​​​​"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countSmallerOppositeParity(self, nums: list[int]) -> list[int]:\n        pass\n",
+    "cpp": "struct BIT {\n    int n;\n    vector<int> c;\n    BIT(int n)\n        : n(n)\n        , c(n + 1, 0) {}\n        \n    }\n};\n",
+    "java": "class BinaryIndexedTree {\n    int n;\n    int[] c;\n\n    BinaryIndexedTree(int n) {\n        this.n = n;\n        this.c = new int[n + 1];\n    }\n\n    void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    int query(int x) {\n        int s = 0;\n        while (x > 0) {\n            s += c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n}\n\nclass Solution {\n    public int[] countSmallerOppositeParity(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "class BIT {\n    private c: Int32Array;\n    constructor(private n: number) {\n        this.c = new Int32Array(n + 1);\n    }\n    update(x: number, delta: number) {\n        for (; x <= this.n; x += x & -x) this.c[x] += delta;\n    }\n    query(x: number): number {\n        let s = 0;\n        for (; x > 0; x -= x & -x) s += this.c[x];\n        return s;\n    }\n}\n\nfunction countSmallerOppositeParity(nums: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countSmallerOppositeParity(self, nums: list[int]) -> list[int]:\n        n = len(nums)\n        ans = [0] * n\n        sl = [SortedList(), SortedList()]\n        for i in range(n - 1, -1, -1):\n            ans[i] = sl[nums[i] & 1 ^ 1].bisect_left(nums[i])\n            sl[nums[i] & 1].add(nums[i])\n        return ans",
+    "cpp": "struct BIT {\n    int n;\n    vector<int> c;\n    BIT(int n)\n        : n(n)\n        , c(n + 1, 0) {}\n    void update(int x, int delta) {\n        for (; x <= n; x += x & -x) c[x] += delta;\n    }\n    int query(int x) {\n        int s = 0;\n        for (; x > 0; x -= x & -x) s += c[x];\n        return s;\n    }\n};\n\nclass Solution {\npublic:\n    vector<int> countSmallerOppositeParity(vector<int>& nums) {\n        int n = nums.size();\n        vector<int> sorted = nums;\n        sort(sorted.begin(), sorted.end());\n        sorted.erase(unique(sorted.begin(), sorted.end()), sorted.end());\n\n        int m = sorted.size();\n        BIT* bits[2] = {new BIT(m), new BIT(m)};\n        vector<int> ans(n);\n\n        for (int i = n - 1; i >= 0; --i) {\n            int x = lower_bound(sorted.begin(), sorted.end(), nums[i]) - sorted.begin() + 1;\n            ans[i] = bits[nums[i] & 1 ^ 1]->query(x - 1);\n            bits[nums[i] & 1]->update(x, 1);\n        }\n        return ans;\n    }\n};",
+    "java": "class BinaryIndexedTree {\n    int n;\n    int[] c;\n\n    BinaryIndexedTree(int n) {\n        this.n = n;\n        this.c = new int[n + 1];\n    }\n\n    void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    int query(int x) {\n        int s = 0;\n        while (x > 0) {\n            s += c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n}\n\nclass Solution {\n    public int[] countSmallerOppositeParity(int[] nums) {\n        int n = nums.length;\n        int[] sorted = nums.clone();\n        Arrays.sort(sorted);\n        int m = 0;\n        for (int i = 0; i < n; i++) {\n            if (i == 0 || sorted[i] != sorted[i - 1]) {\n                sorted[m++] = sorted[i];\n            }\n        }\n        BinaryIndexedTree[] bit = {new BinaryIndexedTree(m), new BinaryIndexedTree(m)};\n        int[] ans = new int[n];\n        for (int i = n - 1; i >= 0; --i) {\n            int x = Arrays.binarySearch(sorted, 0, m, nums[i]) + 1;\n            ans[i] = bit[nums[i] & 1 ^ 1].query(x - 1);\n            bit[nums[i] & 1].update(x, 1);\n        }\n        return ans;\n    }\n}",
+    "javascript": "class BIT {\n    private c: Int32Array;\n    constructor(private n: number) {\n        this.c = new Int32Array(n + 1);\n    }\n    update(x: number, delta: number) {\n        for (; x <= this.n; x += x & -x) this.c[x] += delta;\n    }\n    query(x: number): number {\n        let s = 0;\n        for (; x > 0; x -= x & -x) s += this.c[x];\n        return s;\n    }\n}\n\nfunction countSmallerOppositeParity(nums: number[]): number[] {\n    const n = nums.length;\n    const sorted = _.sortedUniq(_.sortBy(nums));\n    const m = sorted.length;\n\n    const bits = [new BIT(m), new BIT(m)];\n    const ans = new Array(n);\n\n    for (let i = n - 1; i >= 0; i--) {\n        const rank = _.sortedIndex(sorted, nums[i]) + 1;\n        ans[i] = bits[(nums[i] & 1) ^ 1].query(rank - 1);\n        bits[nums[i] & 1].update(rank, 1);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Smaller Elements With Opposite Parity.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

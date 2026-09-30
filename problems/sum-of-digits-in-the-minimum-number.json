@@ -1,0 +1,61 @@
+{
+  "id": 1085,
+  "slug": "sum-of-digits-in-the-minimum-number",
+  "title": "Sum of Digits in the Minimum Number",
+  "difficulty": "Easy",
+  "rating": 1256,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sum%20of%20Digits%20in%20the%20Minimum%20Number"
+  },
+  "description": "Given an integer array `nums`, return `0`* if the sum of the digits of the minimum integer in *`nums`* is odd, or *`1`* otherwise*.",
+  "examples": [
+    {
+      "input": "nums = [34,23,1,24,75,33,54,8]",
+      "output": "0",
+      "explanation": "The minimal element is 1, and the sum of those digits is 1 which is odd, so the answer is 0."
+    },
+    {
+      "input": "nums = [99,77,33,66,55]",
+      "output": "1",
+      "explanation": "The minimal element is 33, and the sum of those digits is 3 + 3 = 6 which is even, so the answer is 1."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sumOfDigits(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int sumOfDigits(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int sumOfDigits(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sumOfDigits(self, nums: List[int]) -> int:\n        x = min(nums)\n        s = 0\n        while x:\n            s += x % 10\n            x //= 10\n        return s & 1 ^ 1",
+    "cpp": "class Solution {\npublic:\n    int sumOfDigits(vector<int>& nums) {\n        int x = *min_element(nums.begin(), nums.end());\n        int s = 0;\n        for (; x > 0; x /= 10) {\n            s += x % 10;\n        }\n        return s & 1 ^ 1;\n    }\n};",
+    "java": "class Solution {\n    public int sumOfDigits(int[] nums) {\n        int x = 100;\n        for (int v : nums) {\n            x = Math.min(x, v);\n        }\n        int s = 0;\n        for (; x > 0; x /= 10) {\n            s += x % 10;\n        }\n        return s & 1 ^ 1;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[34,23,1,24,75,33,54,8]",
+      "expected": "0"
+    },
+    {
+      "input": "[99,77,33,66,55]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sum of Digits in the Minimum Number.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

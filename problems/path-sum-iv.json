@@ -1,0 +1,54 @@
+{
+  "id": 666,
+  "slug": "path-sum-iv",
+  "title": "Path Sum IV",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Facebook",
+    "Alibaba"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Path%20Sum%20IV"
+  },
+  "description": "If the depth of a tree is smaller than `5`, then this tree can be represented by an array of three-digit integers. You are given an **ascending **array `nums` consisting of three-digit integers representing a binary tree with a depth smaller than `5`, where for each integer:\n\n\tThe hundreds digit represents the depth `d` of this node, where `1 \n\tThe tens digit represents the position `p` of this node within its level, where `1 \n\tThe units digit represents the value `v` of this node, where `0 \n\nReturn the **sum** of **all paths** from the **root** towards the **leaves**.\n\nIt is **guaranteed** that the given array represents a valid connected binary tree.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 15",
+    "110 <= nums[i] <= 489",
+    "nums represents a valid binary tree with depth less than 5.",
+    "nums is sorted in ascending order."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def pathSum(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int ans;\n    unordered_map<int, int> mp;\n\n    int pathSum(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int ans;\n    private Map<Integer, Integer> mp;\n\n    public int pathSum(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def pathSum(self, nums: List[int]) -> int:\n        def dfs(node, t):\n            if node not in mp:\n                return\n            t += mp[node]\n            d, p = divmod(node, 10)\n            l = (d + 1) * 10 + (p * 2) - 1\n            r = l + 1\n            nonlocal ans\n            if l not in mp and r not in mp:\n                ans += t\n                return\n            dfs(l, t)\n            dfs(r, t)\n\n        ans = 0\n        mp = {num // 10: num % 10 for num in nums}\n        dfs(11, 0)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int ans;\n    unordered_map<int, int> mp;\n\n    int pathSum(vector<int>& nums) {\n        ans = 0;\n        mp.clear();\n        for (int num : nums) mp[num / 10] = num % 10;\n        dfs(11, 0);\n        return ans;\n    }\n\n    void dfs(int node, int t) {\n        if (!mp.count(node)) return;\n        t += mp[node];\n        int d = node / 10, p = node % 10;\n        int l = (d + 1) * 10 + (p * 2) - 1;\n        int r = l + 1;\n        if (!mp.count(l) && !mp.count(r)) {\n            ans += t;\n            return;\n        }\n        dfs(l, t);\n        dfs(r, t);\n    }\n};",
+    "java": "class Solution {\n    private int ans;\n    private Map<Integer, Integer> mp;\n\n    public int pathSum(int[] nums) {\n        ans = 0;\n        mp = new HashMap<>(nums.length);\n        for (int num : nums) {\n            mp.put(num / 10, num % 10);\n        }\n        dfs(11, 0);\n        return ans;\n    }\n\n    private void dfs(int node, int t) {\n        if (!mp.containsKey(node)) {\n            return;\n        }\n        t += mp.get(node);\n        int d = node / 10, p = node % 10;\n        int l = (d + 1) * 10 + (p * 2) - 1;\n        int r = l + 1;\n        if (!mp.containsKey(l) && !mp.containsKey(r)) {\n            ans += t;\n            return;\n        }\n        dfs(l, t);\n        dfs(r, t);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Path Sum IV.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

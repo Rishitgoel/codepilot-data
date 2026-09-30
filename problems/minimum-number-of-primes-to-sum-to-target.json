@@ -1,0 +1,53 @@
+{
+  "id": 3610,
+  "slug": "minimum-number-of-primes-to-sum-to-target",
+  "title": "Minimum Number of Primes to Sum to Target",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Number%20of%20Primes%20to%20Sum%20to%20Target"
+  },
+  "description": "You are given two integers `n` and `m`.\n\nYou have to select a multiset of **prime numbers** from the **first** `m` prime numbers such that the sum of the selected primes is **exactly** `n`. You may use each prime number **multiple** times.\n\nReturn the **minimum** number of prime numbers needed to sum up to `n`, or -1 if it is not possible.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 1000",
+    "1 <= m <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "primes = []\nx = 2\nM = 1000\nwhile len(primes) < M:\n    is_prime = True\n    for p in primes:\n        if p * p > x:\n            break\n        if x % p == 0:\n            is_prime = False\n            break\n    if is_prime:\n        primes.append(x)\n    x += 1\n\n\nclass Solution:\n    def minNumberOfPrimes(self, n: int, m: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minNumberOfPrimes(int n, int m) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    static List<Integer> primes = new ArrayList<>();\n    static {\n        int x = 2;\n        int M = 1000;\n        while (primes.size() < M) {\n            boolean is_prime = true;\n            for (int p : primes) {\n                if (p * p > x) {\n                    break;\n                }\n                if (x % p == 0) {\n                    is_prime = false;\n                    break;\n                }\n            }\n            if (is_prime) {\n                primes.add(x);\n            }\n            x++;\n        }\n    }\n\n    public int minNumberOfPrimes(int n, int m) {\n        \n    }\n};\n",
+    "javascript": "const primes: number[] = [];\nlet x = 2;\nconst M = 1000;\nwhile (primes.length < M) {\n    let is_prime = true;\n    for (const p of primes) {\n        if (p * p > x) break;\n        if (x % p === 0) {\n            is_prime = false;\n            break;\n        }\n    }\n    if (is_prime) primes.push(x);\n    x++;\n}\n\nfunction minNumberOfPrimes(n: number, m: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "primes = []\nx = 2\nM = 1000\nwhile len(primes) < M:\n    is_prime = True\n    for p in primes:\n        if p * p > x:\n            break\n        if x % p == 0:\n            is_prime = False\n            break\n    if is_prime:\n        primes.append(x)\n    x += 1\n\n\nclass Solution:\n    def minNumberOfPrimes(self, n: int, m: int) -> int:\n        min = lambda x, y: x if x < y else y\n        f = [0] + [inf] * n\n        for x in primes[:m]:\n            for i in range(x, n + 1):\n                f[i] = min(f[i], f[i - x] + 1)\n        return f[n] if f[n] < inf else -1",
+    "cpp": "class Solution {\npublic:\n    int minNumberOfPrimes(int n, int m) {\n        static vector<int> primes;\n        if (primes.empty()) {\n            int x = 2;\n            int M = 1000;\n            while ((int) primes.size() < M) {\n                bool is_prime = true;\n                for (int p : primes) {\n                    if (p * p > x) break;\n                    if (x % p == 0) {\n                        is_prime = false;\n                        break;\n                    }\n                }\n                if (is_prime) primes.push_back(x);\n                x++;\n            }\n        }\n\n        vector<int> f(n + 1, INT_MAX);\n        f[0] = 0;\n        for (int x : vector<int>(primes.begin(), primes.begin() + m)) {\n            for (int i = x; i <= n; ++i) {\n                if (f[i - x] != INT_MAX) {\n                    f[i] = min(f[i], f[i - x] + 1);\n                }\n            }\n        }\n        return f[n] < INT_MAX ? f[n] : -1;\n    }\n};",
+    "java": "class Solution {\n    static List<Integer> primes = new ArrayList<>();\n    static {\n        int x = 2;\n        int M = 1000;\n        while (primes.size() < M) {\n            boolean is_prime = true;\n            for (int p : primes) {\n                if (p * p > x) {\n                    break;\n                }\n                if (x % p == 0) {\n                    is_prime = false;\n                    break;\n                }\n            }\n            if (is_prime) {\n                primes.add(x);\n            }\n            x++;\n        }\n    }\n\n    public int minNumberOfPrimes(int n, int m) {\n        int[] f = new int[n + 1];\n        final int inf = 1 << 30;\n        Arrays.fill(f, inf);\n        f[0] = 0;\n        for (int x : primes.subList(0, m)) {\n            for (int i = x; i <= n; i++) {\n                f[i] = Math.min(f[i], f[i - x] + 1);\n            }\n        }\n        return f[n] < inf ? f[n] : -1;\n    }\n}",
+    "javascript": "const primes: number[] = [];\nlet x = 2;\nconst M = 1000;\nwhile (primes.length < M) {\n    let is_prime = true;\n    for (const p of primes) {\n        if (p * p > x) break;\n        if (x % p === 0) {\n            is_prime = false;\n            break;\n        }\n    }\n    if (is_prime) primes.push(x);\n    x++;\n}\n\nfunction minNumberOfPrimes(n: number, m: number): number {\n    const inf = 1e9;\n    const f: number[] = Array(n + 1).fill(inf);\n    f[0] = 0;\n\n    for (const x of primes.slice(0, m)) {\n        for (let i = x; i <= n; i++) {\n            if (f[i - x] < inf) {\n                f[i] = Math.min(f[i], f[i - x] + 1);\n            }\n        }\n    }\n\n    return f[n] < inf ? f[n] : -1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Number of Primes to Sum to Target.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

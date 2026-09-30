@@ -1,0 +1,66 @@
+{
+  "id": 1257,
+  "slug": "smallest-common-region",
+  "title": "Smallest Common Region",
+  "difficulty": "Medium",
+  "rating": 1654,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Airbnb"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Smallest%20Common%20Region"
+  },
+  "description": "You are given some lists of `regions` where the first region of each list **directly** contains all other regions in that list.\n\nIf a region `x` contains a region `y` *directly*, and region `y` contains region `z` *directly*, then region `x` is said to contain region `z` **indirectly**. Note that region `x` also **indirectly** contains all regions **indirectly** containd in `y`.\n\nNaturally, if a region `x` contains (either *directly* or *indirectly*) another region `y`, then `x` is bigger than or equal to `y` in size. Also, by definition, a region `x` contains itself.\n\nGiven two regions: `region1` and `region2`, return *the smallest region that contains both of them*.\n\nIt is guaranteed the smallest region exists.",
+  "examples": [
+    {
+      "input": "regions = [[\"Earth\",\"North America\",\"South America\"],\n[\"North America\",\"United States\",\"Canada\"],\n[\"United States\",\"New York\",\"Boston\"],\n[\"Canada\",\"Ontario\",\"Quebec\"],\n[\"South America\",\"Brazil\"]],\nregion1 = \"Quebec\",\nregion2 = \"New York\"",
+      "output": "\"North America\""
+    },
+    {
+      "input": "regions = [[\"Earth\", \"North America\", \"South America\"],[\"North America\", \"United States\", \"Canada\"],[\"United States\", \"New York\", \"Boston\"],[\"Canada\", \"Ontario\", \"Quebec\"],[\"South America\", \"Brazil\"]], region1 = \"Canada\", region2 = \"South America\"",
+      "output": "\"Earth\""
+    }
+  ],
+  "constraints": [
+    "2 <= regions.length <= 10^4",
+    "2 <= regions[i].length <= 20",
+    "1 <= regions[i][j].length, region1.length, region2.length <= 20",
+    "region1 != region2",
+    "regions[i][j], region1, and region2 consist of English letters.",
+    "The input is generated such that there exists a region which contains all the other regions, either directly or indirectly.",
+    "A region cannot be directly contained in more than one region."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findSmallestRegion(\n        self, regions: List[List[str]], region1: str, region2: str\n    ) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {\n        \n    }\n};\n",
+    "javascript": "function findSmallestRegion(regions: string[][], region1: string, region2: string): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findSmallestRegion(\n        self, regions: List[List[str]], region1: str, region2: str\n    ) -> str:\n        g = {}\n        for r in regions:\n            x = r[0]\n            for y in r[1:]:\n                g[y] = x\n        s = set()\n        x = region1\n        while x in g:\n            s.add(x)\n            x = g[x]\n        x = region2\n        while x in g and x not in s:\n            x = g[x]\n        return x",
+    "cpp": "class Solution {\npublic:\n    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {\n        unordered_map<string, string> g;\n        for (const auto& r : regions) {\n            string x = r[0];\n            for (size_t i = 1; i < r.size(); ++i) {\n                g[r[i]] = x;\n            }\n        }\n        unordered_set<string> s;\n        for (string x = region1; !x.empty(); x = g[x]) {\n            s.insert(x);\n        }\n        string x = region2;\n        while (!g[x].empty() && s.find(x) == s.end()) {\n            x = g[x];\n        }\n        return x;\n    }\n};",
+    "java": "class Solution {\n    public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {\n        Map<String, String> g = new HashMap<>();\n        for (var r : regions) {\n            String x = r.get(0);\n            for (String y : r.subList(1, r.size())) {\n                g.put(y, x);\n            }\n        }\n        Set<String> s = new HashSet<>();\n        for (String x = region1; x != null; x = g.get(x)) {\n            s.add(x);\n        }\n        String x = region2;\n        while (g.get(x) != null && !s.contains(x)) {\n            x = g.get(x);\n        }\n        return x;\n    }\n}",
+    "javascript": "function findSmallestRegion(regions: string[][], region1: string, region2: string): string {\n    const g: Record<string, string> = {};\n\n    for (const r of regions) {\n        const x = r[0];\n        for (const y of r.slice(1)) {\n            g[y] = x;\n        }\n    }\n\n    const s: Set<string> = new Set();\n    for (let x: string = region1; x !== undefined; x = g[x]) {\n        s.add(x);\n    }\n\n    let x: string = region2;\n    while (g[x] !== undefined && !s.has(x)) {\n        x = g[x];\n    }\n\n    return x;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[\"Earth\",\"North America\",\"South America\"],\n[\"North America\",\"United States\",\"Canada\"],\n[\"United States\",\"New York\",\"Boston\"],\n[\"Canada\",\"Ontario\",\"Quebec\"],\n[\"South America\",\"Brazil\"]],\nregion1 = \"Quebec\",\nregion2 = \"New York\"",
+      "expected": "\"North America\""
+    },
+    {
+      "input": "[[\"Earth\", \"North America\", \"South America\"],[\"North America\", \"United States\", \"Canada\"],[\"United States\", \"New York\", \"Boston\"],[\"Canada\", \"Ontario\", \"Quebec\"],[\"South America\", \"Brazil\"]], region1 = \"Canada\", region2 = \"South America\"",
+      "expected": "\"Earth\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Smallest Common Region.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

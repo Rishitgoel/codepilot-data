@@ -1,0 +1,61 @@
+{
+  "id": 2524,
+  "slug": "maximum-frequency-score-of-a-subarray",
+  "title": "Maximum Frequency Score of a Subarray",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "PayPal"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Frequency%20Score%20of%20a%20Subarray"
+  },
+  "description": "You are given an integer array `nums` and a **positive** integer `k`.\n\nThe **frequency score** of an array is the sum of the **distinct** values in the array raised to the power of their **frequencies**, taking the sum **modulo** `10^9 + 7`.\n\n\tFor example, the frequency score of the array `[5,4,5,7,4,4]` is `(4^3 + 5^2 + 7^1) modulo (10^9 + 7) = 96`.\n\nReturn *the **maximum** frequency score of a **subarray** of size *`k`* in *`nums`. You should maximize the value under the modulo and not the actual value.\n\nA **subarray** is a contiguous part of an array.",
+  "examples": [
+    {
+      "input": "nums = [1,1,1,2,1,2], k = 3",
+      "output": "5",
+      "explanation": "The subarray [2,1,2] has a frequency score equal to 5. It can be shown that it is the maximum frequency score we can have."
+    },
+    {
+      "input": "nums = [1,1,1,1,1,1], k = 4",
+      "output": "1",
+      "explanation": "All the subarrays of length 4 have a frequency score equal to 1."
+    }
+  ],
+  "constraints": [
+    "1 <= k <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxFrequencyScore(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxFrequencyScore(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private final int mod = (int) 1e9 + 7;\n\n    public int maxFrequencyScore(int[] nums, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxFrequencyScore(self, nums: List[int], k: int) -> int:\n        mod = 10**9 + 7\n        cnt = Counter(nums[:k])\n        ans = cur = sum(pow(k, v, mod) for k, v in cnt.items()) % mod\n        i = k\n        while i < len(nums):\n            a, b = nums[i - k], nums[i]\n            if a != b:\n                cur += (b - 1) * pow(b, cnt[b], mod) if cnt[b] else b\n                cur -= (a - 1) * pow(a, cnt[a] - 1, mod) if cnt[a] > 1 else a\n                cur %= mod\n                cnt[b] += 1\n                cnt[a] -= 1\n                ans = max(ans, cur)\n            i += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxFrequencyScore(vector<int>& nums, int k) {\n        using ll = long long;\n        const int mod = 1e9 + 7;\n        auto qpow = [&](ll a, ll n) {\n            ll ans = 1;\n            for (; n; n >>= 1) {\n                if (n & 1) {\n                    ans = ans * a % mod;\n                }\n                a = a * a % mod;\n            }\n            return ans;\n        };\n        unordered_map<int, int> cnt;\n        for (int i = 0; i < k; ++i) {\n            cnt[nums[i]]++;\n        }\n        ll cur = 0;\n        for (auto& [k, v] : cnt) {\n            cur = (cur + qpow(k, v)) % mod;\n        }\n        ll ans = cur;\n        for (int i = k; i < nums.size(); ++i) {\n            int a = nums[i - k], b = nums[i];\n            if (a != b) {\n                cur += cnt[b] ? (b - 1) * qpow(b, cnt[b]) % mod : b;\n                cur -= cnt[a] > 1 ? (a - 1) * qpow(a, cnt[a] - 1) % mod : a;\n                cur = (cur + mod) % mod;\n                ans = max(ans, cur);\n                cnt[b]++;\n                cnt[a]--;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private final int mod = (int) 1e9 + 7;\n\n    public int maxFrequencyScore(int[] nums, int k) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        for (int i = 0; i < k; ++i) {\n            cnt.merge(nums[i], 1, Integer::sum);\n        }\n        long cur = 0;\n        for (var e : cnt.entrySet()) {\n            cur = (cur + qpow(e.getKey(), e.getValue())) % mod;\n        }\n        long ans = cur;\n        for (int i = k; i < nums.length; ++i) {\n            int a = nums[i - k];\n            int b = nums[i];\n            if (a != b) {\n                if (cnt.getOrDefault(b, 0) > 0) {\n                    cur += (b - 1) * qpow(b, cnt.get(b)) % mod;\n                } else {\n                    cur += b;\n                }\n                if (cnt.getOrDefault(a, 0) > 1) {\n                    cur -= (a - 1) * qpow(a, cnt.get(a) - 1) % mod;\n                } else {\n                    cur -= a;\n                }\n                cur = (cur + mod) % mod;\n                cnt.put(b, cnt.getOrDefault(b, 0) + 1);\n                cnt.put(a, cnt.getOrDefault(a, 0) - 1);\n                ans = Math.max(ans, cur);\n            }\n        }\n        return (int) ans;\n    }\n\n    private long qpow(long a, long n) {\n        long ans = 1;\n        for (; n > 0; n >>= 1) {\n            if ((n & 1) == 1) {\n                ans = ans * a % mod;\n            }\n            a = a * a % mod;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,1,1,2,1,2], k = 3",
+      "expected": "5"
+    },
+    {
+      "input": "[1,1,1,1,1,1], k = 4",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Frequency Score of a Subarray.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

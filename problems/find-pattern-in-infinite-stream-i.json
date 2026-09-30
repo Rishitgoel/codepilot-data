@@ -1,0 +1,72 @@
+{
+  "id": 3023,
+  "slug": "find-pattern-in-infinite-stream-i",
+  "title": "Find Pattern in Infinite Stream I",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Pattern%20in%20Infinite%20Stream%20I"
+  },
+  "description": "You are given a binary array `pattern` and an object `stream` of class `InfiniteStream` representing a **0-indexed** infinite stream of bits.\n\nThe class `InfiniteStream` contains the following function:\n\n\t`int next()`: Reads a **single** bit (which is either `0` or `1`) from the stream and returns it.\n\nReturn *the **first starting** index where the pattern matches the bits read from the stream*. For example, if the pattern is `[1, 0]`, the first match is the highlighted part in the stream `[0, **1, 0**, 1, ...]`.",
+  "examples": [
+    {
+      "input": "stream = [1,1,1,0,1,1,1,...], pattern = [0,1]",
+      "output": "3",
+      "explanation": "The first occurrence of the pattern [0,1] is highlighted in the stream [1,1,1,0,1,...], which starts at index 3."
+    },
+    {
+      "input": "stream = [0,0,0,0,...], pattern = [0]",
+      "output": "0",
+      "explanation": "The first occurrence of the pattern [0] is highlighted in the stream [0,...], which starts at index 0."
+    },
+    {
+      "input": "stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]",
+      "output": "2",
+      "explanation": "The first occurrence of the pattern [1,1,0,1] is highlighted in the stream [1,0,1,1,0,1,...], which starts at index 2."
+    }
+  ],
+  "constraints": [
+    "1 <= pattern.length <= 100",
+    "pattern consists only of 0 and 1.",
+    "stream consists only of 0 and 1.",
+    "The input is generated such that the pattern's start index exists in the first 10^5 bits of the stream."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for an infinite stream.\n# class InfiniteStream:\n#     def next(self) -> int:\n        pass\n",
+    "cpp": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n * public:\n *     InfiniteStream(vector<int> bits);\n *     int next();\n * };\n */\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n *     public InfiniteStream(int[] bits);\n *     public int next();\n * }\n */\nclass Solution {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for an infinite stream.\n# class InfiniteStream:\n#     def next(self) -> int:\n#         pass\nclass Solution:\n    def findPattern(\n        self, stream: Optional[\"InfiniteStream\"], pattern: List[int]\n    ) -> int:\n        a = b = 0\n        m = len(pattern)\n        half = m >> 1\n        mask1 = (1 << half) - 1\n        mask2 = (1 << (m - half)) - 1\n        for i in range(half):\n            a |= pattern[i] << (half - 1 - i)\n        for i in range(half, m):\n            b |= pattern[i] << (m - 1 - i)\n        x = y = 0\n        for i in count(1):\n            v = stream.next()\n            y = y << 1 | v\n            v = y >> (m - half) & 1\n            y &= mask2\n            x = x << 1 | v\n            x &= mask1\n            if i >= m and a == x and b == y:\n                return i - m",
+    "cpp": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n * public:\n *     InfiniteStream(vector<int> bits);\n *     int next();\n * };\n */\nclass Solution {\npublic:\n    int findPattern(InfiniteStream* stream, vector<int>& pattern) {\n        long long a = 0, b = 0;\n        int m = pattern.size();\n        int half = m >> 1;\n        long long mask1 = (1LL << half) - 1;\n        long long mask2 = (1LL << (m - half)) - 1;\n        for (int i = 0; i < half; ++i) {\n            a |= (long long) pattern[i] << (half - 1 - i);\n        }\n        for (int i = half; i < m; ++i) {\n            b |= (long long) pattern[i] << (m - 1 - i);\n        }\n        long x = 0, y = 0;\n        for (int i = 1;; ++i) {\n            int v = stream->next();\n            y = y << 1 | v;\n            v = (int) ((y >> (m - half)) & 1);\n            y &= mask2;\n            x = x << 1 | v;\n            x &= mask1;\n            if (i >= m && a == x && b == y) {\n                return i - m;\n            }\n        }\n    }\n};",
+    "java": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n *     public InfiniteStream(int[] bits);\n *     public int next();\n * }\n */\nclass Solution {\n    public int findPattern(InfiniteStream infiniteStream, int[] pattern) {\n        long a = 0, b = 0;\n        int m = pattern.length;\n        int half = m >> 1;\n        long mask1 = (1L << half) - 1;\n        long mask2 = (1L << (m - half)) - 1;\n        for (int i = 0; i < half; ++i) {\n            a |= (long) pattern[i] << (half - 1 - i);\n        }\n        for (int i = half; i < m; ++i) {\n            b |= (long) pattern[i] << (m - 1 - i);\n        }\n        long x = 0, y = 0;\n        for (int i = 1;; ++i) {\n            int v = infiniteStream.next();\n            y = y << 1 | v;\n            v = (int) ((y >> (m - half)) & 1);\n            y &= mask2;\n            x = x << 1 | v;\n            x &= mask1;\n            if (i >= m && a == x && b == y) {\n                return i - m;\n            }\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,1,1,0,1,1,1,...], pattern = [0,1]",
+      "expected": "3"
+    },
+    {
+      "input": "[0,0,0,0,...], pattern = [0]",
+      "expected": "0"
+    },
+    {
+      "input": "[1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Pattern in Infinite Stream I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

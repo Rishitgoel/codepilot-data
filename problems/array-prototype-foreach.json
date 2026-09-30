@@ -1,0 +1,70 @@
+{
+  "id": 2804,
+  "slug": "array-prototype-foreach",
+  "title": "Array Prototype ForEach",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Array%20Prototype%20ForEach"
+  },
+  "description": "Write your version of method `forEach` that enhances all arrays such that you can call the `array.forEach(callback, context)` method on any array and it will execute `callback` on each element of the array. Method `forEach` should not return anything.\n\n`callback` accepts the following arguments:\n\n\t`currentValue` - represents the current element being processed in the array. It is the value of the element in the current iteration.\n\t`index` - represents the index of the current element being processed in the array.\n\t`array` - represents the array itself, allowing access to the entire array within the callback function.\n\nThe `context` is the object that should be passed as the function context parameter to the `callback` function, ensuring that the `this` keyword within the `callback` function refers to this `context` object.\n\nTry to implement it without using the built-in array methods.",
+  "examples": [
+    {
+      "input": "arr = [1,2,3], \ncallback = (val, i, arr) => arr[i] = val * 2, \ncontext = {\"context\":true}",
+      "output": "[2,4,6]",
+      "explanation": "arr.forEach(callback, context)  \nconsole.log(arr) // [2,4,6]\n\nThe callback is executed on each element of the array."
+    },
+    {
+      "input": "arr = [true, true, false, false], \ncallback = (val, i, arr) => arr[i] = this, \ncontext = {\"context\": false}",
+      "output": "[{\"context\":false},{\"context\":false},{\"context\":false},{\"context\":false}]",
+      "explanation": "arr.forEach(callback, context) \nconsole.log(arr) // [{\"context\":false},{\"context\":false},{\"context\":false},{\"context\":false}]\n\nThe callback is executed on each element of the array with the right context."
+    },
+    {
+      "input": "arr = [true, true, false, false], \ncallback = (val, i, arr) => arr[i] = !val, \ncontext = {\"context\": 5}",
+      "output": "[false,false,true,true]"
+    }
+  ],
+  "constraints": [
+    "arr is a valid JSON array",
+    "context is a valid JSON object",
+    "fn is a function",
+    "0 <= arr.length <= 10^5"
+  ],
+  "starterTemplates": {
+    "javascript": "Array.prototype.forEach = function (callback: Function, context: any): void {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "Array.prototype.forEach = function (callback: Function, context: any): void {\n    for (let i = 0; i < this.length; ++i) {\n        callback.call(context, this[i], i, this);\n    }\n};\n\n/**\n *  const arr = [1,2,3];\n *  const callback = (val, i, arr) => arr[i] = val * 2;\n *  const context = {\"context\":true};\n *\n *  arr.forEach(callback, context)\n *\n *  console.log(arr) // [2,4,6]\n */"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3], \ncallback = (val, i, arr) => arr[i] = val * 2, \ncontext = {\"context\":true}",
+      "expected": "[2,4,6]"
+    },
+    {
+      "input": "[true, true, false, false], \ncallback = (val, i, arr) => arr[i] = this, \ncontext = {\"context\": false}",
+      "expected": "[{\"context\":false},{\"context\":false},{\"context\":false},{\"context\":false}]"
+    },
+    {
+      "input": "[true, true, false, false], \ncallback = (val, i, arr) => arr[i] = !val, \ncontext = {\"context\": 5}",
+      "expected": "[false,false,true,true]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Array Prototype ForEach.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

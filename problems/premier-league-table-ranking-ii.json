@@ -1,0 +1,49 @@
+{
+  "id": 3252,
+  "slug": "premier-league-table-ranking-ii",
+  "title": "Premier League Table Ranking II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Premier%20League%20Table%20Ranking%20II"
+  },
+  "description": "Table: `TeamStats`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| team_id          | int     |\n| team_name        | varchar |\n| matches_played   | int     |\n| wins             | int     |\n| draws            | int     |\n| losses           | int     |\n+------------------+---------+\nteam_id is the unique key for this table.\nThis table contains team id, team name, matches_played, wins, draws, and losses.\n\nWrite a solution to calculate the **points**, **position**, and **tier** for each team in the league. Points are calculated as follows:\n\n\t`3` points for a **win**\n\t`1` point for a **draw**\n\t`0` points for a **loss**\n\n**Note:** Teams with the same points must be assigned the same position.\n\n**Tier ranking:**\n\n\tDivide the league into `3` tiers based on points:\n\tTier 1: Top `33%` of teams\n\tTier 2: Middle `33%` of teams\n\tTier 3: Bottom` 34%` of teams\n\tIn case of **ties** at** tier boundaries**, place tied teams in the **higher tier**.\n\nReturn *the result table **ordered by* `points` *in **descending**,** **and then by* `team_name` *in **ascending** order.*\n\nThe query result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_tiers(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_tiers(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n    team_stats[\"points\"] = team_stats[\"wins\"] * 3 + team_stats[\"draws\"]\r\n    team_stats[\"position\"] = (\r\n        team_stats[\"points\"].rank(method=\"min\", ascending=False).astype(int)\r\n    )\r\n    total_teams = len(team_stats)\r\n    team_stats[\"tier\"] = np.where(\r\n        team_stats[\"position\"] <= np.ceil(total_teams / 3.0),\r\n        \"Tier 1\",\r\n        np.where(\r\n            team_stats[\"position\"] <= np.ceil(2 * total_teams / 3.0), \"Tier 2\", \"Tier 3\"\r\n        ),\r\n    )\r\n    team_stats = team_stats.sort_values(\r\n        by=[\"points\", \"team_name\"], ascending=[False, True]\r\n    )\r\n    return team_stats[[\"team_name\", \"points\", \"position\", \"tier\"]]"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Premier League Table Ranking II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

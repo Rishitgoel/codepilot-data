@@ -1,0 +1,63 @@
+{
+  "id": 1180,
+  "slug": "count-substrings-with-only-one-distinct-letter",
+  "title": "Count Substrings with Only One Distinct Letter",
+  "difficulty": "Easy",
+  "rating": 1315,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Virtu Financial",
+    "Virtu"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Substrings%20with%20Only%20One%20Distinct%20Letter"
+  },
+  "description": "Given a string `s`, return *the number of substrings that have only **one distinct** letter*.",
+  "examples": [
+    {
+      "input": "s = \"aaaba\"",
+      "output": "8",
+      "explanation": "The substrings with one distinct letter are \"aaa\", \"aa\", \"a\", \"b\".\n\"aaa\" occurs 1 time.\n\"aa\" occurs 2 times.\n\"a\" occurs 4 times.\n\"b\" occurs 1 time.\nSo the answer is 1 + 2 + 4 + 1 = 8."
+    },
+    {
+      "input": "s = \"aaaaaaaaaa\"",
+      "output": "55"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s[i] consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countLetters(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int countLetters(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int countLetters(String s) {\n        \n    }\n};\n",
+    "javascript": "function countLetters(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countLetters(self, s: str) -> int:\n        n = len(s)\n        i = ans = 0\n        while i < n:\n            j = i\n            while j < n and s[j] == s[i]:\n                j += 1\n            ans += (1 + j - i) * (j - i) // 2\n            i = j\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int countLetters(string s) {\n        int ans = 0;\n        for (int i = 0, n = s.size(); i < n;) {\n            int j = i;\n            while (j < n && s[j] == s[i]) {\n                ++j;\n            }\n            ans += (1 + j - i) * (j - i) / 2;\n            i = j;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int countLetters(String s) {\n        int ans = 0;\n        for (int i = 0, n = s.length(); i < n;) {\n            int j = i;\n            while (j < n && s.charAt(j) == s.charAt(i)) {\n                ++j;\n            }\n            ans += (1 + j - i) * (j - i) / 2;\n            i = j;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countLetters(s: string): number {\n    let ans = 0;\n    const n = s.length;\n    for (let i = 0; i < n;) {\n        let j = i;\n        let cnt = 0;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n            ans += ++cnt;\n        }\n        i = j;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"aaaba\"",
+      "expected": "8"
+    },
+    {
+      "input": "\"aaaaaaaaaa\"",
+      "expected": "55"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Substrings with Only One Distinct Letter.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

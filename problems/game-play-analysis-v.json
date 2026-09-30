@@ -1,0 +1,43 @@
+{
+  "id": 1097,
+  "slug": "game-play-analysis-v",
+  "title": "Game Play Analysis V",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "GSN Games"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Game%20Play%20Analysis%20V"
+  },
+  "description": "Table: `Activity`\n\n+--------------+---------+\n| Column Name  | Type    |\n+--------------+---------+\n| player_id    | int     |\n| device_id    | int     |\n| event_date   | date    |\n| games_played | int     |\n+--------------+---------+\n(player_id, event_date) is the primary key (combination of columns with unique values) of this table.\nThis table shows the activity of players of some games.\nEach row is a record of a player who logged in and played a number of games (possibly 0) before logging out on someday using some device.\n\n \n\nThe **install date** of a player is the first login day of that player.\n\nWe define **day one retention** of some date `x` to be the number of players whose **install date** is `x` and they logged back in on the day right after `x`, divided by the number of players whose install date is `x`, rounded to `2` decimal places.\n\nWrite a solution to report for each install date, the number of players that installed the game on that day, and the **day one retention**.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Activity table:\n+-----------+-----------+------------+--------------+\n| player_id | device_id | event_date | games_played |\n+-----------+-----------+------------+--------------+\n| 1         | 2         | 2016-03-01 | 5            |\n| 1         | 2         | 2016-03-02 | 6            |\n| 2         | 3         | 2017-06-25 | 1            |\n| 3         | 1         | 2016-03-01 | 0            |\n| 3         | 4         | 2016-07-03 | 5            |\n+-----------+-----------+------------+--------------+",
+      "output": "+------------+----------+----------------+\n| install_dt | installs | Day1_retention |\n+------------+----------+----------------+\n| 2016-03-01 | 2        | 0.50           |\n| 2017-06-25 | 1        | 0.00           |\n+------------+----------+----------------+",
+      "explanation": "Player 1 and 3 installed the game on 2016-03-01 but only player 1 logged back in on 2016-03-02 so the day 1 retention of 2016-03-01 is 1 / 2 = 0.50\nPlayer 2 installed the game on 2017-06-25 but didn't log back in on 2017-06-26 so the day 1 retention of 2017-06-25 is 0 / 1 = 0.00"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Activity table:\n+-----------+-----------+------------+--------------+\n| player_id | device_id | event_date | games_played |\n+-----------+-----------+------------+--------------+\n| 1         | 2         | 2016-03-01 | 5            |\n| 1         | 2         | 2016-03-02 | 6            |\n| 2         | 3         | 2017-06-25 | 1            |\n| 3         | 1         | 2016-03-01 | 0            |\n| 3         | 4         | 2016-07-03 | 5            |\n+-----------+-----------+------------+--------------+",
+      "expected": "+------------+----------+----------------+\n| install_dt | installs | Day1_retention |\n+------------+----------+----------------+\n| 2016-03-01 | 2        | 0.50           |\n| 2017-06-25 | 1        | 0.00           |\n+------------+----------+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Game Play Analysis V.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,60 @@
+{
+  "id": 1256,
+  "slug": "encode-number",
+  "title": "Encode Number",
+  "difficulty": "Medium",
+  "rating": 1561,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Quora"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Encode%20Number"
+  },
+  "description": "Given a non-negative integer `num`, Return its *encoding* string.\n\nThe encoding is done by converting the integer to a string using a secret function that you should deduce from the following table:",
+  "examples": [
+    {
+      "input": "num = 23",
+      "output": "\"1000\""
+    },
+    {
+      "input": "num = 107",
+      "output": "\"101100\""
+    }
+  ],
+  "constraints": [
+    "0 <= num <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def encode(self, num: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string encode(int num) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String encode(int num) {\n        \n    }\n};\n",
+    "javascript": "function encode(num: number): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def encode(self, num: int) -> str:\n        return bin(num + 1)[3:]",
+    "cpp": "class Solution {\npublic:\n    string encode(int num) {\n        bitset<32> bs(++num);\n        string ans = bs.to_string();\n        int i = 0;\n        while (ans[i] == '0') {\n            ++i;\n        }\n        return ans.substr(i + 1);\n    }\n};",
+    "java": "class Solution {\n    public String encode(int num) {\n        return Integer.toBinaryString(num + 1).substring(1);\n    }\n}",
+    "javascript": "function encode(num: number): string {\n    ++num;\n    let s = num.toString(2);\n    return s.slice(1);\n}"
+  },
+  "testcases": [
+    {
+      "input": "23",
+      "expected": "\"1000\""
+    },
+    {
+      "input": "107",
+      "expected": "\"101100\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Encode Number.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

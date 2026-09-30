@@ -1,0 +1,45 @@
+{
+  "id": 3526,
+  "slug": "range-xor-queries-with-subarray-reversals",
+  "title": "Range XOR Queries with Subarray Reversals",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Range%20XOR%20Queries%20with%20Subarray%20Reversals"
+  },
+  "description": "You are given an integer array nums of length n and a 2D integer array queries of length q, where each query is one of the following three types:\n\n\t\n\tUpdate: queries[i] = [1, index, value]\n\tSet nums[index] = value.\n\n\t\n\t\n\tRange XOR Query: queries[i] = [2, left, right]\n\tCompute the bitwise XOR of all elements in the subarray nums[left...right], and record this result.\n\n\t\n\t\n\tReverse Subarray: queries[i] = [3, left, right]\n\tReverse the subarray nums[left...right] in place.\n\n\t\n\nReturn an array of the results of all range XOR queries in the order they were encountered.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Range XOR Queries with Subarray Reversals.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

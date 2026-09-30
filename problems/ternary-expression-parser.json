@@ -1,0 +1,71 @@
+{
+  "id": 439,
+  "slug": "ternary-expression-parser",
+  "title": "Ternary Expression Parser",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Snapchat"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Ternary%20Expression%20Parser"
+  },
+  "description": "Given a string `expression` representing arbitrarily nested ternary expressions, evaluate the expression, and return *the result of it*.\n\nYou can always assume that the given expression is valid and only contains digits, `'?'`, `':'`, `'T'`, and `'F'` where `'T'` is true and `'F'` is false. All the numbers in the expression are **one-digit** numbers (i.e., in the range `[0, 9]`).\n\nThe conditional expressions group right-to-left (as usual in most languages), and the result of the expression will always evaluate to either a digit, `'T'` or `'F'`.",
+  "examples": [
+    {
+      "input": "expression = \"T?2:3\"",
+      "output": "\"2\"",
+      "explanation": "If true, then result is 2; otherwise result is 3."
+    },
+    {
+      "input": "expression = \"F?1:T?4:5\"",
+      "output": "\"4\"",
+      "explanation": "The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:\n\"(F ? 1 : (T ? 4 : 5))\" --> \"(F ? 1 : 4)\" --> \"4\"\nor \"(F ? 1 : (T ? 4 : 5))\" --> \"(T ? 4 : 5)\" --> \"4\""
+    },
+    {
+      "input": "expression = \"T?T?F:5:3\"",
+      "output": "\"F\"",
+      "explanation": "The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:\n\"(T ? (T ? F : 5) : 3)\" --> \"(T ? F : 3)\" --> \"F\"\n\"(T ? (T ? F : 5) : 3)\" --> \"(T ? F : 5)\" --> \"F\""
+    }
+  ],
+  "constraints": [
+    "5 <= expression.length <= 10^4",
+    "expression consists of digits, 'T', 'F', '?', and ':'.",
+    "It is guaranteed that expression is a valid ternary expression and that each number is a one-digit number."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def parseTernary(self, expression: str) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string parseTernary(string expression) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String parseTernary(String expression) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def parseTernary(self, expression: str) -> str:\n        stk = []\n        cond = False\n        for c in expression[::-1]:\n            if c == ':':\n                continue\n            if c == '?':\n                cond = True\n            else:\n                if cond:\n                    if c == 'T':\n                        x = stk.pop()\n                        stk.pop()\n                        stk.append(x)\n                    else:\n                        stk.pop()\n                    cond = False\n                else:\n                    stk.append(c)\n        return stk[0]",
+    "cpp": "class Solution {\npublic:\n    string parseTernary(string expression) {\n        string stk;\n        bool cond = false;\n        reverse(expression.begin(), expression.end());\n        for (char& c : expression) {\n            if (c == ':') {\n                continue;\n            }\n            if (c == '?') {\n                cond = true;\n            } else {\n                if (cond) {\n                    if (c == 'T') {\n                        char x = stk.back();\n                        stk.pop_back();\n                        stk.pop_back();\n                        stk.push_back(x);\n                    } else {\n                        stk.pop_back();\n                    }\n                    cond = false;\n                } else {\n                    stk.push_back(c);\n                }\n            }\n        }\n        return {stk[0]};\n    }\n};",
+    "java": "class Solution {\n    public String parseTernary(String expression) {\n        Deque<Character> stk = new ArrayDeque<>();\n        boolean cond = false;\n        for (int i = expression.length() - 1; i >= 0; --i) {\n            char c = expression.charAt(i);\n            if (c == ':') {\n                continue;\n            }\n            if (c == '?') {\n                cond = true;\n            } else {\n                if (cond) {\n                    if (c == 'T') {\n                        char x = stk.pop();\n                        stk.pop();\n                        stk.push(x);\n                    } else {\n                        stk.pop();\n                    }\n                    cond = false;\n                } else {\n                    stk.push(c);\n                }\n            }\n        }\n        return String.valueOf(stk.peek());\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"T?2:3\"",
+      "expected": "\"2\""
+    },
+    {
+      "input": "\"F?1:T?4:5\"",
+      "expected": "\"4\""
+    },
+    {
+      "input": "\"T?T?F:5:3\"",
+      "expected": "\"F\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Ternary Expression Parser.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

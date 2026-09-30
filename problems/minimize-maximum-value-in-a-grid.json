@@ -1,0 +1,67 @@
+{
+  "id": 2371,
+  "slug": "minimize-maximum-value-in-a-grid",
+  "title": "Minimize Maximum Value in a Grid",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimize%20Maximum%20Value%20in%20a%20Grid"
+  },
+  "description": "You are given an `m x n` integer matrix `grid` containing **distinct** positive integers.\n\nYou have to replace each integer in the matrix with a positive integer satisfying the following conditions:\n\n\tThe **relative** order of every two elements that are in the same row or column should stay the **same** after the replacements.\n\tThe **maximum** number in the matrix after the replacements should be as **small** as possible.\n\nThe relative order stays the same if for all pairs of elements in the original matrix such that `grid[r1][c1] > grid[r2][c2]` where either `r1 == r2` or `c1 == c2`, then it must be true that `grid[r1][c1] > grid[r2][c2]` after the replacements.\n\nFor example, if `grid = [[2, 4, 5], [7, 3, 9]]` then a good replacement could be either `grid = [[1, 2, 3], [2, 1, 4]]` or `grid = [[1, 2, 3], [3, 1, 4]]`.\n\nReturn *the **resulting** matrix.* If there are multiple answers, return **any** of them.",
+  "examples": [
+    {
+      "input": "grid = [[3,1],[2,5]]",
+      "output": "[[2,1],[1,2]]",
+      "explanation": "The above diagram shows a valid replacement.\nThe maximum number in the matrix is 2. It can be shown that no smaller value can be obtained."
+    },
+    {
+      "input": "grid = [[10]]",
+      "output": "[[1]]",
+      "explanation": "We replace the only number in the matrix with 1."
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 1000",
+    "1 <= m * n <= 10^5",
+    "1 <= grid[i][j] <= 10^9",
+    "grid consists of distinct integers."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minScore(self, grid: List[List[int]]) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> minScore(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[][] minScore(int[][] grid) {\n        \n    }\n};\n",
+    "javascript": "function minScore(grid: number[][]): number[][] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minScore(self, grid: List[List[int]]) -> List[List[int]]:\n        m, n = len(grid), len(grid[0])\n        nums = [(v, i, j) for i, row in enumerate(grid) for j, v in enumerate(row)]\n        nums.sort()\n        row_max = [0] * m\n        col_max = [0] * n\n        ans = [[0] * n for _ in range(m)]\n        for _, i, j in nums:\n            ans[i][j] = max(row_max[i], col_max[j]) + 1\n            row_max[i] = col_max[j] = ans[i][j]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> minScore(vector<vector<int>>& grid) {\n        vector<tuple<int, int, int>> nums;\n        int m = grid.size(), n = grid[0].size();\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                nums.push_back({grid[i][j], i, j});\n            }\n        }\n        sort(nums.begin(), nums.end());\n        vector<int> rowMax(m);\n        vector<int> colMax(n);\n        vector<vector<int>> ans(m, vector<int>(n));\n        for (auto [_, i, j] : nums) {\n            ans[i][j] = max(rowMax[i], colMax[j]) + 1;\n            rowMax[i] = colMax[j] = ans[i][j];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[][] minScore(int[][] grid) {\n        int m = grid.length, n = grid[0].length;\n        List<int[]> nums = new ArrayList<>();\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                nums.add(new int[] {grid[i][j], i, j});\n            }\n        }\n        Collections.sort(nums, (a, b) -> a[0] - b[0]);\n        int[] rowMax = new int[m];\n        int[] colMax = new int[n];\n        int[][] ans = new int[m][n];\n        for (int[] num : nums) {\n            int i = num[1], j = num[2];\n            ans[i][j] = Math.max(rowMax[i], colMax[j]) + 1;\n            rowMax[i] = ans[i][j];\n            colMax[j] = ans[i][j];\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minScore(grid: number[][]): number[][] {\n    const m = grid.length;\n    const n = grid[0].length;\n    const nums = [];\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            nums.push([grid[i][j], i, j]);\n        }\n    }\n    nums.sort((a, b) => a[0] - b[0]);\n    const rowMax = new Array(m).fill(0);\n    const colMax = new Array(n).fill(0);\n    const ans = Array.from({ length: m }, _ => new Array(n));\n    for (const [_, i, j] of nums) {\n        ans[i][j] = Math.max(rowMax[i], colMax[j]) + 1;\n        rowMax[i] = colMax[j] = ans[i][j];\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[3,1],[2,5]]",
+      "expected": "[[2,1],[1,2]]"
+    },
+    {
+      "input": "[[10]]",
+      "expected": "[[1]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimize Maximum Value in a Grid.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

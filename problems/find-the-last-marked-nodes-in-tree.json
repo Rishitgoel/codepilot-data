@@ -1,0 +1,56 @@
+{
+  "id": 3313,
+  "slug": "find-the-last-marked-nodes-in-tree",
+  "title": "Find the Last Marked Nodes in Tree",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20the%20Last%20Marked%20Nodes%20in%20Tree"
+  },
+  "description": "There exists an **undirected** tree with `n` nodes numbered `0` to `n - 1`. You are given a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates that there is an edge between nodes `ui` and `vi` in the tree.\n\nInitially, **all** nodes are **unmarked**. After every second, you mark all unmarked nodes which have **at least** one marked node *adjacent* to them.\n\nReturn an array `nodes` where `nodes[i]` is the last node to get marked in the tree, if you mark node `i` at time `t = 0`. If `nodes[i]` has *multiple* answers for any node `i`, you can choose** any** one answer.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 10^5",
+    "edges.length == n - 1",
+    "edges[i].length == 2",
+    "0 <= edges[i][0], edges[i][1] <= n - 1",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def lastMarkedNodes(self, edges: List[List[int]]) -> List[int]:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> lastMarkedNodes(vector<vector<int>>& edges) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    private List<Integer>[] g;\r\n\r\n    public int[] lastMarkedNodes(int[][] edges) {\r\n        \n    }\n};\n",
+    "javascript": "function lastMarkedNodes(edges: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def lastMarkedNodes(self, edges: List[List[int]]) -> List[int]:\r\n        def dfs(i: int, fa: int, dist: List[int]):\r\n            for j in g[i]:\r\n                if j != fa:\r\n                    dist[j] = dist[i] + 1\r\n                    dfs(j, i, dist)\r\n\r\n        n = len(edges) + 1\r\n        g = [[] for _ in range(n)]\r\n        for u, v in edges:\r\n            g[u].append(v)\r\n            g[v].append(u)\r\n\r\n        dist1 = [-1] * n\r\n        dist1[0] = 0\r\n        dfs(0, -1, dist1)\r\n        a = dist1.index(max(dist1))\r\n\r\n        dist2 = [-1] * n\r\n        dist2[a] = 0\r\n        dfs(a, -1, dist2)\r\n        b = dist2.index(max(dist2))\r\n\r\n        dist3 = [-1] * n\r\n        dist3[b] = 0\r\n        dfs(b, -1, dist3)\r\n\r\n        return [a if x > y else b for x, y in zip(dist2, dist3)]",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> lastMarkedNodes(vector<vector<int>>& edges) {\r\n        int n = edges.size() + 1;\r\n        g.resize(n);\r\n        for (const auto& e : edges) {\r\n            int u = e[0], v = e[1];\r\n            g[u].push_back(v);\r\n            g[v].push_back(u);\r\n        }\r\n        vector<int> dist1(n);\r\n        dfs(0, -1, dist1);\r\n        int a = max_element(dist1.begin(), dist1.end()) - dist1.begin();\r\n\r\n        vector<int> dist2(n);\r\n        dfs(a, -1, dist2);\r\n        int b = max_element(dist2.begin(), dist2.end()) - dist2.begin();\r\n\r\n        vector<int> dist3(n);\r\n        dfs(b, -1, dist3);\r\n\r\n        vector<int> ans;\r\n        for (int i = 0; i < n; ++i) {\r\n            ans.push_back(dist2[i] > dist3[i] ? a : b);\r\n        }\r\n        return ans;\r\n    }\r\n\r\nprivate:\r\n    vector<vector<int>> g;\r\n\r\n    void dfs(int i, int fa, vector<int>& dist) {\r\n        for (int j : g[i]) {\r\n            if (j != fa) {\r\n                dist[j] = dist[i] + 1;\r\n                dfs(j, i, dist);\r\n            }\r\n        }\r\n    }\r\n};",
+    "java": "class Solution {\r\n    private List<Integer>[] g;\r\n\r\n    public int[] lastMarkedNodes(int[][] edges) {\r\n        int n = edges.length + 1;\r\n        g = new List[n];\r\n        Arrays.setAll(g, k -> new ArrayList<>());\r\n        for (var e : edges) {\r\n            int u = e[0], v = e[1];\r\n            g[u].add(v);\r\n            g[v].add(u);\r\n        }\r\n        int[] dist1 = new int[n];\r\n        dist1[0] = 0;\r\n        dfs(0, -1, dist1);\r\n        int a = maxNode(dist1);\r\n\r\n        int[] dist2 = new int[n];\r\n        dist2[a] = 0;\r\n        dfs(a, -1, dist2);\r\n        int b = maxNode(dist2);\r\n\r\n        int[] dist3 = new int[n];\r\n        dist3[b] = 0;\r\n        dfs(b, -1, dist3);\r\n\r\n        int[] ans = new int[n];\r\n        for (int i = 0; i < n; ++i) {\r\n            ans[i] = dist2[i] > dist3[i] ? a : b;\r\n        }\r\n        return ans;\r\n    }\r\n\r\n    private void dfs(int i, int fa, int[] dist) {\r\n        for (int j : g[i]) {\r\n            if (j != fa) {\r\n                dist[j] = dist[i] + 1;\r\n                dfs(j, i, dist);\r\n            }\r\n        }\r\n    }\r\n\r\n    private int maxNode(int[] dist) {\r\n        int mx = 0;\r\n        for (int i = 0; i < dist.length; ++i) {\r\n            if (dist[mx] < dist[i]) {\r\n                mx = i;\r\n            }\r\n        }\r\n        return mx;\r\n    }\r\n}",
+    "javascript": "function lastMarkedNodes(edges: number[][]): number[] {\n    const n = edges.length + 1;\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [u, v] of edges) {\n        g[u].push(v);\n        g[v].push(u);\n    }\n    const dfs = (i: number, fa: number, dist: number[]) => {\n        for (const j of g[i]) {\n            if (j !== fa) {\n                dist[j] = dist[i] + 1;\n                dfs(j, i, dist);\n            }\n        }\n    };\n\n    const dist1: number[] = Array(n).fill(0);\n    dfs(0, -1, dist1);\n    const a = dist1.indexOf(Math.max(...dist1));\n\n    const dist2: number[] = Array(n).fill(0);\n    dfs(a, -1, dist2);\n    const b = dist2.indexOf(Math.max(...dist2));\n\n    const dist3: number[] = Array(n).fill(0);\n    dfs(b, -1, dist3);\n\n    const ans: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        ans.push(dist2[i] > dist3[i] ? a : b);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find the Last Marked Nodes in Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

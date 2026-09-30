@@ -1,0 +1,64 @@
+{
+  "id": 2912,
+  "slug": "number-of-ways-to-reach-destination-in-the-grid",
+  "title": "Number of Ways to Reach Destination in the Grid",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Ways%20to%20Reach%20Destination%20in%20the%20Grid"
+  },
+  "description": "You are given two integers `n` and `m` which represent the size of a **1-indexed **grid. You are also given an integer `k`, a **1-indexed** integer array `source` and a **1-indexed** integer array `dest`, where `source` and `dest` are in the form `[x, y]` representing a cell on the given grid.\n\nYou can move through the grid in the following way:\n\n\tYou can go from cell `[x1, y1]` to cell `[x2, y2]` if either `x1 == x2` or `y1 == y2`.\n\tNote that you **can't** move to the cell you are already in e.g. `x1 == x2` and `y1 == y2`.\n\nReturn *the number of ways you can reach* `dest` *from* `source` *by moving through the grid* **exactly** `k` *times.*\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
+  "examples": [
+    {
+      "input": "n = 3, m = 2, k = 2, source = [1,1], dest = [2,2]",
+      "output": "2",
+      "explanation": "There are 2 possible sequences of reaching [2,2] from [1,1]:\n- [1,1] -> [1,2] -> [2,2]\n- [1,1] -> [2,1] -> [2,2]"
+    },
+    {
+      "input": "n = 3, m = 4, k = 3, source = [1,2], dest = [2,3]",
+      "output": "9",
+      "explanation": "There are 9 possible sequences of reaching [2,3] from [1,2]:\n- [1,2] -> [1,1] -> [1,3] -> [2,3]\n- [1,2] -> [1,1] -> [2,1] -> [2,3]\n- [1,2] -> [1,3] -> [3,3] -> [2,3]\n- [1,2] -> [1,4] -> [1,3] -> [2,3]\n- [1,2] -> [1,4] -> [2,4] -> [2,3]\n- [1,2] -> [2,2] -> [2,1] -> [2,3]\n- [1,2] -> [2,2] -> [2,4] -> [2,3]\n- [1,2] -> [3,2] -> [2,2] -> [2,3]\n- [1,2] -> [3,2] -> [3,3] -> [2,3]"
+    }
+  ],
+  "constraints": [
+    "2 <= n, m <= 10^9",
+    "1 <= k <= 10^5",
+    "source.length == dest.length == 2",
+    "1 <= source[1], dest[1] <= n",
+    "1 <= source[2], dest[2] <= m"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def numberOfWays(\n        self, n: int, m: int, k: int, source: List[int], dest: List[int]\n    ) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int numberOfWays(int n, int m, int k, vector<int>& source, vector<int>& dest) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int numberOfWays(int n, int m, int k, int[] source, int[] dest) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def numberOfWays(\n        self, n: int, m: int, k: int, source: List[int], dest: List[int]\n    ) -> int:\n        mod = 10**9 + 7\n        f = [1, 0, 0, 0]\n        for _ in range(k):\n            g = [0] * 4\n            g[0] = ((n - 1) * f[1] + (m - 1) * f[2]) % mod\n            g[1] = (f[0] + (n - 2) * f[1] + (m - 1) * f[3]) % mod\n            g[2] = (f[0] + (m - 2) * f[2] + (n - 1) * f[3]) % mod\n            g[3] = (f[1] + f[2] + (n - 2) * f[3] + (m - 2) * f[3]) % mod\n            f = g\n        if source[0] == dest[0]:\n            return f[0] if source[1] == dest[1] else f[2]\n        return f[1] if source[1] == dest[1] else f[3]",
+    "cpp": "class Solution {\npublic:\n    int numberOfWays(int n, int m, int k, vector<int>& source, vector<int>& dest) {\n        const int mod = 1e9 + 7;\n        vector<long long> f(4);\n        f[0] = 1;\n        while (k--) {\n            vector<long long> g(4);\n            g[0] = ((n - 1) * f[1] + (m - 1) * f[2]) % mod;\n            g[1] = (f[0] + (n - 2) * f[1] + (m - 1) * f[3]) % mod;\n            g[2] = (f[0] + (m - 2) * f[2] + (n - 1) * f[3]) % mod;\n            g[3] = (f[1] + f[2] + (n - 2) * f[3] + (m - 2) * f[3]) % mod;\n            f = move(g);\n        }\n        if (source[0] == dest[0]) {\n            return source[1] == dest[1] ? f[0] : f[2];\n        }\n        return source[1] == dest[1] ? f[1] : f[3];\n    }\n};",
+    "java": "class Solution {\n    public int numberOfWays(int n, int m, int k, int[] source, int[] dest) {\n        final int mod = 1000000007;\n        long[] f = new long[4];\n        f[0] = 1;\n        while (k-- > 0) {\n            long[] g = new long[4];\n            g[0] = ((n - 1) * f[1] + (m - 1) * f[2]) % mod;\n            g[1] = (f[0] + (n - 2) * f[1] + (m - 1) * f[3]) % mod;\n            g[2] = (f[0] + (m - 2) * f[2] + (n - 1) * f[3]) % mod;\n            g[3] = (f[1] + f[2] + (n - 2) * f[3] + (m - 2) * f[3]) % mod;\n            f = g;\n        }\n        if (source[0] == dest[0]) {\n            return source[1] == dest[1] ? (int) f[0] : (int) f[2];\n        }\n        return source[1] == dest[1] ? (int) f[1] : (int) f[3];\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "3, m = 2, k = 2, source = [1,1], dest = [2,2]",
+      "expected": "2"
+    },
+    {
+      "input": "3, m = 4, k = 3, source = [1,2], dest = [2,3]",
+      "expected": "9"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Ways to Reach Destination in the Grid.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

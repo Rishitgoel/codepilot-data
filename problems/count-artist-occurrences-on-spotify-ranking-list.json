@@ -1,0 +1,46 @@
+{
+  "id": 2669,
+  "slug": "count-artist-occurrences-on-spotify-ranking-list",
+  "title": "Count Artist Occurrences On Spotify Ranking List",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Artist%20Occurrences%20On%20Spotify%20Ranking%20List"
+  },
+  "description": "Table: `Spotify`\n\n+-------------+---------+ \n| Column Name | Type    | \n+-------------+---------+ \n| id          | int     | \n| track_name  | varchar |\n| artist      | varchar |\n+-------------+---------+\n`id` is the primary key (column with unique values) for this table.\nEach row contains an id, track_name, and artist.\n\nWrite a solution to find how many times each artist appeared on the Spotify ranking list.\n\nReturn the result table having the artist's name along with the corresponding number of occurrences ordered by occurrence count in **descending **order. If the occurrences are equal, then it&rsquo;s ordered by the artist&rsquo;s name in **ascending** order.\n\nThe result format is in the following example​​​​​.",
+  "examples": [
+    {
+      "input": "Spotify table: \n+---------+--------------------+------------+ \n| id      | track_name         | artist     |  \n+---------+--------------------+------------+\n| 303651  | Heart Won't Forget | Sia        |\n| 1046089 | Shape of you       | Ed Sheeran |\n| 33445   | I'm the one        | DJ Khalid  |\n| 811266  | Young Dumb & Broke | DJ Khalid  | \n| 505727  | Happier            | Ed Sheeran |\n+---------+--------------------+------------+",
+      "output": "+------------+-------------+\n| artist     | occurrences | \n+------------+-------------+\n| DJ Khalid  | 2           |\n| Ed Sheeran | 2           |\n| Sia        | 1           | \n+------------+-------------+",
+      "explanation": "The count of occurrences is listed in descending order under the column name \"occurrences\". If the number of occurrences is the same, the artist's names are sorted in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Spotify table: \n+---------+--------------------+------------+ \n| id      | track_name         | artist     |  \n+---------+--------------------+------------+\n| 303651  | Heart Won't Forget | Sia        |\n| 1046089 | Shape of you       | Ed Sheeran |\n| 33445   | I'm the one        | DJ Khalid  |\n| 811266  | Young Dumb & Broke | DJ Khalid  | \n| 505727  | Happier            | Ed Sheeran |\n+---------+--------------------+------------+",
+      "expected": "+------------+-------------+\n| artist     | occurrences | \n+------------+-------------+\n| DJ Khalid  | 2           |\n| Ed Sheeran | 2           |\n| Sia        | 1           | \n+------------+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Artist Occurrences On Spotify Ranking List.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

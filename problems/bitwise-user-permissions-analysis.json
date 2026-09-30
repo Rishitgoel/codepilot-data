@@ -1,0 +1,45 @@
+{
+  "id": 3204,
+  "slug": "bitwise-user-permissions-analysis",
+  "title": "Bitwise User Permissions Analysis",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Bitwise%20User%20Permissions%20Analysis"
+  },
+  "description": "Table: `user_permissions`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| permissions | int     |\n+-------------+---------+\nuser_id is the primary key.\nEach row of this table contains the user ID and their permissions encoded as an integer.\n\nConsider that each bit in the `permissions` integer represents a different access level or feature that a user has.\n\nWrite a solution to calculate the following:\n\n\tcommon_perms: The access level granted to **all users**. This is computed using a **bitwise AND** operation on the `permissions` column.\n\tany_perms: The access level granted to **any user**. This is computed using a **bitwise OR** operation on the `permissions` column.\n\nReturn *the result table in **any** order*.\n\nThe result format is shown in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Bitwise User Permissions Analysis.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

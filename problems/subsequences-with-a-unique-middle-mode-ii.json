@@ -1,0 +1,46 @@
+{
+  "id": 3416,
+  "slug": "subsequences-with-a-unique-middle-mode-ii",
+  "title": "Subsequences with a Unique Middle Mode II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Subsequences%20with%20a%20Unique%20Middle%20Mode%20II"
+  },
+  "description": "Given an integer array `nums`, find the number of subsequences of size 5 of `nums` with a **unique middle mode**.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.\n\nA **mode** of a sequence of numbers is defined as the element that appears the **maximum** number of times in the sequence.\n\nA sequence of numbers contains a** unique mode** if it has only one mode.\n\nA sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *middle element* (`seq[2]`) is a **unique mode**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "5 <= nums.length <= 10^5",
+    "-10^9 <= nums[i] <= 10^9"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Subsequences with a Unique Middle Mode II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

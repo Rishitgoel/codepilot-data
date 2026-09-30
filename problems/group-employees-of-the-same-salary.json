@@ -1,0 +1,43 @@
+{
+  "id": 1875,
+  "slug": "group-employees-of-the-same-salary",
+  "title": "Group Employees of the Same Salary",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Clari"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Group%20Employees%20of%20the%20Same%20Salary"
+  },
+  "description": "Table: `Employees`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| employee_id | int     |\n| name        | varchar |\n| salary      | int     |\n+-------------+---------+\nemployee_id is the column with unique values for this table.\nEach row of this table indicates the employee ID, employee name, and salary.\n\n \n\nA company wants to divide the employees into teams such that all the members on each team have the **same salary**. The teams should follow these criteria:\n\n\tEach team should consist of **at least two** employees.\n\tAll the employees on a team should have the **same salary**.\n\tAll the employees of the same salary should be assigned to the same team.\n\tIf the salary of an employee is unique, we **do not** assign this employee to any team.\n\tA team's ID is assigned based on the **rank of the team's salary** relative to the other teams' salaries, where the team with the **lowest** salary has `team_id = 1`. Note that the salaries for employees not on a team are **not included** in this ranking.\n\nWrite a solution to get the `team_id` of each employee that is in a team.\n\nReturn the result table ordered by `team_id` **in ascending order**. In case of a tie, order it by `employee_id` in **ascending order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Employees table:\n+-------------+---------+--------+\n| employee_id | name    | salary |\n+-------------+---------+--------+\n| 2           | Meir    | 3000   |\n| 3           | Michael | 3000   |\n| 7           | Addilyn | 7400   |\n| 8           | Juan    | 6100   |\n| 9           | Kannon  | 7400   |\n+-------------+---------+--------+",
+      "output": "+-------------+---------+--------+---------+\n| employee_id | name    | salary | team_id |\n+-------------+---------+--------+---------+\n| 2           | Meir    | 3000   | 1       |\n| 3           | Michael | 3000   | 1       |\n| 7           | Addilyn | 7400   | 2       |\n| 9           | Kannon  | 7400   | 2       |\n+-------------+---------+--------+---------+",
+      "explanation": "Meir (employee_id=2) and Michael (employee_id=3) are in the same team because they have the same salary of 3000.\nAddilyn (employee_id=7) and Kannon (employee_id=9) are in the same team because they have the same salary of 7400.\nJuan (employee_id=8) is not included in any team because their salary of 6100 is unique (i.e. no other employee has the same salary).\nThe team IDs are assigned as follows (based on salary ranking, lowest first):\n- team_id=1: Meir and Michael, a salary of 3000\n- team_id=2: Addilyn and Kannon, a salary of 7400\nJuan's salary of 6100 is not included in the ranking because they are not on a team."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Employees table:\n+-------------+---------+--------+\n| employee_id | name    | salary |\n+-------------+---------+--------+\n| 2           | Meir    | 3000   |\n| 3           | Michael | 3000   |\n| 7           | Addilyn | 7400   |\n| 8           | Juan    | 6100   |\n| 9           | Kannon  | 7400   |\n+-------------+---------+--------+",
+      "expected": "+-------------+---------+--------+---------+\n| employee_id | name    | salary | team_id |\n+-------------+---------+--------+---------+\n| 2           | Meir    | 3000   | 1       |\n| 3           | Michael | 3000   | 1       |\n| 7           | Addilyn | 7400   | 2       |\n| 9           | Kannon  | 7400   | 2       |\n+-------------+---------+--------+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Group Employees of the Same Salary.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

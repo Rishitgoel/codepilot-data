@@ -1,0 +1,55 @@
+{
+  "id": 2112,
+  "slug": "the-airport-with-the-most-traffic",
+  "title": "The Airport With the Most Traffic",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Airport%20With%20the%20Most%20Traffic"
+  },
+  "description": "Table: `Flights`\n\n+-------------------+------+\n| Column Name       | Type |\n+-------------------+------+\n| departure_airport | int  |\n| arrival_airport   | int  |\n| flights_count     | int  |\n+-------------------+------+\n(departure_airport, arrival_airport) is the primary key column (combination of columns with unique values) for this table.\nEach row of this table indicates that there were flights_count flights that departed from departure_airport and arrived at arrival_airport.\n\n \n\nWrite a solution to report the ID of the airport with the **most traffic**. The airport with the most traffic is the airport that has the largest total number of flights that either departed from or arrived at the airport. If there is more than one airport with the most traffic, report them all.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Flights table:\n+-------------------+-----------------+---------------+\n| departure_airport | arrival_airport | flights_count |\n+-------------------+-----------------+---------------+\n| 1                 | 2               | 4             |\n| 2                 | 1               | 5             |\n| 2                 | 4               | 5             |\n+-------------------+-----------------+---------------+",
+      "output": "+------------+\n| airport_id |\n+------------+\n| 2          |\n+------------+",
+      "explanation": "Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).\nAirport 2 was engaged with 14 flights (10 departures, 4 arrivals).\nAirport 4 was engaged with 5 flights (5 arrivals).\nThe airport with the most traffic is airport 2."
+    },
+    {
+      "input": "Flights table:\n+-------------------+-----------------+---------------+\n| departure_airport | arrival_airport | flights_count |\n+-------------------+-----------------+---------------+\n| 1                 | 2               | 4             |\n| 2                 | 1               | 5             |\n| 3                 | 4               | 5             |\n| 4                 | 3               | 4             |\n| 5                 | 6               | 7             |\n+-------------------+-----------------+---------------+",
+      "output": "+------------+\n| airport_id |\n+------------+\n| 1          |\n| 2          |\n| 3          |\n| 4          |\n+------------+",
+      "explanation": "Airport 1 was engaged with 9 flights (4 departures, 5 arrivals).\nAirport 2 was engaged with 9 flights (5 departures, 4 arrivals).\nAirport 3 was engaged with 9 flights (5 departures, 4 arrivals).\nAirport 4 was engaged with 9 flights (4 departures, 5 arrivals).\nAirport 5 was engaged with 7 flights (7 departures).\nAirport 6 was engaged with 7 flights (7 arrivals).\nThe airports with the most traffic are airports 1, 2, 3, and 4."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Flights table:\n+-------------------+-----------------+---------------+\n| departure_airport | arrival_airport | flights_count |\n+-------------------+-----------------+---------------+\n| 1                 | 2               | 4             |\n| 2                 | 1               | 5             |\n| 2                 | 4               | 5             |\n+-------------------+-----------------+---------------+",
+      "expected": "+------------+\n| airport_id |\n+------------+\n| 2          |\n+------------+"
+    },
+    {
+      "input": "Flights table:\n+-------------------+-----------------+---------------+\n| departure_airport | arrival_airport | flights_count |\n+-------------------+-----------------+---------------+\n| 1                 | 2               | 4             |\n| 2                 | 1               | 5             |\n| 3                 | 4               | 5             |\n| 4                 | 3               | 4             |\n| 5                 | 6               | 7             |\n+-------------------+-----------------+---------------+",
+      "expected": "+------------+\n| airport_id |\n+------------+\n| 1          |\n| 2          |\n| 3          |\n| 4          |\n+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Airport With the Most Traffic.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

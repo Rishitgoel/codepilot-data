@@ -1,0 +1,74 @@
+{
+  "id": 1940,
+  "slug": "longest-common-subsequence-between-sorted-arrays",
+  "title": "Longest Common Subsequence Between Sorted Arrays",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Common%20Subsequence%20Between%20Sorted%20Arrays"
+  },
+  "description": "Given an array of integer arrays `arrays` where each `arrays[i]` is sorted in **strictly increasing** order, return *an integer array representing the **longest common subsequence** among **all** the arrays*.\n\nA **subsequence** is a sequence that can be derived from another sequence by deleting some elements (possibly none) without changing the order of the remaining elements.",
+  "examples": [
+    {
+      "input": "arrays = [[1,3,4],\n                 [1,4,7,9]]",
+      "output": "[1,4]",
+      "explanation": "The longest common subsequence in the two arrays is [1,4]."
+    },
+    {
+      "input": "arrays = [[2,3,6,8],\n                 [1,2,3,5,6,7,10],\n                 [2,3,4,6,9]]",
+      "output": "[2,3,6]",
+      "explanation": "The longest common subsequence in all three arrays is [2,3,6]."
+    },
+    {
+      "input": "arrays = [[1,2,3,4,5],\n                 [6,7,8]]",
+      "output": "[]",
+      "explanation": "There is no common subsequence between the two arrays."
+    }
+  ],
+  "constraints": [
+    "2 <= arrays.length <= 100",
+    "1 <= arrays[i].length <= 100",
+    "1 <= arrays[i][j] <= 100",
+    "arrays[i] is sorted in strictly increasing order."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> longestCommonSubsequence(vector<vector<int>>& arrays) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> longestCommonSubsequence(int[][] arrays) {\n        \n    }\n};\n",
+    "javascript": "function longestCommonSubsequence(arrays: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:\n        cnt = [0] * 101\n        for row in arrays:\n            for x in row:\n                cnt[x] += 1\n        return [x for x, v in enumerate(cnt) if v == len(arrays)]",
+    "cpp": "class Solution {\npublic:\n    vector<int> longestCommonSubsequence(vector<vector<int>>& arrays) {\n        int cnt[101]{};\n        for (const auto& row : arrays) {\n            for (int x : row) {\n                ++cnt[x];\n            }\n        }\n        vector<int> ans;\n        for (int i = 0; i < 101; ++i) {\n            if (cnt[i] == arrays.size()) {\n                ans.push_back(i);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> longestCommonSubsequence(int[][] arrays) {\n        int[] cnt = new int[101];\n        for (var row : arrays) {\n            for (int x : row) {\n                ++cnt[x];\n            }\n        }\n        List<Integer> ans = new ArrayList<>();\n        for (int i = 0; i < 101; ++i) {\n            if (cnt[i] == arrays.length) {\n                ans.add(i);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function longestCommonSubsequence(arrays: number[][]): number[] {\n    const cnt: number[] = Array(101).fill(0);\n    for (const row of arrays) {\n        for (const x of row) {\n            ++cnt[x];\n        }\n    }\n    const ans: number[] = [];\n    for (let i = 0; i < 101; ++i) {\n        if (cnt[i] === arrays.length) {\n            ans.push(i);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,3,4],\n                 [1,4,7,9]]",
+      "expected": "[1,4]"
+    },
+    {
+      "input": "[[2,3,6,8],\n                 [1,2,3,5,6,7,10],\n                 [2,3,4,6,9]]",
+      "expected": "[2,3,6]"
+    },
+    {
+      "input": "[[1,2,3,4,5],\n                 [6,7,8]]",
+      "expected": "[]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Common Subsequence Between Sorted Arrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

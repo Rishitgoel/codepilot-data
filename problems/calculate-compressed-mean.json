@@ -1,0 +1,43 @@
+{
+  "id": 2985,
+  "slug": "calculate-compressed-mean",
+  "title": "Calculate Compressed Mean",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Calculate%20Compressed%20Mean"
+  },
+  "description": "Table: `Orders`\n\n+-------------------+------+\n| Column Name       | Type |\n+-------------------+------+\n| order_id          | int  |\n| item_count        | int  |\n| order_occurrences | int  |\n+-------------------+------+\norder_id is column of unique values for this table.\nThis table contains order_id, item_count, and order_occurrences.\n\nWrite a solution to calculate the **average** number of items per order, rounded to `2` **decimal places**.\n\nReturn *the result table** in **any** order**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Orders table:\n+----------+------------+-------------------+\n| order_id | item_count | order_occurrences | \n+----------+------------+-------------------+\n| 10       | 1          | 500               | \n| 11       | 2          | 1000              |     \n| 12       | 3          | 800               |  \n| 13       | 4          | 1000              | \n+----------+------------+-------------------+",
+      "output": "+-------------------------+\n| average_items_per_order | \n+-------------------------+\n| 2.70                    |\n+-------------------------+",
+      "explanation": "The calculation is as follows:\n - Total items: (1 * 500) + (2 * 1000) + (3 * 800) + (4 * 1000) = 8900 \n - Total orders: 500 + 1000 + 800 + 1000 = 3300 \n - Therefore, the average items per order is 8900 / 3300 = 2.70"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Orders table:\n+----------+------------+-------------------+\n| order_id | item_count | order_occurrences | \n+----------+------------+-------------------+\n| 10       | 1          | 500               | \n| 11       | 2          | 1000              |     \n| 12       | 3          | 800               |  \n| 13       | 4          | 1000              | \n+----------+------------+-------------------+",
+      "expected": "+-------------------------+\n| average_items_per_order | \n+-------------------------+\n| 2.70                    |\n+-------------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Calculate Compressed Mean.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

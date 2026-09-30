@@ -1,0 +1,64 @@
+{
+  "id": 2297,
+  "slug": "jump-game-viii",
+  "title": "Jump Game VIII",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Jump%20Game%20VIII"
+  },
+  "description": "You are given a **0-indexed** integer array `nums` of length `n`. You are initially standing at index `0`. You can jump from index `i` to index `j` where `i \n\t`nums[i] \n\t`nums[i] > nums[j]` and `nums[k] >= nums[i]` for all indexes `k` in the range `i \n\nYou are also given an integer array `costs` of length `n` where `costs[i]` denotes the cost of jumping **to** index `i`.\n\nReturn *the **minimum** cost to jump to the index *`n - 1`.",
+  "examples": [
+    {
+      "input": "nums = [3,2,4,4,1], costs = [3,7,6,4,2]",
+      "output": "8",
+      "explanation": "You start at index 0.\n- Jump to index 2 with a cost of costs[2] = 6.\n- Jump to index 4 with a cost of costs[4] = 2.\nThe total cost is 8. It can be proven that 8 is the minimum cost needed.\nTwo other possible paths are from index 0 -> 1 -> 4 and index 0 -> 2 -> 3 -> 4.\nThese have a total cost of 9 and 12, respectively."
+    },
+    {
+      "input": "nums = [0,1,2], costs = [1,1,1]",
+      "output": "2",
+      "explanation": "Start at index 0.\n- Jump to index 1 with a cost of costs[1] = 1.\n- Jump to index 2 with a cost of costs[2] = 1.\nThe total cost is 2. Note that you cannot jump directly from index 0 to index 2 because nums[0] <= nums[1]."
+    }
+  ],
+  "constraints": [
+    "n == nums.length == costs.length",
+    "1 <= n <= 10^5",
+    "0 <= nums[i], costs[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minCost(self, nums: List[int], costs: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long minCost(vector<int>& nums, vector<int>& costs) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long minCost(int[] nums, int[] costs) {\n        \n    }\n};\n",
+    "javascript": "function minCost(nums: number[], costs: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minCost(self, nums: List[int], costs: List[int]) -> int:\n        n = len(nums)\n        g = defaultdict(list)\n        stk = []\n        for i in range(n - 1, -1, -1):\n            while stk and nums[stk[-1]] < nums[i]:\n                stk.pop()\n            if stk:\n                g[i].append(stk[-1])\n            stk.append(i)\n\n        stk = []\n        for i in range(n - 1, -1, -1):\n            while stk and nums[stk[-1]] >= nums[i]:\n                stk.pop()\n            if stk:\n                g[i].append(stk[-1])\n            stk.append(i)\n\n        f = [inf] * n\n        f[0] = 0\n        for i in range(n):\n            for j in g[i]:\n                f[j] = min(f[j], f[i] + costs[j])\n        return f[n - 1]",
+    "cpp": "class Solution {\npublic:\n    long long minCost(vector<int>& nums, vector<int>& costs) {\n        int n = nums.size();\n        vector<int> g[n];\n        stack<int> stk;\n        for (int i = n - 1; ~i; --i) {\n            while (!stk.empty() && nums[stk.top()] < nums[i]) {\n                stk.pop();\n            }\n            if (!stk.empty()) {\n                g[i].push_back(stk.top());\n            }\n            stk.push(i);\n        }\n        stk = stack<int>();\n        for (int i = n - 1; ~i; --i) {\n            while (!stk.empty() && nums[stk.top()] >= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.empty()) {\n                g[i].push_back(stk.top());\n            }\n            stk.push(i);\n        }\n        vector<long long> f(n, 1e18);\n        f[0] = 0;\n        for (int i = 0; i < n; ++i) {\n            for (int j : g[i]) {\n                f[j] = min(f[j], f[i] + costs[j]);\n            }\n        }\n        return f[n - 1];\n    }\n};",
+    "java": "class Solution {\n    public long minCost(int[] nums, int[] costs) {\n        int n = nums.length;\n        List<Integer>[] g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        Deque<Integer> stk = new ArrayDeque<>();\n        for (int i = n - 1; i >= 0; --i) {\n            while (!stk.isEmpty() && nums[stk.peek()] < nums[i]) {\n                stk.pop();\n            }\n            if (!stk.isEmpty()) {\n                g[i].add(stk.peek());\n            }\n            stk.push(i);\n        }\n        stk.clear();\n        for (int i = n - 1; i >= 0; --i) {\n            while (!stk.isEmpty() && nums[stk.peek()] >= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.isEmpty()) {\n                g[i].add(stk.peek());\n            }\n            stk.push(i);\n        }\n        long[] f = new long[n];\n        Arrays.fill(f, 1L << 60);\n        f[0] = 0;\n        for (int i = 0; i < n; ++i) {\n            for (int j : g[i]) {\n                f[j] = Math.min(f[j], f[i] + costs[j]);\n            }\n        }\n        return f[n - 1];\n    }\n}",
+    "javascript": "function minCost(nums: number[], costs: number[]): number {\n    const n = nums.length;\n    const g: number[][] = Array.from({ length: n }, () => []);\n    const stk: number[] = [];\n    for (let i = n - 1; i >= 0; --i) {\n        while (stk.length && nums[stk[stk.length - 1]] < nums[i]) {\n            stk.pop();\n        }\n        if (stk.length) {\n            g[i].push(stk[stk.length - 1]);\n        }\n        stk.push(i);\n    }\n    stk.length = 0;\n    for (let i = n - 1; i >= 0; --i) {\n        while (stk.length && nums[stk[stk.length - 1]] >= nums[i]) {\n            stk.pop();\n        }\n        if (stk.length) {\n            g[i].push(stk[stk.length - 1]);\n        }\n        stk.push(i);\n    }\n    const f: number[] = Array.from({ length: n }, () => Infinity);\n    f[0] = 0;\n    for (let i = 0; i < n; ++i) {\n        for (const j of g[i]) {\n            f[j] = Math.min(f[j], f[i] + costs[j]);\n        }\n    }\n    return f[n - 1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,2,4,4,1], costs = [3,7,6,4,2]",
+      "expected": "8"
+    },
+    {
+      "input": "[0,1,2], costs = [1,1,1]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Jump Game VIII.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

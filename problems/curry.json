@@ -1,0 +1,79 @@
+{
+  "id": 2632,
+  "slug": "curry",
+  "title": "Curry",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Curry"
+  },
+  "description": "Given a function `fn`, return a **curried** version of that function.\n\nA **curried** function is a function that accepts fewer or an equal number of parameters as the original function and returns either another **curried** function or the same value the original function would have returned.\n\nIn practical terms, if you called the original function like `sum(1,2,3)`, you would call the **curried** version like `csum(1)(2)(3), ``csum(1)(2,3)`, `csum(1,2)(3)`, or `csum(1,2,3)`. All these methods of calling the **curried** function should return the same value as the original.",
+  "examples": [
+    {
+      "input": "fn = function sum(a, b, c) { return a + b + c; }\ninputs = [[1],[2],[3]]",
+      "output": "6",
+      "explanation": "The code being executed is:\nconst curriedSum = curry(fn);\ncurriedSum(1)(2)(3) === 6;\ncurriedSum(1)(2)(3) should return the same value as sum(1, 2, 3)."
+    },
+    {
+      "input": "fn = function sum(a, b, c) { return a + b + c; }\ninputs = [[1,2],[3]]",
+      "output": "6",
+      "explanation": "curriedSum(1, 2)(3) should return the same value as sum(1, 2, 3)."
+    },
+    {
+      "input": "fn = function sum(a, b, c) { return a + b + c; }\ninputs = [[],[],[1,2,3]]",
+      "output": "6",
+      "explanation": "You should be able to pass the parameters in any way, including all at once or none at all.\ncurriedSum()()(1, 2, 3) should return the same value as sum(1, 2, 3)."
+    },
+    {
+      "input": "fn = function life() { return 42; }\ninputs = [[]]",
+      "output": "42",
+      "explanation": "currying a function that accepts zero parameters should effectively do nothing.\ncurriedLife() === 42"
+    }
+  ],
+  "constraints": [
+    "1 <= inputs.length <= 1000",
+    "0 <= inputs[i][j] <= 10^5",
+    "0 <= fn.length <= 1000",
+    "inputs.flat().length == fn.length",
+    "function parameters explicitly defined",
+    "If fn.length > 0 then the last array in inputs is not empty",
+    "If fn.length === 0 then inputs.length === 1 "
+  ],
+  "starterTemplates": {
+    "javascript": "function curry(fn: Function): Function {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function curry(fn: Function): Function {\n    return function curried(...args) {\n        if (args.length >= fn.length) {\n            return fn(...args);\n        }\n        return (...nextArgs) => curried(...args, ...nextArgs);\n    };\n}\n\n/**\n * function sum(a, b) { return a + b; }\n * const csum = curry(sum);\n * csum(1)(2) // 3\n */"
+  },
+  "testcases": [
+    {
+      "input": "function sum(a, b, c) { return a + b + c; }\ninputs = [[1],[2],[3]]",
+      "expected": "6"
+    },
+    {
+      "input": "function sum(a, b, c) { return a + b + c; }\ninputs = [[1,2],[3]]",
+      "expected": "6"
+    },
+    {
+      "input": "function sum(a, b, c) { return a + b + c; }\ninputs = [[],[],[1,2,3]]",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Curry.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,70 @@
+{
+  "id": 2794,
+  "slug": "create-object-from-two-arrays",
+  "title": "Create Object from Two Arrays",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Create%20Object%20from%20Two%20Arrays"
+  },
+  "description": "Given two arrays `keysArr` and `valuesArr`, return a new object `obj`. Each key-value pair in `obj` should come from `keysArr[i]` and `valuesArr[i]`.\n\nIf a duplicate key exists at a previous index, that key-value should be excluded. In other words, only the first key should be added to the object.\n\nIf the key is not a string, it should be converted into a string by calling `String()` on it.",
+  "examples": [
+    {
+      "input": "keysArr = [\"a\", \"b\", \"c\"], valuesArr = [1, 2, 3]",
+      "output": "{\"a\": 1, \"b\": 2, \"c\": 3}",
+      "explanation": "The keys \"a\", \"b\", and \"c\" are paired with the values 1, 2, and 3 respectively."
+    },
+    {
+      "input": "keysArr = [\"1\", 1, false], valuesArr = [4, 5, 6]",
+      "output": "{\"1\": 4, \"false\": 6}",
+      "explanation": "First, all the elements in keysArr are converted into strings. We can see there are two occurrences of \"1\". The value associated with the first occurrence of \"1\" is used: 4."
+    },
+    {
+      "input": "keysArr = [], valuesArr = []",
+      "output": "{}",
+      "explanation": "There are no keys so an empty object is returned."
+    }
+  ],
+  "constraints": [
+    "keysArr and valuesArr are valid JSON arrays",
+    "2 <= JSON.stringify(keysArr).length, JSON.stringify(valuesArr).length <= 5 * 10^5",
+    "keysArr.length === valuesArr.length"
+  ],
+  "starterTemplates": {
+    "javascript": "function createObject(keysArr: any[], valuesArr: any[]): Record<string, any> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function createObject(keysArr: any[], valuesArr: any[]): Record<string, any> {\n    const ans: Record<string, any> = {};\n    for (let i = 0; i < keysArr.length; ++i) {\n        const k = String(keysArr[i]);\n        if (ans[k] === undefined) {\n            ans[k] = valuesArr[i];\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"a\", \"b\", \"c\"], valuesArr = [1, 2, 3]",
+      "expected": "{\"a\": 1, \"b\": 2, \"c\": 3}"
+    },
+    {
+      "input": "[\"1\", 1, false], valuesArr = [4, 5, 6]",
+      "expected": "{\"1\": 4, \"false\": 6}"
+    },
+    {
+      "input": "[], valuesArr = []",
+      "expected": "{}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Create Object from Two Arrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

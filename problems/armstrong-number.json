@@ -1,0 +1,62 @@
+{
+  "id": 1134,
+  "slug": "armstrong-number",
+  "title": "Armstrong Number",
+  "difficulty": "Easy",
+  "rating": 1231,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Armstrong%20Number"
+  },
+  "description": "Given an integer `n`, return `true` *if and only if it is an **Armstrong number***.\n\nThe `k`-digit number `n` is an Armstrong number if and only if the `k^th` power of each digit sums to `n`.",
+  "examples": [
+    {
+      "input": "n = 153",
+      "output": "true",
+      "explanation": "153 is a 3-digit number, and 153 = 13 + 53 + 33."
+    },
+    {
+      "input": "n = 123",
+      "output": "false",
+      "explanation": "123 is a 3-digit number, and 123 != 13 + 23 + 33 = 36."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^8"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isArmstrong(self, n: int) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isArmstrong(int n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isArmstrong(int n) {\n        \n    }\n};\n",
+    "javascript": "function isArmstrong(n: number): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isArmstrong(self, n: int) -> bool:\n        k = len(str(n))\n        s, x = 0, n\n        while x:\n            s += (x % 10) ** k\n            x //= 10\n        return s == n",
+    "cpp": "class Solution {\npublic:\n    bool isArmstrong(int n) {\n        int k = to_string(n).size();\n        int s = 0;\n        for (int x = n; x; x /= 10) {\n            s += pow(x % 10, k);\n        }\n        return s == n;\n    }\n};",
+    "java": "class Solution {\n    public boolean isArmstrong(int n) {\n        int k = (n + \"\").length();\n        int s = 0;\n        for (int x = n; x > 0; x /= 10) {\n            s += Math.pow(x % 10, k);\n        }\n        return s == n;\n    }\n}",
+    "javascript": "function isArmstrong(n: number): boolean {\n    const k = String(n).length;\n    let s = 0;\n    for (let x = n; x; x = Math.floor(x / 10)) {\n        s += Math.pow(x % 10, k);\n    }\n    return s == n;\n}"
+  },
+  "testcases": [
+    {
+      "input": "153",
+      "expected": "true"
+    },
+    {
+      "input": "123",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Armstrong Number.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

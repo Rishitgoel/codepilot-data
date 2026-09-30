@@ -1,0 +1,53 @@
+{
+  "id": 3173,
+  "slug": "bitwise-or-of-adjacent-elements",
+  "title": "Bitwise OR of Adjacent Elements",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Bitwise%20OR%20of%20Adjacent%20Elements"
+  },
+  "description": "Given an array `nums` of length `n`, return an array `answer` of length `n - 1` such that `answer[i] = nums[i] | nums[i + 1]` where `|` is the bitwise `OR` operation.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= nums.length <= 100",
+    "0 <= nums[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def orArray(self, nums: List[int]) -> List[int]:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> orArray(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int[] orArray(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function orArray(nums: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def orArray(self, nums: List[int]) -> List[int]:\r\n        return [a | b for a, b in pairwise(nums)]",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> orArray(vector<int>& nums) {\r\n        int n = nums.size();\r\n        vector<int> ans(n - 1);\r\n        for (int i = 0; i < n - 1; ++i) {\r\n            ans[i] = nums[i] | nums[i + 1];\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int[] orArray(int[] nums) {\r\n        int n = nums.length;\r\n        int[] ans = new int[n - 1];\r\n        for (int i = 0; i < n - 1; ++i) {\r\n            ans[i] = nums[i] | nums[i + 1];\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function orArray(nums: number[]): number[] {\n    return nums.slice(0, -1).map((v, i) => v | nums[i + 1]);\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Bitwise OR of Adjacent Elements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

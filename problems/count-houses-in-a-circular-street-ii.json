@@ -1,0 +1,68 @@
+{
+  "id": 2753,
+  "slug": "count-houses-in-a-circular-street-ii",
+  "title": "Count Houses in a Circular Street II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Houses%20in%20a%20Circular%20Street%20II"
+  },
+  "description": "You are given an object `street` of class `Street` that represents a **circular** street and a positive integer `k` which represents a maximum bound for the number of houses in that street (in other words, the number of houses is less than or equal to `k`). Houses' doors could be open or closed initially (at least one is open).\n\nInitially, you are standing in front of a door to a house on this street. Your task is to count the number of houses in the street.\n\nThe class `Street` contains the following functions which may help you:\n\n\t`void closeDoor()`: Close the door of the house you are in front of.\n\t`boolean isDoorOpen()`: Returns `true` if the door of the current house is open and `false` otherwise.\n\t`void moveRight()`: Move to the right house.\n\n**Note** that by **circular** street, we mean if you number the houses from `1` to `n`, then the right house of `housei` is `housei+1` for `i n` is `house1`.\n\nReturn `ans` *which represents the number of houses on this street.*",
+  "examples": [
+    {
+      "input": "street = [1,1,1,1], k = 10",
+      "output": "4",
+      "explanation": "There are 4 houses, and all their doors are open. \nThe number of houses is less than k, which is 10."
+    },
+    {
+      "input": "street = [1,0,1,1,0], k = 5",
+      "output": "5",
+      "explanation": "There are 5 houses, and the doors of the 1st, 3rd, and 4th house (moving in the right direction) are open, and the rest are closed.\nThe number of houses is equal to k, which is 5."
+    }
+  ],
+  "constraints": [
+    "n == number of houses",
+    "1 <= n <= k <= 10^5",
+    "street is circular by definition provided in the statement.",
+    "The input is generated such that at least one of the doors is open."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a street.\n# class Street:\n#     def closeDoor(self):\n        pass\n",
+    "cpp": "/**\n * Definition for a street.\n * class Street {\n * public:\n *     Street(vector<int> doors);\n *     void closeDoor();\n *     bool isDoorOpen();\n *     void moveRight();\n * };\n */\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a street.\n * class Street {\n *     public Street(int[] doors);\n *     public void closeDoor();\n *     public boolean isDoorOpen();\n *     public void moveRight();\n * }\n */\nclass Solution {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a street.\n * class Street {\n *     constructor(doors: number[]);\n *     public closeDoor(): void;\n *     public isDoorOpen(): boolean;\n *     public moveRight(): void;\n * }\n */\nfunction houseCount(street: Street | null, k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a street.\n# class Street:\n#     def closeDoor(self):\n#         pass\n#     def isDoorOpen(self):\n#         pass\n#     def moveRight(self):\n#         pass\nclass Solution:\n    def houseCount(self, street: Optional[\"Street\"], k: int) -> int:\n        while not street.isDoorOpen():\n            street.moveRight()\n        for i in range(1, k + 1):\n            street.moveRight()\n            if street.isDoorOpen():\n                ans = i\n                street.closeDoor()\n        return ans",
+    "cpp": "/**\n * Definition for a street.\n * class Street {\n * public:\n *     Street(vector<int> doors);\n *     void closeDoor();\n *     bool isDoorOpen();\n *     void moveRight();\n * };\n */\nclass Solution {\npublic:\n    int houseCount(Street* street, int k) {\n        while (!street->isDoorOpen()) {\n            street->moveRight();\n        }\n        int ans = 0;\n        for (int i = 1; i <= k; ++i) {\n            street->moveRight();\n            if (street->isDoorOpen()) {\n                ans = i;\n                street->closeDoor();\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a street.\n * class Street {\n *     public Street(int[] doors);\n *     public void closeDoor();\n *     public boolean isDoorOpen();\n *     public void moveRight();\n * }\n */\nclass Solution {\n    public int houseCount(Street street, int k) {\n        while (!street.isDoorOpen()) {\n            street.moveRight();\n        }\n        int ans = 0;\n        for (int i = 1; i <= k; ++i) {\n            street.moveRight();\n            if (street.isDoorOpen()) {\n                ans = i;\n                street.closeDoor();\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "/**\n * Definition for a street.\n * class Street {\n *     constructor(doors: number[]);\n *     public closeDoor(): void;\n *     public isDoorOpen(): boolean;\n *     public moveRight(): void;\n * }\n */\nfunction houseCount(street: Street | null, k: number): number {\n    while (!street.isDoorOpen()) {\n        street.moveRight();\n    }\n    let ans = 0;\n    for (let i = 1; i <= k; ++i) {\n        street.moveRight();\n        if (street.isDoorOpen()) {\n            ans = i;\n            street.closeDoor();\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,1,1,1], k = 10",
+      "expected": "4"
+    },
+    {
+      "input": "[1,0,1,1,0], k = 5",
+      "expected": "5"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Houses in a Circular Street II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

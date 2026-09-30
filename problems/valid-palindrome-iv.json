@@ -1,0 +1,73 @@
+{
+  "id": 2330,
+  "slug": "valid-palindrome-iv",
+  "title": "Valid Palindrome IV",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Palindrome%20IV"
+  },
+  "description": "You are given a **0-indexed** string `s` consisting of only lowercase English letters. In one operation, you can change **any** character of `s` to any **other** character.\n\nReturn `true`* if you can make *`s`* a palindrome after performing **exactly** one or two operations, or return *`false`* otherwise.*",
+  "examples": [
+    {
+      "input": "s = \"abcdba\"",
+      "output": "true",
+      "explanation": "One way to make s a palindrome using 1 operation is:\n- Change s[2] to 'd'. Now, s = \"abddba\".\nOne operation could be performed to make s a palindrome so return true."
+    },
+    {
+      "input": "s = \"aa\"",
+      "output": "true",
+      "explanation": "One way to make s a palindrome using 2 operations is:\n- Change s[0] to 'b'. Now, s = \"ba\".\n- Change s[1] to 'b'. Now, s = \"bb\".\nTwo operations could be performed to make s a palindrome so return true."
+    },
+    {
+      "input": "s = \"abcdef\"",
+      "output": "false",
+      "explanation": "It is not possible to make s a palindrome using one or two operations so return false."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def makePalindrome(self, s: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool makePalindrome(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean makePalindrome(String s) {\n        \n    }\n};\n",
+    "javascript": "function makePalindrome(s: string): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def makePalindrome(self, s: str) -> bool:\n        i, j = 0, len(s) - 1\n        cnt = 0\n        while i < j:\n            cnt += s[i] != s[j]\n            i, j = i + 1, j - 1\n        return cnt <= 2",
+    "cpp": "class Solution {\npublic:\n    bool makePalindrome(string s) {\n        int cnt = 0;\n        int i = 0, j = s.size() - 1;\n        for (; i < j; ++i, --j) {\n            cnt += s[i] != s[j];\n        }\n        return cnt <= 2;\n    }\n};",
+    "java": "class Solution {\n    public boolean makePalindrome(String s) {\n        int cnt = 0;\n        int i = 0, j = s.length() - 1;\n        for (; i < j; ++i, --j) {\n            if (s.charAt(i) != s.charAt(j)) {\n                ++cnt;\n            }\n        }\n        return cnt <= 2;\n    }\n}",
+    "javascript": "function makePalindrome(s: string): boolean {\n    let cnt = 0;\n    let i = 0;\n    let j = s.length - 1;\n    for (; i < j; ++i, --j) {\n        if (s[i] != s[j]) {\n            ++cnt;\n        }\n    }\n    return cnt <= 2;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcdba\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"aa\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"abcdef\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Palindrome IV.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

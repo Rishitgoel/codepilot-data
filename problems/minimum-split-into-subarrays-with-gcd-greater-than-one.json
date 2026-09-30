@@ -1,0 +1,66 @@
+{
+  "id": 2436,
+  "slug": "minimum-split-into-subarrays-with-gcd-greater-than-one",
+  "title": "Minimum Split Into Subarrays With GCD Greater Than One",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Split%20Into%20Subarrays%20With%20GCD%20Greater%20Than%20One"
+  },
+  "description": "You are given an array `nums` consisting of positive integers.\n\nSplit the array into **one or more** disjoint subarrays such that:\n\n\tEach element of the array belongs to **exactly one** subarray, and\n\tThe **GCD** of the elements of each subarray is strictly greater than `1`.\n\nReturn *the minimum number of subarrays that can be obtained after the split*.\n\n**Note** that:\n\n\tThe **GCD** of a subarray is the largest positive integer that evenly divides all the elements of the subarray.\n\tA **subarray** is a contiguous part of the array.",
+  "examples": [
+    {
+      "input": "nums = [12,6,3,14,8]",
+      "output": "2",
+      "explanation": "We can split the array into the subarrays: [12,6,3] and [14,8].\n- The GCD of 12, 6 and 3 is 3, which is strictly greater than 1.\n- The GCD of 14 and 8 is 2, which is strictly greater than 1.\nIt can be shown that splitting the array into one subarray will make the GCD = 1."
+    },
+    {
+      "input": "nums = [4,12,6,14]",
+      "output": "1",
+      "explanation": "We can split the array into only one subarray, which is the whole array."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 2000",
+    "2 <= nums[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumSplits(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumSplits(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumSplits(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function minimumSplits(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumSplits(self, nums: List[int]) -> int:\n        ans, g = 1, 0\n        for x in nums:\n            g = gcd(g, x)\n            if g == 1:\n                ans += 1\n                g = x\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int minimumSplits(vector<int>& nums) {\n        int ans = 1, g = 0;\n        for (int x : nums) {\n            g = gcd(g, x);\n            if (g == 1) {\n                ++ans;\n                g = x;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumSplits(int[] nums) {\n        int ans = 1, g = 0;\n        for (int x : nums) {\n            g = gcd(g, x);\n            if (g == 1) {\n                ++ans;\n                g = x;\n            }\n        }\n        return ans;\n    }\n\n    private int gcd(int a, int b) {\n        return b == 0 ? a : gcd(b, a % b);\n    }\n}",
+    "javascript": "function minimumSplits(nums: number[]): number {\n    let ans = 1;\n    let g = 0;\n    for (const x of nums) {\n        g = gcd(g, x);\n        if (g == 1) {\n            ++ans;\n            g = x;\n        }\n    }\n    return ans;\n}\n\nfunction gcd(a: number, b: number): number {\n    return b ? gcd(b, a % b) : a;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[12,6,3,14,8]",
+      "expected": "2"
+    },
+    {
+      "input": "[4,12,6,14]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Split Into Subarrays With GCD Greater Than One.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

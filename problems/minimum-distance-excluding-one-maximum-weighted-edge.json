@@ -1,0 +1,61 @@
+{
+  "id": 3778,
+  "slug": "minimum-distance-excluding-one-maximum-weighted-edge",
+  "title": "Minimum Distance Excluding One Maximum Weighted Edge",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Distance%20Excluding%20One%20Maximum%20Weighted%20Edge"
+  },
+  "description": "You are given a positive integer `n` and a 2D integer array `edges`, where `edges[i] = [ui, vi, wi]`.\n\nThere is a **weighted** **connected** simple undirected graph with `n` nodes labeled from 0 to `n - 1`. Each `[ui, vi, wi]` in `edges` represents an edge between node `ui` and node `vi` with **positive** weight `wi`.\n\nThe **cost** of a path is the **sum** of weights of the edges in the path, **excluding** the edge with the **maximum** weight. If there are multiple edges in the path with the maximum weight, **only** the **first** such edge is excluded.\n\nReturn an integer representing the **minimum** **cost** of a path going from node 0 to node `n - 1`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 5 * 10^4",
+    "n - 1 <= edges.length <= 10^9",
+    "edges[i] = [ui, vi, wi]",
+    "0 <= ui < vi < n",
+    "[ui, vi] != [uj, vj]",
+    "1 <= wi <= 5 * 10^4",
+    "The graph is connected."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minCostExcludingMax(self, n: int, edges: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long minCostExcludingMax(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long minCostExcludingMax(int n, int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "function minCostExcludingMax(n: number, edges: number[][]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minCostExcludingMax(self, n: int, edges: List[List[int]]) -> int:\n        g = [[] for _ in range(n)]\n        for u, v, w in edges:\n            g[u].append((v, w))\n            g[v].append((u, w))\n        dist = [[inf] * 2 for _ in range(n)]\n        dist[0][0] = 0\n        pq = [(0, 0, 0)]\n        while pq:\n            cur, u, used = heappop(pq)\n            if cur > dist[u][used]:\n                continue\n            if u == n - 1 and used:\n                return cur\n            for v, w in g[u]:\n                nxt = cur + w\n                if nxt < dist[v][used]:\n                    dist[v][used] = nxt\n                    heappush(pq, (nxt, v, used))\n                if used == 0:\n                    nxt = cur\n                    if nxt < dist[v][1]:\n                        dist[v][1] = nxt\n                        heappush(pq, (nxt, v, 1))\n        return dist[n - 1][1]",
+    "cpp": "class Solution {\npublic:\n    long long minCostExcludingMax(int n, vector<vector<int>>& edges) {\n        vector<vector<pair<int, int>>> g(n);\n        for (auto& e : edges) {\n            int u = e[0], v = e[1], w = e[2];\n            g[u].push_back({v, w});\n            g[v].push_back({u, w});\n        }\n\n        long long inf = LLONG_MAX / 4;\n        vector<array<long long, 2>> dist(n, {inf, inf});\n        dist[0][0] = 0;\n\n        priority_queue<array<long long, 3>, vector<array<long long, 3>>, greater<array<long long, 3>>> pq;\n        pq.push({0, 0, 0});\n\n        while (!pq.empty()) {\n            auto t = pq.top();\n            pq.pop();\n            long long cur = t[0];\n            int u = t[1];\n            int used = t[2];\n\n            if (cur > dist[u][used]) {\n                continue;\n            }\n            if (u == n - 1 && used == 1) {\n                return cur;\n            }\n\n            for (auto [v, w] : g[u]) {\n                long long nxt = cur + w;\n                if (nxt < dist[v][used]) {\n                    dist[v][used] = nxt;\n                    pq.push({nxt, v, used});\n                }\n\n                if (used == 0) {\n                    nxt = cur;\n                    if (nxt < dist[v][1]) {\n                        dist[v][1] = nxt;\n                        pq.push({nxt, v, 1});\n                    }\n                }\n            }\n        }\n\n        return dist[n - 1][1];\n    }\n};",
+    "java": "class Solution {\n    public long minCostExcludingMax(int n, int[][] edges) {\n        List<int[]>[] g = new ArrayList[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int[] e : edges) {\n            int u = e[0], v = e[1], w = e[2];\n            g[u].add(new int[] {v, w});\n            g[v].add(new int[] {u, w});\n        }\n\n        long inf = Long.MAX_VALUE / 4;\n        long[][] dist = new long[n][2];\n        for (int i = 0; i < n; i++) {\n            dist[i][0] = inf;\n            dist[i][1] = inf;\n        }\n        dist[0][0] = 0;\n\n        PriorityQueue<long[]> pq = new PriorityQueue<>(Comparator.comparingLong(a -> a[0]));\n        pq.add(new long[] {0, 0, 0});\n\n        while (!pq.isEmpty()) {\n            long[] t = pq.poll();\n            long cur = t[0];\n            int u = (int) t[1];\n            int used = (int) t[2];\n\n            if (cur > dist[u][used]) {\n                continue;\n            }\n            if (u == n - 1 && used == 1) {\n                return cur;\n            }\n\n            for (int[] ed : g[u]) {\n                int v = ed[0], w = ed[1];\n                long nxt = cur + w;\n                if (nxt < dist[v][used]) {\n                    dist[v][used] = nxt;\n                    pq.add(new long[] {nxt, v, used});\n                }\n\n                if (used == 0) {\n                    nxt = cur;\n                    if (nxt < dist[v][1]) {\n                        dist[v][1] = nxt;\n                        pq.add(new long[] {nxt, v, 1});\n                    }\n                }\n            }\n        }\n\n        return dist[n - 1][1];\n    }\n}",
+    "javascript": "function minCostExcludingMax(n: number, edges: number[][]): number {\n    const g: [number, number][][] = Array.from({ length: n }, () => []);\n    for (const [u, v, w] of edges) {\n        g[u].push([v, w]);\n        g[v].push([u, w]);\n    }\n\n    const INF = Infinity;\n    const dist: number[][] = Array.from({ length: n }, () => [INF, INF]);\n    dist[0][0] = 0;\n\n    const pq = new PriorityQueue<[number, number, number]>((a, b) =>\n        a[0] === b[0] ? a[1] - b[1] : a[0] - b[0],\n    );\n\n    pq.enqueue([0, 0, 0]);\n\n    while (pq.size() > 0) {\n        const [cur, u, used] = pq.dequeue()!;\n        if (cur > dist[u][used]) {\n            continue;\n        }\n        if (u === n - 1 && used === 1) {\n            return cur;\n        }\n\n        for (const [v, w] of g[u]) {\n            const nxt1 = cur + w;\n            if (nxt1 < dist[v][used]) {\n                dist[v][used] = nxt1;\n                pq.enqueue([nxt1, v, used]);\n            }\n            if (used === 0) {\n                const nxt2 = cur;\n                if (nxt2 < dist[v][1]) {\n                    dist[v][1] = nxt2;\n                    pq.enqueue([nxt2, v, 1]);\n                }\n            }\n        }\n    }\n\n    return dist[n - 1][1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Distance Excluding One Maximum Weighted Edge.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,73 @@
+{
+  "id": 1064,
+  "slug": "fixed-point",
+  "title": "Fixed Point",
+  "difficulty": "Easy",
+  "rating": 1308,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber",
+    "Qualtrics"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Fixed%20Point"
+  },
+  "description": "Given an array of distinct integers `arr`, where `arr` is sorted in **ascending order**, return the smallest index `i` that satisfies `arr[i] == i`. If there is no such index, return `-1`.",
+  "examples": [
+    {
+      "input": "arr = [-10,-5,0,3,7]",
+      "output": "3",
+      "explanation": "For the given array, arr[0] = -10, arr[1] = -5, arr[2] = 0, arr[3] = 3, thus the output is 3."
+    },
+    {
+      "input": "arr = [0,2,5,8,17]",
+      "output": "0",
+      "explanation": "arr[0] = 0, thus the output is 0."
+    },
+    {
+      "input": "arr = [-10,-5,3,4,7,9]",
+      "output": "-1",
+      "explanation": "There is no such i that arr[i] == i, thus the output is -1."
+    }
+  ],
+  "constraints": [
+    "1 <= arr.length < 10^4",
+    "-10^9 <= arr[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def fixedPoint(self, arr: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int fixedPoint(vector<int>& arr) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int fixedPoint(int[] arr) {\n        \n    }\n};\n",
+    "javascript": "function fixedPoint(arr: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def fixedPoint(self, arr: List[int]) -> int:\n        left, right = 0, len(arr) - 1\n        while left < right:\n            mid = (left + right) >> 1\n            if arr[mid] >= mid:\n                right = mid\n            else:\n                left = mid + 1\n        return left if arr[left] == left else -1",
+    "cpp": "class Solution {\npublic:\n    int fixedPoint(vector<int>& arr) {\n        int left = 0, right = arr.size() - 1;\n        while (left < right) {\n            int mid = left + right >> 1;\n            if (arr[mid] >= mid) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return arr[left] == left ? left : -1;\n    }\n};",
+    "java": "class Solution {\n    public int fixedPoint(int[] arr) {\n        int left = 0, right = arr.length - 1;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            if (arr[mid] >= mid) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return arr[left] == left ? left : -1;\n    }\n}",
+    "javascript": "function fixedPoint(arr: number[]): number {\n    let left = 0;\n    let right = arr.length - 1;\n    while (left < right) {\n        const mid = (left + right) >> 1;\n        if (arr[mid] >= mid) {\n            right = mid;\n        } else {\n            left = mid + 1;\n        }\n    }\n    return arr[left] === left ? left : -1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[-10,-5,0,3,7]",
+      "expected": "3"
+    },
+    {
+      "input": "[0,2,5,8,17]",
+      "expected": "0"
+    },
+    {
+      "input": "[-10,-5,3,4,7,9]",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Fixed Point.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

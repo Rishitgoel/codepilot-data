@@ -1,0 +1,50 @@
+{
+  "id": 3061,
+  "slug": "calculate-trapping-rain-water",
+  "title": "Calculate Trapping Rain Water",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Calculate%20Trapping%20Rain%20Water"
+  },
+  "description": "Table: Heights\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| id          | int  |\n| height      | int  |\n+-------------+------+\nid is the primary key (column with unique values) for this table, and it is guaranteed to be in sequential order.\nEach row of this table contains an id and height.\n\nWrite a solution to calculate the amount of rainwater can be **trapped between the bars** in the landscape, considering that each bar has a **width** of `1` unit.\n\nReturn *the result table in ***any*** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Heights table:\n+-----+--------+\n| id  | height |\n+-----+--------+\n| 1   | 0      |\n| 2   | 1      |\n| 3   | 0      |\n| 4   | 2      |\n| 5   | 1      |\n| 6   | 0      |\n| 7   | 1      |\n| 8   | 3      |\n| 9   | 2      |\n| 10  | 1      |\n| 11  | 2      |\n| 12  | 1      |\n+-----+--------+",
+      "output": "+---------------------+\n| total_trapped_water | \n+---------------------+\n| 6                   | \n+---------------------+",
+      "explanation": "The elevation map depicted above (in the black section) is graphically represented with the x-axis denoting the id and the y-axis representing the heights [0,1,0,2,1,0,1,3,2,1,2,1]. In this scenario, 6 units of rainwater are trapped within the blue section."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_trapped_rain_water(heights: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_trapped_rain_water(heights: pd.DataFrame) -> pd.DataFrame:\r\n    heights[\"l\"] = heights[\"height\"].cummax()\r\n    heights[\"r\"] = heights[\"height\"][::-1].cummax()[::-1]\r\n    heights[\"trapped_water\"] = heights[[\"l\", \"r\"]].min(axis=1) - heights[\"height\"]\r\n    return pd.DataFrame({\"total_trapped_water\": [heights[\"trapped_water\"].sum()]})"
+  },
+  "testcases": [
+    {
+      "input": "Heights table:\n+-----+--------+\n| id  | height |\n+-----+--------+\n| 1   | 0      |\n| 2   | 1      |\n| 3   | 0      |\n| 4   | 2      |\n| 5   | 1      |\n| 6   | 0      |\n| 7   | 1      |\n| 8   | 3      |\n| 9   | 2      |\n| 10  | 1      |\n| 11  | 2      |\n| 12  | 1      |\n+-----+--------+",
+      "expected": "+---------------------+\n| total_trapped_water | \n+---------------------+\n| 6                   | \n+---------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Calculate Trapping Rain Water.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,75 @@
+{
+  "id": 772,
+  "slug": "basic-calculator-iii",
+  "title": "Basic Calculator III",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Apple",
+    "Facebook",
+    "TikTok",
+    "Oracle"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Basic%20Calculator%20III"
+  },
+  "description": "Implement a basic calculator to evaluate a simple expression string.\n\nThe expression string contains only non-negative integers, `'+'`, `'-'`, `'*'`, `'/'` operators, and open `'('` and closing parentheses `')'`. The integer division should **truncate toward zero**.\n\nYou may assume that the given expression is always valid. All intermediate results will be in the range of `[-2^31, 2^31 - 1]`.\n\n**Note:** You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.",
+  "examples": [
+    {
+      "input": "s = \"1+1\"",
+      "output": "2"
+    },
+    {
+      "input": "s = \"6-4/2\"",
+      "output": "4"
+    },
+    {
+      "input": "s = \"2*(5+5*2)/3+(6/2+8)\"",
+      "output": "21"
+    }
+  ],
+  "constraints": [
+    "1 <= s <= 10^4",
+    "s consists of digits, '+', '-', '*', '/', '(', and ')'.",
+    "s is a valid expression."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def calculate(self, s: str) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int calculate(String s) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def calculate(self, s: str) -> int:\r\n        def dfs(q):\r\n            num, sign, stk = 0, \"+\", []\r\n            while q:\r\n                c = q.popleft()\r\n                if c.isdigit():\r\n                    num = num * 10 + int(c)\r\n                if c == \"(\":\r\n                    num = dfs(q)\r\n                if c in \"+-*/)\" or not q:\r\n                    match sign:\r\n                        case \"+\":\r\n                            stk.append(num)\r\n                        case \"-\":\r\n                            stk.append(-num)\r\n                        case \"*\":\r\n                            stk.append(stk.pop() * num)\r\n                        case \"/\":\r\n                            stk.append(int(stk.pop() / num))\r\n                    num, sign = 0, c\r\n                if c == \")\":\r\n                    break\r\n            return sum(stk)\r\n\r\n        return dfs(deque(s))",
+    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        queue<char> q;\n        for (char c : s) {\n            q.push(c);\n        }\n        return dfs(q);\n    }\n\nprivate:\n    int dfs(queue<char>& q) {\n        long long num = 0;\n        char sign = '+';\n        vector<long long> stk;\n        while (!q.empty()) {\n            char c = q.front();\n            q.pop();\n            if (isdigit(c)) {\n                num = num * 10 + (c - '0');\n            }\n            if (c == '(') {\n                num = dfs(q);\n            }\n            if (c == '+' || c == '-' || c == '*' || c == '/' || c == ')' || q.empty()) {\n                if (sign == '+') {\n                    stk.push_back(num);\n                } else if (sign == '-') {\n                    stk.push_back(-num);\n                } else if (sign == '*') {\n                    stk.back() *= num;\n                } else {\n                    stk.back() /= num;\n                }\n                num = 0;\n                sign = c;\n            }\n            if (c == ')') {\n                break;\n            }\n        }\n        return accumulate(stk.begin(), stk.end(), 0LL);\n    }\n};",
+    "java": "class Solution {\n    public int calculate(String s) {\n        Deque<Character> q = new ArrayDeque<>();\n        for (char c : s.toCharArray()) {\n            q.offer(c);\n        }\n        return dfs(q);\n    }\n\n    private int dfs(Deque<Character> q) {\n        long num = 0;\n        char sign = '+';\n        List<Long> stk = new ArrayList<>();\n        while (!q.isEmpty()) {\n            char c = q.poll();\n            if (Character.isDigit(c)) {\n                num = num * 10 + (c - '0');\n            }\n            if (c == '(') {\n                num = dfs(q);\n            }\n            if (\"+-*/)\".indexOf(c) >= 0 || q.isEmpty()) {\n                if (sign == '+') {\n                    stk.add(num);\n                } else if (sign == '-') {\n                    stk.add(-num);\n                } else if (sign == '*') {\n                    stk.set(stk.size() - 1, stk.get(stk.size() - 1) * num);\n                } else {\n                    stk.set(stk.size() - 1, stk.get(stk.size() - 1) / num);\n                }\n                num = 0;\n                sign = c;\n            }\n            if (c == ')') {\n                break;\n            }\n        }\n        long ans = 0;\n        for (long x : stk) {\n            ans += x;\n        }\n        return (int) ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"1+1\"",
+      "expected": "2"
+    },
+    {
+      "input": "\"6-4/2\"",
+      "expected": "4"
+    },
+    {
+      "input": "\"2*(5+5*2)/3+(6/2+8)\"",
+      "expected": "21"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Basic Calculator III.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

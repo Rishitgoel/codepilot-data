@@ -1,0 +1,58 @@
+{
+  "id": 3450,
+  "slug": "maximum-students-on-a-single-bench",
+  "title": "Maximum Students on a Single Bench",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Students%20on%20a%20Single%20Bench"
+  },
+  "description": "You are given a 2D integer array of student data `students`, where `students[i] = [student_id, bench_id]` represents that student `student_id` is sitting on the bench `bench_id`.\n\nReturn the **maximum** number of *unique* students sitting on any single bench. If no students are present, return 0.\n\n**Note**: A student can appear multiple times on the same bench in the input, but they should be counted only once per bench.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "0 <= students.length <= 100",
+    "students[i] = [student_id, bench_id]",
+    "1 <= student_id <= 100",
+    "1 <= bench_id <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxStudentsOnBench(self, students: List[List[int]]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxStudentsOnBench(vector<vector<int>>& students) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int maxStudentsOnBench(int[][] students) {\r\n        \n    }\n};\n",
+    "javascript": "function maxStudentsOnBench(students: number[][]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxStudentsOnBench(self, students: List[List[int]]) -> int:\r\n        if not students:\r\n            return 0\r\n        d = defaultdict(set)\r\n        for student_id, bench_id in students:\r\n            d[bench_id].add(student_id)\r\n        return max(map(len, d.values()))",
+    "cpp": "class Solution {\r\npublic:\r\n    int maxStudentsOnBench(vector<vector<int>>& students) {\r\n        unordered_map<int, unordered_set<int>> d;\r\n        for (const auto& e : students) {\r\n            int studentId = e[0], benchId = e[1];\r\n            d[benchId].insert(studentId);\r\n        }\r\n        int ans = 0;\r\n        for (const auto& s : d) {\r\n            ans = max(ans, (int) s.second.size());\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int maxStudentsOnBench(int[][] students) {\r\n        Map<Integer, Set<Integer>> d = new HashMap<>();\r\n        for (var e : students) {\r\n            int studentId = e[0], benchId = e[1];\r\n            d.computeIfAbsent(benchId, k -> new HashSet<>()).add(studentId);\r\n        }\r\n        int ans = 0;\r\n        for (var s : d.values()) {\r\n            ans = Math.max(ans, s.size());\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maxStudentsOnBench(students: number[][]): number {\n    const d: Map<number, Set<number>> = new Map();\n    for (const [studentId, benchId] of students) {\n        if (!d.has(benchId)) {\n            d.set(benchId, new Set());\n        }\n        d.get(benchId)?.add(studentId);\n    }\n    let ans = 0;\n    for (const s of d.values()) {\n        ans = Math.max(ans, s.size);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Students on a Single Bench.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

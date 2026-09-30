@@ -1,0 +1,67 @@
+{
+  "id": 1258,
+  "slug": "synonymous-sentences",
+  "title": "Synonymous Sentences",
+  "difficulty": "Medium",
+  "rating": 1847,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Rippling",
+    "Cruise Automation",
+    "Moveworks"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Synonymous%20Sentences"
+  },
+  "description": "You are given a list of equivalent string pairs `synonyms` where `synonyms[i] = [si, ti]` indicates that `si` and `ti` are equivalent strings. You are also given a sentence `text`.\n\nReturn *all possible synonymous sentences **sorted lexicographically***.",
+  "examples": [
+    {
+      "input": "synonyms = [[\"happy\",\"joy\"],[\"sad\",\"sorrow\"],[\"joy\",\"cheerful\"]], text = \"I am happy today but was sad yesterday\"",
+      "output": "[\"I am cheerful today but was sad yesterday\",\"I am cheerful today but was sorrow yesterday\",\"I am happy today but was sad yesterday\",\"I am happy today but was sorrow yesterday\",\"I am joy today but was sad yesterday\",\"I am joy today but was sorrow yesterday\"]"
+    },
+    {
+      "input": "synonyms = [[\"happy\",\"joy\"],[\"cheerful\",\"glad\"]], text = \"I am happy today but was sad yesterday\"",
+      "output": "[\"I am happy today but was sad yesterday\",\"I am joy today but was sad yesterday\"]"
+    }
+  ],
+  "constraints": [
+    "0 <= synonyms.length <= 10",
+    "synonyms[i].length == 2",
+    "1 <= si.length, ti.length <= 10",
+    "si != ti",
+    "text consists of at most 10 words.",
+    "All the pairs of synonyms are unique.",
+    "The words of text are separated by single spaces."
+  ],
+  "starterTemplates": {
+    "python": "class UnionFind:\n    def __init__(self, n):\n        pass\n",
+    "cpp": "class UnionFind {\npublic:\n    UnionFind(int n) {\n        \n    }\n};\n",
+    "java": "class UnionFind {\n    private int[] p;\n    private int[] size;\n\n    public UnionFind(int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class UnionFind:\n    def __init__(self, n):\n        self.p = list(range(n))\n        self.size = [1] * n\n\n    def find(self, x):\n        if self.p[x] != x:\n            self.p[x] = self.find(self.p[x])\n        return self.p[x]\n\n    def union(self, a, b):\n        pa, pb = self.find(a), self.find(b)\n        if pa != pb:\n            if self.size[pa] > self.size[pb]:\n                self.p[pb] = pa\n                self.size[pa] += self.size[pb]\n            else:\n                self.p[pa] = pb\n                self.size[pb] += self.size[pa]\n\n\nclass Solution:\n    def generateSentences(self, synonyms: List[List[str]], text: str) -> List[str]:\n        def dfs(i):\n            if i >= len(sentence):\n                ans.append(' '.join(t))\n                return\n            if sentence[i] not in d:\n                t.append(sentence[i])\n                dfs(i + 1)\n                t.pop()\n            else:\n                root = uf.find(d[sentence[i]])\n                for j in g[root]:\n                    t.append(words[j])\n                    dfs(i + 1)\n                    t.pop()\n\n        words = list(set(chain.from_iterable(synonyms)))\n        d = {w: i for i, w in enumerate(words)}\n        uf = UnionFind(len(d))\n        for a, b in synonyms:\n            uf.union(d[a], d[b])\n        g = defaultdict(list)\n        for i in range(len(words)):\n            g[uf.find(i)].append(i)\n        for k in g.keys():\n            g[k].sort(key=lambda i: words[i])\n        sentence = text.split()\n        ans = []\n        t = []\n        dfs(0)\n        return ans",
+    "cpp": "class UnionFind {\npublic:\n    UnionFind(int n) {\n        p = vector<int>(n);\n        size = vector<int>(n, 1);\n        iota(p.begin(), p.end(), 0);\n    }\n\n    void unite(int a, int b) {\n        int pa = find(a), pb = find(b);\n        if (pa != pb) {\n            if (size[pa] > size[pb]) {\n                p[pb] = pa;\n                size[pa] += size[pb];\n            } else {\n                p[pa] = pb;\n                size[pb] += size[pa];\n            }\n        }\n    }\n\n    int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n\nprivate:\n    vector<int> p, size;\n};\n\nclass Solution {\npublic:\n    vector<string> generateSentences(vector<vector<string>>& synonyms, string text) {\n        unordered_set<string> ss;\n        for (auto& pairs : synonyms) {\n            ss.insert(pairs[0]);\n            ss.insert(pairs[1]);\n        }\n        vector<string> words{ss.begin(), ss.end()};\n        unordered_map<string, int> d;\n        int n = words.size();\n        for (int i = 0; i < n; ++i) {\n            d[words[i]] = i;\n        }\n        UnionFind uf(n);\n        for (auto& pairs : synonyms) {\n            uf.unite(d[pairs[0]], d[pairs[1]]);\n        }\n        vector<vector<int>> g(n);\n        for (int i = 0; i < n; ++i) {\n            g[uf.find(i)].push_back(i);\n        }\n        for (int i = 0; i < n; ++i) {\n            sort(g[i].begin(), g[i].end(), [&](int a, int b) {\n                return words[a] < words[b];\n            });\n        }\n        vector<string> sentence;\n        string s;\n        istringstream iss(text);\n        while (iss >> s) {\n            sentence.emplace_back(s);\n        }\n        vector<string> ans;\n        vector<string> t;\n        function<void(int)> dfs = [&](int i) {\n            if (i >= sentence.size()) {\n                string s;\n                for (int j = 0; j < t.size(); ++j) {\n                    if (j) {\n                        s += \" \";\n                    }\n                    s += t[j];\n                }\n                ans.emplace_back(s);\n                return;\n            }\n            if (!d.count(sentence[i])) {\n                t.emplace_back(sentence[i]);\n                dfs(i + 1);\n                t.pop_back();\n            } else {\n                for (int j : g[uf.find(d[sentence[i]])]) {\n                    t.emplace_back(words[j]);\n                    dfs(i + 1);\n                    t.pop_back();\n                }\n            }\n        };\n        dfs(0);\n        return ans;\n    }\n};",
+    "java": "class UnionFind {\n    private int[] p;\n    private int[] size;\n\n    public UnionFind(int n) {\n        p = new int[n];\n        size = new int[n];\n        for (int i = 0; i < n; ++i) {\n            p[i] = i;\n            size[i] = 1;\n        }\n    }\n\n    public int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n\n    public void union(int a, int b) {\n        int pa = find(a), pb = find(b);\n        if (pa != pb) {\n            if (size[pa] > size[pb]) {\n                p[pb] = pa;\n                size[pa] += size[pb];\n            } else {\n                p[pa] = pb;\n                size[pb] += size[pa];\n            }\n        }\n    }\n}\n\nclass Solution {\n    private List<String> ans = new ArrayList<>();\n    private List<String> t = new ArrayList<>();\n    private List<String> words;\n    private Map<String, Integer> d;\n    private Solution2 uf;\n    private List<Integer>[] g;\n    private String[] sentence;\n\n    public List<String> generateSentences(List<List<String>> synonyms, String text) {\n        Set<String> ss = new HashSet<>();\n        for (List<String> pairs : synonyms) {\n            ss.addAll(pairs);\n        }\n        words = new ArrayList<>(ss);\n        int n = words.size();\n        d = new HashMap<>(n);\n        for (int i = 0; i < words.size(); ++i) {\n            d.put(words.get(i), i);\n        }\n        uf = new Solution2(n);\n        for (List<String> pairs : synonyms) {\n            uf.union(d.get(pairs.get(0)), d.get(pairs.get(1)));\n        }\n        g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int i = 0; i < n; ++i) {\n            g[uf.find(i)].add(i);\n        }\n        for (List<Integer> e : g) {\n            e.sort((i, j) -> words.get(i).compareTo(words.get(j)));\n        }\n        sentence = text.split(\" \");\n        dfs(0);\n        return ans;\n    }\n\n    private void dfs(int i) {\n        if (i >= sentence.length) {\n            ans.add(String.join(\" \", t));\n            return;\n        }\n        if (!d.containsKey(sentence[i])) {\n            t.add(sentence[i]);\n            dfs(i + 1);\n            t.remove(t.size() - 1);\n        } else {\n            for (int j : g[uf.find(d.get(sentence[i]))]) {\n                t.add(words.get(j));\n                dfs(i + 1);\n                t.remove(t.size() - 1);\n            }\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[\"happy\",\"joy\"],[\"sad\",\"sorrow\"],[\"joy\",\"cheerful\"]], text = \"I am happy today but was sad yesterday\"",
+      "expected": "[\"I am cheerful today but was sad yesterday\",\"I am cheerful today but was sorrow yesterday\",\"I am happy today but was sad yesterday\",\"I am happy today but was sorrow yesterday\",\"I am joy today but was sad yesterday\",\"I am joy today but was sorrow yesterday\"]"
+    },
+    {
+      "input": "[[\"happy\",\"joy\"],[\"cheerful\",\"glad\"]], text = \"I am happy today but was sad yesterday\"",
+      "expected": "[\"I am happy today but was sad yesterday\",\"I am joy today but was sad yesterday\"]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Synonymous Sentences.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,71 @@
+{
+  "id": 2782,
+  "slug": "number-of-unique-categories",
+  "title": "Number of Unique Categories",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Unique%20Categories"
+  },
+  "description": "You are given an integer `n` and an object `categoryHandler` of class `CategoryHandler`.\n\nThere are `n `elements, numbered from `0` to `n - 1`. Each element has a category, and your task is to find the number of unique categories.\n\nThe class `CategoryHandler` contains the following function, which may help you:\n\n\t`boolean haveSameCategory(integer a, integer b)`: Returns `true` if `a` and `b` are in the same category and `false` otherwise. Also, if either `a` or `b` is not a valid number (i.e. it's greater than or equal to `n`or less than `0`), it returns `false`.\n\nReturn *the number of unique categories.*",
+  "examples": [
+    {
+      "input": "n = 6, categoryHandler = [1,1,2,2,3,3]",
+      "output": "3",
+      "explanation": "There are 6 elements in this example. The first two elements belong to category 1, the second two belong to category 2, and the last two elements belong to category 3. So there are 3 unique categories."
+    },
+    {
+      "input": "n = 5, categoryHandler = [1,2,3,4,5]",
+      "output": "5",
+      "explanation": "There are 5 elements in this example. Each element belongs to a unique category. So there are 5 unique categories."
+    },
+    {
+      "input": "n = 3, categoryHandler = [1,1,1]",
+      "output": "1",
+      "explanation": "There are 3 elements in this example. All of them belong to one category. So there is only 1 unique category."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 100"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a category handler.\n# class CategoryHandler:\n#     def haveSameCategory(self, a: int, b: int) -> bool:\n        pass\n",
+    "cpp": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n * public:\n *     CategoryHandler(vector<int> categories);\n *     bool haveSameCategory(int a, int b);\n * };\n */\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n *     public CategoryHandler(int[] categories);\n *     public boolean haveSameCategory(int a, int b);\n * };\n */\nclass Solution {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n *     constructor(categories: number[]);\n *     public haveSameCategory(a: number, b: number): boolean;\n * }\n */\nfunction numberOfCategories(n: number, categoryHandler: CategoryHandler): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a category handler.\n# class CategoryHandler:\n#     def haveSameCategory(self, a: int, b: int) -> bool:\n#         pass\nclass Solution:\n    def numberOfCategories(\n        self, n: int, categoryHandler: Optional['CategoryHandler']\n    ) -> int:\n        def find(x: int) -> int:\n            if p[x] != x:\n                p[x] = find(p[x])\n            return p[x]\n\n        p = list(range(n))\n        for a in range(n):\n            for b in range(a + 1, n):\n                if categoryHandler.haveSameCategory(a, b):\n                    p[find(a)] = find(b)\n        return sum(i == x for i, x in enumerate(p))",
+    "cpp": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n * public:\n *     CategoryHandler(vector<int> categories);\n *     bool haveSameCategory(int a, int b);\n * };\n */\nclass Solution {\npublic:\n    int numberOfCategories(int n, CategoryHandler* categoryHandler) {\n        vector<int> p(n);\n        iota(p.begin(), p.end(), 0);\n        function<int(int)> find = [&](int x) {\n            if (p[x] != x) {\n                p[x] = find(p[x]);\n            }\n            return p[x];\n        };\n        for (int a = 0; a < n; ++a) {\n            for (int b = a + 1; b < n; ++b) {\n                if (categoryHandler->haveSameCategory(a, b)) {\n                    p[find(a)] = find(b);\n                }\n            }\n        }\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            ans += i == p[i];\n        }\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n *     public CategoryHandler(int[] categories);\n *     public boolean haveSameCategory(int a, int b);\n * };\n */\nclass Solution {\n    private int[] p;\n\n    public int numberOfCategories(int n, CategoryHandler categoryHandler) {\n        p = new int[n];\n        for (int i = 0; i < n; ++i) {\n            p[i] = i;\n        }\n        for (int a = 0; a < n; ++a) {\n            for (int b = a + 1; b < n; ++b) {\n                if (categoryHandler.haveSameCategory(a, b)) {\n                    p[find(a)] = find(b);\n                }\n            }\n        }\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            if (i == p[i]) {\n                ++ans;\n            }\n        }\n        return ans;\n    }\n\n    private int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n}",
+    "javascript": "/**\n * Definition for a category handler.\n * class CategoryHandler {\n *     constructor(categories: number[]);\n *     public haveSameCategory(a: number, b: number): boolean;\n * }\n */\nfunction numberOfCategories(n: number, categoryHandler: CategoryHandler): number {\n    const p: number[] = new Array(n).fill(0).map((_, i) => i);\n    const find = (x: number): number => {\n        if (p[x] !== x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    };\n    for (let a = 0; a < n; ++a) {\n        for (let b = a + 1; b < n; ++b) {\n            if (categoryHandler.haveSameCategory(a, b)) {\n                p[find(a)] = find(b);\n            }\n        }\n    }\n    let ans = 0;\n    for (let i = 0; i < n; ++i) {\n        if (i === p[i]) {\n            ++ans;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "6, categoryHandler = [1,1,2,2,3,3]",
+      "expected": "3"
+    },
+    {
+      "input": "5, categoryHandler = [1,2,3,4,5]",
+      "expected": "5"
+    },
+    {
+      "input": "3, categoryHandler = [1,1,1]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Unique Categories.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

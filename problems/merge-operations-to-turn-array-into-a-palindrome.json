@@ -1,0 +1,65 @@
+{
+  "id": 2422,
+  "slug": "merge-operations-to-turn-array-into-a-palindrome",
+  "title": "Merge Operations to Turn Array Into a Palindrome",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "TikTok",
+    "Oracle",
+    "Accolite"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Merge%20Operations%20to%20Turn%20Array%20Into%20a%20Palindrome"
+  },
+  "description": "You are given an array `nums` consisting of **positive** integers.\n\nYou can perform the following operation on the array **any** number of times:\n\n\tChoose any two **adjacent** elements and **replace** them with their **sum**.\n\n    \n    \tFor example, if `nums = [1,2,3,1]`, you can apply one operation to make it `[1,5,1]`.\n    \n    \n\nReturn *the **minimum** number of operations needed to turn the array into a **palindrome***.",
+  "examples": [
+    {
+      "input": "nums = [4,3,2,1,2,3,1]",
+      "output": "2",
+      "explanation": "We can turn the array into a palindrome in 2 operations as follows:\n- Apply the operation on the fourth and fifth element of the array, nums becomes equal to [4,3,2,3,3,1].\n- Apply the operation on the fifth and sixth element of the array, nums becomes equal to [4,3,2,3,4].\nThe array [4,3,2,3,4] is a palindrome.\nIt can be shown that 2 is the minimum number of operations needed."
+    },
+    {
+      "input": "nums = [1,2,3,4]",
+      "output": "3",
+      "explanation": "We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumOperations(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumOperations(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumOperations(self, nums: List[int]) -> int:\n        i, j = 0, len(nums) - 1\n        a, b = nums[i], nums[j]\n        ans = 0\n        while i < j:\n            if a < b:\n                i += 1\n                a += nums[i]\n                ans += 1\n            elif b < a:\n                j -= 1\n                b += nums[j]\n                ans += 1\n            else:\n                i, j = i + 1, j - 1\n                a, b = nums[i], nums[j]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        int i = 0, j = nums.size() - 1;\n        long a = nums[i], b = nums[j];\n        int ans = 0;\n        while (i < j) {\n            if (a < b) {\n                a += nums[++i];\n                ++ans;\n            } else if (b < a) {\n                b += nums[--j];\n                ++ans;\n            } else {\n                a = nums[++i];\n                b = nums[--j];\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumOperations(int[] nums) {\n        int i = 0, j = nums.length - 1;\n        long a = nums[i], b = nums[j];\n        int ans = 0;\n        while (i < j) {\n            if (a < b) {\n                a += nums[++i];\n                ++ans;\n            } else if (b < a) {\n                b += nums[--j];\n                ++ans;\n            } else {\n                a = nums[++i];\n                b = nums[--j];\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,3,2,1,2,3,1]",
+      "expected": "2"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Merge Operations to Turn Array Into a Palindrome.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

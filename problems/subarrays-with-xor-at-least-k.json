@@ -1,0 +1,45 @@
+{
+  "id": 3632,
+  "slug": "subarrays-with-xor-at-least-k",
+  "title": "Subarrays with XOR at Least K",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Subarrays%20with%20XOR%20at%20Least%20K"
+  },
+  "description": "Given an array of positive integers nums of length n and a non‑negative integer k.\n\nReturn the number of **contiguous subarrays** whose bitwise XOR of all elements is **greater** than or **equal** to k.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Subarrays with XOR at Least K.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

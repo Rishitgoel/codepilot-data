@@ -1,0 +1,73 @@
+{
+  "id": 1055,
+  "slug": "shortest-way-to-form-string",
+  "title": "Shortest Way to Form String",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Facebook",
+    "Pinterest"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Shortest%20Way%20to%20Form%20String"
+  },
+  "description": "A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `\"ace\"` is a subsequence of `\"abcde\"` while `\"aec\"` is not).\n\nGiven two strings `source` and `target`, return *the minimum number of **subsequences** of *`source`* such that their concatenation equals *`target`. If the task is impossible, return `-1`.",
+  "examples": [
+    {
+      "input": "source = \"abc\", target = \"abcbc\"",
+      "output": "2",
+      "explanation": "The target \"abcbc\" can be formed by \"abc\" and \"bc\", which are subsequences of source \"abc\"."
+    },
+    {
+      "input": "source = \"abc\", target = \"acdbc\"",
+      "output": "-1",
+      "explanation": "The target string cannot be constructed from the subsequences of source string due to the character \"d\" in target string."
+    },
+    {
+      "input": "source = \"xyz\", target = \"xzyxz\"",
+      "output": "3",
+      "explanation": "The target string can be constructed as follows \"xz\" + \"y\" + \"xz\"."
+    }
+  ],
+  "constraints": [
+    "1 <= source.length, target.length <= 1000",
+    "source and target consist of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def shortestWay(self, source: str, target: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int shortestWay(string source, string target) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int shortestWay(String source, String target) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def shortestWay(self, source: str, target: str) -> int:\n        def f(i, j):\n            while i < m and j < n:\n                if source[i] == target[j]:\n                    j += 1\n                i += 1\n            return j\n\n        m, n = len(source), len(target)\n        ans = j = 0\n        while j < n:\n            k = f(0, j)\n            if k == j:\n                return -1\n            j = k\n            ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int shortestWay(string source, string target) {\n        int m = source.size(), n = target.size();\n        int ans = 0, j = 0;\n        while (j < n) {\n            int i = 0;\n            bool ok = false;\n            while (i < m && j < n) {\n                if (source[i] == target[j]) {\n                    ok = true;\n                    ++j;\n                }\n                ++i;\n            }\n            if (!ok) {\n                return -1;\n            }\n            ++ans;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int shortestWay(String source, String target) {\n        int m = source.length(), n = target.length();\n        int ans = 0, j = 0;\n        while (j < n) {\n            int i = 0;\n            boolean ok = false;\n            while (i < m && j < n) {\n                if (source.charAt(i) == target.charAt(j)) {\n                    ok = true;\n                    ++j;\n                }\n                ++i;\n            }\n            if (!ok) {\n                return -1;\n            }\n            ++ans;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abc\", target = \"abcbc\"",
+      "expected": "2"
+    },
+    {
+      "input": "\"abc\", target = \"acdbc\"",
+      "expected": "-1"
+    },
+    {
+      "input": "\"xyz\", target = \"xzyxz\"",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Shortest Way to Form String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

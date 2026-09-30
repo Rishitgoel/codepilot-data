@@ -1,0 +1,63 @@
+{
+  "id": 2345,
+  "slug": "finding-the-number-of-visible-mountains",
+  "title": "Finding the Number of Visible Mountains",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Finding%20the%20Number%20of%20Visible%20Mountains"
+  },
+  "description": "You are given a **0-indexed** 2D integer array `peaks` where `peaks[i] = [xi, yi]` states that mountain `i` has a peak at coordinates `(xi, yi)`. A mountain can be described as a right-angled isosceles triangle, with its base along the `x`-axis and a right angle at its peak. More formally, the **gradients** of ascending and descending the mountain are `1` and `-1` respectively.\n\nA mountain is considered **visible** if its peak does not lie within another mountain (including the border of other mountains).\n\nReturn *the number of visible mountains*.",
+  "examples": [
+    {
+      "input": "peaks = [[2,2],[6,3],[5,4]]",
+      "output": "2",
+      "explanation": "The diagram above shows the mountains.\n- Mountain 0 is visible since its peak does not lie within another mountain or its sides.\n- Mountain 1 is not visible since its peak lies within the side of mountain 2.\n- Mountain 2 is visible since its peak does not lie within another mountain or its sides.\nThere are 2 mountains that are visible."
+    },
+    {
+      "input": "peaks = [[1,3],[1,3]]",
+      "output": "0",
+      "explanation": "The diagram above shows the mountains (they completely overlap).\nBoth mountains are not visible since their peaks lie within each other."
+    }
+  ],
+  "constraints": [
+    "1 <= peaks.length <= 10^5",
+    "peaks[i].length == 2",
+    "1 <= xi, yi <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def visibleMountains(self, peaks: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int visibleMountains(vector<vector<int>>& peaks) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int visibleMountains(int[][] peaks) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def visibleMountains(self, peaks: List[List[int]]) -> int:\n        arr = [(x - y, x + y) for x, y in peaks]\n        cnt = Counter(arr)\n        arr.sort(key=lambda x: (x[0], -x[1]))\n        ans, cur = 0, -inf\n        for l, r in arr:\n            if r <= cur:\n                continue\n            cur = r\n            if cnt[(l, r)] == 1:\n                ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int visibleMountains(vector<vector<int>>& peaks) {\n        vector<pair<int, int>> arr;\n        for (auto& e : peaks) {\n            int x = e[0], y = e[1];\n            arr.emplace_back(x - y, -(x + y));\n        }\n        sort(arr.begin(), arr.end());\n        int n = arr.size();\n        int ans = 0, cur = INT_MIN;\n        for (int i = 0; i < n; ++i) {\n            int l = arr[i].first, r = -arr[i].second;\n            if (r <= cur) {\n                continue;\n            }\n            cur = r;\n            ans += i == n - 1 || (i < n - 1 && arr[i] != arr[i + 1]);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int visibleMountains(int[][] peaks) {\n        int n = peaks.length;\n        int[][] arr = new int[n][2];\n        for (int i = 0; i < n; ++i) {\n            int x = peaks[i][0], y = peaks[i][1];\n            arr[i] = new int[] {x - y, x + y};\n        }\n        Arrays.sort(arr, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);\n        int ans = 0;\n        int cur = Integer.MIN_VALUE;\n        for (int i = 0; i < n; ++i) {\n            int l = arr[i][0], r = arr[i][1];\n            if (r <= cur) {\n                continue;\n            }\n            cur = r;\n            if (!(i < n - 1 && arr[i][0] == arr[i + 1][0] && arr[i][1] == arr[i + 1][1])) {\n                ++ans;\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[2,2],[6,3],[5,4]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[1,3],[1,3]]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Finding the Number of Visible Mountains.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

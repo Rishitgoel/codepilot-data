@@ -1,0 +1,69 @@
+{
+  "id": 158,
+  "slug": "read-n-characters-given-read4-ii-call-multiple-times",
+  "title": "Read N Characters Given read4 II - Call Multiple Times",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Microsoft",
+    "Meta",
+    "Bloomberg",
+    "Apple",
+    "Facebook",
+    "Lyft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Read%20N%20Characters%20Given%20read4%20II%20-%20Call%20Multiple%20Times"
+  },
+  "description": "Given a `file` and assume that you can only read the file using a given method `read4`, implement a method `read` to read `n` characters. Your method `read` may be **called multiple times**.\n\n**Method read4: **\n\nThe API `read4` reads **four consecutive characters** from `file`, then writes those characters into the buffer array `buf4`.\n\nThe return value is the number of actual characters read.\n\nNote that `read4()` has its own file pointer, much like `FILE *fp` in C.\n\n**Definition of read4:**\n\n    Parameter:  char[] buf4\n    Returns:    int\n\nbuf4[] is a destination, not a source. The results from read4 will be copied to buf4[].\n\nBelow is a high-level example of how `read4` works:\n\nFile file(\"abcde`\"); // File is \"`abcde\", initially file pointer (fp) points to 'a'\nchar[] buf4 = new char[4]; // Create buffer with enough space to store characters\nread4(buf4); // read4 returns 4. Now buf4 = \"abcd\", fp points to 'e'\nread4(buf4); // read4 returns 1. Now buf4 = \"e\", fp points to end of file\nread4(buf4); // read4 returns 0. Now buf4 = \"\", fp points to end of file\n\n \n\n**Method read:**\n\nBy using the `read4` method, implement the method read that reads `n` characters from `file` and store it in the buffer array `buf`. Consider that you cannot manipulate `file` directly.\n\nThe return value is the number of actual characters read.\n\n**Definition of read: **\n\n    Parameters:\tchar[] buf, int n\n    Returns:\tint\n\nbuf[] is a destination, not a source. You will need to write the results to buf[].\n\n**Note:**\n\n\tConsider that you cannot manipulate the file directly. The file is only accessible for `read4` but not for `read`.\n\tThe read function may be **called multiple times**.\n\tPlease remember to **RESET** your class variables declared in Solution, as static/class variables are persisted across multiple test cases. Please see here for more details.\n\tYou may assume the destination buffer array, `buf`, is guaranteed to have enough space for storing `n` characters.\n\tIt is guaranteed that in a given test case the same buffer `buf` is called by `read`.",
+  "examples": [
+    {
+      "input": "file = \"abc\", queries = [1,2,1]",
+      "output": "[1,2,0]",
+      "explanation": "The test case represents the following scenario:\nFile file(\"abc\");\nSolution sol;\nsol.read(buf, 1); // After calling your read method, buf should contain \"a\". We read a total of 1 character from the file, so return 1.\nsol.read(buf, 2); // Now buf should contain \"bc\". We read a total of 2 characters from the file, so return 2.\nsol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.\nAssume buf is allocated and guaranteed to have enough space for storing all characters from the file."
+    },
+    {
+      "input": "file = \"abc\", queries = [4,1]",
+      "output": "[3,0]",
+      "explanation": "The test case represents the following scenario:\nFile file(\"abc\");\nSolution sol;\nsol.read(buf, 4); // After calling your read method, buf should contain \"abc\". We read a total of 3 characters from the file, so return 3.\nsol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0."
+    }
+  ],
+  "constraints": [
+    "1 <= file.length <= 500",
+    "file consist of English letters and digits.",
+    "1 <= queries.length <= 10",
+    "1 <= queries[i] <= 500"
+  ],
+  "starterTemplates": {
+    "python": "# The read4 API is already defined for you.\n# def read4(buf4: List[str]) -> int:\n        pass\n",
+    "cpp": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char *buf4);\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char[] buf4);\n */\n\npublic class Solution extends Reader4 {\n    private char[] buf4 = new char[4];\n    private int i;\n    private int size;\n\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    public int read(char[] buf, int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# The read4 API is already defined for you.\n# def read4(buf4: List[str]) -> int:\n\n\nclass Solution:\n    def __init__(self):\n        self.buf4 = [None] * 4\n        self.i = self.size = 0\n\n    def read(self, buf: List[str], n: int) -> int:\n        j = 0\n        while j < n:\n            if self.i == self.size:\n                self.size = read4(self.buf4)\n                self.i = 0\n                if self.size == 0:\n                    break\n            while j < n and self.i < self.size:\n                buf[j] = self.buf4[self.i]\n                self.i += 1\n                j += 1\n        return j",
+    "cpp": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char *buf4);\n */\n\nclass Solution {\npublic:\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    int read(char* buf, int n) {\n        int j = 0;\n        while (j < n) {\n            if (i == size) {\n                size = read4(buf4);\n                i = 0;\n                if (size == 0) break;\n            }\n            while (j < n && i < size) buf[j++] = buf4[i++];\n        }\n        return j;\n    }\n\nprivate:\n    char* buf4 = new char[4];\n    int i = 0;\n    int size = 0;\n};",
+    "java": "/**\n * The read4 API is defined in the parent class Reader4.\n *     int read4(char[] buf4);\n */\n\npublic class Solution extends Reader4 {\n    private char[] buf4 = new char[4];\n    private int i;\n    private int size;\n\n    /**\n     * @param buf Destination buffer\n     * @param n   Number of characters to read\n     * @return    The number of actual characters read\n     */\n    public int read(char[] buf, int n) {\n        int j = 0;\n        while (j < n) {\n            if (i == size) {\n                size = read4(buf4);\n                i = 0;\n                if (size == 0) {\n                    break;\n                }\n            }\n            while (j < n && i < size) {\n                buf[j++] = buf4[i++];\n            }\n        }\n        return j;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abc\", queries = [1,2,1]",
+      "expected": "[1,2,0]"
+    },
+    {
+      "input": "\"abc\", queries = [4,1]",
+      "expected": "[3,0]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Read N Characters Given read4 II - Call Multiple Times.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

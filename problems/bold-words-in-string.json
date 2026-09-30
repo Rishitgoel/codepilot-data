@@ -1,0 +1,62 @@
+{
+  "id": 758,
+  "slug": "bold-words-in-string",
+  "title": "Bold Words in String",
+  "difficulty": "Medium",
+  "rating": 1547,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Bold%20Words%20in%20String"
+  },
+  "description": "Given an array of keywords `words` and a string `s`, make all appearances of all keywords `words[i]` in `s` bold. Any letters between `` and `` tags become bold.\n\nReturn `s` *after adding the bold tags*. The returned string should use the least number of tags possible, and the tags should form a valid combination.",
+  "examples": [
+    {
+      "input": "words = [\"ab\",\"bc\"], s = \"aabcd\"",
+      "output": "\"a<b>abc</b>d\"",
+      "explanation": "Note that returning \"a<b>a<b>b</b>c</b>d\" would use more tags, so it is incorrect."
+    },
+    {
+      "input": "words = [\"ab\",\"cb\"], s = \"aabcd\"",
+      "output": "\"a<b>ab</b>cd\""
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 500",
+    "0 <= words.length <= 50",
+    "1 <= words[i].length <= 10",
+    "s and words[i] consist of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Trie:\n    def __init__(self):\n        pass\n",
+    "cpp": "class Trie {\npublic:\n    vector<Trie*> children;\n    bool isEnd;\n\n    Trie() {\n        \n    }\n};\n",
+    "java": "class Trie {\n    Trie[] children = new Trie[128];\n    boolean isEnd;\n\n    public void insert(String word) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Trie:\n    def __init__(self):\n        self.children = [None] * 128\n        self.is_end = False\n\n    def insert(self, word):\n        node = self\n        for c in word:\n            idx = ord(c)\n            if node.children[idx] is None:\n                node.children[idx] = Trie()\n            node = node.children[idx]\n        node.is_end = True\n\n\nclass Solution:\n    def boldWords(self, words: List[str], s: str) -> str:\n        trie = Trie()\n        for w in words:\n            trie.insert(w)\n        n = len(s)\n        pairs = []\n        for i in range(n):\n            node = trie\n            for j in range(i, n):\n                idx = ord(s[j])\n                if node.children[idx] is None:\n                    break\n                node = node.children[idx]\n                if node.is_end:\n                    pairs.append([i, j])\n        if not pairs:\n            return s\n        st, ed = pairs[0]\n        t = []\n        for a, b in pairs[1:]:\n            if ed + 1 < a:\n                t.append([st, ed])\n                st, ed = a, b\n            else:\n                ed = max(ed, b)\n        t.append([st, ed])\n\n        ans = []\n        i = j = 0\n        while i < n:\n            if j == len(t):\n                ans.append(s[i:])\n                break\n            st, ed = t[j]\n            if i < st:\n                ans.append(s[i:st])\n            ans.append('<b>')\n            ans.append(s[st : ed + 1])\n            ans.append('</b>')\n            j += 1\n            i = ed + 1\n\n        return ''.join(ans)",
+    "cpp": "class Trie {\npublic:\n    vector<Trie*> children;\n    bool isEnd;\n\n    Trie() {\n        children.resize(128);\n        isEnd = false;\n    }\n\n    void insert(string word) {\n        Trie* node = this;\n        for (char c : word) {\n            if (!node->children[c]) node->children[c] = new Trie();\n            node = node->children[c];\n        }\n        node->isEnd = true;\n    }\n};\n\nclass Solution {\npublic:\n    string boldWords(vector<string>& words, string s) {\n        Trie* trie = new Trie();\n        for (string w : words) trie->insert(w);\n        int n = s.size();\n        vector<pair<int, int>> pairs;\n        for (int i = 0; i < n; ++i) {\n            Trie* node = trie;\n            for (int j = i; j < n; ++j) {\n                int idx = s[j];\n                if (!node->children[idx]) break;\n                node = node->children[idx];\n                if (node->isEnd) pairs.push_back({i, j});\n            }\n        }\n        if (pairs.empty()) return s;\n        vector<pair<int, int>> t;\n        int st = pairs[0].first, ed = pairs[0].second;\n        for (int i = 1; i < pairs.size(); ++i) {\n            int a = pairs[i].first, b = pairs[i].second;\n            if (ed + 1 < a) {\n                t.push_back({st, ed});\n                st = a, ed = b;\n            } else\n                ed = max(ed, b);\n        }\n        t.push_back({st, ed});\n        string ans = \"\";\n        int i = 0, j = 0;\n        while (i < n) {\n            if (j == t.size()) {\n                ans += s.substr(i);\n                break;\n            }\n            st = t[j].first, ed = t[j].second;\n            if (i < st) ans += s.substr(i, st - i);\n            ans += \"<b>\";\n            ans += s.substr(st, ed - st + 1);\n            ans += \"</b>\";\n            i = ed + 1;\n            ++j;\n        }\n        return ans;\n    }\n};",
+    "java": "class Trie {\n    Trie[] children = new Trie[128];\n    boolean isEnd;\n\n    public void insert(String word) {\n        Trie node = this;\n        for (char c : word.toCharArray()) {\n            if (node.children[c] == null) {\n                node.children[c] = new Trie();\n            }\n            node = node.children[c];\n        }\n        node.isEnd = true;\n    }\n}\n\nclass Solution {\n    public String boldWords(String[] words, String s) {\n        Trie trie = new Trie();\n        for (String w : words) {\n            trie.insert(w);\n        }\n        List<int[]> pairs = new ArrayList<>();\n        int n = s.length();\n        for (int i = 0; i < n; ++i) {\n            Trie node = trie;\n            for (int j = i; j < n; ++j) {\n                int idx = s.charAt(j);\n                if (node.children[idx] == null) {\n                    break;\n                }\n                node = node.children[idx];\n                if (node.isEnd) {\n                    pairs.add(new int[] {i, j});\n                }\n            }\n        }\n        if (pairs.isEmpty()) {\n            return s;\n        }\n        List<int[]> t = new ArrayList<>();\n        int st = pairs.get(0)[0], ed = pairs.get(0)[1];\n        for (int j = 1; j < pairs.size(); ++j) {\n            int a = pairs.get(j)[0], b = pairs.get(j)[1];\n            if (ed + 1 < a) {\n                t.add(new int[] {st, ed});\n                st = a;\n                ed = b;\n            } else {\n                ed = Math.max(ed, b);\n            }\n        }\n        t.add(new int[] {st, ed});\n        int i = 0, j = 0;\n        StringBuilder ans = new StringBuilder();\n        while (i < n) {\n            if (j == t.size()) {\n                ans.append(s.substring(i));\n                break;\n            }\n            st = t.get(j)[0];\n            ed = t.get(j)[1];\n            if (i < st) {\n                ans.append(s.substring(i, st));\n            }\n            ++j;\n            ans.append(\"<b>\");\n            ans.append(s.substring(st, ed + 1));\n            ans.append(\"</b>\");\n            i = ed + 1;\n        }\n        return ans.toString();\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"ab\",\"bc\"], s = \"aabcd\"",
+      "expected": "\"a<b>abc</b>d\""
+    },
+    {
+      "input": "[\"ab\",\"cb\"], s = \"aabcd\"",
+      "expected": "\"a<b>ab</b>cd\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Bold Words in String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

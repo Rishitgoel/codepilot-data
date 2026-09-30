@@ -1,0 +1,72 @@
+{
+  "id": 1902,
+  "slug": "depth-of-bst-given-insertion-order",
+  "title": "Depth of BST Given Insertion Order",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Depth%20of%20BST%20Given%20Insertion%20Order"
+  },
+  "description": "You are given a **0-indexed** integer array `order` of length `n`, a **permutation** of integers from `1` to `n` representing the **order** of insertion into a **binary search tree**.\n\nA binary search tree is defined as follows:\n\n\tThe left subtree of a node contains only nodes with keys **less than** the node's key.\n\tThe right subtree of a node contains only nodes with keys **greater than** the node's key.\n\tBoth the left and right subtrees must also be binary search trees.\n\nThe binary search tree is constructed as follows:\n\n\t`order[0]` will be the **root** of the binary search tree.\n\tAll subsequent elements are inserted as the **child** of **any** existing node such that the binary search tree properties hold.\n\nReturn *the **depth** of the binary search tree*.\n\nA binary tree's **depth** is the number of **nodes** along the **longest path** from the root node down to the farthest leaf node.",
+  "examples": [
+    {
+      "input": "order = [2,1,4,3]",
+      "output": "3",
+      "explanation": "The binary search tree has a depth of 3 with path 2->3->4."
+    },
+    {
+      "input": "order = [2,1,3,4]",
+      "output": "3",
+      "explanation": "The binary search tree has a depth of 3 with path 2->3->4."
+    },
+    {
+      "input": "order = [1,2,3,4]",
+      "output": "4",
+      "explanation": "The binary search tree has a depth of 4 with path 1->2->3->4."
+    }
+  ],
+  "constraints": [
+    "n == order.length",
+    "1 <= n <= 10^5",
+    "order is a permutation of integers between 1 and n."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxDepthBST(self, order: List[int]) -> int:\n        pass\n",
+    "java": "class Solution {\n    public int maxDepthBST(int[] order) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxDepthBST(self, order: List[int]) -> int:\n        sd = SortedDict({0: 0, inf: 0, order[0]: 1})\n        ans = 1\n        for v in order[1:]:\n            lower = sd.bisect_left(v) - 1\n            higher = lower + 1\n            depth = 1 + max(sd.values()[lower], sd.values()[higher])\n            ans = max(ans, depth)\n            sd[v] = depth\n        return ans",
+    "java": "class Solution {\n    public int maxDepthBST(int[] order) {\n        TreeMap<Integer, Integer> tm = new TreeMap<>();\n        tm.put(0, 0);\n        tm.put(Integer.MAX_VALUE, 0);\n        tm.put(order[0], 1);\n        int ans = 1;\n        for (int i = 1; i < order.length; ++i) {\n            int v = order[i];\n            Map.Entry<Integer, Integer> lower = tm.lowerEntry(v);\n            Map.Entry<Integer, Integer> higher = tm.higherEntry(v);\n            int depth = 1 + Math.max(lower.getValue(), higher.getValue());\n            ans = Math.max(ans, depth);\n            tm.put(v, depth);\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,1,4,3]",
+      "expected": "3"
+    },
+    {
+      "input": "[2,1,3,4]",
+      "expected": "3"
+    },
+    {
+      "input": "[1,2,3,4]",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Depth of BST Given Insertion Order.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

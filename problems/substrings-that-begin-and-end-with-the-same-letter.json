@@ -1,0 +1,75 @@
+{
+  "id": 2083,
+  "slug": "substrings-that-begin-and-end-with-the-same-letter",
+  "title": "Substrings That Begin and End With the Same Letter",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Substrings%20That%20Begin%20and%20End%20With%20the%20Same%20Letter"
+  },
+  "description": "You are given a **0-indexed** string `s` consisting of only lowercase English letters. Return *the number of **substrings** in *`s` *that begin and end with the **same** character.*\n\nA **substring** is a contiguous non-empty sequence of characters within a string.",
+  "examples": [
+    {
+      "input": "s = \"abcba\"",
+      "output": "7",
+      "explanation": "The substrings of length 1 that start and end with the same letter are: \"a\", \"b\", \"c\", \"b\", and \"a\".\nThe substring of length 3 that starts and ends with the same letter is: \"bcb\".\nThe substring of length 5 that starts and ends with the same letter is: \"abcba\"."
+    },
+    {
+      "input": "s = \"abacad\"",
+      "output": "9",
+      "explanation": "The substrings of length 1 that start and end with the same letter are: \"a\", \"b\", \"a\", \"c\", \"a\", and \"d\".\nThe substrings of length 3 that start and end with the same letter are: \"aba\" and \"aca\".\nThe substring of length 5 that starts and ends with the same letter is: \"abaca\"."
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "1",
+      "explanation": "The substring of length 1 that starts and ends with the same letter is: \"a\"."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long numberOfSubstrings(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long numberOfSubstrings(String s) {\n        \n    }\n};\n",
+    "javascript": "function numberOfSubstrings(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        cnt = Counter()\n        ans = 0\n        for c in s:\n            cnt[c] += 1\n            ans += cnt[c]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long numberOfSubstrings(string s) {\n        int cnt[26]{};\n        long long ans = 0;\n        for (char& c : s) {\n            ans += ++cnt[c - 'a'];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long numberOfSubstrings(String s) {\n        int[] cnt = new int[26];\n        long ans = 0;\n        for (char c : s.toCharArray()) {\n            ans += ++cnt[c - 'a'];\n        }\n        return ans;\n    }\n}",
+    "javascript": "function numberOfSubstrings(s: string): number {\n    const cnt: Record<string, number> = {};\n    let ans = 0;\n    for (const c of s) {\n        cnt[c] = (cnt[c] || 0) + 1;\n        ans += cnt[c];\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcba\"",
+      "expected": "7"
+    },
+    {
+      "input": "\"abacad\"",
+      "expected": "9"
+    },
+    {
+      "input": "\"a\"",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Substrings That Begin and End With the Same Letter.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

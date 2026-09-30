@@ -1,0 +1,47 @@
+{
+  "id": 3972,
+  "slug": "valid-subarrays-with-matching-sum-digits-ii",
+  "title": "Valid Subarrays With Matching Sum Digits II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Subarrays%20With%20Matching%20Sum%20Digits%20II"
+  },
+  "description": "You are given an integer array `nums` and an integer digit `x`.\n\nA **subarray** `nums[l..r]` is considered **valid** if the sum of its elements satisfies both of the following conditions:\n\n\tThe first digit of the sum is equal to `x`.\n\tThe last digit of the sum is equal to `x`.\n\nReturn the number of valid subarrays.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9",
+    "1 <= x <= 9"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Subarrays With Matching Sum Digits II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

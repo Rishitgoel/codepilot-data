@@ -1,0 +1,61 @@
+{
+  "id": 1119,
+  "slug": "remove-vowels-from-a-string",
+  "title": "Remove Vowels from a String",
+  "difficulty": "Easy",
+  "rating": 1233,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Remove%20Vowels%20from%20a%20String"
+  },
+  "description": "Given a string `s`, remove the vowels `'a'`, `'e'`, `'i'`, `'o'`, and `'u'` from it, and return the new string.",
+  "examples": [
+    {
+      "input": "s = \"leetcodeisacommunityforcoders\"",
+      "output": "\"ltcdscmmntyfrcdrs\""
+    },
+    {
+      "input": "s = \"aeiou\"",
+      "output": "\"\""
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def removeVowels(self, s: str) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string removeVowels(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String removeVowels(String s) {\n        \n    }\n};\n",
+    "javascript": "function removeVowels(s: string): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def removeVowels(self, s: str) -> str:\n        return \"\".join(c for c in s if c not in \"aeiou\")",
+    "cpp": "class Solution {\npublic:\n    string removeVowels(string s) {\n        string ans;\n        for (char& c : s) {\n            if (!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')) {\n                ans += c;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public String removeVowels(String s) {\n        StringBuilder ans = new StringBuilder();\n        for (int i = 0; i < s.length(); ++i) {\n            char c = s.charAt(i);\n            if (!(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')) {\n                ans.append(c);\n            }\n        }\n        return ans.toString();\n    }\n}",
+    "javascript": "function removeVowels(s: string): string {\n    return s.replace(/[aeiou]/g, '');\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"leetcodeisacommunityforcoders\"",
+      "expected": "\"ltcdscmmntyfrcdrs\""
+    },
+    {
+      "input": "\"aeiou\"",
+      "expected": "\"\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Remove Vowels from a String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,63 @@
+{
+  "id": 1426,
+  "slug": "counting-elements",
+  "title": "Counting Elements",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "DRW"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Counting%20Elements"
+  },
+  "description": "Given an integer array `arr`, count how many elements `x` there are, such that `x + 1` is also in `arr`. If there are duplicates in `arr`, count them separately.",
+  "examples": [
+    {
+      "input": "arr = [1,2,3]",
+      "output": "2",
+      "explanation": "1 and 2 are counted cause 2 and 3 are in arr."
+    },
+    {
+      "input": "arr = [1,1,3,3,5,5,7,7]",
+      "output": "0",
+      "explanation": "No numbers are counted, cause there is no 2, 4, 6, or 8 in arr."
+    }
+  ],
+  "constraints": [
+    "1 <= arr.length <= 1000",
+    "0 <= arr[i] <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countElements(self, arr: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int countElements(vector<int>& arr) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int countElements(int[] arr) {\n        \n    }\n};\n",
+    "javascript": "function countElements(arr: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countElements(self, arr: List[int]) -> int:\n        cnt = Counter(arr)\n        return sum(v for x, v in cnt.items() if cnt[x + 1])",
+    "cpp": "class Solution {\npublic:\n    int countElements(vector<int>& arr) {\n        int cnt[1001]{};\n        for (int x : arr) {\n            ++cnt[x];\n        }\n        int ans = 0;\n        for (int x = 0; x < 1000; ++x) {\n            if (cnt[x + 1]) {\n                ans += cnt[x];\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int countElements(int[] arr) {\n        int[] cnt = new int[1001];\n        for (int x : arr) {\n            ++cnt[x];\n        }\n        int ans = 0;\n        for (int x = 0; x < 1000; ++x) {\n            if (cnt[x + 1] > 0) {\n                ans += cnt[x];\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countElements(arr: number[]): number {\n    const mx = Math.max(...arr);\n    const cnt = Array(mx + 1).fill(0);\n    for (const x of arr) {\n        ++cnt[x];\n    }\n    let ans = 0;\n    for (let i = 0; i < mx; ++i) {\n        if (cnt[i + 1] > 0) {\n            ans += cnt[i];\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3]",
+      "expected": "2"
+    },
+    {
+      "input": "[1,1,3,3,5,5,7,7]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Counting Elements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

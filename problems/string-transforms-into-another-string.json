@@ -1,0 +1,67 @@
+{
+  "id": 1153,
+  "slug": "string-transforms-into-another-string",
+  "title": "String Transforms Into Another String",
+  "difficulty": "Hard",
+  "rating": 1949,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Apple",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=String%20Transforms%20Into%20Another%20String"
+  },
+  "description": "Given two strings `str1` and `str2` of the same length, determine whether you can transform `str1` into `str2` by doing **zero or more** *conversions*.\n\nIn one conversion you can convert **all** occurrences of one character in `str1` to **any** other lowercase English character.\n\nReturn `true` if and only if you can transform `str1` into `str2`.",
+  "examples": [
+    {
+      "input": "str1 = \"aabcc\", str2 = \"ccdee\"",
+      "output": "true",
+      "explanation": "Convert 'c' to 'e' then 'b' to 'd' then 'a' to 'c'. Note that the order of conversions matter."
+    },
+    {
+      "input": "str1 = \"leetcode\", str2 = \"codeleet\"",
+      "output": "false",
+      "explanation": "There is no way to transform str1 to str2."
+    }
+  ],
+  "constraints": [
+    "1 <= str1.length == str2.length <= 10^4",
+    "str1 and str2 contain only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def canConvert(self, str1: str, str2: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool canConvert(string str1, string str2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean canConvert(String str1, String str2) {\n        \n    }\n};\n",
+    "javascript": "function canConvert(str1: string, str2: string): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def canConvert(self, str1: str, str2: str) -> bool:\n        if str1 == str2:\n            return True\n        if len(set(str2)) == 26:\n            return False\n        d = {}\n        for a, b in zip(str1, str2):\n            if a not in d:\n                d[a] = b\n            elif d[a] != b:\n                return False\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool canConvert(string str1, string str2) {\n        if (str1 == str2) {\n            return true;\n        }\n        int cnt[26]{};\n        int m = 0;\n        for (char& c : str2) {\n            if (++cnt[c - 'a'] == 1) {\n                ++m;\n            }\n        }\n        if (m == 26) {\n            return false;\n        }\n        int d[26]{};\n        for (int i = 0; i < str1.size(); ++i) {\n            int a = str1[i] - 'a';\n            int b = str2[i] - 'a';\n            if (d[a] == 0) {\n                d[a] = b + 1;\n            } else if (d[a] != b + 1) {\n                return false;\n            }\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean canConvert(String str1, String str2) {\n        if (str1.equals(str2)) {\n            return true;\n        }\n        int m = 0;\n        int[] cnt = new int[26];\n        int n = str1.length();\n        for (int i = 0; i < n; ++i) {\n            if (++cnt[str2.charAt(i) - 'a'] == 1) {\n                ++m;\n            }\n        }\n        if (m == 26) {\n            return false;\n        }\n        int[] d = new int[26];\n        for (int i = 0; i < n; ++i) {\n            int a = str1.charAt(i) - 'a';\n            int b = str2.charAt(i) - 'a';\n            if (d[a] == 0) {\n                d[a] = b + 1;\n            } else if (d[a] != b + 1) {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+    "javascript": "function canConvert(str1: string, str2: string): boolean {\n    if (str1 === str2) {\n        return true;\n    }\n    if (new Set(str2).size === 26) {\n        return false;\n    }\n    const d: Map<string, string> = new Map();\n    for (const [i, c] of str1.split('').entries()) {\n        if (!d.has(c)) {\n            d.set(c, str2[i]);\n        } else if (d.get(c) !== str2[i]) {\n            return false;\n        }\n    }\n    return true;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"aabcc\", str2 = \"ccdee\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"leetcode\", str2 = \"codeleet\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for String Transforms Into Another String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

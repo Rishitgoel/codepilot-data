@@ -1,0 +1,43 @@
+{
+  "id": 2978,
+  "slug": "symmetric-coordinates",
+  "title": "Symmetric Coordinates",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Mitsogo"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Symmetric%20Coordinates"
+  },
+  "description": "Table: `Coordinates`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| X           | int  |\n| Y           | int  |\n+-------------+------+\nEach row includes X and Y, where both are integers. Table may contain duplicate values.\n\nTwo coordindates `(X1, Y1)` and `(X2, Y2)` are said to be **symmetric** coordintes if `X1 == Y2` and `X2 == Y1`.\n\nWrite a solution that outputs, among all these **symmetric** **coordintes**, only those **unique** coordinates that satisfy the condition `X1 <= Y1`.\n\nReturn *the result table ordered by *`X` *and * `Y` *(respectively)* *in **ascending order***.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Coordinates table:\n+----+----+\n| X  | Y  |\n+----+----+\n| 20 | 20 |\n| 20 | 20 |\n| 20 | 21 |\n| 23 | 22 |\n| 22 | 23 |\n| 21 | 20 |\n+----+----+",
+      "output": "+----+----+\n| x  | y  |\n+----+----+\n| 20 | 20 |\n| 20 | 21 |\n| 22 | 23 |\n+----+----+",
+      "explanation": "- (20, 20) and (20, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. This results in displaying (20, 20) as a distinctive coordinates.\n- (20, 21) and (21, 20) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (20, 21) will be displayed because X1 <= Y1.\n- (23, 22) and (22, 23) are symmetric coordinates because, X1 == Y2 and X2 == Y1. However, only (22, 23) will be displayed because X1 <= Y1.\nThe output table is sorted by X and Y in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Coordinates table:\n+----+----+\n| X  | Y  |\n+----+----+\n| 20 | 20 |\n| 20 | 20 |\n| 20 | 21 |\n| 23 | 22 |\n| 22 | 23 |\n| 21 | 20 |\n+----+----+",
+      "expected": "+----+----+\n| x  | y  |\n+----+----+\n| 20 | 20 |\n| 20 | 21 |\n| 22 | 23 |\n+----+----+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Symmetric Coordinates.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

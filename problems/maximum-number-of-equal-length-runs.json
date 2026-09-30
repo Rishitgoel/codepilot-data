@@ -1,0 +1,56 @@
+{
+  "id": 3773,
+  "slug": "maximum-number-of-equal-length-runs",
+  "title": "Maximum Number of Equal Length Runs",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Equal%20Length%20Runs"
+  },
+  "description": "You are given a string `s` consisting of lowercase English letters.\n\nA **run** in `s` is a **substring** of **equal** letters that cannot be extended further. For example, the runs in `\"hello\"` are `\"h\"`, `\"e\"`, `\"ll\"`, and `\"o\"`.\n\nYou can **select** runs that have the **same** length in `s`.\n\nReturn an integer denoting the **maximum** number of runs you can select in `s`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters only."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxSameLengthRuns(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxSameLengthRuns(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxSameLengthRuns(String s) {\n        \n    }\n};\n",
+    "javascript": "function maxSameLengthRuns(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxSameLengthRuns(self, s: str) -> int:\n        cnt = Counter()\n        for _, g in groupby(s):\n            cnt[len(list(g))] += 1\n        return max(cnt.values())",
+    "cpp": "class Solution {\npublic:\n    int maxSameLengthRuns(string s) {\n        unordered_map<int, int> cnt;\n        int ans = 0;\n        int n = s.size();\n        for (int i = 0; i < n;) {\n            int j = i + 1;\n            while (j < n && s[j] == s[i]) {\n                ++j;\n            }\n            int m = j - i;\n            ans = max(ans, ++cnt[m]);\n            i = j;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxSameLengthRuns(String s) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        int ans = 0;\n        int n = s.length();\n        for (int i = 0; i < n;) {\n            int j = i + 1;\n            while (j < n && s.charAt(j) == s.charAt(i)) {\n                ++j;\n            }\n            int m = j - i;\n            ans = Math.max(ans, cnt.merge(m, 1, Integer::sum));\n            i = j;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxSameLengthRuns(s: string): number {\n    const cnt: Record<number, number> = {};\n    const n = s.length;\n    let ans = 0;\n    for (let i = 0; i < n;) {\n        let j = i + 1;\n        while (j < n && s[j] === s[i]) {\n            ++j;\n        }\n        const m = j - i;\n        cnt[m] = (cnt[m] || 0) + 1;\n        ans = Math.max(ans, cnt[m]);\n        i = j;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Equal Length Runs.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

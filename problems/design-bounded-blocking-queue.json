@@ -1,0 +1,72 @@
+{
+  "id": 1188,
+  "slug": "design-bounded-blocking-queue",
+  "title": "Design Bounded Blocking Queue",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft",
+    "Bloomberg",
+    "Apple",
+    "Uber",
+    "Adobe",
+    "LinkedIn",
+    "Nvidia",
+    "eBay"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20Bounded%20Blocking%20Queue"
+  },
+  "description": "Implement a thread-safe bounded blocking queue that has the following methods:\n\n\t`BoundedBlockingQueue(int capacity)` The constructor initializes the queue with a maximum `capacity`.\n\t`void enqueue(int element)` Adds an `element` to the front of the queue. If the queue is full, the calling thread is blocked until the queue is no longer full.\n\t`int dequeue()` Returns the element at the rear of the queue and removes it. If the queue is empty, the calling thread is blocked until the queue is no longer empty.\n\t`int size()` Returns the number of elements currently in the queue.\n\nYour implementation will be tested using multiple threads at the same time. Each thread will either be a producer thread that only makes calls to the `enqueue` method or a consumer thread that only makes calls to the `dequeue` method. The `size` method will be called after every test case.\n\nPlease do not use built-in implementations of bounded blocking queue as this will not be accepted in an interview.",
+  "examples": [
+    {
+      "input": "1\n1\n[\"BoundedBlockingQueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"enqueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\"]\n[[2],[1],[],[],[0],[2],[3],[4],[]]",
+      "output": "[1,0,2,2]",
+      "explanation": "Number of producer threads = 1\nNumber of consumer threads = 1\n\nBoundedBlockingQueue queue = new BoundedBlockingQueue(2);   // initialize the queue with capacity = 2.\n\nqueue.enqueue(1);   // The producer thread enqueues 1 to the queue.\nqueue.dequeue();    // The consumer thread calls dequeue and returns 1 from the queue.\nqueue.dequeue();    // Since the queue is empty, the consumer thread is blocked.\nqueue.enqueue(0);   // The producer thread enqueues 0 to the queue. The consumer thread is unblocked and returns 0 from the queue.\nqueue.enqueue(2);   // The producer thread enqueues 2 to the queue.\nqueue.enqueue(3);   // The producer thread enqueues 3 to the queue.\nqueue.enqueue(4);   // The producer thread is blocked because the queue's capacity (2) is reached.\nqueue.dequeue();    // The consumer thread returns 2 from the queue. The producer thread is unblocked and enqueues 4 to the queue.\nqueue.size();       // 2 elements remaining in the queue. size() is always called at the end of each test case."
+    },
+    {
+      "input": "3\n4\n[\"BoundedBlockingQueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"dequeue\",\"enqueue\"]\n[[3],[1],[0],[2],[],[],[],[3]]",
+      "output": "[1,0,2,1]",
+      "explanation": "Number of producer threads = 3\nNumber of consumer threads = 4\n\nBoundedBlockingQueue queue = new BoundedBlockingQueue(3);   // initialize the queue with capacity = 3.\n\nqueue.enqueue(1);   // Producer thread P1 enqueues 1 to the queue.\nqueue.enqueue(0);   // Producer thread P2 enqueues 0 to the queue.\nqueue.enqueue(2);   // Producer thread P3 enqueues 2 to the queue.\nqueue.dequeue();    // Consumer thread C1 calls dequeue.\nqueue.dequeue();    // Consumer thread C2 calls dequeue.\nqueue.dequeue();    // Consumer thread C3 calls dequeue.\nqueue.enqueue(3);   // One of the producer threads enqueues 3 to the queue.\nqueue.size();       // 1 element remaining in the queue.\n\nSince the number of threads for producer/consumer is greater than 1, we do not know how the threads will be scheduled in the operating system, even though the input seems to imply the ordering. Therefore, any of the output [1,0,2] or [1,2,0] or [0,1,2] or [0,2,1] or [2,0,1] or [2,1,0] will be accepted."
+    }
+  ],
+  "constraints": [
+    "1 <= Number of Prdoucers <= 8",
+    "1 <= Number of Consumers <= 8",
+    "1 <= size <= 30",
+    "0 <= element <= 20",
+    "The number of calls to enqueue is greater than or equal to the number of calls to dequeue.",
+    "At most 40 calls will be made to enque, deque, and size."
+  ],
+  "starterTemplates": {
+    "python": "from threading import Semaphore\n\n\nclass BoundedBlockingQueue(object):\n    def __init__(self, capacity: int):\n        pass\n",
+    "cpp": "#include <semaphore.h>\n\nclass BoundedBlockingQueue {\npublic:\n    BoundedBlockingQueue(int capacity) {\n        \n    }\n};\n",
+    "java": "class BoundedBlockingQueue {\n    private Semaphore s1;\n    private Semaphore s2;\n    private Deque<Integer> q = new ArrayDeque<>();\n\n    public BoundedBlockingQueue(int capacity) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "from threading import Semaphore\n\n\nclass BoundedBlockingQueue(object):\n    def __init__(self, capacity: int):\n        self.s1 = Semaphore(capacity)\n        self.s2 = Semaphore(0)\n        self.q = deque()\n\n    def enqueue(self, element: int) -> None:\n        self.s1.acquire()\n        self.q.append(element)\n        self.s2.release()\n\n    def dequeue(self) -> int:\n        self.s2.acquire()\n        ans = self.q.popleft()\n        self.s1.release()\n        return ans\n\n    def size(self) -> int:\n        return len(self.q)",
+    "cpp": "#include <semaphore.h>\n\nclass BoundedBlockingQueue {\npublic:\n    BoundedBlockingQueue(int capacity) {\n        sem_init(&s1, 0, capacity);\n        sem_init(&s2, 0, 0);\n    }\n\n    void enqueue(int element) {\n        sem_wait(&s1);\n        q.push(element);\n        sem_post(&s2);\n    }\n\n    int dequeue() {\n        sem_wait(&s2);\n        int ans = q.front();\n        q.pop();\n        sem_post(&s1);\n        return ans;\n    }\n\n    int size() {\n        return q.size();\n    }\n\nprivate:\n    queue<int> q;\n    sem_t s1, s2;\n};",
+    "java": "class BoundedBlockingQueue {\n    private Semaphore s1;\n    private Semaphore s2;\n    private Deque<Integer> q = new ArrayDeque<>();\n\n    public BoundedBlockingQueue(int capacity) {\n        s1 = new Semaphore(capacity);\n        s2 = new Semaphore(0);\n    }\n\n    public void enqueue(int element) throws InterruptedException {\n        s1.acquire();\n        q.offer(element);\n        s2.release();\n    }\n\n    public int dequeue() throws InterruptedException {\n        s2.acquire();\n        int ans = q.poll();\n        s1.release();\n        return ans;\n    }\n\n    public int size() {\n        return q.size();\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "1\n1\n[\"BoundedBlockingQueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"enqueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\"]\n[[2],[1],[],[],[0],[2],[3],[4],[]]",
+      "expected": "[1,0,2,2]"
+    },
+    {
+      "input": "3\n4\n[\"BoundedBlockingQueue\",\"enqueue\",\"enqueue\",\"enqueue\",\"dequeue\",\"dequeue\",\"dequeue\",\"enqueue\"]\n[[3],[1],[0],[2],[],[],[],[3]]",
+      "expected": "[1,0,2,1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design Bounded Blocking Queue.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

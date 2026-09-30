@@ -1,0 +1,47 @@
+{
+  "id": 1565,
+  "slug": "unique-orders-and-customers-per-month",
+  "title": "Unique Orders and Customers Per Month",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Whole Food Market"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Unique%20Orders%20and%20Customers%20Per%20Month"
+  },
+  "description": "Table: `Orders`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| order_id      | int     |\n| order_date    | date    |\n| customer_id   | int     |\n| invoice       | int     |\n+---------------+---------+\norder_id is the column with unique values for this table.\nThis table contains information about the orders made by customer_id.\n\n \n\nWrite a solution to find the number of **unique orders** and the number of **unique customers** with invoices **> $20** for each **different month**.\n\nReturn the result table sorted in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Orders table:\n+----------+------------+-------------+------------+\n| order_id | order_date | customer_id | invoice    |\n+----------+------------+-------------+------------+\n| 1        | 2020-09-15 | 1           | 30         |\n| 2        | 2020-09-17 | 2           | 90         |\n| 3        | 2020-10-06 | 3           | 20         |\n| 4        | 2020-10-20 | 3           | 21         |\n| 5        | 2020-11-10 | 1           | 10         |\n| 6        | 2020-11-21 | 2           | 15         |\n| 7        | 2020-12-01 | 4           | 55         |\n| 8        | 2020-12-03 | 4           | 77         |\n| 9        | 2021-01-07 | 3           | 31         |\n| 10       | 2021-01-15 | 2           | 20         |\n+----------+------------+-------------+------------+",
+      "output": "+---------+-------------+----------------+\n| month   | order_count | customer_count |\n+---------+-------------+----------------+\n| 2020-09 | 2           | 2              |\n| 2020-10 | 1           | 1              |\n| 2020-12 | 2           | 1              |\n| 2021-01 | 1           | 1              |\n+---------+-------------+----------------+",
+      "explanation": "In September 2020 we have two orders from 2 different customers with invoices > $20.\nIn October 2020 we have two orders from 1 customer, and only one of the two orders has invoice > $20.\nIn November 2020 we have two orders from 2 different customers but invoices < $20, so we don't include that month.\nIn December 2020 we have two orders from 1 customer both with invoices > $20.\nIn January 2021 we have two orders from 2 different customers, but only one of them with invoice > $20."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef unique_orders_and_customers(orders: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef unique_orders_and_customers(orders: pd.DataFrame) -> pd.DataFrame:\r\n    filtered_orders = orders[orders[\"invoice\"] > 20]\r\n    filtered_orders[\"month\"] = (\r\n        filtered_orders[\"order_date\"].dt.to_period(\"M\").astype(str)\r\n    )\r\n    result = (\r\n        filtered_orders.groupby(\"month\")\r\n        .agg(\r\n            order_count=(\"order_id\", \"count\"), customer_count=(\"customer_id\", \"nunique\")\r\n        )\r\n        .reset_index()\r\n    )\r\n    return result"
+  },
+  "testcases": [
+    {
+      "input": "Orders table:\n+----------+------------+-------------+------------+\n| order_id | order_date | customer_id | invoice    |\n+----------+------------+-------------+------------+\n| 1        | 2020-09-15 | 1           | 30         |\n| 2        | 2020-09-17 | 2           | 90         |\n| 3        | 2020-10-06 | 3           | 20         |\n| 4        | 2020-10-20 | 3           | 21         |\n| 5        | 2020-11-10 | 1           | 10         |\n| 6        | 2020-11-21 | 2           | 15         |\n| 7        | 2020-12-01 | 4           | 55         |\n| 8        | 2020-12-03 | 4           | 77         |\n| 9        | 2021-01-07 | 3           | 31         |\n| 10       | 2021-01-15 | 2           | 20         |\n+----------+------------+-------------+------------+",
+      "expected": "+---------+-------------+----------------+\n| month   | order_count | customer_count |\n+---------+-------------+----------------+\n| 2020-09 | 2           | 2              |\n| 2020-10 | 1           | 1              |\n| 2020-12 | 2           | 1              |\n| 2021-01 | 1           | 1              |\n+---------+-------------+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Unique Orders and Customers Per Month.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

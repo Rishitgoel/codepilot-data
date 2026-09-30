@@ -1,0 +1,56 @@
+{
+  "id": 3817,
+  "slug": "good-indices-in-a-digit-string",
+  "title": "Good Indices in a Digit String",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Good%20Indices%20in%20a%20Digit%20String"
+  },
+  "description": "You are given a string `s` consisting of digits.\n\nAn index `i` is called **good** if there exists a substring of `s` that ends at index `i` and is equal to the decimal representation of `i`.\n\nReturn an integer array of all good indices in **increasing order**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s only consists of digits from '0' to '9'."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def goodIndices(self, s: str) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> goodIndices(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> goodIndices(String s) {\n        \n    }\n};\n",
+    "javascript": "function goodIndices(s: string): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def goodIndices(self, s: str) -> List[int]:\n        ans = []\n        for i in range(len(s)):\n            t = str(i)\n            k = len(t)\n            if s[i + 1 - k : i + 1] == t:\n                ans.append(i)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> goodIndices(string s) {\n        vector<int> ans;\n        for (int i = 0; i < s.size(); i++) {\n            string t = to_string(i);\n            int k = t.size();\n            if (s.substr(i + 1 - k, k) == t) {\n                ans.push_back(i);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> goodIndices(String s) {\n        List<Integer> ans = new ArrayList<>();\n        for (int i = 0; i < s.length(); i++) {\n            String t = String.valueOf(i);\n            int k = t.length();\n            if (s.substring(i + 1 - k, i + 1).equals(t)) {\n                ans.add(i);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function goodIndices(s: string): number[] {\n    const ans: number[] = [];\n    for (let i = 0; i < s.length; i++) {\n        const t = String(i);\n        const k = t.length;\n        if (s.slice(i + 1 - k, i + 1) === t) {\n            ans.push(i);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Good Indices in a Digit String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

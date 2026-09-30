@@ -1,0 +1,46 @@
+{
+  "id": 2893,
+  "slug": "calculate-orders-within-each-interval",
+  "title": "Calculate Orders Within Each Interval",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Calculate%20Orders%20Within%20Each%20Interval"
+  },
+  "description": "Table: `Orders`\n\n+-------------+------+ \n| Column Name | Type | \n+-------------+------+ \n| minute      | int  | \n| order_count | int  |\n+-------------+------+\nminute is the primary key for this table.\nEach row of this table contains the minute and number of orders received during that specific minute. The total number of rows will be a multiple of 6.\n\nWrite a query to calculate **total** **orders** within each **interval**. Each interval is defined as a combination of `6` minutes.\n\n\tMinutes `1` to `6` fall within interval `1`, while minutes `7` to `12` belong to interval `2`, and so forth.\n\nReturn* the result table ordered by **interval_no** in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Orders table:\n+--------+-------------+\n| minute | order_count | \n+--------+-------------+\n| 1      | 0           |\n| 2      | 2           | \n| 3      | 4           | \n| 4      | 6           | \n| 5      | 1           | \n| 6      | 4           | \n| 7      | 1           | \n| 8      | 2           | \n| 9      | 4           | \n| 10     | 1           | \n| 11     | 4           | \n| 12     | 6           | \n+--------+-------------+",
+      "output": "+-------------+--------------+\n| interval_no | total_orders | \n+-------------+--------------+\n| 1           | 17           | \n| 2           | 18           |    \n+-------------+--------------+",
+      "explanation": "- Interval number 1 comprises minutes from 1 to 6. The total orders in these six minutes are (0 + 2 + 4 + 6 + 1 + 4) = 17.\n- Interval number 2 comprises minutes from 7 to 12. The total orders in these six minutes are (1 + 2 + 4 + 1 + 4 + 6) = 18.\nReturning table orderd by interval_no in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Orders table:\n+--------+-------------+\n| minute | order_count | \n+--------+-------------+\n| 1      | 0           |\n| 2      | 2           | \n| 3      | 4           | \n| 4      | 6           | \n| 5      | 1           | \n| 6      | 4           | \n| 7      | 1           | \n| 8      | 2           | \n| 9      | 4           | \n| 10     | 1           | \n| 11     | 4           | \n| 12     | 6           | \n+--------+-------------+",
+      "expected": "+-------------+--------------+\n| interval_no | total_orders | \n+-------------+--------------+\n| 1           | 17           | \n| 2           | 18           |    \n+-------------+--------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Calculate Orders Within Each Interval.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

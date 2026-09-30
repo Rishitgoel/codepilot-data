@@ -1,0 +1,54 @@
+{
+  "id": 3088,
+  "slug": "make-string-anti-palindrome",
+  "title": "Make String Anti-palindrome",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Intuit"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Make%20String%20Anti-palindrome"
+  },
+  "description": "We call a string `s` of **even** length `n` an **anti-palindrome** if for each index `0 lexicographically smallest one. If it can't be made into an anti-palindrome, return *`\"-1\"`*.*",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= s.length <= 10^5",
+    "s.length % 2 == 0",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def makeAntiPalindrome(self, s: str) -> str:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    string makeAntiPalindrome(string s) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public String makeAntiPalindrome(String s) {\r\n        \n    }\n};\n",
+    "javascript": "function makeAntiPalindrome(s: string): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def makeAntiPalindrome(self, s: str) -> str:\r\n        cs = sorted(s)\r\n        n = len(cs)\r\n        m = n // 2\r\n        if cs[m] == cs[m - 1]:\r\n            i = m\r\n            while i < n and cs[i] == cs[i - 1]:\r\n                i += 1\r\n            j = m\r\n            while j < n and cs[j] == cs[n - j - 1]:\r\n                if i >= n:\r\n                    return \"-1\"\r\n                cs[i], cs[j] = cs[j], cs[i]\r\n                i, j = i + 1, j + 1\r\n        return \"\".join(cs)",
+    "cpp": "class Solution {\r\npublic:\r\n    string makeAntiPalindrome(string s) {\r\n        sort(s.begin(), s.end());\r\n        int n = s.length();\r\n        int m = n / 2;\r\n        if (s[m] == s[m - 1]) {\r\n            int i = m;\r\n            while (i < n && s[i] == s[i - 1]) {\r\n                ++i;\r\n            }\r\n            for (int j = m; j < n && s[j] == s[n - j - 1]; ++i, ++j) {\r\n                if (i >= n) {\r\n                    return \"-1\";\r\n                }\r\n                swap(s[i], s[j]);\r\n            }\r\n        }\r\n        return s;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public String makeAntiPalindrome(String s) {\r\n        char[] cs = s.toCharArray();\r\n        Arrays.sort(cs);\r\n        int n = cs.length;\r\n        int m = n / 2;\r\n        if (cs[m] == cs[m - 1]) {\r\n            int i = m;\r\n            while (i < n && cs[i] == cs[i - 1]) {\r\n                ++i;\r\n            }\r\n            for (int j = m; j < n && cs[j] == cs[n - j - 1]; ++i, ++j) {\r\n                if (i >= n) {\r\n                    return \"-1\";\r\n                }\r\n                char t = cs[i];\r\n                cs[i] = cs[j];\r\n                cs[j] = t;\r\n            }\r\n        }\r\n        return new String(cs);\r\n    }\r\n}",
+    "javascript": "function makeAntiPalindrome(s: string): string {\n    const cs: string[] = s.split('').sort();\n    const n: number = cs.length;\n    const m = n >> 1;\n    if (cs[m] === cs[m - 1]) {\n        let i = m;\n        for (; i < n && cs[i] === cs[i - 1]; i++);\n        for (let j = m; j < n && cs[j] === cs[n - j - 1]; ++i, ++j) {\n            if (i >= n) {\n                return '-1';\n            }\n            [cs[j], cs[i]] = [cs[i], cs[j]];\n        }\n    }\n    return cs.join('');\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Make String Anti-palindrome.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

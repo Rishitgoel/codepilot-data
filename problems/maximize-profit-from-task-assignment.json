@@ -1,0 +1,59 @@
+{
+  "id": 3476,
+  "slug": "maximize-profit-from-task-assignment",
+  "title": "Maximize Profit from Task Assignment",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximize%20Profit%20from%20Task%20Assignment"
+  },
+  "description": "You are given an integer array `workers`, where `workers[i]` represents the skill level of the `i^th` worker. You are also given a 2D integer array `tasks`, where:\n\n\t`tasks[i][0]` represents the skill requirement needed to complete the task.\n\t`tasks[i][1]` represents the profit earned from completing the task.\n\nEach worker can complete **at most** one task, and they can only take a task if their skill level is **equal** to the task's skill requirement. An **additional** worker joins today who can take up *any* task, **regardless** of the skill requirement.\n\nReturn the **maximum** total profit that can be earned by optimally assigning the tasks to the workers.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= workers.length <= 10^5",
+    "1 <= workers[i] <= 10^9",
+    "1 <= tasks.length <= 10^5",
+    "tasks[i].length == 2",
+    "1 <= tasks[i][0], tasks[i][1] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxProfit(self, workers: List[int], tasks: List[List[int]]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxProfit(vector<int>& workers, vector<vector<int>>& tasks) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public long maxProfit(int[] workers, int[][] tasks) {\r\n        \n    }\n};\n",
+    "javascript": "function maxProfit(workers: number[], tasks: number[][]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxProfit(self, workers: List[int], tasks: List[List[int]]) -> int:\r\n        d = defaultdict(SortedList)\r\n        for skill, profit in tasks:\r\n            d[skill].add(profit)\r\n        ans = 0\r\n        for skill in workers:\r\n            if not d[skill]:\r\n                continue\r\n            ans += d[skill].pop()\r\n        mx = 0\r\n        for ls in d.values():\r\n            if ls:\r\n                mx = max(mx, ls[-1])\r\n        ans += mx\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxProfit(vector<int>& workers, vector<vector<int>>& tasks) {\r\n        unordered_map<int, priority_queue<int>> d;\r\n        for (const auto& t : tasks) {\r\n            d[t[0]].push(t[1]);\r\n        }\r\n        long long ans = 0;\r\n        for (int skill : workers) {\r\n            if (d.contains(skill)) {\r\n                auto& pq = d[skill];\r\n                ans += pq.top();\r\n                pq.pop();\r\n                if (pq.empty()) {\r\n                    d.erase(skill);\r\n                }\r\n            }\r\n        }\r\n        int mx = 0;\r\n        for (const auto& [_, pq] : d) {\r\n            mx = max(mx, pq.top());\r\n        }\r\n        ans += mx;\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public long maxProfit(int[] workers, int[][] tasks) {\r\n        Map<Integer, PriorityQueue<Integer>> d = new HashMap<>();\r\n        for (var t : tasks) {\r\n            int skill = t[0], profit = t[1];\r\n            d.computeIfAbsent(skill, k -> new PriorityQueue<>((a, b) -> b - a)).offer(profit);\r\n        }\r\n        long ans = 0;\r\n        for (int skill : workers) {\r\n            if (d.containsKey(skill)) {\r\n                var pq = d.get(skill);\r\n                ans += pq.poll();\r\n                if (pq.isEmpty()) {\r\n                    d.remove(skill);\r\n                }\r\n            }\r\n        }\r\n        int mx = 0;\r\n        for (var pq : d.values()) {\r\n            mx = Math.max(mx, pq.peek());\r\n        }\r\n        ans += mx;\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maxProfit(workers: number[], tasks: number[][]): number {\n    const d = new Map();\n    for (const [skill, profit] of tasks) {\n        if (!d.has(skill)) {\n            d.set(skill, new MaxPriorityQueue<number>());\n        }\n        d.get(skill).enqueue(profit);\n    }\n    let ans = 0;\n    for (const skill of workers) {\n        const pq = d.get(skill);\n        if (pq) {\n            ans += pq.dequeue();\n            if (pq.size() === 0) {\n                d.delete(skill);\n            }\n        }\n    }\n    let mx = 0;\n    for (const pq of d.values()) {\n        mx = Math.max(mx, pq.front());\n    }\n    ans += mx;\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximize Profit from Task Assignment.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

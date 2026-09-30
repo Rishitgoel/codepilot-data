@@ -1,0 +1,60 @@
+{
+  "id": 2776,
+  "slug": "convert-callback-based-function-to-promise-based-function",
+  "title": "Convert Callback Based Function to Promise Based Function",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20Callback%20Based%20Function%20to%20Promise%20Based%20Function"
+  },
+  "description": "Write a function that accepts another function `fn` and converts the callback-based function into a promise-based function. \n\nThe function `fn` takes a callback as its first argument, along with any additional arguments `args` passed as separate inputs.\n\nThe `promisify` function returns a new function that should return a promise. The promise should resolve with the argument passed as the first parameter of the callback when the callback is invoked without error, and reject with the error when the callback is called with an error as the second argument.\n\nThe following is an example of a function that could be passed into `promisify`.\n\nfunction sum(callback, a, b) {\n  if (a \n\nThis is the equivalent code based on promises:\n\nasync function sum(a, b) {\n  if (a",
+  "examples": [
+    {
+      "input": "fn = (callback, a, b, c) => {\n    callback(a * b * c);\n}\nargs = [1, 2, 3]",
+      "output": "{\"resolved\": 6}",
+      "explanation": "const asyncFunc = promisify(fn);\nasyncFunc(1, 2, 3).then(console.log); // 6\n\nfn is called with a callback as the first argument and args as the rest. The promise based version of fn resolves a value of 6 when called with (1, 2, 3)."
+    },
+    {
+      "input": "fn = (callback, a, b, c) => {\n    callback(a * b * c, \"Promise Rejected\");\n}\nargs = [4, 5, 6]",
+      "output": "{\"rejected\": \"Promise Rejected\"}",
+      "explanation": "const asyncFunc = promisify(fn);\nasyncFunc(4, 5, 6).catch(console.log); // \"Promise Rejected\"\n\nfn is called with a callback as the first argument and args as the rest. As the second argument, the callback accepts an error message, so when fn is called, the promise is rejected with a error message provided in the callback. Note that it did not matter what was passed as the first argument into the callback."
+    }
+  ],
+  "constraints": [
+    "1 <= args.length <= 100",
+    "0 <= args[i] <= 10^4"
+  ],
+  "starterTemplates": {
+    "javascript": "type CallbackFn = (next: (data: number, error: string) => void, ...args: number[]) => void;\ntype Promisified = (...args: number[]) => Promise<number>;\n\nfunction promisify(fn: CallbackFn): Promisified {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "type CallbackFn = (next: (data: number, error: string) => void, ...args: number[]) => void;\ntype Promisified = (...args: number[]) => Promise<number>;\n\nfunction promisify(fn: CallbackFn): Promisified {\n    return async function (...args) {\n        return new Promise((resolve, reject) => {\n            fn(\n                (data, error) => {\n                    if (error) {\n                        reject(error);\n                    } else {\n                        resolve(data);\n                    }\n                },\n                ...args,\n            );\n        });\n    };\n}\n\n/**\n * const asyncFunc = promisify(callback => callback(42));\n * asyncFunc().then(console.log); // 42\n */"
+  },
+  "testcases": [
+    {
+      "input": "(callback, a, b, c) => {\n    callback(a * b * c);\n}\nargs = [1, 2, 3]",
+      "expected": "{\"resolved\": 6}"
+    },
+    {
+      "input": "(callback, a, b, c) => {\n    callback(a * b * c, \"Promise Rejected\");\n}\nargs = [4, 5, 6]",
+      "expected": "{\"rejected\": \"Promise Rejected\"}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert Callback Based Function to Promise Based Function.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

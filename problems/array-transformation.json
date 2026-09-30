@@ -1,0 +1,62 @@
+{
+  "id": 1243,
+  "slug": "array-transformation",
+  "title": "Array Transformation",
+  "difficulty": "Easy",
+  "rating": 1558,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Virtu Financial",
+    "Virtu"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Array%20Transformation"
+  },
+  "description": "Given an initial array `arr`, every day you produce a new array using the array of the previous day.\n\nOn the `i`-th day, you do the following operations on the array of day `i-1` to produce the array of day `i`:\n\n\tIf an element is smaller than both its left neighbor and its right neighbor, then this element is incremented.\n\tIf an element is bigger than both its left neighbor and its right neighbor, then this element is decremented.\n\tThe first and last elements never change.\n\nAfter some days, the array does not change. Return that final array.",
+  "examples": [
+    {
+      "input": "arr = [6,2,3,4]",
+      "output": "[6,3,3,4]",
+      "explanation": "On the first day, the array is changed from [6,2,3,4] to [6,3,3,4].\nNo more operations can be done to this array."
+    },
+    {
+      "input": "arr = [1,6,3,4,3,5]",
+      "output": "[1,4,4,4,4,5]",
+      "explanation": "On the first day, the array is changed from [1,6,3,4,3,5] to [1,5,4,3,4,5].\nOn the second day, the array is changed from [1,5,4,3,4,5] to [1,4,4,4,4,5].\nNo more operations can be done to this array."
+    }
+  ],
+  "constraints": [
+    "3 <= arr.length <= 100",
+    "1 <= arr[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def transformArray(self, arr: List[int]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> transformArray(vector<int>& arr) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> transformArray(int[] arr) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def transformArray(self, arr: List[int]) -> List[int]:\n        f = True\n        while f:\n            f = False\n            t = arr[:]\n            for i in range(1, len(t) - 1):\n                if t[i] > t[i - 1] and t[i] > t[i + 1]:\n                    arr[i] -= 1\n                    f = True\n                if t[i] < t[i - 1] and t[i] < t[i + 1]:\n                    arr[i] += 1\n                    f = True\n        return arr",
+    "cpp": "class Solution {\npublic:\n    vector<int> transformArray(vector<int>& arr) {\n        bool f = true;\n        while (f) {\n            f = false;\n            vector<int> t = arr;\n            for (int i = 1; i < arr.size() - 1; ++i) {\n                if (t[i] > t[i - 1] && t[i] > t[i + 1]) {\n                    --arr[i];\n                    f = true;\n                }\n                if (t[i] < t[i - 1] && t[i] < t[i + 1]) {\n                    ++arr[i];\n                    f = true;\n                }\n            }\n        }\n        return arr;\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> transformArray(int[] arr) {\n        boolean f = true;\n        while (f) {\n            f = false;\n            int[] t = arr.clone();\n            for (int i = 1; i < t.length - 1; ++i) {\n                if (t[i] > t[i - 1] && t[i] > t[i + 1]) {\n                    --arr[i];\n                    f = true;\n                }\n                if (t[i] < t[i - 1] && t[i] < t[i + 1]) {\n                    ++arr[i];\n                    f = true;\n                }\n            }\n        }\n        List<Integer> ans = new ArrayList<>();\n        for (int x : arr) {\n            ans.add(x);\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[6,2,3,4]",
+      "expected": "[6,3,3,4]"
+    },
+    {
+      "input": "[1,6,3,4,3,5]",
+      "expected": "[1,4,4,4,4,5]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Array Transformation.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

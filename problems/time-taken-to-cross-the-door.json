@@ -1,0 +1,69 @@
+{
+  "id": 2534,
+  "slug": "time-taken-to-cross-the-door",
+  "title": "Time Taken to Cross the Door",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Salesforce",
+    "IMC"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Time%20Taken%20to%20Cross%20the%20Door"
+  },
+  "description": "There are `n` persons numbered from `0` to `n - 1` and a door. Each person can enter or exit through the door once, taking one second.\n\nYou are given a **non-decreasing** integer array `arrival` of size `n`, where `arrival[i]` is the arrival time of the `i^th` person at the door. You are also given an array `state` of size `n`, where `state[i]` is `0` if person `i` wants to enter through the door or `1` if they want to exit through the door.\n\nIf two or more persons want to use the door at the **same** time, they follow the following rules:\n\n\tIf the door was **not** used in the previous second, then the person who wants to **exit** goes first.\n\tIf the door was used in the previous second for **entering**, the person who wants to enter goes first.\n\tIf the door was used in the previous second for **exiting**, the person who wants to **exit** goes first.\n\tIf multiple persons want to go in the same direction, the person with the **smallest** index goes first.\n\nReturn *an array *`answer`* of size *`n`* where *`answer[i]`* is the second at which the *`i^th`* person crosses the door*.\n\n**Note** that:\n\n\tOnly one person can cross the door at each second.\n\tA person may arrive at the door and wait without entering or exiting to follow the mentioned rules.",
+  "examples": [
+    {
+      "input": "arrival = [0,1,1,2,4], state = [0,1,0,0,1]",
+      "output": "[0,3,1,2,4]",
+      "explanation": "At each second we have the following:\n- At t = 0: Person 0 is the only one who wants to enter, so they just enter through the door.\n- At t = 1: Person 1 wants to exit, and person 2 wants to enter. Since the door was used the previous second for entering, person 2 enters.\n- At t = 2: Person 1 still wants to exit, and person 3 wants to enter. Since the door was used the previous second for entering, person 3 enters.\n- At t = 3: Person 1 is the only one who wants to exit, so they just exit through the door.\n- At t = 4: Person 4 is the only one who wants to exit, so they just exit through the door."
+    },
+    {
+      "input": "arrival = [0,0,0], state = [1,0,1]",
+      "output": "[0,2,1]",
+      "explanation": "At each second we have the following:\n- At t = 0: Person 1 wants to enter while persons 0 and 2 want to exit. Since the door was not used in the previous second, the persons who want to exit get to go first. Since person 0 has a smaller index, they exit first.\n- At t = 1: Person 1 wants to enter, and person 2 wants to exit. Since the door was used in the previous second for exiting, person 2 exits.\n- At t = 2: Person 1 is the only one who wants to enter, so they just enter through the door."
+    }
+  ],
+  "constraints": [
+    "n == arrival.length == state.length",
+    "1 <= n <= 10^5",
+    "0 <= arrival[i] <= n",
+    "arrival is sorted in non-decreasing order.",
+    "state[i] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def timeTaken(self, arrival: List[int], state: List[int]) -> List[int]:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> timeTaken(vector<int>& arrival, vector<int>& state) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int[] timeTaken(int[] arrival, int[] state) {\r\n        \n    }\n};\n",
+    "javascript": "function timeTaken(arrival: number[], state: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def timeTaken(self, arrival: List[int], state: List[int]) -> List[int]:\r\n        q = [deque(), deque()]\r\n        n = len(arrival)\r\n        t = i = 0\r\n        st = 1\r\n        ans = [0] * n\r\n        while i < n or q[0] or q[1]:\r\n            while i < n and arrival[i] <= t:\r\n                q[state[i]].append(i)\r\n                i += 1\r\n            if q[0] and q[1]:\r\n                ans[q[st].popleft()] = t\r\n            elif q[0] or q[1]:\r\n                st = 0 if q[0] else 1\r\n                ans[q[st].popleft()] = t\r\n            else:\r\n                st = 1\r\n            t += 1\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> timeTaken(vector<int>& arrival, vector<int>& state) {\r\n        int n = arrival.size();\r\n        queue<int> q[2];\r\n        int t = 0, i = 0, st = 1;\r\n        vector<int> ans(n);\r\n\r\n        while (i < n || !q[0].empty() || !q[1].empty()) {\r\n            while (i < n && arrival[i] <= t) {\r\n                q[state[i]].push(i++);\r\n            }\r\n\r\n            if (!q[0].empty() && !q[1].empty()) {\r\n                ans[q[st].front()] = t;\r\n                q[st].pop();\r\n            } else if (!q[0].empty() || !q[1].empty()) {\r\n                st = q[0].empty() ? 1 : 0;\r\n                ans[q[st].front()] = t;\r\n                q[st].pop();\r\n            } else {\r\n                st = 1;\r\n            }\r\n\r\n            ++t;\r\n        }\r\n\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int[] timeTaken(int[] arrival, int[] state) {\r\n        Deque<Integer>[] q = new Deque[2];\r\n        Arrays.setAll(q, i -> new ArrayDeque<>());\r\n        int n = arrival.length;\r\n        int t = 0, i = 0, st = 1;\r\n        int[] ans = new int[n];\r\n        while (i < n || !q[0].isEmpty() || !q[1].isEmpty()) {\r\n            while (i < n && arrival[i] <= t) {\r\n                q[state[i]].add(i++);\r\n            }\r\n            if (!q[0].isEmpty() && !q[1].isEmpty()) {\r\n                ans[q[st].poll()] = t;\r\n            } else if (!q[0].isEmpty() || !q[1].isEmpty()) {\r\n                st = q[0].isEmpty() ? 1 : 0;\r\n                ans[q[st].poll()] = t;\r\n            } else {\r\n                st = 1;\r\n            }\r\n            ++t;\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function timeTaken(arrival: number[], state: number[]): number[] {\n    const n = arrival.length;\n    const q: number[][] = [[], []];\n    let [t, i, st] = [0, 0, 1];\n    const ans: number[] = Array(n).fill(0);\n\n    while (i < n || q[0].length || q[1].length) {\n        while (i < n && arrival[i] <= t) {\n            q[state[i]].push(i++);\n        }\n\n        if (q[0].length && q[1].length) {\n            ans[q[st][0]] = t;\n            q[st].shift();\n        } else if (q[0].length || q[1].length) {\n            st = q[0].length ? 0 : 1;\n            ans[q[st][0]] = t;\n            q[st].shift();\n        } else {\n            st = 1;\n        }\n\n        t++;\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[0,1,1,2,4], state = [0,1,0,0,1]",
+      "expected": "[0,3,1,2,4]"
+    },
+    {
+      "input": "[0,0,0], state = [1,0,1]",
+      "expected": "[0,2,1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Time Taken to Cross the Door.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,63 @@
+{
+  "id": 1580,
+  "slug": "put-boxes-into-the-warehouse-ii",
+  "title": "Put Boxes Into the Warehouse II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Pinterest"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Put%20Boxes%20Into%20the%20Warehouse%20II"
+  },
+  "description": "You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labeled from `0` to `n - 1` from left to right where `warehouse[i]` (0-indexed) is the height of the `i^th` room.\n\nBoxes are put into the warehouse by the following rules:\n\n\tBoxes cannot be stacked.\n\tYou can rearrange the insertion order of the boxes.\n\tBoxes can be pushed into the warehouse from **either side** (left or right)\n\tIf the height of some room in the warehouse is less than the height of a box, then that box and all other boxes behind it will be stopped before that room.\n\nReturn *the maximum number of boxes you can put into the warehouse.*",
+  "examples": [
+    {
+      "input": "boxes = [1,2,2,3,4], warehouse = [3,4,1,2]",
+      "output": "4",
+      "explanation": "We can store the boxes in the following order:\n1- Put the yellow box in room 2 from either the left or right side.\n2- Put the orange box in room 3 from the right side.\n3- Put the green box in room 1 from the left side.\n4- Put the red box in room 0 from the left side.\nNotice that there are other valid ways to put 4 boxes such as swapping the red and green boxes or the red and orange boxes."
+    },
+    {
+      "input": "boxes = [3,5,5,2], warehouse = [2,1,3,4,5]",
+      "output": "3",
+      "explanation": "It is not possible to put the two boxes of height 5 in the warehouse since there's only 1 room of height >= 5.\nOther valid solutions are to put the green box in room 2 or to put the orange box first in room 2 before putting the green and red boxes."
+    }
+  ],
+  "constraints": [
+    "n == warehouse.length",
+    "1 <= boxes.length, warehouse.length <= 10^5",
+    "1 <= boxes[i], warehouse[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxBoxesInWarehouse(vector<int>& boxes, vector<int>& warehouse) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        n = len(warehouse)\n        left = [0] * n\n        right = [0] * n\n        left[0] = right[-1] = inf\n        for i in range(1, n):\n            left[i] = min(left[i - 1], warehouse[i - 1])\n        for i in range(n - 2, -1, -1):\n            right[i] = min(right[i + 1], warehouse[i + 1])\n        for i in range(n):\n            warehouse[i] = min(warehouse[i], max(left[i], right[i]))\n        boxes.sort()\n        warehouse.sort()\n        ans = i = 0\n        for x in boxes:\n            while i < n and warehouse[i] < x:\n                i += 1\n            if i == n:\n                break\n            ans, i = ans + 1, i + 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxBoxesInWarehouse(vector<int>& boxes, vector<int>& warehouse) {\n        int n = warehouse.size();\n        const int inf = 1 << 30;\n        vector<int> left(n, inf);\n        vector<int> right(n, inf);\n        for (int i = 1; i < n; ++i) {\n            left[i] = min(left[i - 1], warehouse[i - 1]);\n        }\n        for (int i = n - 2; ~i; --i) {\n            right[i] = min(right[i + 1], warehouse[i + 1]);\n        }\n        for (int i = 0; i < n; ++i) {\n            warehouse[i] = min(warehouse[i], max(left[i], right[i]));\n        }\n        sort(boxes.begin(), boxes.end());\n        sort(warehouse.begin(), warehouse.end());\n        int ans = 0;\n        int i = 0;\n        for (int x : boxes) {\n            while (i < n && warehouse[i] < x) {\n                ++i;\n            }\n            if (i == n) {\n                break;\n            }\n            ++ans;\n            ++i;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {\n        int n = warehouse.length;\n        int[] left = new int[n];\n        int[] right = new int[n];\n        final int inf = 1 << 30;\n        left[0] = inf;\n        right[n - 1] = inf;\n        for (int i = 1; i < n; ++i) {\n            left[i] = Math.min(left[i - 1], warehouse[i - 1]);\n        }\n        for (int i = n - 2; i >= 0; --i) {\n            right[i] = Math.min(right[i + 1], warehouse[i + 1]);\n        }\n        for (int i = 0; i < n; ++i) {\n            warehouse[i] = Math.min(warehouse[i], Math.max(left[i], right[i]));\n        }\n        Arrays.sort(boxes);\n        Arrays.sort(warehouse);\n        int ans = 0, i = 0;\n        for (int x : boxes) {\n            while (i < n && warehouse[i] < x) {\n                ++i;\n            }\n            if (i == n) {\n                break;\n            }\n            ++ans;\n            ++i;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,2,3,4], warehouse = [3,4,1,2]",
+      "expected": "4"
+    },
+    {
+      "input": "[3,5,5,2], warehouse = [2,1,3,4,5]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Put Boxes Into the Warehouse II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

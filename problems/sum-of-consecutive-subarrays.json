@@ -1,0 +1,56 @@
+{
+  "id": 3284,
+  "slug": "sum-of-consecutive-subarrays",
+  "title": "Sum of Consecutive Subarrays",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sum%20of%20Consecutive%20Subarrays"
+  },
+  "description": "We call an array `arr` of length `n` **consecutive** if one of the following holds:\n\n\t`arr[i] - arr[i - 1] == 1` for *all* `1 \n\t`arr[i] - arr[i - 1] == -1` for *all* `1 \n\nThe **value** of an array is the sum of its elements.\n\nFor example, `[3, 4, 5]` is a consecutive array of value 12 and `[9, 8]` is another of value 17. While `[3, 4, 3]` and `[8, 6]` are not consecutive.\n\nGiven an array of integers `nums`, return the *sum* of the **values** of all **consecutive **subarrays.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7.`\n\n**Note** that an array of length 1 is also considered consecutive.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int getSum(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function getSum(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        mod = 10**9 + 7\r\n        f = g = 1\r\n        s = t = nums[0]\r\n        ans = nums[0]\r\n        for x, y in pairwise(nums):\r\n            if y - x == 1:\r\n                f += 1\r\n                s += f * y\r\n                ans = (ans + s) % mod\r\n            else:\r\n                f = 1\r\n                s = y\r\n            if y - x == -1:\r\n                g += 1\r\n                t += g * y\r\n                ans = (ans + t) % mod\r\n            else:\r\n                g = 1\r\n                t = y\r\n            if abs(y - x) != 1:\r\n                ans = (ans + y) % mod\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        const int mod = 1e9 + 7;\r\n        long long s = nums[0], t = nums[0], ans = nums[0];\r\n        int f = 1, g = 1;\r\n        for (int i = 1; i < nums.size(); ++i) {\r\n            int x = nums[i - 1], y = nums[i];\r\n            if (y - x == 1) {\r\n                ++f;\r\n                s += 1LL * f * y;\r\n                ans = (ans + s) % mod;\r\n            } else {\r\n                f = 1;\r\n                s = y;\r\n            }\r\n            if (y - x == -1) {\r\n                ++g;\r\n                t += 1LL * g * y;\r\n                ans = (ans + t) % mod;\r\n            } else {\r\n                g = 1;\r\n                t = y;\r\n            }\r\n            if (abs(y - x) != 1) {\r\n                ans = (ans + y) % mod;\r\n            }\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int getSum(int[] nums) {\r\n        final int mod = (int) 1e9 + 7;\r\n        long s = nums[0], t = nums[0], ans = nums[0];\r\n        int f = 1, g = 1;\r\n        for (int i = 1; i < nums.length; ++i) {\r\n            int x = nums[i - 1], y = nums[i];\r\n            if (y - x == 1) {\r\n                ++f;\r\n                s += 1L * f * y;\r\n                ans = (ans + s) % mod;\r\n            } else {\r\n                f = 1;\r\n                s = y;\r\n            }\r\n            if (y - x == -1) {\r\n                ++g;\r\n                t += 1L * g * y;\r\n                ans = (ans + t) % mod;\r\n            } else {\r\n                g = 1;\r\n                t = y;\r\n            }\r\n            if (Math.abs(y - x) != 1) {\r\n                ans = (ans + y) % mod;\r\n            }\r\n        }\r\n        return (int) ans;\r\n    }\r\n}",
+    "javascript": "function getSum(nums: number[]): number {\n    const mod = 10 ** 9 + 7;\n    let f = 1,\n        g = 1;\n    let s = nums[0],\n        t = nums[0];\n    let ans = nums[0];\n\n    for (let i = 1; i < nums.length; i++) {\n        const x = nums[i - 1];\n        const y = nums[i];\n\n        if (y - x === 1) {\n            f++;\n            s += f * y;\n            ans = (ans + s) % mod;\n        } else {\n            f = 1;\n            s = y;\n        }\n\n        if (y - x === -1) {\n            g++;\n            t += g * y;\n            ans = (ans + t) % mod;\n        } else {\n            g = 1;\n            t = y;\n        }\n\n        if (Math.abs(y - x) !== 1) {\n            ans = (ans + y) % mod;\n        }\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sum of Consecutive Subarrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

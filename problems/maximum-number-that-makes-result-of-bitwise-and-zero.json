@@ -1,0 +1,50 @@
+{
+  "id": 3125,
+  "slug": "maximum-number-that-makes-result-of-bitwise-and-zero",
+  "title": "Maximum Number That Makes Result of Bitwise AND Zero",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20That%20Makes%20Result%20of%20Bitwise%20AND%20Zero"
+  },
+  "description": "Given an integer `n`, return the **maximum** integer `x` such that `x <= n`, and the bitwise `AND` of all the numbers in the range `[x, n]` is 0.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^15"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxNumber(self, n: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxNumber(long long n) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public long maxNumber(long n) {\r\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxNumber(self, n: int) -> int:\r\n        return (1 << (n.bit_length() - 1)) - 1",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxNumber(long long n) {\r\n        return (1LL << (63 - __builtin_clzll(n))) - 1;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public long maxNumber(long n) {\r\n        return (1L << (63 - Long.numberOfLeadingZeros(n))) - 1;\r\n    }\r\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number That Makes Result of Bitwise AND Zero.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,56 @@
+{
+  "id": 3787,
+  "slug": "find-diameter-endpoints-of-a-tree",
+  "title": "Find Diameter Endpoints of a Tree",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Agoda"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Diameter%20Endpoints%20of%20a%20Tree"
+  },
+  "description": "You are given an **undirected tree** with `n` nodes, numbered from 0 to `n - 1`. It is represented by a 2D integer array `edges`​​​​​​​ of length `n - 1`, where `edges[i] = [ai, bi]` indicates that there is an edge between nodes `ai` and `bi` in the tree.\n\nA node is called **special** if it is an **endpoint** of any** diameter path** of the tree.\n\nReturn a binary string `s` of length `n`, where `s[i] = '1'` if node `i` is special, and `s[i] = '0'` otherwise.\n\nA **diameter path** of a tree is the **longest** simple path between any two nodes. A tree may have multiple diameter paths.\n\nAn **endpoint** of a path is the **first** or **last** node on that path.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 10^5",
+    "edges.length == n - 1",
+    "edges[i] = [ai, bi]",
+    "0 <= ai, bi < n",
+    "The input is generated such that edges represents a valid tree."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findSpecialNodes(self, n: int, edges: List[List[int]]) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string findSpecialNodes(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String findSpecialNodes(int n, int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "function findSpecialNodes(n: number, edges: number[][]): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findSpecialNodes(self, n: int, edges: List[List[int]]) -> str:\n        g = [[] for _ in range(n)]\n        for a, b in edges:\n            g[a].append(b)\n            g[b].append(a)\n\n        def bfs(start: int):\n            dist = [-1] * n\n            dist[start] = 0\n            q = deque([start])\n            far = start\n            while q:\n                u = q.popleft()\n                if dist[u] > dist[far]:\n                    far = u\n                for v in g[u]:\n                    if dist[v] == -1:\n                        dist[v] = dist[u] + 1\n                        q.append(v)\n            return far, dist\n\n        a, _ = bfs(0)\n        b, dist1 = bfs(a)\n        _, dist2 = bfs(b)\n        d = dist1[b]\n        ans = [\"0\"] * n\n        for i in range(n):\n            if dist1[i] == d or dist2[i] == d:\n                ans[i] = \"1\"\n        return \"\".join(ans)",
+    "cpp": "class Solution {\npublic:\n    string findSpecialNodes(int n, vector<vector<int>>& edges) {\n        vector<vector<int>> g(n);\n        for (auto& e : edges) {\n            int a = e[0], b = e[1];\n            g[a].push_back(b);\n            g[b].push_back(a);\n        }\n\n        auto bfs = [&](int start) -> pair<int, vector<int>> {\n            vector<int> dist(n, -1);\n            dist[start] = 0;\n            deque<int> q;\n            q.push_back(start);\n            int far = start;\n            while (!q.empty()) {\n                int u = q.front();\n                q.pop_front();\n                if (dist[u] > dist[far]) {\n                    far = u;\n                }\n                for (int v : g[u]) {\n                    if (dist[v] == -1) {\n                        dist[v] = dist[u] + 1;\n                        q.push_back(v);\n                    }\n                }\n            }\n            return {far, dist};\n        };\n\n        auto [a, _0] = bfs(0);\n        auto [b, dist1] = bfs(a);\n        auto [_1, dist2] = bfs(b);\n        int d = dist1[b];\n\n        string ans(n, '0');\n        for (int i = 0; i < n; i++) {\n            if (dist1[i] == d || dist2[i] == d) {\n                ans[i] = '1';\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public String findSpecialNodes(int n, int[][] edges) {\n        List<Integer>[] g = new ArrayList[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int[] e : edges) {\n            int a = e[0], b = e[1];\n            g[a].add(b);\n            g[b].add(a);\n        }\n\n        record BFSResult(int far, int[] dist) {\n        }\n\n        IntFunction<BFSResult> bfs = (int start) -> {\n            int[] dist = new int[n];\n            Arrays.fill(dist, -1);\n            dist[start] = 0;\n            ArrayDeque<Integer> q = new ArrayDeque<>();\n            q.add(start);\n            int far = start;\n            while (!q.isEmpty()) {\n                int u = q.poll();\n                if (dist[u] > dist[far]) {\n                    far = u;\n                }\n                for (int v : g[u]) {\n                    if (dist[v] == -1) {\n                        dist[v] = dist[u] + 1;\n                        q.add(v);\n                    }\n                }\n            }\n            return new BFSResult(far, dist);\n        };\n\n        int a = bfs.apply(0).far();\n        BFSResult r1 = bfs.apply(a);\n        int b = r1.far();\n        int[] dist1 = r1.dist();\n        int[] dist2 = bfs.apply(b).dist();\n        int d = dist1[b];\n\n        char[] ans = new char[n];\n        Arrays.fill(ans, '0');\n        for (int i = 0; i < n; i++) {\n            if (dist1[i] == d || dist2[i] == d) {\n                ans[i] = '1';\n            }\n        }\n        return new String(ans);\n    }\n}",
+    "javascript": "function findSpecialNodes(n: number, edges: number[][]): string {\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of edges) {\n        g[a].push(b);\n        g[b].push(a);\n    }\n\n    const bfs = (start: number): [number, number[]] => {\n        const dist = new Array<number>(n).fill(-1);\n        dist[start] = 0;\n        const q: number[] = [start];\n        let far = start;\n\n        for (const u of q) {\n            if (dist[u] > dist[far]) {\n                far = u;\n            }\n            for (const v of g[u]) {\n                if (dist[v] === -1) {\n                    dist[v] = dist[u] + 1;\n                    q.push(v);\n                }\n            }\n        }\n        return [far, dist];\n    };\n\n    const [a] = bfs(0);\n    const [b, dist1] = bfs(a);\n    const [, dist2] = bfs(b);\n    const d = dist1[b];\n\n    const ans: string[] = new Array(n).fill('0');\n    for (let i = 0; i < n; i++) {\n        if (dist1[i] === d || dist2[i] === d) {\n            ans[i] = '1';\n        }\n    }\n    return ans.join('');\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Diameter Endpoints of a Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

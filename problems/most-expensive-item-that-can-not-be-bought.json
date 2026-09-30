@@ -1,0 +1,64 @@
+{
+  "id": 2979,
+  "slug": "most-expensive-item-that-can-not-be-bought",
+  "title": "Most Expensive Item That Can Not Be Bought",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Most%20Expensive%20Item%20That%20Can%20Not%20Be%20Bought"
+  },
+  "description": "You are given two **distinct** **prime** numbers `primeOne` and `primeTwo`.\n\nAlice and Bob are visiting a market. The market has an **infinite** number of items, for **any** positive integer `x` there exists an item whose price is `x`. Alice wants to buy some items from the market to gift to Bob. She has an **infinite** number of coins in the denomination `primeOne` and `primeTwo`. She wants to know the **most expensive** item she can **not** buy to gift to Bob.\n\nReturn *the price of the **most expensive** item which Alice can not gift to Bob*.",
+  "examples": [
+    {
+      "input": "primeOne = 2, primeTwo = 5",
+      "output": "3",
+      "explanation": "The prices of items which cannot be bought are [1,3]. It can be shown that all items with a price greater than 3 can be bought using a combination of coins of denominations 2 and 5."
+    },
+    {
+      "input": "primeOne = 5, primeTwo = 7",
+      "output": "23",
+      "explanation": "The prices of items which cannot be bought are [1,2,3,4,6,8,9,11,13,16,18,23]. It can be shown that all items with a price greater than 23 can be bought."
+    }
+  ],
+  "constraints": [
+    "1 < primeOne, primeTwo < 10^4",
+    "primeOne, primeTwo are prime numbers.",
+    "primeOne * primeTwo < 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def mostExpensiveItem(self, primeOne: int, primeTwo: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int mostExpensiveItem(int primeOne, int primeTwo) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int mostExpensiveItem(int primeOne, int primeTwo) {\n        \n    }\n};\n",
+    "javascript": "function mostExpensiveItem(primeOne: number, primeTwo: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def mostExpensiveItem(self, primeOne: int, primeTwo: int) -> int:\n        return primeOne * primeTwo - primeOne - primeTwo",
+    "cpp": "class Solution {\npublic:\n    int mostExpensiveItem(int primeOne, int primeTwo) {\n        return primeOne * primeTwo - primeOne - primeTwo;\n    }\n};",
+    "java": "class Solution {\n    public int mostExpensiveItem(int primeOne, int primeTwo) {\n        return primeOne * primeTwo - primeOne - primeTwo;\n    }\n}",
+    "javascript": "function mostExpensiveItem(primeOne: number, primeTwo: number): number {\n    return primeOne * primeTwo - primeOne - primeTwo;\n}"
+  },
+  "testcases": [
+    {
+      "input": "2, primeTwo = 5",
+      "expected": "3"
+    },
+    {
+      "input": "5, primeTwo = 7",
+      "expected": "23"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Most Expensive Item That Can Not Be Bought.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,45 @@
+{
+  "id": 3156,
+  "slug": "employee-task-duration-and-concurrent-tasks",
+  "title": "Employee Task Duration and Concurrent Tasks",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Employee%20Task%20Duration%20and%20Concurrent%20Tasks"
+  },
+  "description": "Table: `Tasks`\n\n+---------------+----------+\n| Column Name   | Type     |\n+---------------+----------+\n| task_id       | int      |\n| employee_id   | int      |\n| start_time    | datetime |\n| end_time      | datetime |\n+---------------+----------+\n(task_id, employee_id) is the primary key for this table.\nEach row in this table contains the task identifier, the employee identifier, and the start and end times of each task.\n\nWrite a solution to find the **total duration** of tasks for **each** employee and the **maximum number of concurrent tasks** an employee handled at **any point in time**. The total duration should be **rounded down** to the nearest number of **full hours**.\n\nReturn *the result table ordered by* `employee_id`** *ascending**** order*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Employee Task Duration and Concurrent Tasks.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

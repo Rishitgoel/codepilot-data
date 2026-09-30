@@ -1,0 +1,62 @@
+{
+  "id": 425,
+  "slug": "word-squares",
+  "title": "Word Squares",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Word%20Squares"
+  },
+  "description": "Given an array of **unique** strings `words`, return *all the ***word squares*** you can build from *`words`. The same word from `words` can be used **multiple times**. You can return the answer in **any order**.\n\nA sequence of strings forms a valid **word square** if the `k^th` row and column read the same string, where `0 \n\tFor example, the word sequence `[\"ball\",\"area\",\"lead\",\"lady\"]` forms a word square because each word reads the same both horizontally and vertically.",
+  "examples": [
+    {
+      "input": "words = [\"area\",\"lead\",\"wall\",\"lady\",\"ball\"]",
+      "output": "[[\"ball\",\"area\",\"lead\",\"lady\"],[\"wall\",\"area\",\"lead\",\"lady\"]]",
+      "explanation": "The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters)."
+    },
+    {
+      "input": "words = [\"abat\",\"baba\",\"atan\",\"atal\"]",
+      "output": "[[\"baba\",\"abat\",\"baba\",\"atal\"],[\"baba\",\"abat\",\"baba\",\"atan\"]]",
+      "explanation": "The output consists of two word squares. The order of output does not matter (just the order of words in each word square matters)."
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 1000",
+    "1 <= words[i].length <= 4",
+    "All words[i] have the same length.",
+    "words[i] consists of only lowercase English letters.",
+    "All words[i] are unique."
+  ],
+  "starterTemplates": {
+    "python": "class Trie:\n    def __init__(self):\n        pass\n",
+    "java": "class Trie {\n    Trie[] children = new Trie[26];\n    List<Integer> v = new ArrayList<>();\n\n    void insert(String word, int i) {\n        Trie node = this;\n        for (char c : word.toCharArray()) {\n            c -= 'a';\n            if (node.children[c] == null) {\n                node.children[c] = new Trie();\n            }\n            node = node.children[c];\n            node.v.add(i);\n        }\n    }\n\n    List<Integer> search(String pref) {\n        Trie node = this;\n        for (char c : pref.toCharArray()) {\n            c -= 'a';\n            if (node.children[c] == null) {\n                return Collections.emptyList();\n            }\n            node = node.children[c];\n        }\n        return node.v;\n    }\n}\n\nclass Solution {\n    private Trie trie = new Trie();\n    private String[] words;\n    private List<List<String>> ans = new ArrayList<>();\n\n    public List<List<String>> wordSquares(String[] words) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Trie:\n    def __init__(self):\n        self.children = [None] * 26\n        self.v = []\n\n    def insert(self, w, i):\n        node = self\n        for c in w:\n            idx = ord(c) - ord('a')\n            if node.children[idx] is None:\n                node.children[idx] = Trie()\n            node = node.children[idx]\n            node.v.append(i)\n\n    def search(self, w):\n        node = self\n        for c in w:\n            idx = ord(c) - ord('a')\n            if node.children[idx] is None:\n                return []\n            node = node.children[idx]\n        return node.v\n\n\nclass Solution:\n    def wordSquares(self, words: List[str]) -> List[List[str]]:\n        def dfs(t):\n            if len(t) == len(words[0]):\n                ans.append(t[:])\n                return\n            idx = len(t)\n            pref = [v[idx] for v in t]\n            indexes = trie.search(''.join(pref))\n            for i in indexes:\n                t.append(words[i])\n                dfs(t)\n                t.pop()\n\n        trie = Trie()\n        ans = []\n        for i, w in enumerate(words):\n            trie.insert(w, i)\n        for w in words:\n            dfs([w])\n        return ans",
+    "java": "class Trie {\n    Trie[] children = new Trie[26];\n    List<Integer> v = new ArrayList<>();\n\n    void insert(String word, int i) {\n        Trie node = this;\n        for (char c : word.toCharArray()) {\n            c -= 'a';\n            if (node.children[c] == null) {\n                node.children[c] = new Trie();\n            }\n            node = node.children[c];\n            node.v.add(i);\n        }\n    }\n\n    List<Integer> search(String pref) {\n        Trie node = this;\n        for (char c : pref.toCharArray()) {\n            c -= 'a';\n            if (node.children[c] == null) {\n                return Collections.emptyList();\n            }\n            node = node.children[c];\n        }\n        return node.v;\n    }\n}\n\nclass Solution {\n    private Trie trie = new Trie();\n    private String[] words;\n    private List<List<String>> ans = new ArrayList<>();\n\n    public List<List<String>> wordSquares(String[] words) {\n        this.words = words;\n        for (int i = 0; i < words.length; ++i) {\n            trie.insert(words[i], i);\n        }\n\n        List<String> t = new ArrayList<>();\n        for (String w : words) {\n            t.add(w);\n            dfs(t);\n            t.remove(t.size() - 1);\n        }\n        return ans;\n    }\n\n    private void dfs(List<String> t) {\n        if (t.size() == words[0].length()) {\n            ans.add(new ArrayList<>(t));\n            return;\n        }\n        int idx = t.size();\n        StringBuilder pref = new StringBuilder();\n        for (String x : t) {\n            pref.append(x.charAt(idx));\n        }\n        List<Integer> indexes = trie.search(pref.toString());\n        for (int i : indexes) {\n            t.add(words[i]);\n            dfs(t);\n            t.remove(t.size() - 1);\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"area\",\"lead\",\"wall\",\"lady\",\"ball\"]",
+      "expected": "[[\"ball\",\"area\",\"lead\",\"lady\"],[\"wall\",\"area\",\"lead\",\"lady\"]]"
+    },
+    {
+      "input": "[\"abat\",\"baba\",\"atan\",\"atal\"]",
+      "expected": "[[\"baba\",\"abat\",\"baba\",\"atal\"],[\"baba\",\"abat\",\"baba\",\"atan\"]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Word Squares.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

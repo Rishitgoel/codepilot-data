@@ -1,0 +1,55 @@
+{
+  "id": 3422,
+  "slug": "minimum-operations-to-make-subarray-elements-equal",
+  "title": "Minimum Operations to Make Subarray Elements Equal",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20Subarray%20Elements%20Equal"
+  },
+  "description": "You are given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:\n\n\tIncrease or decrease any element of `nums` by 1.\n\nReturn the **minimum** number of operations required to ensure that **at least** one subarray of size `k` in `nums` has all elements equal.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= nums.length <= 10^5",
+    "-10^6 <= nums[i] <= 10^6",
+    "2 <= k <= nums.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def minOperations(self, nums: List[int], k: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long minOperations(vector<int>& nums, int k) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public long minOperations(int[] nums, int k) {\r\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def minOperations(self, nums: List[int], k: int) -> int:\r\n        l = SortedList()\r\n        r = SortedList()\r\n        s1 = s2 = 0\r\n        ans = inf\r\n        for i, x in enumerate(nums):\r\n            l.add(x)\r\n            s1 += x\r\n            y = l.pop()\r\n            s1 -= y\r\n            r.add(y)\r\n            s2 += y\r\n            if len(r) - len(l) > 1:\r\n                y = r.pop(0)\r\n                s2 -= y\r\n                l.add(y)\r\n                s1 += y\r\n            if i >= k - 1:\r\n                ans = min(ans, s2 - r[0] * len(r) + r[0] * len(l) - s1)\r\n                j = i - k + 1\r\n                if nums[j] in r:\r\n                    r.remove(nums[j])\r\n                    s2 -= nums[j]\r\n                else:\r\n                    l.remove(nums[j])\r\n                    s1 -= nums[j]\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    long long minOperations(vector<int>& nums, int k) {\r\n        multiset<int> l, r;\r\n        long long s1 = 0, s2 = 0, ans = 1e18;\r\n        for (int i = 0; i < nums.size(); ++i) {\r\n            l.insert(nums[i]);\r\n            s1 += nums[i];\r\n            int y = *l.rbegin();\r\n            l.erase(l.find(y));\r\n            s1 -= y;\r\n            r.insert(y);\r\n            s2 += y;\r\n            if (r.size() - l.size() > 1) {\r\n                y = *r.begin();\r\n                r.erase(r.find(y));\r\n                s2 -= y;\r\n                l.insert(y);\r\n                s1 += y;\r\n            }\r\n            if (i >= k - 1) {\r\n                long long x = *r.begin();\r\n                ans = min(ans, s2 - x * (int) r.size() + x * (int) l.size() - s1);\r\n                int j = i - k + 1;\r\n                if (r.contains(nums[j])) {\r\n                    r.erase(r.find(nums[j]));\r\n                    s2 -= nums[j];\r\n                } else {\r\n                    l.erase(l.find(nums[j]));\r\n                    s1 -= nums[j];\r\n                }\r\n            }\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public long minOperations(int[] nums, int k) {\r\n        TreeMap<Integer, Integer> l = new TreeMap<>();\r\n        TreeMap<Integer, Integer> r = new TreeMap<>();\r\n        long s1 = 0, s2 = 0;\r\n        int sz1 = 0, sz2 = 0;\r\n        long ans = Long.MAX_VALUE;\r\n        for (int i = 0; i < nums.length; ++i) {\r\n            l.merge(nums[i], 1, Integer::sum);\r\n            s1 += nums[i];\r\n            ++sz1;\r\n            int y = l.lastKey();\r\n            if (l.merge(y, -1, Integer::sum) == 0) {\r\n                l.remove(y);\r\n            }\r\n            s1 -= y;\r\n            --sz1;\r\n            r.merge(y, 1, Integer::sum);\r\n            s2 += y;\r\n            ++sz2;\r\n            if (sz2 - sz1 > 1) {\r\n                y = r.firstKey();\r\n                if (r.merge(y, -1, Integer::sum) == 0) {\r\n                    r.remove(y);\r\n                }\r\n                s2 -= y;\r\n                --sz2;\r\n                l.merge(y, 1, Integer::sum);\r\n                s1 += y;\r\n                ++sz1;\r\n            }\r\n            if (i >= k - 1) {\r\n                ans = Math.min(ans, s2 - r.firstKey() * sz2 + r.firstKey() * sz1 - s1);\r\n                int j = i - k + 1;\r\n                if (r.containsKey(nums[j])) {\r\n                    if (r.merge(nums[j], -1, Integer::sum) == 0) {\r\n                        r.remove(nums[j]);\r\n                    }\r\n                    s2 -= nums[j];\r\n                    --sz2;\r\n                } else {\r\n                    if (l.merge(nums[j], -1, Integer::sum) == 0) {\r\n                        l.remove(nums[j]);\r\n                    }\r\n                    s1 -= nums[j];\r\n                    --sz1;\r\n                }\r\n            }\r\n        }\r\n        return ans;\r\n    }\r\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Operations to Make Subarray Elements Equal.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

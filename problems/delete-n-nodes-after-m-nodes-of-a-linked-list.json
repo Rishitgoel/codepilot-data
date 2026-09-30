@@ -1,0 +1,64 @@
+{
+  "id": 1474,
+  "slug": "delete-n-nodes-after-m-nodes-of-a-linked-list",
+  "title": "Delete N Nodes After M Nodes of a Linked List",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Delete%20N%20Nodes%20After%20M%20Nodes%20of%20a%20Linked%20List"
+  },
+  "description": "You are given the `head` of a linked list and two integers `m` and `n`.\n\nTraverse the linked list and remove some nodes in the following way:\n\n\tStart with the head as the current node.\n\tKeep the first `m` nodes starting with the current node.\n\tRemove the next `n` nodes\n\tKeep repeating steps 2 and 3 until you reach the end of the list.\n\nReturn *the head of the modified list after removing the mentioned nodes*.",
+  "examples": [
+    {
+      "input": "head = [1,2,3,4,5,6,7,8,9,10,11,12,13], m = 2, n = 3",
+      "output": "[1,2,6,7,11,12]",
+      "explanation": "Keep the first (m = 2) nodes starting from the head of the linked List  (1 ->2) show in black nodes.\nDelete the next (n = 3) nodes (3 -> 4 -> 5) show in read nodes.\nContinue with the same procedure until reaching the tail of the Linked List.\nHead of the linked list after removing nodes is returned."
+    },
+    {
+      "input": "head = [1,2,3,4,5,6,7,8,9,10,11], m = 1, n = 3",
+      "output": "[1,5,9]",
+      "explanation": "Head of linked list after removing nodes is returned."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^4].",
+    "1 <= Node.val <= 10^6",
+    "1 <= m, n <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n        pass\n",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode deleteNodes(ListNode head, int m, int n) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction deleteNodes(head: ListNode | null, m: number, n: number): ListNode | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def deleteNodes(self, head: ListNode, m: int, n: int) -> ListNode:\n        pre = head\n        while pre:\n            for _ in range(m - 1):\n                if pre:\n                    pre = pre.next\n            if pre is None:\n                return head\n            cur = pre\n            for _ in range(n):\n                if cur:\n                    cur = cur.next\n            pre.next = None if cur is None else cur.next\n            pre = pre.next\n        return head",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* deleteNodes(ListNode* head, int m, int n) {\n        auto pre = head;\n        while (pre) {\n            for (int i = 0; i < m - 1 && pre; ++i) {\n                pre = pre->next;\n            }\n            if (!pre) {\n                return head;\n            }\n            auto cur = pre;\n            for (int i = 0; i < n && cur; ++i) {\n                cur = cur->next;\n            }\n            pre->next = cur ? cur->next : nullptr;\n            pre = pre->next;\n        }\n        return head;\n    }\n};",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode deleteNodes(ListNode head, int m, int n) {\n        ListNode pre = head;\n        while (pre != null) {\n            for (int i = 0; i < m - 1 && pre != null; ++i) {\n                pre = pre.next;\n            }\n            if (pre == null) {\n                return head;\n            }\n            ListNode cur = pre;\n            for (int i = 0; i < n && cur != null; ++i) {\n                cur = cur.next;\n            }\n            pre.next = cur == null ? null : cur.next;\n            pre = pre.next;\n        }\n        return head;\n    }\n}",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction deleteNodes(head: ListNode | null, m: number, n: number): ListNode | null {\n    let pre = head;\n    while (pre) {\n        for (let i = 0; i < m - 1 && pre; ++i) {\n            pre = pre.next;\n        }\n        if (!pre) {\n            break;\n        }\n        let cur = pre;\n        for (let i = 0; i < n && cur; ++i) {\n            cur = cur.next;\n        }\n        pre.next = cur?.next || null;\n        pre = pre.next;\n    }\n    return head;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10,11,12,13], m = 2, n = 3",
+      "expected": "[1,2,6,7,11,12]"
+    },
+    {
+      "input": "[1,2,3,4,5,6,7,8,9,10,11], m = 1, n = 3",
+      "expected": "[1,5,9]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Delete N Nodes After M Nodes of a Linked List.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

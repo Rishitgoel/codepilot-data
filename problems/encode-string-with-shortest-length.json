@@ -1,0 +1,72 @@
+{
+  "id": 471,
+  "slug": "encode-string-with-shortest-length",
+  "title": "Encode String with Shortest Length",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Encode%20String%20with%20Shortest%20Length"
+  },
+  "description": "Given a string `s`, encode the string such that its encoded length is the shortest.\n\nThe encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is being repeated exactly `k` times. `k` should be a positive integer.\n\nIf an encoding process does not make the string shorter, then do not encode it. If there are several solutions, return **any of them**.",
+  "examples": [
+    {
+      "input": "s = \"aaa\"",
+      "output": "\"aaa\"",
+      "explanation": "There is no way to encode it such that it is shorter than the input string, so we do not encode it."
+    },
+    {
+      "input": "s = \"aaaaa\"",
+      "output": "\"5[a]\"",
+      "explanation": "\"5[a]\" is shorter than \"aaaaa\" by 1 character."
+    },
+    {
+      "input": "s = \"aaaaaaaaaa\"",
+      "output": "\"10[a]\"",
+      "explanation": "\"a9[a]\" or \"9[a]a\" are also valid solutions, both of them have the same length = 5, which is the same as \"10[a]\"."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 150",
+    "s consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def encode(self, s: str) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string encode(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private String s;\n    private String[][] f;\n\n    public String encode(String s) {\n        \n    }\n};\n",
+    "javascript": "function encode(s: string): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def encode(self, s: str) -> str:\n        def g(i: int, j: int) -> str:\n            t = s[i : j + 1]\n            if len(t) < 5:\n                return t\n            k = (t + t).index(t, 1)\n            if k < len(t):\n                cnt = len(t) // k\n                return f\"{cnt}[{f[i][i + k - 1]}]\"\n            return t\n\n        n = len(s)\n        f = [[None] * n for _ in range(n)]\n        for i in range(n - 1, -1, -1):\n            for j in range(i, n):\n                f[i][j] = g(i, j)\n                if j - i + 1 > 4:\n                    for k in range(i, j):\n                        t = f[i][k] + f[k + 1][j]\n                        if len(f[i][j]) > len(t):\n                            f[i][j] = t\n        return f[0][-1]",
+    "cpp": "class Solution {\npublic:\n    string encode(string s) {\n        int n = s.size();\n        vector<vector<string>> f(n, vector<string>(n));\n\n        auto g = [&](int i, int j) {\n            string t = s.substr(i, j - i + 1);\n            if (t.size() < 5) {\n                return t;\n            }\n            int k = (t + t).find(t, 1);\n            if (k < t.size()) {\n                int cnt = t.size() / k;\n                return to_string(cnt) + \"[\" + f[i][i + k - 1] + \"]\";\n            }\n            return t;\n        };\n\n        for (int i = n - 1; ~i; --i) {\n            for (int j = i; j < n; ++j) {\n                f[i][j] = g(i, j);\n                if (j - i + 1 > 4) {\n                    for (int k = i; k < j; ++k) {\n                        string t = f[i][k] + f[k + 1][j];\n                        if (t.size() < f[i][j].size()) {\n                            f[i][j] = t;\n                        }\n                    }\n                }\n            }\n        }\n        return f[0][n - 1];\n    }\n};",
+    "java": "class Solution {\n    private String s;\n    private String[][] f;\n\n    public String encode(String s) {\n        this.s = s;\n        int n = s.length();\n        f = new String[n][n];\n        for (int i = n - 1; i >= 0; --i) {\n            for (int j = i; j < n; ++j) {\n                f[i][j] = g(i, j);\n                if (j - i + 1 > 4) {\n                    for (int k = i; k < j; ++k) {\n                        String t = f[i][k] + f[k + 1][j];\n                        if (f[i][j].length() > t.length()) {\n                            f[i][j] = t;\n                        }\n                    }\n                }\n            }\n        }\n        return f[0][n - 1];\n    }\n\n    private String g(int i, int j) {\n        String t = s.substring(i, j + 1);\n        if (t.length() < 5) {\n            return t;\n        }\n        int k = (t + t).indexOf(t, 1);\n        if (k < t.length()) {\n            int cnt = t.length() / k;\n            return String.format(\"%d[%s]\", cnt, f[i][i + k - 1]);\n        }\n        return t;\n    }\n}",
+    "javascript": "function encode(s: string): string {\n    const n = s.length;\n    const f: string[][] = new Array(n).fill(0).map(() => new Array(n).fill(''));\n    const g = (i: number, j: number): string => {\n        const t = s.slice(i, j + 1);\n        if (t.length < 5) {\n            return t;\n        }\n        const k = t.repeat(2).indexOf(t, 1);\n        if (k < t.length) {\n            const cnt = Math.floor(t.length / k);\n            return cnt + '[' + f[i][i + k - 1] + ']';\n        }\n        return t;\n    };\n    for (let i = n - 1; i >= 0; --i) {\n        for (let j = i; j < n; ++j) {\n            f[i][j] = g(i, j);\n            if (j - i + 1 > 4) {\n                for (let k = i; k < j; ++k) {\n                    const t = f[i][k] + f[k + 1][j];\n                    if (t.length < f[i][j].length) {\n                        f[i][j] = t;\n                    }\n                }\n            }\n        }\n    }\n    return f[0][n - 1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"aaa\"",
+      "expected": "\"aaa\""
+    },
+    {
+      "input": "\"aaaaa\"",
+      "expected": "\"5[a]\""
+    },
+    {
+      "input": "\"aaaaaaaaaa\"",
+      "expected": "\"10[a]\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Encode String with Shortest Length.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

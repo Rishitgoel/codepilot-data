@@ -1,0 +1,54 @@
+{
+  "id": 1924,
+  "slug": "erect-the-fence-ii",
+  "title": "Erect the Fence II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Erect%20the%20Fence%20II"
+  },
+  "description": "You are given a 2D integer array `trees` where `trees[i] = [xi, yi]` represents the location of the `i^th` tree in the garden.\n\nYou are asked to fence the entire garden using the minimum length of rope possible. The garden is well-fenced only if **all the trees are enclosed** and the rope used **forms a perfect circle**. A tree is considered enclosed if it is inside or on the border of the circle.\n\nMore formally, you must form a circle using the rope with a center `(x, y)` and radius `r` where all trees lie inside or on the circle and `r` is **minimum**.\n\nReturn *the center and radius of the circle as a length 3 array *`[x, y, r]`*.* Answers within `10^-5` of the actual answer will be accepted.",
+  "examples": [
+    {
+      "input": "trees = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]",
+      "output": "[2.00000,2.00000,2.00000]",
+      "explanation": "The fence will have center = (2, 2) and radius = 2"
+    },
+    {
+      "input": "trees = [[1,2],[2,2],[4,2]]",
+      "output": "[2.50000,2.00000,1.50000]",
+      "explanation": "The fence will have center = (2.5, 2) and radius = 1.5"
+    }
+  ],
+  "constraints": [
+    "1 <= trees.length <= 3000",
+    "trees[i].length == 2",
+    "0 <= xi, yi <= 3000"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "[[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]",
+      "expected": "[2.00000,2.00000,2.00000]"
+    },
+    {
+      "input": "[[1,2],[2,2],[4,2]]",
+      "expected": "[2.50000,2.00000,1.50000]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Erect the Fence II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

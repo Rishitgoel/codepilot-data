@@ -1,0 +1,64 @@
+{
+  "id": 1165,
+  "slug": "single-row-keyboard",
+  "title": "Single-Row Keyboard",
+  "difficulty": "Easy",
+  "rating": 1199,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Single-Row%20Keyboard"
+  },
+  "description": "There is a special keyboard with **all keys in a single row**.\n\nGiven a string `keyboard` of length `26` indicating the layout of the keyboard (indexed from `0` to `25`). Initially, your finger is at index `0`. To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index `i` to index `j` is `|i - j|`.\n\nYou want to type a string `word`. Write a function to calculate how much time it takes to type it with one finger.",
+  "examples": [
+    {
+      "input": "keyboard = \"abcdefghijklmnopqrstuvwxyz\", word = \"cba\"",
+      "output": "4",
+      "explanation": "The index moves from 0 to 2 to write 'c' then to 1 to write 'b' then to 0 again to write 'a'.\nTotal time = 2 + 1 + 1 = 4."
+    },
+    {
+      "input": "keyboard = \"pqrstuvwxyzabcdefghijklmno\", word = \"leetcode\"",
+      "output": "73"
+    }
+  ],
+  "constraints": [
+    "keyboard.length == 26",
+    "keyboard contains each English lowercase letter exactly once in some order.",
+    "1 <= word.length <= 10^4",
+    "word[i] is an English lowercase letter."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def calculateTime(self, keyboard: str, word: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int calculateTime(string keyboard, string word) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int calculateTime(String keyboard, String word) {\n        \n    }\n};\n",
+    "javascript": "function calculateTime(keyboard: string, word: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def calculateTime(self, keyboard: str, word: str) -> int:\n        pos = {c: i for i, c in enumerate(keyboard)}\n        ans = i = 0\n        for c in word:\n            ans += abs(pos[c] - i)\n            i = pos[c]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int calculateTime(string keyboard, string word) {\n        int pos[26];\n        for (int i = 0; i < 26; ++i) {\n            pos[keyboard[i] - 'a'] = i;\n        }\n        int ans = 0, i = 0;\n        for (char& c : word) {\n            int j = pos[c - 'a'];\n            ans += abs(i - j);\n            i = j;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int calculateTime(String keyboard, String word) {\n        int[] pos = new int[26];\n        for (int i = 0; i < 26; ++i) {\n            pos[keyboard.charAt(i) - 'a'] = i;\n        }\n        int ans = 0, i = 0;\n        for (int k = 0; k < word.length(); ++k) {\n            int j = pos[word.charAt(k) - 'a'];\n            ans += Math.abs(i - j);\n            i = j;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function calculateTime(keyboard: string, word: string): number {\n    const pos: number[] = Array(26).fill(0);\n    for (let i = 0; i < 26; ++i) {\n        pos[keyboard.charCodeAt(i) - 97] = i;\n    }\n    let ans = 0;\n    let i = 0;\n    for (const c of word) {\n        const j = pos[c.charCodeAt(0) - 97];\n        ans += Math.abs(i - j);\n        i = j;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcdefghijklmnopqrstuvwxyz\", word = \"cba\"",
+      "expected": "4"
+    },
+    {
+      "input": "\"pqrstuvwxyzabcdefghijklmno\", word = \"leetcode\"",
+      "expected": "73"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Single-Row Keyboard.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

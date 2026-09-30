@@ -1,0 +1,48 @@
+{
+  "id": 3595,
+  "slug": "once-twice",
+  "title": "Once Twice",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Once%20Twice"
+  },
+  "description": "You are given an integer array `nums`. In this array:\n\n\t\n\tExactly one element appears **once**.\n\n\t\n\t\n\tExactly one element appears **twice**.\n\n\t\n\t\n\tAll other elements appear **exactly three times**.\n\n\t\n\nReturn an integer array of length 2, where the first element is the one that appears **once**, and the second is the one that appears **twice**.\n\nYour solution must run in **O(n)** time and **O(1)** space.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "3 <= nums.length <= 10^5",
+    "-2^31 <= nums[i] <= 2^31 - 1",
+    "nums.length is a multiple of 3.",
+    "Exactly one element appears once, one element appears twice, and all other elements appear three times."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Once Twice.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

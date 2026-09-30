@@ -1,0 +1,59 @@
+{
+  "id": 3744,
+  "slug": "find-kth-character-in-expanded-string",
+  "title": "Find Kth Character in Expanded String",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Kth%20Character%20in%20Expanded%20String"
+  },
+  "description": "You are given a string `s` consisting of one or more words separated by single spaces. Each word in `s` consists of lowercase English letters.\n\nWe obtain the **expanded** string `t` from `s` as follows:\n\n\tFor each **word** in `s`, repeat its first character once, then its second character twice, and so on.\n\nFor example, if `s = \"hello world\"`, then `t = \"heelllllllooooo woorrrllllddddd\"`.\n\nYou are also given an integer `k`, representing a **valid** index of the string `t`.\n\nReturn the `k^th` character of the string `t`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s contains only lowercase English letters and spaces ' '.",
+    "s does not contain any leading or trailing spaces.",
+    "All the words in s are separated by a single space.",
+    "0 <= k < t.length. That is, k is a valid index of t."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def kthCharacter(self, s: str, k: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    char kthCharacter(string s, long long k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public char kthCharacter(String s, long k) {\n        \n    }\n};\n",
+    "javascript": "function kthCharacter(s: string, k: number): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def kthCharacter(self, s: str, k: int) -> str:\n        for w in s.split():\n            m = (1 + len(w)) * len(w) // 2\n            if k == m:\n                return \" \"\n            if k > m:\n                k -= m + 1\n            else:\n                cur = 0\n                for i in range(len(w)):\n                    cur += i + 1\n                    if k < cur:\n                        return w[i]",
+    "cpp": "class Solution {\npublic:\n    char kthCharacter(string s, long long k) {\n        stringstream ss(s);\n        string w;\n        while (ss >> w) {\n            long long m = (1 + (long long) w.size()) * (long long) w.size() / 2;\n            if (k == m) {\n                return ' ';\n            }\n            if (k > m) {\n                k -= m + 1;\n            } else {\n                long long cur = 0;\n                for (int i = 0;; ++i) {\n                    cur += i + 1;\n                    if (k < cur) {\n                        return w[i];\n                    }\n                }\n            }\n        }\n        return ' ';\n    }\n};",
+    "java": "class Solution {\n    public char kthCharacter(String s, long k) {\n        for (String w : s.split(\" \")) {\n            long m = (1L + w.length()) * w.length() / 2;\n            if (k == m) {\n                return ' ';\n            }\n            if (k > m) {\n                k -= m + 1;\n            } else {\n                long cur = 0;\n                for (int i = 0;; ++i) {\n                    cur += i + 1;\n                    if (k < cur) {\n                        return w.charAt(i);\n                    }\n                }\n            }\n        }\n        return ' ';\n    }\n}",
+    "javascript": "function kthCharacter(s: string, k: number): string {\n    for (const w of s.split(' ')) {\n        const m = ((1 + w.length) * w.length) / 2;\n        if (k === m) {\n            return ' ';\n        }\n        if (k > m) {\n            k -= m + 1;\n        } else {\n            let cur = 0;\n            for (let i = 0; ; ++i) {\n                cur += i + 1;\n                if (k < cur) {\n                    return w[i];\n                }\n            }\n        }\n    }\n    return ' ';\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Kth Character in Expanded String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

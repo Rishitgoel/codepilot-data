@@ -1,0 +1,69 @@
+{
+  "id": 2307,
+  "slug": "check-for-contradictions-in-equations",
+  "title": "Check for Contradictions in Equations",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Check%20for%20Contradictions%20in%20Equations"
+  },
+  "description": "You are given a 2D array of strings `equations` and an array of real numbers `values`, where `equations[i] = [Ai, Bi]` and `values[i]` means that `Ai / Bi = values[i]`.\n\nDetermine if there exists a contradiction in the equations. Return `true`* if there is a contradiction, or *`false`* otherwise*.\n\n**Note**:\n\n\tWhen checking if two numbers are equal, check that their **absolute difference** is less than `10^-5`.\n\tThe testcases are generated such that there are no cases targeting precision, i.e. using `double` is enough to solve the problem.",
+  "examples": [
+    {
+      "input": "equations = [[\"a\",\"b\"],[\"b\",\"c\"],[\"a\",\"c\"]], values = [3,0.5,1.5]",
+      "output": "false",
+      "explanation": "The given equations are: a / b = 3, b / c = 0.5, a / c = 1.5\nThere are no contradictions in the equations. One possible assignment to satisfy all equations is:\na = 3, b = 1 and c = 2."
+    },
+    {
+      "input": "equations = [[\"le\",\"et\"],[\"le\",\"code\"],[\"code\",\"et\"]], values = [2,5,0.5]",
+      "output": "true",
+      "explanation": "The given equations are: le / et = 2, le / code = 5, code / et = 0.5\nBased on the first two equations, we get code / et = 0.4.\nSince the third equation is code / et = 0.5, we get a contradiction."
+    }
+  ],
+  "constraints": [
+    "1 <= equations.length <= 100",
+    "equations[i].length == 2",
+    "1 <= Ai.length, Bi.length <= 5",
+    "Ai, Bi consist of lowercase English letters.",
+    "equations.length == values.length",
+    "0.0 < values[i] <= 10.0",
+    "values[i] has a maximum of 2 decimal places."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def checkContradictions(\n        self, equations: List[List[str]], values: List[float]\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool checkContradictions(vector<vector<string>>& equations, vector<double>& values) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] p;\n    private double[] w;\n\n    public boolean checkContradictions(List<List<String>> equations, double[] values) {\n        \n    }\n};\n",
+    "javascript": "function checkContradictions(equations: string[][], values: number[]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def checkContradictions(\n        self, equations: List[List[str]], values: List[float]\n    ) -> bool:\n        def find(x: int) -> int:\n            if p[x] != x:\n                root = find(p[x])\n                w[x] *= w[p[x]]\n                p[x] = root\n            return p[x]\n\n        d = defaultdict(int)\n        n = 0\n        for e in equations:\n            for s in e:\n                if s not in d:\n                    d[s] = n\n                    n += 1\n        p = list(range(n))\n        w = [1.0] * n\n        eps = 1e-5\n        for (a, b), v in zip(equations, values):\n            a, b = d[a], d[b]\n            pa, pb = find(a), find(b)\n            if pa != pb:\n                p[pb] = pa\n                w[pb] = v * w[a] / w[b]\n            elif abs(v * w[a] - w[b]) >= eps:\n                return True\n        return False",
+    "cpp": "class Solution {\npublic:\n    bool checkContradictions(vector<vector<string>>& equations, vector<double>& values) {\n        unordered_map<string, int> d;\n        int n = 0;\n        for (auto& e : equations) {\n            for (auto& s : e) {\n                if (!d.count(s)) {\n                    d[s] = n++;\n                }\n            }\n        }\n        vector<int> p(n);\n        iota(p.begin(), p.end(), 0);\n        vector<double> w(n, 1.0);\n        function<int(int)> find = [&](int x) -> int {\n            if (p[x] != x) {\n                int root = find(p[x]);\n                w[x] *= w[p[x]];\n                p[x] = root;\n            }\n            return p[x];\n        };\n        for (int i = 0; i < equations.size(); ++i) {\n            int a = d[equations[i][0]], b = d[equations[i][1]];\n            double v = values[i];\n            int pa = find(a), pb = find(b);\n            if (pa != pb) {\n                p[pb] = pa;\n                w[pb] = v * w[a] / w[b];\n            } else if (fabs(v * w[a] - w[b]) >= 1e-5) {\n                return true;\n            }\n        }\n        return false;\n    }\n};",
+    "java": "class Solution {\n    private int[] p;\n    private double[] w;\n\n    public boolean checkContradictions(List<List<String>> equations, double[] values) {\n        Map<String, Integer> d = new HashMap<>();\n        int n = 0;\n        for (var e : equations) {\n            for (var s : e) {\n                if (!d.containsKey(s)) {\n                    d.put(s, n++);\n                }\n            }\n        }\n        p = new int[n];\n        w = new double[n];\n        for (int i = 0; i < n; ++i) {\n            p[i] = i;\n            w[i] = 1.0;\n        }\n        final double eps = 1e-5;\n        for (int i = 0; i < equations.size(); ++i) {\n            int a = d.get(equations.get(i).get(0)), b = d.get(equations.get(i).get(1));\n            int pa = find(a), pb = find(b);\n            double v = values[i];\n            if (pa != pb) {\n                p[pb] = pa;\n                w[pb] = v * w[a] / w[b];\n            } else if (Math.abs(v * w[a] - w[b]) >= eps) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    private int find(int x) {\n        if (p[x] != x) {\n            int root = find(p[x]);\n            w[x] *= w[p[x]];\n            p[x] = root;\n        }\n        return p[x];\n    }\n}",
+    "javascript": "function checkContradictions(equations: string[][], values: number[]): boolean {\n    const d: { [key: string]: number } = {};\n    let n = 0;\n\n    for (const e of equations) {\n        for (const s of e) {\n            if (!(s in d)) {\n                d[s] = n;\n                n++;\n            }\n        }\n    }\n\n    const p: number[] = Array.from({ length: n }, (_, i) => i);\n    const w: number[] = Array.from({ length: n }, () => 1.0);\n\n    const find = (x: number): number => {\n        if (p[x] !== x) {\n            const root = find(p[x]);\n            w[x] *= w[p[x]];\n            p[x] = root;\n        }\n        return p[x];\n    };\n\n    for (let i = 0; i < equations.length; i++) {\n        const a = d[equations[i][0]];\n        const b = d[equations[i][1]];\n        const v = values[i];\n\n        const pa = find(a);\n        const pb = find(b);\n\n        if (pa !== pb) {\n            p[pb] = pa;\n            w[pb] = (v * w[a]) / w[b];\n        } else if (Math.abs(v * w[a] - w[b]) >= 1e-5) {\n            return true;\n        }\n    }\n\n    return false;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[\"a\",\"b\"],[\"b\",\"c\"],[\"a\",\"c\"]], values = [3,0.5,1.5]",
+      "expected": "false"
+    },
+    {
+      "input": "[[\"le\",\"et\"],[\"le\",\"code\"],[\"code\",\"et\"]], values = [2,5,0.5]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Check for Contradictions in Equations.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

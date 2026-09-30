@@ -1,0 +1,65 @@
+{
+  "id": 1150,
+  "slug": "check-if-a-number-is-majority-element-in-a-sorted-array",
+  "title": "Check If a Number Is Majority Element in a Sorted Array",
+  "difficulty": "Easy",
+  "rating": 1250,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Facebook",
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Check%20If%20a%20Number%20Is%20Majority%20Element%20in%20a%20Sorted%20Array"
+  },
+  "description": "Given an integer array `nums` sorted in non-decreasing order and an integer `target`, return `true` *if* `target` *is a **majority** element, or *`false`* otherwise*.\n\nA **majority** element in an array `nums` is an element that appears more than `nums.length / 2` times in the array.",
+  "examples": [
+    {
+      "input": "nums = [2,4,5,5,5,5,5,6,6], target = 5",
+      "output": "true",
+      "explanation": "The value 5 appears 5 times and the length of the array is 9.\nThus, 5 is a majority element because 5 > 9/2 is true."
+    },
+    {
+      "input": "nums = [10,100,101,101], target = 101",
+      "output": "false",
+      "explanation": "The value 101 appears 2 times and the length of the array is 4.\nThus, 101 is not a majority element because 2 > 4/2 is false."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= nums[i], target <= 10^9",
+    "nums is sorted in non-decreasing order."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isMajorityElement(self, nums: List[int], target: int) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isMajorityElement(vector<int>& nums, int target) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isMajorityElement(int[] nums, int target) {\n        \n    }\n};\n",
+    "javascript": "function isMajorityElement(nums: number[], target: number): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isMajorityElement(self, nums: List[int], target: int) -> bool:\n        left = bisect_left(nums, target)\n        right = bisect_right(nums, target)\n        return right - left > len(nums) // 2",
+    "cpp": "class Solution {\npublic:\n    bool isMajorityElement(vector<int>& nums, int target) {\n        auto left = lower_bound(nums.begin(), nums.end(), target);\n        auto right = upper_bound(nums.begin(), nums.end(), target);\n        return right - left > nums.size() / 2;\n    }\n};",
+    "java": "class Solution {\n    public boolean isMajorityElement(int[] nums, int target) {\n        int left = search(nums, target);\n        int right = search(nums, target + 1);\n        return right - left > nums.length / 2;\n    }\n\n    private int search(int[] nums, int x) {\n        int left = 0, right = nums.length;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            if (nums[mid] >= x) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    }\n}",
+    "javascript": "function isMajorityElement(nums: number[], target: number): boolean {\n    const search = (x: number) => {\n        let left = 0;\n        let right = nums.length;\n        while (left < right) {\n            const mid = (left + right) >> 1;\n            if (nums[mid] >= x) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    };\n    const left = search(target);\n    const right = search(target + 1);\n    return right - left > nums.length >> 1;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,4,5,5,5,5,5,6,6], target = 5",
+      "expected": "true"
+    },
+    {
+      "input": "[10,100,101,101], target = 101",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Check If a Number Is Majority Element in a Sorted Array.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

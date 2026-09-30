@@ -1,0 +1,72 @@
+{
+  "id": 1469,
+  "slug": "find-all-the-lonely-nodes",
+  "title": "Find All The Lonely Nodes",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20All%20The%20Lonely%20Nodes"
+  },
+  "description": "In a binary tree, a **lonely** node is a node that is the only child of its parent node. The root of the tree is not lonely because it does not have a parent node.\n\nGiven the `root` of a binary tree, return *an array containing the values of all lonely nodes* in the tree. Return the list **in any order**.",
+  "examples": [
+    {
+      "input": "root = [1,2,3,null,4]",
+      "output": "[4]",
+      "explanation": "Light blue node is the only lonely node.\nNode 1 is the root and is not lonely.\nNodes 2 and 3 have the same parent and are not lonely."
+    },
+    {
+      "input": "root = [7,1,4,6,null,5,3,null,null,null,null,null,2]",
+      "output": "[6,2]",
+      "explanation": "Light blue nodes are lonely nodes.\nPlease remember that order doesn't matter, [2,6] is also an acceptable answer."
+    },
+    {
+      "input": "root = [11,99,88,77,null,null,66,55,null,null,44,33,null,null,22]",
+      "output": "[77,55,33,66,44,22]",
+      "explanation": "Nodes 99 and 88 share the same parent. Node 11 is the root.\nAll other nodes are lonely."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 1000].",
+    "1 <= Node.val <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> ans = new ArrayList<>();\n\n    public List<Integer> getLonelyNodes(TreeNode root) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction getLonelyNodes(root: TreeNode | null): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def getLonelyNodes(self, root: Optional[TreeNode]) -> List[int]:\n        def dfs(root: Optional[TreeNode]):\n            if root is None or root.left == root.right:\n                return\n            if root.left is None:\n                ans.append(root.right.val)\n            if root.right is None:\n                ans.append(root.left.val)\n            dfs(root.left)\n            dfs(root.right)\n\n        ans = []\n        dfs(root)\n        return ans",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> getLonelyNodes(TreeNode* root) {\n        vector<int> ans;\n        auto dfs = [&](this auto&& dfs, TreeNode* root) {\n            if (!root || (root->left == root->right)) {\n                return;\n            }\n            if (!root->left) {\n                ans.push_back(root->right->val);\n            }\n            if (!root->right) {\n                ans.push_back(root->left->val);\n            }\n            dfs(root->left);\n            dfs(root->right);\n        };\n        dfs(root);\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> ans = new ArrayList<>();\n\n    public List<Integer> getLonelyNodes(TreeNode root) {\n        dfs(root);\n        return ans;\n    }\n\n    private void dfs(TreeNode root) {\n        if (root == null || (root.left == root.right)) {\n            return;\n        }\n        if (root.left == null) {\n            ans.add(root.right.val);\n        }\n        if (root.right == null) {\n            ans.add(root.left.val);\n        }\n        dfs(root.left);\n        dfs(root.right);\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction getLonelyNodes(root: TreeNode | null): number[] {\n    const ans: number[] = [];\n    const dfs = (root: TreeNode | null) => {\n        if (!root || root.left === root.right) {\n            return;\n        }\n        if (!root.left) {\n            ans.push(root.right.val);\n        }\n        if (!root.right) {\n            ans.push(root.left.val);\n        }\n        dfs(root.left);\n        dfs(root.right);\n    };\n    dfs(root);\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3,null,4]",
+      "expected": "[4]"
+    },
+    {
+      "input": "[7,1,4,6,null,5,3,null,null,null,null,null,2]",
+      "expected": "[6,2]"
+    },
+    {
+      "input": "[11,99,88,77,null,null,66,55,null,null,44,33,null,null,22]",
+      "expected": "[77,55,33,66,44,22]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find All The Lonely Nodes.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

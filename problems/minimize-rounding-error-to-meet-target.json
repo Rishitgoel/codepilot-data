@@ -1,0 +1,70 @@
+{
+  "id": 1058,
+  "slug": "minimize-rounding-error-to-meet-target",
+  "title": "Minimize Rounding Error to Meet Target",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Airbnb"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimize%20Rounding%20Error%20to%20Meet%20Target"
+  },
+  "description": "Given an array of `prices` `[p1,p2...,pn]` and a `target`, round each price `pi` to `Roundi(pi)` so that the rounded array `[Round1(p1),Round2(p2)...,Roundn(pn)]` sums to the given `target`. Each operation `Roundi(pi)` could be either `Floor(pi)` or `Ceil(pi)`.\n\nReturn the string `\"-1\"` if the rounded array is impossible to sum to `target`. Otherwise, return the smallest rounding error, which is defined as `&Sigma; |Roundi(pi) - (pi)|` for `i` from `1` to `n`, as a string with three places after the decimal.",
+  "examples": [
+    {
+      "input": "prices = [\"0.700\",\"2.800\",\"4.900\"], target = 8",
+      "output": "\"1.000\"",
+      "explanation": "Use Floor, Ceil and Ceil operations to get (0.7 - 0) + (3 - 2.8) + (5 - 4.9) = 0.7 + 0.2 + 0.1 = 1.0 ."
+    },
+    {
+      "input": "prices = [\"1.500\",\"2.500\",\"3.500\"], target = 10",
+      "output": "\"-1\"",
+      "explanation": "It is impossible to meet the target."
+    },
+    {
+      "input": "prices = [\"1.500\",\"2.500\",\"3.500\"], target = 9",
+      "output": "\"1.500\""
+    }
+  ],
+  "constraints": [
+    "1 <= prices.length <= 500",
+    "Each string prices[i] represents a real number in the range [0.0, 1000.0] and has exactly 3 decimal places.",
+    "0 <= target <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimizeError(self, prices: List[str], target: int) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string minimizeError(vector<string>& prices, int target) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String minimizeError(String[] prices, int target) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimizeError(self, prices: List[str], target: int) -> str:\n        mi = 0\n        arr = []\n        for p in prices:\n            p = float(p)\n            mi += int(p)\n            if d := p - int(p):\n                arr.append(d)\n        if not mi <= target <= mi + len(arr):\n            return \"-1\"\n        d = target - mi\n        arr.sort(reverse=True)\n        ans = d - sum(arr[:d]) + sum(arr[d:])\n        return f'{ans:.3f}'",
+    "cpp": "class Solution {\npublic:\n    string minimizeError(vector<string>& prices, int target) {\n        int mi = 0;\n        vector<double> arr;\n        for (auto& p : prices) {\n            double price = stod(p);\n            mi += (int) price;\n            double d = price - (int) price;\n            if (d > 0) {\n                arr.push_back(d);\n            }\n        }\n        if (target < mi || target > mi + arr.size()) {\n            return \"-1\";\n        }\n        int d = target - mi;\n        sort(arr.rbegin(), arr.rend());\n        double ans = d;\n        for (int i = 0; i < d; ++i) {\n            ans -= arr[i];\n        }\n        for (int i = d; i < arr.size(); ++i) {\n            ans += arr[i];\n        }\n        string s = to_string(ans);\n        return s.substr(0, s.find('.') + 4);\n    }\n};",
+    "java": "class Solution {\n    public String minimizeError(String[] prices, int target) {\n        int mi = 0;\n        List<Double> arr = new ArrayList<>();\n        for (String p : prices) {\n            double price = Double.valueOf(p);\n            mi += (int) price;\n            double d = price - (int) price;\n            if (d > 0) {\n                arr.add(d);\n            }\n        }\n        if (target < mi || target > mi + arr.size()) {\n            return \"-1\";\n        }\n        int d = target - mi;\n        arr.sort(Collections.reverseOrder());\n        double ans = d;\n        for (int i = 0; i < d; ++i) {\n            ans -= arr.get(i);\n        }\n        for (int i = d; i < arr.size(); ++i) {\n            ans += arr.get(i);\n        }\n        DecimalFormat df = new DecimalFormat(\"#0.000\");\n        return df.format(ans);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"0.700\",\"2.800\",\"4.900\"], target = 8",
+      "expected": "\"1.000\""
+    },
+    {
+      "input": "[\"1.500\",\"2.500\",\"3.500\"], target = 10",
+      "expected": "\"-1\""
+    },
+    {
+      "input": "[\"1.500\",\"2.500\",\"3.500\"], target = 9",
+      "expected": "\"1.500\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimize Rounding Error to Meet Target.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

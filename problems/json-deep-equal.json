@@ -1,0 +1,75 @@
+{
+  "id": 2628,
+  "slug": "json-deep-equal",
+  "title": "JSON Deep Equal",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=JSON%20Deep%20Equal"
+  },
+  "description": "Given two values `o1` and `o2`, return a boolean value indicating whether two values, `o1` and `o2`, are **deeply equal**.\n\nFor two values to be **deeply equal**, the following conditions must be met:\n\n\t\n\tIf both values are primitive types, they are **deeply equal** if they pass the `===` equality check.\n\n\t\n\t\n\tIf both values are arrays, they are **deeply equal** if they have the same elements in the same order, and each element is also **deeply equal** according to these conditions.\n\n\t\n\t\n\tIf both values are objects, they are **deeply equal** if they have the same keys, and the associated values for each key are also **deeply equal** according to these conditions.\n\n\t\n\nYou may assume both values are the output of `JSON.parse`. In other words, they are valid JSON.\n\nPlease solve it without using lodash's `_.isEqual()` function",
+  "examples": [
+    {
+      "input": "o1 = {\"x\":1,\"y\":2}, o2 = {\"x\":1,\"y\":2}",
+      "output": "true",
+      "explanation": "The keys and values match exactly."
+    },
+    {
+      "input": "o1 = {\"y\":2,\"x\":1}, o2 = {\"x\":1,\"y\":2}",
+      "output": "true",
+      "explanation": "Although the keys are in a different order, they still match exactly."
+    },
+    {
+      "input": "o1 = {\"x\":null,\"L\":[1,2,3]}, o2 = {\"x\":null,\"L\":[\"1\",\"2\",\"3\"]}",
+      "output": "false",
+      "explanation": "The array of numbers is different from the array of strings."
+    },
+    {
+      "input": "o1 = true, o2 = false",
+      "output": "false",
+      "explanation": "true !== false"
+    }
+  ],
+  "constraints": [
+    "1 <= JSON.stringify(o1).length <= 10^5",
+    "1 <= JSON.stringify(o2).length <= 10^5",
+    "maxNestingDepth <= 1000"
+  ],
+  "starterTemplates": {
+    "javascript": "function areDeeplyEqual(o1: any, o2: any): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function areDeeplyEqual(o1: any, o2: any): boolean {\n    if (o1 === null || typeof o1 !== 'object') {\n        return o1 === o2;\n    }\n    if (typeof o1 !== typeof o2) {\n        return false;\n    }\n    if (Array.isArray(o1) !== Array.isArray(o2)) {\n        return false;\n    }\n    if (Array.isArray(o1)) {\n        if (o1.length !== o2.length) {\n            return false;\n        }\n        for (let i = 0; i < o1.length; i++) {\n            if (!areDeeplyEqual(o1[i], o2[i])) {\n                return false;\n            }\n        }\n        return true;\n    } else {\n        const keys1 = Object.keys(o1);\n        const keys2 = Object.keys(o2);\n        if (keys1.length !== keys2.length) {\n            return false;\n        }\n        for (const key of keys1) {\n            if (!areDeeplyEqual(o1[key], o2[key])) {\n                return false;\n            }\n        }\n        return true;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "{\"x\":1,\"y\":2}, o2 = {\"x\":1,\"y\":2}",
+      "expected": "true"
+    },
+    {
+      "input": "{\"y\":2,\"x\":1}, o2 = {\"x\":1,\"y\":2}",
+      "expected": "true"
+    },
+    {
+      "input": "{\"x\":null,\"L\":[1,2,3]}, o2 = {\"x\":null,\"L\":[\"1\",\"2\",\"3\"]}",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for JSON Deep Equal.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

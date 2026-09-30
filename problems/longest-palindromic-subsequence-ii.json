@@ -1,0 +1,61 @@
+{
+  "id": 1682,
+  "slug": "longest-palindromic-subsequence-ii",
+  "title": "Longest Palindromic Subsequence II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "CodeNation"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Palindromic%20Subsequence%20II"
+  },
+  "description": "A subsequence of a string `s` is considered a **good palindromic subsequence** if:\n\n\tIt is a subsequence of `s`.\n\tIt is a palindrome (has the same value if reversed).\n\tIt has an **even** length.\n\tNo two consecutive characters are equal, except the two middle ones.\n\nFor example, if `s = \"abcabcabb\"`, then `\"abba\"` is considered a **good palindromic subsequence**, while `\"bcb\"` (not even length) and `\"bbbb\"` (has equal consecutive characters) are not.\n\nGiven a string `s`, return *the **length** of the **longest good palindromic subsequence** in *`s`.",
+  "examples": [
+    {
+      "input": "s = \"bbabab\"",
+      "output": "4",
+      "explanation": "The longest good palindromic subsequence of s is \"baab\"."
+    },
+    {
+      "input": "s = \"dcbccacdb\"",
+      "output": "4",
+      "explanation": "The longest good palindromic subsequence of s is \"dccd\"."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 250",
+    "s consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int f[251][251][27];\n\n    int longestPalindromeSubseq(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[][][] f;\n    private String s;\n\n    public int longestPalindromeSubseq(String s) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        @cache\n        def dfs(i, j, x):\n            if i >= j:\n                return 0\n            if s[i] == s[j] and s[i] != x:\n                return dfs(i + 1, j - 1, s[i]) + 2\n            return max(dfs(i + 1, j, x), dfs(i, j - 1, x))\n\n        ans = dfs(0, len(s) - 1, '')\n        dfs.cache_clear()\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int f[251][251][27];\n\n    int longestPalindromeSubseq(string s) {\n        int n = s.size();\n        memset(f, -1, sizeof f);\n        function<int(int, int, int)> dfs = [&](int i, int j, int x) -> int {\n            if (i >= j) return 0;\n            if (f[i][j][x] != -1) return f[i][j][x];\n            int ans = 0;\n            if (s[i] == s[j] && s[i] - 'a' != x)\n                ans = dfs(i + 1, j - 1, s[i] - 'a') + 2;\n            else\n                ans = max(dfs(i + 1, j, x), dfs(i, j - 1, x));\n            f[i][j][x] = ans;\n            return ans;\n        };\n        return dfs(0, n - 1, 26);\n    }\n};",
+    "java": "class Solution {\n    private int[][][] f;\n    private String s;\n\n    public int longestPalindromeSubseq(String s) {\n        int n = s.length();\n        this.s = s;\n        f = new int[n][n][27];\n        for (var a : f) {\n            for (var b : a) {\n                Arrays.fill(b, -1);\n            }\n        }\n        return dfs(0, n - 1, 26);\n    }\n\n    private int dfs(int i, int j, int x) {\n        if (i >= j) {\n            return 0;\n        }\n        if (f[i][j][x] != -1) {\n            return f[i][j][x];\n        }\n        int ans = 0;\n        if (s.charAt(i) == s.charAt(j) && s.charAt(i) - 'a' != x) {\n            ans = dfs(i + 1, j - 1, s.charAt(i) - 'a') + 2;\n        } else {\n            ans = Math.max(dfs(i + 1, j, x), dfs(i, j - 1, x));\n        }\n        f[i][j][x] = ans;\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"bbabab\"",
+      "expected": "4"
+    },
+    {
+      "input": "\"dcbccacdb\"",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Palindromic Subsequence II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

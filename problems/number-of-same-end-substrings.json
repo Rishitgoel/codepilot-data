@@ -1,0 +1,67 @@
+{
+  "id": 2955,
+  "slug": "number-of-same-end-substrings",
+  "title": "Number of Same-End Substrings",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Sprinklr"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Same-End%20Substrings"
+  },
+  "description": "You are given a **0-indexed** string `s`, and a 2D array of integers `queries`, where `queries[i] = [li, ri]` indicates a substring of `s` starting from the index `li` and ending at the index `ri` (both **inclusive**), i.e. `s[li..ri]`.\n\nReturn *an array *`ans`* where* `ans[i]` *is the number of **same-end** substrings of* `queries[i]`.\n\nA **0-indexed** string `t` of length `n` is called **same-end** if it has the same character at both of its ends, i.e., `t[0] == t[n - 1]`.\n\nA substring is a contiguous non-empty sequence of characters within a string.",
+  "examples": [
+    {
+      "input": "s = \"abcaab\", queries = [[0,0],[1,4],[2,5],[0,5]]",
+      "output": "[1,5,5,10]",
+      "explanation": "Here is the same-end substrings of each query:\n1st query: s[0..0] is \"a\" which has 1 same-end substring: \"a\".\n2nd query: s[1..4] is \"bcaa\" which has 5 same-end substrings: \"bcaa\", \"bcaa\", \"bcaa\", \"bcaa\", \"bcaa\".\n3rd query: s[2..5] is \"caab\" which has 5 same-end substrings: \"caab\", \"caab\", \"caab\", \"caab\", \"caab\".\n4th query: s[0..5] is \"abcaab\" which has 10 same-end substrings: \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\", \"abcaab\"."
+    },
+    {
+      "input": "s = \"abcd\", queries = [[0,3]]",
+      "output": "[4]",
+      "explanation": "The only query is s[0..3] which is \"abcd\". It has 4 same-end substrings: \"abcd\", \"abcd\", \"abcd\", \"abcd\"."
+    }
+  ],
+  "constraints": [
+    "2 <= s.length <= 3 * 10^4",
+    "s consists only of lowercase English letters.",
+    "1 <= queries.length <= 3 * 10^4",
+    "queries[i] = [li, ri]",
+    "0 <= li <= ri < s.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> sameEndSubstringCount(string s, vector<vector<int>>& queries) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] sameEndSubstringCount(String s, int[][] queries) {\n        \n    }\n};\n",
+    "javascript": "function sameEndSubstringCount(s: string, queries: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:\n        n = len(s)\n        cs = set(s)\n        cnt = {c: [0] * (n + 1) for c in cs}\n        for i, a in enumerate(s, 1):\n            for c in cs:\n                cnt[c][i] = cnt[c][i - 1]\n            cnt[a][i] += 1\n        ans = []\n        for l, r in queries:\n            t = r - l + 1\n            for c in cs:\n                x = cnt[c][r + 1] - cnt[c][l]\n                t += x * (x - 1) // 2\n            ans.append(t)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> sameEndSubstringCount(string s, vector<vector<int>>& queries) {\n        int n = s.size();\n        int cnt[26][n + 1];\n        memset(cnt, 0, sizeof(cnt));\n        for (int j = 1; j <= n; ++j) {\n            for (int i = 0; i < 26; ++i) {\n                cnt[i][j] = cnt[i][j - 1];\n            }\n            cnt[s[j - 1] - 'a'][j]++;\n        }\n        vector<int> ans;\n        for (auto& q : queries) {\n            int l = q[0], r = q[1];\n            ans.push_back(r - l + 1);\n            for (int i = 0; i < 26; ++i) {\n                int x = cnt[i][r + 1] - cnt[i][l];\n                ans.back() += x * (x - 1) / 2;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] sameEndSubstringCount(String s, int[][] queries) {\n        int n = s.length();\n        int[][] cnt = new int[26][n + 1];\n        for (int j = 1; j <= n; ++j) {\n            for (int i = 0; i < 26; ++i) {\n                cnt[i][j] = cnt[i][j - 1];\n            }\n            cnt[s.charAt(j - 1) - 'a'][j]++;\n        }\n        int m = queries.length;\n        int[] ans = new int[m];\n        for (int k = 0; k < m; ++k) {\n            int l = queries[k][0], r = queries[k][1];\n            ans[k] = r - l + 1;\n            for (int i = 0; i < 26; ++i) {\n                int x = cnt[i][r + 1] - cnt[i][l];\n                ans[k] += x * (x - 1) / 2;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function sameEndSubstringCount(s: string, queries: number[][]): number[] {\n    const n: number = s.length;\n    const cnt: number[][] = Array.from({ length: 26 }, () => Array(n + 1).fill(0));\n    for (let j = 1; j <= n; j++) {\n        for (let i = 0; i < 26; i++) {\n            cnt[i][j] = cnt[i][j - 1];\n        }\n        cnt[s.charCodeAt(j - 1) - 'a'.charCodeAt(0)][j]++;\n    }\n    const ans: number[] = [];\n    for (const [l, r] of queries) {\n        ans.push(r - l + 1);\n        for (let i = 0; i < 26; i++) {\n            const x: number = cnt[i][r + 1] - cnt[i][l];\n            ans[ans.length - 1] += (x * (x - 1)) / 2;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcaab\", queries = [[0,0],[1,4],[2,5],[0,5]]",
+      "expected": "[1,5,5,10]"
+    },
+    {
+      "input": "\"abcd\", queries = [[0,3]]",
+      "expected": "[4]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Same-End Substrings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

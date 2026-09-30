@@ -1,0 +1,47 @@
+{
+  "id": 3944,
+  "slug": "minimum-operations-to-make-array-modulo-alternating-ii",
+  "title": "Minimum Operations to Make Array Modulo Alternating II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20Array%20Modulo%20Alternating%20II"
+  },
+  "description": "You are given an integer array `nums` and an integer `k`.\n\nIn one operation, you can **increase** or **decrease** any element of `nums` by 1.\n\nAn array is called **modulo alternating** if there exist two **distinct** integers `x` and `y` (`0 \n\tFor every **even** index `i`, `nums[i] % k == x`\n\tFor every **odd** index `i`, `nums[i] % k == y`\n\nReturn the **minimum** number of operations required to make `nums` **modulo alternating**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9",
+    "2 <= k <= 10^5"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Operations to Make Array Modulo Alternating II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

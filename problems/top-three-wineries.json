@@ -1,0 +1,43 @@
+{
+  "id": 2991,
+  "slug": "top-three-wineries",
+  "title": "Top Three Wineries ",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Top%20Three%20Wineries%20"
+  },
+  "description": "Table: `Wineries`\n\n+-------------+----------+\n| Column Name | Type     |\n+-------------+----------+\n| id          | int      |\n| country     | varchar  |\n| points      | int      |\n| winery      | varchar  |\n+-------------+----------+\nid is column of unique values for this table.\nThis table contains id, country, points, and winery.\n\nWrite a solution to find the **top three wineries** in **each** **country** based on their **total points**. If **multiple wineries** have the **same** total points, order them by `winery` name in **ascending** order. If there's **no second winery**, output 'No second winery,' and if there's **no third winery**, output 'No third winery.'\n\nReturn *the result table ordered by *`country`* in **ascending** order**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Wineries table:\n+-----+-----------+--------+-----------------+\n| id  | country   | points | winery          | \n+-----+-----------+--------+-----------------+\n| 103 | Australia | 84     | WhisperingPines | \n| 737 | Australia | 85     | GrapesGalore    |    \n| 848 | Australia | 100    | HarmonyHill     | \n| 222 | Hungary   | 60     | MoonlitCellars  | \n| 116 | USA       | 47     | RoyalVines      | \n| 124 | USA       | 45     | Eagle'sNest     | \n| 648 | India     | 69     | SunsetVines     | \n| 894 | USA       | 39     | RoyalVines      |  \n| 677 | USA       | 9      | PacificCrest    |  \n+-----+-----------+--------+-----------------+",
+      "output": "+-----------+---------------------+-------------------+----------------------+\n| country   | top_winery          | second_winery     | third_winery         |\n+-----------+---------------------+-------------------+----------------------+\n| Australia | HarmonyHill (100)   | GrapesGalore (85) | WhisperingPines (84) |\n| Hungary   | MoonlitCellars (60) | No second winery  | No third winery      | \n| India     | SunsetVines (69)    | No second winery  | No third winery      |  \n| USA       | RoyalVines (86)     | Eagle'sNest (45)  | PacificCrest (9)     | \n+-----------+---------------------+-------------------+----------------------+",
+      "explanation": "For Australia\n - HarmonyHill Winery accumulates the highest score of 100 points in Australia.\n - GrapesGalore Winery has a total of 85 points, securing the second-highest position in Australia.\n - WhisperingPines Winery has a total of 80 points, ranking as the third-highest.\nFor Hungary\n - MoonlitCellars is the sole winery, accruing 60 points, automatically making it the highest. There is no second or third winery.\nFor India\n - SunsetVines is the sole winery, earning 69 points, making it the top winery. There is no second or third winery.\nFor the USA\n - RoyalVines Wines accumulates a total of 47 + 39 = 86 points, claiming the highest position in the USA.\n - Eagle'sNest has a total of 45 points, securing the second-highest position in the USA.\n - PacificCrest accumulates 9 points, ranking as the third-highest winery in the USA\nOutput table is ordered by country in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Wineries table:\n+-----+-----------+--------+-----------------+\n| id  | country   | points | winery          | \n+-----+-----------+--------+-----------------+\n| 103 | Australia | 84     | WhisperingPines | \n| 737 | Australia | 85     | GrapesGalore    |    \n| 848 | Australia | 100    | HarmonyHill     | \n| 222 | Hungary   | 60     | MoonlitCellars  | \n| 116 | USA       | 47     | RoyalVines      | \n| 124 | USA       | 45     | Eagle'sNest     | \n| 648 | India     | 69     | SunsetVines     | \n| 894 | USA       | 39     | RoyalVines      |  \n| 677 | USA       | 9      | PacificCrest    |  \n+-----+-----------+--------+-----------------+",
+      "expected": "+-----------+---------------------+-------------------+----------------------+\n| country   | top_winery          | second_winery     | third_winery         |\n+-----------+---------------------+-------------------+----------------------+\n| Australia | HarmonyHill (100)   | GrapesGalore (85) | WhisperingPines (84) |\n| Hungary   | MoonlitCellars (60) | No second winery  | No third winery      | \n| India     | SunsetVines (69)    | No second winery  | No third winery      |  \n| USA       | RoyalVines (86)     | Eagle'sNest (45)  | PacificCrest (9)     | \n+-----------+---------------------+-------------------+----------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Top Three Wineries .",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,56 @@
+{
+  "id": 3687,
+  "slug": "library-late-fee-calculator",
+  "title": "Library Late Fee Calculator",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Library%20Late%20Fee%20Calculator"
+  },
+  "description": "You are given an integer array `daysLate` where `daysLate[i]` indicates how many days late the `i^th` book was returned.\n\nThe penalty is calculated as follows:\n\n\tIf `daysLate[i] == 1`, penalty is 1.\n\tIf `2 \n\tIf `daysLate[i] > 5`, penalty is `3 * daysLate[i]`.\n\nReturn the total penalty for all books.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= daysLate.length <= 100",
+    "1 <= daysLate[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def lateFee(self, daysLate: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int lateFee(vector<int>& daysLate) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int lateFee(int[] daysLate) {\n        \n    }\n};\n",
+    "javascript": "function lateFee(daysLate: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def lateFee(self, daysLate: List[int]) -> int:\n        def f(x: int) -> int:\n            if x == 1:\n                return 1\n            if x > 5:\n                return 3 * x\n            return 2 * x\n\n        return sum(f(x) for x in daysLate)",
+    "cpp": "class Solution {\npublic:\n    int lateFee(vector<int>& daysLate) {\n        auto f = [](int x) {\n            if (x == 1) {\n                return 1;\n            } else if (x > 5) {\n                return 3 * x;\n            } else {\n                return 2 * x;\n            }\n        };\n\n        int ans = 0;\n        for (int x : daysLate) {\n            ans += f(x);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int lateFee(int[] daysLate) {\n        IntUnaryOperator f = x -> {\n            if (x == 1) {\n                return 1;\n            } else if (x > 5) {\n                return 3 * x;\n            } else {\n                return 2 * x;\n            }\n        };\n\n        int ans = 0;\n        for (int x : daysLate) {\n            ans += f.applyAsInt(x);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function lateFee(daysLate: number[]): number {\n    const f = (x: number): number => {\n        if (x === 1) {\n            return 1;\n        } else if (x > 5) {\n            return 3 * x;\n        }\n        return 2 * x;\n    };\n    return daysLate.reduce((acc, days) => acc + f(days), 0);\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Library Late Fee Calculator.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

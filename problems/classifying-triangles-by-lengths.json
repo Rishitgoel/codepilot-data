@@ -1,0 +1,43 @@
+{
+  "id": 3053,
+  "slug": "classifying-triangles-by-lengths",
+  "title": "Classifying Triangles by Lengths",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Aon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Classifying%20Triangles%20by%20Lengths"
+  },
+  "description": "Table: `Triangles`\n\n+-------------+------+ \n| Column Name | Type | \n+-------------+------+ \n| A           | int  | \n| B           | int  |\n| C           | int  |\n+-------------+------+\n(A, B, C) is the primary key for this table.\nEach row include the lengths of each of a triangle's three sides.\n\nWrite a query to find the type of **triangle**. Output one of the following for each row:\n\n\t**Equilateral**: It's a triangle with `3` sides of equal length.\n\t**Isosceles**: It's a triangle with `2` sides of equal length.\n\t**Scalene**: It's a triangle with `3` sides of differing lengths.\n\t**Not A Triangle: **The given values of `A`, `B`, and `C` don't form a triangle.\n\nReturn *the result table in **any order***.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Triangles table:\n+----+----+----+\n| A  | B  | C  |\n+----+----+----+\n| 20 | 20 | 23 |\n| 20 | 20 | 20 |\n| 20 | 21 | 22 |\n| 13 | 14 | 30 |\n+----+----+----+",
+      "output": "+----------------+\n| triangle_type  | \n+----------------+\n| Isosceles      | \n| Equilateral    |\n| Scalene        |\n| Not A Triangle |\n+----------------+",
+      "explanation": "- Values in the first row from an Isosceles triangle, because A = B.\n- Values in the second row from an Equilateral triangle, because A = B = C.\n- Values in the third row from an Scalene triangle, because A != B != C.\n- Values in the fourth row cannot form a triangle, because the combined value of sides A and B is not larger than that of side C."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Triangles table:\n+----+----+----+\n| A  | B  | C  |\n+----+----+----+\n| 20 | 20 | 23 |\n| 20 | 20 | 20 |\n| 20 | 21 | 22 |\n| 13 | 14 | 30 |\n+----+----+----+",
+      "expected": "+----------------+\n| triangle_type  | \n+----------------+\n| Isosceles      | \n| Equilateral    |\n| Scalene        |\n| Not A Triangle |\n+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Classifying Triangles by Lengths.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

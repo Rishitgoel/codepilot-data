@@ -1,0 +1,45 @@
+{
+  "id": 1270,
+  "slug": "all-people-report-to-the-given-manager",
+  "title": "All People Report to the Given Manager",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=All%20People%20Report%20to%20the%20Given%20Manager"
+  },
+  "description": "Table: `Employees`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| employee_id   | int     |\n| employee_name | varchar |\n| manager_id    | int     |\n+---------------+---------+\nemployee_id is the column of unique values for this table.\nEach row of this table indicates that the employee with ID employee_id and name employee_name reports his work to his/her direct manager with manager_id\nThe head of the company is the employee with employee_id = 1.\n\n \n\nWrite a solution to find `employee_id` of all employees that directly or indirectly report their work to the head of the company.\n\nThe indirect relation between managers **will not exceed three managers** as the company is small.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Employees table:\n+-------------+---------------+------------+\n| employee_id | employee_name | manager_id |\n+-------------+---------------+------------+\n| 1           | Boss          | 1          |\n| 3           | Alice         | 3          |\n| 2           | Bob           | 1          |\n| 4           | Daniel        | 2          |\n| 7           | Luis          | 4          |\n| 8           | Jhon          | 3          |\n| 9           | Angela        | 8          |\n| 77          | Robert        | 1          |\n+-------------+---------------+------------+",
+      "output": "+-------------+\n| employee_id |\n+-------------+\n| 2           |\n| 77          |\n| 4           |\n| 7           |\n+-------------+",
+      "explanation": "The head of the company is the employee with employee_id 1.\nThe employees with employee_id 2 and 77 report their work directly to the head of the company.\nThe employee with employee_id 4 reports their work indirectly to the head of the company 4 --> 2 --> 1. \nThe employee with employee_id 7 reports their work indirectly to the head of the company 7 --> 4 --> 2 --> 1.\nThe employees with employee_id 3, 8, and 9 do not report their work to the head of the company directly or indirectly."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Employees table:\n+-------------+---------------+------------+\n| employee_id | employee_name | manager_id |\n+-------------+---------------+------------+\n| 1           | Boss          | 1          |\n| 3           | Alice         | 3          |\n| 2           | Bob           | 1          |\n| 4           | Daniel        | 2          |\n| 7           | Luis          | 4          |\n| 8           | Jhon          | 3          |\n| 9           | Angela        | 8          |\n| 77          | Robert        | 1          |\n+-------------+---------------+------------+",
+      "expected": "+-------------+\n| employee_id |\n+-------------+\n| 2           |\n| 77          |\n| 4           |\n| 7           |\n+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for All People Report to the Given Manager.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

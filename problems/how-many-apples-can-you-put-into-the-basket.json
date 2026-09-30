@@ -1,0 +1,64 @@
+{
+  "id": 1196,
+  "slug": "how-many-apples-can-you-put-into-the-basket",
+  "title": "How Many Apples Can You Put into the Basket",
+  "difficulty": "Easy",
+  "rating": 1249,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Virtu Financial",
+    "Virtu"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=How%20Many%20Apples%20Can%20You%20Put%20into%20the%20Basket"
+  },
+  "description": "You have some apples and a basket that can carry up to `5000` units of weight.\n\nGiven an integer array `weight` where `weight[i]` is the weight of the `i^th` apple, return *the maximum number of apples you can put in the basket*.",
+  "examples": [
+    {
+      "input": "weight = [100,200,150,1000]",
+      "output": "4",
+      "explanation": "All 4 apples can be carried by the basket since their sum of weights is 1450."
+    },
+    {
+      "input": "weight = [900,950,800,1000,700,800]",
+      "output": "5",
+      "explanation": "The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them."
+    }
+  ],
+  "constraints": [
+    "1 <= weight.length <= 10^3",
+    "1 <= weight[i] <= 10^3"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxNumberOfApples(self, weight: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxNumberOfApples(vector<int>& weight) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxNumberOfApples(int[] weight) {\n        \n    }\n};\n",
+    "javascript": "function maxNumberOfApples(weight: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxNumberOfApples(self, weight: List[int]) -> int:\n        weight.sort()\n        s = 0\n        for i, x in enumerate(weight):\n            s += x\n            if s > 5000:\n                return i\n        return len(weight)",
+    "cpp": "class Solution {\npublic:\n    int maxNumberOfApples(vector<int>& weight) {\n        sort(weight.begin(), weight.end());\n        int s = 0;\n        for (int i = 0; i < weight.size(); ++i) {\n            s += weight[i];\n            if (s > 5000) {\n                return i;\n            }\n        }\n        return weight.size();\n    }\n};",
+    "java": "class Solution {\n    public int maxNumberOfApples(int[] weight) {\n        Arrays.sort(weight);\n        int s = 0;\n        for (int i = 0; i < weight.length; ++i) {\n            s += weight[i];\n            if (s > 5000) {\n                return i;\n            }\n        }\n        return weight.length;\n    }\n}",
+    "javascript": "function maxNumberOfApples(weight: number[]): number {\n    weight.sort((a, b) => a - b);\n    let s = 0;\n    for (let i = 0; i < weight.length; ++i) {\n        s += weight[i];\n        if (s > 5000) {\n            return i;\n        }\n    }\n    return weight.length;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[100,200,150,1000]",
+      "expected": "4"
+    },
+    {
+      "input": "[900,950,800,1000,700,800]",
+      "expected": "5"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for How Many Apples Can You Put into the Basket.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 2792,
+  "slug": "count-nodes-that-are-great-enough",
+  "title": "Count Nodes That Are Great Enough",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Nodes%20That%20Are%20Great%20Enough"
+  },
+  "description": "You are given a `root` to a binary tree and an integer `k`. A node of this tree is called **great enough** if the followings hold:\n\n\tIts subtree has **at least** `k` nodes.\n\tIts value is greater than the value of **at least** `k` nodes in its subtree.\n\nReturn* the number of nodes in this tree that are great enough.*\n\nThe node `u` is in the **subtree** of the node `v`, if `u == v` or `v` is an ancestor of `u`.",
+  "examples": [
+    {
+      "input": "root = [7,6,5,4,3,2,1], k = 2",
+      "output": "3",
+      "explanation": "Number the nodes from 1 to 7.\nThe values in the subtree of node 1: {1,2,3,4,5,6,7}. Since node.val == 7, there are 6 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 2: {3,4,6}. Since node.val == 6, there are 2 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 3: {1,2,5}. Since node.val == 5, there are 2 nodes having a smaller value than its value. So it's great enough.\nIt can be shown that other nodes are not great enough.\nSee the picture below for a better understanding."
+    },
+    {
+      "input": "root = [1,2,3], k = 1",
+      "output": "0",
+      "explanation": "Number the nodes from 1 to 3.\nThe values in the subtree of node 1: {1,2,3}. Since node.val == 1, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 2: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 3: {3}. Since node.val == 3, there are no nodes having a smaller value than its value. So it's not great enough.\nSee the picture below for a better understanding."
+    },
+    {
+      "input": "root = [3,2,2], k = 2",
+      "output": "1",
+      "explanation": "Number the nodes from 1 to 3.\nThe values in the subtree of node 1: {2,2,3}. Since node.val == 3, there are 2 nodes having a smaller value than its value. So it's great enough.\nThe values in the subtree of node 2: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nThe values in the subtree of node 3: {2}. Since node.val == 2, there are no nodes having a smaller value than its value. So it's not great enough.\nSee the picture below for a better understanding."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^4]. ",
+    "1 <= Node.val <= 10^4",
+    "1 <= k <= 10"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private int ans;\n    private int k;\n\n    public int countGreatEnoughNodes(TreeNode root, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def countGreatEnoughNodes(self, root: Optional[TreeNode], k: int) -> int:\n        def push(pq, x):\n            heappush(pq, x)\n            if len(pq) > k:\n                heappop(pq)\n\n        def dfs(root):\n            if root is None:\n                return []\n            l, r = dfs(root.left), dfs(root.right)\n            for x in r:\n                push(l, x)\n            if len(l) == k and -l[0] < root.val:\n                nonlocal ans\n                ans += 1\n            push(l, -root.val)\n            return l\n\n        ans = 0\n        dfs(root)\n        return ans",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int countGreatEnoughNodes(TreeNode* root, int k) {\n        int ans = 0;\n        function<priority_queue<int>(TreeNode*)> dfs = [&](TreeNode* root) {\n            if (!root) {\n                return priority_queue<int>();\n            }\n            auto left = dfs(root->left);\n            auto right = dfs(root->right);\n            while (right.size()) {\n                left.push(right.top());\n                right.pop();\n                if (left.size() > k) {\n                    left.pop();\n                }\n            }\n            if (left.size() == k && left.top() < root->val) {\n                ++ans;\n            }\n            left.push(root->val);\n            if (left.size() > k) {\n                left.pop();\n            }\n            return left;\n        };\n        dfs(root);\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private int ans;\n    private int k;\n\n    public int countGreatEnoughNodes(TreeNode root, int k) {\n        this.k = k;\n        dfs(root);\n        return ans;\n    }\n\n    private PriorityQueue<Integer> dfs(TreeNode root) {\n        if (root == null) {\n            return new PriorityQueue<>(Comparator.reverseOrder());\n        }\n        var l = dfs(root.left);\n        var r = dfs(root.right);\n        for (int x : r) {\n            l.offer(x);\n            if (l.size() > k) {\n                l.poll();\n            }\n        }\n        if (l.size() == k && l.peek() < root.val) {\n            ++ans;\n        }\n        l.offer(root.val);\n        if (l.size() > k) {\n            l.poll();\n        }\n        return l;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[7,6,5,4,3,2,1], k = 2",
+      "expected": "3"
+    },
+    {
+      "input": "[1,2,3], k = 1",
+      "expected": "0"
+    },
+    {
+      "input": "[3,2,2], k = 2",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Nodes That Are Great Enough.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,42 @@
+{
+  "id": 603,
+  "slug": "consecutive-available-seats",
+  "title": "Consecutive Available Seats",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Consecutive%20Available%20Seats"
+  },
+  "description": "Table: `Cinema`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| seat_id     | int  |\n| free        | bool |\n+-------------+------+\nseat_id is an auto-increment column for this table.\nEach row of this table indicates whether the i^th seat is free or not. 1 means free while 0 means occupied.\n\n \n\nFind all the consecutive available seats in the cinema.\n\nReturn the result table **ordered** by `seat_id` **in ascending order**.\n\nThe test cases are generated so that more than two seats are consecutively available.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Cinema table:\n+---------+------+\n| seat_id | free |\n+---------+------+\n| 1       | 1    |\n| 2       | 0    |\n| 3       | 1    |\n| 4       | 1    |\n| 5       | 1    |\n+---------+------+",
+      "output": "+---------+\n| seat_id |\n+---------+\n| 3       |\n| 4       |\n| 5       |\n+---------+"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Cinema table:\n+---------+------+\n| seat_id | free |\n+---------+------+\n| 1       | 1    |\n| 2       | 0    |\n| 3       | 1    |\n| 4       | 1    |\n| 5       | 1    |\n+---------+------+",
+      "expected": "+---------+\n| seat_id |\n+---------+\n| 3       |\n| 4       |\n| 5       |\n+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Consecutive Available Seats.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

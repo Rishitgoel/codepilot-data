@@ -1,0 +1,57 @@
+{
+  "id": 3706,
+  "slug": "maximum-distance-between-unequal-words-in-array-ii",
+  "title": "Maximum Distance Between Unequal Words in Array II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Distance%20Between%20Unequal%20Words%20in%20Array%20II"
+  },
+  "description": "You are given a string array `words`.\n\nFind the **maximum distance** between two **distinct** indices `i` and `j` such that:\n\n\t`words[i] != words[j]`, and\n\tthe distance is defined as `j - i + 1`.\n\nReturn the maximum distance among all such pairs. If no valid pair exists, return 0.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 10^5",
+    "1 <= words[i].length <= 10",
+    "words[i] consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxDistance(self, words: List[str]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxDistance(vector<string>& words) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxDistance(String[] words) {\n        \n    }\n};\n",
+    "javascript": "function maxDistance(words: string[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxDistance(self, words: List[str]) -> int:\n        n = len(words)\n        ans = 0\n        for i in range(n):\n            if words[i] != words[0]:\n                ans = max(ans, i + 1)\n            if words[i] != words[-1]:\n                ans = max(ans, n - i)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxDistance(vector<string>& words) {\n        int n = words.size();\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            if (words[i] != words[0]) {\n                ans = max(ans, i + 1);\n            }\n            if (words[i] != words[n - 1]) {\n                ans = max(ans, n - i);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxDistance(String[] words) {\n        int n = words.length;\n        int ans = 0;\n        for (int i = 0; i < n; ++i) {\n            if (!words[i].equals(words[0])) {\n                ans = Math.max(ans, i + 1);\n            }\n            if (!words[i].equals(words[n - 1])) {\n                ans = Math.max(ans, n - i);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxDistance(words: string[]): number {\n    const n = words.length;\n    let ans = 0;\n    for (let i = 0; i < n; i++) {\n        if (words[i] !== words[0]) {\n            ans = Math.max(ans, i + 1);\n        }\n        if (words[i] !== words[n - 1]) {\n            ans = Math.max(ans, n - i);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Distance Between Unequal Words in Array II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

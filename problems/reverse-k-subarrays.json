@@ -1,0 +1,58 @@
+{
+  "id": 3865,
+  "slug": "reverse-k-subarrays",
+  "title": "Reverse K Subarrays",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Reverse%20K%20Subarrays"
+  },
+  "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nYou must **partition** the array into `k` contiguous subarrays of **equal** length and **reverse** each subarray.\n\nIt is guaranteed that `n` is divisible by `k`.\n\nReturn the resulting array after performing the above operation.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == nums.length <= 1000",
+    "1 <= nums[i] <= 1000",
+    "1 <= k <= n",
+    "n is divisible by k."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def reverseSubarrays(self, nums: list[int], k: int) -> list[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> reverseSubarrays(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] reverseSubarrays(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function reverseSubarrays(nums: number[], k: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def reverseSubarrays(self, nums: list[int], k: int) -> list[int]:\n        n = len(nums)\n        m = n // k\n        for i in range(0, n, m):\n            nums[i : i + m] = nums[i : i + m][::-1]\n        return nums",
+    "cpp": "class Solution {\npublic:\n    vector<int> reverseSubarrays(vector<int>& nums, int k) {\n        int n = nums.size();\n        int m = n / k;\n        for (int i = 0; i < n; i += m) {\n            int l = i, r = i + m - 1;\n            while (l < r) {\n                swap(nums[l++], nums[r--]);\n            }\n        }\n        return nums;\n    }\n};",
+    "java": "class Solution {\n    public int[] reverseSubarrays(int[] nums, int k) {\n        int n = nums.length;\n        int m = n / k;\n        for (int i = 0; i < n; i += m) {\n            int l = i, r = i + m - 1;\n            while (l < r) {\n                int t = nums[l];\n                nums[l++] = nums[r];\n                nums[r--] = t;\n            }\n        }\n        return nums;\n    }\n}",
+    "javascript": "function reverseSubarrays(nums: number[], k: number): number[] {\n    const n = nums.length;\n    const m = Math.floor(n / k);\n    for (let i = 0; i < n; i += m) {\n        let l = i,\n            r = i + m - 1;\n        while (l < r) {\n            const t = nums[l];\n            nums[l++] = nums[r];\n            nums[r--] = t;\n        }\n    }\n    return nums;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Reverse K Subarrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

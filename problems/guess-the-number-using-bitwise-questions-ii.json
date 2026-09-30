@@ -1,0 +1,55 @@
+{
+  "id": 3094,
+  "slug": "guess-the-number-using-bitwise-questions-ii",
+  "title": "Guess the Number Using Bitwise Questions II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Guess%20the%20Number%20Using%20Bitwise%20Questions%20II"
+  },
+  "description": "There is a number `n` between `0` and `2^30 - 1` (both inclusive) that you have to find.\n\nThere is a pre-defined API `int commonBits(int num)` that helps you with your mission. But here is the challenge, every time you call this function, `n` changes in some way. But keep in mind, that you have to find the **initial value of **`n`.\n\n`commonBits(int num)` acts as follows:\n\n\tCalculate `count` which is the number of bits where both `n` and `num` have the same value in that position of their binary representation.\n\t`n = n XOR num`\n\tReturn `count`.\n\nReturn *the number* `n`.\n\n**Note:** In this world, all numbers are between `0` and `2^30 - 1` (both inclusive), thus for counting common bits, we see only the first 30 bits of those numbers.\n\n \n\n**Constraints:**\n\n\t`0 \n\t`0 \n\tIf you ask for some `num` out of the given range, the output wouldn't be reliable.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "0 <= n <= 2^30 - 1",
+    "0 <= num <= 2^30 - 1",
+    "If you ask for some num out of the given range, the output wouldn't be reliable."
+  ],
+  "starterTemplates": {
+    "python": "# Definition of commonBits API.\r\n# def commonBits(num: int) -> int:\r\n        pass\n",
+    "cpp": "/**\r\n * Definition of commonBits API.\r\n * int commonBits(int num);\r\n */\r\n\r\nclass Solution {\r\n        \n    }\n};\n",
+    "java": "/**\r\n * Definition of commonBits API (defined in the parent class Problem).\r\n * int commonBits(int num);\r\n */\r\n\r\npublic class Solution extends Problem {\r\n    public int findNumber() {\r\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# Definition of commonBits API.\r\n# def commonBits(num: int) -> int:\r\n\r\n\r\nclass Solution:\r\n    def findNumber(self) -> int:\r\n        n = 0\r\n        for i in range(32):\r\n            count1 = commonBits(1 << i)\r\n            count2 = commonBits(1 << i)\r\n            if count1 > count2:\r\n                n |= 1 << i\r\n        return n",
+    "cpp": "/**\r\n * Definition of commonBits API.\r\n * int commonBits(int num);\r\n */\r\n\r\nclass Solution {\r\npublic:\r\n    int findNumber() {\r\n        int n = 0;\r\n        for (int i = 0; i < 32; ++i) {\r\n            int count1 = commonBits(1 << i);\r\n            int count2 = commonBits(1 << i);\r\n            if (count1 > count2) {\r\n                n |= 1 << i;\r\n            }\r\n        }\r\n        return n;\r\n    }\r\n};",
+    "java": "/**\r\n * Definition of commonBits API (defined in the parent class Problem).\r\n * int commonBits(int num);\r\n */\r\n\r\npublic class Solution extends Problem {\r\n    public int findNumber() {\r\n        int n = 0;\r\n        for (int i = 0; i < 32; ++i) {\r\n            int count1 = commonBits(1 << i);\r\n            int count2 = commonBits(1 << i);\r\n            if (count1 > count2) {\r\n                n |= 1 << i;\r\n            }\r\n        }\r\n        return n;\r\n    }\r\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Guess the Number Using Bitwise Questions II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,49 @@
+{
+  "id": 3089,
+  "slug": "find-bursty-behavior",
+  "title": "Find Bursty Behavior",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Bursty%20Behavior"
+  },
+  "description": "Table: `Posts`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| post_id     | int     |\n| user_id     | int     |\n| post_date   | date    |\n+-------------+---------+\npost_id is the primary key (column with unique values) for this table.\nEach row of this table contains post_id, user_id, and post_date.\n\nWrite a solution to find users who demonstrate **bursty behavior** in their posting patterns during February `2024`. **Bursty behavior** is defined as **any** period of **7** **consecutive** days where a user's posting frequency is **at least twice** to their **average** weekly posting frequency for February `2024`.\n\n**Note:** Only include the dates from February `1` to February `28` in your analysis, which means you should count February as having exactly `4` weeks.\n\nReturn *the result table orderd by *`user_id`* in ***ascending*** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_bursty_behavior(posts: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_bursty_behavior(posts: pd.DataFrame) -> pd.DataFrame:\r\n    # Subquery P\r\n    p1 = pd.merge(posts, posts, on=\"user_id\", suffixes=(\"_1\", \"_2\"))\r\n    p1 = p1[\r\n        p1[\"post_date_2\"].between(\r\n            p1[\"post_date_1\"], p1[\"post_date_1\"] + pd.Timedelta(days=6)\r\n        )\r\n    ]\r\n    p1 = p1.groupby([\"user_id\", \"post_id_1\"]).size().reset_index(name=\"cnt\")\r\n\r\n    # Subquery T\r\n    t = posts[\r\n        (posts[\"post_date\"] >= \"2024-02-01\") & (posts[\"post_date\"] <= \"2024-02-28\")\r\n    ]\r\n    t = t.groupby(\"user_id\").size().div(4).reset_index(name=\"avg_weekly_posts\")\r\n\r\n    # Joining P and T\r\n    merged_df = pd.merge(p1, t, on=\"user_id\", how=\"inner\")\r\n\r\n    # Filtering\r\n    filtered_df = merged_df[merged_df[\"cnt\"] >= merged_df[\"avg_weekly_posts\"] * 2]\r\n\r\n    # Aggregating\r\n    result_df = (\r\n        filtered_df.groupby(\"user_id\")\r\n        .agg({\"cnt\": \"max\", \"avg_weekly_posts\": \"first\"})\r\n        .reset_index()\r\n    )\r\n    result_df.columns = [\"user_id\", \"max_7day_posts\", \"avg_weekly_posts\"]\r\n\r\n    # Sorting\r\n    result_df.sort_values(by=\"user_id\", inplace=True)\r\n\r\n    return result_df"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Bursty Behavior.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

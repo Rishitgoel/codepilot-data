@@ -1,0 +1,62 @@
+{
+  "id": 555,
+  "slug": "split-concatenated-strings",
+  "title": "Split Concatenated Strings",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Alibaba"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Split%20Concatenated%20Strings"
+  },
+  "description": "You are given an array of strings `strs`. You could concatenate these strings together into a loop, where for each string, you could choose to reverse it or not. Among all the possible loops\n\nReturn *the lexicographically largest string after cutting the loop, which will make the looped string into a regular one*.\n\nSpecifically, to find the lexicographically largest string, you need to experience two phases:\n\n\tConcatenate all the strings into a loop, where you can reverse some strings or not and connect them in the same order as given.\n\tCut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting from the character at the cutpoint.\n\nAnd your job is to find the lexicographically largest one among all the possible regular strings.",
+  "examples": [
+    {
+      "input": "strs = [\"abc\",\"xyz\"]",
+      "output": "\"zyxcba\"",
+      "explanation": "You can get the looped string \"-abcxyz-\", \"-abczyx-\", \"-cbaxyz-\", \"-cbazyx-\", where '-' represents the looped status. \nThe answer string came from the fourth looped one, where you could cut from the middle character 'a' and get \"zyxcba\"."
+    },
+    {
+      "input": "strs = [\"abc\"]",
+      "output": "\"cba\""
+    }
+  ],
+  "constraints": [
+    "1 <= strs.length <= 1000",
+    "1 <= strs[i].length <= 1000",
+    "1 <= sum(strs[i].length) <= 1000",
+    "strs[i] consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def splitLoopedString(self, strs: List[str]) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string splitLoopedString(vector<string>& strs) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String splitLoopedString(String[] strs) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def splitLoopedString(self, strs: List[str]) -> str:\n        strs = [s[::-1] if s[::-1] > s else s for s in strs]\n        ans = ''.join(strs)\n        for i, s in enumerate(strs):\n            t = ''.join(strs[i + 1 :]) + ''.join(strs[:i])\n            for j in range(len(s)):\n                a = s[j:]\n                b = s[:j]\n                ans = max(ans, a + t + b)\n                ans = max(ans, b[::-1] + t + a[::-1])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    string splitLoopedString(vector<string>& strs) {\n        for (auto& s : strs) {\n            string t{s.rbegin(), s.rend()};\n            s = max(s, t);\n        }\n        int n = strs.size();\n        string ans = \"\";\n        for (int i = 0; i < strs.size(); ++i) {\n            auto& s = strs[i];\n            string t;\n            for (int j = i + 1; j < n; ++j) {\n                t += strs[j];\n            }\n            for (int j = 0; j < i; ++j) {\n                t += strs[j];\n            }\n            for (int j = 0; j < s.size(); ++j) {\n                auto a = s.substr(j);\n                auto b = s.substr(0, j);\n                auto cur = a + t + b;\n                if (ans < cur) {\n                    ans = cur;\n                }\n                reverse(a.begin(), a.end());\n                reverse(b.begin(), b.end());\n                cur = b + t + a;\n                if (ans < cur) {\n                    ans = cur;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public String splitLoopedString(String[] strs) {\n        int n = strs.length;\n        for (int i = 0; i < n; ++i) {\n            String s = strs[i];\n            String t = new StringBuilder(s).reverse().toString();\n            if (s.compareTo(t) < 0) {\n                strs[i] = t;\n            }\n        }\n        String ans = \"\";\n        for (int i = 0; i < n; ++i) {\n            String s = strs[i];\n            StringBuilder sb = new StringBuilder();\n            for (int j = i + 1; j < n; ++j) {\n                sb.append(strs[j]);\n            }\n            for (int j = 0; j < i; ++j) {\n                sb.append(strs[j]);\n            }\n            String t = sb.toString();\n            for (int j = 0; j < s.length(); ++j) {\n                String a = s.substring(j);\n                String b = s.substring(0, j);\n                String cur = a + t + b;\n                if (ans.compareTo(cur) < 0) {\n                    ans = cur;\n                }\n                cur = new StringBuilder(b)\n                          .reverse()\n                          .append(t)\n                          .append(new StringBuilder(a).reverse().toString())\n                          .toString();\n                if (ans.compareTo(cur) < 0) {\n                    ans = cur;\n                }\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"abc\",\"xyz\"]",
+      "expected": "\"zyxcba\""
+    },
+    {
+      "input": "[\"abc\"]",
+      "expected": "\"cba\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Split Concatenated Strings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

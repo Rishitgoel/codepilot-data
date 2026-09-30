@@ -1,0 +1,60 @@
+{
+  "id": 3860,
+  "slug": "unique-email-groups",
+  "title": "Unique Email Groups",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Unique%20Email%20Groups"
+  },
+  "description": "You are given an array of strings `emails`, where each string is a valid email address.\n\nTwo email addresses belong to the same group if **both** their **normalized** local names and **normalized** domain names are **identical**.\n\nThe normalization rules are as follows:\n\n\tThe local name is the part **before** the `'@'` symbol.\n\n    \n    \tIgnore all dots `'.'`.\n    \tIgnore everything after the first `'+'`, if present.\n    \tConvert to lowercase.\n    \n    \n    The domain name is the part **after** the `'@'` symbol.\n    \n    \tConvert to lowercase.\n    \n    \n\nReturn an integer denoting the number of **unique** email groups after normalization.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= emails.length <= 1000",
+    "1 <= emails[i].length <= 100",
+    "emails[i] consists of lowercase and uppercase English letters, digits, and the characters '.', '+', and '@'.",
+    "Each emails[i] contains exactly one '@' character.",
+    "All local and domain names are non-empty; local names do not start with '+'.",
+    "Domain names end with the \".com\" suffix and contain at least one character before \".com\"."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def uniqueEmailGroups(self, emails: list[str]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int uniqueEmailGroups(vector<string>& emails) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int uniqueEmailGroups(String[] emails) {\n        \n    }\n};\n",
+    "javascript": "function uniqueEmailGroups(emails: string[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def uniqueEmailGroups(self, emails: list[str]) -> int:\n        st = set()\n        for email in emails:\n            local, domain = email.split(\"@\")\n            local = local.split(\"+\")[0].replace(\".\", \"\").lower()\n            domain = domain.lower()\n            normalized = local + domain\n            st.add(normalized)\n        return len(st)",
+    "cpp": "class Solution {\npublic:\n    int uniqueEmailGroups(vector<string>& emails) {\n        unordered_set<string> st;\n\n        for (auto& email : emails) {\n            int atPos = email.find('@');\n            string local = email.substr(0, atPos);\n            string domain = email.substr(atPos + 1);\n\n            int plusPos = local.find('+');\n            if (plusPos != string::npos) {\n                local = local.substr(0, plusPos);\n            }\n\n            string cleaned;\n            for (char c : local) {\n                if (c != '.') {\n                    cleaned += tolower(c);\n                }\n            }\n\n            for (char& c : domain) {\n                c = tolower(c);\n            }\n\n            st.insert(cleaned + domain);\n        }\n\n        return st.size();\n    }\n};",
+    "java": "class Solution {\n    public int uniqueEmailGroups(String[] emails) {\n        Set<String> st = new HashSet<>();\n\n        for (String email : emails) {\n            String[] parts = email.split(\"@\");\n            String local = parts[0];\n            String domain = parts[1];\n\n            int plusIndex = local.indexOf('+');\n            if (plusIndex != -1) {\n                local = local.substring(0, plusIndex);\n            }\n\n            local = local.replace(\".\", \"\").toLowerCase();\n            domain = domain.toLowerCase();\n\n            String normalized = local + domain;\n            st.add(normalized);\n        }\n\n        return st.size();\n    }\n}",
+    "javascript": "function uniqueEmailGroups(emails: string[]): number {\n    const st = new Set<string>();\n\n    for (const email of emails) {\n        let [local, domain] = email.split('@');\n        local = local.split('+')[0].replace(/\\./g, '').toLowerCase();\n        domain = domain.toLowerCase();\n\n        const normalized = local + domain;\n        st.add(normalized);\n    }\n\n    return st.size;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Unique Email Groups.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

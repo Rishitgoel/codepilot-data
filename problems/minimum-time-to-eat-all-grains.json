@@ -1,0 +1,63 @@
+{
+  "id": 2604,
+  "slug": "minimum-time-to-eat-all-grains",
+  "title": "Minimum Time to Eat All Grains",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Confluent"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Time%20to%20Eat%20All%20Grains"
+  },
+  "description": "There are `n` hens and `m` grains on a line. You are given the initial positions of the hens and the grains in two integer arrays `hens` and `grains` of size `n` and `m` respectively.\n\nAny hen can eat a grain if they are on the same position. The time taken for this is negligible. One hen can also eat multiple grains.\n\nIn `1` second, a hen can move right or left by `1` unit. The hens can move simultaneously and independently of each other.\n\nReturn *the **minimum** time to eat all grains if the hens act optimally.*",
+  "examples": [
+    {
+      "input": "hens = [3,6,7], grains = [2,4,7,9]",
+      "output": "2",
+      "explanation": "One of the ways hens eat all grains in 2 seconds is described below:\n- The first hen eats the grain at position 2 in 1 second. \n- The second hen eats the grain at position 4 in 2 seconds. \n- The third hen eats the grains at positions 7 and 9 in 2 seconds. \nSo, the maximum time needed is 2.\nIt can be proven that the hens cannot eat all grains before 2 seconds."
+    },
+    {
+      "input": "hens = [4,6,109,111,213,215], grains = [5,110,214]",
+      "output": "1",
+      "explanation": "One of the ways hens eat all grains in 1 second is described below:\n- The first hen eats the grain at position 5 in 1 second. \n- The fourth hen eats the grain at position 110 in 1 second.\n- The sixth hen eats the grain at position 214 in 1 second. \n- The other hens do not move. \nSo, the maximum time needed is 1."
+    }
+  ],
+  "constraints": [
+    "1 <= hens.length, grains.length <= 2*10^4",
+    "0 <= hens[i], grains[j] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumTime(self, hens: List[int], grains: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumTime(vector<int>& hens, vector<int>& grains) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] hens;\n    private int[] grains;\n    private int m;\n\n    public int minimumTime(int[] hens, int[] grains) {\n        \n    }\n};\n",
+    "javascript": "function minimumTime(hens: number[], grains: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumTime(self, hens: List[int], grains: List[int]) -> int:\n        def check(t):\n            j = 0\n            for x in hens:\n                if j == m:\n                    return True\n                y = grains[j]\n                if y <= x:\n                    d = x - y\n                    if d > t:\n                        return False\n                    while j < m and grains[j] <= x:\n                        j += 1\n                    while j < m and min(d, grains[j] - x) + grains[j] - y <= t:\n                        j += 1\n                else:\n                    while j < m and grains[j] - x <= t:\n                        j += 1\n            return j == m\n\n        hens.sort()\n        grains.sort()\n        m = len(grains)\n        r = abs(hens[0] - grains[0]) + grains[-1] - grains[0] + 1\n        return bisect_left(range(r), True, key=check)",
+    "cpp": "class Solution {\npublic:\n    int minimumTime(vector<int>& hens, vector<int>& grains) {\n        int m = grains.size();\n        sort(hens.begin(), hens.end());\n        sort(grains.begin(), grains.end());\n        int l = 0;\n        int r = abs(hens[0] - grains[0]) + grains[m - 1] - grains[0];\n        auto check = [&](int t) -> bool {\n            int j = 0;\n            for (int x : hens) {\n                if (j == m) {\n                    return true;\n                }\n                int y = grains[j];\n                if (y <= x) {\n                    int d = x - y;\n                    if (d > t) {\n                        return false;\n                    }\n                    while (j < m && grains[j] <= x) {\n                        ++j;\n                    }\n                    while (j < m && min(d, grains[j] - x) + grains[j] - y <= t) {\n                        ++j;\n                    }\n                } else {\n                    while (j < m && grains[j] - x <= t) {\n                        ++j;\n                    }\n                }\n            }\n            return j == m;\n        };\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n};",
+    "java": "class Solution {\n    private int[] hens;\n    private int[] grains;\n    private int m;\n\n    public int minimumTime(int[] hens, int[] grains) {\n        m = grains.length;\n        this.hens = hens;\n        this.grains = grains;\n        Arrays.sort(hens);\n        Arrays.sort(grains);\n        int l = 0;\n        int r = Math.abs(hens[0] - grains[0]) + grains[m - 1] - grains[0];\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n\n    private boolean check(int t) {\n        int j = 0;\n        for (int x : hens) {\n            if (j == m) {\n                return true;\n            }\n            int y = grains[j];\n            if (y <= x) {\n                int d = x - y;\n                if (d > t) {\n                    return false;\n                }\n                while (j < m && grains[j] <= x) {\n                    ++j;\n                }\n                while (j < m && Math.min(d, grains[j] - x) + grains[j] - y <= t) {\n                    ++j;\n                }\n            } else {\n                while (j < m && grains[j] - x <= t) {\n                    ++j;\n                }\n            }\n        }\n        return j == m;\n    }\n}",
+    "javascript": "function minimumTime(hens: number[], grains: number[]): number {\n    hens.sort((a, b) => a - b);\n    grains.sort((a, b) => a - b);\n    const m = grains.length;\n    let l = 0;\n    let r = Math.abs(hens[0] - grains[0]) + grains[m - 1] - grains[0] + 1;\n\n    const check = (t: number): boolean => {\n        let j = 0;\n        for (const x of hens) {\n            if (j === m) {\n                return true;\n            }\n            const y = grains[j];\n            if (y <= x) {\n                const d = x - y;\n                if (d > t) {\n                    return false;\n                }\n                while (j < m && grains[j] <= x) {\n                    ++j;\n                }\n                while (j < m && Math.min(d, grains[j] - x) + grains[j] - y <= t) {\n                    ++j;\n                }\n            } else {\n                while (j < m && grains[j] - x <= t) {\n                    ++j;\n                }\n            }\n        }\n        return j === m;\n    };\n\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (check(mid)) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return l;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,6,7], grains = [2,4,7,9]",
+      "expected": "2"
+    },
+    {
+      "input": "[4,6,109,111,213,215], grains = [5,110,214]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Time to Eat All Grains.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

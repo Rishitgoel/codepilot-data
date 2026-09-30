@@ -1,0 +1,64 @@
+{
+  "id": 2832,
+  "slug": "maximal-range-that-each-element-is-maximum-in-it",
+  "title": "Maximal Range That Each Element Is Maximum in It",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximal%20Range%20That%20Each%20Element%20Is%20Maximum%20in%20It"
+  },
+  "description": "You are given a **0-indexed** array `nums` of distinct integers.\n\nLet us define a **0-indexed **array `ans` of the same length as `nums` in the following way:\n\n\t`ans[i]` is the **maximum** length of a subarray `nums[l..r]`, such that the maximum element in that subarray is equal to `nums[i]`.\n\nReturn* the array *`ans`.\n\n**Note** that a **subarray** is a contiguous part of the array.",
+  "examples": [
+    {
+      "input": "nums = [1,5,4,3,6]",
+      "output": "[1,4,2,1,5]",
+      "explanation": "For nums[0] the longest subarray in which 1 is the maximum is nums[0..0] so ans[0] = 1.\nFor nums[1] the longest subarray in which 5 is the maximum is nums[0..3] so ans[1] = 4.\nFor nums[2] the longest subarray in which 4 is the maximum is nums[2..3] so ans[2] = 2.\nFor nums[3] the longest subarray in which 3 is the maximum is nums[3..3] so ans[3] = 1.\nFor nums[4] the longest subarray in which 6 is the maximum is nums[0..4] so ans[4] = 5."
+    },
+    {
+      "input": "nums = [1,2,3,4,5]",
+      "output": "[1,2,3,4,5]",
+      "explanation": "For nums[i] the longest subarray in which it's the maximum is nums[0..i] so ans[i] = i + 1."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "All elements in nums are distinct."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumLengthOfRanges(self, nums: List[int]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> maximumLengthOfRanges(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] maximumLengthOfRanges(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function maximumLengthOfRanges(nums: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumLengthOfRanges(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        left = [-1] * n\n        right = [n] * n\n        stk = []\n        for i, x in enumerate(nums):\n            while stk and nums[stk[-1]] <= x:\n                stk.pop()\n            if stk:\n                left[i] = stk[-1]\n            stk.append(i)\n        stk = []\n        for i in range(n - 1, -1, -1):\n            while stk and nums[stk[-1]] <= nums[i]:\n                stk.pop()\n            if stk:\n                right[i] = stk[-1]\n            stk.append(i)\n        return [r - l - 1 for l, r in zip(left, right)]",
+    "cpp": "class Solution {\npublic:\n    vector<int> maximumLengthOfRanges(vector<int>& nums) {\n        int n = nums.size();\n        vector<int> left(n, -1);\n        vector<int> right(n, n);\n        stack<int> stk;\n        for (int i = 0; i < n; ++i) {\n            while (!stk.empty() && nums[stk.top()] <= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.empty()) {\n                left[i] = stk.top();\n            }\n            stk.push(i);\n        }\n        stk = stack<int>();\n        for (int i = n - 1; ~i; --i) {\n            while (!stk.empty() && nums[stk.top()] <= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.empty()) {\n                right[i] = stk.top();\n            }\n            stk.push(i);\n        }\n        vector<int> ans(n);\n        for (int i = 0; i < n; ++i) {\n            ans[i] = right[i] - left[i] - 1;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] maximumLengthOfRanges(int[] nums) {\n        int n = nums.length;\n        int[] left = new int[n];\n        int[] right = new int[n];\n        Arrays.fill(left, -1);\n        Arrays.fill(right, n);\n        Deque<Integer> stk = new ArrayDeque<>();\n        for (int i = 0; i < n; ++i) {\n            while (!stk.isEmpty() && nums[stk.peek()] <= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.isEmpty()) {\n                left[i] = stk.peek();\n            }\n            stk.push(i);\n        }\n        stk.clear();\n        for (int i = n - 1; i >= 0; --i) {\n            while (!stk.isEmpty() && nums[stk.peek()] <= nums[i]) {\n                stk.pop();\n            }\n            if (!stk.isEmpty()) {\n                right[i] = stk.peek();\n            }\n            stk.push(i);\n        }\n        int[] ans = new int[n];\n        for (int i = 0; i < n; ++i) {\n            ans[i] = right[i] - left[i] - 1;\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maximumLengthOfRanges(nums: number[]): number[] {\n    const n = nums.length;\n    const left: number[] = Array(n).fill(-1);\n    const right: number[] = Array(n).fill(n);\n    const stk: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        while (stk.length && nums[stk.at(-1)] <= nums[i]) {\n            stk.pop();\n        }\n        if (stk.length) {\n            left[i] = stk.at(-1);\n        }\n        stk.push(i);\n    }\n    stk.length = 0;\n    for (let i = n - 1; i >= 0; --i) {\n        while (stk.length && nums[stk.at(-1)] <= nums[i]) {\n            stk.pop();\n        }\n        if (stk.length) {\n            right[i] = stk.at(-1);\n        }\n        stk.push(i);\n    }\n    return left.map((l, i) => right[i] - l - 1);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,5,4,3,6]",
+      "expected": "[1,4,2,1,5]"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "[1,2,3,4,5]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximal Range That Each Element Is Maximum in It.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

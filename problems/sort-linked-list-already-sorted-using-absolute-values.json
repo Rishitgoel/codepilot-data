@@ -1,0 +1,76 @@
+{
+  "id": 2046,
+  "slug": "sort-linked-list-already-sorted-using-absolute-values",
+  "title": "Sort Linked List Already Sorted Using Absolute Values",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20Linked%20List%20Already%20Sorted%20Using%20Absolute%20Values"
+  },
+  "description": "Given the `head` of a singly linked list that is sorted in **non-decreasing** order using the **absolute values** of its nodes, return *the list sorted in **non-decreasing** order using the **actual values** of its nodes*.",
+  "examples": [
+    {
+      "input": "head = [0,2,-5,5,10,-10]",
+      "output": "[-10,-5,0,2,5,10]",
+      "explanation": "The list sorted in non-descending order using the absolute values of the nodes is [0,2,-5,5,10,-10].\nThe list sorted in non-descending order using the actual values is [-10,-5,0,2,5,10]."
+    },
+    {
+      "input": "head = [0,1,2]",
+      "output": "[0,1,2]",
+      "explanation": "The linked list is already sorted in non-decreasing order."
+    },
+    {
+      "input": "head = [1]",
+      "output": "[1]",
+      "explanation": "The linked list is already sorted in non-decreasing order."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is the range [1, 10^5].",
+    "-5000 <= Node.val <= 5000",
+    "head is sorted in non-decreasing order using the absolute value of its nodes."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n        pass\n",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode sortLinkedList(ListNode head) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction sortLinkedList(head: ListNode | null): ListNode | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def sortLinkedList(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        prev, curr = head, head.next\n        while curr:\n            if curr.val < 0:\n                t = curr.next\n                prev.next = t\n                curr.next = head\n                head = curr\n                curr = t\n            else:\n                prev, curr = curr, curr.next\n        return head",
+    "cpp": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* sortLinkedList(ListNode* head) {\n        ListNode* prev = head;\n        ListNode* curr = head->next;\n        while (curr) {\n            if (curr->val < 0) {\n                auto t = curr->next;\n                prev->next = t;\n                curr->next = head;\n                head = curr;\n                curr = t;\n            } else {\n                prev = curr;\n                curr = curr->next;\n            }\n        }\n        return head;\n    }\n};",
+    "java": "/**\n * Definition for singly-linked list.\n * public class ListNode {\n *     int val;\n *     ListNode next;\n *     ListNode() {}\n *     ListNode(int val) { this.val = val; }\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\n * }\n */\nclass Solution {\n    public ListNode sortLinkedList(ListNode head) {\n        ListNode prev = head, curr = head.next;\n        while (curr != null) {\n            if (curr.val < 0) {\n                ListNode t = curr.next;\n                prev.next = t;\n                curr.next = head;\n                head = curr;\n                curr = t;\n            } else {\n                prev = curr;\n                curr = curr.next;\n            }\n        }\n        return head;\n    }\n}",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction sortLinkedList(head: ListNode | null): ListNode | null {\n    let [prev, curr] = [head, head.next];\n    while (curr !== null) {\n        if (curr.val < 0) {\n            const t = curr.next;\n            prev.next = t;\n            curr.next = head;\n            head = curr;\n            curr = t;\n        } else {\n            [prev, curr] = [curr, curr.next];\n        }\n    }\n    return head;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[0,2,-5,5,10,-10]",
+      "expected": "[-10,-5,0,2,5,10]"
+    },
+    {
+      "input": "[0,1,2]",
+      "expected": "[0,1,2]"
+    },
+    {
+      "input": "[1]",
+      "expected": "[1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sort Linked List Already Sorted Using Absolute Values.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,74 @@
+{
+  "id": 422,
+  "slug": "valid-word-square",
+  "title": "Valid Word Square",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Word%20Square"
+  },
+  "description": "Given an array of strings `words`, return `true` *if it forms a valid **word square***.\n\nA sequence of strings forms a valid **word square** if the `k^th` row and column read the same string, where `0 <= k < max(numRows, numColumns)`.",
+  "examples": [
+    {
+      "input": "words = [\"abcd\",\"bnrt\",\"crmy\",\"dtye\"]",
+      "output": "true",
+      "explanation": "The 1st row and 1st column both read \"abcd\".\nThe 2nd row and 2nd column both read \"bnrt\".\nThe 3rd row and 3rd column both read \"crmy\".\nThe 4th row and 4th column both read \"dtye\".\nTherefore, it is a valid word square."
+    },
+    {
+      "input": "words = [\"abcd\",\"bnrt\",\"crm\",\"dt\"]",
+      "output": "true",
+      "explanation": "The 1st row and 1st column both read \"abcd\".\nThe 2nd row and 2nd column both read \"bnrt\".\nThe 3rd row and 3rd column both read \"crm\".\nThe 4th row and 4th column both read \"dt\".\nTherefore, it is a valid word square."
+    },
+    {
+      "input": "words = [\"ball\",\"area\",\"read\",\"lady\"]",
+      "output": "false",
+      "explanation": "The 3rd row reads \"read\" while the 3rd column reads \"lead\".\nTherefore, it is NOT a valid word square."
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 500",
+    "1 <= words[i].length <= 500",
+    "words[i] consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def validWordSquare(self, words: List[str]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool validWordSquare(vector<string>& words) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean validWordSquare(List<String> words) {\n        \n    }\n};\n",
+    "javascript": "function validWordSquare(words: string[]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def validWordSquare(self, words: List[str]) -> bool:\n        m = len(words)\n        for i, w in enumerate(words):\n            for j, c in enumerate(w):\n                if j >= m or i >= len(words[j]) or c != words[j][i]:\n                    return False\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool validWordSquare(vector<string>& words) {\n        int m = words.size();\n        for (int i = 0; i < m; ++i) {\n            int n = words[i].size();\n            for (int j = 0; j < n; ++j) {\n                if (j >= m || i >= words[j].size() || words[i][j] != words[j][i]) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean validWordSquare(List<String> words) {\n        int m = words.size();\n        for (int i = 0; i < m; ++i) {\n            int n = words.get(i).length();\n            for (int j = 0; j < n; ++j) {\n                if (j >= m || i >= words.get(j).length()) {\n                    return false;\n                }\n                if (words.get(i).charAt(j) != words.get(j).charAt(i)) {\n                    return false;\n                }\n            }\n        }\n        return true;\n    }\n}",
+    "javascript": "function validWordSquare(words: string[]): boolean {\n    const m = words.length;\n    for (let i = 0; i < m; ++i) {\n        const n = words[i].length;\n        for (let j = 0; j < n; ++j) {\n            if (j >= m || i >= words[j].length || words[i][j] !== words[j][i]) {\n                return false;\n            }\n        }\n    }\n    return true;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"abcd\",\"bnrt\",\"crmy\",\"dtye\"]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"abcd\",\"bnrt\",\"crm\",\"dt\"]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"ball\",\"area\",\"read\",\"lady\"]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Word Square.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

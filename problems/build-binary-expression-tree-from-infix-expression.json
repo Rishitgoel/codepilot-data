@@ -1,0 +1,65 @@
+{
+  "id": 1597,
+  "slug": "build-binary-expression-tree-from-infix-expression",
+  "title": "Build Binary Expression Tree From Infix Expression",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Build%20Binary%20Expression%20Tree%20From%20Infix%20Expression"
+  },
+  "description": "A **binary expression tree** is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with 2 children) correspond to the operators `'+'` (addition), `'-'` (subtraction), `'*'` (multiplication), and `'/'` (division).\n\nFor each internal node with operator `o`, the **infix expression** it represents is `(A o B)`, where `A` is the expression the left subtree represents and `B` is the expression the right subtree represents.\n\nYou are given a string `s`, an **infix expression** containing operands, the operators described above, and parentheses `'('` and `')'`.\n\nReturn *any valid **binary expression tree**, whose **in-order traversal** reproduces *`s` *after omitting the parenthesis from it.*\n\n**Please note that order of operations applies in **`s`**.** That is, expressions in parentheses are evaluated first, and multiplication and division happen before addition and subtraction.\n\nOperands must also appear in the **same order** in both `s` and the in-order traversal of the tree.",
+  "examples": [
+    {
+      "input": "s = \"3*4-2*5\"",
+      "output": "[-,*,*,3,4,2,5]",
+      "explanation": "The tree above is the only valid tree whose inorder traversal produces s."
+    },
+    {
+      "input": "s = \"2-3/(5*2)+1\"",
+      "output": "[+,-,1,2,/,null,null,null,null,3,*,null,null,5,2]",
+      "explanation": "The inorder traversal of the tree above is 2-3/5*2+1 which is the same as s without the parenthesis. The tree also produces the correct result and its operands are in the same order as they appear in s.\nThe tree below is also a valid binary expression tree with the same inorder traversal as s, but it not a valid answer because it does not evaluate to the same value.\n\nThe third tree below is also not valid. Although it produces the same result and is equivalent to the above trees, its inorder traversal does not produce s and its operands are not in the same order as s."
+    },
+    {
+      "input": "s = \"1+2+3+4+5\"",
+      "output": "[+,+,5,+,4,null,null,+,3,null,null,1,2]",
+      "explanation": "The tree [+,+,5,+,+,null,null,1,2,3,4] is also one of many other valid trees."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 100",
+    "s consists of digits and the characters '(', ')', '+', '-', '*', and '/'.",
+    "Operands in s are exactly 1 digit.",
+    "It is guaranteed that s is a valid expression."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "\"3*4-2*5\"",
+      "expected": "[-,*,*,3,4,2,5]"
+    },
+    {
+      "input": "\"2-3/(5*2)+1\"",
+      "expected": "[+,-,1,2,/,null,null,null,null,3,*,null,null,5,2]"
+    },
+    {
+      "input": "\"1+2+3+4+5\"",
+      "expected": "[+,+,5,+,4,null,null,+,3,null,null,1,2]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Build Binary Expression Tree From Infix Expression.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

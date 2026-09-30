@@ -1,0 +1,68 @@
+{
+  "id": 2795,
+  "slug": "parallel-execution-of-promises-for-individual-results-retrieval",
+  "title": "Parallel Execution of Promises for Individual Results Retrieval",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Parallel%20Execution%20of%20Promises%20for%20Individual%20Results%20Retrieval"
+  },
+  "description": "Given an array `functions`, return a promise `promise`. `functions` is an array of functions that return promises `fnPromise.` Each `fnPromise` can be resolved or rejected.  \n\nIf `fnPromise` is resolved:\n\n    `obj = { status: \"fulfilled\", value: *resolved value*}`\n\nIf `fnPromise` is rejected:\n\n    `obj = { status: \"rejected\", reason: *reason of rejection (catched error message)*}`\n\nThe `promise` should resolve with an array of these objects `obj`. Each `obj` in the array should correspond to the promises in the original array function, **maintaining the same order**.\n\nTry to implement it without using the built-in method `Promise.allSettled()`.",
+  "examples": [
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(15), 100))\n]",
+      "output": "{\"t\":100,\"values\":[{\"status\":\"fulfilled\",\"value\":15}]}",
+      "explanation": "const time = performance.now()\nconst promise = promiseAllSettled(functions);\n               \npromise.then(res => {\n    const out = {t: Math.floor(performance.now() - time), values: res}\n    console.log(out) // {\"t\":100,\"values\":[{\"status\":\"fulfilled\",\"value\":15}]}\n})\n\nThe returned promise resolves within 100 milliseconds. Since promise from the array functions is fulfilled, the resolved value of the returned promise is set to [{\"status\":\"fulfilled\",\"value\":15}]."
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(20), 100)), \n    () => new Promise(resolve => setTimeout(() => resolve(15), 100))\n]",
+      "output": "{\n    \"t\":100,\n    \"values\": [\n        {\"status\":\"fulfilled\",\"value\":20},\n        {\"status\":\"fulfilled\",\"value\":15}\n    ]\n}",
+      "explanation": "The returned promise resolves within 100 milliseconds, because the resolution time is determined by the promise that takes the longest time to fulfill. Since promises from the array functions are fulfilled, the resolved value of the returned promise is set to [{\"status\":\"fulfilled\",\"value\":20},{\"status\":\"fulfilled\",\"value\":15}]."
+    },
+    {
+      "input": "functions = [\n    () => new Promise(resolve => setTimeout(() => resolve(30), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]",
+      "output": "{\n    \"t\":200,\n    \"values\": [\n        {\"status\":\"fulfilled\",\"value\":30},\n        {\"status\":\"rejected\",\"reason\":\"Error\"}\n    ]\n}",
+      "explanation": "The returned promise resolves within 200 milliseconds, as its resolution time is determined by the promise that takes the longest time to fulfill. Since one promise from the array function is fulfilled and another is rejected, the resolved value of the returned promise is set to an array containing objects in the following order: [{\"status\":\"fulfilled\",\"value\":30}, {\"status\":\"rejected\",\"reason\":\"Error\"}]. Each object in the array corresponds to the promises in the original array function, maintaining the same order."
+    }
+  ],
+  "constraints": [
+    "1 <= functions.length <= 10"
+  ],
+  "starterTemplates": {
+    "javascript": "type FulfilledObj = {\n    status: 'fulfilled';\n    value: string;\n};\ntype RejectedObj = {\n    status: 'rejected';\n    reason: string;\n};\ntype Obj = FulfilledObj | RejectedObj;\n\nfunction promiseAllSettled(functions: Function[]): Promise<Obj[]> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "type FulfilledObj = {\n    status: 'fulfilled';\n    value: string;\n};\ntype RejectedObj = {\n    status: 'rejected';\n    reason: string;\n};\ntype Obj = FulfilledObj | RejectedObj;\n\nfunction promiseAllSettled(functions: Function[]): Promise<Obj[]> {\n    return new Promise(resolve => {\n        const res: Obj[] = [];\n        let count = 0;\n        for (let i in functions) {\n            functions[i]()\n                .then(value => ({ status: 'fulfilled', value }))\n                .catch(reason => ({ status: 'rejected', reason }))\n                .then(obj => {\n                    res[i] = obj;\n                    if (++count === functions.length) {\n                        resolve(res);\n                    }\n                });\n        }\n    });\n}\n\n/**\n * const functions = [\n *    () => new Promise(resolve => setTimeout(() => resolve(15), 100))\n * ]\n * const time = performance.now()\n *\n * const promise = promiseAllSettled(functions);\n *\n * promise.then(res => {\n *     const out = {t: Math.floor(performance.now() - time), values: res}\n *     console.log(out) // {\"t\":100,\"values\":[{\"status\":\"fulfilled\",\"value\":15}]}\n * })\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\n    () => new Promise(resolve => setTimeout(() => resolve(15), 100))\n]",
+      "expected": "{\"t\":100,\"values\":[{\"status\":\"fulfilled\",\"value\":15}]}"
+    },
+    {
+      "input": "[\n    () => new Promise(resolve => setTimeout(() => resolve(20), 100)), \n    () => new Promise(resolve => setTimeout(() => resolve(15), 100))\n]",
+      "expected": "{\n    \"t\":100,\n    \"values\": [\n        {\"status\":\"fulfilled\",\"value\":20},\n        {\"status\":\"fulfilled\",\"value\":15}\n    ]\n}"
+    },
+    {
+      "input": "[\n    () => new Promise(resolve => setTimeout(() => resolve(30), 200)), \n    () => new Promise((resolve, reject) => setTimeout(() => reject(\"Error\"), 100))\n]",
+      "expected": "{\n    \"t\":200,\n    \"values\": [\n        {\"status\":\"fulfilled\",\"value\":30},\n        {\"status\":\"rejected\",\"reason\":\"Error\"}\n    ]\n}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Parallel Execution of Promises for Individual Results Retrieval.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

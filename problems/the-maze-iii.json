@@ -1,0 +1,77 @@
+{
+  "id": 499,
+  "slug": "the-maze-iii",
+  "title": "The Maze III",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Maze%20III"
+  },
+  "description": "There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction (must be different from last chosen direction). There is also a hole in this maze. The ball will drop into the hole if it rolls onto the hole.\n\nGiven the `m x n` `maze`, the ball's position `ball` and the hole's position `hole`, where `ball = [ballrow, ballcol]` and `hole = [holerow, holecol]`, return *a string *`instructions`* of all the instructions that the ball should follow to drop in the hole with the **shortest distance** possible*. If there are multiple valid instructions, return the **lexicographically minimum** one. If the ball can't drop in the hole, return `\"impossible\"`.\n\nIf there is a way for the ball to drop in the hole, the answer `instructions` should contain the characters `'u'` (i.e., up), `'d'` (i.e., down), `'l'` (i.e., left), and `'r'` (i.e., right).\n\nThe **distance** is the number of **empty spaces** traveled by the ball from the start position (excluded) to the destination (included).\n\nYou may assume that **the borders of the maze are all walls** (see examples).",
+  "examples": [
+    {
+      "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]",
+      "output": "\"lul\"",
+      "explanation": "There are two shortest ways for the ball to drop into the hole.\nThe first way is left -> up -> left, represented by \"lul\".\nThe second way is up -> left, represented by 'ul'.\nBoth ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is \"lul\"."
+    },
+    {
+      "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [3,0]",
+      "output": "\"impossible\"",
+      "explanation": "The ball cannot reach the hole."
+    },
+    {
+      "input": "maze = [[0,0,0,0,0,0,0],[0,0,1,0,0,1,0],[0,0,0,0,1,0,0],[0,0,0,0,0,0,1]], ball = [0,4], hole = [3,5]",
+      "output": "\"dldr\""
+    }
+  ],
+  "constraints": [
+    "m == maze.length",
+    "n == maze[i].length",
+    "1 <= m, n <= 100",
+    "maze[i][j] is 0 or 1.",
+    "ball.length == 2",
+    "hole.length == 2",
+    "0 <= ballrow, holerow <= m",
+    "0 <= ballcol, holecol <= n",
+    "Both the ball and the hole exist in an empty space, and they will not be in the same position initially.",
+    "The maze contains at least 2 empty spaces."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findShortestWay(\n        self, maze: List[List[int]], ball: List[int], hole: List[int]\n    ) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String findShortestWay(int[][] maze, int[] ball, int[] hole) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findShortestWay(\n        self, maze: List[List[int]], ball: List[int], hole: List[int]\n    ) -> str:\n        m, n = len(maze), len(maze[0])\n        r, c = ball\n        rh, ch = hole\n        q = deque([(r, c)])\n        dist = [[inf] * n for _ in range(m)]\n        dist[r][c] = 0\n        path = [[None] * n for _ in range(m)]\n        path[r][c] = ''\n        while q:\n            i, j = q.popleft()\n            for a, b, d in [(-1, 0, 'u'), (1, 0, 'd'), (0, -1, 'l'), (0, 1, 'r')]:\n                x, y, step = i, j, dist[i][j]\n                while (\n                    0 <= x + a < m\n                    and 0 <= y + b < n\n                    and maze[x + a][y + b] == 0\n                    and (x != rh or y != ch)\n                ):\n                    x, y = x + a, y + b\n                    step += 1\n                if dist[x][y] > step or (\n                    dist[x][y] == step and path[i][j] + d < path[x][y]\n                ):\n                    dist[x][y] = step\n                    path[x][y] = path[i][j] + d\n                    if x != rh or y != ch:\n                        q.append((x, y))\n        return path[rh][ch] or 'impossible'",
+    "cpp": "class Solution {\npublic:\n    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {\n        int m = maze.size();\n        int n = maze[0].size();\n        int r = ball[0], c = ball[1];\n        int rh = hole[0], ch = hole[1];\n        queue<pair<int, int>> q;\n        q.push({r, c});\n        vector<vector<int>> dist(m, vector<int>(n, INT_MAX));\n        dist[r][c] = 0;\n        vector<vector<string>> path(m, vector<string>(n, \"\"));\n        vector<vector<int>> dirs = {{-1, 0, 'u'}, {1, 0, 'd'}, {0, -1, 'l'}, {0, 1, 'r'}};\n        while (!q.empty()) {\n            auto p = q.front();\n            q.pop();\n            int i = p.first, j = p.second;\n            for (auto& dir : dirs) {\n                int a = dir[0], b = dir[1];\n                char d = (char) dir[2];\n                int x = i, y = j;\n                int step = dist[i][j];\n                while (x + a >= 0 && x + a < m && y + b >= 0 && y + b < n && maze[x + a][y + b] == 0 && (x != rh || y != ch)) {\n                    x += a;\n                    y += b;\n                    ++step;\n                }\n                if (dist[x][y] > step || (dist[x][y] == step && (path[i][j] + d < path[x][y]))) {\n                    dist[x][y] = step;\n                    path[x][y] = path[i][j] + d;\n                    if (x != rh || y != ch) q.push({x, y});\n                }\n            }\n        }\n        return path[rh][ch] == \"\" ? \"impossible\" : path[rh][ch];\n    }\n};",
+    "java": "class Solution {\n    public String findShortestWay(int[][] maze, int[] ball, int[] hole) {\n        int m = maze.length;\n        int n = maze[0].length;\n        int r = ball[0], c = ball[1];\n        int rh = hole[0], ch = hole[1];\n        Deque<int[]> q = new LinkedList<>();\n        q.offer(new int[] {r, c});\n        int[][] dist = new int[m][n];\n        for (int i = 0; i < m; ++i) {\n            Arrays.fill(dist[i], Integer.MAX_VALUE);\n        }\n        dist[r][c] = 0;\n        String[][] path = new String[m][n];\n        path[r][c] = \"\";\n        int[][] dirs = {{-1, 0, 'u'}, {1, 0, 'd'}, {0, -1, 'l'}, {0, 1, 'r'}};\n        while (!q.isEmpty()) {\n            int[] p = q.poll();\n            int i = p[0], j = p[1];\n            for (int[] dir : dirs) {\n                int a = dir[0], b = dir[1];\n                String d = String.valueOf((char) (dir[2]));\n                int x = i, y = j;\n                int step = dist[i][j];\n                while (x + a >= 0 && x + a < m && y + b >= 0 && y + b < n && maze[x + a][y + b] == 0\n                    && (x != rh || y != ch)) {\n                    x += a;\n                    y += b;\n                    ++step;\n                }\n                if (dist[x][y] > step\n                    || (dist[x][y] == step && (path[i][j] + d).compareTo(path[x][y]) < 0)) {\n                    dist[x][y] = step;\n                    path[x][y] = path[i][j] + d;\n                    if (x != rh || y != ch) {\n                        q.offer(new int[] {x, y});\n                    }\n                }\n            }\n        }\n        return path[rh][ch] == null ? \"impossible\" : path[rh][ch];\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [0,1]",
+      "expected": "\"lul\""
+    },
+    {
+      "input": "[[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], ball = [4,3], hole = [3,0]",
+      "expected": "\"impossible\""
+    },
+    {
+      "input": "[[0,0,0,0,0,0,0],[0,0,1,0,0,1,0],[0,0,0,0,1,0,0],[0,0,0,0,0,0,1]], ball = [0,4], hole = [3,5]",
+      "expected": "\"dldr\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Maze III.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

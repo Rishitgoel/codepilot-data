@@ -1,0 +1,72 @@
+{
+  "id": 2797,
+  "slug": "partial-function-with-placeholders",
+  "title": "Partial Function with Placeholders",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Partial%20Function%20with%20Placeholders"
+  },
+  "description": "Given a function `fn` and an array `args`, return a function `partialFn`. \n\nPlaceholders `\"_\"` in the `args` should be replaced with values from `restArgs` starting from index `0`. Any remaining values in the `restArgs` should be added at the end of the `args`.\n\n`partialFn` should return a result of `fn`. `fn` should be called with the elements of the modified `args` passed as separate arguments.",
+  "examples": [
+    {
+      "input": "fn = (...args) => args, args = [2,4,6], restArgs = [8,10]",
+      "output": "[2,4,6,8,10]",
+      "explanation": "const partialFn = partial(fn, args)\nconst result = partialFn(...restArgs) \nconsole.log(result) // [2,4,6,8,10]\n\nThere are no placeholders \"_\" in args therefore restArgs is just added at the end of args. Then the elements of the args are passed as separate arguments to fn, which returns passed arguments as an array."
+    },
+    {
+      "input": "fn = (...args) => args, args = [1,2,\"_\",4,\"_\",6], restArgs = [3,5]",
+      "output": "[1,2,3,4,5,6]",
+      "explanation": "const partialFn = partial(fn, args) \nconst result = partialFn(...restArgs) \nconsole.log(result) // [1,2,3,4,5,6] \n\nPlaceholders \"_\" are replaced with values from the restArgs. Then the elements of the args are passed as separate arguments to fn, which returns passed arguments as an array."
+    },
+    {
+      "input": "fn = (a, b, c) => b + a - c, args = [\"_\", 5], restArgs = [5, 20]",
+      "output": "-10",
+      "explanation": "const partialFn = partial(fn, args)\nconst result = partialFn(...restArgs)\nconsole.log(result) // -10\n\nPlaceholder \"_\" is replaced with 5 and 20 is added at the end of args. Then the elements of the args are passed as separate arguments to fn, which returns -10 (5 + 5 - 20)."
+    }
+  ],
+  "constraints": [
+    "fn is a function",
+    "args and restArgs are valid JSON arrays",
+    "1 <= args.length <= 5 * 10^4",
+    "1 <= restArgs.length <= 5 * 10^4",
+    "0 <= number of placeholders <= restArgs.length"
+  ],
+  "starterTemplates": {
+    "javascript": "function partial(fn: Function, args: any[]): Function {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function partial(fn: Function, args: any[]): Function {\n    return function (...restArgs) {\n        let i = 0;\n        for (let j = 0; j < args.length; ++j) {\n            if (args[j] === '_') {\n                args[j] = restArgs[i++];\n            }\n        }\n        while (i < restArgs.length) {\n            args.push(restArgs[i++]);\n        }\n        return fn(...args);\n    };\n}"
+  },
+  "testcases": [
+    {
+      "input": "(...args) => args, args = [2,4,6], restArgs = [8,10]",
+      "expected": "[2,4,6,8,10]"
+    },
+    {
+      "input": "(...args) => args, args = [1,2,\"_\",4,\"_\",6], restArgs = [3,5]",
+      "expected": "[1,2,3,4,5,6]"
+    },
+    {
+      "input": "(a, b, c) => b + a - c, args = [\"_\", 5], restArgs = [5, 20]",
+      "expected": "-10"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Partial Function with Placeholders.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

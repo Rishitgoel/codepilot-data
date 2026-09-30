@@ -1,0 +1,47 @@
+{
+  "id": 3802,
+  "slug": "number-of-ways-to-paint-sheets",
+  "title": "Number of Ways to Paint Sheets",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Ways%20to%20Paint%20Sheets"
+  },
+  "description": "You are given an integer `n` representing the number of sheets.\n\nYou are also given an integer array `limit` of size `m`, where `limit[i]` is the **maximum** number of sheets that can be painted using color `i`.\n\nYou must paint **all** `n` sheets under the following conditions:\n\n\t**Exactly two distinct** colors are used.\n\tEach color must cover a **single contiguous** segment of sheets.\n\tThe number of sheets painted with color `i` cannot exceed `limit[i]`.\n\nReturn an integer denoting the number of **distinct** ways to paint all sheets. Since the answer may be large, return it **modulo** `10^9 + 7`.\n\n**Note:** Two ways differ if **at least** one sheet is painted with a different color.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 10^9",
+    "2 <= m == limit.length <= 10^5",
+    "1 <= limit[i] <= 10^9"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Ways to Paint Sheets.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

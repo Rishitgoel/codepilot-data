@@ -1,0 +1,61 @@
+{
+  "id": 1724,
+  "slug": "checking-existence-of-edge-length-limited-paths-ii",
+  "title": "Checking Existence of Edge Length Limited Paths II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Oscar Health"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Checking%20Existence%20of%20Edge%20Length%20Limited%20Paths%20II"
+  },
+  "description": "An undirected graph of `n` nodes is defined by `edgeList`, where `edgeList[i] = [ui, vi, disi]` denotes an edge between nodes `ui` and `vi` with distance `disi`. Note that there may be **multiple** edges between two nodes, and the graph may not be connected.\n\nImplement the `DistanceLimitedPathsExist` class:\n\n\t`DistanceLimitedPathsExist(int n, int[][] edgeList)` Initializes the class with an undirected graph.\n\t`boolean query(int p, int q, int limit)` Returns `true` if there exists a path from `p` to `q` such that each edge on the path has a distance **strictly less than** `limit`, and otherwise `false`.",
+  "examples": [
+    {
+      "input": "[\"DistanceLimitedPathsExist\", \"query\", \"query\", \"query\", \"query\"]\n[[6, [[0, 2, 4], [0, 3, 2], [1, 2, 3], [2, 3, 1], [4, 5, 5]]], [2, 3, 2], [1, 3, 3], [2, 0, 3], [0, 5, 6]]",
+      "output": "[null, true, false, true, false]",
+      "explanation": "DistanceLimitedPathsExist distanceLimitedPathsExist = new DistanceLimitedPathsExist(6, [[0, 2, 4], [0, 3, 2], [1, 2, 3], [2, 3, 1], [4, 5, 5]]);\ndistanceLimitedPathsExist.query(2, 3, 2); // return true. There is an edge from 2 to 3 of distance 1, which is less than 2.\ndistanceLimitedPathsExist.query(1, 3, 3); // return false. There is no way to go from 1 to 3 with distances strictly less than 3.\ndistanceLimitedPathsExist.query(2, 0, 3); // return true. There is a way to go from 2 to 0 with distance < 3: travel from 2 to 3 to 0.\ndistanceLimitedPathsExist.query(0, 5, 6); // return false. There are no paths from 0 to 5."
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 10^4",
+    "0 <= edgeList.length <= 10^4",
+    "edgeList[i].length == 3",
+    "0 <= ui, vi, p, q <= n-1",
+    "ui != vi",
+    "p != q",
+    "1 <= disi, limit <= 10^9",
+    "At most 10^4 calls will be made to query."
+  ],
+  "starterTemplates": {
+    "python": "class PersistentUnionFind:\n    def __init__(self, n):\n        pass\n",
+    "cpp": "class PersistentUnionFind {\nprivate:\n    vector<int> rank;\n    vector<int> parent;\n    vector<int> version;\n\npublic:\n    PersistentUnionFind(int n)\n        : rank(n, 0)\n        , parent(n)\n        , version(n, INT_MAX) {\n        \n    }\n};\n",
+    "java": "class PersistentUnionFind {\n    private final int inf = 1 << 30;\n    private int[] rank;\n    private int[] parent;\n    private int[] version;\n\n    public PersistentUnionFind(int n) {\n        \n    }\n};\n",
+    "javascript": "class PersistentUnionFind {\n    private rank: number[];\n    private parent: number[];\n    private version: number[];\n\n    constructor(n: number) {\n        this.rank = Array(n).fill(0);\n        this.parent = Array.from({ length: n }, (_, i) => i);\n        this.version = Array(n).fill(Infinity);\n    }\n\n    find(x: number, t: number): number {\n        if (this.parent[x] === x || this.version[x] >= t) {\n            return x;\n        }\n        return this.find(this.parent[x], t);\n    }\n\n    union(a: number, b: number, t: number): boolean {\n        const pa = this.find(a, Infinity);\n        const pb = this.find(b, Infinity);\n\n        if (pa === pb) {\n            return false;\n        }\n\n        if (this.rank[pa] > this.rank[pb]) {\n            this.version[pb] = t;\n            this.parent[pb] = pa;\n        } else {\n            this.version[pa] = t;\n            this.parent[pa] = pb;\n            if (this.rank[pa] === this.rank[pb]) {\n                this.rank[pb]++;\n            }\n        }\n\n        return true;\n    }\n}\n\nclass DistanceLimitedPathsExist {\n    private puf: PersistentUnionFind;\n\n    constructor(n: number, edgeList: number[][]) {\n        this.puf = new PersistentUnionFind(n);\n        edgeList.sort((a, b) => a[2] - b[2]);\n        for (const [u, v, dis] of edgeList) {\n            this.puf.union(u, v, dis);\n        }\n    }\n\n    query(p: number, q: number, limit: number): boolean {\n        return this.puf.find(p, limit) === this.puf.find(q, limit);\n    }\n}\n\n/**\n * Your DistanceLimitedPathsExist object will be instantiated and called as such:\n * var obj = new DistanceLimitedPathsExist(n, edgeList)\n * var param_1 = obj.query(p,q,limit)\n */"
+  },
+  "snippets": {
+    "python": "class PersistentUnionFind:\n    def __init__(self, n):\n        self.rank = [0] * n\n        self.p = list(range(n))\n        self.version = [inf] * n\n\n    def find(self, x, t=inf):\n        if self.p[x] == x or self.version[x] >= t:\n            return x\n        return self.find(self.p[x], t)\n\n    def union(self, a, b, t):\n        pa, pb = self.find(a), self.find(b)\n        if pa == pb:\n            return False\n        if self.rank[pa] > self.rank[pb]:\n            self.version[pb] = t\n            self.p[pb] = pa\n        else:\n            self.version[pa] = t\n            self.p[pa] = pb\n            if self.rank[pa] == self.rank[pb]:\n                self.rank[pb] += 1\n        return True\n\n\nclass DistanceLimitedPathsExist:\n    def __init__(self, n: int, edgeList: List[List[int]]):\n        self.puf = PersistentUnionFind(n)\n        edgeList.sort(key=lambda x: x[2])\n        for u, v, dis in edgeList:\n            self.puf.union(u, v, dis)\n\n    def query(self, p: int, q: int, limit: int) -> bool:\n        return self.puf.find(p, limit) == self.puf.find(q, limit)",
+    "cpp": "class PersistentUnionFind {\nprivate:\n    vector<int> rank;\n    vector<int> parent;\n    vector<int> version;\n\npublic:\n    PersistentUnionFind(int n)\n        : rank(n, 0)\n        , parent(n)\n        , version(n, INT_MAX) {\n        for (int i = 0; i < n; i++) {\n            parent[i] = i;\n        }\n    }\n\n    int find(int x, int t) {\n        if (parent[x] == x || version[x] >= t) {\n            return x;\n        }\n        return find(parent[x], t);\n    }\n\n    bool unionSet(int a, int b, int t) {\n        int pa = find(a, INT_MAX);\n        int pb = find(b, INT_MAX);\n        if (pa == pb) {\n            return false;\n        }\n        if (rank[pa] > rank[pb]) {\n            version[pb] = t;\n            parent[pb] = pa;\n        } else {\n            version[pa] = t;\n            parent[pa] = pb;\n            if (rank[pa] == rank[pb]) {\n                rank[pb]++;\n            }\n        }\n        return true;\n    }\n};\n\nclass DistanceLimitedPathsExist {\nprivate:\n    PersistentUnionFind puf;\n\npublic:\n    DistanceLimitedPathsExist(int n, vector<vector<int>>& edgeList)\n        : puf(n) {\n        sort(edgeList.begin(), edgeList.end(),\n            [](const vector<int>& a, const vector<int>& b) {\n                return a[2] < b[2];\n            });\n\n        for (const auto& edge : edgeList) {\n            puf.unionSet(edge[0], edge[1], edge[2]);\n        }\n    }\n\n    bool query(int p, int q, int limit) {\n        return puf.find(p, limit) == puf.find(q, limit);\n    }\n};\n\n/**\n * Your DistanceLimitedPathsExist object will be instantiated and called as such:\n * DistanceLimitedPathsExist* obj = new DistanceLimitedPathsExist(n, edgeList);\n * bool param_1 = obj->query(p,q,limit);\n */",
+    "java": "class PersistentUnionFind {\n    private final int inf = 1 << 30;\n    private int[] rank;\n    private int[] parent;\n    private int[] version;\n\n    public PersistentUnionFind(int n) {\n        rank = new int[n];\n        parent = new int[n];\n        version = new int[n];\n        for (int i = 0; i < n; i++) {\n            parent[i] = i;\n            version[i] = inf;\n        }\n    }\n\n    public int find(int x, int t) {\n        if (parent[x] == x || version[x] >= t) {\n            return x;\n        }\n        return find(parent[x], t);\n    }\n\n    public boolean union(int a, int b, int t) {\n        int pa = find(a, inf);\n        int pb = find(b, inf);\n        if (pa == pb) {\n            return false;\n        }\n        if (rank[pa] > rank[pb]) {\n            version[pb] = t;\n            parent[pb] = pa;\n        } else {\n            version[pa] = t;\n            parent[pa] = pb;\n            if (rank[pa] == rank[pb]) {\n                rank[pb]++;\n            }\n        }\n        return true;\n    }\n}\n\npublic class DistanceLimitedPathsExist {\n    private PersistentUnionFind puf;\n\n    public DistanceLimitedPathsExist(int n, int[][] edgeList) {\n        puf = new PersistentUnionFind(n);\n        Arrays.sort(edgeList, (a, b) -> a[2] - b[2]);\n        for (var e : edgeList) {\n            puf.union(e[0], e[1], e[2]);\n        }\n    }\n\n    public boolean query(int p, int q, int limit) {\n        return puf.find(p, limit) == puf.find(q, limit);\n    }\n}\n\n/**\n * Your DistanceLimitedPathsExist object will be instantiated and called as such:\n * DistanceLimitedPathsExist obj = new DistanceLimitedPathsExist(n, edgeList);\n * boolean param_1 = obj.query(p,q,limit);\n */",
+    "javascript": "class PersistentUnionFind {\n    private rank: number[];\n    private parent: number[];\n    private version: number[];\n\n    constructor(n: number) {\n        this.rank = Array(n).fill(0);\n        this.parent = Array.from({ length: n }, (_, i) => i);\n        this.version = Array(n).fill(Infinity);\n    }\n\n    find(x: number, t: number): number {\n        if (this.parent[x] === x || this.version[x] >= t) {\n            return x;\n        }\n        return this.find(this.parent[x], t);\n    }\n\n    union(a: number, b: number, t: number): boolean {\n        const pa = this.find(a, Infinity);\n        const pb = this.find(b, Infinity);\n\n        if (pa === pb) {\n            return false;\n        }\n\n        if (this.rank[pa] > this.rank[pb]) {\n            this.version[pb] = t;\n            this.parent[pb] = pa;\n        } else {\n            this.version[pa] = t;\n            this.parent[pa] = pb;\n            if (this.rank[pa] === this.rank[pb]) {\n                this.rank[pb]++;\n            }\n        }\n\n        return true;\n    }\n}\n\nclass DistanceLimitedPathsExist {\n    private puf: PersistentUnionFind;\n\n    constructor(n: number, edgeList: number[][]) {\n        this.puf = new PersistentUnionFind(n);\n        edgeList.sort((a, b) => a[2] - b[2]);\n        for (const [u, v, dis] of edgeList) {\n            this.puf.union(u, v, dis);\n        }\n    }\n\n    query(p: number, q: number, limit: number): boolean {\n        return this.puf.find(p, limit) === this.puf.find(q, limit);\n    }\n}\n\n/**\n * Your DistanceLimitedPathsExist object will be instantiated and called as such:\n * var obj = new DistanceLimitedPathsExist(n, edgeList)\n * var param_1 = obj.query(p,q,limit)\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"DistanceLimitedPathsExist\", \"query\", \"query\", \"query\", \"query\"]\n[[6, [[0, 2, 4], [0, 3, 2], [1, 2, 3], [2, 3, 1], [4, 5, 5]]], [2, 3, 2], [1, 3, 3], [2, 0, 3], [0, 5, 6]]",
+      "expected": "[null, true, false, true, false]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Checking Existence of Edge Length Limited Paths II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

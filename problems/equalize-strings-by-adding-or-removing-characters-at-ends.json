@@ -1,0 +1,53 @@
+{
+  "id": 3135,
+  "slug": "equalize-strings-by-adding-or-removing-characters-at-ends",
+  "title": "Equalize Strings by Adding or Removing Characters at Ends",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Salesforce"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Equalize%20Strings%20by%20Adding%20or%20Removing%20Characters%20at%20Ends"
+  },
+  "description": "Given two strings `initial` and `target`, your task is to modify `initial` by performing a series of operations to make it equal to `target`.\n\nIn one operation, you can add or remove **one character** only at the *beginning* or the *end* of the string `initial`.\n\nReturn the **minimum** number of operations required to *transform* `initial` into `target`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= initial.length, target.length <= 1000",
+    "initial and target consist only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minOperations(self, initial: str, target: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minOperations(string initial, string target) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minOperations(String initial, String target) {\n        \n    }\n};\n",
+    "javascript": "function minOperations(initial: string, target: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minOperations(self, initial: str, target: str) -> int:\n        m, n = len(initial), len(target)\n        f = [[0] * (n + 1) for _ in range(m + 1)]\n        mx = 0\n        for i, a in enumerate(initial, 1):\n            for j, b in enumerate(target, 1):\n                if a == b:\n                    f[i][j] = f[i - 1][j - 1] + 1\n                    mx = max(mx, f[i][j])\n        return m + n - mx * 2",
+    "cpp": "class Solution {\npublic:\n    int minOperations(string initial, string target) {\n        int m = initial.size(), n = target.size();\n        int f[m + 1][n + 1];\n        memset(f, 0, sizeof(f));\n        int mx = 0;\n        for (int i = 1; i <= m; ++i) {\n            for (int j = 1; j <= n; ++j) {\n                if (initial[i - 1] == target[j - 1]) {\n                    f[i][j] = f[i - 1][j - 1] + 1;\n                    mx = max(mx, f[i][j]);\n                }\n            }\n        }\n        return m + n - 2 * mx;\n    }\n};",
+    "java": "class Solution {\n    public int minOperations(String initial, String target) {\n        int m = initial.length(), n = target.length();\n        int[][] f = new int[m + 1][n + 1];\n        int mx = 0;\n        for (int i = 1; i <= m; ++i) {\n            for (int j = 1; j <= n; ++j) {\n                if (initial.charAt(i - 1) == target.charAt(j - 1)) {\n                    f[i][j] = f[i - 1][j - 1] + 1;\n                    mx = Math.max(mx, f[i][j]);\n                }\n            }\n        }\n        return m + n - 2 * mx;\n    }\n}",
+    "javascript": "function minOperations(initial: string, target: string): number {\n    const m = initial.length;\n    const n = target.length;\n    const f: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));\n    let mx: number = 0;\n    for (let i = 1; i <= m; ++i) {\n        for (let j = 1; j <= n; ++j) {\n            if (initial[i - 1] === target[j - 1]) {\n                f[i][j] = f[i - 1][j - 1] + 1;\n                mx = Math.max(mx, f[i][j]);\n            }\n        }\n    }\n    return m + n - 2 * mx;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Equalize Strings by Adding or Removing Characters at Ends.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

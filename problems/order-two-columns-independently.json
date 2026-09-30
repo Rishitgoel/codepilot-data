@@ -1,0 +1,43 @@
+{
+  "id": 2159,
+  "slug": "order-two-columns-independently",
+  "title": "Order Two Columns Independently",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Booking.Com"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Order%20Two%20Columns%20Independently"
+  },
+  "description": "Table: `Data`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| first_col   | int  |\n| second_col  | int  |\n+-------------+------+\nThis table may contain duplicate rows.\n\n \n\nWrite a solution to independently:\n\n\torder `first_col` in **ascending order**.\n\torder `second_col` in **descending order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Data table:\n+-----------+------------+\n| first_col | second_col |\n+-----------+------------+\n| 4         | 2          |\n| 2         | 3          |\n| 3         | 1          |\n| 1         | 4          |\n+-----------+------------+",
+      "output": "+-----------+------------+\n| first_col | second_col |\n+-----------+------------+\n| 1         | 4          |\n| 2         | 3          |\n| 3         | 2          |\n| 4         | 1          |\n+-----------+------------+"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Data table:\n+-----------+------------+\n| first_col | second_col |\n+-----------+------------+\n| 4         | 2          |\n| 2         | 3          |\n| 3         | 1          |\n| 1         | 4          |\n+-----------+------------+",
+      "expected": "+-----------+------------+\n| first_col | second_col |\n+-----------+------------+\n| 1         | 4          |\n| 2         | 3          |\n| 3         | 2          |\n| 4         | 1          |\n+-----------+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Order Two Columns Independently.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

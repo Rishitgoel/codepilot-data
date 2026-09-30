@@ -1,0 +1,72 @@
+{
+  "id": 2459,
+  "slug": "sort-array-by-moving-items-to-empty-space",
+  "title": "Sort Array by Moving Items to Empty Space",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20Array%20by%20Moving%20Items%20to%20Empty%20Space"
+  },
+  "description": "You are given an integer array `nums` of size `n` containing **each** element from `0` to `n - 1` (**inclusive**). Each of the elements from `1` to `n - 1` represents an item, and the element `0` represents an empty space.\n\nIn one operation, you can move **any** item to the empty space. `nums` is considered to be sorted if the numbers of all the items are in **ascending** order and the empty space is either at the beginning or at the end of the array.\n\nFor example, if `n = 4`, `nums` is sorted if:\n\n\t`nums = [0,1,2,3]` or\n\t`nums = [1,2,3,0]`\n\n...and considered to be unsorted otherwise.\n\nReturn *the **minimum** number of operations needed to sort *`nums`.",
+  "examples": [
+    {
+      "input": "nums = [4,2,0,3,1]",
+      "output": "3",
+      "explanation": "- Move item 2 to the empty space. Now, nums = [4,0,2,3,1].\n- Move item 1 to the empty space. Now, nums = [4,1,2,3,0].\n- Move item 4 to the empty space. Now, nums = [0,1,2,3,4].\nIt can be proven that 3 is the minimum number of operations needed."
+    },
+    {
+      "input": "nums = [1,2,3,4,0]",
+      "output": "0",
+      "explanation": "nums is already sorted so return 0."
+    },
+    {
+      "input": "nums = [1,0,2,4,3]",
+      "output": "2",
+      "explanation": "- Move item 2 to the empty space. Now, nums = [1,2,0,4,3].\n- Move item 3 to the empty space. Now, nums = [1,2,3,4,0].\nIt can be proven that 2 is the minimum number of operations needed."
+    }
+  ],
+  "constraints": [
+    "n == nums.length",
+    "2 <= n <= 10^5",
+    "0 <= nums[i] < n",
+    "All the values of nums are unique."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int sortArray(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> int:\n        def f(nums, k):\n            vis = [False] * n\n            cnt = 0\n            for i, v in enumerate(nums):\n                if i == v or vis[i]:\n                    continue\n                cnt += 1\n                j = i\n                while not vis[j]:\n                    vis[j] = True\n                    cnt += 1\n                    j = nums[j]\n            return cnt - 2 * (nums[k] != k)\n\n        n = len(nums)\n        a = f(nums, 0)\n        b = f([(v - 1 + n) % n for v in nums], n - 1)\n        return min(a, b)",
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums) {\n        int n = nums.size();\n        auto f = [&](vector<int>& nums, int k) {\n            vector<bool> vis(n);\n            int cnt = 0;\n            for (int i = 0; i < n; ++i) {\n                if (i == nums[i] || vis[i]) continue;\n                int j = i;\n                ++cnt;\n                while (!vis[j]) {\n                    vis[j] = true;\n                    ++cnt;\n                    j = nums[j];\n                }\n            }\n            if (nums[k] != k) cnt -= 2;\n            return cnt;\n        };\n\n        int a = f(nums, 0);\n        vector<int> arr = nums;\n        for (int& v : arr) v = (v - 1 + n) % n;\n        int b = f(arr, n - 1);\n        return min(a, b);\n    }\n};",
+    "java": "class Solution {\n    public int sortArray(int[] nums) {\n        int n = nums.length;\n        int[] arr = new int[n];\n        for (int i = 0; i < n; ++i) {\n            arr[i] = (nums[i] - 1 + n) % n;\n        }\n        int a = f(nums, 0);\n        int b = f(arr, n - 1);\n        return Math.min(a, b);\n    }\n\n    private int f(int[] nums, int k) {\n        boolean[] vis = new boolean[nums.length];\n        int cnt = 0;\n        for (int i = 0; i < nums.length; ++i) {\n            if (i == nums[i] || vis[i]) {\n                continue;\n            }\n            ++cnt;\n            int j = nums[i];\n            while (!vis[j]) {\n                vis[j] = true;\n                ++cnt;\n                j = nums[j];\n            }\n        }\n        if (nums[k] != k) {\n            cnt -= 2;\n        }\n        return cnt;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,2,0,3,1]",
+      "expected": "3"
+    },
+    {
+      "input": "[1,2,3,4,0]",
+      "expected": "0"
+    },
+    {
+      "input": "[1,0,2,4,3]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sort Array by Moving Items to Empty Space.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

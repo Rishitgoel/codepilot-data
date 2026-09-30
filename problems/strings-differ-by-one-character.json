@@ -1,0 +1,71 @@
+{
+  "id": 1554,
+  "slug": "strings-differ-by-one-character",
+  "title": "Strings Differ by One Character",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Airbnb"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Strings%20Differ%20by%20One%20Character"
+  },
+  "description": "Given a list of strings `dict` where all the strings are of the same length.\n\nReturn `true` if there are 2 strings that only differ by 1 character in the same index, otherwise return `false`.",
+  "examples": [
+    {
+      "input": "dict = [\"abcd\",\"acbd\", \"aacd\"]",
+      "output": "true",
+      "explanation": "Strings \"abcd\" and \"aacd\" differ only by one character in the index 1."
+    },
+    {
+      "input": "dict = [\"ab\",\"cd\",\"yz\"]",
+      "output": "false"
+    },
+    {
+      "input": "dict = [\"abcd\",\"cccc\",\"abyd\",\"abab\"]",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "The number of characters in dict <= 10^5",
+    "dict[i].length == dict[j].length",
+    "dict[i] should be unique.",
+    "dict[i] contains only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def differByOne(self, dict: List[str]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool differByOne(vector<string>& dict) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean differByOne(String[] dict) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def differByOne(self, dict: List[str]) -> bool:\n        s = set()\n        for word in dict:\n            for i in range(len(word)):\n                t = word[:i] + \"*\" + word[i + 1 :]\n                if t in s:\n                    return True\n                s.add(t)\n        return False",
+    "cpp": "class Solution {\npublic:\n    bool differByOne(vector<string>& dict) {\n        unordered_set<string> s;\n        for (auto word : dict) {\n            for (int i = 0; i < word.size(); ++i) {\n                auto t = word;\n                t[i] = '*';\n                if (s.count(t)) return true;\n                s.insert(t);\n            }\n        }\n        return false;\n    }\n};",
+    "java": "class Solution {\n    public boolean differByOne(String[] dict) {\n        Set<String> s = new HashSet<>();\n        for (String word : dict) {\n            for (int i = 0; i < word.length(); ++i) {\n                String t = word.substring(0, i) + \"*\" + word.substring(i + 1);\n                if (s.contains(t)) {\n                    return true;\n                }\n                s.add(t);\n            }\n        }\n        return false;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"abcd\",\"acbd\", \"aacd\"]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"ab\",\"cd\",\"yz\"]",
+      "expected": "false"
+    },
+    {
+      "input": "[\"abcd\",\"cccc\",\"abyd\",\"abab\"]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Strings Differ by One Character.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

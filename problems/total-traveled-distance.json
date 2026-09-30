@@ -1,0 +1,46 @@
+{
+  "id": 2837,
+  "slug": "total-traveled-distance",
+  "title": "Total Traveled Distance",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Total%20Traveled%20Distance"
+  },
+  "description": "Table: `Users`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| name        | varchar |\n+-------------+---------+\n`user_id` is the column with unique values for this table.\nEach row of this table contains user id and name.\n\nTable: `Rides`\n\n+--------------+------+\n| Column Name  | Type |\n+--------------+------+\n| ride_id      | int  |\n| user_id      | int  | \n| distance     | int  |\n+--------------+------+\nride_id is the column of unique values for this table.\nEach row of this table contains ride id, user id, and traveled distance.\n\nWrite a solution to calculate the `distance` traveled by **each user**. If there is a user who hasn't completed any rides, then their `distance` should be considered as `0`. Output the `user_id`, `name` and total traveled `distance`.\n\nReturn* the result table ordered by *`user_id`* in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Users table:\n+---------+---------+\n| user_id | name    |\n+---------+---------+\n| 17      | Addison |\n| 14      | Ethan   |\n| 4       | Michael |\n| 2       | Avery   |\n| 10      | Eleanor |\n+---------+---------+\nRides table:\n+---------+---------+----------+\n| ride_id | user_id | distance |\n+---------+---------+----------+\n| 72      | 17      | 160      |\n| 42      | 14      | 161      |\n| 45      | 4       | 59       |\n| 32      | 2       | 197      |\n| 15      | 4       | 357      |\n| 56      | 2       | 196      |\n| 10      | 14      | 25       |\n+---------+---------+----------+",
+      "output": "+---------+---------+-------------------+\n| user_id | name    | traveled distance |\n+---------+---------+-------------------+\n| 2       | Avery   | 393               |\n| 4       | Michael | 416               |\n| 10      | Eleanor | 0                 |\n| 14      | Ethan   | 186               |\n| 17      | Addison | 160               |\n+---------+---------+-------------------+",
+      "explanation": "-  User id 2 completed two journeys of 197 and 196, resulting in a combined travel distance of 393.\n-  User id 4 completed two journeys of 59 and 357, resulting in a combined travel distance of 416.\n-  User id 14 completed two journeys of 161 and 25, resulting in a combined travel distance of 186.\n-  User id 16 completed only one journey of 160.\n-  User id 10 did not complete any journeys, thus the total travel distance remains at 0.\nReturning the table orderd by user_id in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Users table:\n+---------+---------+\n| user_id | name    |\n+---------+---------+\n| 17      | Addison |\n| 14      | Ethan   |\n| 4       | Michael |\n| 2       | Avery   |\n| 10      | Eleanor |\n+---------+---------+\nRides table:\n+---------+---------+----------+\n| ride_id | user_id | distance |\n+---------+---------+----------+\n| 72      | 17      | 160      |\n| 42      | 14      | 161      |\n| 45      | 4       | 59       |\n| 32      | 2       | 197      |\n| 15      | 4       | 357      |\n| 56      | 2       | 196      |\n| 10      | 14      | 25       |\n+---------+---------+----------+",
+      "expected": "+---------+---------+-------------------+\n| user_id | name    | traveled distance |\n+---------+---------+-------------------+\n| 2       | Avery   | 393               |\n| 4       | Michael | 416               |\n| 10      | Eleanor | 0                 |\n| 14      | Ethan   | 186               |\n| 17      | Addison | 160               |\n+---------+---------+-------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Total Traveled Distance.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

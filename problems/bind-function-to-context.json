@@ -1,0 +1,60 @@
+{
+  "id": 2754,
+  "slug": "bind-function-to-context",
+  "title": "Bind Function to Context",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Bind%20Function%20to%20Context"
+  },
+  "description": "Enhance all functions to have the `bindPolyfill` method. When `bindPolyfill` is called with a passed object `obj`, that object becomes the `this` context for the function.\n\nFor example, if you had the code:\n\nfunction f() {\n  console.log('My context is ' + this.ctx);\n}\nf();\n\nThe output would be `\"My context is undefined\"`. However, if you bound the function:\n\nfunction f() {\n  console.log('My context is ' + this.ctx);\n}\nconst boundFunc = f.boundPolyfill({ \"ctx\": \"My Object\" })\nboundFunc();\n\nThe output should be `\"My context is My Object\"`.\n\nYou may assume that a single non-null object will be passed to the `bindPolyfill` method.\n\nPlease solve it without the built-in `Function.bind` method.",
+  "examples": [
+    {
+      "input": "fn = function f(multiplier) { \n  return this.x * multiplier; \n}\nobj = {\"x\": 10}\ninputs = [5]",
+      "output": "50",
+      "explanation": "const boundFunc = f.bindPolyfill({\"x\": 10});\nboundFunc(5); // 50\nA multiplier of 5 is passed as a parameter.\nThe context is set to {\"x\": 10}.\nMultiplying those two numbers yields 50."
+    },
+    {
+      "input": "fn = function speak() { \n  return \"My name is \" + this.name; \n}\nobj = {\"name\": \"Kathy\"}\ninputs = []",
+      "output": "\"My name is Kathy\"",
+      "explanation": "const boundFunc = f.bindPolyfill({\"name\": \"Kathy\"});\nboundFunc(); // \"My name is Kathy\""
+    }
+  ],
+  "constraints": [
+    "obj is a non-null object",
+    "0 <= inputs.length <= 100"
+  ],
+  "starterTemplates": {
+    "javascript": "type Fn = (...args) => any;\n\ndeclare global {\n    interface Function {\n        bindPolyfill(obj: Record<any, any>): Fn;\n    }\n}\n\nFunction.prototype.bindPolyfill = function (obj) {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "type Fn = (...args) => any;\n\ndeclare global {\n    interface Function {\n        bindPolyfill(obj: Record<any, any>): Fn;\n    }\n}\n\nFunction.prototype.bindPolyfill = function (obj) {\n    return (...args) => {\n        return this.call(obj, ...args);\n    };\n};"
+  },
+  "testcases": [
+    {
+      "input": "function f(multiplier) { \n  return this.x * multiplier; \n}\nobj = {\"x\": 10}\ninputs = [5]",
+      "expected": "50"
+    },
+    {
+      "input": "function speak() { \n  return \"My name is \" + this.name; \n}\nobj = {\"name\": \"Kathy\"}\ninputs = []",
+      "expected": "\"My name is Kathy\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Bind Function to Context.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

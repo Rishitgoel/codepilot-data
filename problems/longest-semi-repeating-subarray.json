@@ -1,0 +1,57 @@
+{
+  "id": 3641,
+  "slug": "longest-semi-repeating-subarray",
+  "title": "Longest Semi-Repeating Subarray",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Semi-Repeating%20Subarray"
+  },
+  "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nA **semi‑repeating** subarray is a contiguous subarray in which at most `k` elements repeat (i.e., appear more than once).\n\nReturn the length of the longest **semi‑repeating** subarray in `nums`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "0 <= k <= nums.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def longestSubarray(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int longestSubarray(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int longestSubarray(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function longestSubarray(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def longestSubarray(self, nums: List[int], k: int) -> int:\n        cnt = defaultdict(int)\n        ans = cur = l = 0\n        for r, x in enumerate(nums):\n            cnt[x] += 1\n            cur += cnt[x] == 2\n            while cur > k:\n                cnt[nums[l]] -= 1\n                cur -= cnt[nums[l]] == 1\n                l += 1\n            ans = max(ans, r - l + 1)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int longestSubarray(vector<int>& nums, int k) {\n        unordered_map<int, int> cnt;\n        int ans = 0, cur = 0, l = 0;\n        for (int r = 0; r < nums.size(); ++r) {\n            if (++cnt[nums[r]] == 2) {\n                ++cur;\n            }\n            while (cur > k) {\n                if (--cnt[nums[l++]] == 1) {\n                    --cur;\n                }\n            }\n            ans = max(ans, r - l + 1);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int longestSubarray(int[] nums, int k) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        int ans = 0, cur = 0, l = 0;\n        for (int r = 0; r < nums.length; ++r) {\n            if (cnt.merge(nums[r], 1, Integer::sum) == 2) {\n                ++cur;\n            }\n            while (cur > k) {\n                if (cnt.merge(nums[l++], -1, Integer::sum) == 1) {\n                    --cur;\n                }\n            }\n            ans = Math.max(ans, r - l + 1);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function longestSubarray(nums: number[], k: number): number {\n    const cnt: Map<number, number> = new Map();\n    let [ans, cur, l] = [0, 0, 0];\n    for (let r = 0; r < nums.length; r++) {\n        cnt.set(nums[r], (cnt.get(nums[r]) || 0) + 1);\n        if (cnt.get(nums[r]) === 2) {\n            cur++;\n        }\n\n        while (cur > k) {\n            cnt.set(nums[l], cnt.get(nums[l])! - 1);\n            if (cnt.get(nums[l]) === 1) {\n                cur--;\n            }\n            l++;\n        }\n\n        ans = Math.max(ans, r - l + 1);\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Semi-Repeating Subarray.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

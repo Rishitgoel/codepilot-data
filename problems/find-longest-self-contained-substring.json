@@ -1,0 +1,53 @@
+{
+  "id": 3104,
+  "slug": "find-longest-self-contained-substring",
+  "title": "Find Longest Self-Contained Substring",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Longest%20Self-Contained%20Substring"
+  },
+  "description": "Given a string `s`, your task is to find the length of the **longest self-contained** substring of `s`.\n\nA substring `t` of a string `s` is called **self-contained **if `t != s` and for every character in `t`, it doesn't exist in the *rest* of `s`.\n\nReturn the length of the *longest** **self-contained *substring of `s` if it exists, otherwise, return -1.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= s.length <= 5 * 10^4",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxSubstringLength(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxSubstringLength(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxSubstringLength(String s) {\n        \n    }\n};\n",
+    "javascript": "function maxSubstringLength(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxSubstringLength(self, s: str) -> int:\n        first, last = {}, {}\n        for i, c in enumerate(s):\n            if c not in first:\n                first[c] = i\n            last[c] = i\n        ans, n = -1, len(s)\n        for c, i in first.items():\n            mx = last[c]\n            for j in range(i, n):\n                a, b = first[s[j]], last[s[j]]\n                if a < i:\n                    break\n                mx = max(mx, b)\n                if mx == j and j - i + 1 < n:\n                    ans = max(ans, j - i + 1)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxSubstringLength(string s) {\n        vector<int> first(26, -1);\n        vector<int> last(26);\n        int n = s.length();\n        for (int i = 0; i < n; ++i) {\n            int j = s[i] - 'a';\n            if (first[j] == -1) {\n                first[j] = i;\n            }\n            last[j] = i;\n        }\n        int ans = -1;\n        for (int k = 0; k < 26; ++k) {\n            int i = first[k];\n            if (i == -1) {\n                continue;\n            }\n            int mx = last[k];\n            for (int j = i; j < n; ++j) {\n                int a = first[s[j] - 'a'];\n                int b = last[s[j] - 'a'];\n                if (a < i) {\n                    break;\n                }\n                mx = max(mx, b);\n                if (mx == j && j - i + 1 < n) {\n                    ans = max(ans, j - i + 1);\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxSubstringLength(String s) {\n        int[] first = new int[26];\n        int[] last = new int[26];\n        Arrays.fill(first, -1);\n        int n = s.length();\n        for (int i = 0; i < n; ++i) {\n            int j = s.charAt(i) - 'a';\n            if (first[j] == -1) {\n                first[j] = i;\n            }\n            last[j] = i;\n        }\n        int ans = -1;\n        for (int k = 0; k < 26; ++k) {\n            int i = first[k];\n            if (i == -1) {\n                continue;\n            }\n            int mx = last[k];\n            for (int j = i; j < n; ++j) {\n                int a = first[s.charAt(j) - 'a'];\n                int b = last[s.charAt(j) - 'a'];\n                if (a < i) {\n                    break;\n                }\n                mx = Math.max(mx, b);\n                if (mx == j && j - i + 1 < n) {\n                    ans = Math.max(ans, j - i + 1);\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxSubstringLength(s: string): number {\n    const first: number[] = Array(26).fill(-1);\n    const last: number[] = Array(26).fill(0);\n    const n = s.length;\n    for (let i = 0; i < n; ++i) {\n        const j = s.charCodeAt(i) - 97;\n        if (first[j] === -1) {\n            first[j] = i;\n        }\n        last[j] = i;\n    }\n    let ans = -1;\n    for (let k = 0; k < 26; ++k) {\n        const i = first[k];\n        if (i === -1) {\n            continue;\n        }\n        let mx = last[k];\n        for (let j = i; j < n; ++j) {\n            const a = first[s.charCodeAt(j) - 97];\n            if (a < i) {\n                break;\n            }\n            const b = last[s.charCodeAt(j) - 97];\n            mx = Math.max(mx, b);\n            if (mx === j && j - i + 1 < n) {\n                ans = Math.max(ans, j - i + 1);\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Longest Self-Contained Substring.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

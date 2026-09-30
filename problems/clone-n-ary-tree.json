@@ -1,0 +1,60 @@
+{
+  "id": 1490,
+  "slug": "clone-n-ary-tree",
+  "title": "Clone N-ary Tree",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Clone%20N-ary%20Tree"
+  },
+  "description": "Given a `root` of an N-ary tree, return a **deep copy** (clone) of the tree.\n\nEach node in the n-ary tree contains a val (`int`) and a list (`List[Node]`) of its children.\n\nclass Node {\n    public int val;\n    public List children;\n}\n\n*Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).*",
+  "examples": [
+    {
+      "input": "root = [1,null,3,2,4,null,5,6]",
+      "output": "[1,null,3,2,4,null,5,6]"
+    },
+    {
+      "input": "root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+      "output": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]"
+    }
+  ],
+  "constraints": [
+    "The depth of the n-ary tree is less than or equal to 1000.",
+    "The total number of nodes is between [0, 10^4]."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, children=None):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> children;\n\n\n    public Node() {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, children=None):\n        self.val = val\n        self.children = children if children is not None else []\n\"\"\"\n\n\nclass Solution:\n    def cloneTree(self, root: 'Node') -> 'Node':\n        if root is None:\n            return None\n        children = [self.cloneTree(child) for child in root.children]\n        return Node(root.val, children)",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    vector<Node*> children;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n    }\n\n    Node(int _val, vector<Node*> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* cloneTree(Node* root) {\n        if (!root) {\n            return root;\n        }\n        vector<Node*> children;\n        for (Node* child : root->children) {\n            children.emplace_back(cloneTree(child));\n        }\n        return new Node(root->val, children);\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public List<Node> children;\n\n\n    public Node() {\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val) {\n        val = _val;\n        children = new ArrayList<Node>();\n    }\n\n    public Node(int _val,ArrayList<Node> _children) {\n        val = _val;\n        children = _children;\n    }\n};\n*/\n\nclass Solution {\n    public Node cloneTree(Node root) {\n        if (root == null) {\n            return null;\n        }\n        ArrayList<Node> children = new ArrayList<>();\n        for (Node child : root.children) {\n            children.add(cloneTree(child));\n        }\n        return new Node(root.val, children);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,null,3,2,4,null,5,6]",
+      "expected": "[1,null,3,2,4,null,5,6]"
+    },
+    {
+      "input": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]",
+      "expected": "[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Clone N-ary Tree.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

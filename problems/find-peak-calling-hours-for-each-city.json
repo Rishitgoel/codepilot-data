@@ -1,0 +1,43 @@
+{
+  "id": 2984,
+  "slug": "find-peak-calling-hours-for-each-city",
+  "title": "Find Peak Calling Hours for Each City",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "D-E-Shaw"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Peak%20Calling%20Hours%20for%20Each%20City"
+  },
+  "description": "Table: `Calls`\n\n+--------------+----------+\n| Column Name  | Type     |\n+--------------+----------+\n| caller_id    | int      |\n| recipient_id | int      |\n| call_time    | datetime |\n| city         | varchar  |\n+--------------+----------+\n(caller_id, recipient_id, call_time) is the primary key (combination of columns with unique values) for this table.\nEach row contains caller id, recipient id, call time, and city.\n\nWrite a solution to find the **peak** calling **hour** for each `city`. If **multiple hours** have the **same** number of calls, all of those hours will be recognized as **peak hours **for that specific city.\n\nReturn *the result table ordered by **peak calling hour** and *`city`* in **descending****** **order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Calls table:\n+-----------+--------------+---------------------+----------+\n| caller_id | recipient_id | call_time           | city     |\n+-----------+--------------+---------------------+----------+\n| 8         | 4            | 2021-08-24 22:46:07 | Houston  |\n| 4         | 8            | 2021-08-24 22:57:13 | Houston  |  \n| 5         | 1            | 2021-08-11 21:28:44 | Houston  |  \n| 8         | 3            | 2021-08-17 22:04:15 | Houston  |\n| 11        | 3            | 2021-08-17 13:07:00 | New York |\n| 8         | 11           | 2021-08-17 14:22:22 | New York |\n+-----------+--------------+---------------------+----------+",
+      "output": "+----------+-------------------+-----------------+\n| city     | peak_calling_hour | number_of_calls |\n+----------+-------------------+-----------------+\n| Houston  | 22                | 3               |\n| New York | 14                | 1               |\n| New York | 13                | 1               |\n+----------+-------------------+-----------------+",
+      "explanation": "For Houston:\n  - The peak time is 22:00, with a total of 3 calls recorded. \nFor New York:\n  - Both 13:00 and 14:00 hours have equal call counts of 1, so both times are considered peak hours.\nOutput table is ordered by peak_calling_hour and city in descending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Calls table:\n+-----------+--------------+---------------------+----------+\n| caller_id | recipient_id | call_time           | city     |\n+-----------+--------------+---------------------+----------+\n| 8         | 4            | 2021-08-24 22:46:07 | Houston  |\n| 4         | 8            | 2021-08-24 22:57:13 | Houston  |  \n| 5         | 1            | 2021-08-11 21:28:44 | Houston  |  \n| 8         | 3            | 2021-08-17 22:04:15 | Houston  |\n| 11        | 3            | 2021-08-17 13:07:00 | New York |\n| 8         | 11           | 2021-08-17 14:22:22 | New York |\n+-----------+--------------+---------------------+----------+",
+      "expected": "+----------+-------------------+-----------------+\n| city     | peak_calling_hour | number_of_calls |\n+----------+-------------------+-----------------+\n| Houston  | 22                | 3               |\n| New York | 14                | 1               |\n| New York | 13                | 1               |\n+----------+-------------------+-----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Peak Calling Hours for Each City.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

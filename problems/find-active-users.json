@@ -1,0 +1,46 @@
+{
+  "id": 2688,
+  "slug": "find-active-users",
+  "title": "Find Active Users",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Active%20Users"
+  },
+  "description": "Table: `Users`\n\n+-------------+----------+ \n| Column Name | Type     | \n+-------------+----------+ \n| user_id     | int      | \n| item        | varchar  |\n| created_at  | datetime |\n| amount      | int      |\n+-------------+----------+\nThis table may contain duplicate records. \nEach row includes the user ID, the purchased item, the date of purchase, and the purchase amount.\n\nWrite a solution to identify active users. An active user is a user that has made a second purchase **within 7 days **of any other of their purchases.\n\nFor example, if the ending date is May 31, 2023. So any date between May 31, 2023, and June 7, 2023 (inclusive) would be considered \"within 7 days\" of May 31, 2023.\n\nReturn a list of `user_id` which denotes the list of active users in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Users table:\n+---------+-------------------+------------+--------+ \n| user_id | item              | created_at | amount |  \n+---------+-------------------+------------+--------+\n| 5       | Smart Crock Pot   | 2021-09-18 | 698882 |\n| 6       | Smart Lock        | 2021-09-14 | 11487  |\n| 6       | Smart Thermostat  | 2021-09-10 | 674762 |\n| 8       | Smart Light Strip | 2021-09-29 | 630773 |\n| 4       | Smart Cat Feeder  | 2021-09-02 | 693545 |\n| 4       | Smart Bed         | 2021-09-13 | 170249 |\n+---------+-------------------+------------+--------+",
+      "output": "+---------+\n| user_id | \n+---------+\n| 6       | \n+---------+",
+      "explanation": "- User with user_id 5 has only one transaction, so he is not an active user.\n- User with user_id 6 has two transaction his first transaction was on 2021-09-10 and second transation was on 2021-09-14. The distance between the first and second transactions date is <= 7 days. So he is an active user. \n- User with user_id 8 has only one transaction, so he is not an active user.  \n- User with user_id 4 has two transaction his first transaction was on 2021-09-02 and second transation was on 2021-09-13. The distance between the first and second transactions date is > 7 days. So he is not an active user."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Users table:\n+---------+-------------------+------------+--------+ \n| user_id | item              | created_at | amount |  \n+---------+-------------------+------------+--------+\n| 5       | Smart Crock Pot   | 2021-09-18 | 698882 |\n| 6       | Smart Lock        | 2021-09-14 | 11487  |\n| 6       | Smart Thermostat  | 2021-09-10 | 674762 |\n| 8       | Smart Light Strip | 2021-09-29 | 630773 |\n| 4       | Smart Cat Feeder  | 2021-09-02 | 693545 |\n| 4       | Smart Bed         | 2021-09-13 | 170249 |\n+---------+-------------------+------------+--------+",
+      "expected": "+---------+\n| user_id | \n+---------+\n| 6       | \n+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Active Users.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

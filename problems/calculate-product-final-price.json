@@ -1,0 +1,49 @@
+{
+  "id": 3293,
+  "slug": "calculate-product-final-price",
+  "title": "Calculate Product Final Price",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Calculate%20Product%20Final%20Price"
+  },
+  "description": "Table: `Products`\n\n+------------+---------+ \n| Column Name| Type    | \n+------------+---------+ \n| product_id | int     | \n| category   | varchar |\n| price      | decimal |\n+------------+---------+\nproduct_id is the unique key for this table.\nEach row includes the product's ID, its category, and its price.\n\nTable: `Discounts`\n\n+------------+---------+ \n| Column Name| Type    | \n+------------+---------+ \n| category   | varchar |\n| discount   | int     |\n+------------+---------+\ncategory is the primary key for this table.\nEach row contains a product category and the percentage discount applied to that category (values range from 0 to 100).\n\nWrite a solution to find the **final price** of each product after applying the **category discount**. If a product's category has **no** **associated** **discount**, its price remains **unchanged**.\n\nReturn *the result table ordered by* `product_id`* in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_final_prices(\r\n    products: pd.DataFrame, discounts: pd.DataFrame\r\n) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_final_prices(\r\n    products: pd.DataFrame, discounts: pd.DataFrame\r\n) -> pd.DataFrame:\r\n    # Perform a left join on the 'category' column\r\n    merged_df = pd.merge(products, discounts, on=\"category\", how=\"left\")\r\n\r\n    # Calculate the final price\r\n    merged_df[\"final_price\"] = (\r\n        merged_df[\"price\"] * (100 - merged_df[\"discount\"].fillna(0)) / 100\r\n    )\r\n\r\n    # Select the necessary columns and sort by 'product_id'\r\n    result_df = merged_df[[\"product_id\", \"final_price\", \"category\"]].sort_values(\r\n        \"product_id\"\r\n    )\r\n\r\n    return result_df"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Calculate Product Final Price.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

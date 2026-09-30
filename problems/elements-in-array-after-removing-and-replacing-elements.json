@@ -1,0 +1,70 @@
+{
+  "id": 2113,
+  "slug": "elements-in-array-after-removing-and-replacing-elements",
+  "title": "Elements in Array After Removing and Replacing Elements",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Elements%20in%20Array%20After%20Removing%20and%20Replacing%20Elements"
+  },
+  "description": "You are given a **0-indexed** integer array `nums`. Initially on minute `0`, the array is unchanged. Every minute, the **leftmost** element in `nums` is removed until no elements remain. Then, every minute, one element is appended to the **end** of `nums`, in the order they were removed in, until the original array is restored. This process repeats indefinitely.\n\n\tFor example, the array `[0,1,2]` would change as follows: `[0,1,2] &rarr; [1,2] &rarr; [2] &rarr; [] &rarr; [0] &rarr; [0,1] &rarr; [0,1,2] &rarr; [1,2] &rarr; [2] &rarr; [] &rarr; [0] &rarr; [0,1] &rarr; [0,1,2] &rarr; ...`\n\nYou are also given a 2D integer array `queries` of size `n` where `queries[j] = [timej, indexj]`. The answer to the `j^th` query is:\n\n\t`nums[indexj]` if `indexj j`\n\t`-1` if `indexj >= nums.length` at minute `timej`\n\nReturn *an integer array `ans` of size *`n` *where *`ans[j]`* is the answer to the *`j^th`* query*.",
+  "examples": [
+    {
+      "input": "nums = [0,1,2], queries = [[0,2],[2,0],[3,2],[5,0]]",
+      "output": "[2,2,-1,0]",
+      "explanation": "Minute 0: [0,1,2] - All elements are in the nums.\nMinute 1: [1,2]   - The leftmost element, 0, is removed.\nMinute 2: [2]     - The leftmost element, 1, is removed.\nMinute 3: []      - The leftmost element, 2, is removed.\nMinute 4: [0]     - 0 is added to the end of nums.\nMinute 5: [0,1]   - 1 is added to the end of nums.\n\nAt minute 0, nums[2] is 2.\nAt minute 2, nums[0] is 2.\nAt minute 3, nums[2] does not exist.\nAt minute 5, nums[0] is 0."
+    },
+    {
+      "input": "nums = [2], queries = [[0,0],[1,0],[2,0],[3,0]]",
+      "output": "[2,-1,2,-1]\nMinute 0: [2] - All elements are in the nums.\nMinute 1: []  - The leftmost element, 2, is removed.\nMinute 2: [2] - 2 is added to the end of nums.\nMinute 3: []  - The leftmost element, 2, is removed.\n\nAt minute 0, nums[0] is 2.\nAt minute 1, nums[0] does not exist.\nAt minute 2, nums[0] is 2.\nAt minute 3, nums[0] does not exist."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "0 <= nums[i] <= 100",
+    "n == queries.length",
+    "1 <= n <= 10^5",
+    "queries[j].length == 2",
+    "0 <= timej <= 10^5",
+    "0 <= indexj < nums.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] elementInNums(int[] nums, int[][] queries) {\n        \n    }\n};\n",
+    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        n, m = len(nums), len(queries)\n        ans = [-1] * m\n        for j, (t, i) in enumerate(queries):\n            t %= 2 * n\n            if t < n and i < n - t:\n                ans[j] = nums[i + t]\n            elif t > n and i < t - n:\n                ans[j] = nums[i]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {\n        int n = nums.size(), m = queries.size();\n        vector<int> ans(m, -1);\n        for (int j = 0; j < m; ++j) {\n            int t = queries[j][0], i = queries[j][1];\n            t %= (n * 2);\n            if (t < n && i < n - t) {\n                ans[j] = nums[i + t];\n            } else if (t > n && i < t - n) {\n                ans[j] = nums[i];\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] elementInNums(int[] nums, int[][] queries) {\n        int n = nums.length, m = queries.length;\n        int[] ans = new int[m];\n        for (int j = 0; j < m; ++j) {\n            ans[j] = -1;\n            int t = queries[j][0], i = queries[j][1];\n            t %= (2 * n);\n            if (t < n && i < n - t) {\n                ans[j] = nums[i + t];\n            } else if (t > n && i < t - n) {\n                ans[j] = nums[i];\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    const n = nums.length;\n    const m = queries.length;\n    const ans: number[] = Array(m).fill(-1);\n    for (let j = 0; j < m; ++j) {\n        let [t, i] = queries[j];\n        t %= 2 * n;\n        if (t < n && i < n - t) {\n            ans[j] = nums[i + t];\n        } else if (t >= n && i < t - n) {\n            ans[j] = nums[i];\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[0,1,2], queries = [[0,2],[2,0],[3,2],[5,0]]",
+      "expected": "[2,2,-1,0]"
+    },
+    {
+      "input": "[2], queries = [[0,0],[1,0],[2,0],[3,0]]",
+      "expected": "[2,-1,2,-1]\nMinute 0: [2] - All elements are in the nums.\nMinute 1: []  - The leftmost element, 2, is removed.\nMinute 2: [2] - 2 is added to the end of nums.\nMinute 3: []  - The leftmost element, 2, is removed.\n\nAt minute 0, nums[0] is 2.\nAt minute 1, nums[0] does not exist.\nAt minute 2, nums[0] is 2.\nAt minute 3, nums[0] does not exist."
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Elements in Array After Removing and Replacing Elements.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

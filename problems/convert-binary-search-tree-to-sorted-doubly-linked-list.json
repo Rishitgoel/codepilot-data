@@ -1,0 +1,65 @@
+{
+  "id": 426,
+  "slug": "convert-binary-search-tree-to-sorted-doubly-linked-list",
+  "title": "Convert Binary Search Tree to Sorted Doubly Linked List",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Facebook",
+    "TikTok"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20Binary%20Search%20Tree%20to%20Sorted%20Doubly%20Linked%20List"
+  },
+  "description": "Convert a **Binary Search Tree** to a sorted **Circular Doubly-Linked List** in place.\n\nYou can think of the left and right pointers as synonymous to the predecessor and successor pointers in a doubly-linked list. For a circular doubly linked list, the predecessor of the first element is the last element, and the successor of the last element is the first element.\n\nWe want to do the transformation **in place**. After the transformation, the left pointer of the tree node should point to its predecessor, and the right pointer should point to its successor. You should return the pointer to the smallest element of the linked list.",
+  "examples": [
+    {
+      "input": "root = [4,2,5,1,3]",
+      "output": "[1,2,3,4,5]",
+      "explanation": "The figure below shows the transformed BST. The solid line indicates the successor relationship, while the dashed line means the predecessor relationship."
+    },
+    {
+      "input": "root = [2,1,3]",
+      "output": "[1,2,3]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 2000].",
+    "-1000 <= Node.val <= 1000",
+    "All the values of the tree are unique."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n\n    Node() {}\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n\n    public Node() {}\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\n\"\"\"\n\n\nclass Solution:\n    def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':\n        def dfs(root):\n            if root is None:\n                return\n            nonlocal prev, head\n            dfs(root.left)\n            if prev:\n                prev.right = root\n                root.left = prev\n            else:\n                head = root\n            prev = root\n            dfs(root.right)\n\n        if root is None:\n            return None\n        head = prev = None\n        dfs(root)\n        prev.right = head\n        head.left = prev\n        return head",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        left = NULL;\n        right = NULL;\n    }\n\n    Node(int _val, Node* _left, Node* _right) {\n        val = _val;\n        left = _left;\n        right = _right;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* prev;\n    Node* head;\n\n    Node* treeToDoublyList(Node* root) {\n        if (!root) return nullptr;\n        prev = nullptr;\n        head = nullptr;\n        dfs(root);\n        prev->right = head;\n        head->left = prev;\n        return head;\n    }\n\n    void dfs(Node* root) {\n        if (!root) return;\n        dfs(root->left);\n        if (prev) {\n            prev->right = root;\n            root->left = prev;\n        } else\n            head = root;\n        prev = root;\n        dfs(root->right);\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n\n    public Node() {}\n\n    public Node(int _val) {\n        val = _val;\n    }\n\n    public Node(int _val,Node _left,Node _right) {\n        val = _val;\n        left = _left;\n        right = _right;\n    }\n};\n*/\n\nclass Solution {\n    private Node prev;\n    private Node head;\n\n    public Node treeToDoublyList(Node root) {\n        if (root == null) {\n            return null;\n        }\n        prev = null;\n        head = null;\n        dfs(root);\n        prev.right = head;\n        head.left = prev;\n        return head;\n    }\n\n    private void dfs(Node root) {\n        if (root == null) {\n            return;\n        }\n        dfs(root.left);\n        if (prev != null) {\n            prev.right = root;\n            root.left = prev;\n        } else {\n            head = root;\n        }\n        prev = root;\n        dfs(root.right);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,2,5,1,3]",
+      "expected": "[1,2,3,4,5]"
+    },
+    {
+      "input": "[2,1,3]",
+      "expected": "[1,2,3]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert Binary Search Tree to Sorted Doubly Linked List.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

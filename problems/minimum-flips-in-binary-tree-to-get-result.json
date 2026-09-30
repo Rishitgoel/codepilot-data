@@ -1,0 +1,67 @@
+{
+  "id": 2313,
+  "slug": "minimum-flips-in-binary-tree-to-get-result",
+  "title": "Minimum Flips in Binary Tree to Get Result",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Flips%20in%20Binary%20Tree%20to%20Get%20Result"
+  },
+  "description": "You are given the `root` of a **binary tree** with the following properties:\n\n\t**Leaf nodes** have either the value `0` or `1`, representing `false` and `true` respectively.\n\t**Non-leaf nodes** have either the value `2`, `3`, `4`, or `5`, representing the boolean operations `OR`, `AND`, `XOR`, and `NOT`, respectively.\n\nYou are also given a boolean `result`, which is the desired result of the **evaluation** of the `root` node.\n\nThe evaluation of a node is as follows:\n\n\tIf the node is a leaf node, the evaluation is the **value** of the node, i.e. `true` or `false`.\n\tOtherwise, **evaluate** the node's children and **apply** the boolean operation of its value with the children's evaluations.\n\nIn one operation, you can **flip** a leaf node, which causes a `false` node to become `true`, and a `true` node to become `false`.\n\nReturn* the minimum number of operations that need to be performed such that the evaluation of *`root`* yields *`result`. It can be shown that there is always a way to achieve `result`.\n\nA **leaf node** is a node that has zero children.\n\nNote: `NOT` nodes have either a left child or a right child, but other non-leaf nodes have both a left child and a right child.",
+  "examples": [
+    {
+      "input": "root = [3,5,4,2,null,1,1,1,0], result = true",
+      "output": "2",
+      "explanation": "It can be shown that a minimum of 2 nodes have to be flipped to make the root of the tree\nevaluate to true. One way to achieve this is shown in the diagram above."
+    },
+    {
+      "input": "root = [0], result = false",
+      "output": "0",
+      "explanation": "The root of the tree already evaluates to false, so 0 nodes have to be flipped."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 10^5].",
+    "0 <= Node.val <= 5",
+    "OR, AND, and XOR nodes have 2 children.",
+    "NOT nodes have 1 child.",
+    "Leaf nodes have a value of 0 or 1.",
+    "Non-leaf nodes have a value of 2, 3, 4, or 5."
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public int minimumFlips(TreeNode root, boolean result) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction minimumFlips(root: TreeNode | null, result: boolean): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def minimumFlips(self, root: Optional[TreeNode], result: bool) -> int:\n        def dfs(root: Optional[TreeNode]) -> (int, int):\n            if root is None:\n                return inf, inf\n            x = root.val\n            if x in (0, 1):\n                return x, x ^ 1\n            l, r = dfs(root.left), dfs(root.right)\n            if x == 2:\n                return l[0] + r[0], min(l[0] + r[1], l[1] + r[0], l[1] + r[1])\n            if x == 3:\n                return min(l[0] + r[0], l[0] + r[1], l[1] + r[0]), l[1] + r[1]\n            if x == 4:\n                return min(l[0] + r[0], l[1] + r[1]), min(l[0] + r[1], l[1] + r[0])\n            return min(l[1], r[1]), min(l[0], r[0])\n\n        return dfs(root)[int(result)]",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int minimumFlips(TreeNode* root, bool result) {\n        function<pair<int, int>(TreeNode*)> dfs = [&](TreeNode* root) -> pair<int, int> {\n            if (!root) {\n                return {1 << 30, 1 << 30};\n            }\n            int x = root->val;\n            if (x < 2) {\n                return {x, x ^ 1};\n            }\n            auto [l0, l1] = dfs(root->left);\n            auto [r0, r1] = dfs(root->right);\n            int a = 0, b = 0;\n            if (x == 2) {\n                a = l0 + r0;\n                b = min({l0 + r1, l1 + r0, l1 + r1});\n            } else if (x == 3) {\n                a = min({l0 + r0, l0 + r1, l1 + r0});\n                b = l1 + r1;\n            } else if (x == 4) {\n                a = min(l0 + r0, l1 + r1);\n                b = min(l0 + r1, l1 + r0);\n            } else {\n                a = min(l1, r1);\n                b = min(l0, r0);\n            }\n            return {a, b};\n        };\n        auto [a, b] = dfs(root);\n        return result ? b : a;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    public int minimumFlips(TreeNode root, boolean result) {\n        return dfs(root)[result ? 1 : 0];\n    }\n\n    private int[] dfs(TreeNode root) {\n        if (root == null) {\n            return new int[] {1 << 30, 1 << 30};\n        }\n        int x = root.val;\n        if (x < 2) {\n            return new int[] {x, x ^ 1};\n        }\n        var l = dfs(root.left);\n        var r = dfs(root.right);\n        int a = 0, b = 0;\n        if (x == 2) {\n            a = l[0] + r[0];\n            b = Math.min(l[0] + r[1], Math.min(l[1] + r[0], l[1] + r[1]));\n        } else if (x == 3) {\n            a = Math.min(l[0] + r[0], Math.min(l[0] + r[1], l[1] + r[0]));\n            b = l[1] + r[1];\n        } else if (x == 4) {\n            a = Math.min(l[0] + r[0], l[1] + r[1]);\n            b = Math.min(l[0] + r[1], l[1] + r[0]);\n        } else {\n            a = Math.min(l[1], r[1]);\n            b = Math.min(l[0], r[0]);\n        }\n        return new int[] {a, b};\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction minimumFlips(root: TreeNode | null, result: boolean): number {\n    const dfs = (root: TreeNode | null): [number, number] => {\n        if (!root) {\n            return [1 << 30, 1 << 30];\n        }\n        const x = root.val;\n        if (x < 2) {\n            return [x, x ^ 1];\n        }\n        const [l0, l1] = dfs(root.left);\n        const [r0, r1] = dfs(root.right);\n        if (x === 2) {\n            return [l0 + r0, Math.min(l0 + r1, l1 + r0, l1 + r1)];\n        }\n        if (x === 3) {\n            return [Math.min(l0 + r0, l0 + r1, l1 + r0), l1 + r1];\n        }\n        if (x === 4) {\n            return [Math.min(l0 + r0, l1 + r1), Math.min(l0 + r1, l1 + r0)];\n        }\n        return [Math.min(l1, r1), Math.min(l0, r0)];\n    };\n    return dfs(root)[result ? 1 : 0];\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,5,4,2,null,1,1,1,0], result = true",
+      "expected": "2"
+    },
+    {
+      "input": "[0], result = false",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Flips in Binary Tree to Get Result.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

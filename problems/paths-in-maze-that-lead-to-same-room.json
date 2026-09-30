@@ -1,0 +1,65 @@
+{
+  "id": 2077,
+  "slug": "paths-in-maze-that-lead-to-same-room",
+  "title": "Paths in Maze That Lead to Same Room",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Paths%20in%20Maze%20That%20Lead%20to%20Same%20Room"
+  },
+  "description": "A maze consists of `n` rooms numbered from `1` to `n`, and some rooms are connected by corridors. You are given a 2D integer array `corridors` where `corridors[i] = [room1i, room2i]` indicates that there is a corridor connecting `room1i` and `room2i`, allowing a person in the maze to go from `room1i` to `room2i` **and vice versa**.\n\nThe designer of the maze wants to know how confusing the maze is. The **confusion** **score** of the maze is the number of different cycles of **length 3**.\n\n\tFor example, `1 &rarr; 2 &rarr; 3 &rarr; 1` is a cycle of length 3, but `1 &rarr; 2 &rarr; 3 &rarr; 4` and `1 &rarr; 2 &rarr; 3 &rarr; 2 &rarr; 1` are not.\n\nTwo cycles are considered to be **different** if one or more of the rooms visited in the first cycle is **not** in the second cycle.\n\nReturn *the* ***confusion**** score** of the maze.*",
+  "examples": [
+    {
+      "input": "n = 5, corridors = [[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]",
+      "output": "2",
+      "explanation": "One cycle of length 3 is 4 &rarr; 1 &rarr; 3 &rarr; 4, denoted in red.\nNote that this is the same cycle as 3 &rarr; 4 &rarr; 1 &rarr; 3 or 1 &rarr; 3 &rarr; 4 &rarr; 1 because the rooms are the same.\nAnother cycle of length 3 is 1 &rarr; 2 &rarr; 4 &rarr; 1, denoted in blue.\nThus, there are two different cycles of length 3."
+    },
+    {
+      "input": "n = 4, corridors = [[1,2],[3,4]]",
+      "output": "0",
+      "explanation": "There are no cycles of length 3."
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 1000",
+    "1 <= corridors.length <= 5 * 10^4",
+    "corridors[i].length == 2",
+    "1 <= room1i, room2i <= n",
+    "room1i != room2i",
+    "There are no duplicate corridors."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def numberOfPaths(self, n: int, corridors: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int numberOfPaths(int n, vector<vector<int>>& corridors) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int numberOfPaths(int n, int[][] corridors) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def numberOfPaths(self, n: int, corridors: List[List[int]]) -> int:\n        g = defaultdict(set)\n        for a, b in corridors:\n            g[a].add(b)\n            g[b].add(a)\n        ans = 0\n        for i in range(1, n + 1):\n            for j, k in combinations(g[i], 2):\n                if j in g[k]:\n                    ans += 1\n        return ans // 3",
+    "cpp": "class Solution {\npublic:\n    int numberOfPaths(int n, vector<vector<int>>& corridors) {\n        vector<unordered_set<int>> g(n + 1);\n        for (auto& c : corridors) {\n            int a = c[0], b = c[1];\n            g[a].insert(b);\n            g[b].insert(a);\n        }\n        int ans = 0;\n        for (int c = 1; c <= n; ++c) {\n            vector<int> nxt;\n            nxt.assign(g[c].begin(), g[c].end());\n            int m = nxt.size();\n            for (int i = 0; i < m; ++i) {\n                for (int j = i + 1; j < m; ++j) {\n                    int a = nxt[i], b = nxt[j];\n                    ans += g[b].count(a);\n                }\n            }\n        }\n        return ans / 3;\n    }\n};",
+    "java": "class Solution {\n    public int numberOfPaths(int n, int[][] corridors) {\n        Set<Integer>[] g = new Set[n + 1];\n        for (int i = 0; i <= n; ++i) {\n            g[i] = new HashSet<>();\n        }\n        for (var c : corridors) {\n            int a = c[0], b = c[1];\n            g[a].add(b);\n            g[b].add(a);\n        }\n        int ans = 0;\n        for (int c = 1; c <= n; ++c) {\n            var nxt = new ArrayList<>(g[c]);\n            int m = nxt.size();\n            for (int i = 0; i < m; ++i) {\n                for (int j = i + 1; j < m; ++j) {\n                    int a = nxt.get(i), b = nxt.get(j);\n                    if (g[b].contains(a)) {\n                        ++ans;\n                    }\n                }\n            }\n        }\n        return ans / 3;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "5, corridors = [[1,2],[5,2],[4,1],[2,4],[3,1],[3,4]]",
+      "expected": "2"
+    },
+    {
+      "input": "4, corridors = [[1,2],[3,4]]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Paths in Maze That Lead to Same Room.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

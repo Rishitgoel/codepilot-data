@@ -1,0 +1,49 @@
+{
+  "id": 3262,
+  "slug": "find-overlapping-shifts",
+  "title": "Find Overlapping Shifts",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Overlapping%20Shifts"
+  },
+  "description": "Table: `EmployeeShifts`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| employee_id      | int     |\n| start_time       | time    |\n| end_time         | time    |\n+------------------+---------+\n(employee_id, start_time) is the unique key for this table.\nThis table contains information about the shifts worked by employees, including the start and end times on a specific date.\n\nWrite a solution to count the number of **overlapping shifts** for each employee. Two shifts are considered overlapping if one shift&rsquo;s `end_time` is **later than** another shift&rsquo;s `start_time`.\n\n*Return the result table ordered by* `employee_id` *in **ascending** order*.\n\nThe query result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_overlapping_shifts(employee_shifts: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_overlapping_shifts(employee_shifts: pd.DataFrame) -> pd.DataFrame:\r\n    merged_shifts = employee_shifts.merge(\r\n        employee_shifts, on=\"employee_id\", suffixes=(\"_t1\", \"_t2\")\r\n    )\r\n    overlapping_shifts = merged_shifts[\r\n        (merged_shifts[\"start_time_t1\"] < merged_shifts[\"start_time_t2\"])\r\n        & (merged_shifts[\"end_time_t1\"] > merged_shifts[\"start_time_t2\"])\r\n    ]\r\n    result = (\r\n        overlapping_shifts.groupby(\"employee_id\")\r\n        .size()\r\n        .reset_index(name=\"overlapping_shifts\")\r\n    )\r\n    result = result[result[\"overlapping_shifts\"] > 0]\r\n    result = result.sort_values(\"employee_id\").reset_index(drop=True)\r\n    return result"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Overlapping Shifts.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

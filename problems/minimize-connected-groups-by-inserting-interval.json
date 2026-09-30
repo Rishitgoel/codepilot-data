@@ -1,0 +1,55 @@
+{
+  "id": 3323,
+  "slug": "minimize-connected-groups-by-inserting-interval",
+  "title": "Minimize Connected Groups by Inserting Interval",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "D-E-Shaw"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimize%20Connected%20Groups%20by%20Inserting%20Interval"
+  },
+  "description": "You are given a 2D array `intervals`, where `intervals[i] = [starti, endi]` represents the start and the end of interval `i`. You are also given an integer `k`.\n\nYou must add **exactly one** new interval `[startnew, endnew]` to the array such that:\n\n\tThe length of the new interval, `endnew - startnew`, is at most `k`.\n\tAfter adding, the number of **connected groups** in `intervals` is **minimized**.\n\nA **connected group** of intervals is a maximal collection of intervals that, when considered together, cover a continuous range from the smallest point to the largest point with no gaps between them. Here are some examples:\n\n\tA group of intervals `[[1, 2], [2, 5], [3, 3]]` is connected because together they cover the range from 1 to 5 without any gaps.\n\tHowever, a group of intervals `[[1, 2], [3, 4]]` is not connected because the segment `(2, 3)` is not covered.\n\nReturn the **minimum** number of connected groups after adding **exactly one** new interval to the array.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= intervals.length <= 10^5",
+    "intervals[i] == [starti, endi]",
+    "1 <= starti <= endi <= 10^9",
+    "1 <= k <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int minConnectedGroups(vector<vector<int>>& intervals, int k) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int minConnectedGroups(int[][] intervals, int k) {\r\n        \n    }\n};\n",
+    "javascript": "function minConnectedGroups(intervals: number[][], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:\r\n        intervals.sort()\r\n        merged = [intervals[0]]\r\n        for s, e in intervals[1:]:\r\n            if merged[-1][1] < s:\r\n                merged.append([s, e])\r\n            else:\r\n                merged[-1][1] = max(merged[-1][1], e)\r\n        ans = len(merged)\r\n        for i, (_, e) in enumerate(merged):\r\n            j = bisect_left(merged, [e + k + 1, 0])\r\n            ans = min(ans, len(merged) - (j - i - 1))\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    int minConnectedGroups(vector<vector<int>>& intervals, int k) {\r\n        sort(intervals.begin(), intervals.end());\r\n        vector<vector<int>> merged;\r\n        for (const auto& interval : intervals) {\r\n            int s = interval[0], e = interval[1];\r\n            if (merged.empty() || merged.back()[1] < s) {\r\n                merged.emplace_back(interval);\r\n            } else {\r\n                merged.back()[1] = max(merged.back()[1], e);\r\n            }\r\n        }\r\n        int ans = merged.size();\r\n        for (int i = 0; i < merged.size(); ++i) {\r\n            auto& interval = merged[i];\r\n            int j = lower_bound(merged.begin(), merged.end(), vector<int>{interval[1] + k + 1, 0}) - merged.begin();\r\n            ans = min(ans, (int) merged.size() - (j - i - 1));\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int minConnectedGroups(int[][] intervals, int k) {\r\n        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));\r\n        List<int[]> merged = new ArrayList<>();\r\n        merged.add(intervals[0]);\r\n        for (int i = 1; i < intervals.length; i++) {\r\n            int[] interval = intervals[i];\r\n            int[] last = merged.get(merged.size() - 1);\r\n            if (last[1] < interval[0]) {\r\n                merged.add(interval);\r\n            } else {\r\n                last[1] = Math.max(last[1], interval[1]);\r\n            }\r\n        }\r\n\r\n        int ans = merged.size();\r\n        for (int i = 0; i < merged.size(); i++) {\r\n            int[] interval = merged.get(i);\r\n            int j = binarySearch(merged, interval[1] + k + 1);\r\n            ans = Math.min(ans, merged.size() - (j - i - 1));\r\n        }\r\n\r\n        return ans;\r\n    }\r\n\r\n    private int binarySearch(List<int[]> nums, int x) {\r\n        int l = 0, r = nums.size();\r\n        while (l < r) {\r\n            int mid = (l + r) >> 1;\r\n            if (nums.get(mid)[0] >= x) {\r\n                r = mid;\r\n            } else {\r\n                l = mid + 1;\r\n            }\r\n        }\r\n        return l;\r\n    }\r\n}",
+    "javascript": "function minConnectedGroups(intervals: number[][], k: number): number {\n    intervals.sort((a, b) => a[0] - b[0]);\n    const merged: number[][] = [];\n    for (const interval of intervals) {\n        const [s, e] = interval;\n        if (merged.length === 0 || merged.at(-1)![1] < s) {\n            merged.push(interval);\n        } else {\n            merged.at(-1)![1] = Math.max(merged.at(-1)![1], e);\n        }\n    }\n    const search = (x: number): number => {\n        let [l, r] = [0, merged.length];\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (merged[mid][0] >= x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    };\n    let ans = merged.length;\n    for (let i = 0; i < merged.length; ++i) {\n        const j = search(merged[i][1] + k + 1);\n        ans = Math.min(ans, merged.length - (j - i - 1));\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimize Connected Groups by Inserting Interval.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

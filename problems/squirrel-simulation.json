@@ -1,0 +1,67 @@
+{
+  "id": 573,
+  "slug": "squirrel-simulation",
+  "title": "Squirrel Simulation",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Square"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Squirrel%20Simulation"
+  },
+  "description": "You are given two integers `height` and `width` representing a garden of size `height x width`. You are also given:\n\n\tan array `tree` where `tree = [treer, treec]` is the position of the tree in the garden,\n\tan array `squirrel` where `squirrel = [squirrelr, squirrelc]` is the position of the squirrel in the garden,\n\tand an array `nuts` where `nuts[i] = [nutir, nutic]` is the position of the `i^th` nut in the garden.\n\nThe squirrel can only take at most one nut at one time and can move in four directions: up, down, left, and right, to the adjacent cell.\n\nReturn *the **minimal distance** for the squirrel to collect all the nuts and put them under the tree one by one*.\n\nThe **distance** is the number of moves.",
+  "examples": [
+    {
+      "input": "height = 5, width = 7, tree = [2,2], squirrel = [4,4], nuts = [[3,0], [2,5]]",
+      "output": "12",
+      "explanation": "The squirrel should go to the nut at [2, 5] first to achieve a minimal distance."
+    },
+    {
+      "input": "height = 1, width = 3, tree = [0,1], squirrel = [0,0], nuts = [[0,2]]",
+      "output": "3"
+    }
+  ],
+  "constraints": [
+    "1 <= height, width <= 100",
+    "tree.length == 2",
+    "squirrel.length == 2",
+    "1 <= nuts.length <= 5000",
+    "nuts[i].length == 2",
+    "0 <= treer, squirrelr, nutir <= height",
+    "0 <= treec, squirrelc, nutic <= width"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minDistance(\n        self,\n        height: int,\n        width: int,\n        tree: List[int],\n        squirrel: List[int],\n        nuts: List[List[int]],\n    ) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {\n        \n    }\n};\n",
+    "java": "import static java.lang.Math.*;\n\nclass Solution {\n    public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {\n        \n    }\n};\n",
+    "javascript": "function minDistance(\n    height: number,\n    width: number,\n    tree: number[],\n    squirrel: number[],\n    nuts: number[][],\n): number {\n    const [tr, tc] = tree;\n    const [sr, sc] = squirrel;\n    const s = nuts.reduce((acc, [r, c]) => acc + (Math.abs(tr - r) + Math.abs(tc - c)) * 2, 0);\n    let ans = Infinity;\n    for (const [r, c] of nuts) {\n        const a = Math.abs(tr - r) + Math.abs(tc - c);\n        const b = Math.abs(sr - r) + Math.abs(sc - c);\n        ans = Math.min(ans, s - a + b);\n    }\n    return ans;\n}"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minDistance(\n        self,\n        height: int,\n        width: int,\n        tree: List[int],\n        squirrel: List[int],\n        nuts: List[List[int]],\n    ) -> int:\n        tr, tc = tree\n        sr, sc = squirrel\n        s = sum(abs(r - tr) + abs(c - tc) for r, c in nuts) * 2\n        ans = inf\n        for r, c in nuts:\n            a = abs(r - tr) + abs(c - tc)\n            b = abs(r - sr) + abs(c - sc)\n            ans = min(ans, s - a + b)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {\n        int tr = tree[0], tc = tree[1];\n        int sr = squirrel[0], sc = squirrel[1];\n        int s = 0;\n        for (const auto& e : nuts) {\n            s += abs(e[0] - tr) + abs(e[1] - tc);\n        }\n        s <<= 1;\n        int ans = INT_MAX;\n        for (const auto& e : nuts) {\n            int a = abs(e[0] - tr) + abs(e[1] - tc);\n            int b = abs(e[0] - sr) + abs(e[1] - sc);\n            ans = min(ans, s - a + b);\n        }\n        return ans;\n    }\n};",
+    "java": "import static java.lang.Math.*;\n\nclass Solution {\n    public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {\n        int tr = tree[0], tc = tree[1];\n        int sr = squirrel[0], sc = squirrel[1];\n        int s = 0;\n        for (var e : nuts) {\n            s += abs(e[0] - tr) + abs(e[1] - tc);\n        }\n        s <<= 1;\n        int ans = Integer.MAX_VALUE;\n        for (var e : nuts) {\n            int a = abs(e[0] - tr) + abs(e[1] - tc);\n            int b = abs(e[0] - sr) + abs(e[1] - sc);\n            ans = min(ans, s - a + b);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minDistance(\n    height: number,\n    width: number,\n    tree: number[],\n    squirrel: number[],\n    nuts: number[][],\n): number {\n    const [tr, tc] = tree;\n    const [sr, sc] = squirrel;\n    const s = nuts.reduce((acc, [r, c]) => acc + (Math.abs(tr - r) + Math.abs(tc - c)) * 2, 0);\n    let ans = Infinity;\n    for (const [r, c] of nuts) {\n        const a = Math.abs(tr - r) + Math.abs(tc - c);\n        const b = Math.abs(sr - r) + Math.abs(sc - c);\n        ans = Math.min(ans, s - a + b);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "5, width = 7, tree = [2,2], squirrel = [4,4], nuts = [[3,0], [2,5]]",
+      "expected": "12"
+    },
+    {
+      "input": "1, width = 3, tree = [0,1], squirrel = [0,0], nuts = [[0,2]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Squirrel Simulation.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

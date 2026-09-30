@@ -1,0 +1,53 @@
+{
+  "id": 3221,
+  "slug": "maximum-array-hopping-score-ii",
+  "title": "Maximum Array Hopping Score II",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Zluri"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Array%20Hopping%20Score%20II"
+  },
+  "description": "Given an array `nums`, you have to get the **maximum** score starting from index 0 and **hopping** until you reach the last element of the array.\n\nIn each **hop**, you can jump from index `i` to an index `j > i`, and you get a **score** of `(j - i) * nums[j]`.\n\nReturn the *maximum score* you can get.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxScore(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public long maxScore(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function maxScore(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        stk = []\r\n        for i, x in enumerate(nums):\r\n            while stk and nums[stk[-1]] <= x:\r\n                stk.pop()\r\n            stk.append(i)\r\n        ans = i = 0\r\n        for j in stk:\r\n            ans += nums[j] * (j - i)\r\n            i = j\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxScore(vector<int>& nums) {\r\n        vector<int> stk;\r\n        for (int i = 0; i < nums.size(); ++i) {\r\n            while (stk.size() && nums[stk.back()] <= nums[i]) {\r\n                stk.pop_back();\r\n            }\r\n            stk.push_back(i);\r\n        }\r\n        long long ans = 0, i = 0;\r\n        for (int j : stk) {\r\n            ans += (j - i) * nums[j];\r\n            i = j;\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public long maxScore(int[] nums) {\r\n        Deque<Integer> stk = new ArrayDeque<>();\r\n        for (int i = 0; i < nums.length; ++i) {\r\n            while (!stk.isEmpty() && nums[stk.peek()] <= nums[i]) {\r\n                stk.pop();\r\n            }\r\n            stk.push(i);\r\n        }\r\n        long ans = 0, i = 0;\r\n        while (!stk.isEmpty()) {\r\n            int j = stk.pollLast();\r\n            ans += (j - i) * nums[j];\r\n            i = j;\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maxScore(nums: number[]): number {\n    const stk: number[] = [];\n    for (let i = 0; i < nums.length; ++i) {\n        while (stk.length && nums[stk.at(-1)!] <= nums[i]) {\n            stk.pop();\n        }\n        stk.push(i);\n    }\n    let ans = 0;\n    let i = 0;\n    for (const j of stk) {\n        ans += (j - i) * nums[j];\n        i = j;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Array Hopping Score II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

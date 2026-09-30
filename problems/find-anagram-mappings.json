@@ -1,0 +1,64 @@
+{
+  "id": 760,
+  "slug": "find-anagram-mappings",
+  "title": "Find Anagram Mappings",
+  "difficulty": "Easy",
+  "rating": 1173,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Anagram%20Mappings"
+  },
+  "description": "You are given two integer arrays `nums1` and `nums2` where `nums2` is **an anagram** of `nums1`. Both arrays may contain duplicates.\n\nReturn *an index mapping array *`mapping`* from *`nums1`* to *`nums2`* where *`mapping[i] = j`* means the *`i^th`* element in *`nums1`* appears in *`nums2`* at index *`j`. If there are multiple answers, return **any of them**.\n\nAn array `a` is **an anagram** of an array `b` means `b` is made by randomizing the order of the elements in `a`.",
+  "examples": [
+    {
+      "input": "nums1 = [12,28,46,32,50], nums2 = [50,12,32,46,28]",
+      "output": "[1,4,3,2,0]",
+      "explanation": "As mapping[0] = 1 because the 0th element of nums1 appears at nums2[1], and mapping[1] = 4 because the 1st element of nums1 appears at nums2[4], and so on."
+    },
+    {
+      "input": "nums1 = [84,46], nums2 = [84,46]",
+      "output": "[0,1]"
+    }
+  ],
+  "constraints": [
+    "1 <= nums1.length <= 100",
+    "nums2.length == nums1.length",
+    "0 <= nums1[i], nums2[i] <= 10^5",
+    "nums2 is an anagram of nums1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] anagramMappings(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
+    "javascript": "function anagramMappings(nums1: number[], nums2: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        d = {x: i for i, x in enumerate(nums2)}\n        return [d[x] for x in nums1]",
+    "cpp": "class Solution {\npublic:\n    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2) {\n        int n = nums1.size();\n        unordered_map<int, int> d;\n        for (int i = 0; i < n; ++i) {\n            d[nums2[i]] = i;\n        }\n        vector<int> ans;\n        for (int x : nums1) {\n            ans.push_back(d[x]);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] anagramMappings(int[] nums1, int[] nums2) {\n        int n = nums1.length;\n        Map<Integer, Integer> d = new HashMap<>(n);\n        for (int i = 0; i < n; ++i) {\n            d.put(nums2[i], i);\n        }\n        int[] ans = new int[n];\n        for (int i = 0; i < n; ++i) {\n            ans[i] = d.get(nums1[i]);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function anagramMappings(nums1: number[], nums2: number[]): number[] {\n    const d: Map<number, number> = new Map();\n    for (let i = 0; i < nums2.length; ++i) {\n        d.set(nums2[i], i);\n    }\n    return nums1.map(num => d.get(num)!);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[12,28,46,32,50], nums2 = [50,12,32,46,28]",
+      "expected": "[1,4,3,2,0]"
+    },
+    {
+      "input": "[84,46], nums2 = [84,46]",
+      "expected": "[0,1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Anagram Mappings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

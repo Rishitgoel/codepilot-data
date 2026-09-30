@@ -1,0 +1,84 @@
+{
+  "id": 1548,
+  "slug": "the-most-similar-path-in-a-graph",
+  "title": "The Most Similar Path in a Graph",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "TikTok"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Most%20Similar%20Path%20in%20a%20Graph"
+  },
+  "description": "We have `n` cities and `m` bi-directional `roads` where `roads[i] = [ai, bi]` connects city `ai` with city `bi`. Each city has a name consisting of exactly three upper-case English letters given in the string array `names`. Starting at any city `x`, you can reach any city `y` where `y != x` (i.e., the cities and the roads are forming an undirected connected graph).\n\nYou will be given a string array `targetPath`. You should find a path in the graph of the **same length** and with the **minimum edit distance** to `targetPath`.\n\nYou need to return *the order of the nodes in the path with the minimum edit distance*. The path should be of the same length of `targetPath` and should be valid (i.e., there should be a direct road between `ans[i]` and `ans[i + 1]`). If there are multiple answers return any one of them.\n\nThe **edit distance** is defined as follows:",
+  "examples": [
+    {
+      "input": "n = 5, roads = [[0,2],[0,3],[1,2],[1,3],[1,4],[2,4]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"DXB\",\"HND\",\"LAX\"]",
+      "output": "[0,2,4,2]",
+      "explanation": "[0,2,4,2], [0,3,0,2] and [0,3,1,2] are accepted answers.\n[0,2,4,2] is equivalent to [\"ATL\",\"LAX\",\"HND\",\"LAX\"] which has edit distance = 1 with targetPath.\n[0,3,0,2] is equivalent to [\"ATL\",\"DXB\",\"ATL\",\"LAX\"] which has edit distance = 1 with targetPath.\n[0,3,1,2] is equivalent to [\"ATL\",\"DXB\",\"PEK\",\"LAX\"] which has edit distance = 1 with targetPath."
+    },
+    {
+      "input": "n = 4, roads = [[1,0],[2,0],[3,0],[2,1],[3,1],[3,2]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\"], targetPath = [\"ABC\",\"DEF\",\"GHI\",\"JKL\",\"MNO\",\"PQR\",\"STU\",\"VWX\"]",
+      "output": "[0,1,0,1,0,1,0,1]",
+      "explanation": "Any path in this graph has edit distance = 8 with targetPath."
+    },
+    {
+      "input": "n = 6, roads = [[0,1],[1,2],[2,3],[3,4],[4,5]], names = [\"ATL\",\"PEK\",\"LAX\",\"ATL\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"DXB\",\"HND\",\"DXB\",\"ATL\",\"LAX\",\"PEK\"]",
+      "output": "[3,4,5,4,3,2,1]",
+      "explanation": "[3,4,5,4,3,2,1] is the only path with edit distance = 0 with targetPath.\nIt's equivalent to [\"ATL\",\"DXB\",\"HND\",\"DXB\",\"ATL\",\"LAX\",\"PEK\"]"
+    }
+  ],
+  "constraints": [
+    "2 <= n <= 100",
+    "m == roads.length",
+    "n - 1 <= m <= (n * (n - 1) / 2)",
+    "0 <= ai, bi <= n - 1",
+    "ai != bi",
+    "The graph is guaranteed to be connected and each pair of nodes may have at most one direct road.",
+    "names.length == n",
+    "names[i].length == 3",
+    "names[i] consists of upper-case English letters.",
+    "There can be two cities with the same name.",
+    "1 <= targetPath.length <= 100",
+    "targetPath[i].length == 3",
+    "targetPath[i] consists of upper-case English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def mostSimilar(\n        self, n: int, roads: List[List[int]], names: List[str], targetPath: List[str]\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> mostSimilar(int n, vector<vector<int>>& roads, vector<string>& names, vector<string>& targetPath) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> mostSimilar(int n, int[][] roads, String[] names, String[] targetPath) {\n        \n    }\n};\n",
+    "javascript": "function mostSimilar(\n    n: number,\n    roads: number[][],\n    names: string[],\n    targetPath: string[],\n): number[] {\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of roads) {\n        g[a].push(b);\n        g[b].push(a);\n    }\n    const m = targetPath.length;\n    const f = Array.from({ length: m }, () => Array.from({ length: n }, () => Infinity));\n    const pre: number[][] = Array.from({ length: m }, () => Array.from({ length: n }, () => -1));\n    for (let j = 0; j < n; ++j) {\n        f[0][j] = names[j] === targetPath[0] ? 0 : 1;\n    }\n    for (let i = 1; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            for (const k of g[j]) {\n                const t = f[i - 1][k] + (names[j] === targetPath[i] ? 0 : 1);\n                if (t < f[i][j]) {\n                    f[i][j] = t;\n                    pre[i][j] = k;\n                }\n            }\n        }\n    }\n    let k = 0;\n    let mi = Infinity;\n    for (let j = 0; j < n; ++j) {\n        if (f[m - 1][j] < mi) {\n            mi = f[m - 1][j];\n            k = j;\n        }\n    }\n    const ans: number[] = Array(m).fill(0);\n    for (let i = m - 1; ~i; --i) {\n        ans[i] = k;\n        k = pre[i][k];\n    }\n    return ans;\n}"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def mostSimilar(\n        self, n: int, roads: List[List[int]], names: List[str], targetPath: List[str]\n    ) -> List[int]:\n        g = [[] for _ in range(n)]\n        for a, b in roads:\n            g[a].append(b)\n            g[b].append(a)\n        m = len(targetPath)\n        f = [[inf] * n for _ in range(m)]\n        pre = [[-1] * n for _ in range(m)]\n        for j, s in enumerate(names):\n            f[0][j] = targetPath[0] != s\n        for i in range(1, m):\n            for j in range(n):\n                for k in g[j]:\n                    if (t := f[i - 1][k] + (targetPath[i] != names[j])) < f[i][j]:\n                        f[i][j] = t\n                        pre[i][j] = k\n        k = 0\n        mi = inf\n        for j in range(n):\n            if f[-1][j] < mi:\n                mi = f[-1][j]\n                k = j\n        ans = [0] * m\n        for i in range(m - 1, -1, -1):\n            ans[i] = k\n            k = pre[i][k]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> mostSimilar(int n, vector<vector<int>>& roads, vector<string>& names, vector<string>& targetPath) {\n        vector<int> g[n];\n        for (auto& r : roads) {\n            int a = r[0], b = r[1];\n            g[a].push_back(b);\n            g[b].push_back(a);\n        }\n        int m = targetPath.size();\n        int f[m][n];\n        int pre[m][n];\n        memset(f, 0x3f, sizeof(f));\n        memset(pre, -1, sizeof(pre));\n        for (int j = 0; j < n; ++j) {\n            f[0][j] = targetPath[0] != names[j];\n        }\n        for (int i = 1; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                for (int k : g[j]) {\n                    int t = f[i - 1][k] + (targetPath[i] != names[j]);\n                    if (t < f[i][j]) {\n                        f[i][j] = t;\n                        pre[i][j] = k;\n                    }\n                }\n            }\n        }\n        int k = 0;\n        int mi = 1 << 30;\n        for (int j = 0; j < n; ++j) {\n            if (f[m - 1][j] < mi) {\n                mi = f[m - 1][j];\n                k = j;\n            }\n        }\n        vector<int> ans(m);\n        for (int i = m - 1; ~i; --i) {\n            ans[i] = k;\n            k = pre[i][k];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> mostSimilar(int n, int[][] roads, String[] names, String[] targetPath) {\n        List<Integer>[] g = new List[n];\n        Arrays.setAll(g, i -> new ArrayList<>());\n        for (int[] r : roads) {\n            int a = r[0], b = r[1];\n            g[a].add(b);\n            g[b].add(a);\n        }\n        int m = targetPath.length;\n        final int inf = 1 << 30;\n        int[][] f = new int[m][n];\n        int[][] pre = new int[m][n];\n        for (int i = 0; i < m; i++) {\n            Arrays.fill(f[i], inf);\n            Arrays.fill(pre[i], -1);\n        }\n        for (int j = 0; j < n; ++j) {\n            f[0][j] = targetPath[0].equals(names[j]) ? 0 : 1;\n        }\n        for (int i = 1; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                for (int k : g[j]) {\n                    int t = f[i - 1][k] + (targetPath[i].equals(names[j]) ? 0 : 1);\n                    if (t < f[i][j]) {\n                        f[i][j] = t;\n                        pre[i][j] = k;\n                    }\n                }\n            }\n        }\n        int mi = inf, k = 0;\n        for (int j = 0; j < n; ++j) {\n            if (f[m - 1][j] < mi) {\n                mi = f[m - 1][j];\n                k = j;\n            }\n        }\n        List<Integer> ans = new ArrayList<>();\n        for (int i = m - 1; i >= 0; --i) {\n            ans.add(k);\n            k = pre[i][k];\n        }\n        Collections.reverse(ans);\n        return ans;\n    }\n}",
+    "javascript": "function mostSimilar(\n    n: number,\n    roads: number[][],\n    names: string[],\n    targetPath: string[],\n): number[] {\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of roads) {\n        g[a].push(b);\n        g[b].push(a);\n    }\n    const m = targetPath.length;\n    const f = Array.from({ length: m }, () => Array.from({ length: n }, () => Infinity));\n    const pre: number[][] = Array.from({ length: m }, () => Array.from({ length: n }, () => -1));\n    for (let j = 0; j < n; ++j) {\n        f[0][j] = names[j] === targetPath[0] ? 0 : 1;\n    }\n    for (let i = 1; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            for (const k of g[j]) {\n                const t = f[i - 1][k] + (names[j] === targetPath[i] ? 0 : 1);\n                if (t < f[i][j]) {\n                    f[i][j] = t;\n                    pre[i][j] = k;\n                }\n            }\n        }\n    }\n    let k = 0;\n    let mi = Infinity;\n    for (let j = 0; j < n; ++j) {\n        if (f[m - 1][j] < mi) {\n            mi = f[m - 1][j];\n            k = j;\n        }\n    }\n    const ans: number[] = Array(m).fill(0);\n    for (let i = m - 1; ~i; --i) {\n        ans[i] = k;\n        k = pre[i][k];\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "5, roads = [[0,2],[0,3],[1,2],[1,3],[1,4],[2,4]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"DXB\",\"HND\",\"LAX\"]",
+      "expected": "[0,2,4,2]"
+    },
+    {
+      "input": "4, roads = [[1,0],[2,0],[3,0],[2,1],[3,1],[3,2]], names = [\"ATL\",\"PEK\",\"LAX\",\"DXB\"], targetPath = [\"ABC\",\"DEF\",\"GHI\",\"JKL\",\"MNO\",\"PQR\",\"STU\",\"VWX\"]",
+      "expected": "[0,1,0,1,0,1,0,1]"
+    },
+    {
+      "input": "6, roads = [[0,1],[1,2],[2,3],[3,4],[4,5]], names = [\"ATL\",\"PEK\",\"LAX\",\"ATL\",\"DXB\",\"HND\"], targetPath = [\"ATL\",\"DXB\",\"HND\",\"DXB\",\"ATL\",\"LAX\",\"PEK\"]",
+      "expected": "[3,4,5,4,3,2,1]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Most Similar Path in a Graph.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

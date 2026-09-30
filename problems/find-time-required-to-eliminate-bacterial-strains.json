@@ -1,0 +1,57 @@
+{
+  "id": 3506,
+  "slug": "find-time-required-to-eliminate-bacterial-strains",
+  "title": "Find Time Required to Eliminate Bacterial Strains",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Time%20Required%20to%20Eliminate%20Bacterial%20Strains"
+  },
+  "description": "You are given an integer array `timeReq` and an integer `splitTime`.\n\nIn the microscopic world of the human body, the immune system faces an extraordinary challenge: combatting a rapidly multiplying bacterial colony that threatens the body's survival.\n\nInitially, only one **white blood cell** (**WBC**) is deployed to eliminate the bacteria. However, the lone WBC quickly realizes it cannot keep up with the bacterial growth rate.\n\nThe WBC devises a clever strategy to fight the bacteria:\n\n\tThe `i^th` bacterial strain takes `timeReq[i]` units of time to be eliminated.\n\tA single WBC can eliminate **only one** bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks.\n\tA WBC can split itself into two WBCs, but this requires `splitTime` units of time. Once split, the two WBCs can work in **parallel** on eliminating the bacteria.\n\t*Only one* WBC can work on a single bacterial strain. Multiple WBCs **cannot** attack one strain in parallel.\n\nYou must determine the **minimum** time required to eliminate all the bacterial strains.\n\n**Note** that the bacterial strains can be eliminated in any order.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "2 <= timeReq.length <= 10^5",
+    "1 <= timeReq[i] <= 10^9",
+    "1 <= splitTime <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long minEliminationTime(vector<int>& timeReq, int splitTime) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long minEliminationTime(int[] timeReq, int splitTime) {\n        \n    }\n};\n",
+    "javascript": "function minEliminationTime(timeReq: number[], splitTime: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:\n        heapify(timeReq)\n        while len(timeReq) > 1:\n            heappop(timeReq)\n            heappush(timeReq, heappop(timeReq) + splitTime)\n        return timeReq[0]",
+    "cpp": "class Solution {\npublic:\n    long long minEliminationTime(vector<int>& timeReq, int splitTime) {\n        using ll = long long;\n        priority_queue<ll, vector<ll>, greater<ll>> pq;\n        for (int v : timeReq) {\n            pq.push(v);\n        }\n        while (pq.size() > 1) {\n            pq.pop();\n            ll x = pq.top();\n            pq.pop();\n            pq.push(x + splitTime);\n        }\n        return pq.top();\n    }\n};",
+    "java": "class Solution {\n    public long minEliminationTime(int[] timeReq, int splitTime) {\n        PriorityQueue<Long> q = new PriorityQueue<>();\n        for (int x : timeReq) {\n            q.offer((long) x);\n        }\n        while (q.size() > 1) {\n            q.poll();\n            q.offer(q.poll() + splitTime);\n        }\n        return q.poll();\n    }\n}",
+    "javascript": "function minEliminationTime(timeReq: number[], splitTime: number): number {\n    const pq = new MinPriorityQueue<number>();\n    for (const b of timeReq) {\n        pq.enqueue(b);\n    }\n    while (pq.size() > 1) {\n        pq.dequeue();\n        pq.enqueue(pq.dequeue() + splitTime);\n    }\n    return pq.dequeue();\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Time Required to Eliminate Bacterial Strains.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

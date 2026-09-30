@@ -1,0 +1,80 @@
+{
+  "id": 2291,
+  "slug": "maximum-profit-from-trading-stocks",
+  "title": "Maximum Profit From Trading Stocks",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Adobe",
+    "Oracle",
+    "Walmart Labs",
+    "Snowflake",
+    "ServiceNow",
+    "Blackrock"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Profit%20From%20Trading%20Stocks"
+  },
+  "description": "You are given two **0-indexed** integer arrays of the same length `present` and `future` where `present[i]` is the current price of the `i^th` stock and `future[i]` is the price of the `i^th` stock a year in the future. You may buy each stock at most **once**. You are also given an integer `budget` representing the amount of money you currently have.\n\nReturn *the maximum amount of profit you can make.*",
+  "examples": [
+    {
+      "input": "present = [5,4,6,2,3], future = [8,5,4,3,5], budget = 10",
+      "output": "6",
+      "explanation": "One possible way to maximize your profit is to:\nBuy the 0th, 3rd, and 4th stocks for a total of 5 + 2 + 3 = 10.\nNext year, sell all three stocks for a total of 8 + 3 + 5 = 16.\nThe profit you made is 16 - 10 = 6.\nIt can be shown that the maximum profit you can make is 6."
+    },
+    {
+      "input": "present = [2,2,5], future = [3,4,10], budget = 6",
+      "output": "5",
+      "explanation": "The only possible way to maximize your profit is to:\nBuy the 2nd stock, and make a profit of 10 - 5 = 5.\nIt can be shown that the maximum profit you can make is 5."
+    },
+    {
+      "input": "present = [3,3,12], future = [0,3,15], budget = 10",
+      "output": "0",
+      "explanation": "One possible way to maximize your profit is to:\nBuy the 1st stock, and make a profit of 3 - 3 = 0.\nIt can be shown that the maximum profit you can make is 0."
+    }
+  ],
+  "constraints": [
+    "n == present.length == future.length",
+    "1 <= n <= 1000",
+    "0 <= present[i], future[i] <= 100",
+    "0 <= budget <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumProfit(self, present: List[int], future: List[int], budget: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maximumProfit(vector<int>& present, vector<int>& future, int budget) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maximumProfit(int[] present, int[] future, int budget) {\n        \n    }\n};\n",
+    "javascript": "function maximumProfit(present: number[], future: number[], budget: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumProfit(self, present: List[int], future: List[int], budget: int) -> int:\n        f = [[0] * (budget + 1) for _ in range(len(present) + 1)]\n        for i, w in enumerate(present, 1):\n            for j in range(budget + 1):\n                f[i][j] = f[i - 1][j]\n                if j >= w and future[i - 1] > w:\n                    f[i][j] = max(f[i][j], f[i - 1][j - w] + future[i - 1] - w)\n        return f[-1][-1]",
+    "cpp": "class Solution {\npublic:\n    int maximumProfit(vector<int>& present, vector<int>& future, int budget) {\n        int n = present.size();\n        int f[n + 1][budget + 1];\n        memset(f, 0, sizeof f);\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 0; j <= budget; ++j) {\n                f[i][j] = f[i - 1][j];\n                if (j >= present[i - 1]) {\n                    f[i][j] = max(f[i][j], f[i - 1][j - present[i - 1]] + future[i - 1] - present[i - 1]);\n                }\n            }\n        }\n        return f[n][budget];\n    }\n};",
+    "java": "class Solution {\n    public int maximumProfit(int[] present, int[] future, int budget) {\n        int n = present.length;\n        int[][] f = new int[n + 1][budget + 1];\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 0; j <= budget; ++j) {\n                f[i][j] = f[i - 1][j];\n                if (j >= present[i - 1]) {\n                    f[i][j] = Math.max(\n                        f[i][j], f[i - 1][j - present[i - 1]] + future[i - 1] - present[i - 1]);\n                }\n            }\n        }\n        return f[n][budget];\n    }\n}",
+    "javascript": "function maximumProfit(present: number[], future: number[], budget: number): number {\n    const f = new Array(budget + 1).fill(0);\n    for (let i = 0; i < present.length; ++i) {\n        const [a, b] = [present[i], future[i]];\n        for (let j = budget; j >= a; --j) {\n            f[j] = Math.max(f[j], f[j - a] + b - a);\n        }\n    }\n    return f[budget];\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,4,6,2,3], future = [8,5,4,3,5], budget = 10",
+      "expected": "6"
+    },
+    {
+      "input": "[2,2,5], future = [3,4,10], budget = 6",
+      "expected": "5"
+    },
+    {
+      "input": "[3,3,12], future = [0,3,15], budget = 10",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Profit From Trading Stocks.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

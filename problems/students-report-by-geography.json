@@ -1,0 +1,42 @@
+{
+  "id": 618,
+  "slug": "students-report-by-geography",
+  "title": "Students Report By Geography",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Students%20Report%20By%20Geography"
+  },
+  "description": "Table: `Student`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| name        | varchar |\n| continent   | varchar |\n+-------------+---------+\nThis table may contain duplicate rows.\nEach row of this table indicates the name of a student and the continent they came from.\n\n \n\nA school has students from Asia, Europe, and America.\n\nWrite a solution to pivot the continent column in the `Student` table so that each name is **sorted alphabetically** and displayed underneath its corresponding continent. The output headers should be `America`, `Asia`, and `Europe`, respectively.\n\nThe test cases are generated so that the student number from America is not less than either Asia or Europe.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Student table:\n+--------+-----------+\n| name   | continent |\n+--------+-----------+\n| Jane   | America   |\n| Pascal | Europe    |\n| Xi     | Asia      |\n| Jack   | America   |\n+--------+-----------+",
+      "output": "+---------+------+--------+\n| America | Asia | Europe |\n+---------+------+--------+\n| Jack    | Xi   | Pascal |\n| Jane    | null | null   |\n+---------+------+--------+"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Student table:\n+--------+-----------+\n| name   | continent |\n+--------+-----------+\n| Jane   | America   |\n| Pascal | Europe    |\n| Xi     | Asia      |\n| Jack   | America   |\n+--------+-----------+",
+      "expected": "+---------+------+--------+\n| America | Asia | Europe |\n+---------+------+--------+\n| Jack    | Xi   | Pascal |\n| Jane    | null | null   |\n+---------+------+--------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Students Report By Geography.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

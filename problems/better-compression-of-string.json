@@ -1,0 +1,56 @@
+{
+  "id": 3167,
+  "slug": "better-compression-of-string",
+  "title": "Better Compression of String",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Goldman Sachs",
+    "Riot Games"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Better%20Compression%20of%20String"
+  },
+  "description": "You are given a string `compressed` representing a compressed version of a string. The format is a character followed by its frequency. For example, `\"a3b1a1c2\"` is a compressed version of the string `\"aaabacc\"`.\n\nWe seek a **better compression** with the following conditions:\n\n\tEach character should appear **only once** in the compressed version.\n\tThe characters should be in **alphabetical order**.\n\nReturn the *better compression* of `compressed`.\n\n**Note:** In the better version of compression, the order of letters may change, which is acceptable.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= compressed.length <= 6 * 10^4",
+    "compressed consists only of lowercase English letters and digits.",
+    "compressed is a valid compression, i.e., each character is followed by its frequency.",
+    "Frequencies are in the range [1, 10^4] and have no leading zeroes."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def betterCompression(self, compressed: str) -> str:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    string betterCompression(string compressed) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public String betterCompression(String compressed) {\r\n        \n    }\n};\n",
+    "javascript": "function betterCompression(compressed: string): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def betterCompression(self, compressed: str) -> str:\r\n        cnt = Counter()\r\n        i, n = 0, len(compressed)\r\n        while i < n:\r\n            j = i + 1\r\n            x = 0\r\n            while j < n and compressed[j].isdigit():\r\n                x = x * 10 + int(compressed[j])\r\n                j += 1\r\n            cnt[compressed[i]] += x\r\n            i = j\r\n        return \"\".join(sorted(f\"{k}{v}\" for k, v in cnt.items()))",
+    "cpp": "class Solution {\r\npublic:\r\n    string betterCompression(string compressed) {\r\n        map<char, int> cnt;\r\n        int i = 0;\r\n        int n = compressed.length();\r\n        while (i < n) {\r\n            char c = compressed[i];\r\n            int j = i + 1;\r\n            int x = 0;\r\n            while (j < n && isdigit(compressed[j])) {\r\n                x = x * 10 + (compressed[j] - '0');\r\n                j++;\r\n            }\r\n            cnt[c] += x;\r\n            i = j;\r\n        }\r\n        stringstream ans;\r\n        for (const auto& entry : cnt) {\r\n            ans << entry.first << entry.second;\r\n        }\r\n        return ans.str();\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public String betterCompression(String compressed) {\r\n        Map<Character, Integer> cnt = new TreeMap<>();\r\n        int i = 0;\r\n        int n = compressed.length();\r\n        while (i < n) {\r\n            char c = compressed.charAt(i);\r\n            int j = i + 1;\r\n            int x = 0;\r\n            while (j < n && Character.isDigit(compressed.charAt(j))) {\r\n                x = x * 10 + (compressed.charAt(j) - '0');\r\n                j++;\r\n            }\r\n            cnt.merge(c, x, Integer::sum);\r\n            i = j;\r\n        }\r\n        StringBuilder ans = new StringBuilder();\r\n        for (var e : cnt.entrySet()) {\r\n            ans.append(e.getKey()).append(e.getValue());\r\n        }\r\n        return ans.toString();\r\n    }\r\n}",
+    "javascript": "function betterCompression(compressed: string): string {\n    const cnt = new Map<string, number>();\n    const n = compressed.length;\n    let i = 0;\n\n    while (i < n) {\n        const c = compressed[i];\n        let j = i + 1;\n        let x = 0;\n        while (j < n && /\\d/.test(compressed[j])) {\n            x = x * 10 + +compressed[j];\n            j++;\n        }\n        cnt.set(c, (cnt.get(c) || 0) + x);\n        i = j;\n    }\n    const keys = Array.from(cnt.keys()).sort();\n    const ans: string[] = [];\n    for (const k of keys) {\n        ans.push(`${k}${cnt.get(k)}`);\n    }\n    return ans.join('');\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Better Compression of String.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

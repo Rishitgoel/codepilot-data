@@ -1,0 +1,62 @@
+{
+  "id": 1183,
+  "slug": "maximum-number-of-ones",
+  "title": "Maximum Number of Ones",
+  "difficulty": "Hard",
+  "rating": 2367,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Qualcomm"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Ones"
+  },
+  "description": "Consider a matrix `M` with dimensions `width * height`, such that every cell has value `0` or `1`, and any **square** sub-matrix of `M` of size `sideLength * sideLength` has at most `maxOnes` ones.\n\nReturn the maximum possible number of ones that the matrix `M` can have.",
+  "examples": [
+    {
+      "input": "width = 3, height = 3, sideLength = 2, maxOnes = 1",
+      "output": "4",
+      "explanation": "In a 3*3 matrix, no 2*2 sub-matrix can have more than 1 one.\nThe best solution that has 4 ones is:\n[1,0,1]\n[0,0,0]\n[1,0,1]"
+    },
+    {
+      "input": "width = 3, height = 3, sideLength = 2, maxOnes = 2",
+      "output": "6",
+      "explanation": "[1,0,1]\n[1,0,1]\n[1,0,1]"
+    }
+  ],
+  "constraints": [
+    "1 <= width, height <= 100",
+    "1 <= sideLength <= width, height",
+    "0 <= maxOnes <= sideLength * sideLength"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumNumberOfOnes(\n        self, width: int, height: int, sideLength: int, maxOnes: int\n    ) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maximumNumberOfOnes(int width, int height, int sideLength, int maxOnes) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maximumNumberOfOnes(int width, int height, int sideLength, int maxOnes) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumNumberOfOnes(\n        self, width: int, height: int, sideLength: int, maxOnes: int\n    ) -> int:\n        x = sideLength\n        cnt = [0] * (x * x)\n        for i in range(width):\n            for j in range(height):\n                k = (i % x) * x + (j % x)\n                cnt[k] += 1\n        cnt.sort(reverse=True)\n        return sum(cnt[:maxOnes])",
+    "cpp": "class Solution {\npublic:\n    int maximumNumberOfOnes(int width, int height, int sideLength, int maxOnes) {\n        int x = sideLength;\n        vector<int> cnt(x * x);\n        for (int i = 0; i < width; ++i) {\n            for (int j = 0; j < height; ++j) {\n                int k = (i % x) * x + (j % x);\n                ++cnt[k];\n            }\n        }\n        sort(cnt.rbegin(), cnt.rend());\n        int ans = 0;\n        for (int i = 0; i < maxOnes; ++i) {\n            ans += cnt[i];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maximumNumberOfOnes(int width, int height, int sideLength, int maxOnes) {\n        int x = sideLength;\n        int[] cnt = new int[x * x];\n        for (int i = 0; i < width; ++i) {\n            for (int j = 0; j < height; ++j) {\n                int k = (i % x) * x + (j % x);\n                ++cnt[k];\n            }\n        }\n        Arrays.sort(cnt);\n        int ans = 0;\n        for (int i = 0; i < maxOnes; ++i) {\n            ans += cnt[cnt.length - i - 1];\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "3, height = 3, sideLength = 2, maxOnes = 1",
+      "expected": "4"
+    },
+    {
+      "input": "3, height = 3, sideLength = 2, maxOnes = 2",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Ones.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

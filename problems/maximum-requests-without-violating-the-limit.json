@@ -1,0 +1,58 @@
+{
+  "id": 3851,
+  "slug": "maximum-requests-without-violating-the-limit",
+  "title": "Maximum Requests Without Violating the Limit",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Requests%20Without%20Violating%20the%20Limit"
+  },
+  "description": "You are given a 2D integer array `requests`, where `requests[i] = [useri, timei]` indicates that `useri` made a request at `timei`.\n\nYou are also given two integers `k` and `window`.\n\nA user violates the limit if there exists an integer `t` such that the user makes strictly more than `k` requests in the inclusive interval `[t, t + window]`.\n\nYou may drop any number of requests.\n\nReturn an integer denoting the **maximum**​​​​​​​ number of requests that can **remain** such that no user violates the limit.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= requests.length <= 10^5",
+    "requests[i] = [useri, timei]",
+    "1 <= k <= requests.length",
+    "1 <= useri, timei, window <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxRequests(vector<vector<int>>& requests, int k, int window) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxRequests(int[][] requests, int k, int window) {\n        \n    }\n};\n",
+    "javascript": "function maxRequests(requests: number[][], k: number, window: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:\n        g = defaultdict(list)\n        for u, t in requests:\n            g[u].append(t)\n        ans = len(requests)\n        for ts in g.values():\n            ts.sort()\n            kept = deque()\n            for t in ts:\n                while kept and t - kept[0] > window:\n                    kept.popleft()\n                if len(kept) < k:\n                    kept.append(t)\n                else:\n                    ans -= 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxRequests(vector<vector<int>>& requests, int k, int window) {\n        unordered_map<int, vector<int>> g;\n        for (auto& r : requests) {\n            g[r[0]].push_back(r[1]);\n        }\n\n        int ans = requests.size();\n        for (auto& [_, ts] : g) {\n            sort(ts.begin(), ts.end());\n            queue<int> kept;\n            int deletions = 0;\n\n            for (int t : ts) {\n                while (!kept.empty() && t - kept.front() > window) {\n                    kept.pop();\n                }\n                if (kept.size() < k) {\n                    kept.push(t);\n                } else {\n                    ans--;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxRequests(int[][] requests, int k, int window) {\n        Map<Integer, List<Integer>> g = new HashMap<>();\n        for (int[] r : requests) {\n            int u = r[0], t = r[1];\n            g.computeIfAbsent(u, x -> new ArrayList<>()).add(t);\n        }\n\n        int ans = requests.length;\n        ArrayDeque<Integer> kept = new ArrayDeque<>();\n\n        for (List<Integer> ts : g.values()) {\n            Collections.sort(ts);\n            kept.clear();\n            for (int t : ts) {\n                while (!kept.isEmpty() && t - kept.peekFirst() > window) {\n                    kept.pollFirst();\n                }\n                if (kept.size() < k) {\n                    kept.addLast(t);\n                } else {\n                    --ans;\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxRequests(requests: number[][], k: number, window: number): number {\n    const g = new Map<number, number[]>();\n    for (const [u, t] of requests) {\n        if (!g.has(u)) g.set(u, []);\n        g.get(u)!.push(t);\n    }\n    let ans = requests.length;\n    for (const ts of g.values()) {\n        ts.sort((a, b) => a - b);\n        const kept: number[] = [];\n        let head = 0;\n        for (const t of ts) {\n            while (head < kept.length && t - kept[head] > window) {\n                head++;\n            }\n            if (kept.length - head < k) {\n                kept.push(t);\n            } else {\n                --ans;\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Requests Without Violating the Limit.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

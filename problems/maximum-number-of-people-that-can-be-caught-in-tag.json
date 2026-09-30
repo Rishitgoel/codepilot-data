@@ -1,0 +1,74 @@
+{
+  "id": 1989,
+  "slug": "maximum-number-of-people-that-can-be-caught-in-tag",
+  "title": "Maximum Number of People That Can Be Caught in Tag",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20People%20That%20Can%20Be%20Caught%20in%20Tag"
+  },
+  "description": "You are playing a game of tag with your friends. In tag, people are divided into two teams: people who are \"it\", and people who are not \"it\". The people who are \"it\" want to catch as many people as possible who are not \"it\".\n\nYou are given a **0-indexed** integer array `team` containing only zeros (denoting people who are **not** \"it\") and ones (denoting people who are \"it\"), and an integer `dist`. A person who is \"it\" at index `i` can catch any **one** person whose index is in the range `[i - dist, i + dist]` (**inclusive**) and is **not** \"it\".\n\nReturn *the **maximum** number of people that the people who are \"it\" can catch*.",
+  "examples": [
+    {
+      "input": "team = [0,1,0,1,0], dist = 3",
+      "output": "2",
+      "explanation": "The person who is \"it\" at index 1 can catch people in the range [i-dist, i+dist] = [1-3, 1+3] = [-2, 4].\nThey can catch the person who is not \"it\" at index 2.\nThe person who is \"it\" at index 3 can catch people in the range [i-dist, i+dist] = [3-3, 3+3] = [0, 6].\nThey can catch the person who is not \"it\" at index 0.\nThe person who is not \"it\" at index 4 will not be caught because the people at indices 1 and 3 are already catching one person."
+    },
+    {
+      "input": "team = [1], dist = 1",
+      "output": "0",
+      "explanation": "There are no people who are not \"it\" to catch."
+    },
+    {
+      "input": "team = [0], dist = 1",
+      "output": "0",
+      "explanation": "There are no people who are \"it\" to catch people."
+    }
+  ],
+  "constraints": [
+    "1 <= team.length <= 10^5",
+    "0 <= team[i] <= 1",
+    "1 <= dist <= team.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def catchMaximumAmountofPeople(self, team: List[int], dist: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int catchMaximumAmountofPeople(vector<int>& team, int dist) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int catchMaximumAmountofPeople(int[] team, int dist) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def catchMaximumAmountofPeople(self, team: List[int], dist: int) -> int:\n        ans = j = 0\n        n = len(team)\n        for i, x in enumerate(team):\n            if x:\n                while j < n and (team[j] or i - j > dist):\n                    j += 1\n                if j < n and abs(i - j) <= dist:\n                    ans += 1\n                    j += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int catchMaximumAmountofPeople(vector<int>& team, int dist) {\n        int ans = 0;\n        int n = team.size();\n        for (int i = 0, j = 0; i < n; ++i) {\n            if (team[i]) {\n                while (j < n && (team[j] || i - j > dist)) {\n                    ++j;\n                }\n                if (j < n && abs(i - j) <= dist) {\n                    ++ans;\n                    ++j;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int catchMaximumAmountofPeople(int[] team, int dist) {\n        int ans = 0;\n        int n = team.length;\n        for (int i = 0, j = 0; i < n; ++i) {\n            if (team[i] == 1) {\n                while (j < n && (team[j] == 1 || i - j > dist)) {\n                    ++j;\n                }\n                if (j < n && Math.abs(i - j) <= dist) {\n                    ++ans;\n                    ++j;\n                }\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[0,1,0,1,0], dist = 3",
+      "expected": "2"
+    },
+    {
+      "input": "[1], dist = 1",
+      "expected": "0"
+    },
+    {
+      "input": "[0], dist = 1",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of People That Can Be Caught in Tag.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

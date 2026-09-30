@@ -1,0 +1,61 @@
+{
+  "id": 1533,
+  "slug": "find-the-index-of-the-large-integer",
+  "title": "Find the Index of the Large Integer",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20the%20Index%20of%20the%20Large%20Integer"
+  },
+  "description": "We have an integer array `arr`, where all the integers in `arr` are equal except for one integer which is **larger** than the rest of the integers. You will not be given direct access to the array, instead, you will have an **API** `ArrayReader` which have the following functions:\n\n\t`int compareSub(int l, int r, int x, int y)`: where `0 \n    \t**1** if `arr[l]+arr[l+1]+...+arr[r] > arr[x]+arr[x+1]+...+arr[y]`.\n    \t**0** if `arr[l]+arr[l+1]+...+arr[r] == arr[x]+arr[x+1]+...+arr[y]`.\n    \t**-1** if `arr[l]+arr[l+1]+...+arr[r] \n    \n    \n    `int length()`: Returns the size of the array.\n\nYou are allowed to call `compareSub()` 20 times at most. You can assume both functions work in `O(1)` time.\n\nReturn *the index of the array `arr` which has the largest integer*.",
+  "examples": [
+    {
+      "input": "arr = [7,7,7,7,10,7,7,7]",
+      "output": "4",
+      "explanation": "The following calls to the API\nreader.compareSub(0, 0, 1, 1) // returns 0 this is a query comparing the sub-array (0, 0) with the sub array (1, 1), (i.e. compares arr[0] with arr[1]).\nThus we know that arr[0] and arr[1] doesn't contain the largest element.\nreader.compareSub(2, 2, 3, 3) // returns 0, we can exclude arr[2] and arr[3].\nreader.compareSub(4, 4, 5, 5) // returns 1, thus for sure arr[4] is the largest element in the array.\nNotice that we made only 3 calls, so the answer is valid."
+    },
+    {
+      "input": "nums = [6,6,12]",
+      "output": "2"
+    }
+  ],
+  "constraints": [
+    "2 <= arr.length <= 5 * 10^5",
+    "1 <= arr[i] <= 100",
+    "All elements of arr are equal except for one element which is larger than all other elements."
+  ],
+  "starterTemplates": {
+    "python": "# \"\"\"\n# This is ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader(object):\n# \t # Compares the sum of arr[l..r] with the sum of arr[x..y]\n# \t # return 1 if sum(arr[l..r]) > sum(arr[x..y])\n# \t # return 0 if sum(arr[l..r]) == sum(arr[x..y])\n# \t # return -1 if sum(arr[l..r]) < sum(arr[x..y])\n#    def compareSub(self, l: int, r: int, x: int, y: int) -> int:\n        pass\n",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     // Compares the sum of arr[l..r] with the sum of arr[x..y]\n *     // return 1 if sum(arr[l..r]) > sum(arr[x..y])\n *     // return 0 if sum(arr[l..r]) == sum(arr[x..y])\n *     // return -1 if sum(arr[l..r]) < sum(arr[x..y])\n *     int compareSub(int l, int r, int x, int y);\n *\n *     // Returns the length of the array\n *     int length();\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *     // Compares the sum of arr[l..r] with the sum of arr[x..y]\n *     // return 1 if sum(arr[l..r]) > sum(arr[x..y])\n *     // return 0 if sum(arr[l..r]) == sum(arr[x..y])\n *     // return -1 if sum(arr[l..r]) < sum(arr[x..y])\n *     public int compareSub(int l, int r, int x, int y) {}\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "# \"\"\"\n# This is ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader(object):\n# \t # Compares the sum of arr[l..r] with the sum of arr[x..y]\n# \t # return 1 if sum(arr[l..r]) > sum(arr[x..y])\n# \t # return 0 if sum(arr[l..r]) == sum(arr[x..y])\n# \t # return -1 if sum(arr[l..r]) < sum(arr[x..y])\n#    def compareSub(self, l: int, r: int, x: int, y: int) -> int:\n#\n# \t # Returns the length of the array\n#    def length(self) -> int:\n#\n\n\nclass Solution:\n    def getIndex(self, reader: 'ArrayReader') -> int:\n        left, right = 0, reader.length() - 1\n        while left < right:\n            t1, t2, t3 = (\n                left,\n                left + (right - left) // 3,\n                left + ((right - left) // 3) * 2 + 1,\n            )\n            cmp = reader.compareSub(t1, t2, t2 + 1, t3)\n            if cmp == 0:\n                left = t3 + 1\n            elif cmp == 1:\n                right = t2\n            else:\n                left, right = t2 + 1, t3\n        return left",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     // Compares the sum of arr[l..r] with the sum of arr[x..y]\n *     // return 1 if sum(arr[l..r]) > sum(arr[x..y])\n *     // return 0 if sum(arr[l..r]) == sum(arr[x..y])\n *     // return -1 if sum(arr[l..r]) < sum(arr[x..y])\n *     int compareSub(int l, int r, int x, int y);\n *\n *     // Returns the length of the array\n *     int length();\n * };\n */\n\nclass Solution {\npublic:\n    int getIndex(ArrayReader& reader) {\n        int left = 0, right = reader.length() - 1;\n        while (left < right) {\n            int t1 = left, t2 = left + (right - left) / 3, t3 = left + (right - left) / 3 * 2 + 1;\n            int cmp = reader.compareSub(t1, t2, t2 + 1, t3);\n            if (cmp == 0) {\n                left = t3 + 1;\n            } else if (cmp == 1) {\n                right = t2;\n            } else {\n                left = t2 + 1;\n                right = t3;\n            }\n        }\n        return left;\n    }\n};",
+    "java": "/**\n * // This is ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *     // Compares the sum of arr[l..r] with the sum of arr[x..y]\n *     // return 1 if sum(arr[l..r]) > sum(arr[x..y])\n *     // return 0 if sum(arr[l..r]) == sum(arr[x..y])\n *     // return -1 if sum(arr[l..r]) < sum(arr[x..y])\n *     public int compareSub(int l, int r, int x, int y) {}\n *\n *     // Returns the length of the array\n *     public int length() {}\n * }\n */\n\nclass Solution {\n    public int getIndex(ArrayReader reader) {\n        int left = 0, right = reader.length() - 1;\n        while (left < right) {\n            int t1 = left, t2 = left + (right - left) / 3, t3 = left + (right - left) / 3 * 2 + 1;\n            int cmp = reader.compareSub(t1, t2, t2 + 1, t3);\n            if (cmp == 0) {\n                left = t3 + 1;\n            } else if (cmp == 1) {\n                right = t2;\n            } else {\n                left = t2 + 1;\n                right = t3;\n            }\n        }\n        return left;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[7,7,7,7,10,7,7,7]",
+      "expected": "4"
+    },
+    {
+      "input": "[6,6,12]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find the Index of the Large Integer.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,57 @@
+{
+  "id": 3647,
+  "slug": "maximum-weight-in-two-bags",
+  "title": "Maximum Weight in Two Bags",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Weight%20in%20Two%20Bags"
+  },
+  "description": "You are given an integer array `weights` and two integers `w1` and `w2` representing the **maximum** capacities of two bags.\n\nEach item may be placed in **at most** one bag such that:\n\n\tBag 1 holds **at most** `w1` total weight.\n\tBag 2 holds **at most** `w2` total weight.\n\nReturn the **maximum** total weight that can be packed into the two bags.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= weights.length <= 100",
+    "1 <= weights[i] <= 100",
+    "1 <= w1, w2 <= 300"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxWeight(self, weights: List[int], w1: int, w2: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxWeight(vector<int>& weights, int w1, int w2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxWeight(int[] weights, int w1, int w2) {\n        \n    }\n};\n",
+    "javascript": "function maxWeight(weights: number[], w1: number, w2: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxWeight(self, weights: List[int], w1: int, w2: int) -> int:\n        f = [[0] * (w2 + 1) for _ in range(w1 + 1)]\n        max = lambda a, b: a if a > b else b\n        for x in weights:\n            for j in range(w1, -1, -1):\n                for k in range(w2, -1, -1):\n                    if x <= j:\n                        f[j][k] = max(f[j][k], f[j - x][k] + x)\n                    if x <= k:\n                        f[j][k] = max(f[j][k], f[j][k - x] + x)\n        return f[w1][w2]",
+    "cpp": "class Solution {\npublic:\n    int maxWeight(vector<int>& weights, int w1, int w2) {\n        vector<vector<int>> f(w1 + 1, vector<int>(w2 + 1));\n        for (int x : weights) {\n            for (int j = w1; j >= 0; --j) {\n                for (int k = w2; k >= 0; --k) {\n                    if (x <= j) {\n                        f[j][k] = max(f[j][k], f[j - x][k] + x);\n                    }\n                    if (x <= k) {\n                        f[j][k] = max(f[j][k], f[j][k - x] + x);\n                    }\n                }\n            }\n        }\n        return f[w1][w2];\n    }\n};",
+    "java": "class Solution {\n    public int maxWeight(int[] weights, int w1, int w2) {\n        int[][] f = new int[w1 + 1][w2 + 1];\n        for (int x : weights) {\n            for (int j = w1; j >= 0; --j) {\n                for (int k = w2; k >= 0; --k) {\n                    if (x <= j) {\n                        f[j][k] = Math.max(f[j][k], f[j - x][k] + x);\n                    }\n                    if (x <= k) {\n                        f[j][k] = Math.max(f[j][k], f[j][k - x] + x);\n                    }\n                }\n            }\n        }\n        return f[w1][w2];\n    }\n}",
+    "javascript": "function maxWeight(weights: number[], w1: number, w2: number): number {\n    const f: number[][] = Array.from({ length: w1 + 1 }, () => Array(w2 + 1).fill(0));\n    for (const x of weights) {\n        for (let j = w1; j >= 0; j--) {\n            for (let k = w2; k >= 0; k--) {\n                if (x <= j) {\n                    f[j][k] = Math.max(f[j][k], f[j - x][k] + x);\n                }\n                if (x <= k) {\n                    f[j][k] = Math.max(f[j][k], f[j][k - x] + x);\n                }\n            }\n        }\n    }\n    return f[w1][w2];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Weight in Two Bags.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

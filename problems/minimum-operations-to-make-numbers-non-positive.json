@@ -1,0 +1,64 @@
+{
+  "id": 2702,
+  "slug": "minimum-operations-to-make-numbers-non-positive",
+  "title": "Minimum Operations to Make Numbers Non-positive",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Citadel"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20Numbers%20Non-positive"
+  },
+  "description": "You are given a **0-indexed** integer array `nums` and two integers `x` and `y`. In one operation, you must choose an index `i` such that `0 \n\tDecrement `nums[i]` by `x`.\n\tDecrement values by `y` at all indices except the `i^th` one.\n\nReturn *the minimum number of operations to make all the integers in *`nums` ***less than or equal to zero.***",
+  "examples": [
+    {
+      "input": "nums = [3,4,1,7,6], x = 4, y = 2",
+      "output": "3",
+      "explanation": "You will need three operations. One of the optimal sequence of operations is:\nOperation 1: Choose i = 3. Then, nums = [1,2,-1,3,4]. \nOperation 2: Choose i = 3. Then, nums = [-1,0,-3,-1,2].\nOperation 3: Choose i = 4. Then, nums = [-3,-2,-5,-3,-2].\nNow, all the numbers in nums are non-positive. Therefore, we return 3."
+    },
+    {
+      "input": "nums = [1,2,1], x = 2, y = 1",
+      "output": "1",
+      "explanation": "We can perform the operation once on i = 1. Then, nums becomes [0,0,0]. All the positive numbers are removed, and therefore, we return 1."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9",
+    "1 <= y < x <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minOperations(self, nums: List[int], x: int, y: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int x, int y) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] nums;\n    private int x;\n    private int y;\n\n    public int minOperations(int[] nums, int x, int y) {\n        \n    }\n};\n",
+    "javascript": "function minOperations(nums: number[], x: number, y: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minOperations(self, nums: List[int], x: int, y: int) -> int:\n        def check(t: int) -> bool:\n            cnt = 0\n            for v in nums:\n                if v > t * y:\n                    cnt += ceil((v - t * y) / (x - y))\n            return cnt <= t\n\n        l, r = 0, max(nums)\n        while l < r:\n            mid = (l + r) >> 1\n            if check(mid):\n                r = mid\n            else:\n                l = mid + 1\n        return l",
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int x, int y) {\n        int l = 0, r = *max_element(nums.begin(), nums.end());\n        auto check = [&](int t) {\n            long long cnt = 0;\n            for (int v : nums) {\n                if (v > 1LL * t * y) {\n                    cnt += (v - 1LL * t * y + x - y - 1) / (x - y);\n                }\n            }\n            return cnt <= t;\n        };\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n};",
+    "java": "class Solution {\n    private int[] nums;\n    private int x;\n    private int y;\n\n    public int minOperations(int[] nums, int x, int y) {\n        this.nums = nums;\n        this.x = x;\n        this.y = y;\n        int l = 0, r = 0;\n        for (int v : nums) {\n            r = Math.max(r, v);\n        }\n        while (l < r) {\n            int mid = (l + r) >>> 1;\n            if (check(mid)) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n\n    private boolean check(int t) {\n        long cnt = 0;\n        for (int v : nums) {\n            if (v > (long) t * y) {\n                cnt += (v - (long) t * y + x - y - 1) / (x - y);\n            }\n        }\n        return cnt <= t;\n    }\n}",
+    "javascript": "function minOperations(nums: number[], x: number, y: number): number {\n    let l = 0;\n    let r = Math.max(...nums);\n    const check = (t: number): boolean => {\n        let cnt = 0;\n        for (const v of nums) {\n            if (v > t * y) {\n                cnt += Math.ceil((v - t * y) / (x - y));\n            }\n        }\n        return cnt <= t;\n    };\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (check(mid)) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return l;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,4,1,7,6], x = 4, y = 2",
+      "expected": "3"
+    },
+    {
+      "input": "[1,2,1], x = 2, y = 1",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Operations to Make Numbers Non-positive.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

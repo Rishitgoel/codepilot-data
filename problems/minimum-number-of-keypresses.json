@@ -1,0 +1,63 @@
+{
+  "id": 2268,
+  "slug": "minimum-number-of-keypresses",
+  "title": "Minimum Number of Keypresses",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Number%20of%20Keypresses"
+  },
+  "description": "You have a keypad with `9` buttons, numbered from `1` to `9`, each mapped to lowercase English letters. You can choose which characters each button is matched to as long as:\n\n\tAll 26 lowercase English letters are mapped to.\n\tEach character is mapped to by **exactly** `1` button.\n\tEach button maps to **at most** `3` characters.\n\nTo type the first character matched to a button, you press the button once. To type the second character, you press the button twice, and so on.\n\nGiven a string `s`, return *the **minimum** number of keypresses needed to type *`s`* using your keypad.*\n\n**Note** that the characters mapped to by each button, and the order they are mapped in cannot be changed.",
+  "examples": [
+    {
+      "input": "s = \"apple\"",
+      "output": "5",
+      "explanation": "One optimal way to setup your keypad is shown above.\nType 'a' by pressing button 1 once.\nType 'p' by pressing button 6 once.\nType 'p' by pressing button 6 once.\nType 'l' by pressing button 5 once.\nType 'e' by pressing button 3 once.\nA total of 5 button presses are needed, so return 5."
+    },
+    {
+      "input": "s = \"abcdefghijkl\"",
+      "output": "15",
+      "explanation": "One optimal way to setup your keypad is shown above.\nThe letters 'a' to 'i' can each be typed by pressing a button once.\nType 'j' by pressing button 1 twice.\nType 'k' by pressing button 2 twice.\nType 'l' by pressing button 3 twice.\nA total of 15 button presses are needed, so return 15."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumKeypresses(self, s: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumKeypresses(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumKeypresses(String s) {\n        \n    }\n};\n",
+    "javascript": "function minimumKeypresses(s: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumKeypresses(self, s: str) -> int:\n        cnt = Counter(s)\n        ans, k = 0, 1\n        for i, x in enumerate(sorted(cnt.values(), reverse=True), 1):\n            ans += k * x\n            if i % 9 == 0:\n                k += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int minimumKeypresses(string s) {\n        int cnt[26]{};\n        for (char& c : s) {\n            ++cnt[c - 'a'];\n        }\n        sort(begin(cnt), end(cnt), greater<int>());\n        int ans = 0, k = 1;\n        for (int i = 1; i <= 26; ++i) {\n            ans += k * cnt[i - 1];\n            if (i % 9 == 0) {\n                ++k;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumKeypresses(String s) {\n        int[] cnt = new int[26];\n        for (int i = 0; i < s.length(); ++i) {\n            ++cnt[s.charAt(i) - 'a'];\n        }\n        Arrays.sort(cnt);\n        int ans = 0, k = 1;\n        for (int i = 1; i <= 26; ++i) {\n            ans += k * cnt[26 - i];\n            if (i % 9 == 0) {\n                ++k;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minimumKeypresses(s: string): number {\n    const cnt: number[] = Array(26).fill(0);\n    const a = 'a'.charCodeAt(0);\n    for (const c of s) {\n        ++cnt[c.charCodeAt(0) - a];\n    }\n    cnt.sort((a, b) => b - a);\n    let [ans, k] = [0, 1];\n    for (let i = 1; i <= 26; ++i) {\n        ans += k * cnt[i - 1];\n        if (i % 9 === 0) {\n            ++k;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"apple\"",
+      "expected": "5"
+    },
+    {
+      "input": "\"abcdefghijkl\"",
+      "expected": "15"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Number of Keypresses.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

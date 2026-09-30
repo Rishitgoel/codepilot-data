@@ -1,0 +1,69 @@
+{
+  "id": 2805,
+  "slug": "custom-interval",
+  "title": "Custom Interval",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Custom%20Interval"
+  },
+  "description": "**Function **`customInterval`\n\nGiven a function `fn`, a number `delay` and a number `period`, return a number `id`.\n\n`customInterval` is a function that should execute the provided function `fn` at intervals based on a linear pattern defined by the formula `delay + period * count`. \n\nThe `count` in the formula represents the number of times the interval has been executed starting from an initial value of `0`.\n\n**Function **`customClearInterval` \n\nGiven the `id`. `id` is the returned value from the function `customInterval`.\n\n`customClearInterval` should stop executing provided function `fn` at intervals.\n\n**Note:** The `setTimeout` and `setInterval` functions in Node.js return an object, not a number.",
+  "examples": [
+    {
+      "input": "delay = 50, period = 20, cancelTime = 225",
+      "output": "[50,120,210]",
+      "explanation": "const t = performance.now()  \nconst result = []\n        \nconst fn = () => {\n    result.push(Math.floor(performance.now() - t))\n}\nconst id = customInterval(fn, delay, period)\n        \nsetTimeout(() => {\n    customClearInterval(id)\n}, 225)\n\n50 + 20 * 0 = 50 // 50ms - 1st function call\n50 + 20 * 1 = 70 // 50ms + 70ms = 120ms - 2nd function call\n50 + 20 * 2 = 90 // 50ms + 70ms + 90ms = 210ms - 3rd function call"
+    },
+    {
+      "input": "delay = 20, period = 20, cancelTime = 150",
+      "output": "[20,60,120]",
+      "explanation": "20 + 20 * 0 = 20 // 20ms - 1st function call\n20 + 20 * 1 = 40 // 20ms + 40ms = 60ms - 2nd function call\n20 + 20 * 2 = 60 // 20ms + 40ms + 60ms = 120ms - 3rd function call"
+    },
+    {
+      "input": "delay = 100, period = 200, cancelTime = 500",
+      "output": "[100,400]",
+      "explanation": "100 + 200 * 0 = 100 // 100ms - 1st function call\n100 + 200 * 1 = 300 // 100ms + 300ms = 400ms - 2nd function call"
+    }
+  ],
+  "constraints": [
+    "20 <= delay, period <= 250",
+    "20 <= cancelTime <= 1000"
+  ],
+  "starterTemplates": {
+    "javascript": "const intervalMap = new Map<number, NodeJS.Timeout>();\n\nfunction customInterval(fn: Function, delay: number, period: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "const intervalMap = new Map<number, NodeJS.Timeout>();\n\nfunction customInterval(fn: Function, delay: number, period: number): number {\n    let count = 0;\n    function recursiveTimeout() {\n        intervalMap.set(\n            id,\n            setTimeout(\n                () => {\n                    fn();\n                    count++;\n                    recursiveTimeout();\n                },\n                delay + period * count,\n            ),\n        );\n    }\n\n    const id = Date.now();\n    recursiveTimeout();\n    return id;\n}\n\nfunction customClearInterval(id: number) {\n    if (intervalMap.has(id)) {\n        clearTimeout(intervalMap.get(id)!);\n        intervalMap.delete(id);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "50, period = 20, cancelTime = 225",
+      "expected": "[50,120,210]"
+    },
+    {
+      "input": "20, period = 20, cancelTime = 150",
+      "expected": "[20,60,120]"
+    },
+    {
+      "input": "100, period = 200, cancelTime = 500",
+      "expected": "[100,400]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Custom Interval.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

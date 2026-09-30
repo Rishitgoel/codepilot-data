@@ -1,0 +1,73 @@
+{
+  "id": 1176,
+  "slug": "diet-plan-performance",
+  "title": "Diet Plan Performance",
+  "difficulty": "Easy",
+  "rating": 1398,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Diet%20Plan%20Performance"
+  },
+  "description": "A dieter consumes `calories[i]` calories on the `i`-th day. \n\nGiven an integer `k`, for **every** consecutive sequence of `k` days (`calories[i], calories[i+1], ..., calories[i+k-1]` for all `0 \n\tIf `T \n\tIf `T > upper`, they performed well on their diet and gain 1 point;\n\tOtherwise, they performed normally and there is no change in points.\n\nInitially, the dieter has zero points. Return the total number of points the dieter has after dieting for `calories.length` days.\n\nNote that the total points can be negative.",
+  "examples": [
+    {
+      "input": "calories = [1,2,3,4,5], k = 1, lower = 3, upper = 3",
+      "output": "0",
+      "explanation": ": Since k = 1, we consider each element of the array separately and compare it to lower and upper.\ncalories[0] and calories[1] are less than lower so 2 points are lost.\ncalories[3] and calories[4] are greater than upper so 2 points are gained."
+    },
+    {
+      "input": "calories = [3,2], k = 2, lower = 0, upper = 1",
+      "output": "1",
+      "explanation": ": Since k = 2, we consider subarrays of length 2.\ncalories[0] + calories[1] > upper so 1 point is gained."
+    },
+    {
+      "input": "calories = [6,5,0,0], k = 2, lower = 1, upper = 5",
+      "output": "0",
+      "explanation": ":\ncalories[0] + calories[1] > upper so 1 point is gained.\nlower <= calories[1] + calories[2] <= upper so no change in points.\ncalories[2] + calories[3] < lower so 1 point is lost."
+    }
+  ],
+  "constraints": [
+    "1 <= k <= calories.length <= 10^5",
+    "0 <= calories[i] <= 20000",
+    "0 <= lower <= upper"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def dietPlanPerformance(\n        self, calories: List[int], k: int, lower: int, upper: int\n    ) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int dietPlanPerformance(vector<int>& calories, int k, int lower, int upper) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {\n        \n    }\n};\n",
+    "javascript": "function dietPlanPerformance(calories: number[], k: number, lower: number, upper: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def dietPlanPerformance(\n        self, calories: List[int], k: int, lower: int, upper: int\n    ) -> int:\n        s = list(accumulate(calories, initial=0))\n        ans, n = 0, len(calories)\n        for i in range(n - k + 1):\n            t = s[i + k] - s[i]\n            if t < lower:\n                ans -= 1\n            elif t > upper:\n                ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int dietPlanPerformance(vector<int>& calories, int k, int lower, int upper) {\n        int n = calories.size();\n        int s[n + 1];\n        s[0] = 0;\n        for (int i = 0; i < n; ++i) {\n            s[i + 1] = s[i] + calories[i];\n        }\n        int ans = 0;\n        for (int i = 0; i < n - k + 1; ++i) {\n            int t = s[i + k] - s[i];\n            if (t < lower) {\n                --ans;\n            } else if (t > upper) {\n                ++ans;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {\n        int n = calories.length;\n        int[] s = new int[n + 1];\n        for (int i = 0; i < n; ++i) {\n            s[i + 1] = s[i] + calories[i];\n        }\n        int ans = 0;\n        for (int i = 0; i < n - k + 1; ++i) {\n            int t = s[i + k] - s[i];\n            if (t < lower) {\n                --ans;\n            } else if (t > upper) {\n                ++ans;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function dietPlanPerformance(calories: number[], k: number, lower: number, upper: number): number {\n    const n = calories.length;\n    const s: number[] = new Array(n + 1).fill(0);\n    for (let i = 0; i < n; ++i) {\n        s[i + 1] = s[i] + calories[i];\n    }\n    let ans = 0;\n    for (let i = 0; i < n - k + 1; ++i) {\n        const t = s[i + k] - s[i];\n        if (t < lower) {\n            --ans;\n        } else if (t > upper) {\n            ++ans;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3,4,5], k = 1, lower = 3, upper = 3",
+      "expected": "0"
+    },
+    {
+      "input": "[3,2], k = 2, lower = 0, upper = 1",
+      "expected": "1"
+    },
+    {
+      "input": "[6,5,0,0], k = 2, lower = 1, upper = 5",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Diet Plan Performance.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

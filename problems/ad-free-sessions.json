@@ -1,0 +1,43 @@
+{
+  "id": 1809,
+  "slug": "ad-free-sessions",
+  "title": "Ad-Free Sessions",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Ad-Free%20Sessions"
+  },
+  "description": "Table: `Playback`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| session_id  | int  |\n| customer_id | int  |\n| start_time  | int  |\n| end_time    | int  |\n+-------------+------+\nsession_id is the column with unique values for this table.\ncustomer_id is the ID of the customer watching this session.\nThe session runs during the **inclusive** interval between start_time and end_time.\nIt is guaranteed that start_time \n\n \n\nTable: `Ads`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| ad_id       | int  |\n| customer_id | int  |\n| timestamp   | int  |\n+-------------+------+\nad_id is the column with unique values for this table.\ncustomer_id is the ID of the customer viewing this ad.\ntimestamp is the moment of time at which the ad was shown.\n\n \n\nWrite a solution to report all the sessions that did not get shown any ads.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Playback table:\n+------------+-------------+------------+----------+\n| session_id | customer_id | start_time | end_time |\n+------------+-------------+------------+----------+\n| 1          | 1           | 1          | 5        |\n| 2          | 1           | 15         | 23       |\n| 3          | 2           | 10         | 12       |\n| 4          | 2           | 17         | 28       |\n| 5          | 2           | 2          | 8        |\n+------------+-------------+------------+----------+\nAds table:\n+-------+-------------+-----------+\n| ad_id | customer_id | timestamp |\n+-------+-------------+-----------+\n| 1     | 1           | 5         |\n| 2     | 2           | 17        |\n| 3     | 2           | 20        |\n+-------+-------------+-----------+",
+      "output": "+------------+\n| session_id |\n+------------+\n| 2          |\n| 3          |\n| 5          |\n+------------+",
+      "explanation": "The ad with ID 1 was shown to user 1 at time 5 while they were in session 1.\nThe ad with ID 2 was shown to user 2 at time 17 while they were in session 4.\nThe ad with ID 3 was shown to user 2 at time 20 while they were in session 4.\nWe can see that sessions 1 and 4 had at least one ad. Sessions 2, 3, and 5 did not have any ads, so we return them."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Playback table:\n+------------+-------------+------------+----------+\n| session_id | customer_id | start_time | end_time |\n+------------+-------------+------------+----------+\n| 1          | 1           | 1          | 5        |\n| 2          | 1           | 15         | 23       |\n| 3          | 2           | 10         | 12       |\n| 4          | 2           | 17         | 28       |\n| 5          | 2           | 2          | 8        |\n+------------+-------------+------------+----------+\nAds table:\n+-------+-------------+-----------+\n| ad_id | customer_id | timestamp |\n+-------+-------------+-----------+\n| 1     | 1           | 5         |\n| 2     | 2           | 17        |\n| 3     | 2           | 20        |\n+-------+-------------+-----------+",
+      "expected": "+------------+\n| session_id |\n+------------+\n| 2          |\n| 3          |\n| 5          |\n+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Ad-Free Sessions.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

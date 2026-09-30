@@ -1,0 +1,57 @@
+{
+  "id": 3329,
+  "slug": "count-substrings-with-k-frequency-characters-ii",
+  "title": "Count Substrings With K-Frequency Characters II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Substrings%20With%20K-Frequency%20Characters%20II"
+  },
+  "description": "Given a string `s` and an integer `k`, return the total number of substrings of `s` where **at least one** character appears **at least** `k` times.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 3 * 10^5",
+    "1 <= k <= s.length",
+    "s consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def numberOfSubstrings(self, s: str, k: int) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    long long numberOfSubstrings(string s, int k) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public long numberOfSubstrings(String s, int k) {\r\n        \n    }\n};\n",
+    "javascript": "function numberOfSubstrings(s: string, k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def numberOfSubstrings(self, s: str, k: int) -> int:\r\n        cnt = Counter()\r\n        ans = l = 0\r\n        for c in s:\r\n            cnt[c] += 1\r\n            while cnt[c] >= k:\r\n                cnt[s[l]] -= 1\r\n                l += 1\r\n            ans += l\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    long long numberOfSubstrings(string s, int k) {\r\n        int n = s.size();\r\n        long long ans = 0, l = 0;\r\n        int cnt[26]{};\r\n        for (char& c : s) {\r\n            ++cnt[c - 'a'];\r\n            while (cnt[c - 'a'] >= k) {\r\n                --cnt[s[l++] - 'a'];\r\n            }\r\n            ans += l;\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public long numberOfSubstrings(String s, int k) {\r\n        int[] cnt = new int[26];\r\n        long ans = 0;\r\n        for (int l = 0, r = 0; r < s.length(); ++r) {\r\n            int c = s.charAt(r) - 'a';\r\n            ++cnt[c];\r\n            while (cnt[c] >= k) {\r\n                --cnt[s.charAt(l) - 'a'];\r\n                l++;\r\n            }\r\n            ans += l;\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function numberOfSubstrings(s: string, k: number): number {\n    let [ans, l] = [0, 0];\n    const cnt: number[] = Array(26).fill(0);\n    for (const c of s) {\n        const x = c.charCodeAt(0) - 97;\n        ++cnt[x];\n        while (cnt[x] >= k) {\n            --cnt[s[l++].charCodeAt(0) - 97];\n        }\n        ans += l;\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Substrings With K-Frequency Characters II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,53 @@
+{
+  "id": 3496,
+  "slug": "maximize-score-after-pair-deletions",
+  "title": "Maximize Score After Pair Deletions",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "DRW"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximize%20Score%20After%20Pair%20Deletions"
+  },
+  "description": "You are given an array of integers `nums`. You **must** repeatedly perform one of the following operations while the array has more than two elements:\n\n\tRemove the first two elements.\n\tRemove the last two elements.\n\tRemove the first and last element.\n\nFor each operation, add the sum of the removed elements to your total score.\n\nReturn the **maximum** possible score you can achieve.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^4 <= nums[i] <= 10^4"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxScore(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxScore(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function maxScore(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxScore(self, nums: List[int]) -> int:\n        s = sum(nums)\n        if len(nums) & 1:\n            return s - min(nums)\n        return s - min(a + b for a, b in pairwise(nums))",
+    "cpp": "class Solution {\npublic:\n    int maxScore(vector<int>& nums) {\n        const int inf = 1 << 30;\n        int n = nums.size();\n        int s = 0, mi = inf;\n        int t = inf;\n        for (int i = 0; i < n; ++i) {\n            s += nums[i];\n            mi = min(mi, nums[i]);\n            if (i + 1 < n) {\n                t = min(t, nums[i] + nums[i + 1]);\n            }\n        }\n        if (n % 2 == 1) {\n            return s - mi;\n        }\n        return s - t;\n    }\n};",
+    "java": "class Solution {\n    public int maxScore(int[] nums) {\n        final int inf = 1 << 30;\n        int n = nums.length;\n        int s = 0, mi = inf;\n        int t = inf;\n        for (int i = 0; i < n; ++i) {\n            s += nums[i];\n            mi = Math.min(mi, nums[i]);\n            if (i + 1 < n) {\n                t = Math.min(t, nums[i] + nums[i + 1]);\n            }\n        }\n        if (n % 2 == 1) {\n            return s - mi;\n        }\n        return s - t;\n    }\n}",
+    "javascript": "function maxScore(nums: number[]): number {\n    const inf = Infinity;\n    const n = nums.length;\n    let [s, mi, t] = [0, inf, inf];\n    for (let i = 0; i < n; ++i) {\n        s += nums[i];\n        mi = Math.min(mi, nums[i]);\n        if (i + 1 < n) {\n            t = Math.min(t, nums[i] + nums[i + 1]);\n        }\n    }\n    return n % 2 ? s - mi : s - t;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximize Score After Pair Deletions.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

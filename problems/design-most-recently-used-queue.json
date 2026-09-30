@@ -1,0 +1,50 @@
+{
+  "id": 1756,
+  "slug": "design-most-recently-used-queue",
+  "title": "Design Most Recently Used Queue",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Verizon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20Most%20Recently%20Used%20Queue"
+  },
+  "description": "Design a queue-like data structure that moves the most recently used element to the end of the queue.\n\nImplement the `MRUQueue` class:\n\n\t`MRUQueue(int n)` constructs the `MRUQueue` with `n` elements: `[1,2,3,...,n]`.\n\t`int fetch(int k)` moves the `k^th` element **(1-indexed)** to the end of the queue and returns it.",
+  "examples": [
+    {
+      "input": "[\"MRUQueue\", \"fetch\", \"fetch\", \"fetch\", \"fetch\"]\n[[8], [3], [5], [2], [8]]",
+      "output": "[null, 3, 6, 2, 2]",
+      "explanation": "MRUQueue mRUQueue = new MRUQueue(8); // Initializes the queue to [1,2,3,4,5,6,7,8].\nmRUQueue.fetch(3); // Moves the 3rd element (3) to the end of the queue to become [1,2,4,5,6,7,8,3] and returns it.\nmRUQueue.fetch(5); // Moves the 5th element (6) to the end of the queue to become [1,2,4,5,7,8,3,6] and returns it.\nmRUQueue.fetch(2); // Moves the 2nd element (2) to the end of the queue to become [1,4,5,7,8,3,6,2] and returns it.\nmRUQueue.fetch(8); // The 8th element (2) is already at the end of the queue so just return it."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 2000",
+    "1 <= k <= n",
+    "At most 2000 calls will be made to fetch."
+  ],
+  "starterTemplates": {
+    "python": "class MRUQueue:\n    def __init__(self, n: int):\n        pass\n"
+  },
+  "snippets": {
+    "python": "class MRUQueue:\n    def __init__(self, n: int):\n        self.q = list(range(1, n + 1))\n\n    def fetch(self, k: int) -> int:\n        ans = self.q[k - 1]\n        self.q[k - 1 : k] = []\n        self.q.append(ans)\n        return ans\n\n\n# Your MRUQueue object will be instantiated and called as such:\n# obj = MRUQueue(n)\n# param_1 = obj.fetch(k)"
+  },
+  "testcases": [
+    {
+      "input": "[\"MRUQueue\", \"fetch\", \"fetch\", \"fetch\", \"fetch\"]\n[[8], [3], [5], [2], [8]]",
+      "expected": "[null, 3, 6, 2, 2]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design Most Recently Used Queue.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

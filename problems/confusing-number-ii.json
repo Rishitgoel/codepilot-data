@@ -1,0 +1,62 @@
+{
+  "id": 1088,
+  "slug": "confusing-number-ii",
+  "title": "Confusing Number II",
+  "difficulty": "Hard",
+  "rating": 2077,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Confusing%20Number%20II"
+  },
+  "description": "A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.\n\nWe can rotate digits of a number by `180` degrees to form new digits.\n\n\tWhen `0`, `1`, `6`, `8`, and `9` are rotated `180` degrees, they become `0`, `1`, `9`, `8`, and `6` respectively.\n\tWhen `2`, `3`, `4`, `5`, and `7` are rotated `180` degrees, they become **invalid**.\n\nNote that after rotating a number, we can ignore leading zeros.\n\n\tFor example, after rotating `8000`, we have `0008` which is considered as just `8`.\n\nGiven an integer `n`, return *the number of **confusing numbers** in the inclusive range *`[1, n]`.",
+  "examples": [
+    {
+      "input": "n = 20",
+      "output": "6",
+      "explanation": "The confusing numbers are [6,9,10,16,18,19].\n6 converts to 9.\n9 converts to 6.\n10 converts to 01 which is just 1.\n16 converts to 91.\n18 converts to 81.\n19 converts to 61."
+    },
+    {
+      "input": "n = 100",
+      "output": "19",
+      "explanation": "The confusing numbers are [6,9,10,16,18,19,60,61,66,68,80,81,86,89,90,91,98,99,100]."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def confusingNumberII(self, n: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int confusingNumberII(int n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private final int[] d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n    private String s;\n\n    public int confusingNumberII(int n) {\n        \n    }\n};\n",
+    "javascript": "function confusingNumberII(n: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def confusingNumberII(self, n: int) -> int:\n        def check(x: int) -> bool:\n            y, t = 0, x\n            while t:\n                t, v = divmod(t, 10)\n                y = y * 10 + d[v]\n            return x != y\n\n        def dfs(pos: int, limit: bool, x: int) -> int:\n            if pos >= len(s):\n                return int(check(x))\n            up = int(s[pos]) if limit else 9\n            ans = 0\n            for i in range(up + 1):\n                if d[i] != -1:\n                    ans += dfs(pos + 1, limit and i == up, x * 10 + i)\n            return ans\n\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        s = str(n)\n        return dfs(0, True, 0)",
+    "cpp": "class Solution {\npublic:\n    int confusingNumberII(int n) {\n        string s = to_string(n);\n        int d[10] = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n        auto check = [&](int x) -> bool {\n            int y = 0;\n            for (int t = x; t; t /= 10) {\n                int v = t % 10;\n                y = y * 10 + d[v];\n            }\n            return x != y;\n        };\n        function<int(int, int, int)> dfs = [&](int pos, int limit, int x) -> int {\n            if (pos >= s.size()) {\n                return check(x);\n            }\n            int up = limit ? s[pos] - '0' : 9;\n            int ans = 0;\n            for (int i = 0; i <= up; ++i) {\n                if (d[i] != -1) {\n                    ans += dfs(pos + 1, limit && i == up, x * 10 + i);\n                }\n            }\n            return ans;\n        };\n        return dfs(0, 1, 0);\n    }\n};",
+    "java": "class Solution {\n    private final int[] d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n    private String s;\n\n    public int confusingNumberII(int n) {\n        s = String.valueOf(n);\n        return dfs(0, 1, 0);\n    }\n\n    private int dfs(int pos, int limit, int x) {\n        if (pos >= s.length()) {\n            return check(x) ? 1 : 0;\n        }\n        int up = limit == 1 ? s.charAt(pos) - '0' : 9;\n        int ans = 0;\n        for (int i = 0; i <= up; ++i) {\n            if (d[i] != -1) {\n                ans += dfs(pos + 1, limit == 1 && i == up ? 1 : 0, x * 10 + i);\n            }\n        }\n        return ans;\n    }\n\n    private boolean check(int x) {\n        int y = 0;\n        for (int t = x; t > 0; t /= 10) {\n            int v = t % 10;\n            y = y * 10 + d[v];\n        }\n        return x != y;\n    }\n}",
+    "javascript": "function confusingNumberII(n: number): number {\n    const s = n.toString();\n    const d: number[] = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6];\n    const check = (x: number) => {\n        let y = 0;\n        for (let t = x; t > 0; t = Math.floor(t / 10)) {\n            const v = t % 10;\n            y = y * 10 + d[v];\n        }\n        return x !== y;\n    };\n    const dfs = (pos: number, limit: boolean, x: number): number => {\n        if (pos >= s.length) {\n            return check(x) ? 1 : 0;\n        }\n        const up = limit ? parseInt(s[pos]) : 9;\n        let ans = 0;\n        for (let i = 0; i <= up; ++i) {\n            if (d[i] !== -1) {\n                ans += dfs(pos + 1, limit && i === up, x * 10 + i);\n            }\n        }\n        return ans;\n    };\n    return dfs(0, true, 0);\n}"
+  },
+  "testcases": [
+    {
+      "input": "20",
+      "expected": "6"
+    },
+    {
+      "input": "100",
+      "expected": "19"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Confusing Number II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

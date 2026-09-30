@@ -1,0 +1,64 @@
+{
+  "id": 2361,
+  "slug": "minimum-costs-using-the-train-line",
+  "title": "Minimum Costs Using the Train Line",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Citadel"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Costs%20Using%20the%20Train%20Line"
+  },
+  "description": "A train line going through a city has two routes, the regular route and the express route. Both routes go through the **same** `n + 1` stops labeled from `0` to `n`. Initially, you start on the regular route at stop `0`.\n\nYou are given two **1-indexed** integer arrays `regular` and `express`, both of length `n`. `regular[i]` describes the cost it takes to go from stop `i - 1` to stop `i` using the regular route, and `express[i]` describes the cost it takes to go from stop `i - 1` to stop `i` using the express route.\n\nYou are also given an integer `expressCost` which represents the cost to transfer from the regular route to the express route.\n\nNote that:\n\n\tThere is no cost to transfer from the express route back to the regular route.\n\tYou pay `expressCost` **every** time you transfer from the regular route to the express route.\n\tThere is no extra cost to stay on the express route.\n\nReturn *a **1-indexed** array *`costs`* of length *`n`*, where *`costs[i]`* is the **minimum** cost to reach stop *`i`* from stop *`0`.\n\nNote that a stop can be counted as **reached** from either route.",
+  "examples": [
+    {
+      "input": "regular = [1,6,9,5], express = [5,2,3,10], expressCost = 8",
+      "output": "[1,7,14,19]",
+      "explanation": "The diagram above shows how to reach stop 4 from stop 0 with minimum cost.\n- Take the regular route from stop 0 to stop 1, costing 1.\n- Take the express route from stop 1 to stop 2, costing 8 + 2 = 10.\n- Take the express route from stop 2 to stop 3, costing 3.\n- Take the regular route from stop 3 to stop 4, costing 5.\nThe total cost is 1 + 10 + 3 + 5 = 19.\nNote that a different route could be taken to reach the other stops with minimum cost."
+    },
+    {
+      "input": "regular = [11,5,13], express = [7,10,6], expressCost = 3",
+      "output": "[10,15,24]",
+      "explanation": "The diagram above shows how to reach stop 3 from stop 0 with minimum cost.\n- Take the express route from stop 0 to stop 1, costing 3 + 7 = 10.\n- Take the regular route from stop 1 to stop 2, costing 5.\n- Take the express route from stop 2 to stop 3, costing 3 + 6 = 9.\nThe total cost is 10 + 5 + 9 = 24.\nNote that the expressCost is paid again to transfer back to the express route."
+    }
+  ],
+  "constraints": [
+    "n == regular.length == express.length",
+    "1 <= n <= 10^5",
+    "1 <= regular[i], express[i], expressCost <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumCosts(\n        self, regular: List[int], express: List[int], expressCost: int\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<long long> minimumCosts(vector<int>& regular, vector<int>& express, int expressCost) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long[] minimumCosts(int[] regular, int[] express, int expressCost) {\n        \n    }\n};\n",
+    "javascript": "function minimumCosts(regular: number[], express: number[], expressCost: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumCosts(\n        self, regular: List[int], express: List[int], expressCost: int\n    ) -> List[int]:\n        n = len(regular)\n        f = [0] * (n + 1)\n        g = [inf] * (n + 1)\n        cost = [0] * n\n        for i, (a, b) in enumerate(zip(regular, express), 1):\n            f[i] = min(f[i - 1] + a, g[i - 1] + a)\n            g[i] = min(f[i - 1] + expressCost + b, g[i - 1] + b)\n            cost[i - 1] = min(f[i], g[i])\n        return cost",
+    "cpp": "class Solution {\npublic:\n    vector<long long> minimumCosts(vector<int>& regular, vector<int>& express, int expressCost) {\n        int n = regular.size();\n        long long f[n + 1];\n        long long g[n + 1];\n        f[0] = 0;\n        g[0] = 1 << 30;\n        vector<long long> cost(n);\n        for (int i = 1; i <= n; ++i) {\n            int a = regular[i - 1];\n            int b = express[i - 1];\n            f[i] = min(f[i - 1] + a, g[i - 1] + a);\n            g[i] = min(f[i - 1] + expressCost + b, g[i - 1] + b);\n            cost[i - 1] = min(f[i], g[i]);\n        }\n        return cost;\n    }\n};",
+    "java": "class Solution {\n    public long[] minimumCosts(int[] regular, int[] express, int expressCost) {\n        int n = regular.length;\n        long[] f = new long[n + 1];\n        long[] g = new long[n + 1];\n        g[0] = 1 << 30;\n        long[] cost = new long[n];\n        for (int i = 1; i <= n; ++i) {\n            int a = regular[i - 1];\n            int b = express[i - 1];\n            f[i] = Math.min(f[i - 1] + a, g[i - 1] + a);\n            g[i] = Math.min(f[i - 1] + expressCost + b, g[i - 1] + b);\n            cost[i - 1] = Math.min(f[i], g[i]);\n        }\n        return cost;\n    }\n}",
+    "javascript": "function minimumCosts(regular: number[], express: number[], expressCost: number): number[] {\n    const n = regular.length;\n    const f: number[] = new Array(n + 1).fill(0);\n    const g: number[] = new Array(n + 1).fill(0);\n    g[0] = 1 << 30;\n    const cost: number[] = new Array(n).fill(0);\n    for (let i = 1; i <= n; ++i) {\n        const [a, b] = [regular[i - 1], express[i - 1]];\n        f[i] = Math.min(f[i - 1] + a, g[i - 1] + a);\n        g[i] = Math.min(f[i - 1] + expressCost + b, g[i - 1] + b);\n        cost[i - 1] = Math.min(f[i], g[i]);\n    }\n    return cost;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,6,9,5], express = [5,2,3,10], expressCost = 8",
+      "expected": "[1,7,14,19]"
+    },
+    {
+      "input": "[11,5,13], express = [7,10,6], expressCost = 3",
+      "expected": "[10,15,24]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Costs Using the Train Line.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,73 @@
+{
+  "id": 2638,
+  "slug": "count-the-number-of-k-free-subsets",
+  "title": "Count the Number of K-Free Subsets",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20the%20Number%20of%20K-Free%20Subsets"
+  },
+  "description": "You are given an integer array `nums`, which contains **distinct** elements and an integer `k`.\n\nA subset is called a **k-Free** subset if it contains **no** two elements with an absolute difference equal to `k`. Notice that the empty set is a **k-Free** subset.\n\nReturn *the number of **k-Free** subsets of *`nums`.\n\nA subset of an array is a selection of elements (possibly none) of the array.",
+  "examples": [
+    {
+      "input": "nums = [5,4,6], k = 1",
+      "output": "5",
+      "explanation": "There are 5 valid subsets: {}, {5}, {4}, {6} and {4, 6}."
+    },
+    {
+      "input": "nums = [2,3,5,8], k = 5",
+      "output": "12",
+      "explanation": "There are 12 valid subsets: {}, {2}, {3}, {5}, {8}, {2, 3}, {2, 3, 5}, {2, 5}, {2, 5, 8}, {2, 8}, {3, 5} and {5, 8}."
+    },
+    {
+      "input": "nums = [10,5,9,11], k = 20",
+      "output": "16",
+      "explanation": "All subsets are valid. Since the total count of subsets is 24 = 16, so the answer is 16."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 50",
+    "1 <= nums[i] <= 1000",
+    "1 <= k <= 1000"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countTheNumOfKFreeSubsets(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long countTheNumOfKFreeSubsets(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long countTheNumOfKFreeSubsets(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function countTheNumOfKFreeSubsets(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countTheNumOfKFreeSubsets(self, nums: List[int], k: int) -> int:\n        nums.sort()\n        g = defaultdict(list)\n        for x in nums:\n            g[x % k].append(x)\n        ans = 1\n        for arr in g.values():\n            m = len(arr)\n            f = [0] * (m + 1)\n            f[0] = 1\n            f[1] = 2\n            for i in range(2, m + 1):\n                if arr[i - 1] - arr[i - 2] == k:\n                    f[i] = f[i - 1] + f[i - 2]\n                else:\n                    f[i] = f[i - 1] * 2\n            ans *= f[m]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long countTheNumOfKFreeSubsets(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end());\n        unordered_map<int, vector<int>> g;\n        for (int i = 0; i < nums.size(); ++i) {\n            g[nums[i] % k].push_back(nums[i]);\n        }\n        long long ans = 1;\n        for (auto& [_, arr] : g) {\n            int m = arr.size();\n            long long f[m + 1];\n            f[0] = 1;\n            f[1] = 2;\n            for (int i = 2; i <= m; ++i) {\n                if (arr[i - 1] - arr[i - 2] == k) {\n                    f[i] = f[i - 1] + f[i - 2];\n                } else {\n                    f[i] = f[i - 1] * 2;\n                }\n            }\n            ans *= f[m];\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long countTheNumOfKFreeSubsets(int[] nums, int k) {\n        Arrays.sort(nums);\n        Map<Integer, List<Integer>> g = new HashMap<>();\n        for (int i = 0; i < nums.length; ++i) {\n            g.computeIfAbsent(nums[i] % k, x -> new ArrayList<>()).add(nums[i]);\n        }\n        long ans = 1;\n        for (var arr : g.values()) {\n            int m = arr.size();\n            long[] f = new long[m + 1];\n            f[0] = 1;\n            f[1] = 2;\n            for (int i = 2; i <= m; ++i) {\n                if (arr.get(i - 1) - arr.get(i - 2) == k) {\n                    f[i] = f[i - 1] + f[i - 2];\n                } else {\n                    f[i] = f[i - 1] * 2;\n                }\n            }\n            ans *= f[m];\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countTheNumOfKFreeSubsets(nums: number[], k: number): number {\n    nums.sort((a, b) => a - b);\n    const g: Map<number, number[]> = new Map();\n    for (const x of nums) {\n        const y = x % k;\n        if (!g.has(y)) {\n            g.set(y, []);\n        }\n        g.get(y)!.push(x);\n    }\n    let ans: number = 1;\n    for (const [_, arr] of g) {\n        const m = arr.length;\n        const f: number[] = new Array(m + 1).fill(1);\n        f[1] = 2;\n        for (let i = 2; i <= m; ++i) {\n            if (arr[i - 1] - arr[i - 2] === k) {\n                f[i] = f[i - 1] + f[i - 2];\n            } else {\n                f[i] = f[i - 1] * 2;\n            }\n        }\n        ans *= f[m];\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,4,6], k = 1",
+      "expected": "5"
+    },
+    {
+      "input": "[2,3,5,8], k = 5",
+      "expected": "12"
+    },
+    {
+      "input": "[10,5,9,11], k = 20",
+      "expected": "16"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count the Number of K-Free Subsets.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

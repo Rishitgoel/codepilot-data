@@ -1,0 +1,77 @@
+{
+  "id": 1060,
+  "slug": "missing-element-in-sorted-array",
+  "title": "Missing Element in Sorted Array",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Facebook",
+    "PayPal",
+    "Arista Networks"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Missing%20Element%20in%20Sorted%20Array"
+  },
+  "description": "Given an integer array `nums` which is sorted in **ascending order** and all of its elements are **unique** and given also an integer `k`, return the `k^th` missing number starting from the leftmost number of the array.",
+  "examples": [
+    {
+      "input": "nums = [4,7,9,10], k = 1",
+      "output": "5",
+      "explanation": "The first missing number is 5."
+    },
+    {
+      "input": "nums = [4,7,9,10], k = 3",
+      "output": "8",
+      "explanation": "The missing numbers are [5,6,8,...], hence the third missing number is 8."
+    },
+    {
+      "input": "nums = [1,2,4], k = 3",
+      "output": "6",
+      "explanation": "The missing numbers are [3,5,6,7,...], hence the third missing number is 6."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 5 * 10^4",
+    "1 <= nums[i] <= 10^7",
+    "nums is sorted in ascending order, and all the elements are unique.",
+    "1 <= k <= 10^8"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def missingElement(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int missingElement(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int missingElement(int[] nums, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def missingElement(self, nums: List[int], k: int) -> int:\n        def missing(i: int) -> int:\n            return nums[i] - nums[0] - i\n\n        n = len(nums)\n        if k > missing(n - 1):\n            return nums[n - 1] + k - missing(n - 1)\n        l, r = 0, n - 1\n        while l < r:\n            mid = (l + r) >> 1\n            if missing(mid) >= k:\n                r = mid\n            else:\n                l = mid + 1\n        return nums[l - 1] + k - missing(l - 1)",
+    "cpp": "class Solution {\npublic:\n    int missingElement(vector<int>& nums, int k) {\n        auto missing = [&](int i) {\n            return nums[i] - nums[0] - i;\n        };\n        int n = nums.size();\n        if (k > missing(n - 1)) {\n            return nums[n - 1] + k - missing(n - 1);\n        }\n        int l = 0, r = n - 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (missing(mid) >= k) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return nums[l - 1] + k - missing(l - 1);\n    }\n};",
+    "java": "class Solution {\n    public int missingElement(int[] nums, int k) {\n        int n = nums.length;\n        if (k > missing(nums, n - 1)) {\n            return nums[n - 1] + k - missing(nums, n - 1);\n        }\n        int l = 0, r = n - 1;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (missing(nums, mid) >= k) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return nums[l - 1] + k - missing(nums, l - 1);\n    }\n\n    private int missing(int[] nums, int i) {\n        return nums[i] - nums[0] - i;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,7,9,10], k = 1",
+      "expected": "5"
+    },
+    {
+      "input": "[4,7,9,10], k = 3",
+      "expected": "8"
+    },
+    {
+      "input": "[1,2,4], k = 3",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Missing Element in Sorted Array.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

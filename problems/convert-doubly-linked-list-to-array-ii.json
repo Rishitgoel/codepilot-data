@@ -1,0 +1,57 @@
+{
+  "id": 3294,
+  "slug": "convert-doubly-linked-list-to-array-ii",
+  "title": "Convert Doubly Linked List to Array II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convert%20Doubly%20Linked%20List%20to%20Array%20II"
+  },
+  "description": "You are given an **arbitrary** `node` from a **doubly linked list**, which contains nodes that have a next pointer and a previous pointer.\n\nReturn an integer array which contains the elements of the linked list **in order**.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the given list is in the range [1, 500].",
+    "1 <= Node.val <= 1000",
+    "All nodes have unique Node.val."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\r\n# Definition for a Node.\r\nclass Node:\r\n    def __init__(self, val, prev=None, next=None):\r\n        pass\n",
+    "cpp": "/**\r\n * Definition for doubly-linked list.\r\n * class Node {\r\n *     int val;\r\n *     Node* prev;\r\n *     Node* next;\r\n *     Node() : val(0), next(nullptr), prev(nullptr) {}\r\n        \n    }\n};\n",
+    "java": "/*\r\n// Definition for a Node.\r\nclass Node {\r\n    public int val;\r\n    public Node prev;\r\n    public Node next;\r\n};\r\n*/\r\n\r\nclass Solution {\r\n    public int[] toArray(Node node) {\r\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for _Node.\n * class _Node {\n *     val: number\n *     prev: _Node | null\n *     next: _Node | null\n *\n *     constructor(val?: number, prev? : _Node, next? : _Node) {\n *         this.val = (val===undefined ? 0 : val);\n *         this.prev = (prev===undefined ? null : prev);\n *         this.next = (next===undefined ? null : next);\n *     }\n * }\n */\n\nfunction toArray(node: _Node | null): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\r\n# Definition for a Node.\r\nclass Node:\r\n    def __init__(self, val, prev=None, next=None):\r\n        self.val = val\r\n        self.prev = prev\r\n        self.next = next\r\n\"\"\"\r\n\r\n\r\nclass Solution:\r\n    def toArray(self, node: \"Optional[Node]\") -> List[int]:\r\n        while node.prev:\r\n            node = node.prev\r\n        ans = []\r\n        while node:\r\n            ans.append(node.val)\r\n            node = node.next\r\n        return ans",
+    "cpp": "/**\r\n * Definition for doubly-linked list.\r\n * class Node {\r\n *     int val;\r\n *     Node* prev;\r\n *     Node* next;\r\n *     Node() : val(0), next(nullptr), prev(nullptr) {}\r\n *     Node(int x) : val(x), next(nullptr), prev(nullptr) {}\r\n *     Node(int x, Node *prev, Node *next) : val(x), next(next), prev(prev) {}\r\n * };\r\n */\r\nclass Solution {\r\npublic:\r\n    vector<int> toArray(Node* node) {\r\n        while (node && node->prev) {\r\n            node = node->prev;\r\n        }\r\n        vector<int> ans;\r\n        for (; node; node = node->next) {\r\n            ans.push_back(node->val);\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "/*\r\n// Definition for a Node.\r\nclass Node {\r\n    public int val;\r\n    public Node prev;\r\n    public Node next;\r\n};\r\n*/\r\n\r\nclass Solution {\r\n    public int[] toArray(Node node) {\r\n        while (node != null && node.prev != null) {\r\n            node = node.prev;\r\n        }\r\n        var ans = new ArrayList<Integer>();\r\n        for (; node != null; node = node.next) {\r\n            ans.add(node.val);\r\n        }\r\n        return ans.stream().mapToInt(i -> i).toArray();\r\n    }\r\n}",
+    "javascript": "/**\n * Definition for _Node.\n * class _Node {\n *     val: number\n *     prev: _Node | null\n *     next: _Node | null\n *\n *     constructor(val?: number, prev? : _Node, next? : _Node) {\n *         this.val = (val===undefined ? 0 : val);\n *         this.prev = (prev===undefined ? null : prev);\n *         this.next = (next===undefined ? null : next);\n *     }\n * }\n */\n\nfunction toArray(node: _Node | null): number[] {\n    while (node && node.prev) {\n        node = node.prev;\n    }\n    const ans: number[] = [];\n    for (; node; node = node.next) {\n        ans.push(node.val);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convert Doubly Linked List to Array II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

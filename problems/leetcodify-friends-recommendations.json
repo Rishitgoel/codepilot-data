@@ -1,0 +1,43 @@
+{
+  "id": 1917,
+  "slug": "leetcodify-friends-recommendations",
+  "title": "Leetcodify Friends Recommendations",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Spotify"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Leetcodify%20Friends%20Recommendations"
+  },
+  "description": "Table: `Listens`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| user_id     | int     |\n| song_id     | int     |\n| day         | date    |\n+-------------+---------+\nThis table may contain duplicates (In other words, there is no primary key for this table in SQL).\nEach row of this table indicates that the user user_id listened to the song song_id on the day day.\n\n \n\nTable: `Friendship`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| user1_id      | int     |\n| user2_id      | int     |\n+---------------+---------+\nIn SQL,(user1_id, user2_id) is the primary key for this table.\nEach row of this table indicates that the users user1_id and user2_id are friends.\nNote that user1_id \n\n \n\nRecommend friends to Leetcodify users. We recommend user `x` to user `y` if:\n\n\tUsers `x` and `y` are not friends, and\n\tUsers `x` and `y` listened to the same three or more different songs **on the same day**.\n\nNote that friend recommendations are **unidirectional**, meaning if user `x` and user `y` should be recommended to each other, the result table should have both user `x` recommended to user `y` and user `y` recommended to user `x`. Also, note that the result table should not contain duplicates (i.e., user `y` should not be recommended to user `x` multiple times.).\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Listens table:\n+---------+---------+------------+\n| user_id | song_id | day        |\n+---------+---------+------------+\n| 1       | 10      | 2021-03-15 |\n| 1       | 11      | 2021-03-15 |\n| 1       | 12      | 2021-03-15 |\n| 2       | 10      | 2021-03-15 |\n| 2       | 11      | 2021-03-15 |\n| 2       | 12      | 2021-03-15 |\n| 3       | 10      | 2021-03-15 |\n| 3       | 11      | 2021-03-15 |\n| 3       | 12      | 2021-03-15 |\n| 4       | 10      | 2021-03-15 |\n| 4       | 11      | 2021-03-15 |\n| 4       | 13      | 2021-03-15 |\n| 5       | 10      | 2021-03-16 |\n| 5       | 11      | 2021-03-16 |\n| 5       | 12      | 2021-03-16 |\n+---------+---------+------------+\nFriendship table:\n+----------+----------+\n| user1_id | user2_id |\n+----------+----------+\n| 1        | 2        |\n+----------+----------+",
+      "output": "+---------+----------------+\n| user_id | recommended_id |\n+---------+----------------+\n| 1       | 3              |\n| 2       | 3              |\n| 3       | 1              |\n| 3       | 2              |\n+---------+----------------+",
+      "explanation": "Users 1 and 2 listened to songs 10, 11, and 12 on the same day, but they are already friends.\nUsers 1 and 3 listened to songs 10, 11, and 12 on the same day. Since they are not friends, we recommend them to each other.\nUsers 1 and 4 did not listen to the same three songs.\nUsers 1 and 5 listened to songs 10, 11, and 12, but on different days.\n\nSimilarly, we can see that users 2 and 3 listened to songs 10, 11, and 12 on the same day and are not friends, so we recommend them to each other."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Listens table:\n+---------+---------+------------+\n| user_id | song_id | day        |\n+---------+---------+------------+\n| 1       | 10      | 2021-03-15 |\n| 1       | 11      | 2021-03-15 |\n| 1       | 12      | 2021-03-15 |\n| 2       | 10      | 2021-03-15 |\n| 2       | 11      | 2021-03-15 |\n| 2       | 12      | 2021-03-15 |\n| 3       | 10      | 2021-03-15 |\n| 3       | 11      | 2021-03-15 |\n| 3       | 12      | 2021-03-15 |\n| 4       | 10      | 2021-03-15 |\n| 4       | 11      | 2021-03-15 |\n| 4       | 13      | 2021-03-15 |\n| 5       | 10      | 2021-03-16 |\n| 5       | 11      | 2021-03-16 |\n| 5       | 12      | 2021-03-16 |\n+---------+---------+------------+\nFriendship table:\n+----------+----------+\n| user1_id | user2_id |\n+----------+----------+\n| 1        | 2        |\n+----------+----------+",
+      "expected": "+---------+----------------+\n| user_id | recommended_id |\n+---------+----------------+\n| 1       | 3              |\n| 2       | 3              |\n| 3       | 1              |\n| 3       | 2              |\n+---------+----------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Leetcodify Friends Recommendations.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,62 @@
+{
+  "id": 635,
+  "slug": "design-log-storage-system",
+  "title": "Design Log Storage System",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Apple",
+    "Snapchat",
+    "Snowflake",
+    "Twitter"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20Log%20Storage%20System"
+  },
+  "description": "You are given several logs, where each log contains a unique ID and timestamp. Timestamp is a string that has the following format: `Year:Month:Day:Hour:Minute:Second`, for example, `2017:01:01:23:59:59`. All domains are zero-padded decimal numbers.\n\nImplement the `LogSystem` class:\n\n\t`LogSystem()` Initializes the `LogSystem` object.\n\t`void put(int id, string timestamp)` Stores the given log `(id, timestamp)` in your storage system.\n\t`int[] retrieve(string start, string end, string granularity)` Returns the IDs of the logs whose timestamps are within the range from `start` to `end` inclusive. `start` and `end` all have the same format as `timestamp`, and `granularity` means how precise the range should be (i.e. to the exact `Day`, `Minute`, etc.). For example, `start = \"2017:01:01:23:59:59\"`, `end = \"2017:01:02:23:59:59\"`, and `granularity = \"Day\"` means that we need to find the logs within the inclusive range from **Jan. 1st 2017** to **Jan. 2nd 2017**, and the `Hour`, `Minute`, and `Second` for each log entry can be ignored.",
+  "examples": [
+    {
+      "input": "[\"LogSystem\", \"put\", \"put\", \"put\", \"retrieve\", \"retrieve\"]\n[[], [1, \"2017:01:01:23:59:59\"], [2, \"2017:01:01:22:59:59\"], [3, \"2016:01:01:00:00:00\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Year\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Hour\"]]",
+      "output": "[null, null, null, null, [3, 2, 1], [2, 1]]",
+      "explanation": "LogSystem logSystem = new LogSystem();\nlogSystem.put(1, \"2017:01:01:23:59:59\");\nlogSystem.put(2, \"2017:01:01:22:59:59\");\nlogSystem.put(3, \"2016:01:01:00:00:00\");\n\n// return [3,2,1], because you need to return all logs between 2016 and 2017.\nlogSystem.retrieve(\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Year\");\n\n// return [2,1], because you need to return all logs between Jan. 1, 2016 01:XX:XX and Jan. 1, 2017 23:XX:XX.\n// Log 3 is not returned because Jan. 1, 2016 00:00:00 comes before the start of the range.\nlogSystem.retrieve(\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Hour\");"
+    }
+  ],
+  "constraints": [
+    "1 <= id <= 500",
+    "2000 <= Year <= 2017",
+    "1 <= Month <= 12",
+    "1 <= Day <= 31",
+    "0 <= Hour <= 23",
+    "0 <= Minute, Second <= 59",
+    "granularity is one of the values [\"Year\", \"Month\", \"Day\", \"Hour\", \"Minute\", \"Second\"].",
+    "At most 500 calls will be made to put and retrieve."
+  ],
+  "starterTemplates": {
+    "python": "class LogSystem:\n    def __init__(self):\n        pass\n",
+    "cpp": "class LogSystem {\npublic:\n    LogSystem() {\n        \n    }\n};\n",
+    "java": "class LogSystem {\n    private List<Log> logs = new ArrayList<>();\n    private Map<String, Integer> d = new HashMap<>();\n\n    public LogSystem() {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class LogSystem:\n    def __init__(self):\n        self.logs = []\n        self.d = {\n            \"Year\": 4,\n            \"Month\": 7,\n            \"Day\": 10,\n            \"Hour\": 13,\n            \"Minute\": 16,\n            \"Second\": 19,\n        }\n\n    def put(self, id: int, timestamp: str) -> None:\n        self.logs.append((id, timestamp))\n\n    def retrieve(self, start: str, end: str, granularity: str) -> List[int]:\n        i = self.d[granularity]\n        return [id for id, ts in self.logs if start[:i] <= ts[:i] <= end[:i]]\n\n\n# Your LogSystem object will be instantiated and called as such:\n# obj = LogSystem()\n# obj.put(id,timestamp)\n# param_2 = obj.retrieve(start,end,granularity)",
+    "cpp": "class LogSystem {\npublic:\n    LogSystem() {\n        d[\"Year\"] = 4;\n        d[\"Month\"] = 7;\n        d[\"Day\"] = 10;\n        d[\"Hour\"] = 13;\n        d[\"Minute\"] = 16;\n        d[\"Second\"] = 19;\n    }\n\n    void put(int id, string timestamp) {\n        logs.push_back({id, timestamp});\n    }\n\n    vector<int> retrieve(string start, string end, string granularity) {\n        vector<int> ans;\n        int i = d[granularity];\n        auto s = start.substr(0, i);\n        auto e = end.substr(0, i);\n        for (auto& [id, ts] : logs) {\n            auto t = ts.substr(0, i);\n            if (s <= t && t <= e) {\n                ans.emplace_back(id);\n            }\n        }\n        return ans;\n    }\n\nprivate:\n    vector<pair<int, string>> logs;\n    unordered_map<string, int> d;\n};\n\n/**\n * Your LogSystem object will be instantiated and called as such:\n * LogSystem* obj = new LogSystem();\n * obj->put(id,timestamp);\n * vector<int> param_2 = obj->retrieve(start,end,granularity);\n */",
+    "java": "class LogSystem {\n    private List<Log> logs = new ArrayList<>();\n    private Map<String, Integer> d = new HashMap<>();\n\n    public LogSystem() {\n        d.put(\"Year\", 4);\n        d.put(\"Month\", 7);\n        d.put(\"Day\", 10);\n        d.put(\"Hour\", 13);\n        d.put(\"Minute\", 16);\n        d.put(\"Second\", 19);\n    }\n\n    public void put(int id, String timestamp) {\n        logs.add(new Log(id, timestamp));\n    }\n\n    public List<Integer> retrieve(String start, String end, String granularity) {\n        List<Integer> ans = new ArrayList<>();\n        int i = d.get(granularity);\n        String s = start.substring(0, i);\n        String e = end.substring(0, i);\n        for (var log : logs) {\n            String t = log.ts.substring(0, i);\n            if (s.compareTo(t) <= 0 && t.compareTo(e) <= 0) {\n                ans.add(log.id);\n            }\n        }\n        return ans;\n    }\n}\n\nclass Log {\n    int id;\n    String ts;\n\n    Log(int id, String ts) {\n        this.id = id;\n        this.ts = ts;\n    }\n}\n\n/**\n * Your LogSystem object will be instantiated and called as such:\n * LogSystem obj = new LogSystem();\n * obj.put(id,timestamp);\n * List<Integer> param_2 = obj.retrieve(start,end,granularity);\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"LogSystem\", \"put\", \"put\", \"put\", \"retrieve\", \"retrieve\"]\n[[], [1, \"2017:01:01:23:59:59\"], [2, \"2017:01:01:22:59:59\"], [3, \"2016:01:01:00:00:00\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Year\"], [\"2016:01:01:01:01:01\", \"2017:01:01:23:00:00\", \"Hour\"]]",
+      "expected": "[null, null, null, null, [3, 2, 1], [2, 1]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design Log Storage System.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,53 @@
+{
+  "id": 3667,
+  "slug": "sort-array-by-absolute-value",
+  "title": "Sort Array By Absolute Value",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Cognizant"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20Array%20By%20Absolute%20Value"
+  },
+  "description": "You are given an integer array `nums`.\n\nRearrange elements of `nums` in **non-decreasing** order of their absolute value.\n\nReturn **any** rearranged array that satisfies this condition.\n\n**Note**: The absolute value of an integer x is defined as:\n\n\t`x` if `x >= 0`\n\t`-x` if `x",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "-100 <= nums[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sortByAbsoluteValue(self, nums: List[int]) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> sortByAbsoluteValue(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] sortByAbsoluteValue(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function sortByAbsoluteValue(nums: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sortByAbsoluteValue(self, nums: List[int]) -> List[int]:\n        return sorted(nums, key=lambda x: abs(x))",
+    "cpp": "class Solution {\npublic:\n    vector<int> sortByAbsoluteValue(vector<int>& nums) {\n        sort(nums.begin(), nums.end(), [](int a, int b) {\n            return abs(a) < abs(b);\n        });\n        return nums;\n    }\n};",
+    "java": "class Solution {\n    public int[] sortByAbsoluteValue(int[] nums) {\n        return Arrays.stream(nums)\n            .boxed()\n            .sorted(Comparator.comparingInt(Math::abs))\n            .mapToInt(Integer::intValue)\n            .toArray();\n    }\n}",
+    "javascript": "function sortByAbsoluteValue(nums: number[]): number[] {\n    return nums.sort((a, b) => Math.abs(a) - Math.abs(b));\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sort Array By Absolute Value.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

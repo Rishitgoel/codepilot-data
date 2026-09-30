@@ -1,0 +1,56 @@
+{
+  "id": 3935,
+  "slug": "power-update-after-k-th-largest-insertion-i",
+  "title": "Power Update After K-th Largest Insertion I",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Power%20Update%20After%20K-th%20Largest%20Insertion%20I"
+  },
+  "description": "You are given an integer array `nums` and an integer `p`.\n\nYou are also given a 2D integer array `queries`, where each `queries[i] = [vali, ki]` and the difference between **consecutive** `ki` values is always **less** than 10.\n\nFor each query:\n\n\tInsert `vali` into `nums`.\n\tLet `x` be the `ki^th` **largest** element in the current `nums`.\n\t**Update** `p` to `p^x % (10^9 + 7)`.\n\nReturn an array `ans` where the `ans[i]` represents the value of `p` after processing the `i^th` query.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 2 &times; 10^4",
+    "1 <= nums[i] <= 10^6",
+    "​​​​​​​1 <= p <= 10^6",
+    "1 <= queries.length <= 2 &times; 10^4",
+    "^​​​​​​​1 <= vali <= 10^6",
+    "1 <= ki <= n + i + 1",
+    "|ki - ki - 1| < 10 for i > 0"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    using ll = long long;\n\n    void add(map<int, int>& mp, int x) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private void add(TreeMap<Integer, Integer> t, int x) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        l = SortedList()\n        r = SortedList(nums)\n        ans = []\n        mod = 10**9 + 7\n        for val, k in queries:\n            r.add(val)\n            l.add(r.pop(0))\n            while len(r) < k:\n                r.add(l.pop())\n            while len(r) > k:\n                l.add(r.pop(0))\n            x = r[0]\n            p = pow(p, x, mod)\n            ans.append(p)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    using ll = long long;\n\n    void add(map<int, int>& mp, int x) {\n        ++mp[x];\n    }\n\n    void remove(map<int, int>& mp, int x) {\n        if (--mp[x] == 0) {\n            mp.erase(x);\n        }\n    }\n\n    ll qpow(ll a, int b, int mod) {\n        ll ans = 1;\n\n        while (b) {\n            if (b & 1) {\n                ans = ans * a % mod;\n            }\n\n            a = a * a % mod;\n            b >>= 1;\n        }\n\n        return ans;\n    }\n\n    vector<int> powerUpdate(vector<int>& nums, int p, vector<vector<int>>& queries) {\n        map<int, int> l, r;\n\n        int sz1 = 0, sz2 = nums.size();\n\n        for (int x : nums) {\n            add(r, x);\n        }\n\n        const int mod = 1e9 + 7;\n\n        vector<int> ans;\n\n        for (auto& q : queries) {\n            int val = q[0];\n            int k = q[1];\n\n            add(r, val);\n            ++sz2;\n\n            int v = r.begin()->first;\n\n            remove(r, v);\n            --sz2;\n\n            add(l, v);\n            ++sz1;\n\n            while (sz2 < k) {\n                v = l.rbegin()->first;\n\n                remove(l, v);\n                --sz1;\n\n                add(r, v);\n                ++sz2;\n            }\n\n            while (sz2 > k) {\n                v = r.begin()->first;\n\n                remove(r, v);\n                --sz2;\n\n                add(l, v);\n                ++sz1;\n            }\n\n            int x = r.begin()->first;\n\n            p = qpow(p, x, mod);\n\n            ans.push_back(p);\n        }\n\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private void add(TreeMap<Integer, Integer> t, int x) {\n        t.merge(x, 1, Integer::sum);\n    }\n\n    private void remove(TreeMap<Integer, Integer> t, int x) {\n        int v = t.get(x);\n\n        if (v == 1) {\n            t.remove(x);\n        } else {\n            t.put(x, v - 1);\n        }\n    }\n\n    private long qpow(long a, int b, int mod) {\n        long ans = 1;\n\n        while (b > 0) {\n            if ((b & 1) == 1) {\n                ans = ans * a % mod;\n            }\n\n            a = a * a % mod;\n            b >>= 1;\n        }\n\n        return ans;\n    }\n\n    public List<Integer> powerUpdate(int[] nums, int p, int[][] queries) {\n        TreeMap<Integer, Integer> l = new TreeMap<>();\n        TreeMap<Integer, Integer> r = new TreeMap<>();\n\n        int sz1 = 0, sz2 = nums.length;\n\n        for (int x : nums) {\n            add(r, x);\n        }\n\n        int mod = 1_000_000_007;\n\n        List<Integer> ans = new ArrayList<>();\n\n        for (int[] q : queries) {\n            int val = q[0];\n            int k = q[1];\n\n            add(r, val);\n            ++sz2;\n\n            int v = r.firstKey();\n\n            remove(r, v);\n            --sz2;\n\n            add(l, v);\n            ++sz1;\n\n            while (sz2 < k) {\n                v = l.lastKey();\n\n                remove(l, v);\n                --sz1;\n\n                add(r, v);\n                ++sz2;\n            }\n\n            while (sz2 > k) {\n                v = r.firstKey();\n\n                remove(r, v);\n                --sz2;\n\n                add(l, v);\n                ++sz1;\n            }\n\n            int x = r.firstKey();\n\n            p = (int) qpow(p, x, mod);\n\n            ans.add(p);\n        }\n\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Power Update After K-th Largest Insertion I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

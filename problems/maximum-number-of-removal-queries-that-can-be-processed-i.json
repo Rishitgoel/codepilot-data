@@ -1,0 +1,76 @@
+{
+  "id": 3018,
+  "slug": "maximum-number-of-removal-queries-that-can-be-processed-i",
+  "title": "Maximum Number of Removal Queries That Can Be Processed I",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Removal%20Queries%20That%20Can%20Be%20Processed%20I"
+  },
+  "description": "You are given a **0-indexed** array `nums` and a **0-indexed** array `queries`.\n\nYou can do the following operation at the beginning **at most once**:\n\n\tReplace `nums` with a subsequence of `nums`.\n\nWe start processing queries in the given order; for each query, we do the following:\n\n\tIf the first **and** the last element of `nums` is **less than** `queries[i]`, the processing of queries **ends**.\n\tOtherwise, we choose either the first **or** the last element of `nums` if it is **greater than or equal to** `queries[i]`, and we **remove** the chosen element from `nums`.\n\nReturn *the **maximum** number of queries that can be processed by doing the operation optimally.*",
+  "examples": [
+    {
+      "input": "nums = [1,2,3,4,5], queries = [1,2,3,4,6]",
+      "output": "4",
+      "explanation": "We don't do any operation and process the queries as follows:\n1- We choose and remove nums[0] since 1 <= 1, then nums becomes [2,3,4,5].\n2- We choose and remove nums[0] since 2 <= 2, then nums becomes [3,4,5].\n3- We choose and remove nums[0] since 3 <= 3, then nums becomes [4,5].\n4- We choose and remove nums[0] since 4 <= 4, then nums becomes [5].\n5- We can not choose any elements from nums since they are not greater than or equal to 5.\nHence, the answer is 4.\nIt can be shown that we can't process more than 4 queries."
+    },
+    {
+      "input": "nums = [2,3,2], queries = [2,2,3]",
+      "output": "3",
+      "explanation": "We don't do any operation and process the queries as follows:\n1- We choose and remove nums[0] since 2 <= 2, then nums becomes [3,2].\n2- We choose and remove nums[1] since 2 <= 2, then nums becomes [3].\n3- We choose and remove nums[0] since 3 <= 3, then nums becomes [].\nHence, the answer is 3.\nIt can be shown that we can't process more than 3 queries."
+    },
+    {
+      "input": "nums = [3,4,3], queries = [4,3,2]",
+      "output": "2",
+      "explanation": "First we replace nums with the subsequence of nums [4,3].\nThen we can process the queries as follows:\n1- We choose and remove nums[0] since 4 <= 4, then nums becomes [3].\n2- We choose and remove nums[0] since 3 <= 3, then nums becomes [].\n3- We can not process any more queries since nums is empty.\nHence, the answer is 2.\nIt can be shown that we can't process more than 2 queries."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 1000",
+    "1 <= queries.length <= 1000",
+    "1 <= nums[i], queries[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maximumProcessableQueries(self, nums: List[int], queries: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int maximumProcessableQueries(vector<int>& nums, vector<int>& queries) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int maximumProcessableQueries(int[] nums, int[] queries) {\r\n        \n    }\n};\n",
+    "javascript": "function maximumProcessableQueries(nums: number[], queries: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maximumProcessableQueries(self, nums: List[int], queries: List[int]) -> int:\r\n        n = len(nums)\r\n        f = [[0] * n for _ in range(n)]\r\n        m = len(queries)\r\n        for i in range(n):\r\n            for j in range(n - 1, i - 1, -1):\r\n                if i:\r\n                    f[i][j] = max(\r\n                        f[i][j], f[i - 1][j] + (nums[i - 1] >= queries[f[i - 1][j]])\r\n                    )\r\n                if j + 1 < n:\r\n                    f[i][j] = max(\r\n                        f[i][j], f[i][j + 1] + (nums[j + 1] >= queries[f[i][j + 1]])\r\n                    )\r\n                if f[i][j] == m:\r\n                    return m\r\n        return max(f[i][i] + (nums[i] >= queries[f[i][i]]) for i in range(n))",
+    "cpp": "class Solution {\r\npublic:\r\n    int maximumProcessableQueries(vector<int>& nums, vector<int>& queries) {\r\n        int n = nums.size();\r\n        int f[n][n];\r\n        memset(f, 0, sizeof(f));\r\n        int m = queries.size();\r\n        for (int i = 0; i < n; ++i) {\r\n            for (int j = n - 1; j >= i; --j) {\r\n                if (i > 0) {\r\n                    f[i][j] = max(f[i][j], f[i - 1][j] + (nums[i - 1] >= queries[f[i - 1][j]] ? 1 : 0));\r\n                }\r\n                if (j + 1 < n) {\r\n                    f[i][j] = max(f[i][j], f[i][j + 1] + (nums[j + 1] >= queries[f[i][j + 1]] ? 1 : 0));\r\n                }\r\n                if (f[i][j] == m) {\r\n                    return m;\r\n                }\r\n            }\r\n        }\r\n        int ans = 0;\r\n        for (int i = 0; i < n; ++i) {\r\n            ans = max(ans, f[i][i] + (nums[i] >= queries[f[i][i]] ? 1 : 0));\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int maximumProcessableQueries(int[] nums, int[] queries) {\r\n        int n = nums.length;\r\n        int[][] f = new int[n][n];\r\n        int m = queries.length;\r\n        for (int i = 0; i < n; ++i) {\r\n            for (int j = n - 1; j >= i; --j) {\r\n                if (i > 0) {\r\n                    f[i][j] = Math.max(\r\n                        f[i][j], f[i - 1][j] + (nums[i - 1] >= queries[f[i - 1][j]] ? 1 : 0));\r\n                }\r\n                if (j + 1 < n) {\r\n                    f[i][j] = Math.max(\r\n                        f[i][j], f[i][j + 1] + (nums[j + 1] >= queries[f[i][j + 1]] ? 1 : 0));\r\n                }\r\n                if (f[i][j] == m) {\r\n                    return m;\r\n                }\r\n            }\r\n        }\r\n        int ans = 0;\r\n        for (int i = 0; i < n; ++i) {\r\n            ans = Math.max(ans, f[i][i] + (nums[i] >= queries[f[i][i]] ? 1 : 0));\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maximumProcessableQueries(nums: number[], queries: number[]): number {\n    const n = nums.length;\n    const f: number[][] = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));\n    const m = queries.length;\n    for (let i = 0; i < n; ++i) {\n        for (let j = n - 1; j >= i; --j) {\n            if (i > 0) {\n                f[i][j] = Math.max(\n                    f[i][j],\n                    f[i - 1][j] + (nums[i - 1] >= queries[f[i - 1][j]] ? 1 : 0),\n                );\n            }\n            if (j + 1 < n) {\n                f[i][j] = Math.max(\n                    f[i][j],\n                    f[i][j + 1] + (nums[j + 1] >= queries[f[i][j + 1]] ? 1 : 0),\n                );\n            }\n            if (f[i][j] == m) {\n                return m;\n            }\n        }\n    }\n    let ans = 0;\n    for (let i = 0; i < n; ++i) {\n        ans = Math.max(ans, f[i][i] + (nums[i] >= queries[f[i][i]] ? 1 : 0));\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3,4,5], queries = [1,2,3,4,6]",
+      "expected": "4"
+    },
+    {
+      "input": "[2,3,2], queries = [2,2,3]",
+      "expected": "3"
+    },
+    {
+      "input": "[3,4,3], queries = [4,3,2]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Removal Queries That Can Be Processed I.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

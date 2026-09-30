@@ -1,0 +1,49 @@
+{
+  "id": 3358,
+  "slug": "books-with-null-ratings",
+  "title": "Books with NULL Ratings",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Books%20with%20NULL%20Ratings"
+  },
+  "description": "Table: `books`\n\n+----------------+---------+\n| Column Name    | Type    |\n+----------------+---------+\n| book_id        | int     |\n| title          | varchar |\n| author         | varchar |\n| published_year | int     |\n| rating         | decimal |\n+----------------+---------+\nbook_id is the unique key for this table.\nEach row of this table contains information about a book including its unique ID, title, author, publication year, and rating.\nrating can be NULL, indicating that the book hasn't been rated yet.\n\nWrite a solution to find all books that have not been rated yet (i.e., have a **NULL** rating).\n\nReturn *the result table* *ordered by* `book_id` in **ascending** order.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_unrated_books(books: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_unrated_books(books: pd.DataFrame) -> pd.DataFrame:\r\n    unrated_books = books[books[\"rating\"].isnull()]\r\n    return unrated_books[[\"book_id\", \"title\", \"author\", \"published_year\"]].sort_values(\r\n        by=\"book_id\"\r\n    )"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Books with NULL Ratings.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

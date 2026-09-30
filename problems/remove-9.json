@@ -1,0 +1,51 @@
+{
+  "id": 660,
+  "slug": "remove-9",
+  "title": "Remove 9",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Houzz"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Remove%209"
+  },
+  "description": "Start from integer `1`, remove any integer that contains `9` such as `9`, `19`, `29`...\n\nNow, you will have a new integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ...]`.\n\nGiven an integer `n`, return *the* `n^th` (**1-indexed**) integer in the new sequence.",
+  "examples": [
+    {
+      "input": "n = 9",
+      "output": "10"
+    },
+    {
+      "input": "n = 10",
+      "output": "11"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 8 * 10^8"
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "9",
+      "expected": "10"
+    },
+    {
+      "input": "10",
+      "expected": "11"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Remove 9.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

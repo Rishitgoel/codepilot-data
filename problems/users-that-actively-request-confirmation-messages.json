@@ -1,0 +1,46 @@
+{
+  "id": 1939,
+  "slug": "users-that-actively-request-confirmation-messages",
+  "title": "Users That Actively Request Confirmation Messages",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Users%20That%20Actively%20Request%20Confirmation%20Messages"
+  },
+  "description": "Table: `Signups`\n\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| user_id        | int      |\n| time_stamp     | datetime |\n+----------------+----------+\nuser_id is the column with unique values for this table.\nEach row contains information about the signup time for the user with ID user_id.\n\n \n\nTable: `Confirmations`\n\n+----------------+----------+\n| Column Name    | Type     |\n+----------------+----------+\n| user_id        | int      |\n| time_stamp     | datetime |\n| action         | ENUM     |\n+----------------+----------+\n(user_id, time_stamp) is the primary key (combination of columns with unique values) for this table.\nuser_id is a foreign key (reference column) to the Signups table.\naction is an ENUM (category) of the type ('confirmed', 'timeout')\nEach row of this table indicates that the user with ID user_id requested a confirmation message at time_stamp and that confirmation message was either confirmed ('confirmed') or expired without confirming ('timeout').\n\n \n\nWrite a solution to find the IDs of the users that requested a confirmation message **twice** within a 24-hour window. Two messages exactly 24 hours apart are considered to be within the window. The `action` does not affect the answer, only the request time.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Signups table:\n+---------+---------------------+\n| user_id | time_stamp          |\n+---------+---------------------+\n| 3       | 2020-03-21 10:16:13 |\n| 7       | 2020-01-04 13:57:59 |\n| 2       | 2020-07-29 23:09:44 |\n| 6       | 2020-12-09 10:39:37 |\n+---------+---------------------+\nConfirmations table:\n+---------+---------------------+-----------+\n| user_id | time_stamp          | action    |\n+---------+---------------------+-----------+\n| 3       | 2021-01-06 03:30:46 | timeout   |\n| 3       | 2021-01-06 03:37:45 | timeout   |\n| 7       | 2021-06-12 11:57:29 | confirmed |\n| 7       | 2021-06-13 11:57:30 | confirmed |\n| 2       | 2021-01-22 00:00:00 | confirmed |\n| 2       | 2021-01-23 00:00:00 | timeout   |\n| 6       | 2021-10-23 14:14:14 | confirmed |\n| 6       | 2021-10-24 14:14:13 | timeout   |\n+---------+---------------------+-----------+",
+      "output": "+---------+\n| user_id |\n+---------+\n| 2       |\n| 3       |\n| 6       |\n+---------+",
+      "explanation": "User 2 requested two messages within exactly 24 hours of each other, so we include them.\nUser 3 requested two messages within 6 minutes and 59 seconds of each other, so we include them.\nUser 6 requested two messages within 23 hours, 59 minutes, and 59 seconds of each other, so we include them.\nUser 7 requested two messages within 24 hours and 1 second of each other, so we exclude them from the answer."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Signups table:\n+---------+---------------------+\n| user_id | time_stamp          |\n+---------+---------------------+\n| 3       | 2020-03-21 10:16:13 |\n| 7       | 2020-01-04 13:57:59 |\n| 2       | 2020-07-29 23:09:44 |\n| 6       | 2020-12-09 10:39:37 |\n+---------+---------------------+\nConfirmations table:\n+---------+---------------------+-----------+\n| user_id | time_stamp          | action    |\n+---------+---------------------+-----------+\n| 3       | 2021-01-06 03:30:46 | timeout   |\n| 3       | 2021-01-06 03:37:45 | timeout   |\n| 7       | 2021-06-12 11:57:29 | confirmed |\n| 7       | 2021-06-13 11:57:30 | confirmed |\n| 2       | 2021-01-22 00:00:00 | confirmed |\n| 2       | 2021-01-23 00:00:00 | timeout   |\n| 6       | 2021-10-23 14:14:14 | confirmed |\n| 6       | 2021-10-24 14:14:13 | timeout   |\n+---------+---------------------+-----------+",
+      "expected": "+---------+\n| user_id |\n+---------+\n| 2       |\n| 3       |\n| 6       |\n+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Users That Actively Request Confirmation Messages.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

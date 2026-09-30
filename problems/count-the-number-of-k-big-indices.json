@@ -1,0 +1,63 @@
+{
+  "id": 2519,
+  "slug": "count-the-number-of-k-big-indices",
+  "title": "Count the Number of K-Big Indices",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20the%20Number%20of%20K-Big%20Indices"
+  },
+  "description": "You are given a **0-indexed** integer array `nums` and a positive integer `k`.\n\nWe call an index `i` **k-big** if the following conditions are satisfied:\n\n\tThere exist at least `k` different indices `idx1` such that `idx1 \n\tThere exist at least `k` different indices `idx2` such that `idx2 > i` and `nums[idx2] \n\nReturn *the number of k-big indices*.",
+  "examples": [
+    {
+      "input": "nums = [2,3,6,5,2,3], k = 2",
+      "output": "2",
+      "explanation": "There are only two 2-big indices in nums:\n- i = 2 --> There are two valid idx1: 0 and 1. There are three valid idx2: 2, 3, and 4.\n- i = 3 --> There are two valid idx1: 0 and 1. There are two valid idx2: 3 and 4."
+    },
+    {
+      "input": "nums = [1,1,1], k = 3",
+      "output": "0",
+      "explanation": "There are no 3-big indices in nums."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i], k <= nums.length"
+  ],
+  "starterTemplates": {
+    "python": "class BinaryIndexedTree:\n    def __init__(self, n):\n        pass\n",
+    "cpp": "class BinaryIndexedTree {\npublic:\n    BinaryIndexedTree(int _n)\n        : n(_n)\n        , c(_n + 1) {}\n        \n    }\n};\n",
+    "java": "class BinaryIndexedTree {\n    private int n;\n    private int[] c;\n\n    public BinaryIndexedTree(int n) {\n        \n    }\n};\n",
+    "javascript": "class BinaryIndexedTree {\n    private n: number;\n    private c: number[];\n\n    constructor(n: number) {\n        this.n = n;\n        this.c = new Array(n + 1).fill(0);\n    }\n\n    update(x: number, delta: number): void {\n        while (x <= this.n) {\n            this.c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    query(x: number): number {\n        let s = 0;\n        while (x > 0) {\n            s += this.c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n}\n\nfunction kBigIndices(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class BinaryIndexedTree:\n    def __init__(self, n):\n        self.n = n\n        self.c = [0] * (n + 1)\n\n    def update(self, x, delta):\n        while x <= self.n:\n            self.c[x] += delta\n            x += x & -x\n\n    def query(self, x):\n        s = 0\n        while x:\n            s += self.c[x]\n            x -= x & -x\n        return s\n\n\nclass Solution:\n    def kBigIndices(self, nums: List[int], k: int) -> int:\n        n = len(nums)\n        tree1 = BinaryIndexedTree(n)\n        tree2 = BinaryIndexedTree(n)\n        for v in nums:\n            tree2.update(v, 1)\n        ans = 0\n        for v in nums:\n            tree2.update(v, -1)\n            ans += tree1.query(v - 1) >= k and tree2.query(v - 1) >= k\n            tree1.update(v, 1)\n        return ans",
+    "cpp": "class BinaryIndexedTree {\npublic:\n    BinaryIndexedTree(int _n)\n        : n(_n)\n        , c(_n + 1) {}\n\n    void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    int query(int x) {\n        int s = 0;\n        while (x) {\n            s += c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n\nprivate:\n    int n;\n    vector<int> c;\n};\n\nclass Solution {\npublic:\n    int kBigIndices(vector<int>& nums, int k) {\n        int n = nums.size();\n        BinaryIndexedTree* tree1 = new BinaryIndexedTree(n);\n        BinaryIndexedTree* tree2 = new BinaryIndexedTree(n);\n        for (int& v : nums) {\n            tree2->update(v, 1);\n        }\n        int ans = 0;\n        for (int& v : nums) {\n            tree2->update(v, -1);\n            ans += tree1->query(v - 1) >= k && tree2->query(v - 1) >= k;\n            tree1->update(v, 1);\n        }\n        return ans;\n    }\n};",
+    "java": "class BinaryIndexedTree {\n    private int n;\n    private int[] c;\n\n    public BinaryIndexedTree(int n) {\n        this.n = n;\n        c = new int[n + 1];\n    }\n\n    public void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    public int query(int x) {\n        int s = 0;\n        while (x > 0) {\n            s += c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n}\n\nclass Solution {\n    public int kBigIndices(int[] nums, int k) {\n        int n = nums.length;\n        BinaryIndexedTree tree1 = new BinaryIndexedTree(n);\n        BinaryIndexedTree tree2 = new BinaryIndexedTree(n);\n        for (int v : nums) {\n            tree2.update(v, 1);\n        }\n        int ans = 0;\n        for (int v : nums) {\n            tree2.update(v, -1);\n            if (tree1.query(v - 1) >= k && tree2.query(v - 1) >= k) {\n                ++ans;\n            }\n            tree1.update(v, 1);\n        }\n        return ans;\n    }\n}",
+    "javascript": "class BinaryIndexedTree {\n    private n: number;\n    private c: number[];\n\n    constructor(n: number) {\n        this.n = n;\n        this.c = new Array(n + 1).fill(0);\n    }\n\n    update(x: number, delta: number): void {\n        while (x <= this.n) {\n            this.c[x] += delta;\n            x += x & -x;\n        }\n    }\n\n    query(x: number): number {\n        let s = 0;\n        while (x > 0) {\n            s += this.c[x];\n            x -= x & -x;\n        }\n        return s;\n    }\n}\n\nfunction kBigIndices(nums: number[], k: number): number {\n    const n = Math.max(...nums);\n    const tree1 = new BinaryIndexedTree(n);\n    const tree2 = new BinaryIndexedTree(n);\n\n    for (const v of nums) {\n        tree2.update(v, 1);\n    }\n\n    let ans = 0;\n    for (const v of nums) {\n        tree2.update(v, -1);\n        if (tree1.query(v - 1) >= k && tree2.query(v - 1) >= k) {\n            ans++;\n        }\n        tree1.update(v, 1);\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,3,6,5,2,3], k = 2",
+      "expected": "2"
+    },
+    {
+      "input": "[1,1,1], k = 3",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count the Number of K-Big Indices.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

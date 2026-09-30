@@ -1,0 +1,46 @@
+{
+  "id": 2820,
+  "slug": "election-results",
+  "title": "Election Results",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Election%20Results"
+  },
+  "description": "Table: `Votes`\n\n+-------------+---------+ \n| Column Name | Type    | \n+-------------+---------+ \n| voter       | varchar | \n| candidate   | varchar |\n+-------------+---------+\n(voter, candidate) is the primary key (combination of unique values) for this table.\nEach row of this table contains name of the voter and their candidate. \n\nThe election is conducted in a city where everyone can vote for **one or more** candidates or choose **not** to vote. Each person has `1`** vote** so if they vote for multiple candidates, their vote gets equally split across them. For example, if a person votes for `2` candidates, these candidates receive an equivalent of `0.5` votes each.\n\nWrite a solution to find `candidate` who got the most votes and won the election. Output the name of the **candidate** or If multiple candidates have an **equal number** of votes, display the names of all of them.\n\nReturn* the result table ordered* *by* `candidate` *in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Votes table:\n+----------+-----------+\n| voter    | candidate |\n+----------+-----------+\n| Kathy    | null      |\n| Charles  | Ryan      |\n| Charles  | Christine |\n| Charles  | Kathy     |\n| Benjamin | Christine |\n| Anthony  | Ryan      |\n| Edward   | Ryan      |\n| Terry    | null      |\n| Evelyn   | Kathy     |\n| Arthur   | Christine |\n+----------+-----------+",
+      "output": "+-----------+\n| candidate | \n+-----------+\n| Christine |  \n| Ryan      |  \n+-----------+",
+      "explanation": "- Kathy and Terry opted not to participate in voting, resulting in their votes being recorded as 0. Charles distributed his vote among three candidates, equating to 0.33 for each candidate. On the other hand, Benjamin, Arthur, Anthony, Edward, and Evelyn each cast their votes for a single candidate.\n- Collectively, Candidate Ryan and Christine amassed a total of 2.33 votes, while Kathy received a combined total of 1.33 votes.\nSince Ryan and Christine received an equal number of votes, we will display their names in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Votes table:\n+----------+-----------+\n| voter    | candidate |\n+----------+-----------+\n| Kathy    | null      |\n| Charles  | Ryan      |\n| Charles  | Christine |\n| Charles  | Kathy     |\n| Benjamin | Christine |\n| Anthony  | Ryan      |\n| Edward   | Ryan      |\n| Terry    | null      |\n| Evelyn   | Kathy     |\n| Arthur   | Christine |\n+----------+-----------+",
+      "expected": "+-----------+\n| candidate | \n+-----------+\n| Christine |  \n| Ryan      |  \n+-----------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Election Results.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

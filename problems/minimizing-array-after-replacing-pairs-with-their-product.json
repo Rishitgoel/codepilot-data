@@ -1,0 +1,64 @@
+{
+  "id": 2892,
+  "slug": "minimizing-array-after-replacing-pairs-with-their-product",
+  "title": "Minimizing Array After Replacing Pairs With Their Product",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimizing%20Array%20After%20Replacing%20Pairs%20With%20Their%20Product"
+  },
+  "description": "Given an integer array `nums` and an integer `k`, you can perform the following operation on the array any number of times:\n\n\tSelect two **adjacent** elements of the array like `x` and `y`, such that `x * y \n\nReturn *the **minimum** possible length of *`nums`* after any number of operations*.",
+  "examples": [
+    {
+      "input": "nums = [2,3,3,7,3,5], k = 20",
+      "output": "3",
+      "explanation": "We perform these operations:\n1. [2,3,3,7,3,5] -> [6,3,7,3,5]\n2. [6,3,7,3,5] -> [18,7,3,5]\n3. [18,7,3,5] -> [18,7,15]\nIt can be shown that 3 is the minimum length possible to achieve with the given operation."
+    },
+    {
+      "input": "nums = [3,3,3,3], k = 6",
+      "output": "4",
+      "explanation": "We can't perform any operations since the product of every two adjacent elements is greater than 6.\nHence, the answer is 4."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 10^9",
+    "1 <= k <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minArrayLength(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minArrayLength(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minArrayLength(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function minArrayLength(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minArrayLength(self, nums: List[int], k: int) -> int:\n        ans, y = 1, nums[0]\n        for x in nums[1:]:\n            if x == 0:\n                return 1\n            if x * y <= k:\n                y *= x\n            else:\n                y = x\n                ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int minArrayLength(vector<int>& nums, int k) {\n        int ans = 1;\n        long long y = nums[0];\n        for (int i = 1; i < nums.size(); ++i) {\n            int x = nums[i];\n            if (x == 0) {\n                return 1;\n            }\n            if (x * y <= k) {\n                y *= x;\n            } else {\n                y = x;\n                ++ans;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minArrayLength(int[] nums, int k) {\n        int ans = 1;\n        long y = nums[0];\n        for (int i = 1; i < nums.length; ++i) {\n            int x = nums[i];\n            if (x == 0) {\n                return 1;\n            }\n            if (x * y <= k) {\n                y *= x;\n            } else {\n                y = x;\n                ++ans;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minArrayLength(nums: number[], k: number): number {\n    let [ans, y] = [1, nums[0]];\n    for (const x of nums.slice(1)) {\n        if (x === 0) {\n            return 1;\n        }\n        if (x * y <= k) {\n            y *= x;\n        } else {\n            y = x;\n            ++ans;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[2,3,3,7,3,5], k = 20",
+      "expected": "3"
+    },
+    {
+      "input": "[3,3,3,3], k = 6",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimizing Array After Replacing Pairs With Their Product.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

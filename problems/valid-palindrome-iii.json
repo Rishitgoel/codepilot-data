@@ -1,0 +1,66 @@
+{
+  "id": 1216,
+  "slug": "valid-palindrome-iii",
+  "title": "Valid Palindrome III",
+  "difficulty": "Hard",
+  "rating": 1754,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Facebook",
+    "TikTok"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Palindrome%20III"
+  },
+  "description": "Given a string `s` and an integer `k`, return `true` if `s` is a `k`**-palindrome**.\n\nA string is `k`**-palindrome** if it can be transformed into a palindrome by removing at most `k` characters from it.",
+  "examples": [
+    {
+      "input": "s = \"abcdeca\", k = 2",
+      "output": "true",
+      "explanation": "Remove 'b' and 'e' characters."
+    },
+    {
+      "input": "s = \"abbababa\", k = 1",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of only lowercase English letters.",
+    "1 <= k <= s.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isValidPalindrome(self, s: str, k: int) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isValidPalindrome(string s, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isValidPalindrome(String s, int k) {\n        \n    }\n};\n",
+    "javascript": "function isValidPalindrome(s: string, k: number): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isValidPalindrome(self, s: str, k: int) -> bool:\n        n = len(s)\n        f = [[0] * n for _ in range(n)]\n        for i in range(n):\n            f[i][i] = 1\n        for i in range(n - 2, -1, -1):\n            for j in range(i + 1, n):\n                if s[i] == s[j]:\n                    f[i][j] = f[i + 1][j - 1] + 2\n                else:\n                    f[i][j] = max(f[i + 1][j], f[i][j - 1])\n                if f[i][j] + k >= n:\n                    return True\n        return False",
+    "cpp": "class Solution {\npublic:\n    bool isValidPalindrome(string s, int k) {\n        int n = s.length();\n        int f[n][n];\n        memset(f, 0, sizeof f);\n        for (int i = 0; i < n; ++i) {\n            f[i][i] = 1;\n        }\n        for (int i = n - 2; i >= 0; --i) {\n            for (int j = i + 1; j < n; ++j) {\n                if (s[i] == s[j]) {\n                    f[i][j] = f[i + 1][j - 1] + 2;\n                } else {\n                    f[i][j] = max(f[i + 1][j], f[i][j - 1]);\n                }\n                if (f[i][j] + k >= n) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n};",
+    "java": "class Solution {\n    public boolean isValidPalindrome(String s, int k) {\n        int n = s.length();\n        int[][] f = new int[n][n];\n        for (int i = 0; i < n; ++i) {\n            f[i][i] = 1;\n        }\n        for (int i = n - 2; i >= 0; --i) {\n            for (int j = i + 1; j < n; ++j) {\n                if (s.charAt(i) == s.charAt(j)) {\n                    f[i][j] = f[i + 1][j - 1] + 2;\n                } else {\n                    f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);\n                }\n                if (f[i][j] + k >= n) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n}",
+    "javascript": "function isValidPalindrome(s: string, k: number): boolean {\n    const n = s.length;\n    const f: number[][] = Array.from({ length: n }, () => Array.from({ length: n }, () => 0));\n    for (let i = 0; i < n; ++i) {\n        f[i][i] = 1;\n    }\n    for (let i = n - 2; ~i; --i) {\n        for (let j = i + 1; j < n; ++j) {\n            if (s[i] === s[j]) {\n                f[i][j] = f[i + 1][j - 1] + 2;\n            } else {\n                f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);\n            }\n            if (f[i][j] + k >= n) {\n                return true;\n            }\n        }\n    }\n    return false;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcdeca\", k = 2",
+      "expected": "true"
+    },
+    {
+      "input": "\"abbababa\", k = 1",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Palindrome III.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

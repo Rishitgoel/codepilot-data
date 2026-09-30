@@ -1,0 +1,70 @@
+{
+  "id": 1538,
+  "slug": "guess-the-majority-in-a-hidden-array",
+  "title": "Guess the Majority in a Hidden Array",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Guess%20the%20Majority%20in%20a%20Hidden%20Array"
+  },
+  "description": "We have an integer array `nums`, where all the integers in `nums` are **0** or **1**. You will not be given direct access to the array, instead, you will have an **API** `ArrayReader` which have the following functions:\n\n\t`int query(int a, int b, int c, int d)`: where `0 \n    \t**4 **: if the values of the 4 elements are the same (0 or 1).\n    \t**2** : if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n    \t**0 **: if two element have a value equal to 0 and two elements have a value equal to 1.\n    \n    \n    `int length()`: Returns the size of the array.\n\nYou are allowed to call `query()` 2 * n times at most where n is equal to `ArrayReader.length()`.\n\nReturn **any** index of the most frequent value in `nums`, in case of tie, return -1.",
+  "examples": [
+    {
+      "input": "nums = [0,0,1,0,1,1,1,1]",
+      "output": "5",
+      "explanation": "The following calls to the API\nreader.length() // returns 8 because there are 8 elements in the hidden array.\nreader.query(0,1,2,3) // returns 2 this is a query that compares the elements nums[0], nums[1], nums[2], nums[3]\n// Three elements have a value equal to 0 and one element has value equal to 1 or viceversa.\nreader.query(4,5,6,7) // returns 4 because nums[4], nums[5], nums[6], nums[7] have the same value.\nwe can infer that the most frequent value is found in the last 4 elements.\nIndex 2, 4, 6, 7 is also a correct answer."
+    },
+    {
+      "input": "nums = [0,0,1,1,0]",
+      "output": "0"
+    },
+    {
+      "input": "nums = [1,0,1,0,1,0,1,0]",
+      "output": "-1"
+    }
+  ],
+  "constraints": [
+    "5 <= nums.length <= 10^5",
+    "0 <= nums[i] <= 1"
+  ],
+  "starterTemplates": {
+    "python": "# \"\"\"\n# This is the ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader(object):\n# \t # Compares 4 different elements in the array\n# \t # return 4 if the values of the 4 elements are the same (0 or 1).\n# \t # return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n# \t # return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n#    def query(self, a: int, b: int, c: int, d: int) -> int:\n        pass\n",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n *     int query(int a, int b, int c, int d);\n *\n *     // Returns the length of the array\n *     int length();\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *   public:\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or\n * vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal\n * to 1. public int query(int a, int b, int c, int d);\n *\n *     // Returns the length of the array\n *     public int length();\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "javascript": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n *     query(a: number, b: number, c: number, d: number): number { };\n *\n *     // Returns the length of the array\n *     length(): number { };\n * };\n */\n\nfunction guessMajority(reader: ArrayReader): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# \"\"\"\n# This is the ArrayReader's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class ArrayReader(object):\n# \t # Compares 4 different elements in the array\n# \t # return 4 if the values of the 4 elements are the same (0 or 1).\n# \t # return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n# \t # return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n#    def query(self, a: int, b: int, c: int, d: int) -> int:\n#\n# \t # Returns the length of the array\n#    def length(self) -> int:\n#\n\n\nclass Solution:\n    def guessMajority(self, reader: \"ArrayReader\") -> int:\n        n = reader.length()\n        x = reader.query(0, 1, 2, 3)\n        a, b = 1, 0\n        k = 0\n        for i in range(4, n):\n            if reader.query(0, 1, 2, i) == x:\n                a += 1\n            else:\n                b += 1\n                k = i\n\n        y = reader.query(0, 1, 2, 4)\n        if reader.query(1, 2, 3, 4) == y:\n            a += 1\n        else:\n            b += 1\n            k = 0\n        if reader.query(0, 2, 3, 4) == y:\n            a += 1\n        else:\n            b += 1\n            k = 1\n        if reader.query(0, 1, 3, 4) == y:\n            a += 1\n        else:\n            b += 1\n            k = 2\n\n        if a == b:\n            return -1\n        return 3 if a > b else k",
+    "cpp": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *   public:\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n *     int query(int a, int b, int c, int d);\n *\n *     // Returns the length of the array\n *     int length();\n * };\n */\n\nclass Solution {\npublic:\n    int guessMajority(ArrayReader& reader) {\n        int n = reader.length();\n        int x = reader.query(0, 1, 2, 3);\n        int a = 1, b = 0;\n        int k = 0;\n        for (int i = 4; i < n; ++i) {\n            if (reader.query(0, 1, 2, i) == x) {\n                ++a;\n            } else {\n                ++b;\n                k = i;\n            }\n        }\n\n        int y = reader.query(0, 1, 2, 4);\n        if (reader.query(1, 2, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 0;\n        }\n        if (reader.query(0, 2, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 1;\n        }\n        if (reader.query(0, 1, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 2;\n        }\n        if (a == b) {\n            return -1;\n        }\n        return a > b ? 3 : k;\n    }\n};",
+    "java": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface ArrayReader {\n *   public:\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or\n * vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal\n * to 1. public int query(int a, int b, int c, int d);\n *\n *     // Returns the length of the array\n *     public int length();\n * };\n */\n\nclass Solution {\n    public int guessMajority(ArrayReader reader) {\n        int n = reader.length();\n        int x = reader.query(0, 1, 2, 3);\n        int a = 1, b = 0;\n        int k = 0;\n        for (int i = 4; i < n; ++i) {\n            if (reader.query(0, 1, 2, i) == x) {\n                ++a;\n            } else {\n                ++b;\n                k = i;\n            }\n        }\n\n        int y = reader.query(0, 1, 2, 4);\n        if (reader.query(1, 2, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 0;\n        }\n        if (reader.query(0, 2, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 1;\n        }\n        if (reader.query(0, 1, 3, 4) == y) {\n            ++a;\n        } else {\n            ++b;\n            k = 2;\n        }\n        if (a == b) {\n            return -1;\n        }\n        return a > b ? 3 : k;\n    }\n}",
+    "javascript": "/**\n * // This is the ArrayReader's API interface.\n * // You should not implement it, or speculate about its implementation\n * class ArrayReader {\n *     // Compares 4 different elements in the array\n *     // return 4 if the values of the 4 elements are the same (0 or 1).\n *     // return 2 if three elements have a value equal to 0 and one element has value equal to 1 or vice versa.\n *     // return 0 : if two element have a value equal to 0 and two elements have a value equal to 1.\n *     query(a: number, b: number, c: number, d: number): number { };\n *\n *     // Returns the length of the array\n *     length(): number { };\n * };\n */\n\nfunction guessMajority(reader: ArrayReader): number {\n    const n = reader.length();\n    const x = reader.query(0, 1, 2, 3);\n    let a = 1;\n    let b = 0;\n    let k = 0;\n    for (let i = 4; i < n; ++i) {\n        if (reader.query(0, 1, 2, i) === x) {\n            ++a;\n        } else {\n            ++b;\n            k = i;\n        }\n    }\n    const y = reader.query(0, 1, 2, 4);\n    if (reader.query(1, 2, 3, 4) === y) {\n        ++a;\n    } else {\n        ++b;\n        k = 0;\n    }\n    if (reader.query(0, 2, 3, 4) === y) {\n        ++a;\n    } else {\n        ++b;\n        k = 1;\n    }\n    if (reader.query(0, 1, 3, 4) === y) {\n        ++a;\n    } else {\n        ++b;\n        k = 2;\n    }\n    if (a === b) {\n        return -1;\n    }\n    return a > b ? 3 : k;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[0,0,1,0,1,1,1,1]",
+      "expected": "5"
+    },
+    {
+      "input": "[0,0,1,1,0]",
+      "expected": "0"
+    },
+    {
+      "input": "[1,0,1,0,1,0,1,0]",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Guess the Majority in a Hidden Array.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

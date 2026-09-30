@@ -1,0 +1,52 @@
+{
+  "id": 2004,
+  "slug": "the-number-of-seniors-and-juniors-to-join-the-company",
+  "title": "The Number of Seniors and Juniors to Join the Company",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Apple"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Number%20of%20Seniors%20and%20Juniors%20to%20Join%20the%20Company"
+  },
+  "description": "Table: `Candidates`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| employee_id | int  |\n| experience  | enum |\n| salary      | int  |\n+-------------+------+\nemployee_id is the column with unique values for this table.\nexperience is an ENUM (category) type of values ('Senior', 'Junior').\nEach row of this table indicates the id of a candidate, their monthly salary, and their experience.\n\n \n\nA company wants to hire new employees. The budget of the company for the salaries is `$70000`. The company's criteria for hiring are:\n\n\tHiring the largest number of seniors.\n\tAfter hiring the maximum number of seniors, use the remaining budget to hire the largest number of juniors.\n\nWrite a solution to find the number of seniors and juniors hired under the mentioned criteria.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Candidates table:\n+-------------+------------+--------+\n| employee_id | experience | salary |\n+-------------+------------+--------+\n| 1           | Junior     | 10000  |\n| 9           | Junior     | 10000  |\n| 2           | Senior     | 20000  |\n| 11          | Senior     | 20000  |\n| 13          | Senior     | 50000  |\n| 4           | Junior     | 40000  |\n+-------------+------------+--------+",
+      "output": "+------------+---------------------+\n| experience | accepted_candidates |\n+------------+---------------------+\n| Senior     | 2                   |\n| Junior     | 2                   |\n+------------+---------------------+",
+      "explanation": "We can hire 2 seniors with IDs (2, 11). Since the budget is $70000 and the sum of their salaries is $40000, we still have $30000 but they are not enough to hire the senior candidate with ID 13.\nWe can hire 2 juniors with IDs (1, 9). Since the remaining budget is $30000 and the sum of their salaries is $20000, we still have $10000 but they are not enough to hire the junior candidate with ID 4."
+    },
+    {
+      "input": "Candidates table:\n+-------------+------------+--------+\n| employee_id | experience | salary |\n+-------------+------------+--------+\n| 1           | Junior     | 10000  |\n| 9           | Junior     | 10000  |\n| 2           | Senior     | 80000  |\n| 11          | Senior     | 80000  |\n| 13          | Senior     | 80000  |\n| 4           | Junior     | 40000  |\n+-------------+------------+--------+",
+      "output": "+------------+---------------------+\n| experience | accepted_candidates |\n+------------+---------------------+\n| Senior     | 0                   |\n| Junior     | 3                   |\n+------------+---------------------+",
+      "explanation": "We cannot hire any seniors with the current budget as we need at least $80000 to hire one senior.\nWe can hire all three juniors with the remaining budget."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Candidates table:\n+-------------+------------+--------+\n| employee_id | experience | salary |\n+-------------+------------+--------+\n| 1           | Junior     | 10000  |\n| 9           | Junior     | 10000  |\n| 2           | Senior     | 20000  |\n| 11          | Senior     | 20000  |\n| 13          | Senior     | 50000  |\n| 4           | Junior     | 40000  |\n+-------------+------------+--------+",
+      "expected": "+------------+---------------------+\n| experience | accepted_candidates |\n+------------+---------------------+\n| Senior     | 2                   |\n| Junior     | 2                   |\n+------------+---------------------+"
+    },
+    {
+      "input": "Candidates table:\n+-------------+------------+--------+\n| employee_id | experience | salary |\n+-------------+------------+--------+\n| 1           | Junior     | 10000  |\n| 9           | Junior     | 10000  |\n| 2           | Senior     | 80000  |\n| 11          | Senior     | 80000  |\n| 13          | Senior     | 80000  |\n| 4           | Junior     | 40000  |\n+-------------+------------+--------+",
+      "expected": "+------------+---------------------+\n| experience | accepted_candidates |\n+------------+---------------------+\n| Senior     | 0                   |\n| Junior     | 3                   |\n+------------+---------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for The Number of Seniors and Juniors to Join the Company.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

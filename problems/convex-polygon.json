@@ -1,0 +1,61 @@
+{
+  "id": 469,
+  "slug": "convex-polygon",
+  "title": "Convex Polygon",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Convex%20Polygon"
+  },
+  "description": "You are given an array of points on the **X-Y** plane `points` where `points[i] = [xi, yi]`. The points form a polygon when joined sequentially.\n\nReturn `true` if this polygon is convex and `false` otherwise.\n\nYou may assume the polygon formed by given points is always a simple polygon. In other words, we ensure that exactly two edges intersect at each vertex and that edges otherwise don't intersect each other.",
+  "examples": [
+    {
+      "input": "points = [[0,0],[0,5],[5,5],[5,0]]",
+      "output": "true"
+    },
+    {
+      "input": "points = [[0,0],[0,10],[10,10],[10,0],[5,5]]",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "3 <= points.length <= 10^4",
+    "points[i].length == 2",
+    "-10^4 <= xi, yi <= 10^4",
+    "All the given points are unique."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isConvex(self, points: List[List[int]]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isConvex(vector<vector<int>>& points) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isConvex(List<List<Integer>> points) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isConvex(self, points: List[List[int]]) -> bool:\n        n = len(points)\n        pre = cur = 0\n        for i in range(n):\n            x1 = points[(i + 1) % n][0] - points[i][0]\n            y1 = points[(i + 1) % n][1] - points[i][1]\n            x2 = points[(i + 2) % n][0] - points[i][0]\n            y2 = points[(i + 2) % n][1] - points[i][1]\n            cur = x1 * y2 - x2 * y1\n            if cur != 0:\n                if cur * pre < 0:\n                    return False\n                pre = cur\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool isConvex(vector<vector<int>>& points) {\n        int n = points.size();\n        long long pre = 0, cur = 0;\n        for (int i = 0; i < n; ++i) {\n            int x1 = points[(i + 1) % n][0] - points[i][0];\n            int y1 = points[(i + 1) % n][1] - points[i][1];\n            int x2 = points[(i + 2) % n][0] - points[i][0];\n            int y2 = points[(i + 2) % n][1] - points[i][1];\n            cur = 1L * x1 * y2 - x2 * y1;\n            if (cur != 0) {\n                if (cur * pre < 0) {\n                    return false;\n                }\n                pre = cur;\n            }\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean isConvex(List<List<Integer>> points) {\n        int n = points.size();\n        long pre = 0, cur = 0;\n        for (int i = 0; i < n; ++i) {\n            var p1 = points.get(i);\n            var p2 = points.get((i + 1) % n);\n            var p3 = points.get((i + 2) % n);\n            int x1 = p2.get(0) - p1.get(0);\n            int y1 = p2.get(1) - p1.get(1);\n            int x2 = p3.get(0) - p1.get(0);\n            int y2 = p3.get(1) - p1.get(1);\n            cur = x1 * y2 - x2 * y1;\n            if (cur != 0) {\n                if (cur * pre < 0) {\n                    return false;\n                }\n                pre = cur;\n            }\n        }\n        return true;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0],[0,5],[5,5],[5,0]]",
+      "expected": "true"
+    },
+    {
+      "input": "[[0,0],[0,10],[10,10],[10,0],[5,5]]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Convex Polygon.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

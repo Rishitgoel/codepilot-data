@@ -1,0 +1,72 @@
+{
+  "id": 2036,
+  "slug": "maximum-alternating-subarray-sum",
+  "title": "Maximum Alternating Subarray Sum",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Alternating%20Subarray%20Sum"
+  },
+  "description": "A **subarray** of a **0-indexed** integer array is a contiguous **non-empty** sequence of elements within an array.\n\nThe **alternating subarray sum** of a subarray that ranges from index `i` to `j` (**inclusive**, `0 <= i <= j < nums.length`) is `nums[i] - nums[i+1] + nums[i+2] - ... +/- nums[j]`.\n\nGiven a **0-indexed** integer array `nums`, return *the **maximum alternating subarray sum** of any subarray of *`nums`.",
+  "examples": [
+    {
+      "input": "nums = [3,-1,1,2]",
+      "output": "5",
+      "explanation": "The subarray [3,-1,1] has the largest alternating subarray sum.\nThe alternating subarray sum is 3 - (-1) + 1 = 5."
+    },
+    {
+      "input": "nums = [2,2,2,2,2]",
+      "output": "2",
+      "explanation": "The subarrays [2], [2,2,2], and [2,2,2,2,2] have the largest alternating subarray sum.\nThe alternating subarray sum of [2] is 2.\nThe alternating subarray sum of [2,2,2] is 2 - 2 + 2 = 2.\nThe alternating subarray sum of [2,2,2,2,2] is 2 - 2 + 2 - 2 + 2 = 2."
+    },
+    {
+      "input": "nums = [1]",
+      "output": "1",
+      "explanation": "There is only one non-empty subarray, which is [1].\nThe alternating subarray sum is 1."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "-10^5 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maximumAlternatingSubarraySum(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maximumAlternatingSubarraySum(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function maximumAlternatingSubarraySum(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:\n        ans = f = g = -inf\n        for x in nums:\n            f, g = max(g, 0) + x, f - x\n            ans = max(ans, f, g)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long maximumAlternatingSubarraySum(vector<int>& nums) {\n        using ll = long long;\n        const ll inf = 1LL << 60;\n        ll ans = -inf, f = -inf, g = -inf;\n        for (int x : nums) {\n            ll ff = max(g, 0LL) + x;\n            g = f - x;\n            f = ff;\n            ans = max({ans, f, g});\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maximumAlternatingSubarraySum(int[] nums) {\n        final long inf = 1L << 60;\n        long ans = -inf, f = -inf, g = -inf;\n        for (int x : nums) {\n            long ff = Math.max(g, 0) + x;\n            g = f - x;\n            f = ff;\n            ans = Math.max(ans, Math.max(f, g));\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maximumAlternatingSubarraySum(nums: number[]): number {\n    let [ans, f, g] = [-Infinity, -Infinity, -Infinity];\n    for (const x of nums) {\n        [f, g] = [Math.max(g, 0) + x, f - x];\n        ans = Math.max(ans, f, g);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,-1,1,2]",
+      "expected": "5"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expected": "2"
+    },
+    {
+      "input": "[1]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Alternating Subarray Sum.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,57 @@
+{
+  "id": 3141,
+  "slug": "maximum-hamming-distances",
+  "title": "Maximum Hamming Distances",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Hamming%20Distances"
+  },
+  "description": "Given an array `nums` and an integer `m`, with each element `nums[i]` satisfying `0 <= nums[i] < 2^m`, return an array `answer`. The `answer` array should be of the same length as `nums`, where each element `answer[i]` represents the *maximum* **Hamming distance **between `nums[i]` and any other element `nums[j]` in the array.\n\nThe **Hamming distance** between two binary integers is defined as the number of positions at which the corresponding bits differ (add leading zeroes if needed).",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= m <= 17",
+    "2 <= nums.length <= 2^m",
+    "0 <= nums[i] < 2^m"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maxHammingDistances(self, nums: List[int], m: int) -> List[int]:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> maxHammingDistances(vector<int>& nums, int m) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int[] maxHammingDistances(int[] nums, int m) {\r\n        \n    }\n};\n",
+    "javascript": "function maxHammingDistances(nums: number[], m: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maxHammingDistances(self, nums: List[int], m: int) -> List[int]:\r\n        dist = [-1] * (1 << m)\r\n        for x in nums:\r\n            dist[x] = 0\r\n        q = nums\r\n        k = 1\r\n        while q:\r\n            t = []\r\n            for x in q:\r\n                for i in range(m):\r\n                    y = x ^ (1 << i)\r\n                    if dist[y] == -1:\r\n                        t.append(y)\r\n                        dist[y] = k\r\n            q = t\r\n            k += 1\r\n        return [m - dist[x ^ ((1 << m) - 1)] for x in nums]",
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> maxHammingDistances(vector<int>& nums, int m) {\r\n        int dist[1 << m];\r\n        memset(dist, -1, sizeof(dist));\r\n        queue<int> q;\r\n        for (int x : nums) {\r\n            dist[x] = 0;\r\n            q.push(x);\r\n        }\r\n        for (int k = 1; q.size(); ++k) {\r\n            for (int t = q.size(); t; --t) {\r\n                int x = q.front();\r\n                q.pop();\r\n                for (int i = 0; i < m; ++i) {\r\n                    int y = x ^ (1 << i);\r\n                    if (dist[y] == -1) {\r\n                        dist[y] = k;\r\n                        q.push(y);\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        for (int& x : nums) {\r\n            x = m - dist[x ^ ((1 << m) - 1)];\r\n        }\r\n        return nums;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int[] maxHammingDistances(int[] nums, int m) {\r\n        int[] dist = new int[1 << m];\r\n        Arrays.fill(dist, -1);\r\n        Deque<Integer> q = new ArrayDeque<>();\r\n        for (int x : nums) {\r\n            dist[x] = 0;\r\n            q.offer(x);\r\n        }\r\n        for (int k = 1; !q.isEmpty(); ++k) {\r\n            for (int t = q.size(); t > 0; --t) {\r\n                int x = q.poll();\r\n                for (int i = 0; i < m; ++i) {\r\n                    int y = x ^ (1 << i);\r\n                    if (dist[y] == -1) {\r\n                        q.offer(y);\r\n                        dist[y] = k;\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        for (int i = 0; i < nums.length; ++i) {\r\n            nums[i] = m - dist[nums[i] ^ ((1 << m) - 1)];\r\n        }\r\n        return nums;\r\n    }\r\n}",
+    "javascript": "function maxHammingDistances(nums: number[], m: number): number[] {\n    const dist: number[] = Array.from({ length: 1 << m }, () => -1);\n    const q: number[] = [];\n    for (const x of nums) {\n        dist[x] = 0;\n        q.push(x);\n    }\n    for (let k = 1; q.length; ++k) {\n        const t: number[] = [];\n        for (const x of q) {\n            for (let i = 0; i < m; ++i) {\n                const y = x ^ (1 << i);\n                if (dist[y] === -1) {\n                    dist[y] = k;\n                    t.push(y);\n                }\n            }\n        }\n        q.splice(0, q.length, ...t);\n    }\n    for (let i = 0; i < nums.length; ++i) {\n        nums[i] = m - dist[nums[i] ^ ((1 << m) - 1)];\n    }\n    return nums;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Hamming Distances.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

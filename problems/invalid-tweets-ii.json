@@ -1,0 +1,49 @@
+{
+  "id": 3150,
+  "slug": "invalid-tweets-ii",
+  "title": "Invalid Tweets II",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Invalid%20Tweets%20II"
+  },
+  "description": "Table: `Tweets`\n\n+----------------+---------+\n| Column Name    | Type    |\n+----------------+---------+\n| tweet_id       | int     |\n| content        | varchar |\n+----------------+---------+\ntweet_id is the primary key (column with unique values) for this table.\nThis table contains all the tweets in a social media app.\n\nWrite a solution to find **invalid tweets**. A tweet is considered invalid if it meets **any** of the following criteria:\n\n\tIt exceeds `140` characters in length.\n\tIt has more than `3` mentions.\n\tIt includes more than `3` hashtags.\n\nReturn *the result table ordered by* `tweet_id` *in **ascending** order*.\n\nThe result format is in the following example.\n\n \n\n**Example:**\n\n**Input:**\n\nTweets table:\n\n  +----------+-----------------------------------------------------------------------------------+\n  | tweet_id | content                                                                           |\n  +----------+-----------------------------------------------------------------------------------+\n  | 1        | Traveling, exploring, and living my best life @JaneSmith @SaraJohnson @LisaTaylor |\n  |          | @MikeBrown #Foodie #Fitness #Learning                                             | \n  | 2        | Just had the best dinner with friends! #Foodie #Friends #Fun                      |\n  | 4        | Working hard on my new project #Work #Goals #Productivity #Fun                    |\n  +----------+-----------------------------------------------------------------------------------+\n  \n\n**Output:**\n\n  +----------+\n  | tweet_id |\n  +----------+\n  | 1        |\n  | 4        |\n  +----------+\n  \n\n**Explanation:**\n\n\ttweet_id 1 contains 4 mentions.\n\ttweet_id 4 contains 4 hashtags.\n\nOutput table is ordered by tweet_id in ascending order.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_invalid_tweets(tweets: pd.DataFrame) -> pd.DataFrame:\r\n    invalid_tweets = tweets[\r\n        (tweets[\"content\"].str.len() > 140)\r\n        | (tweets[\"content\"].str.count(\"@\") > 3)\r\n        | (tweets[\"content\"].str.count(\"#\") > 3)\r\n    ].sort_values(by=\"tweet_id\")\r\n    return invalid_tweets[[\"tweet_id\"]]"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Invalid Tweets II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

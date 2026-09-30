@@ -1,0 +1,72 @@
+{
+  "id": 1229,
+  "slug": "meeting-scheduler",
+  "title": "Meeting Scheduler",
+  "difficulty": "Medium",
+  "rating": 1541,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Meta",
+    "Bloomberg",
+    "Apple",
+    "Uber",
+    "Adobe"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Meeting%20Scheduler"
+  },
+  "description": "Given the availability time slots arrays `slots1` and `slots2` of two people and a meeting duration `duration`, return the **earliest time slot** that works for both of them and is of duration `duration`.\n\nIf there is no common time slot that satisfies the requirements, return an **empty array**.\n\nThe format of a time slot is an array of two elements `[start, end]` representing an inclusive time range from `start` to `end`.\n\nIt is guaranteed that no two availability slots of the same person intersect with each other. That is, for any two time slots `[start1, end1]` and `[start2, end2]` of the same person, either `start1 > end2` or `start2 > end1`.",
+  "examples": [
+    {
+      "input": "slots1 = [[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 8",
+      "output": "[60,68]"
+    },
+    {
+      "input": "slots1 = [[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 12",
+      "output": "[]"
+    }
+  ],
+  "constraints": [
+    "1 <= slots1.length, slots2.length <= 10^4",
+    "slots1[i].length, slots2[i].length == 2",
+    "slots1[i][0] < slots1[i][1]",
+    "slots2[i][0] < slots2[i][1]",
+    "0 <= slots1[i][j], slots2[i][j] <= 10^9",
+    "1 <= duration <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minAvailableDuration(\n        self, slots1: List[List[int]], slots2: List[List[int]], duration: int\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> minAvailableDuration(vector<vector<int>>& slots1, vector<vector<int>>& slots2, int duration) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> minAvailableDuration(int[][] slots1, int[][] slots2, int duration) {\n        \n    }\n};\n",
+    "javascript": "function minAvailableDuration(slots1: number[][], slots2: number[][], duration: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minAvailableDuration(\n        self, slots1: List[List[int]], slots2: List[List[int]], duration: int\n    ) -> List[int]:\n        slots1.sort()\n        slots2.sort()\n        m, n = len(slots1), len(slots2)\n        i = j = 0\n        while i < m and j < n:\n            start = max(slots1[i][0], slots2[j][0])\n            end = min(slots1[i][1], slots2[j][1])\n            if end - start >= duration:\n                return [start, start + duration]\n            if slots1[i][1] < slots2[j][1]:\n                i += 1\n            else:\n                j += 1\n        return []",
+    "cpp": "class Solution {\npublic:\n    vector<int> minAvailableDuration(vector<vector<int>>& slots1, vector<vector<int>>& slots2, int duration) {\n        sort(slots1.begin(), slots1.end());\n        sort(slots2.begin(), slots2.end());\n        int m = slots1.size(), n = slots2.size();\n        int i = 0, j = 0;\n        while (i < m && j < n) {\n            int start = max(slots1[i][0], slots2[j][0]);\n            int end = min(slots1[i][1], slots2[j][1]);\n            if (end - start >= duration) {\n                return {start, start + duration};\n            }\n            if (slots1[i][1] < slots2[j][1]) {\n                ++i;\n            } else {\n                ++j;\n            }\n        }\n        return {};\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> minAvailableDuration(int[][] slots1, int[][] slots2, int duration) {\n        Arrays.sort(slots1, (a, b) -> a[0] - b[0]);\n        Arrays.sort(slots2, (a, b) -> a[0] - b[0]);\n        int m = slots1.length, n = slots2.length;\n        int i = 0, j = 0;\n        while (i < m && j < n) {\n            int start = Math.max(slots1[i][0], slots2[j][0]);\n            int end = Math.min(slots1[i][1], slots2[j][1]);\n            if (end - start >= duration) {\n                return Arrays.asList(start, start + duration);\n            }\n            if (slots1[i][1] < slots2[j][1]) {\n                ++i;\n            } else {\n                ++j;\n            }\n        }\n        return Collections.emptyList();\n    }\n}",
+    "javascript": "function minAvailableDuration(slots1: number[][], slots2: number[][], duration: number): number[] {\n    slots1.sort((a, b) => a[0] - b[0]);\n    slots2.sort((a, b) => a[0] - b[0]);\n    const [m, n] = [slots1.length, slots2.length];\n    let [i, j] = [0, 0];\n    while (i < m && j < n) {\n        const [start1, end1] = slots1[i];\n        const [start2, end2] = slots2[j];\n        const start = Math.max(start1, start2);\n        const end = Math.min(end1, end2);\n        if (end - start >= duration) {\n            return [start, start + duration];\n        }\n        if (end1 < end2) {\n            i++;\n        } else {\n            j++;\n        }\n    }\n    return [];\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 8",
+      "expected": "[60,68]"
+    },
+    {
+      "input": "[[10,50],[60,120],[140,210]], slots2 = [[0,15],[60,70]], duration = 12",
+      "expected": "[]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Meeting Scheduler.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

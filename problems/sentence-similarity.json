@@ -1,0 +1,79 @@
+{
+  "id": 734,
+  "slug": "sentence-similarity",
+  "title": "Sentence Similarity",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sentence%20Similarity"
+  },
+  "description": "We can represent a sentence as an array of words, for example, the sentence `\"I am happy with leetcode\"` can be represented as `arr = [\"I\",\"am\",happy\",\"with\",\"leetcode\"]`.\n\nGiven two sentences `sentence1` and `sentence2` each represented as a string array and given an array of string pairs `similarPairs` where `similarPairs[i] = [xi, yi]` indicates that the two words `xi` and `yi` are similar.\n\nReturn *`true` if `sentence1` and `sentence2` are similar, or `false` if they are not similar*.\n\nTwo sentences are similar if:\n\n\tThey have **the same length** (i.e., the same number of words)\n\t`sentence1[i]` and `sentence2[i]` are similar.\n\nNotice that a word is always similar to itself, also notice that the similarity relation is not transitive. For example, if the words `a` and `b` are similar, and the words `b` and `c` are similar, `a` and `c` are **not necessarily similar**.",
+  "examples": [
+    {
+      "input": "sentence1 = [\"great\",\"acting\",\"skills\"], sentence2 = [\"fine\",\"drama\",\"talent\"], similarPairs = [[\"great\",\"fine\"],[\"drama\",\"acting\"],[\"skills\",\"talent\"]]",
+      "output": "true",
+      "explanation": "The two sentences have the same length and each word i of sentence1 is also similar to the corresponding word in sentence2."
+    },
+    {
+      "input": "sentence1 = [\"great\"], sentence2 = [\"great\"], similarPairs = []",
+      "output": "true",
+      "explanation": "A word is similar to itself."
+    },
+    {
+      "input": "sentence1 = [\"great\"], sentence2 = [\"doubleplus\",\"good\"], similarPairs = [[\"great\",\"doubleplus\"]]",
+      "output": "false",
+      "explanation": "As they don't have the same length, we return false."
+    }
+  ],
+  "constraints": [
+    "1 <= sentence1.length, sentence2.length <= 1000",
+    "1 <= sentence1[i].length, sentence2[i].length <= 20",
+    "sentence1[i] and sentence2[i] consist of English letters.",
+    "0 <= similarPairs.length <= 1000",
+    "similarPairs[i].length == 2",
+    "1 <= xi.length, yi.length <= 20",
+    "xi and yi consist of lower-case and upper-case English letters.",
+    "All the pairs (xi, yi) are distinct."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def areSentencesSimilar(\n        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool areSentencesSimilar(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean areSentencesSimilar(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        \n    }\n};\n",
+    "javascript": "function areSentencesSimilar(\n    sentence1: string[],\n    sentence2: string[],\n    similarPairs: string[][],\n): boolean {\n    if (sentence1.length !== sentence2.length) {\n        return false;\n    }\n    const s = new Set<string>();\n    for (const [x, y] of similarPairs) {\n        s.add(x + '#' + y);\n        s.add(y + '#' + x);\n    }\n    for (let i = 0; i < sentence1.length; i++) {\n        if (sentence1[i] !== sentence2[i] && !s.has(sentence1[i] + '#' + sentence2[i])) {\n            return false;\n        }\n    }\n    return true;\n}"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def areSentencesSimilar(\n        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]\n    ) -> bool:\n        if len(sentence1) != len(sentence2):\n            return False\n        s = {(x, y) for x, y in similarPairs}\n        for x, y in zip(sentence1, sentence2):\n            if x != y and (x, y) not in s and (y, x) not in s:\n                return False\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool areSentencesSimilar(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        if (sentence1.size() != sentence2.size()) {\n            return false;\n        }\n        unordered_set<string> s;\n        for (const auto& p : similarPairs) {\n            s.insert(p[0] + \"#\" + p[1]);\n            s.insert(p[1] + \"#\" + p[0]);\n        }\n        for (int i = 0; i < sentence1.size(); ++i) {\n            if (sentence1[i] != sentence2[i] && !s.contains(sentence1[i] + \"#\" + sentence2[i])) {\n                return false;\n            }\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean areSentencesSimilar(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        if (sentence1.length != sentence2.length) {\n            return false;\n        }\n        Set<List<String>> s = new HashSet<>();\n        for (var p : similarPairs) {\n            s.add(p);\n        }\n        for (int i = 0; i < sentence1.length; i++) {\n            if (!sentence1[i].equals(sentence2[i])\n                && !s.contains(List.of(sentence1[i], sentence2[i]))\n                && !s.contains(List.of(sentence2[i], sentence1[i]))) {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+    "javascript": "function areSentencesSimilar(\n    sentence1: string[],\n    sentence2: string[],\n    similarPairs: string[][],\n): boolean {\n    if (sentence1.length !== sentence2.length) {\n        return false;\n    }\n    const s = new Set<string>();\n    for (const [x, y] of similarPairs) {\n        s.add(x + '#' + y);\n        s.add(y + '#' + x);\n    }\n    for (let i = 0; i < sentence1.length; i++) {\n        if (sentence1[i] !== sentence2[i] && !s.has(sentence1[i] + '#' + sentence2[i])) {\n            return false;\n        }\n    }\n    return true;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"great\",\"acting\",\"skills\"], sentence2 = [\"fine\",\"drama\",\"talent\"], similarPairs = [[\"great\",\"fine\"],[\"drama\",\"acting\"],[\"skills\",\"talent\"]]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"great\"], sentence2 = [\"great\"], similarPairs = []",
+      "expected": "true"
+    },
+    {
+      "input": "[\"great\"], sentence2 = [\"doubleplus\",\"good\"], similarPairs = [[\"great\",\"doubleplus\"]]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sentence Similarity.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

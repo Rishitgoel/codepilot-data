@@ -1,0 +1,42 @@
+{
+  "id": 3230,
+  "slug": "customer-purchasing-behavior-analysis",
+  "title": "Customer Purchasing Behavior Analysis",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Customer%20Purchasing%20Behavior%20Analysis"
+  },
+  "description": "Table: `Transactions`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| transaction_id   | int     |\n| customer_id      | int     |\n| product_id       | int     |\n| transaction_date | date    |\n| amount           | decimal |\n+------------------+---------+\ntransaction_id is the unique identifier for this table.\nEach row of this table contains information about a transaction, including the customer ID, product ID, date, and amount spent.\n\nTable: `Products`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_id  | int     |\n| category    | varchar |\n| price       | decimal |\n+-------------+---------+\nproduct_id is the unique identifier for this table.\nEach row of this table contains information about a product, including its category and price.\n\nWrite a solution to analyze customer purchasing behavior. For **each customer**, calculate:\n\n\tThe total amount spent.\n\tThe number of transactions.\n\tThe number of **unique** product categories purchased.\n\tThe average amount spent. \n\tThe **most frequently** purchased product category (if there is a tie, choose the one with the most recent transaction).\n\tA **loyalty score** defined as: (Number of transactions * 10) + (Total amount spent / 100).\n\nRound `total_amount`, `avg_transaction_amount`, and `loyalty_score` to `2` decimal places.\n\nReturn *the result table ordered by* `loyalty_score` *in **descending** order*, *then by *`customer_id`* in **ascending** order*.\n\nThe query result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Customer Purchasing Behavior Analysis.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

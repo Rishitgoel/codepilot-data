@@ -1,0 +1,73 @@
+{
+  "id": 1858,
+  "slug": "longest-word-with-all-prefixes",
+  "title": "Longest Word With All Prefixes",
+  "difficulty": "Medium",
+  "rating": 1580,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Longest%20Word%20With%20All%20Prefixes"
+  },
+  "description": "Given an array of strings `words`, find the **longest** string in `words` such that **every prefix** of it is also in `words`.\n\n\tFor example, let `words = [\"a\", \"app\", \"ap\"]`. The string `\"app\"` has prefixes `\"ap\"` and `\"a\"`, all of which are in `words`.\n\nReturn *the string described above. If there is more than one string with the same length, return the **lexicographically smallest** one, and if no string exists, return *`\"\"`.",
+  "examples": [
+    {
+      "input": "words = [\"k\",\"ki\",\"kir\",\"kira\", \"kiran\"]",
+      "output": "\"kiran\"",
+      "explanation": "\"kiran\" has prefixes \"kira\", \"kir\", \"ki\", and \"k\", and all of them appear in words."
+    },
+    {
+      "input": "words = [\"a\", \"banana\", \"app\", \"appl\", \"ap\", \"apply\", \"apple\"]",
+      "output": "\"apple\"",
+      "explanation": "Both \"apple\" and \"apply\" have all their prefixes in words.\nHowever, \"apple\" is lexicographically smaller, so we return that."
+    },
+    {
+      "input": "words = [\"abc\", \"bc\", \"ab\", \"qwe\"]",
+      "output": "\"\""
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 10^5",
+    "1 <= words[i].length <= 10^5",
+    "1 <= sum(words[i].length) <= 10^5",
+    "words[i] consists only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Trie:\n    __slots__ = [\"children\", \"is_end\"]\n\n    def __init__(self):\n        pass\n",
+    "cpp": "class Trie {\nprivate:\n    Trie* children[26];\n    bool isEnd = false;\n\npublic:\n    Trie() {\n        \n    }\n};\n",
+    "java": "class Trie {\n    private Trie[] children = new Trie[26];\n    private boolean isEnd;\n\n    public Trie() {\n        \n    }\n};\n",
+    "javascript": "class Trie {\n    private children: (Trie | null)[] = Array(26).fill(null);\n    private isEnd: boolean = false;\n\n    insert(w: string): void {\n        let node: Trie = this;\n        for (const c of w) {\n            const idx: number = c.charCodeAt(0) - 'a'.charCodeAt(0);\n            if (!node.children[idx]) {\n                node.children[idx] = new Trie();\n            }\n            node = node.children[idx] as Trie;\n        }\n        node.isEnd = true;\n    }\n\n    search(w: string): boolean {\n        let node: Trie = this;\n        for (const c of w) {\n            const idx: number = c.charCodeAt(0) - 'a'.charCodeAt(0);\n            node = node.children[idx] as Trie;\n            if (!node.isEnd) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n\nfunction longestWord(words: string[]): string {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Trie:\n    __slots__ = [\"children\", \"is_end\"]\n\n    def __init__(self):\n        self.children: List[Trie | None] = [None] * 26\n        self.is_end: bool = False\n\n    def insert(self, w: str) -> None:\n        node = self\n        for c in w:\n            idx = ord(c) - ord(\"a\")\n            if not node.children[idx]:\n                node.children[idx] = Trie()\n            node = node.children[idx]\n        node.is_end = True\n\n    def search(self, w: str) -> bool:\n        node = self\n        for c in w:\n            idx = ord(c) - ord(\"a\")\n            node = node.children[idx]\n            if not node.is_end:\n                return False\n        return True\n\n\nclass Solution:\n    def longestWord(self, words: List[str]) -> str:\n        trie = Trie()\n        for w in words:\n            trie.insert(w)\n        ans = \"\"\n        for w in words:\n            if (len(w) > len(ans) or len(w) == len(ans) and w < ans) and trie.search(w):\n                ans = w\n        return ans",
+    "cpp": "class Trie {\nprivate:\n    Trie* children[26];\n    bool isEnd = false;\n\npublic:\n    Trie() {\n        fill(begin(children), end(children), nullptr);\n    }\n\n    void insert(const string& w) {\n        Trie* node = this;\n        for (char c : w) {\n            int idx = c - 'a';\n            if (!node->children[idx]) {\n                node->children[idx] = new Trie();\n            }\n            node = node->children[idx];\n        }\n        node->isEnd = true;\n    }\n\n    bool search(const string& w) {\n        Trie* node = this;\n        for (char c : w) {\n            int idx = c - 'a';\n            node = node->children[idx];\n            if (!node->isEnd) {\n                return false;\n            }\n        }\n        return true;\n    }\n};\n\nclass Solution {\npublic:\n    string longestWord(vector<string>& words) {\n        Trie trie;\n        for (const string& w : words) {\n            trie.insert(w);\n        }\n        string ans = \"\";\n        for (const string& w : words) {\n            if ((w.size() > ans.size() || (w.size() == ans.size() && w < ans)) && trie.search(w)) {\n                ans = w;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Trie {\n    private Trie[] children = new Trie[26];\n    private boolean isEnd;\n\n    public Trie() {\n    }\n\n    public void insert(String w) {\n        Trie node = this;\n        for (char c : w.toCharArray()) {\n            int idx = c - 'a';\n            if (node.children[idx] == null) {\n                node.children[idx] = new Trie();\n            }\n            node = node.children[idx];\n        }\n        node.isEnd = true;\n    }\n\n    public boolean search(String w) {\n        Trie node = this;\n        for (char c : w.toCharArray()) {\n            int idx = c - 'a';\n            node = node.children[idx];\n            if (!node.isEnd) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n\nclass Solution {\n    public String longestWord(String[] words) {\n        Trie trie = new Trie();\n        for (String w : words) {\n            trie.insert(w);\n        }\n        String ans = \"\";\n        for (String w : words) {\n            if ((w.length() > ans.length() || (w.length() == ans.length() && w.compareTo(ans) < 0))\n                && trie.search(w)) {\n                ans = w;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "class Trie {\n    private children: (Trie | null)[] = Array(26).fill(null);\n    private isEnd: boolean = false;\n\n    insert(w: string): void {\n        let node: Trie = this;\n        for (const c of w) {\n            const idx: number = c.charCodeAt(0) - 'a'.charCodeAt(0);\n            if (!node.children[idx]) {\n                node.children[idx] = new Trie();\n            }\n            node = node.children[idx] as Trie;\n        }\n        node.isEnd = true;\n    }\n\n    search(w: string): boolean {\n        let node: Trie = this;\n        for (const c of w) {\n            const idx: number = c.charCodeAt(0) - 'a'.charCodeAt(0);\n            node = node.children[idx] as Trie;\n            if (!node.isEnd) {\n                return false;\n            }\n        }\n        return true;\n    }\n}\n\nfunction longestWord(words: string[]): string {\n    const trie: Trie = new Trie();\n    for (const w of words) {\n        trie.insert(w);\n    }\n    let ans: string = '';\n    for (const w of words) {\n        if ((w.length > ans.length || (w.length === ans.length && w < ans)) && trie.search(w)) {\n            ans = w;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\"k\",\"ki\",\"kir\",\"kira\", \"kiran\"]",
+      "expected": "\"kiran\""
+    },
+    {
+      "input": "[\"a\", \"banana\", \"app\", \"appl\", \"ap\", \"apply\", \"apple\"]",
+      "expected": "\"apple\""
+    },
+    {
+      "input": "[\"abc\", \"bc\", \"ab\", \"qwe\"]",
+      "expected": "\"\""
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Longest Word With All Prefixes.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

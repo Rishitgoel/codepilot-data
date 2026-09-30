@@ -1,0 +1,56 @@
+{
+  "id": 3063,
+  "slug": "linked-list-frequency",
+  "title": "Linked List Frequency",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Linked%20List%20Frequency"
+  },
+  "description": "Given the `head` of a linked list containing `k` **distinct** elements, return *the head to a linked list of length *`k`* containing the frequency of each **distinct** element in the given linked list in **any order**.*",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is in the range [1, 10^5].",
+    "1 <= Node.val <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for singly-linked list.\r\n# class ListNode:\r\n#     def __init__(self, val=0, next=None):\r\n        pass\n",
+    "cpp": "/**\r\n * Definition for singly-linked list.\r\n * struct ListNode {\r\n *     int val;\r\n *     ListNode *next;\r\n *     ListNode() : val(0), next(nullptr) {}\r\n        \n    }\n};\n",
+    "java": "/**\r\n * Definition for singly-linked list.\r\n * public class ListNode {\r\n *     int val;\r\n *     ListNode next;\r\n *     ListNode() {}\r\n *     ListNode(int val) { this.val = val; }\r\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\r\n * }\r\n */\r\nclass Solution {\r\n    public ListNode frequenciesOfElements(ListNode head) {\r\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction frequenciesOfElements(head: ListNode | null): ListNode | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for singly-linked list.\r\n# class ListNode:\r\n#     def __init__(self, val=0, next=None):\r\n#         self.val = val\r\n#         self.next = next\r\nclass Solution:\r\n    def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:\r\n        cnt = Counter()\r\n        while head:\r\n            cnt[head.val] += 1\r\n            head = head.next\r\n        dummy = ListNode()\r\n        for val in cnt.values():\r\n            dummy.next = ListNode(val, dummy.next)\r\n        return dummy.next",
+    "cpp": "/**\r\n * Definition for singly-linked list.\r\n * struct ListNode {\r\n *     int val;\r\n *     ListNode *next;\r\n *     ListNode() : val(0), next(nullptr) {}\r\n *     ListNode(int x) : val(x), next(nullptr) {}\r\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\r\n * };\r\n */\r\nclass Solution {\r\npublic:\r\n    ListNode* frequenciesOfElements(ListNode* head) {\r\n        unordered_map<int, int> cnt;\r\n        for (; head; head = head->next) {\r\n            cnt[head->val]++;\r\n        }\r\n        ListNode* dummy = new ListNode();\r\n        for (auto& [_, val] : cnt) {\r\n            dummy->next = new ListNode(val, dummy->next);\r\n        }\r\n        return dummy->next;\r\n    }\r\n};",
+    "java": "/**\r\n * Definition for singly-linked list.\r\n * public class ListNode {\r\n *     int val;\r\n *     ListNode next;\r\n *     ListNode() {}\r\n *     ListNode(int val) { this.val = val; }\r\n *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }\r\n * }\r\n */\r\nclass Solution {\r\n    public ListNode frequenciesOfElements(ListNode head) {\r\n        Map<Integer, Integer> cnt = new HashMap<>();\r\n        for (; head != null; head = head.next) {\r\n            cnt.merge(head.val, 1, Integer::sum);\r\n        }\r\n        ListNode dummy = new ListNode();\r\n        for (int val : cnt.values()) {\r\n            dummy.next = new ListNode(val, dummy.next);\r\n        }\r\n        return dummy.next;\r\n    }\r\n}",
+    "javascript": "/**\n * Definition for singly-linked list.\n * class ListNode {\n *     val: number\n *     next: ListNode | null\n *     constructor(val?: number, next?: ListNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.next = (next===undefined ? null : next)\n *     }\n * }\n */\n\nfunction frequenciesOfElements(head: ListNode | null): ListNode | null {\n    const cnt: Map<number, number> = new Map();\n    for (; head; head = head.next) {\n        cnt.set(head.val, (cnt.get(head.val) || 0) + 1);\n    }\n    const dummy = new ListNode();\n    for (const val of cnt.values()) {\n        dummy.next = new ListNode(val, dummy.next);\n    }\n    return dummy.next;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Linked List Frequency.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

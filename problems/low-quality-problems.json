@@ -1,0 +1,46 @@
+{
+  "id": 2026,
+  "slug": "low-quality-problems",
+  "title": "Low-Quality Problems",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Low-Quality%20Problems"
+  },
+  "description": "Table: `Problems`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| problem_id  | int  |\n| likes       | int  |\n| dislikes    | int  |\n+-------------+------+\nIn SQL, problem_id is the primary key column for this table.\nEach row of this table indicates the number of likes and dislikes for a LeetCode problem.\n\n \n\nFind the IDs of the **low-quality** problems. A LeetCode problem is **low-quality** if the like percentage of the problem (number of likes divided by the total number of votes) is **strictly less than** `60%`.\n\nReturn the result table ordered by `problem_id` in ascending order.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Problems table:\n+------------+-------+----------+\n| problem_id | likes | dislikes |\n+------------+-------+----------+\n| 6          | 1290  | 425      |\n| 11         | 2677  | 8659     |\n| 1          | 4446  | 2760     |\n| 7          | 8569  | 6086     |\n| 13         | 2050  | 4164     |\n| 10         | 9002  | 7446     |\n+------------+-------+----------+",
+      "output": "+------------+\n| problem_id |\n+------------+\n| 7          |\n| 10         |\n| 11         |\n| 13         |\n+------------+",
+      "explanation": "The like percentages are as follows:\n- Problem 1: (4446 / (4446 + 2760)) * 100 = 61.69858%\n- Problem 6: (1290 / (1290 + 425)) * 100 = 75.21866%\n- Problem 7: (8569 / (8569 + 6086)) * 100 = 58.47151%\n- Problem 10: (9002 / (9002 + 7446)) * 100 = 54.73006%\n- Problem 11: (2677 / (2677 + 8659)) * 100 = 23.61503%\n- Problem 13: (2050 / (2050 + 4164)) * 100 = 32.99002%\nProblems 7, 10, 11, and 13 are low-quality problems because their like percentages are less than 60%."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Problems table:\n+------------+-------+----------+\n| problem_id | likes | dislikes |\n+------------+-------+----------+\n| 6          | 1290  | 425      |\n| 11         | 2677  | 8659     |\n| 1          | 4446  | 2760     |\n| 7          | 8569  | 6086     |\n| 13         | 2050  | 4164     |\n| 10         | 9002  | 7446     |\n+------------+-------+----------+",
+      "expected": "+------------+\n| problem_id |\n+------------+\n| 7          |\n| 10         |\n| 11         |\n| 13         |\n+------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Low-Quality Problems.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

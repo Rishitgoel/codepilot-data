@@ -1,0 +1,49 @@
+{
+  "id": 3124,
+  "slug": "find-longest-calls",
+  "title": "Find Longest Calls",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Longest%20Calls"
+  },
+  "description": "Table: `Contacts`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| id          | int     |\n| first_name  | varchar |\n| last_name   | varchar |\n+-------------+---------+\nid is the primary key (column with unique values) of this table.\nid is a foreign key (reference column) to `Calls` table.\nEach row of this table contains id, first_name, and last_name.\n\nTable: `Calls`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| contact_id  | int  |\n| type        | enum |\n| duration    | int  |\n+-------------+------+\n(contact_id, type, duration) is the primary key (column with unique values) of this table.\ntype is an ENUM (category) type of ('incoming', 'outgoing').\nEach row of this table contains information about calls, comprising of contact_id, type, and duration in seconds.\n\nWrite a solution to find the three longest **incoming** and **outgoing** calls.\n\nReturn t*he result table ordered by* `type`, `duration`, and` first_name` *in **descending **order and `duration` must be formatted as **HH:MM:SS**.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_longest_calls(contacts: pd.DataFrame, calls: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef find_longest_calls(contacts: pd.DataFrame, calls: pd.DataFrame) -> pd.DataFrame:\r\n    merged_data = calls.merge(contacts, left_on=\"contact_id\", right_on=\"id\")\r\n    merged_data[\"duration_formatted\"] = (\r\n        merged_data[\"duration\"] // 3600 * 10000\r\n        + merged_data[\"duration\"] % 3600 // 60 * 100\r\n        + merged_data[\"duration\"] % 60\r\n    ).apply(lambda x: \"{:02}:{:02}:{:02}\".format(x // 10000, x // 100 % 100, x % 100))\r\n\r\n    merged_data[\"rk\"] = merged_data.groupby(\"type\")[\"duration\"].rank(\r\n        method=\"dense\", ascending=False\r\n    )\r\n\r\n    result = merged_data[merged_data[\"rk\"] <= 3][\r\n        [\"first_name\", \"type\", \"duration_formatted\"]\r\n    ]\r\n    result = result.sort_values(\r\n        by=[\"type\", \"duration_formatted\", \"first_name\"], ascending=[True, False, False]\r\n    )\r\n    return result"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Longest Calls.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

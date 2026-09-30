@@ -1,0 +1,64 @@
+{
+  "id": 2323,
+  "slug": "find-minimum-time-to-finish-all-jobs-ii",
+  "title": "Find Minimum Time to Finish All Jobs II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Minimum%20Time%20to%20Finish%20All%20Jobs%20II"
+  },
+  "description": "You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where `jobs[i]` is the amount of time needed to complete the `i^th` job, and `workers[j]` is the amount of time the `j^th` worker can work each day.\n\nEach job should be assigned to **exactly** one worker, such that each worker completes **exactly** one job.\n\nReturn *the **minimum** number of days needed to complete all the jobs after assignment.*",
+  "examples": [
+    {
+      "input": "jobs = [5,2,4], workers = [1,7,5]",
+      "output": "2",
+      "explanation": "- Assign the 2nd worker to the 0th job. It takes them 1 day to finish the job.\n- Assign the 0th worker to the 1st job. It takes them 2 days to finish the job.\n- Assign the 1st worker to the 2nd job. It takes them 1 day to finish the job.\nIt takes 2 days for all the jobs to be completed, so return 2.\nIt can be proven that 2 days is the minimum number of days needed."
+    },
+    {
+      "input": "jobs = [3,18,15,9], workers = [6,5,1,3]",
+      "output": "3",
+      "explanation": "- Assign the 2nd worker to the 0th job. It takes them 3 days to finish the job.\n- Assign the 0th worker to the 1st job. It takes them 3 days to finish the job.\n- Assign the 1st worker to the 2nd job. It takes them 3 days to finish the job.\n- Assign the 3rd worker to the 3rd job. It takes them 3 days to finish the job.\nIt takes 3 days for all the jobs to be completed, so return 3.\nIt can be proven that 3 days is the minimum number of days needed."
+    }
+  ],
+  "constraints": [
+    "n == jobs.length == workers.length",
+    "1 <= n <= 10^5",
+    "1 <= jobs[i], workers[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minimumTime(self, jobs: List[int], workers: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minimumTime(vector<int>& jobs, vector<int>& workers) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minimumTime(int[] jobs, int[] workers) {\n        \n    }\n};\n",
+    "javascript": "function minimumTime(jobs: number[], workers: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minimumTime(self, jobs: List[int], workers: List[int]) -> int:\n        jobs.sort()\n        workers.sort()\n        return max((a + b - 1) // b for a, b in zip(jobs, workers))",
+    "cpp": "class Solution {\npublic:\n    int minimumTime(vector<int>& jobs, vector<int>& workers) {\n        ranges::sort(jobs);\n        ranges::sort(workers);\n        int ans = 0;\n        int n = jobs.size();\n        for (int i = 0; i < n; ++i) {\n            ans = max(ans, (jobs[i] + workers[i] - 1) / workers[i]);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int minimumTime(int[] jobs, int[] workers) {\n        Arrays.sort(jobs);\n        Arrays.sort(workers);\n        int ans = 0;\n        for (int i = 0; i < jobs.length; ++i) {\n            ans = Math.max(ans, (jobs[i] + workers[i] - 1) / workers[i]);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function minimumTime(jobs: number[], workers: number[]): number {\n    jobs.sort((a, b) => a - b);\n    workers.sort((a, b) => a - b);\n    let ans = 0;\n    const n = jobs.length;\n    for (let i = 0; i < n; ++i) {\n        ans = Math.max(ans, Math.ceil(jobs[i] / workers[i]));\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[5,2,4], workers = [1,7,5]",
+      "expected": "2"
+    },
+    {
+      "input": "[3,18,15,9], workers = [6,5,1,3]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Minimum Time to Finish All Jobs II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

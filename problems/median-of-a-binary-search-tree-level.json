@@ -1,0 +1,57 @@
+{
+  "id": 3831,
+  "slug": "median-of-a-binary-search-tree-level",
+  "title": "Median of a Binary Search Tree Level",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Median%20of%20a%20Binary%20Search%20Tree%20Level"
+  },
+  "description": "You are given the `root` of a **Binary Search Tree (BST)** and an integer `level`.\n\nThe root node is at level 0. Each level represents the distance from the root.\n\nReturn the **median value** of all node values present at the given `level`. If the level does not exist or contains no nodes, return -1.\n\nThe **median** is defined as the middle element after sorting the values at that level in **non-decreasing** order. If the number of values at that level is even, return the **upper** median (the larger of the two middle elements after sorting).",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [1, 2 * 10^5].",
+    "1 <= Node.val <= 10^6",
+    "0 <= level <= 2 * 10^​​​​​​​5"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> nums = new ArrayList<>();\n    private int level;\n\n    public int levelMedian(TreeNode root, int level) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\nfunction levelMedian(root: TreeNode | null, level: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def levelMedian(self, root: Optional[TreeNode], level: int) -> int:\n        def dfs(root: Optional[TreeNode], i: int):\n            if root is None:\n                return\n            dfs(root.left, i + 1)\n            if i == level:\n                nums.append(root.val)\n            dfs(root.right, i + 1)\n\n        nums = []\n        dfs(root, 0)\n        return nums[len(nums) // 2] if nums else -1",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int levelMedian(TreeNode* root, int level) {\n        vector<int> nums;\n\n        auto dfs = [&](this auto&& dfs, TreeNode* node, int i) -> void {\n            if (!node) {\n                return;\n            }\n            dfs(node->left, i + 1);\n            if (i == level) {\n                nums.push_back(node->val);\n            }\n            dfs(node->right, i + 1);\n        };\n\n        dfs(root, 0);\n        return nums.empty() ? -1 : nums[nums.size() / 2];\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private List<Integer> nums = new ArrayList<>();\n    private int level;\n\n    public int levelMedian(TreeNode root, int level) {\n        this.level = level;\n        dfs(root, 0);\n        return nums.isEmpty() ? -1 : nums.get(nums.size() / 2);\n    }\n\n    private void dfs(TreeNode root, int i) {\n        if (root == null) {\n            return;\n        }\n        dfs(root.left, i + 1);\n        if (i == level) {\n            nums.add(root.val);\n        }\n        dfs(root.right, i + 1);\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\nfunction levelMedian(root: TreeNode | null, level: number): number {\n    const nums: number[] = [];\n\n    const dfs = (node: TreeNode | null, i: number): void => {\n        if (node === null) {\n            return;\n        }\n        dfs(node.left, i + 1);\n        if (i === level) {\n            nums.push(node.val);\n        }\n        dfs(node.right, i + 1);\n    };\n\n    dfs(root, 0);\n    if (nums.length === 0) {\n        return -1;\n    }\n    return nums[nums.length >> 1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Median of a Binary Search Tree Level.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

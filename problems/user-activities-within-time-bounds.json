@@ -1,0 +1,49 @@
+{
+  "id": 3060,
+  "slug": "user-activities-within-time-bounds",
+  "title": "User Activities within Time Bounds",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=User%20Activities%20within%20Time%20Bounds"
+  },
+  "description": "Table: `Sessions`\n\n+---------------+----------+\n| Column Name   | Type     |\n+---------------+----------+\n| user_id       | int      |\n| session_start | datetime |\n| session_end   | datetime |\n| session_id    | int      |\n| session_type  | enum     |\n+---------------+----------+\nsession_id is column of unique values for this table.\nsession_type is an ENUM (category) type of (Viewer, Streamer).\nThis table contains user id, session start, session end, session id and session type.\n\nWrite a solution to find the the **users** who have had **at least two**** session** of the **same** type (either '**Viewer**' or '**Streamer**') with a **maximum** gap of `12` hours **between** sessions.\n\nReturn *the result table ordered by *`user_id`* in ascending order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef user_activities(sessions: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef user_activities(sessions: pd.DataFrame) -> pd.DataFrame:\r\n    sessions = sessions.sort_values(by=[\"user_id\", \"session_start\"])\r\n    sessions[\"prev_session_end\"] = sessions.groupby([\"user_id\", \"session_type\"])[\r\n        \"session_end\"\r\n    ].shift(1)\r\n    sessions_filtered = sessions[\r\n        sessions[\"session_start\"] - sessions[\"prev_session_end\"]\r\n        <= pd.Timedelta(hours=12)\r\n    ]\r\n    return pd.DataFrame({\"user_id\": sessions_filtered[\"user_id\"].unique()})"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for User Activities within Time Bounds.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

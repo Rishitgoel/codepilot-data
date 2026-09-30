@@ -1,0 +1,49 @@
+{
+  "id": 3368,
+  "slug": "first-letter-capitalization",
+  "title": "First Letter Capitalization",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=First%20Letter%20Capitalization"
+  },
+  "description": "Table: `user_content`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| content_id  | int     |\n| content_text| varchar |\n+-------------+---------+\ncontent_id is the unique key for this table.\nEach row contains a unique ID and the corresponding text content.\n\nWrite a solution to transform the text in the `content_text` column by applying the following rules:\n\n\tConvert the first letter of each word to uppercase\n\tKeep all other letters in lowercase\n\tPreserve all existing spaces\n\n**Note**: There will be no special character in `content_text`.\n\nReturn *the result table that includes both the original `content_text` and the modified text where each word starts with a capital letter*.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef process_text(user_content: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef process_text(user_content: pd.DataFrame) -> pd.DataFrame:\r\n    user_content[\"converted_text\"] = user_content[\"content_text\"].apply(\r\n        lambda text: \" \".join(word.capitalize() for word in text.split(\" \"))\r\n    )\r\n    return user_content[[\"content_id\", \"content_text\", \"converted_text\"]].rename(\r\n        columns={\"content_text\": \"original_text\"}\r\n    )"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for First Letter Capitalization.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

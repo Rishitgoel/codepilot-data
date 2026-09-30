@@ -1,0 +1,56 @@
+{
+  "id": 3247,
+  "slug": "number-of-subsequences-with-odd-sum",
+  "title": "Number of Subsequences with Odd Sum",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Subsequences%20with%20Odd%20Sum"
+  },
+  "description": "Given an array `nums`, return the number of subsequences with an odd sum of elements.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def subsequenceCount(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int subsequenceCount(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int subsequenceCount(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function subsequenceCount(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def subsequenceCount(self, nums: List[int]) -> int:\r\n        mod = 10**9 + 7\r\n        f = [0] * 2\r\n        for x in nums:\r\n            if x % 2:\r\n                f[0], f[1] = (f[0] + f[1]) % mod, (f[0] + f[1] + 1) % mod\r\n            else:\r\n                f[0], f[1] = (f[0] + f[0] + 1) % mod, (f[1] + f[1]) % mod\r\n        return f[1]",
+    "cpp": "class Solution {\r\npublic:\r\n    int subsequenceCount(vector<int>& nums) {\r\n        const int mod = 1e9 + 7;\r\n        vector<int> f(2);\r\n        for (int x : nums) {\r\n            vector<int> g(2);\r\n            if (x % 2 == 1) {\r\n                g[0] = (f[0] + f[1]) % mod;\r\n                g[1] = (f[0] + f[1] + 1) % mod;\r\n            } else {\r\n                g[0] = (f[0] + f[0] + 1) % mod;\r\n                g[1] = (f[1] + f[1]) % mod;\r\n            }\r\n            f = g;\r\n        }\r\n        return f[1];\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int subsequenceCount(int[] nums) {\r\n        final int mod = (int) 1e9 + 7;\r\n        int[] f = new int[2];\r\n        for (int x : nums) {\r\n            int[] g = new int[2];\r\n            if (x % 2 == 1) {\r\n                g[0] = (f[0] + f[1]) % mod;\r\n                g[1] = (f[0] + f[1] + 1) % mod;\r\n            } else {\r\n                g[0] = (f[0] + f[0] + 1) % mod;\r\n                g[1] = (f[1] + f[1]) % mod;\r\n            }\r\n            f = g;\r\n        }\r\n        return f[1];\r\n    }\r\n}",
+    "javascript": "function subsequenceCount(nums: number[]): number {\n    const mod = 1e9 + 7;\n    let f = [0, 0];\n    for (const x of nums) {\n        const g = [0, 0];\n        if (x % 2 === 1) {\n            g[0] = (f[0] + f[1]) % mod;\n            g[1] = (f[0] + f[1] + 1) % mod;\n        } else {\n            g[0] = (f[0] + f[0] + 1) % mod;\n            g[1] = (f[1] + f[1]) % mod;\n        }\n        f = g;\n    }\n    return f[1];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Subsequences with Odd Sum.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

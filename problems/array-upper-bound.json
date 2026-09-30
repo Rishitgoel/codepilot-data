@@ -1,0 +1,70 @@
+{
+  "id": 2774,
+  "slug": "array-upper-bound",
+  "title": "Array Upper Bound",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Array%20Upper%20Bound"
+  },
+  "description": "Write code that enhances all arrays such that you can call the `upperBound()` method on any array and it will return the last index of a given `target` number. `nums` is a sorted ascending array of numbers that may contain duplicates. If the `target` number is not found in the array, return `-1`.",
+  "examples": [
+    {
+      "input": "nums = [3,4,5], target = 5",
+      "output": "2",
+      "explanation": "Last index of target value is 2"
+    },
+    {
+      "input": "nums = [1,4,5], target = 2",
+      "output": "-1",
+      "explanation": "Because there is no digit 2 in the array, return -1."
+    },
+    {
+      "input": "nums = [3,4,6,6,6,6,7], target = 6",
+      "output": "5",
+      "explanation": "Last index of target value is 5"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^4",
+    "-10^4 <= nums[i], target <= 10^4",
+    "nums is sorted in ascending order."
+  ],
+  "starterTemplates": {
+    "javascript": "declare global {\n    interface Array<T> {\n        upperBound(target: number): number;\n    }\n}\n\nArray.prototype.upperBound = function (target: number) {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "declare global {\n    interface Array<T> {\n        upperBound(target: number): number;\n    }\n}\n\nArray.prototype.upperBound = function (target: number) {\n    let left = 0;\n    let right = this.length;\n    while (left < right) {\n        const mid = (left + right) >> 1;\n        if (this[mid] > target) {\n            right = mid;\n        } else {\n            left = mid + 1;\n        }\n    }\n    return left > 0 && this[left - 1] == target ? left - 1 : -1;\n};\n\n// [3,4,5].upperBound(5); // 2\n// [1,4,5].upperBound(2); // -1\n// [3,4,6,6,6,6,7].upperBound(6) // 5"
+  },
+  "testcases": [
+    {
+      "input": "[3,4,5], target = 5",
+      "expected": "2"
+    },
+    {
+      "input": "[1,4,5], target = 2",
+      "expected": "-1"
+    },
+    {
+      "input": "[3,4,6,6,6,6,7], target = 6",
+      "expected": "5"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Array Upper Bound.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

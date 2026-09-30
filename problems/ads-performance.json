@@ -1,0 +1,44 @@
+{
+  "id": 1322,
+  "slug": "ads-performance",
+  "title": "Ads Performance",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Ads%20Performance"
+  },
+  "description": "Table: `Ads`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| ad_id         | int     |\n| user_id       | int     |\n| action        | enum    |\n+---------------+---------+\n(ad_id, user_id) is the primary key (combination of columns with unique values) for this table.\nEach row of this table contains the ID of an Ad, the ID of a user, and the action taken by this user regarding this Ad.\nThe action column is an ENUM (category) type of ('Clicked', 'Viewed', 'Ignored').\n\n \n\nA company is running Ads and wants to calculate the performance of each Ad.\n\nPerformance of the Ad is measured using Click-Through Rate (CTR) where:\n\nWrite a solution to find the `ctr` of each Ad. **Round** `ctr` to **two decimal points**.\n\nReturn the result table ordered by `ctr` in **descending order** and by `ad_id` in **ascending order** in case of a tie.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Ads table:\n+-------+---------+---------+\n| ad_id | user_id | action  |\n+-------+---------+---------+\n| 1     | 1       | Clicked |\n| 2     | 2       | Clicked |\n| 3     | 3       | Viewed  |\n| 5     | 5       | Ignored |\n| 1     | 7       | Ignored |\n| 2     | 7       | Viewed  |\n| 3     | 5       | Clicked |\n| 1     | 4       | Viewed  |\n| 2     | 11      | Viewed  |\n| 1     | 2       | Clicked |\n+-------+---------+---------+",
+      "output": "+-------+-------+\n| ad_id | ctr   |\n+-------+-------+\n| 1     | 66.67 |\n| 3     | 50.00 |\n| 2     | 33.33 |\n| 5     | 0.00  |\n+-------+-------+",
+      "explanation": "for ad_id = 1, ctr = (2/(2+1)) * 100 = 66.67\nfor ad_id = 2, ctr = (1/(1+2)) * 100 = 33.33\nfor ad_id = 3, ctr = (1/(1+1)) * 100 = 50.00\nfor ad_id = 5, ctr = 0.00, Note that ad_id = 5 has no clicks or views.\nNote that we do not care about Ignored Ads."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Ads table:\n+-------+---------+---------+\n| ad_id | user_id | action  |\n+-------+---------+---------+\n| 1     | 1       | Clicked |\n| 2     | 2       | Clicked |\n| 3     | 3       | Viewed  |\n| 5     | 5       | Ignored |\n| 1     | 7       | Ignored |\n| 2     | 7       | Viewed  |\n| 3     | 5       | Clicked |\n| 1     | 4       | Viewed  |\n| 2     | 11      | Viewed  |\n| 1     | 2       | Clicked |\n+-------+---------+---------+",
+      "expected": "+-------+-------+\n| ad_id | ctr   |\n+-------+-------+\n| 1     | 66.67 |\n| 3     | 50.00 |\n| 2     | 33.33 |\n| 5     | 0.00  |\n+-------+-------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Ads Performance.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

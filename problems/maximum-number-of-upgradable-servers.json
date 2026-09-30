@@ -1,0 +1,53 @@
+{
+  "id": 3155,
+  "slug": "maximum-number-of-upgradable-servers",
+  "title": "Maximum Number of Upgradable Servers",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Snowflake"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Upgradable%20Servers"
+  },
+  "description": "You have `n` data centers and need to upgrade their servers.\n\nYou are given four arrays `count`, `upgrade`, `sell`, and `money` of length `n`, which show:\n\n\tThe number of servers\n\tThe cost of upgrading a single server\n\tThe money you get by selling a server\n\tThe money you initially have\n\nfor each data center respectively.\n\nReturn an array `answer`, where for each data center, the corresponding element in `answer` represents the **maximum** number of servers that can be upgraded.\n\nNote that the money from one data center **cannot** be used for another data center.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= count.length == upgrade.length == sell.length == money.length <= 10^5",
+    "1 <= count[i], upgrade[i], sell[i], money[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxUpgrades(\n        self, count: List[int], upgrade: List[int], sell: List[int], money: List[int]\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> maxUpgrades(vector<int>& count, vector<int>& upgrade, vector<int>& sell, vector<int>& money) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] maxUpgrades(int[] count, int[] upgrade, int[] sell, int[] money) {\n        \n    }\n};\n",
+    "javascript": "function maxUpgrades(\n    count: number[],\n    upgrade: number[],\n    sell: number[],\n    money: number[],\n): number[] {\n    const n = count.length;\n    const ans: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        const x = ((count[i] * sell[i] + money[i]) / (upgrade[i] + sell[i])) | 0;\n        ans.push(Math.min(x, count[i]));\n    }\n    return ans;\n}"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxUpgrades(\n        self, count: List[int], upgrade: List[int], sell: List[int], money: List[int]\n    ) -> List[int]:\n        ans = []\n        for cnt, cost, income, cash in zip(count, upgrade, sell, money):\n            ans.append(min(cnt, (cnt * income + cash) // (cost + income)))\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> maxUpgrades(vector<int>& count, vector<int>& upgrade, vector<int>& sell, vector<int>& money) {\n        int n = count.size();\n        vector<int> ans;\n        for (int i = 0; i < n; ++i) {\n            ans.push_back(min(count[i], (int) ((1LL * count[i] * sell[i] + money[i]) / (upgrade[i] + sell[i]))));\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] maxUpgrades(int[] count, int[] upgrade, int[] sell, int[] money) {\n        int n = count.length;\n        int[] ans = new int[n];\n        for (int i = 0; i < n; ++i) {\n            ans[i] = Math.min(\n                count[i], (int) ((1L * count[i] * sell[i] + money[i]) / (upgrade[i] + sell[i])));\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxUpgrades(\n    count: number[],\n    upgrade: number[],\n    sell: number[],\n    money: number[],\n): number[] {\n    const n = count.length;\n    const ans: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        const x = ((count[i] * sell[i] + money[i]) / (upgrade[i] + sell[i])) | 0;\n        ans.push(Math.min(x, count[i]));\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Upgradable Servers.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

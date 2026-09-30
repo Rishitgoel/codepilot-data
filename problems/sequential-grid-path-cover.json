@@ -1,0 +1,59 @@
+{
+  "id": 3565,
+  "slug": "sequential-grid-path-cover",
+  "title": "Sequential Grid Path Cover",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sequential%20Grid%20Path%20Cover"
+  },
+  "description": "You are given a 2D array `grid` of size `m x n`, and an integer `k`. There are `k` cells in `grid` containing the values from 1 to `k` **exactly once**, and the rest of the cells have a value 0.\n\nYou can start at any cell, and move from a cell to its neighbors (up, down, left, or right). You must find a path in `grid` which:\n\n\tVisits each cell in `grid` **exactly once**.\n\tVisits the cells with values from 1 to `k` **in order**.\n\nReturn a 2D array `result` of size `(m * n) x 2`, where `result[i] = [xi, yi]` represents the `i^th` cell visited in the path. If there are multiple such paths, you may return **any** one.\n\nIf no such path exists, return an **empty** array.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= m == grid.length <= 5",
+    "1 <= n == grid[i].length <= 5",
+    "1 <= k <= m * n",
+    "0 <= grid[i][j] <= k",
+    "grid contains all integers between 1 and k exactly once."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findPath(self, grid: List[List[int]], k: int) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\n    int m, n;\n    unsigned long long st = 0;\n    vector<vector<int>> path;\n    int dirs[5] = {-1, 0, 1, 0, -1};\n\n    int f(int i, int j) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int m, n;\n    private long st = 0;\n    private List<List<Integer>> path = new ArrayList<>();\n    private final int[] dirs = {-1, 0, 1, 0, -1};\n        \n    }\n};\n",
+    "javascript": "function findPath(grid: number[][], k: number): number[][] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findPath(self, grid: List[List[int]], k: int) -> List[List[int]]:\n        def f(i: int, j: int) -> int:\n            return i * n + j\n\n        def dfs(i: int, j: int, v: int):\n            nonlocal st\n            path.append([i, j])\n            if len(path) == m * n:\n                return True\n            st |= 1 << f(i, j)\n            if grid[i][j] == v:\n                v += 1\n            for a, b in pairwise(dirs):\n                x, y = i + a, j + b\n                if (\n                    0 <= x < m\n                    and 0 <= y < n\n                    and (st & 1 << f(x, y)) == 0\n                    and grid[x][y] in (0, v)\n                ):\n                    if dfs(x, y, v):\n                        return True\n            path.pop()\n            st ^= 1 << f(i, j)\n            return False\n\n        m, n = len(grid), len(grid[0])\n        st = 0\n        path = []\n        dirs = (-1, 0, 1, 0, -1)\n        for i in range(m):\n            for j in range(n):\n                if grid[i][j] in (0, 1):\n                    if dfs(i, j, 1):\n                        return path\n                    path.clear()\n                    st = 0\n        return []",
+    "cpp": "class Solution {\n    int m, n;\n    unsigned long long st = 0;\n    vector<vector<int>> path;\n    int dirs[5] = {-1, 0, 1, 0, -1};\n\n    int f(int i, int j) {\n        return i * n + j;\n    }\n\n    bool dfs(int i, int j, int v, vector<vector<int>>& grid) {\n        path.push_back({i, j});\n        if (path.size() == static_cast<size_t>(m * n)) {\n            return true;\n        }\n        st |= 1ULL << f(i, j);\n        if (grid[i][j] == v) {\n            v += 1;\n        }\n        for (int t = 0; t < 4; ++t) {\n            int a = dirs[t], b = dirs[t + 1];\n            int x = i + a, y = j + b;\n            if (0 <= x && x < m && 0 <= y && y < n && (st & (1ULL << f(x, y))) == 0\n                && (grid[x][y] == 0 || grid[x][y] == v)) {\n                if (dfs(x, y, v, grid)) {\n                    return true;\n                }\n            }\n        }\n        path.pop_back();\n        st ^= 1ULL << f(i, j);\n        return false;\n    }\n\npublic:\n    vector<vector<int>> findPath(vector<vector<int>>& grid, int k) {\n        m = grid.size();\n        n = grid[0].size();\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j] == 0 || grid[i][j] == 1) {\n                    if (dfs(i, j, 1, grid)) {\n                        return path;\n                    }\n                    path.clear();\n                    st = 0;\n                }\n            }\n        }\n        return {};\n    }\n};",
+    "java": "class Solution {\n    private int m, n;\n    private long st = 0;\n    private List<List<Integer>> path = new ArrayList<>();\n    private final int[] dirs = {-1, 0, 1, 0, -1};\n\n    private int f(int i, int j) {\n        return i * n + j;\n    }\n\n    private boolean dfs(int i, int j, int v, int[][] grid) {\n        path.add(Arrays.asList(i, j));\n        if (path.size() == m * n) {\n            return true;\n        }\n        st |= 1L << f(i, j);\n        if (grid[i][j] == v) {\n            v += 1;\n        }\n        for (int t = 0; t < 4; t++) {\n            int a = dirs[t], b = dirs[t + 1];\n            int x = i + a, y = j + b;\n            if (0 <= x && x < m && 0 <= y && y < n && (st & (1L << f(x, y))) == 0\n                && (grid[x][y] == 0 || grid[x][y] == v)) {\n                if (dfs(x, y, v, grid)) {\n                    return true;\n                }\n            }\n        }\n        path.remove(path.size() - 1);\n        st ^= 1L << f(i, j);\n        return false;\n    }\n\n    public List<List<Integer>> findPath(int[][] grid, int k) {\n        m = grid.length;\n        n = grid[0].length;\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                if (grid[i][j] == 0 || grid[i][j] == 1) {\n                    if (dfs(i, j, 1, grid)) {\n                        return path;\n                    }\n                    path.clear();\n                    st = 0;\n                }\n            }\n        }\n        return List.of();\n    }\n}",
+    "javascript": "function findPath(grid: number[][], k: number): number[][] {\n    const m = grid.length;\n    const n = grid[0].length;\n\n    const dirs = [-1, 0, 1, 0, -1];\n    const path: number[][] = [];\n    let st = 0;\n\n    function f(i: number, j: number): number {\n        return i * n + j;\n    }\n\n    function dfs(i: number, j: number, v: number): boolean {\n        path.push([i, j]);\n        if (path.length === m * n) {\n            return true;\n        }\n\n        st |= 1 << f(i, j);\n        if (grid[i][j] === v) {\n            v += 1;\n        }\n\n        for (let d = 0; d < 4; d++) {\n            const x = i + dirs[d];\n            const y = j + dirs[d + 1];\n            const pos = f(x, y);\n            if (\n                x >= 0 &&\n                x < m &&\n                y >= 0 &&\n                y < n &&\n                (st & (1 << pos)) === 0 &&\n                (grid[x][y] === 0 || grid[x][y] === v)\n            ) {\n                if (dfs(x, y, v)) {\n                    return true;\n                }\n            }\n        }\n\n        path.pop();\n        st ^= 1 << f(i, j);\n        return false;\n    }\n\n    for (let i = 0; i < m; i++) {\n        for (let j = 0; j < n; j++) {\n            if (grid[i][j] === 0 || grid[i][j] === 1) {\n                st = 0;\n                path.length = 0;\n                if (dfs(i, j, 1)) {\n                    return path;\n                }\n            }\n        }\n    }\n\n    return [];\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sequential Grid Path Cover.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

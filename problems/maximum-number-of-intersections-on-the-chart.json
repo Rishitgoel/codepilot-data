@@ -1,0 +1,62 @@
+{
+  "id": 3009,
+  "slug": "maximum-number-of-intersections-on-the-chart",
+  "title": "Maximum Number of Intersections on the Chart",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Intersections%20on%20the%20Chart"
+  },
+  "description": "There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The `k^th` point has coordinates `(k, y[k])`. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.\n\nWe can draw an infinitely long horizontal line. Return *the **maximum** number of points of intersection of the line with the chart*.",
+  "examples": [
+    {
+      "input": "y = [1,2,1,2,1,3,2]",
+      "output": "5",
+      "explanation": "As you can see in the image above, the line y = 1.5 has 5 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 4 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 5 points. So the answer would be 5."
+    },
+    {
+      "input": "y = [2,1,3,4,5]",
+      "output": "2",
+      "explanation": "As you can see in the image above, the line y = 1.5 has 2 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 2 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 2 points. So the answer would be 2."
+    }
+  ],
+  "constraints": [
+    "2 <= y.length <= 10^5",
+    "1 <= y[i] <= 10^9",
+    "y[i] != y[i + 1] for i in range [1, n - 1]"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxIntersectionCount(self, y: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxIntersectionCount(vector<int>& y) {\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int maxIntersectionCount(int[] y) {\r\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxIntersectionCount(self, y: List[int]) -> int:\n        n = len(y)\n        line = defaultdict(int)\n        for i in range(1, n):\n            start = 2 * y[i - 1]\n            end = 2 * y[i] + (0 if i == n - 1 else (-1 if y[i] > y[i - 1] else 1))\n            line[min(start, end)] += 1\n            line[max(start, end) + 1] -= 1\n        ans = intersection = 0\n        for _, count in sorted(line.items()):\n            intersection += count\n            ans = max(ans, intersection)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxIntersectionCount(vector<int>& y) {\n        int n = y.size();\n        map<int, int> line;\n        for (int i = 1; i < n; ++i) {\n            int start = 2 * y[i - 1];\n            int end = 2 * y[i] + (i == n - 1 ? 0 : (y[i] > y[i - 1] ? -1 : 1));\n            ++line[min(start, end)];\n            --line[max(start, end) + 1];\n        }\n        int ans = 0, intersection = 0;\n        for (auto& [_, count] : line) {\n            intersection += count;\n            ans = max(ans, intersection);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\r\n    public int maxIntersectionCount(int[] y) {\r\n        final int n = y.length;\r\n        int ans = 0;\r\n        int intersectionCount = 0;\r\n        TreeMap<Integer, Integer> line = new TreeMap<>();\r\n\r\n        for (int i = 1; i < n; ++i) {\r\n            final int start = 2 * y[i - 1];\r\n            final int end = 2 * y[i] + (i == n - 1 ? 0 : y[i] > y[i - 1] ? -1 : 1);\r\n            line.merge(Math.min(start, end), 1, Integer::sum);\r\n            line.merge(Math.max(start, end) + 1, -1, Integer::sum);\r\n        }\r\n\r\n        for (final int count : line.values()) {\r\n            intersectionCount += count;\r\n            ans = Math.max(ans, intersectionCount);\r\n        }\r\n\r\n        return ans;\r\n    }\r\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,1,2,1,3,2]",
+      "expected": "5"
+    },
+    {
+      "input": "[2,1,3,4,5]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Intersections on the Chart.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

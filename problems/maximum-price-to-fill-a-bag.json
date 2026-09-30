@@ -1,0 +1,65 @@
+{
+  "id": 2548,
+  "slug": "maximum-price-to-fill-a-bag",
+  "title": "Maximum Price to Fill a Bag",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Price%20to%20Fill%20a%20Bag"
+  },
+  "description": "You are given a 2D integer array `items` where `items[i] = [pricei, weighti]` denotes the price and weight of the `i^th` item, respectively.\n\nYou are also given a **positive** integer `capacity`.\n\nEach item can be divided into two items with ratios `part1` and `part2`, where `part1 + part2 == 1`.\n\n\tThe weight of the first item is `weighti * part1` and the price of the first item is `pricei * part1`.\n\tSimilarly, the weight of the second item is `weighti * part2` and the price of the second item is `pricei * part2`.\n\nReturn ***the maximum total price** to fill a bag of capacity* `capacity` *with given items*. If it is impossible to fill a bag return `-1`. Answers within `10^-5` of the **actual answer** will be considered accepted.",
+  "examples": [
+    {
+      "input": "items = [[50,1],[10,8]], capacity = 5",
+      "output": "55.00000",
+      "explanation": "We divide the 2nd item into two parts with part1 = 0.5 and part2 = 0.5.\nThe price and weight of the 1st item are 5, 4. And similarly, the price and the weight of the 2nd item are 5, 4.\nThe array items after operation becomes [[50,1],[5,4],[5,4]]. \nTo fill a bag with capacity 5 we take the 1st element with a price of 50 and the 2nd element with a price of 5.\nIt can be proved that 55.0 is the maximum total price that we can achieve."
+    },
+    {
+      "input": "items = [[100,30]], capacity = 50",
+      "output": "-1.00000",
+      "explanation": "It is impossible to fill a bag with the given item."
+    }
+  ],
+  "constraints": [
+    "1 <= items.length <= 10^5",
+    "items[i].length == 2",
+    "1 <= pricei, weighti <= 10^4",
+    "1 <= capacity <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxPrice(self, items: List[List[int]], capacity: int) -> float:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    double maxPrice(vector<vector<int>>& items, int capacity) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public double maxPrice(int[][] items, int capacity) {\n        \n    }\n};\n",
+    "javascript": "function maxPrice(items: number[][], capacity: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxPrice(self, items: List[List[int]], capacity: int) -> float:\n        ans = 0\n        for p, w in sorted(items, key=lambda x: x[1] / x[0]):\n            v = min(w, capacity)\n            ans += v / w * p\n            capacity -= v\n        return -1 if capacity else ans",
+    "cpp": "class Solution {\npublic:\n    double maxPrice(vector<vector<int>>& items, int capacity) {\n        sort(items.begin(), items.end(), [&](const auto& a, const auto& b) { return a[1] * b[0] < a[0] * b[1]; });\n        double ans = 0;\n        for (auto& e : items) {\n            int p = e[0], w = e[1];\n            int v = min(w, capacity);\n            ans += v * 1.0 / w * p;\n            capacity -= v;\n        }\n        return capacity > 0 ? -1 : ans;\n    }\n};",
+    "java": "class Solution {\n    public double maxPrice(int[][] items, int capacity) {\n        Arrays.sort(items, (a, b) -> a[1] * b[0] - a[0] * b[1]);\n        double ans = 0;\n        for (var e : items) {\n            int p = e[0], w = e[1];\n            int v = Math.min(w, capacity);\n            ans += v * 1.0 / w * p;\n            capacity -= v;\n        }\n        return capacity > 0 ? -1 : ans;\n    }\n}",
+    "javascript": "function maxPrice(items: number[][], capacity: number): number {\n    items.sort((a, b) => a[1] * b[0] - a[0] * b[1]);\n    let ans = 0;\n    for (const [p, w] of items) {\n        const v = Math.min(w, capacity);\n        ans += (v / w) * p;\n        capacity -= v;\n    }\n    return capacity ? -1 : ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[50,1],[10,8]], capacity = 5",
+      "expected": "55.00000"
+    },
+    {
+      "input": "[[100,30]], capacity = 50",
+      "expected": "-1.00000"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Price to Fill a Bag.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

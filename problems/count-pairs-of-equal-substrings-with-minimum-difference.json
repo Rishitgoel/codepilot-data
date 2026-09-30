@@ -1,0 +1,63 @@
+{
+  "id": 1794,
+  "slug": "count-pairs-of-equal-substrings-with-minimum-difference",
+  "title": "Count Pairs of Equal Substrings With Minimum Difference",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Pairs%20of%20Equal%20Substrings%20With%20Minimum%20Difference"
+  },
+  "description": "You are given two strings `firstString` and `secondString` that are **0-indexed** and consist only of lowercase English letters. Count the number of index quadruples `(i,j,a,b)` that satisfy the following conditions:\n\n\t`0 \n\t`0 \n\tThe substring of `firstString` that starts at the `i^th` character and ends at the `j^th` character (inclusive) is **equal** to the substring of `secondString` that starts at the `a^th` character and ends at the `b^th` character (inclusive).\n\t`j - a` is the **minimum** possible value among all quadruples that satisfy the previous conditions.\n\nReturn *the **number** of such quadruples*.",
+  "examples": [
+    {
+      "input": "firstString = \"abcd\", secondString = \"bccda\"",
+      "output": "1",
+      "explanation": "The quadruple (0,0,4,4) is the only one that satisfies all the conditions and minimizes j - a."
+    },
+    {
+      "input": "firstString = \"ab\", secondString = \"cd\"",
+      "output": "0",
+      "explanation": "There are no quadruples satisfying all the conditions."
+    }
+  ],
+  "constraints": [
+    "1 <= firstString.length, secondString.length <= 2 * 10^5",
+    "Both strings consist only of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countQuadruples(self, firstString: str, secondString: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int countQuadruples(string firstString, string secondString) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int countQuadruples(String firstString, String secondString) {\n        \n    }\n};\n",
+    "javascript": "function countQuadruples(firstString: string, secondString: string): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countQuadruples(self, firstString: str, secondString: str) -> int:\n        last = {c: i for i, c in enumerate(secondString)}\n        ans, mi = 0, inf\n        for i, c in enumerate(firstString):\n            if c in last:\n                t = i - last[c]\n                if mi > t:\n                    mi = t\n                    ans = 1\n                elif mi == t:\n                    ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int countQuadruples(string firstString, string secondString) {\n        int last[26] = {0};\n        for (int i = 0; i < secondString.size(); ++i) {\n            last[secondString[i] - 'a'] = i + 1;\n        }\n        int ans = 0, mi = 1 << 30;\n        for (int i = 0; i < firstString.size(); ++i) {\n            int j = last[firstString[i] - 'a'];\n            if (j) {\n                int t = i - j;\n                if (mi > t) {\n                    mi = t;\n                    ans = 1;\n                } else if (mi == t) {\n                    ++ans;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int countQuadruples(String firstString, String secondString) {\n        int[] last = new int[26];\n        for (int i = 0; i < secondString.length(); ++i) {\n            last[secondString.charAt(i) - 'a'] = i + 1;\n        }\n        int ans = 0, mi = 1 << 30;\n        for (int i = 0; i < firstString.length(); ++i) {\n            int j = last[firstString.charAt(i) - 'a'];\n            if (j > 0) {\n                int t = i - j;\n                if (mi > t) {\n                    mi = t;\n                    ans = 1;\n                } else if (mi == t) {\n                    ++ans;\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countQuadruples(firstString: string, secondString: string): number {\n    const last: number[] = new Array(26).fill(0);\n    for (let i = 0; i < secondString.length; ++i) {\n        last[secondString.charCodeAt(i) - 97] = i + 1;\n    }\n    let [ans, mi] = [0, Infinity];\n    for (let i = 0; i < firstString.length; ++i) {\n        const j = last[firstString.charCodeAt(i) - 97];\n        if (j) {\n            const t = i - j;\n            if (mi > t) {\n                mi = t;\n                ans = 1;\n            } else if (mi === t) {\n                ++ans;\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abcd\", secondString = \"bccda\"",
+      "expected": "1"
+    },
+    {
+      "input": "\"ab\", secondString = \"cd\"",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Pairs of Equal Substrings With Minimum Difference.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

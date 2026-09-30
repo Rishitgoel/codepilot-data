@@ -1,0 +1,60 @@
+{
+  "id": 2775,
+  "slug": "undefined-to-null",
+  "title": "Undefined to Null",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Undefined%20to%20Null"
+  },
+  "description": "Given a deeply nested object or array `obj`, return the object `obj` with any `undefined` values replaced by `null`.\n\n`undefined` values are handled differently than `null` values when objects are converted to a JSON string using `JSON.stringify()`. This function helps ensure serialized data is free of unexpected errors.",
+  "examples": [
+    {
+      "input": "obj = {\"a\": undefined, \"b\": 3}",
+      "output": "{\"a\": null, \"b\": 3}",
+      "explanation": "The value for obj.a has been changed from undefined to null"
+    },
+    {
+      "input": "obj = {\"a\": undefined, \"b\": [\"a\", undefined]}",
+      "output": "{\"a\": null,\"b\": [\"a\", null]}",
+      "explanation": "The values for obj.a and obj.b[1] have been changed from undefined to null"
+    }
+  ],
+  "constraints": [
+    "obj is a valid JSON object or array",
+    "2 <= JSON.stringify(obj).length <= 10^5"
+  ],
+  "starterTemplates": {
+    "javascript": "function undefinedToNull(obj: Record<any, any>): Record<any, any> {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function undefinedToNull(obj: Record<any, any>): Record<any, any> {\n    for (const key in obj) {\n        if (typeof obj[key] === 'object') {\n            obj[key] = undefinedToNull(obj[key]);\n        }\n        if (obj[key] === undefined) {\n            obj[key] = null;\n        }\n    }\n    return obj;\n}\n\n/**\n * undefinedToNull({\"a\": undefined, \"b\": 3}) // {\"a\": null, \"b\": 3}\n * undefinedToNull([undefined, undefined]) // [null, null]\n */"
+  },
+  "testcases": [
+    {
+      "input": "{\"a\": undefined, \"b\": 3}",
+      "expected": "{\"a\": null, \"b\": 3}"
+    },
+    {
+      "input": "{\"a\": undefined, \"b\": [\"a\", undefined]}",
+      "expected": "{\"a\": null,\"b\": [\"a\", null]}"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Undefined to Null.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

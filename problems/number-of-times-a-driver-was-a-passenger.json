@@ -1,0 +1,43 @@
+{
+  "id": 2238,
+  "slug": "number-of-times-a-driver-was-a-passenger",
+  "title": "Number of Times a Driver Was a Passenger",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Times%20a%20Driver%20Was%20a%20Passenger"
+  },
+  "description": "Table: `Rides`\n\n+--------------+------+\n| Column Name  | Type |\n+--------------+------+\n| ride_id      | int  |\n| driver_id    | int  |\n| passenger_id | int  |\n+--------------+------+\nride_id is the column with unique values for this table.\nEach row of this table contains the ID of the driver and the ID of the passenger that rode in ride_id.\nNote that driver_id != passenger_id.\n\n \n\nWrite a solution to report the ID of each driver and the number of times they were a passenger.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Rides table:\n+---------+-----------+--------------+\n| ride_id | driver_id | passenger_id |\n+---------+-----------+--------------+\n| 1       | 7         | 1            |\n| 2       | 7         | 2            |\n| 3       | 11        | 1            |\n| 4       | 11        | 7            |\n| 5       | 11        | 7            |\n| 6       | 11        | 3            |\n+---------+-----------+--------------+",
+      "output": "+-----------+-----+\n| driver_id | cnt |\n+-----------+-----+\n| 7         | 2   |\n| 11        | 0   |\n+-----------+-----+",
+      "explanation": "There are two drivers in all the given rides: 7 and 11.\nThe driver with ID = 7 was a passenger two times.\nThe driver with ID = 11 was never a passenger."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Rides table:\n+---------+-----------+--------------+\n| ride_id | driver_id | passenger_id |\n+---------+-----------+--------------+\n| 1       | 7         | 1            |\n| 2       | 7         | 2            |\n| 3       | 11        | 1            |\n| 4       | 11        | 7            |\n| 5       | 11        | 7            |\n| 6       | 11        | 3            |\n+---------+-----------+--------------+",
+      "expected": "+-----------+-----+\n| driver_id | cnt |\n+-----------+-----+\n| 7         | 2   |\n| 11        | 0   |\n+-----------+-----+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Times a Driver Was a Passenger.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

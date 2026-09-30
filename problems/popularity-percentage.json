@@ -1,0 +1,46 @@
+{
+  "id": 2720,
+  "slug": "popularity-percentage",
+  "title": "Popularity Percentage",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Popularity%20Percentage"
+  },
+  "description": "Table: `Friends`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| user1       | int  |\n| user2       | int  |\n+-------------+------+\n(user1, user2) is the primary key (combination of unique values) of this table.\nEach row contains information about friendship where user1 and user2 are friends.\n\nWrite a solution to find the popularity percentage for each user on Meta/Facebook. The popularity percentage is defined as the total number of friends the user has divided by the total number of users on the platform, then converted into a percentage by multiplying by 100, **rounded to 2 decimal places**.\n\nReturn *the result table ordered by* `user1` *in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": " \nFriends table:\n+-------+-------+\n| user1 | user2 | \n+-------+-------+\n| 2     | 1     | \n| 1     | 3     | \n| 4     | 1     | \n| 1     | 5     | \n| 1     | 6     |\n| 2     | 6     | \n| 7     | 2     | \n| 8     | 3     | \n| 3     | 9     |  \n+-------+-------+",
+      "output": " \n+-------+-----------------------+\n| user1 | percentage_popularity |\n+-------+-----------------------+\n| 1     | 55.56                 |\n| 2     | 33.33                 |\n| 3     | 33.33                 |\n| 4     | 11.11                 |\n| 5     | 11.11                 |\n| 6     | 22.22                 |\n| 7     | 11.11                 |\n| 8     | 11.11                 |\n| 9     | 11.11                 |\n+-------+-----------------------+",
+      "explanation": " \nThere are total 9 users on the platform.\n- User \"1\" has friendships with 2, 3, 4, 5 and 6. Therefore, the percentage popularity for user 1 would be calculated as (5/9) * 100 = 55.56.\n- User \"2\" has friendships with 1, 6 and 7. Therefore, the percentage popularity for user 2 would be calculated as (3/9) * 100 = 33.33.\n- User \"3\" has friendships with 1, 8 and 9. Therefore, the percentage popularity for user 3 would be calculated as (3/9) * 100 = 33.33.\n- User \"4\" has friendships with 1. Therefore, the percentage popularity for user 4 would be calculated as (1/9) * 100 = 11.11.\n- User \"5\" has friendships with 1. Therefore, the percentage popularity for user 5 would be calculated as (1/9) * 100 = 11.11.\n- User \"6\" has friendships with 1 and 2. Therefore, the percentage popularity for user 6 would be calculated as (2/9) * 100 = 22.22.\n- User \"7\" has friendships with 2. Therefore, the percentage popularity for user 7 would be calculated as (1/9) * 100 = 11.11.\n- User \"8\" has friendships with 3. Therefore, the percentage popularity for user 8 would be calculated as (1/9) * 100 = 11.11.\n- User \"9\" has friendships with 3. Therefore, the percentage popularity for user 9 would be calculated as (1/9) * 100 = 11.11.\nuser1 is sorted in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": " \nFriends table:\n+-------+-------+\n| user1 | user2 | \n+-------+-------+\n| 2     | 1     | \n| 1     | 3     | \n| 4     | 1     | \n| 1     | 5     | \n| 1     | 6     |\n| 2     | 6     | \n| 7     | 2     | \n| 8     | 3     | \n| 3     | 9     |  \n+-------+-------+",
+      "expected": " \n+-------+-----------------------+\n| user1 | percentage_popularity |\n+-------+-----------------------+\n| 1     | 55.56                 |\n| 2     | 33.33                 |\n| 3     | 33.33                 |\n| 4     | 11.11                 |\n| 5     | 11.11                 |\n| 6     | 22.22                 |\n| 7     | 11.11                 |\n| 8     | 11.11                 |\n| 9     | 11.11                 |\n+-------+-----------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Popularity Percentage.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

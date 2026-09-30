@@ -1,0 +1,75 @@
+{
+  "id": 1102,
+  "slug": "path-with-maximum-minimum-value",
+  "title": "Path With Maximum Minimum Value",
+  "difficulty": "Medium",
+  "rating": 2011,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "DoorDash",
+    "GEICO"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Path%20With%20Maximum%20Minimum%20Value"
+  },
+  "description": "Given an `m x n` integer matrix `grid`, return *the maximum **score** of a path starting at *`(0, 0)`* and ending at *`(m - 1, n - 1)` moving in the 4 cardinal directions.\n\nThe **score** of a path is the minimum value in that path.\n\n\tFor example, the score of the path `8 &rarr; 4 &rarr; 5 &rarr; 9` is `4`.",
+  "examples": [
+    {
+      "input": "grid = [[5,4,5],[1,2,6],[7,4,6]]",
+      "output": "4",
+      "explanation": "The path with the maximum score is highlighted in yellow."
+    },
+    {
+      "input": "grid = [[2,2,1,2,2,2],[1,2,2,2,1,2]]",
+      "output": "2"
+    },
+    {
+      "input": "grid = [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]",
+      "output": "3"
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 100",
+    "0 <= grid[i][j] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumMinimumPath(self, grid: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maximumMinimumPath(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] p;\n\n    public int maximumMinimumPath(int[][] grid) {\n        \n    }\n};\n",
+    "javascript": "function maximumMinimumPath(grid: number[][]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumMinimumPath(self, grid: List[List[int]]) -> int:\n        def find(x: int) -> int:\n            if p[x] != x:\n                p[x] = find(p[x])\n            return p[x]\n\n        m, n = len(grid), len(grid[0])\n        p = list(range(m * n))\n        q = [(v, i, j) for i, row in enumerate(grid) for j, v in enumerate(row)]\n        q.sort()\n        ans = 0\n        dirs = (-1, 0, 1, 0, -1)\n        vis = set()\n        while find(0) != find(m * n - 1):\n            v, i, j = q.pop()\n            ans = v\n            vis.add((i, j))\n            for a, b in pairwise(dirs):\n                x, y = i + a, j + b\n                if (x, y) in vis:\n                    p[find(i * n + j)] = find(x * n + y)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maximumMinimumPath(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<tuple<int, int, int>> q;\n        vector<int> p(m * n);\n        iota(p.begin(), p.end(), 0);\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                q.emplace_back(grid[i][j], i, j);\n            }\n        }\n        function<int(int)> find = [&](int x) {\n            return p[x] == x ? x : p[x] = find(p[x]);\n        };\n        sort(q.begin(), q.end(), greater<tuple<int, int, int>>());\n        int ans = 0;\n        int dirs[5] = {-1, 0, 1, 0, -1};\n        bool vis[m][n];\n        memset(vis, false, sizeof(vis));\n        for (auto& [v, i, j] : q) {\n            vis[i][j] = true;\n            ans = v;\n            for (int k = 0; k < 4; ++k) {\n                int x = i + dirs[k], y = j + dirs[k + 1];\n                if (x >= 0 && x < m && y >= 0 && y < n && vis[x][y]) {\n                    p[find(x * n + y)] = find(i * n + j);\n                }\n            }\n            if (find(0) == find(m * n - 1)) {\n                break;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private int[] p;\n\n    public int maximumMinimumPath(int[][] grid) {\n        int m = grid.length, n = grid[0].length;\n        p = new int[m * n];\n        List<int[]> q = new ArrayList<>();\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                q.add(new int[] {grid[i][j], i, j});\n                p[i * n + j] = i * n + j;\n            }\n        }\n        q.sort((a, b) -> b[0] - a[0]);\n        boolean[][] vis = new boolean[m][n];\n        int[] dirs = {-1, 0, 1, 0, -1};\n        int ans = 0;\n        for (int i = 0; find(0) != find(m * n - 1); ++i) {\n            int[] t = q.get(i);\n            vis[t[1]][t[2]] = true;\n            ans = t[0];\n            for (int k = 0; k < 4; ++k) {\n                int x = t[1] + dirs[k], y = t[2] + dirs[k + 1];\n                if (x >= 0 && x < m && y >= 0 && y < n && vis[x][y]) {\n                    p[find(x * n + y)] = find(t[1] * n + t[2]);\n                }\n            }\n        }\n        return ans;\n    }\n\n    private int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n}",
+    "javascript": "function maximumMinimumPath(grid: number[][]): number {\n    const m = grid.length;\n    const n = grid[0].length;\n    const p: number[] = Array(m * n)\n        .fill(0)\n        .map((_, i) => i);\n    const q: number[][] = [];\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            q.push([grid[i][j], i, j]);\n        }\n    }\n    q.sort((a, b) => b[0] - a[0]);\n    const find = (x: number): number => {\n        if (p[x] !== x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    };\n    const dirs: number[] = [-1, 0, 1, 0, -1];\n    const vis: boolean[][] = Array(m)\n        .fill(0)\n        .map(() => Array(n).fill(false));\n    let ans = 0;\n    for (let k = 0; find(0) !== find(m * n - 1); ++k) {\n        const [t, i, j] = q[k];\n        ans = t;\n        vis[i][j] = true;\n        for (let d = 0; d < 4; ++d) {\n            const [x, y] = [i + dirs[d], j + dirs[d + 1]];\n            if (x >= 0 && x < m && y >= 0 && y < n && vis[x][y]) {\n                p[find(i * n + j)] = find(x * n + y);\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[5,4,5],[1,2,6],[7,4,6]]",
+      "expected": "4"
+    },
+    {
+      "input": "[[2,2,1,2,2,2],[1,2,2,2,1,2]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Path With Maximum Minimum Value.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

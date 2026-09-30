@@ -1,0 +1,62 @@
+{
+  "id": 2445,
+  "slug": "number-of-nodes-with-value-one",
+  "title": "Number of Nodes With Value One",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Infosys"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Nodes%20With%20Value%20One"
+  },
+  "description": "There is an **undirected** connected tree with `n` nodes labeled from `1` to `n` and `n - 1` edges. You are given the integer `n`. The parent node of a node with a label `v` is the node with the label `floor (v / 2)`. The root of the tree is the node with the label `1`.\n\n\tFor example, if `n = 7`, then the node with the label `3` has the node with the label `floor(3 / 2) = 1` as its parent, and the node with the label `7` has the node with the label `floor(7 / 2) = 3` as its parent.\n\nYou are also given an integer array `queries`. Initially, every node has a value `0` on it. For each query `queries[i]`, you should flip all values in the subtree of the node with the label `queries[i]`.\n\nReturn *the total number of nodes with the value *`1`* **after processing all the queries***.\n\n**Note** that:\n\n\tFlipping the value of a node means that the node with the value `0` becomes `1` and vice versa.\n\t`floor(x)` is equivalent to rounding `x` down to the nearest integer.",
+  "examples": [
+    {
+      "input": "n = 5 , queries = [1,2,5]",
+      "output": "3",
+      "explanation": "The diagram above shows the tree structure and its status after performing the queries. The blue node represents the value 0, and the red node represents the value 1.\nAfter processing the queries, there are three red nodes (nodes with value 1): 1, 3, and 5."
+    },
+    {
+      "input": "n = 3, queries = [2,3,3]",
+      "output": "1",
+      "explanation": "The diagram above shows the tree structure and its status after performing the queries. The blue node represents the value 0, and the red node represents the value 1.\nAfter processing the queries, there are one red node (node with value 1): 2."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^5",
+    "1 <= queries.length <= 10^5",
+    "1 <= queries[i] <= n"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def numberOfNodes(self, n: int, queries: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int numberOfNodes(int n, vector<int>& queries) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int[] tree;\n\n    public int numberOfNodes(int n, int[] queries) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def numberOfNodes(self, n: int, queries: List[int]) -> int:\n        def dfs(i):\n            if i > n:\n                return\n            tree[i] ^= 1\n            dfs(i << 1)\n            dfs(i << 1 | 1)\n\n        tree = [0] * (n + 1)\n        cnt = Counter(queries)\n        for i, v in cnt.items():\n            if v & 1:\n                dfs(i)\n        return sum(tree)",
+    "cpp": "class Solution {\npublic:\n    int numberOfNodes(int n, vector<int>& queries) {\n        vector<int> tree(n + 1);\n        vector<int> cnt(n + 1);\n        for (int v : queries) ++cnt[v];\n        function<void(int)> dfs = [&](int i) {\n            if (i > n) return;\n            tree[i] ^= 1;\n            dfs(i << 1);\n            dfs(i << 1 | 1);\n        };\n        for (int i = 0; i < n + 1; ++i) {\n            if (cnt[i] & 1) {\n                dfs(i);\n            }\n        }\n        return accumulate(tree.begin(), tree.end(), 0);\n    }\n};",
+    "java": "class Solution {\n    private int[] tree;\n\n    public int numberOfNodes(int n, int[] queries) {\n        tree = new int[n + 1];\n        int[] cnt = new int[n + 1];\n        for (int v : queries) {\n            ++cnt[v];\n        }\n        for (int i = 0; i < n + 1; ++i) {\n            if (cnt[i] % 2 == 1) {\n                dfs(i);\n            }\n        }\n        int ans = 0;\n        for (int i = 0; i < n + 1; ++i) {\n            ans += tree[i];\n        }\n        return ans;\n    }\n\n    private void dfs(int i) {\n        if (i >= tree.length) {\n            return;\n        }\n        tree[i] ^= 1;\n        dfs(i << 1);\n        dfs(i << 1 | 1);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "5 , queries = [1,2,5]",
+      "expected": "3"
+    },
+    {
+      "input": "3, queries = [2,3,3]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Nodes With Value One.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

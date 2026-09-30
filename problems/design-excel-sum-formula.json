@@ -1,0 +1,57 @@
+{
+  "id": 631,
+  "slug": "design-excel-sum-formula",
+  "title": "Design Excel Sum Formula",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Microsoft",
+    "Citadel",
+    "Airbnb",
+    "Waymo",
+    "Rippling",
+    "OpenAI"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20Excel%20Sum%20Formula"
+  },
+  "description": "Design the basic function of **Excel** and implement the function of the sum formula.\n\nImplement the `Excel` class:\n\n\t`Excel(int height, char width)` Initializes the object with the `height` and the `width` of the sheet. The sheet is an integer matrix `mat` of size `height x width` with the row index in the range `[1, height]` and the column index in the range `['A', width]`. All the values should be **zero** initially.\n\t`void set(int row, char column, int val)` Changes the value at `mat[row][column]` to be `val`.\n\t`int get(int row, char column)` Returns the value at `mat[row][column]`.\n\t`int sum(int row, char column, List numbers)` Sets the value at `mat[row][column]` to be the sum of cells represented by `numbers` and returns the value at `mat[row][column]`. This sum formula **should exist** until this cell is overlapped by another value or another sum formula. `numbers[i]` could be on the format:\n\t\n\t\t`\"ColRow\"` that represents a single cell.\n\t\t\n\t\t\tFor example, `\"F7\"` represents the cell `mat[7]['F']`.\n\t\t\n\t\t\n\t\t`\"ColRow1:ColRow2\"` that represents a range of cells. The range will always be a rectangle where `\"ColRow1\"` represent the position of the top-left cell, and `\"ColRow2\"` represents the position of the bottom-right cell.\n\t\t\n\t\t\tFor example, `\"B3:F7\"` represents the cells `mat[i][j]` for `3 \n\t\t\n\t\t\n\t\n\t\n\n**Note:** You could assume that there will not be any circular sum reference.\n\n\tFor example, `mat[1]['A'] == sum(1, \"B\")` and `mat[1]['B'] == sum(1, \"A\")`.",
+  "examples": [
+    {
+      "input": "[\"Excel\", \"set\", \"sum\", \"set\", \"get\"]\n[[3, \"C\"], [1, \"A\", 2], [3, \"C\", [\"A1\", \"A1:B2\"]], [2, \"B\", 2], [3, \"C\"]]",
+      "output": "[null, null, 4, null, 6]",
+      "explanation": "Excel excel = new Excel(3, \"C\");\n // construct a 3*3 2D array with all zero.\n //   A B C\n // 1 0 0 0\n // 2 0 0 0\n // 3 0 0 0\nexcel.set(1, \"A\", 2);\n // set mat[1][\"A\"] to be 2.\n //   A B C\n // 1 2 0 0\n // 2 0 0 0\n // 3 0 0 0\nexcel.sum(3, \"C\", [\"A1\", \"A1:B2\"]); // return 4\n // set mat[3][\"C\"] to be the sum of value at mat[1][\"A\"] and the values sum of the rectangle range whose top-left cell is mat[1][\"A\"] and bottom-right cell is mat[2][\"B\"].\n //   A B C\n // 1 2 0 0\n // 2 0 0 0\n // 3 0 0 4\nexcel.set(2, \"B\", 2);\n // set mat[2][\"B\"] to be 2. Note mat[3][\"C\"] should also be changed.\n //   A B C\n // 1 2 0 0\n // 2 0 2 0\n // 3 0 0 6\nexcel.get(3, \"C\"); // return 6"
+    }
+  ],
+  "constraints": [
+    "1 <= height <= 26",
+    "'A' <= width <= 'Z'",
+    "1 <= row <= height",
+    "'A' <= column <= width",
+    "-100 <= val <= 100",
+    "1 <= numbers.length <= 5",
+    "numbers[i] has the format \"ColRow\" or \"ColRow1:ColRow2\".",
+    "At most 100 calls will be made to set, get, and sum."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "[\"Excel\", \"set\", \"sum\", \"set\", \"get\"]\n[[3, \"C\"], [1, \"A\", 2], [3, \"C\", [\"A1\", \"A1:B2\"]], [2, \"B\", 2], [3, \"C\"]]",
+      "expected": "[null, null, 4, null, 6]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design Excel Sum Formula.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

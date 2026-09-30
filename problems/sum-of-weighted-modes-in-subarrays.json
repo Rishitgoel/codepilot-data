@@ -1,0 +1,55 @@
+{
+  "id": 3672,
+  "slug": "sum-of-weighted-modes-in-subarrays",
+  "title": "Sum of Weighted Modes in Subarrays",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sum%20of%20Weighted%20Modes%20in%20Subarrays"
+  },
+  "description": "You are given an integer array `nums` and an integer `k`.\n\nFor every **subarray** of length `k`:\n\n\tThe **mode** is defined as the element with the **highest frequency**. If there are multiple choices for a mode, the **smallest** such element is taken.\n\tThe **weight** is defined as `mode * frequency(mode)`.\n\nReturn the **sum** of the weights of all **subarrays** of length `k`.\n\n**Note:**\n\n\tA **subarray** is a contiguous **non-empty** sequence of elements within an array.\n\tThe **frequency** of an element `x` is the number of times it occurs in the array.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5",
+    "1 <= k <= nums.length"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def modeWeight(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long modeWeight(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long modeWeight(int[] nums, int k) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def modeWeight(self, nums: List[int], k: int) -> int:\n        pq = []\n        cnt = defaultdict(int)\n        for x in nums[:k]:\n            cnt[x] += 1\n            heappush(pq, (-cnt[x], x))\n\n        def get_mode() -> int:\n            while -pq[0][0] != cnt[pq[0][1]]:\n                heappop(pq)\n            freq, val = -pq[0][0], pq[0][1]\n            return freq * val\n\n        ans = 0\n        ans += get_mode()\n\n        for i in range(k, len(nums)):\n            x, y = nums[i], nums[i - k]\n            cnt[x] += 1\n            cnt[y] -= 1\n            heappush(pq, (-cnt[x], x))\n            heappush(pq, (-cnt[y], y))\n\n            ans += get_mode()\n\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long modeWeight(vector<int>& nums, int k) {\n        unordered_map<int, int> cnt;\n        priority_queue<pair<int, int>> pq; // {freq, -val}\n\n        for (int i = 0; i < k; i++) {\n            int x = nums[i];\n            cnt[x]++;\n            pq.push({cnt[x], -x});\n        }\n\n        auto get_mode = [&]() {\n            while (true) {\n                auto [freq, negVal] = pq.top();\n                int val = -negVal;\n                if (cnt[val] == freq) {\n                    return 1LL * freq * val;\n                }\n                pq.pop();\n            }\n        };\n\n        long long ans = 0;\n        ans += get_mode();\n\n        for (int i = k; i < nums.size(); i++) {\n            int x = nums[i], y = nums[i - k];\n            cnt[x]++;\n            cnt[y]--;\n            pq.push({cnt[x], -x});\n            pq.push({cnt[y], -y});\n            ans += get_mode();\n        }\n\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long modeWeight(int[] nums, int k) {\n        Map<Integer, Integer> cnt = new HashMap<>();\n        PriorityQueue<int[]> pq = new PriorityQueue<>(\n            (a, b) -> a[0] != b[0] ? Integer.compare(a[0], b[0]) : Integer.compare(a[1], b[1]));\n\n        for (int i = 0; i < k; i++) {\n            int x = nums[i];\n            cnt.merge(x, 1, Integer::sum);\n            pq.offer(new int[] {-cnt.get(x), x});\n        }\n\n        long ans = 0;\n\n        Supplier<Long> getMode = () -> {\n            while (true) {\n                int[] top = pq.peek();\n                int val = top[1];\n                int freq = -top[0];\n                if (cnt.getOrDefault(val, 0) == freq) {\n                    return 1L * freq * val;\n                }\n                pq.poll();\n            }\n        };\n\n        ans += getMode.get();\n\n        for (int i = k; i < nums.length; i++) {\n            int x = nums[i], y = nums[i - k];\n            cnt.merge(x, 1, Integer::sum);\n            pq.offer(new int[] {-cnt.get(x), x});\n            cnt.merge(y, -1, Integer::sum);\n            pq.offer(new int[] {-cnt.get(y), y});\n            ans += getMode.get();\n        }\n\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sum of Weighted Modes in Subarrays.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

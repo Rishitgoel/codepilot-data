@@ -1,0 +1,49 @@
+{
+  "id": 3246,
+  "slug": "premier-league-table-ranking",
+  "title": "Premier League Table Ranking",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Premier%20League%20Table%20Ranking"
+  },
+  "description": "Table: `TeamStats`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| team_id          | int     |\n| team_name        | varchar |\n| matches_played   | int     |\n| wins             | int     |\n| draws            | int     |\n| losses           | int     |\n+------------------+---------+\nteam_id is the unique key for this table.\nThis table contains team id, team name, matches_played, wins, draws, and losses.\n\nWrite a solution to calculate the **points** and **rank** for each team in the league. Points are calculated as follows:\n\n\t`3` points for a **win**\n\t`1` point for a **draw**\n\t`0` points for a **loss**\n\n**Note:** Teams with the same points must be assigned the same rank.\n\nReturn *the result table ordered by* `points` *in **descending**,** **and then by* `team_name` *in **ascending **order.*\n\nThe query result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_standings(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n        pass\n"
+  },
+  "snippets": {
+    "python": "import pandas as pd\r\n\r\n\r\ndef calculate_team_standings(team_stats: pd.DataFrame) -> pd.DataFrame:\r\n    team_stats[\"points\"] = team_stats[\"wins\"] * 3 + team_stats[\"draws\"]\r\n    team_stats[\"position\"] = team_stats[\"points\"].rank(method=\"min\", ascending=False)\r\n    team_stats = team_stats.sort_values(\r\n        by=[\"points\", \"team_name\"], ascending=[False, True]\r\n    )\r\n    return team_stats[[\"team_id\", \"team_name\", \"points\", \"position\"]]"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Premier League Table Ranking.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

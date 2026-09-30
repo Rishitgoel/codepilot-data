@@ -1,0 +1,56 @@
+{
+  "id": 3930,
+  "slug": "power-update-after-k-th-largest-insertion-ii",
+  "title": "Power Update After K-th Largest Insertion II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Power%20Update%20After%20K-th%20Largest%20Insertion%20II"
+  },
+  "description": "You are given an integer array `nums` and an integer `p`.\n\nYou are also given a 2D integer array `queries`, where each `queries[i] = [vali, ki]`.\n\nFor each query:\n\n\tInsert `vali` into `nums`.\n\tLet `x` be the `ki^th` **largest** element in the current `nums`.\n\t**Update** `p` to `p^x % (10^9 + 7)`.\n\nReturn an array `ans` where the `ans[i]` represents the value of `p` after processing the `i^th` query.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^4",
+    "1 <= nums[i] <= 10^9",
+    "​​​​​​​1 <= p <= 10^9",
+    "1 <= queries.length <= 2 * 10^4",
+    "^​​​​​​​1 <= vali <= 10^9",
+    "1 <= ki <= n + i + 1​​​​​​​"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        pass\n",
+    "cpp": "#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n#include <vector>\n\nusing namespace std;\nusing namespace __gnu_pbds;\n\ntemplate <typename T>\nusing ordered_multiset = tree<pair<T, int>, null_type, less<pair<T, int>>,\n    rb_tree_tag, tree_order_statistics_node_update>;\n\nclass Solution {\npublic:\n    vector<int> powerUpdate(vector<int>& nums, int p, vector<vector<int>>& queries) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        ans = []\n        sl = SortedList(nums)\n        mod = 10**9 + 7\n        for val, k in queries:\n            sl.add(val)\n            p = pow(p, sl[-k], mod)\n            ans.append(p)\n        return ans",
+    "cpp": "#include <ext/pb_ds/assoc_container.hpp>\n#include <ext/pb_ds/tree_policy.hpp>\n#include <vector>\n\nusing namespace std;\nusing namespace __gnu_pbds;\n\ntemplate <typename T>\nusing ordered_multiset = tree<pair<T, int>, null_type, less<pair<T, int>>,\n    rb_tree_tag, tree_order_statistics_node_update>;\n\nclass Solution {\npublic:\n    vector<int> powerUpdate(vector<int>& nums, int p, vector<vector<int>>& queries) {\n        vector<int> ans;\n        ordered_multiset<int> sl;\n        const int mod = 1e9 + 7;\n\n        for (int i = 0; i < nums.size(); i++) {\n            sl.insert({nums[i], i});\n        }\n\n        int next_id = nums.size();\n\n        auto mod_pow = [&](long long base, long long exp) -> long long {\n            long long result = 1;\n            base %= mod;\n            while (exp > 0) {\n                if (exp & 1) result = (result * base) % mod;\n                base = (base * base) % mod;\n                exp >>= 1;\n            }\n            return result;\n        };\n\n        for (const auto& query : queries) {\n            int val = query[0];\n            int k = query[1];\n\n            sl.insert({val, next_id++});\n\n            auto it = sl.find_by_order(sl.size() - k);\n            int kth_largest = it->first;\n\n            p = mod_pow(p, kth_largest);\n            ans.push_back(p);\n        }\n\n        return ans;\n    }\n};"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Power Update After K-th Largest Insertion II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

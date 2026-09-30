@@ -1,0 +1,72 @@
+{
+  "id": 2198,
+  "slug": "number-of-single-divisor-triplets",
+  "title": "Number of Single Divisor Triplets",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Value Labs"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Single%20Divisor%20Triplets"
+  },
+  "description": "You are given a **0-indexed** array of positive integers `nums`. A triplet of three **distinct** indices `(i, j, k)` is called a **single divisor triplet** of `nums` if `nums[i] + nums[j] + nums[k]` is divisible by **exactly one** of `nums[i]`, `nums[j]`, or `nums[k]`.\n\nReturn *the number of **single divisor triplets** of *`nums`*.*",
+  "examples": [
+    {
+      "input": "nums = [4,6,7,3,2]",
+      "output": "12",
+      "explanation": "The triplets (0, 3, 4), (0, 4, 3), (3, 0, 4), (3, 4, 0), (4, 0, 3), and (4, 3, 0) have the values of [4, 3, 2] (or a permutation of [4, 3, 2]).\n4 + 3 + 2 = 9 which is only divisible by 3, so all such triplets are single divisor triplets.\nThe triplets (0, 2, 3), (0, 3, 2), (2, 0, 3), (2, 3, 0), (3, 0, 2), and (3, 2, 0) have the values of [4, 7, 3] (or a permutation of [4, 7, 3]).\n4 + 7 + 3 = 14 which is only divisible by 7, so all such triplets are single divisor triplets.\nThere are 12 single divisor triplets in total."
+    },
+    {
+      "input": "nums = [1,2,2]",
+      "output": "6",
+      "explanation": "The triplets (0, 1, 2), (0, 2, 1), (1, 0, 2), (1, 2, 0), (2, 0, 1), and (2, 1, 0) have the values of [1, 2, 2] (or a permutation of [1, 2, 2]).\n1 + 2 + 2 = 5 which is only divisible by 1, so all such triplets are single divisor triplets.\nThere are 6 single divisor triplets in total."
+    },
+    {
+      "input": "nums = [1,1,1]",
+      "output": "0",
+      "explanation": "There are no single divisor triplets.\nNote that (0, 1, 2) is not a single divisor triplet because nums[0] + nums[1] + nums[2] = 3 and 3 is divisible by nums[0], nums[1], and nums[2]."
+    }
+  ],
+  "constraints": [
+    "3 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def singleDivisorTriplet(self, nums: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long singleDivisorTriplet(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long singleDivisorTriplet(int[] nums) {\n        \n    }\n};\n",
+    "javascript": "function singleDivisorTriplet(nums: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def singleDivisorTriplet(self, nums: List[int]) -> int:\n        cnt = Counter(nums)\n        ans = 0\n        for a, x in cnt.items():\n            for b, y in cnt.items():\n                for c, z in cnt.items():\n                    s = a + b + c\n                    if sum(s % v == 0 for v in (a, b, c)) == 1:\n                        if a == b:\n                            ans += x * (x - 1) * z\n                        elif a == c:\n                            ans += x * (x - 1) * y\n                        elif b == c:\n                            ans += x * y * (y - 1)\n                        else:\n                            ans += x * y * z\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long singleDivisorTriplet(vector<int>& nums) {\n        int cnt[101]{};\n        for (int x : nums) {\n            ++cnt[x];\n        }\n        long long ans = 0;\n        for (int a = 1; a <= 100; ++a) {\n            for (int b = 1; b <= 100; ++b) {\n                for (int c = 1; c <= 100; ++c) {\n                    int s = a + b + c;\n                    int x = cnt[a], y = cnt[b], z = cnt[c];\n                    int t = (s % a == 0) + (s % b == 0) + (s % c == 0);\n                    if (t == 1) {\n                        if (a == b) {\n                            ans += 1LL * x * (x - 1) * z;\n                        } else if (a == c) {\n                            ans += 1LL * x * (x - 1) * y;\n                        } else if (b == c) {\n                            ans += 1LL * x * y * (y - 1);\n                        } else {\n                            ans += 1LL * x * y * z;\n                        }\n                    }\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long singleDivisorTriplet(int[] nums) {\n        int[] cnt = new int[101];\n        for (int x : nums) {\n            ++cnt[x];\n        }\n        long ans = 0;\n        for (int a = 1; a <= 100; ++a) {\n            for (int b = 1; b <= 100; ++b) {\n                for (int c = 1; c <= 100; ++c) {\n                    int s = a + b + c;\n                    int x = cnt[a], y = cnt[b], z = cnt[c];\n                    int t = 0;\n                    t += s % a == 0 ? 1 : 0;\n                    t += s % b == 0 ? 1 : 0;\n                    t += s % c == 0 ? 1 : 0;\n                    if (t == 1) {\n                        if (a == b) {\n                            ans += 1L * x * (x - 1) * z;\n                        } else if (a == c) {\n                            ans += 1L * x * (x - 1) * y;\n                        } else if (b == c) {\n                            ans += 1L * x * y * (y - 1);\n                        } else {\n                            ans += 1L * x * y * z;\n                        }\n                    }\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function singleDivisorTriplet(nums: number[]): number {\n    const cnt: number[] = Array(101).fill(0);\n    for (const x of nums) {\n        ++cnt[x];\n    }\n    let ans = 0;\n    const f = (a: number, b: number) => (a % b === 0 ? 1 : 0);\n    for (let a = 1; a <= 100; ++a) {\n        for (let b = 1; b <= 100; ++b) {\n            for (let c = 1; c <= 100; ++c) {\n                const s = a + b + c;\n                const t = f(s, a) + f(s, b) + f(s, c);\n                if (t === 1) {\n                    if (a === b) {\n                        ans += cnt[a] * (cnt[a] - 1) * cnt[c];\n                    } else if (a === c) {\n                        ans += cnt[a] * (cnt[a] - 1) * cnt[b];\n                    } else if (b === c) {\n                        ans += cnt[b] * (cnt[b] - 1) * cnt[a];\n                    } else {\n                        ans += cnt[a] * cnt[b] * cnt[c];\n                    }\n                }\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[4,6,7,3,2]",
+      "expected": "12"
+    },
+    {
+      "input": "[1,2,2]",
+      "expected": "6"
+    },
+    {
+      "input": "[1,1,1]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Number of Single Divisor Triplets.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

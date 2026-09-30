@@ -1,0 +1,55 @@
+{
+  "id": 4060,
+  "slug": "count-evenly-good-integers",
+  "title": "Count Evenly Good Integers",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Count%20Evenly%20Good%20Integers"
+  },
+  "description": "You are given two integers `l` and `r`.\n\nAn integer is called **evenly good** if it contains an even number of even digits.\n\nReturn the number of evenly good integers in the inclusive range `[l, r]`.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= l <= r <= 10^15"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countEvenlyGoodIntegers(self, l: int, r: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\n    string s;\n    long long f[20][2][2];\n\n    long long dfs(int pos, int st, bool lim) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    String s;\n    long[][][] f;\n\n    public long countEvenlyGoodIntegers(long l, long r) {\n        \n    }\n};\n",
+    "javascript": "function countEvenlyGoodIntegers(l: number, r: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countEvenlyGoodIntegers(self, l: int, r: int) -> int:\n        @cache\n        def dfs(pos: int, st: int, lim: bool) -> int:\n            if pos >= len(s):\n                return st ^ 1\n            up = int(s[pos]) if lim else 9\n            return sum(\n                dfs(pos + 1, (st + (i & 1 ^ 1)) % 2, lim and i == up)\n                for i in range(up + 1)\n            )\n\n        s = str(l - 1)\n        a = dfs(0, 0, True)\n        dfs.cache_clear()\n        s = str(r)\n        b = dfs(0, 0, True)\n        return b - a",
+    "cpp": "class Solution {\n    string s;\n    long long f[20][2][2];\n\n    long long dfs(int pos, int st, bool lim) {\n        if (pos >= s.size()) {\n            return st ^ 1;\n        }\n        if (f[pos][st][lim] != -1) {\n            return f[pos][st][lim];\n        }\n        int up = lim ? s[pos] - '0' : 9;\n        long long res = 0;\n        for (int i = 0; i <= up; ++i) {\n            res += dfs(pos + 1, (st + (i & 1 ^ 1)) % 2, lim && i == up);\n        }\n        return f[pos][st][lim] = res;\n    }\n\n    long long calc(long long x) {\n        s = to_string(x);\n        memset(f, -1, sizeof(f));\n        return dfs(0, 0, true);\n    }\n\npublic:\n    long long countEvenlyGoodIntegers(long long l, long long r) {\n        return calc(r) - calc(l - 1);\n    }\n};",
+    "java": "class Solution {\n    String s;\n    long[][][] f;\n\n    public long countEvenlyGoodIntegers(long l, long r) {\n        return calc(r) - calc(l - 1);\n    }\n\n    private long calc(long x) {\n        s = String.valueOf(x);\n        f = new long[s.length()][2][2];\n        for (long[][] a : f) {\n            for (long[] b : a) {\n                Arrays.fill(b, -1);\n            }\n        }\n        return dfs(0, 0, true);\n    }\n\n    private long dfs(int pos, int st, boolean lim) {\n        if (pos >= s.length()) {\n            return st ^ 1;\n        }\n        int k = lim ? 1 : 0;\n        if (f[pos][st][k] != -1) {\n            return f[pos][st][k];\n        }\n        int up = lim ? s.charAt(pos) - '0' : 9;\n        long res = 0;\n        for (int i = 0; i <= up; ++i) {\n            res += dfs(pos + 1, (st + (i & 1 ^ 1)) % 2, lim && i == up);\n        }\n        return f[pos][st][k] = res;\n    }\n}",
+    "javascript": "function countEvenlyGoodIntegers(l: number, r: number): number {\n    let s: string;\n    let f: number[][][];\n\n    const calc = (x: number): number => {\n        s = String(x);\n        f = Array.from({ length: s.length }, () =>\n            Array.from({ length: 2 }, () => Array(2).fill(-1)),\n        );\n\n        const dfs = (pos: number, st: number, lim: boolean): number => {\n            if (pos >= s.length) {\n                return st ^ 1;\n            }\n            const k = lim ? 1 : 0;\n            if (f[pos][st][k] !== -1) {\n                return f[pos][st][k];\n            }\n            const up = lim ? Number(s[pos]) : 9;\n            let res = 0;\n            for (let i = 0; i <= up; ++i) {\n                res += dfs(pos + 1, (st + ((i & 1) ^ 1)) % 2, lim && i === up);\n            }\n            return (f[pos][st][k] = res);\n        };\n\n        return dfs(0, 0, true);\n    };\n\n    return calc(r) - calc(l - 1);\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Count Evenly Good Integers.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

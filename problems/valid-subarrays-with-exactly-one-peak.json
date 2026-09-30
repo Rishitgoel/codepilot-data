@@ -1,0 +1,57 @@
+{
+  "id": 3874,
+  "slug": "valid-subarrays-with-exactly-one-peak",
+  "title": "Valid Subarrays With Exactly One Peak",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Valid%20Subarrays%20With%20Exactly%20One%20Peak"
+  },
+  "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nAn index `i` is a **peak** if:\n\n\t`0 \n\t`nums[i] > nums[i - 1]` and `nums[i] > nums[i + 1]`\n\nA subarray `[l, r]` is **valid** if:\n\n\tIt contains **exactly one** peak at index `i` from `nums`\n\t`i - l \n\nReturn an integer denoting the number of **valid subarrays** in `nums`.\n\nA **subarray** is a contiguous non-empty sequence of elements within an array.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == nums.length <= 10^5",
+    "-10^5 <= nums[i] <= 10^5",
+    "1 <= k <= n"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def validSubarrays(self, nums: list[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long validSubarrays(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long validSubarrays(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function validSubarrays(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def validSubarrays(self, nums: list[int], k: int) -> int:\n        n = len(nums)\n        peaks = []\n        for i in range(1, n - 1):\n            if nums[i] > nums[i - 1] and nums[i] > nums[i + 1]:\n                peaks.append(i)\n\n        ans = 0\n        for j, p in enumerate(peaks):\n            left_min = max(p - k, 0)\n            if j > 0:\n                left_min = max(left_min, peaks[j - 1] + 1)\n\n            right_max = min(p + k, n - 1)\n            if j < len(peaks) - 1:\n                right_max = min(right_max, peaks[j + 1] - 1)\n\n            ans += (p - left_min + 1) * (right_max - p + 1)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    long long validSubarrays(vector<int>& nums, int k) {\n        int n = nums.size();\n        vector<int> peaks;\n\n        for (int i = 1; i < n - 1; ++i) {\n            if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {\n                peaks.push_back(i);\n            }\n        }\n\n        long long ans = 0;\n        for (int j = 0; j < peaks.size(); ++j) {\n            int p = peaks[j];\n\n            int leftMin = max(p - k, 0);\n            if (j > 0) {\n                leftMin = max(leftMin, peaks[j - 1] + 1);\n            }\n\n            int rightMax = min(p + k, n - 1);\n            if (j < peaks.size() - 1) {\n                rightMax = min(rightMax, peaks[j + 1] - 1);\n            }\n\n            ans += 1LL * (p - leftMin + 1) * (rightMax - p + 1);\n        }\n\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long validSubarrays(int[] nums, int k) {\n        int n = nums.length;\n        List<Integer> peaks = new ArrayList<>();\n\n        for (int i = 1; i < n - 1; i++) {\n            if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {\n                peaks.add(i);\n            }\n        }\n\n        long ans = 0;\n        for (int j = 0; j < peaks.size(); j++) {\n            int p = peaks.get(j);\n\n            int leftMin = Math.max(p - k, 0);\n            if (j > 0) {\n                leftMin = Math.max(leftMin, peaks.get(j - 1) + 1);\n            }\n\n            int rightMax = Math.min(p + k, n - 1);\n            if (j < peaks.size() - 1) {\n                rightMax = Math.min(rightMax, peaks.get(j + 1) - 1);\n            }\n\n            ans += (long) (p - leftMin + 1) * (rightMax - p + 1);\n        }\n\n        return ans;\n    }\n}",
+    "javascript": "function validSubarrays(nums: number[], k: number): number {\n    const n = nums.length;\n    const peaks: number[] = [];\n\n    for (let i = 1; i < n - 1; i++) {\n        if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {\n            peaks.push(i);\n        }\n    }\n\n    let ans = 0;\n    for (let j = 0; j < peaks.length; j++) {\n        const p = peaks[j];\n\n        let leftMin = Math.max(p - k, 0);\n        if (j > 0) {\n            leftMin = Math.max(leftMin, peaks[j - 1] + 1);\n        }\n\n        let rightMax = Math.min(p + k, n - 1);\n        if (j < peaks.length - 1) {\n            rightMax = Math.min(rightMax, peaks[j + 1] - 1);\n        }\n\n        ans += (p - leftMin + 1) * (rightMax - p + 1);\n    }\n\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Valid Subarrays With Exactly One Peak.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

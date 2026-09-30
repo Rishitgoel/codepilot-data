@@ -1,0 +1,54 @@
+{
+  "id": 3299,
+  "slug": "sum-of-consecutive-subsequences",
+  "title": "Sum of Consecutive Subsequences",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sum%20of%20Consecutive%20Subsequences"
+  },
+  "description": "We call an array `arr` of length `n` **consecutive** if one of the following holds:\n\n\t`arr[i] - arr[i - 1] == 1` for *all* `1 \n\t`arr[i] - arr[i - 1] == -1` for *all* `1 \n\nThe **value** of an array is the sum of its elements.\n\nFor example, `[3, 4, 5]` is a consecutive array of value 12 and `[9, 8]` is another of value 17. While `[3, 4, 3]` and `[8, 6]` are not consecutive.\n\nGiven an array of integers `nums`, return the *sum* of the **values** of all **consecutive ***non-empty* subsequences.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7.`\n\n**Note** that an array of length 1 is also considered consecutive.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 10^5",
+    "1 <= nums[i] <= 10^5"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    private final int mod = (int) 1e9 + 7;\r\n\r\n    public int getSum(int[] nums) {\r\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        def calc(nums: List[int]) -> int:\r\n            n = len(nums)\r\n            left = [0] * n\r\n            right = [0] * n\r\n            cnt = Counter()\r\n            for i in range(1, n):\r\n                cnt[nums[i - 1]] += 1 + cnt[nums[i - 1] - 1]\r\n                left[i] = cnt[nums[i] - 1]\r\n            cnt = Counter()\r\n            for i in range(n - 2, -1, -1):\r\n                cnt[nums[i + 1]] += 1 + cnt[nums[i + 1] + 1]\r\n                right[i] = cnt[nums[i] + 1]\r\n            return sum((l + r + l * r) * x for l, r, x in zip(left, right, nums)) % mod\r\n\r\n        mod = 10**9 + 7\r\n        x = calc(nums)\r\n        nums.reverse()\r\n        y = calc(nums)\r\n        return (x + y + sum(nums)) % mod",
+    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        using ll = long long;\r\n        const int mod = 1e9 + 7;\r\n        auto calc = [&](const vector<int>& nums) -> ll {\r\n            int n = nums.size();\r\n            vector<ll> left(n), right(n);\r\n            unordered_map<int, ll> cnt;\r\n\r\n            for (int i = 1; i < n; ++i) {\r\n                cnt[nums[i - 1]] += 1 + cnt[nums[i - 1] - 1];\r\n                left[i] = cnt[nums[i] - 1];\r\n            }\r\n\r\n            cnt.clear();\r\n\r\n            for (int i = n - 2; i >= 0; --i) {\r\n                cnt[nums[i + 1]] += 1 + cnt[nums[i + 1] + 1];\r\n                right[i] = cnt[nums[i] + 1];\r\n            }\r\n\r\n            ll ans = 0;\r\n            for (int i = 0; i < n; ++i) {\r\n                ans = (ans + (left[i] + right[i] + left[i] * right[i] % mod) * nums[i] % mod) % mod;\r\n            }\r\n            return ans;\r\n        };\r\n\r\n        ll x = calc(nums);\r\n        reverse(nums.begin(), nums.end());\r\n        ll y = calc(nums);\r\n        ll s = accumulate(nums.begin(), nums.end(), 0LL);\r\n        return static_cast<int>((x + y + s) % mod);\r\n    }\r\n};",
+    "java": "class Solution {\r\n    private final int mod = (int) 1e9 + 7;\r\n\r\n    public int getSum(int[] nums) {\r\n        long x = calc(nums);\r\n        for (int i = 0, j = nums.length - 1; i < j; ++i, --j) {\r\n            int t = nums[i];\r\n            nums[i] = nums[j];\r\n            nums[j] = t;\r\n        }\r\n        long y = calc(nums);\r\n        long s = Arrays.stream(nums).asLongStream().sum();\r\n        return (int) ((x + y + s) % mod);\r\n    }\r\n\r\n    private long calc(int[] nums) {\r\n        int n = nums.length;\r\n        long[] left = new long[n];\r\n        long[] right = new long[n];\r\n        Map<Integer, Long> cnt = new HashMap<>();\r\n        for (int i = 1; i < n; ++i) {\r\n            cnt.merge(nums[i - 1], 1 + cnt.getOrDefault(nums[i - 1] - 1, 0L), Long::sum);\r\n            left[i] = cnt.getOrDefault(nums[i] - 1, 0L);\r\n        }\r\n        cnt.clear();\r\n        for (int i = n - 2; i >= 0; --i) {\r\n            cnt.merge(nums[i + 1], 1 + cnt.getOrDefault(nums[i + 1] + 1, 0L), Long::sum);\r\n            right[i] = cnt.getOrDefault(nums[i] + 1, 0L);\r\n        }\r\n        long ans = 0;\r\n        for (int i = 0; i < n; ++i) {\r\n            ans = (ans + (left[i] + right[i] + left[i] * right[i] % mod) * nums[i] % mod) % mod;\r\n        }\r\n        return ans;\r\n    }\r\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Sum of Consecutive Subsequences.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

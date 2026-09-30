@@ -1,0 +1,44 @@
+{
+  "id": 1777,
+  "slug": "products-price-for-each-store",
+  "title": "Product's Price for Each Store",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Mcafee"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Product's%20Price%20for%20Each%20Store"
+  },
+  "description": "Table: `Products`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_id  | int     |\n| store       | enum    |\n| price       | int     |\n+-------------+---------+\nIn SQL, (product_id, store) is the primary key for this table.\nstore is a category of type ('store1', 'store2', 'store3') where each represents the store this product is available at.\nprice is the price of the product at this store.\n\n \n\nFind the price of each product in each store.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Products table:\n+-------------+--------+-------+\n| product_id  | store  | price |\n+-------------+--------+-------+\n| 0           | store1 | 95    |\n| 0           | store3 | 105   |\n| 0           | store2 | 100   |\n| 1           | store1 | 70    |\n| 1           | store3 | 80    |\n+-------------+--------+-------+",
+      "output": "+-------------+--------+--------+--------+\n| product_id  | store1 | store2 | store3 |\n+-------------+--------+--------+--------+\n| 0           | 95     | 100    | 105    |\n| 1           | 70     | null   | 80     |\n+-------------+--------+--------+--------+",
+      "explanation": "Product 0 price's are 95 for store1, 100 for store2 and, 105 for store3.\nProduct 1 price's are 70 for store1, 80 for store3 and, it's not sold in store2."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Products table:\n+-------------+--------+-------+\n| product_id  | store  | price |\n+-------------+--------+-------+\n| 0           | store1 | 95    |\n| 0           | store3 | 105   |\n| 0           | store2 | 100   |\n| 1           | store1 | 70    |\n| 1           | store3 | 80    |\n+-------------+--------+-------+",
+      "expected": "+-------------+--------+--------+--------+\n| product_id  | store1 | store2 | store3 |\n+-------------+--------+--------+--------+\n| 0           | 95     | 100    | 105    |\n| 1           | 70     | null   | 80     |\n+-------------+--------+--------+--------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Product's Price for Each Store.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

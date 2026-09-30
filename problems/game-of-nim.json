@@ -1,0 +1,76 @@
+{
+  "id": 1908,
+  "slug": "game-of-nim",
+  "title": "Game of Nim",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Game%20of%20Nim"
+  },
+  "description": "Alice and Bob take turns playing a game with **Alice starting first**.\n\nIn this game, there are `n` piles of stones. On each player's turn, the player should remove any **positive** number of stones from a non-empty pile **of his or her choice**. The first player who cannot make a move loses, and the other player wins.\n\nGiven an integer array `piles`, where `piles[i]` is the number of stones in the `i^th` pile, return `true`* if Alice wins, or *`false`* if Bob wins*.\n\nBoth Alice and Bob play **optimally**.",
+  "examples": [
+    {
+      "input": "piles = [1]",
+      "output": "true",
+      "explanation": "There is only one possible scenario:\n- On the first turn, Alice removes one stone from the first pile. piles = [0].\n- On the second turn, there are no stones left for Bob to remove. Alice wins."
+    },
+    {
+      "input": "piles = [1,1]",
+      "output": "false",
+      "explanation": "It can be proven that Bob will always win. One possible scenario is:\n- On the first turn, Alice removes one stone from the first pile. piles = [0,1].\n- On the second turn, Bob removes one stone from the second pile. piles = [0,0].\n- On the third turn, there are no stones left for Alice to remove. Bob wins."
+    },
+    {
+      "input": "piles = [1,2,3]",
+      "output": "false",
+      "explanation": "It can be proven that Bob will always win. One possible scenario is:\n- On the first turn, Alice removes three stones from the third pile. piles = [1,2,0].\n- On the second turn, Bob removes one stone from the second pile. piles = [1,1,0].\n- On the third turn, Alice removes one stone from the first pile. piles = [0,1,0].\n- On the fourth turn, Bob removes one stone from the second pile. piles = [0,0,0].\n- On the fifth turn, there are no stones left for Alice to remove. Bob wins."
+    }
+  ],
+  "constraints": [
+    "n == piles.length",
+    "1 <= n <= 7",
+    "1 <= piles[i] <= 7"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def nimGame(self, piles: List[int]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool nimGame(vector<int>& piles) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private Map<Integer, Boolean> memo = new HashMap<>();\n    private int[] p = new int[8];\n\n    public Solution() {\n        \n    }\n};\n",
+    "javascript": "function nimGame(piles: number[]): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def nimGame(self, piles: List[int]) -> bool:\n        @cache\n        def dfs(st):\n            lst = list(st)\n            for i, x in enumerate(lst):\n                for j in range(1, x + 1):\n                    lst[i] -= j\n                    if not dfs(tuple(lst)):\n                        return True\n                    lst[i] += j\n            return False\n\n        return dfs(tuple(piles))",
+    "cpp": "class Solution {\npublic:\n    bool nimGame(vector<int>& piles) {\n        unordered_map<int, int> memo;\n        int p[8] = {1};\n        for (int i = 1; i < 8; ++i) {\n            p[i] = p[i - 1] * 8;\n        }\n        auto f = [&](vector<int>& piles) {\n            int st = 0;\n            for (int i = 0; i < piles.size(); ++i) {\n                st += piles[i] * p[i];\n            }\n            return st;\n        };\n        function<bool(vector<int>&)> dfs = [&](vector<int>& piles) {\n            int st = f(piles);\n            if (memo.count(st)) {\n                return memo[st];\n            }\n            for (int i = 0; i < piles.size(); ++i) {\n                for (int j = 1; j <= piles[i]; ++j) {\n                    piles[i] -= j;\n                    if (!dfs(piles)) {\n                        piles[i] += j;\n                        return memo[st] = true;\n                    }\n                    piles[i] += j;\n                }\n            }\n            return memo[st] = false;\n        };\n        return dfs(piles);\n    }\n};",
+    "java": "class Solution {\n    private Map<Integer, Boolean> memo = new HashMap<>();\n    private int[] p = new int[8];\n\n    public Solution() {\n        p[0] = 1;\n        for (int i = 1; i < 8; ++i) {\n            p[i] = p[i - 1] * 8;\n        }\n    }\n\n    public boolean nimGame(int[] piles) {\n        return dfs(piles);\n    }\n\n    private boolean dfs(int[] piles) {\n        int st = f(piles);\n        if (memo.containsKey(st)) {\n            return memo.get(st);\n        }\n        for (int i = 0; i < piles.length; ++i) {\n            for (int j = 1; j <= piles[i]; ++j) {\n                piles[i] -= j;\n                if (!dfs(piles)) {\n                    piles[i] += j;\n                    memo.put(st, true);\n                    return true;\n                }\n                piles[i] += j;\n            }\n        }\n        memo.put(st, false);\n        return false;\n    }\n\n    private int f(int[] piles) {\n        int st = 0;\n        for (int i = 0; i < piles.length; ++i) {\n            st += piles[i] * p[i];\n        }\n        return st;\n    }\n}",
+    "javascript": "function nimGame(piles: number[]): boolean {\n    const p: number[] = Array(8).fill(1);\n    for (let i = 1; i < 8; ++i) {\n        p[i] = p[i - 1] * 8;\n    }\n    const f = (piles: number[]): number => {\n        let st = 0;\n        for (let i = 0; i < piles.length; ++i) {\n            st += piles[i] * p[i];\n        }\n        return st;\n    };\n    const memo: Map<number, boolean> = new Map();\n    const dfs = (piles: number[]): boolean => {\n        const st = f(piles);\n        if (memo.has(st)) {\n            return memo.get(st)!;\n        }\n        for (let i = 0; i < piles.length; ++i) {\n            for (let j = 1; j <= piles[i]; ++j) {\n                piles[i] -= j;\n                if (!dfs(piles)) {\n                    piles[i] += j;\n                    memo.set(st, true);\n                    return true;\n                }\n                piles[i] += j;\n            }\n        }\n        memo.set(st, false);\n        return false;\n    };\n    return dfs(piles);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1]",
+      "expected": "true"
+    },
+    {
+      "input": "[1,1]",
+      "expected": "false"
+    },
+    {
+      "input": "[1,2,3]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Game of Nim.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

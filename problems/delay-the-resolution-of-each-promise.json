@@ -1,0 +1,69 @@
+{
+  "id": 2821,
+  "slug": "delay-the-resolution-of-each-promise",
+  "title": "Delay the Resolution of Each Promise",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Delay%20the%20Resolution%20of%20Each%20Promise"
+  },
+  "description": "Given an array `functions` and a number `ms`, return a new array of functions.\n\n\t`functions` is an array of functions that return promises.\n\t`ms` represents the delay duration in milliseconds. It determines the amount of time to wait before resolving or rejecting each promise in the new array.\n\nEach function in the new array should return a promise that resolves or rejects after an additional delay of `ms` milliseconds, preserving the order of the original `functions` array.\n\nThe `delayAll` function should ensure that each promise from `functions` is executed with a delay, forming the new array of functions returning delayed promises.",
+  "examples": [
+    {
+      "input": "functions = [\n   () => new Promise((resolve) => setTimeout(resolve, 30))\n], \nms = 50",
+      "output": "[80]",
+      "explanation": "The promise from the array would have resolved after 30 ms, but it was delayed by 50 ms, thus 30 ms + 50 ms = 80 ms."
+    },
+    {
+      "input": "functions = [\n    () => new Promise((resolve) => setTimeout(resolve, 50)),\n    () => new Promise((resolve) => setTimeout(resolve, 80))\n], \nms = 70",
+      "output": "[120,150]",
+      "explanation": "The promises from the array would have resolved after 50 ms and 80 ms, but they were delayed by 70 ms, thus 50 ms + 70 ms = 120 ms and 80 ms + 70 ms = 150 ms."
+    },
+    {
+      "input": "functions = [\n    () => new Promise((resolve, reject) => setTimeout(reject, 20)), \n    () => new Promise((resolve, reject) => setTimeout(reject, 100))\n], \nms = 30",
+      "output": "[50,130]"
+    }
+  ],
+  "constraints": [
+    "functions is an array of functions that return promises",
+    "10 <= ms <= 500",
+    "1 <= functions.length <= 10"
+  ],
+  "starterTemplates": {
+    "javascript": "function delayAll(functions: Function[], ms: number): Function[] {\n    \n};\n"
+  },
+  "snippets": {
+    "javascript": "function delayAll(functions: Function[], ms: number): Function[] {\n    return functions.map(fn => {\n        return async function () {\n            await new Promise(resolve => setTimeout(resolve, ms));\n            return fn();\n        };\n    });\n}"
+  },
+  "testcases": [
+    {
+      "input": "[\n   () => new Promise((resolve) => setTimeout(resolve, 30))\n], \nms = 50",
+      "expected": "[80]"
+    },
+    {
+      "input": "[\n    () => new Promise((resolve) => setTimeout(resolve, 50)),\n    () => new Promise((resolve) => setTimeout(resolve, 80))\n], \nms = 70",
+      "expected": "[120,150]"
+    },
+    {
+      "input": "[\n    () => new Promise((resolve, reject) => setTimeout(reject, 20)), \n    () => new Promise((resolve, reject) => setTimeout(reject, 100))\n], \nms = 30",
+      "expected": "[50,130]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Delay the Resolution of Each Promise.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,61 @@
+{
+  "id": 1067,
+  "slug": "digit-count-in-range",
+  "title": "Digit Count in Range",
+  "difficulty": "Hard",
+  "rating": 2025,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Digit%20Count%20in%20Range"
+  },
+  "description": "Given a single-digit integer `d` and two integers `low` and `high`, return *the number of times that *`d`* occurs as a digit in all integers in the inclusive range *`[low, high]`.",
+  "examples": [
+    {
+      "input": "d = 1, low = 1, high = 13",
+      "output": "6",
+      "explanation": "The digit d = 1 occurs 6 times in 1, 10, 11, 12, 13.\nNote that the digit d = 1 occurs twice in the number 11."
+    },
+    {
+      "input": "d = 3, low = 100, high = 250",
+      "output": "35",
+      "explanation": "The digit d = 3 occurs 35 times in 103,113,123,130,131,...,238,239,243."
+    }
+  ],
+  "constraints": [
+    "0 <= d <= 9",
+    "1 <= low <= high <= 2 * 10^8"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def digitsCount(self, d: int, low: int, high: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int d;\n    int a[11];\n    int dp[11][11];\n\n    int digitsCount(int d, int low, int high) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int d;\n    private int[] a = new int[11];\n    private int[][] dp = new int[11][11];\n\n    public int digitsCount(int d, int low, int high) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def digitsCount(self, d: int, low: int, high: int) -> int:\n        return self.f(high, d) - self.f(low - 1, d)\n\n    def f(self, n, d):\n        @cache\n        def dfs(pos, cnt, lead, limit):\n            if pos <= 0:\n                return cnt\n            up = a[pos] if limit else 9\n            ans = 0\n            for i in range(up + 1):\n                if i == 0 and lead:\n                    ans += dfs(pos - 1, cnt, lead, limit and i == up)\n                else:\n                    ans += dfs(pos - 1, cnt + (i == d), False, limit and i == up)\n            return ans\n\n        a = [0] * 11\n        l = 0\n        while n:\n            l += 1\n            a[l] = n % 10\n            n //= 10\n        return dfs(l, 0, True, True)",
+    "cpp": "class Solution {\npublic:\n    int d;\n    int a[11];\n    int dp[11][11];\n\n    int digitsCount(int d, int low, int high) {\n        this->d = d;\n        return f(high) - f(low - 1);\n    }\n\n    int f(int n) {\n        memset(dp, -1, sizeof dp);\n        int len = 0;\n        while (n) {\n            a[++len] = n % 10;\n            n /= 10;\n        }\n        return dfs(len, 0, true, true);\n    }\n\n    int dfs(int pos, int cnt, bool lead, bool limit) {\n        if (pos <= 0) {\n            return cnt;\n        }\n        if (!lead && !limit && dp[pos][cnt] != -1) {\n            return dp[pos][cnt];\n        }\n        int up = limit ? a[pos] : 9;\n        int ans = 0;\n        for (int i = 0; i <= up; ++i) {\n            if (i == 0 && lead) {\n                ans += dfs(pos - 1, cnt, lead, limit && i == up);\n            } else {\n                ans += dfs(pos - 1, cnt + (i == d), false, limit && i == up);\n            }\n        }\n        if (!lead && !limit) {\n            dp[pos][cnt] = ans;\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    private int d;\n    private int[] a = new int[11];\n    private int[][] dp = new int[11][11];\n\n    public int digitsCount(int d, int low, int high) {\n        this.d = d;\n        return f(high) - f(low - 1);\n    }\n\n    private int f(int n) {\n        for (var e : dp) {\n            Arrays.fill(e, -1);\n        }\n        int len = 0;\n        while (n > 0) {\n            a[++len] = n % 10;\n            n /= 10;\n        }\n        return dfs(len, 0, true, true);\n    }\n\n    private int dfs(int pos, int cnt, boolean lead, boolean limit) {\n        if (pos <= 0) {\n            return cnt;\n        }\n        if (!lead && !limit && dp[pos][cnt] != -1) {\n            return dp[pos][cnt];\n        }\n        int up = limit ? a[pos] : 9;\n        int ans = 0;\n        for (int i = 0; i <= up; ++i) {\n            if (i == 0 && lead) {\n                ans += dfs(pos - 1, cnt, lead, limit && i == up);\n            } else {\n                ans += dfs(pos - 1, cnt + (i == d ? 1 : 0), false, limit && i == up);\n            }\n        }\n        if (!lead && !limit) {\n            dp[pos][cnt] = ans;\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "1, low = 1, high = 13",
+      "expected": "6"
+    },
+    {
+      "input": "3, low = 100, high = 250",
+      "expected": "35"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Digit Count in Range.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

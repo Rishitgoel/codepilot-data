@@ -1,0 +1,60 @@
+{
+  "id": 1215,
+  "slug": "stepping-numbers",
+  "title": "Stepping Numbers",
+  "difficulty": "Medium",
+  "rating": 1675,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Epic Systems"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Stepping%20Numbers"
+  },
+  "description": "A **stepping number** is an integer such that all of its adjacent digits have an absolute difference of exactly `1`.\n\n\tFor example, `321` is a **stepping number** while `421` is not.\n\nGiven two integers `low` and `high`, return *a sorted list of all the **stepping numbers** in the inclusive range* `[low, high]`.",
+  "examples": [
+    {
+      "input": "low = 0, high = 21",
+      "output": "[0,1,2,3,4,5,6,7,8,9,10,12,21]"
+    },
+    {
+      "input": "low = 10, high = 15",
+      "output": "[10,12]"
+    }
+  ],
+  "constraints": [
+    "0 <= low <= high <= 2 * 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countSteppingNumbers(self, low: int, high: int) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> countSteppingNumbers(int low, int high) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> countSteppingNumbers(int low, int high) {\n        \n    }\n};\n",
+    "javascript": "function countSteppingNumbers(low: number, high: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countSteppingNumbers(self, low: int, high: int) -> List[int]:\n        ans = []\n        if low == 0:\n            ans.append(0)\n        q = deque(range(1, 10))\n        while q:\n            v = q.popleft()\n            if v > high:\n                break\n            if v >= low:\n                ans.append(v)\n            x = v % 10\n            if x:\n                q.append(v * 10 + x - 1)\n            if x < 9:\n                q.append(v * 10 + x + 1)\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> countSteppingNumbers(int low, int high) {\n        vector<int> ans;\n        if (low == 0) {\n            ans.push_back(0);\n        }\n        queue<long long> q;\n        for (int i = 1; i < 10; ++i) {\n            q.push(i);\n        }\n        while (!q.empty()) {\n            long long v = q.front();\n            q.pop();\n            if (v > high) {\n                break;\n            }\n            if (v >= low) {\n                ans.push_back(v);\n            }\n            int x = v % 10;\n            if (x > 0) {\n                q.push(v * 10 + x - 1);\n            }\n            if (x < 9) {\n                q.push(v * 10 + x + 1);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<Integer> countSteppingNumbers(int low, int high) {\n        List<Integer> ans = new ArrayList<>();\n        if (low == 0) {\n            ans.add(0);\n        }\n        Deque<Long> q = new ArrayDeque<>();\n        for (long i = 1; i < 10; ++i) {\n            q.offer(i);\n        }\n        while (!q.isEmpty()) {\n            long v = q.pollFirst();\n            if (v > high) {\n                break;\n            }\n            if (v >= low) {\n                ans.add((int) v);\n            }\n            int x = (int) v % 10;\n            if (x > 0) {\n                q.offer(v * 10 + x - 1);\n            }\n            if (x < 9) {\n                q.offer(v * 10 + x + 1);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function countSteppingNumbers(low: number, high: number): number[] {\n    const ans: number[] = [];\n    if (low === 0) {\n        ans.push(0);\n    }\n    const q: number[] = [];\n    for (let i = 1; i < 10; ++i) {\n        q.push(i);\n    }\n    while (q.length) {\n        const v = q.shift()!;\n        if (v > high) {\n            break;\n        }\n        if (v >= low) {\n            ans.push(v);\n        }\n        const x = v % 10;\n        if (x > 0) {\n            q.push(v * 10 + x - 1);\n        }\n        if (x < 9) {\n            q.push(v * 10 + x + 1);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "0, high = 21",
+      "expected": "[0,1,2,3,4,5,6,7,8,9,10,12,21]"
+    },
+    {
+      "input": "10, high = 15",
+      "expected": "[10,12]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Stepping Numbers.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

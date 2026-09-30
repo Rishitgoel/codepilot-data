@@ -1,0 +1,43 @@
+{
+  "id": 1623,
+  "slug": "all-valid-triplets-that-can-represent-a-country",
+  "title": "All Valid Triplets That Can Represent a Country",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=All%20Valid%20Triplets%20That%20Can%20Represent%20a%20Country"
+  },
+  "description": "Table: `SchoolA`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| student_id    | int     |\n| student_name  | varchar |\n+---------------+---------+\nstudent_id is the column with unique values for this table.\nEach row of this table contains the name and the id of a student in school A.\nAll student_name are distinct.\n\n \n\nTable: `SchoolB`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| student_id    | int     |\n| student_name  | varchar |\n+---------------+---------+\nstudent_id is the column with unique values for this table.\nEach row of this table contains the name and the id of a student in school B.\nAll student_name are distinct.\n\n \n\nTable: `SchoolC`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| student_id    | int     |\n| student_name  | varchar |\n+---------------+---------+\nstudent_id is the column with unique values for this table.\nEach row of this table contains the name and the id of a student in school C.\nAll student_name are distinct.\n\n \n\nThere is a country with three schools, where each student is enrolled in **exactly one** school. The country is joining a competition and wants to select one student from each school to represent the country such that:\n\n\t`member_A` is selected from `SchoolA`,\n\t`member_B` is selected from `SchoolB`,\n\t`member_C` is selected from `SchoolC`, and\n\tThe selected students' names and IDs are pairwise distinct (i.e. no two students share the same name, and no two students share the same ID).\n\nWrite a solution to find all the possible triplets representing the country under the given constraints.\n\nReturn the result table in **any order**.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "SchoolA table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 1          | Alice        |\n| 2          | Bob          |\n+------------+--------------+\nSchoolB table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 3          | Tom          |\n+------------+--------------+\nSchoolC table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 3          | Tom          |\n| 2          | Jerry        |\n| 10         | Alice        |\n+------------+--------------+",
+      "output": "+----------+----------+----------+\n| member_A | member_B | member_C |\n+----------+----------+----------+\n| Alice    | Tom      | Jerry    |\n| Bob      | Tom      | Alice    |\n+----------+----------+----------+",
+      "explanation": "Let us see all the possible triplets.\n- (Alice, Tom, Tom) --> Rejected because member_B and member_C have the same name and the same ID.\n- (Alice, Tom, Jerry) --> Valid triplet.\n- (Alice, Tom, Alice) --> Rejected because member_A and member_C have the same name.\n- (Bob, Tom, Tom) --> Rejected because member_B and member_C have the same name and the same ID.\n- (Bob, Tom, Jerry) --> Rejected because member_A and member_C have the same ID.\n- (Bob, Tom, Alice) --> Valid triplet."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "SchoolA table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 1          | Alice        |\n| 2          | Bob          |\n+------------+--------------+\nSchoolB table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 3          | Tom          |\n+------------+--------------+\nSchoolC table:\n+------------+--------------+\n| student_id | student_name |\n+------------+--------------+\n| 3          | Tom          |\n| 2          | Jerry        |\n| 10         | Alice        |\n+------------+--------------+",
+      "expected": "+----------+----------+----------+\n| member_A | member_B | member_C |\n+----------+----------+----------+\n| Alice    | Tom      | Jerry    |\n| Bob      | Tom      | Alice    |\n+----------+----------+----------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for All Valid Triplets That Can Represent a Country.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

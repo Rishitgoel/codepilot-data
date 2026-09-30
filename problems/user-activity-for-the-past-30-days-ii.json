@@ -1,0 +1,45 @@
+{
+  "id": 1142,
+  "slug": "user-activity-for-the-past-30-days-ii",
+  "title": "User Activity for the Past 30 Days II",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Meta",
+    "Facebook",
+    "Zoom"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=User%20Activity%20for%20the%20Past%2030%20Days%20II"
+  },
+  "description": "Table: `Activity`\n\n+---------------+---------+\n| Column Name   | Type    |\n+---------------+---------+\n| user_id       | int     |\n| session_id    | int     |\n| activity_date | date    |\n| activity_type | enum    |\n+---------------+---------+\nThis table may have duplicate rows.\nThe activity_type column is an ENUM (category) of type ('open_session', 'end_session', 'scroll_down', 'send_message').\nThe table shows the user activities for a social media website. \nNote that each session belongs to exactly one user.\n\n \n\nWrite a solution to find the average number of sessions per user for a period of `30` days ending `2019-07-27` inclusively, **rounded to 2 decimal places**. The sessions we want to count for a user are those with at least one activity in that time period.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Activity table:\n+---------+------------+---------------+---------------+\n| user_id | session_id | activity_date | activity_type |\n+---------+------------+---------------+---------------+\n| 1       | 1          | 2019-07-20    | open_session  |\n| 1       | 1          | 2019-07-20    | scroll_down   |\n| 1       | 1          | 2019-07-20    | end_session   |\n| 2       | 4          | 2019-07-20    | open_session  |\n| 2       | 4          | 2019-07-21    | send_message  |\n| 2       | 4          | 2019-07-21    | end_session   |\n| 3       | 2          | 2019-07-21    | open_session  |\n| 3       | 2          | 2019-07-21    | send_message  |\n| 3       | 2          | 2019-07-21    | end_session   |\n| 3       | 5          | 2019-07-21    | open_session  |\n| 3       | 5          | 2019-07-21    | scroll_down   |\n| 3       | 5          | 2019-07-21    | end_session   |\n| 4       | 3          | 2019-06-25    | open_session  |\n| 4       | 3          | 2019-06-25    | end_session   |\n+---------+------------+---------------+---------------+",
+      "output": "+---------------------------+ \n| average_sessions_per_user |\n+---------------------------+ \n| 1.33                      |\n+---------------------------+",
+      "explanation": "User 1 and 2 each had 1 session in the past 30 days while user 3 had 2 sessions so the average is (1 + 1 + 2) / 3 = 1.33."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Activity table:\n+---------+------------+---------------+---------------+\n| user_id | session_id | activity_date | activity_type |\n+---------+------------+---------------+---------------+\n| 1       | 1          | 2019-07-20    | open_session  |\n| 1       | 1          | 2019-07-20    | scroll_down   |\n| 1       | 1          | 2019-07-20    | end_session   |\n| 2       | 4          | 2019-07-20    | open_session  |\n| 2       | 4          | 2019-07-21    | send_message  |\n| 2       | 4          | 2019-07-21    | end_session   |\n| 3       | 2          | 2019-07-21    | open_session  |\n| 3       | 2          | 2019-07-21    | send_message  |\n| 3       | 2          | 2019-07-21    | end_session   |\n| 3       | 5          | 2019-07-21    | open_session  |\n| 3       | 5          | 2019-07-21    | scroll_down   |\n| 3       | 5          | 2019-07-21    | end_session   |\n| 4       | 3          | 2019-06-25    | open_session  |\n| 4       | 3          | 2019-06-25    | end_session   |\n+---------+------------+---------------+---------------+",
+      "expected": "+---------------------------+ \n| average_sessions_per_user |\n+---------------------------+ \n| 1.33                      |\n+---------------------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for User Activity for the Past 30 Days II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

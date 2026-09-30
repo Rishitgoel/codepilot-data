@@ -1,0 +1,43 @@
+{
+  "id": 2228,
+  "slug": "users-with-two-purchases-within-seven-days",
+  "title": "Users With Two Purchases Within Seven Days",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Users%20With%20Two%20Purchases%20Within%20Seven%20Days"
+  },
+  "description": "Table: `Purchases`\n\n+---------------+------+\n| Column Name   | Type |\n+---------------+------+\n| purchase_id   | int  |\n| user_id       | int  |\n| purchase_date | date |\n+---------------+------+\npurchase_id contains unique values.\nThis table contains logs of the dates that users purchased from a certain retailer.\n\n \n\nWrite a solution to report the IDs of the users that made any two purchases **at most** `7` days apart.\n\nReturn the result table ordered by `user_id`.\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Purchases table:\n+-------------+---------+---------------+\n| purchase_id | user_id | purchase_date |\n+-------------+---------+---------------+\n| 4           | 2       | 2022-03-13    |\n| 1           | 5       | 2022-02-11    |\n| 3           | 7       | 2022-06-19    |\n| 6           | 2       | 2022-03-20    |\n| 5           | 7       | 2022-06-19    |\n| 2           | 2       | 2022-06-08    |\n+-------------+---------+---------------+",
+      "output": "+---------+\n| user_id |\n+---------+\n| 2       |\n| 7       |\n+---------+",
+      "explanation": "User 2 had two purchases on 2022-03-13 and 2022-03-20. Since the second purchase is within 7 days of the first purchase, we add their ID.\nUser 5 had only 1 purchase.\nUser 7 had two purchases on the same day so we add their ID."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Purchases table:\n+-------------+---------+---------------+\n| purchase_id | user_id | purchase_date |\n+-------------+---------+---------------+\n| 4           | 2       | 2022-03-13    |\n| 1           | 5       | 2022-02-11    |\n| 3           | 7       | 2022-06-19    |\n| 6           | 2       | 2022-03-20    |\n| 5           | 7       | 2022-06-19    |\n| 2           | 2       | 2022-06-08    |\n+-------------+---------+---------------+",
+      "expected": "+---------+\n| user_id |\n+---------+\n| 2       |\n| 7       |\n+---------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Users With Two Purchases Within Seven Days.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

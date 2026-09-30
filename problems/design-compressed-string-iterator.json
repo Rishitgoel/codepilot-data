@@ -1,0 +1,56 @@
+{
+  "id": 604,
+  "slug": "design-compressed-string-iterator",
+  "title": "Design Compressed String Iterator",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20Compressed%20String%20Iterator"
+  },
+  "description": "Design and implement a data structure for a compressed string iterator. The given compressed string will be in the form of each letter followed by a positive integer representing the number of this letter existing in the original uncompressed string.\n\nImplement the StringIterator class:\n\n\t`next()` Returns **the next character** if the original string still has uncompressed characters, otherwise returns a **white space**.\n\t`hasNext()` Returns true if there is any letter needs to be uncompressed in the original string, otherwise returns `false`.",
+  "examples": [
+    {
+      "input": "[\"StringIterator\", \"next\", \"next\", \"next\", \"next\", \"next\", \"next\", \"hasNext\", \"next\", \"hasNext\"]\n[[\"L1e2t1C1o1d1e1\"], [], [], [], [], [], [], [], [], []]",
+      "output": "[null, \"L\", \"e\", \"e\", \"t\", \"C\", \"o\", true, \"d\", true]",
+      "explanation": "StringIterator stringIterator = new StringIterator(\"L1e2t1C1o1d1e1\");\nstringIterator.next(); // return \"L\"\nstringIterator.next(); // return \"e\"\nstringIterator.next(); // return \"e\"\nstringIterator.next(); // return \"t\"\nstringIterator.next(); // return \"C\"\nstringIterator.next(); // return \"o\"\nstringIterator.hasNext(); // return True\nstringIterator.next(); // return \"d\"\nstringIterator.hasNext(); // return True"
+    }
+  ],
+  "constraints": [
+    "1 <= compressedString.length <= 1000",
+    "compressedString consists of lower-case an upper-case English letters and digits.",
+    "The number of a single character repetitions in compressedString is in the range [1, 10^9]",
+    "At most 100 calls will be made to next and hasNext."
+  ],
+  "starterTemplates": {
+    "python": "class StringIterator:\n    def __init__(self, compressedString: str):\n        pass\n",
+    "cpp": "class StringIterator {\npublic:\n    StringIterator(string compressedString) {\n        \n    }\n};\n",
+    "java": "class StringIterator {\n    private List<Node> d = new ArrayList<>();\n    private int p;\n\n    public StringIterator(String compressedString) {\n        \n    }\n};\n",
+    "javascript": "class StringIterator {\n    private d: [string, number][] = [];\n    private p: number = 0;\n\n    constructor(compressedString: string) {\n        const n = compressedString.length;\n        let i = 0;\n        while (i < n) {\n            const c = compressedString[i];\n            let x = 0;\n            i++;\n            while (i < n && !isNaN(Number(compressedString[i]))) {\n                x = x * 10 + Number(compressedString[i]);\n                i++;\n            }\n            this.d.push([c, x]);\n        }\n    }\n\n    next(): string {\n        if (!this.hasNext()) {\n            return ' ';\n        }\n        const ans = this.d[this.p][0];\n        this.d[this.p][1]--;\n        if (this.d[this.p][1] === 0) {\n            this.p++;\n        }\n        return ans;\n    }\n\n    hasNext(): boolean {\n        return this.p < this.d.length && this.d[this.p][1] > 0;\n    }\n}\n\n/**\n * Your StringIterator object will be instantiated and called as such:\n * var obj = new StringIterator(compressedString)\n * var param_1 = obj.next()\n * var param_2 = obj.hasNext()\n */"
+  },
+  "snippets": {
+    "python": "class StringIterator:\n    def __init__(self, compressedString: str):\n        self.d = []\n        self.p = 0\n        n = len(compressedString)\n        i = 0\n        while i < n:\n            c = compressedString[i]\n            x = 0\n            i += 1\n            while i < n and compressedString[i].isdigit():\n                x = x * 10 + int(compressedString[i])\n                i += 1\n            self.d.append([c, x])\n\n    def next(self) -> str:\n        if not self.hasNext():\n            return ' '\n        ans = self.d[self.p][0]\n        self.d[self.p][1] -= 1\n        if self.d[self.p][1] == 0:\n            self.p += 1\n        return ans\n\n    def hasNext(self) -> bool:\n        return self.p < len(self.d) and self.d[self.p][1] > 0\n\n\n# Your StringIterator object will be instantiated and called as such:\n# obj = StringIterator(compressedString)\n# param_1 = obj.next()\n# param_2 = obj.hasNext()",
+    "cpp": "class StringIterator {\npublic:\n    StringIterator(string compressedString) {\n        int n = compressedString.size();\n        int i = 0;\n        while (i < n) {\n            char c = compressedString[i];\n            int x = 0;\n            while (++i < n && isdigit(compressedString[i])) {\n                x = x * 10 + (compressedString[i] - '0');\n            }\n            d.push_back({c, x});\n        }\n    }\n\n    char next() {\n        if (!hasNext()) return ' ';\n        char ans = d[p].first;\n        if (--d[p].second == 0) {\n            ++p;\n        }\n        return ans;\n    }\n\n    bool hasNext() {\n        return p < d.size() && d[p].second > 0;\n    }\n\nprivate:\n    vector<pair<char, int>> d;\n    int p = 0;\n};\n\n/**\n * Your StringIterator object will be instantiated and called as such:\n * StringIterator* obj = new StringIterator(compressedString);\n * char param_1 = obj->next();\n * bool param_2 = obj->hasNext();\n */",
+    "java": "class StringIterator {\n    private List<Node> d = new ArrayList<>();\n    private int p;\n\n    public StringIterator(String compressedString) {\n        int n = compressedString.length();\n        int i = 0;\n        while (i < n) {\n            char c = compressedString.charAt(i);\n            int x = 0;\n            while (++i < n && Character.isDigit(compressedString.charAt(i))) {\n                x = x * 10 + (compressedString.charAt(i) - '0');\n            }\n            d.add(new Node(c, x));\n        }\n    }\n\n    public char next() {\n        if (!hasNext()) {\n            return ' ';\n        }\n        char ans = d.get(p).c;\n        if (--d.get(p).x == 0) {\n            ++p;\n        }\n        return ans;\n    }\n\n    public boolean hasNext() {\n        return p < d.size() && d.get(p).x > 0;\n    }\n}\n\nclass Node {\n    char c;\n    int x;\n\n    Node(char c, int x) {\n        this.c = c;\n        this.x = x;\n    }\n}\n\n/**\n * Your StringIterator object will be instantiated and called as such:\n * StringIterator obj = new StringIterator(compressedString);\n * char param_1 = obj.next();\n * boolean param_2 = obj.hasNext();\n */",
+    "javascript": "class StringIterator {\n    private d: [string, number][] = [];\n    private p: number = 0;\n\n    constructor(compressedString: string) {\n        const n = compressedString.length;\n        let i = 0;\n        while (i < n) {\n            const c = compressedString[i];\n            let x = 0;\n            i++;\n            while (i < n && !isNaN(Number(compressedString[i]))) {\n                x = x * 10 + Number(compressedString[i]);\n                i++;\n            }\n            this.d.push([c, x]);\n        }\n    }\n\n    next(): string {\n        if (!this.hasNext()) {\n            return ' ';\n        }\n        const ans = this.d[this.p][0];\n        this.d[this.p][1]--;\n        if (this.d[this.p][1] === 0) {\n            this.p++;\n        }\n        return ans;\n    }\n\n    hasNext(): boolean {\n        return this.p < this.d.length && this.d[this.p][1] > 0;\n    }\n}\n\n/**\n * Your StringIterator object will be instantiated and called as such:\n * var obj = new StringIterator(compressedString)\n * var param_1 = obj.next()\n * var param_2 = obj.hasNext()\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"StringIterator\", \"next\", \"next\", \"next\", \"next\", \"next\", \"next\", \"hasNext\", \"next\", \"hasNext\"]\n[[\"L1e2t1C1o1d1e1\"], [], [], [], [], [], [], [], [], []]",
+      "expected": "[null, \"L\", \"e\", \"e\", \"t\", \"C\", \"o\", true, \"d\", true]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Design Compressed String Iterator.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

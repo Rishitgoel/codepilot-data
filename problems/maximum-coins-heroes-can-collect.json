@@ -1,0 +1,74 @@
+{
+  "id": 2838,
+  "slug": "maximum-coins-heroes-can-collect",
+  "title": "Maximum Coins Heroes Can Collect",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Deutsche Bank"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Coins%20Heroes%20Can%20Collect"
+  },
+  "description": "There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. `heroes[i]` is the power of `i^th` hero, and `monsters[i]` is the power of `i^th` monster.\n\nThe `i^th` hero can defeat the `j^th` monster if `monsters[j] \n\tThe health of a hero doesn't get reduced after defeating a monster.\n\tMultiple heroes can defeat a monster, but each monster can be defeated by a given hero only once.",
+  "examples": [
+    {
+      "input": "heroes = [1,4,2], monsters = [1,1,5,2,3], coins = [2,3,4,5,6]",
+      "output": "[5,16,10]",
+      "explanation": "For each hero, we list the index of all the monsters he can defeat:\n1st hero: [1,2] since the power of this hero is 1 and monsters[1], monsters[2] <= 1. So this hero collects coins[1] + coins[2] = 5 coins.\n2nd hero: [1,2,4,5] since the power of this hero is 4 and monsters[1], monsters[2], monsters[4], monsters[5] <= 4. So this hero collects coins[1] + coins[2] + coins[4] + coins[5] = 16 coins.\n3rd hero: [1,2,4] since the power of this hero is 2 and monsters[1], monsters[2], monsters[4] <= 2. So this hero collects coins[1] + coins[2] + coins[4] = 10 coins.\nSo the answer would be [5,16,10]."
+    },
+    {
+      "input": "heroes = [5], monsters = [2,3,1,2], coins = [10,6,5,2]",
+      "output": "[23]",
+      "explanation": "This hero can defeat all the monsters since monsters[i] <= 5. So he collects all of the coins: coins[1] + coins[2] + coins[3] + coins[4] = 23, and the answer would be [23]."
+    },
+    {
+      "input": "heroes = [4,4], monsters = [5,7,8], coins = [1,1,1]",
+      "output": "[0,0]",
+      "explanation": "In this example, no hero can defeat a monster. So the answer would be [0,0],"
+    }
+  ],
+  "constraints": [
+    "1 <= n == heroes.length <= 10^5",
+    "1 <= m == monsters.length <= 10^5",
+    "coins.length == m",
+    "1 <= heroes[i], monsters[i], coins[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maximumCoins(\n        self, heroes: List[int], monsters: List[int], coins: List[int]\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<long long> maximumCoins(vector<int>& heroes, vector<int>& monsters, vector<int>& coins) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long[] maximumCoins(int[] heroes, int[] monsters, int[] coins) {\n        \n    }\n};\n",
+    "javascript": "function maximumCoins(heroes: number[], monsters: number[], coins: number[]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maximumCoins(\n        self, heroes: List[int], monsters: List[int], coins: List[int]\n    ) -> List[int]:\n        m = len(monsters)\n        idx = sorted(range(m), key=lambda i: monsters[i])\n        s = list(accumulate((coins[i] for i in idx), initial=0))\n        ans = []\n        for h in heroes:\n            i = bisect_right(idx, h, key=lambda i: monsters[i])\n            ans.append(s[i])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<long long> maximumCoins(vector<int>& heroes, vector<int>& monsters, vector<int>& coins) {\n        int m = monsters.size();\n        vector<int> idx(m);\n        iota(idx.begin(), idx.end(), 0);\n        sort(idx.begin(), idx.end(), [&](int i, int j) {\n            return monsters[i] < monsters[j];\n        });\n        long long s[m + 1];\n        s[0] = 0;\n        for (int i = 1; i <= m; ++i) {\n            s[i] = s[i - 1] + coins[idx[i - 1]];\n        }\n        vector<long long> ans;\n        auto search = [&](int x) {\n            int l = 0, r = m;\n            while (l < r) {\n                int mid = (l + r) >> 1;\n                if (monsters[idx[mid]] > x) {\n                    r = mid;\n                } else {\n                    l = mid + 1;\n                }\n            }\n            return l;\n        };\n        for (int h : heroes) {\n            ans.push_back(s[search(h)]);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long[] maximumCoins(int[] heroes, int[] monsters, int[] coins) {\n        int m = monsters.length;\n        Integer[] idx = new Integer[m];\n        for (int i = 0; i < m; ++i) {\n            idx[i] = i;\n        }\n\n        Arrays.sort(idx, Comparator.comparingInt(j -> monsters[j]));\n        long[] s = new long[m + 1];\n        for (int i = 0; i < m; ++i) {\n            s[i + 1] = s[i] + coins[idx[i]];\n        }\n        int n = heroes.length;\n        long[] ans = new long[n];\n        for (int k = 0; k < n; ++k) {\n            int i = search(monsters, idx, heroes[k]);\n            ans[k] = s[i];\n        }\n        return ans;\n    }\n\n    private int search(int[] nums, Integer[] idx, int x) {\n        int l = 0, r = idx.length;\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (nums[idx[mid]] > x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n}",
+    "javascript": "function maximumCoins(heroes: number[], monsters: number[], coins: number[]): number[] {\n    const m = monsters.length;\n    const idx: number[] = Array.from({ length: m }, (_, i) => i);\n    idx.sort((i, j) => monsters[i] - monsters[j]);\n    const s: number[] = Array(m + 1).fill(0);\n    for (let i = 0; i < m; ++i) {\n        s[i + 1] = s[i] + coins[idx[i]];\n    }\n    const search = (x: number): number => {\n        let l = 0;\n        let r = m;\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (monsters[idx[mid]] > x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    };\n    return heroes.map(h => s[search(h)]);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,4,2], monsters = [1,1,5,2,3], coins = [2,3,4,5,6]",
+      "expected": "[5,16,10]"
+    },
+    {
+      "input": "[5], monsters = [2,3,1,2], coins = [10,6,5,2]",
+      "expected": "[23]"
+    },
+    {
+      "input": "[4,4], monsters = [5,7,8], coins = [1,1,1]",
+      "expected": "[0,0]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Coins Heroes Can Collect.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,73 @@
+{
+  "id": 1485,
+  "slug": "clone-binary-tree-with-random-pointer",
+  "title": "Clone Binary Tree With Random Pointer",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Clone%20Binary%20Tree%20With%20Random%20Pointer"
+  },
+  "description": "A binary tree is given such that each node contains an additional random pointer which could point to any node in the tree or null.\n\nReturn a **deep copy** of the tree.\n\nThe tree is represented in the same input/output way as normal binary trees where each node is represented as a pair of `[val, random_index]` where:\n\n\t`val`: an integer representing `Node.val`\n\t`random_index`: the index of the node (in the input) where the random pointer points to, or `null` if it does not point to any node.\n\nYou will be given the tree in class `Node` and you should return the cloned tree in class `NodeCopy`. `NodeCopy` class is just a clone of `Node` class with the same attributes and constructors.",
+  "examples": [
+    {
+      "input": "root = [[1,null],null,[4,3],[7,0]]",
+      "output": "[[1,null],null,[4,3],[7,0]]",
+      "explanation": "The original binary tree is [1,null,4,7].\nThe random pointer of node one is null, so it is represented as [1, null].\nThe random pointer of node 4 is node 7, so it is represented as [4, 3] where 3 is the index of node 7 in the array representing the tree.\nThe random pointer of node 7 is node 1, so it is represented as [7, 0] where 0 is the index of node 1 in the array representing the tree."
+    },
+    {
+      "input": "root = [[1,4],null,[1,0],null,[1,5],[1,5]]",
+      "output": "[[1,4],null,[1,0],null,[1,5],[1,5]]",
+      "explanation": "The random pointer of a node can be the node itself."
+    },
+    {
+      "input": "root = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]",
+      "output": "[[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 1000].",
+    "1 <= Node.val <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "# Definition for Node.\n# class Node:\n#     def __init__(self, val=0, left=None, right=None, random=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a Node.\n * struct Node {\n *     int val;\n *     Node *left;\n *     Node *right;\n *     Node *random;\n *     Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for Node.\n * public class Node {\n *     int val;\n *     Node left;\n *     Node right;\n *     Node random;\n *     Node() {}\n *     Node(int val) { this.val = val; }\n *     Node(int val, Node left, Node right, Node random) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *         this.random = random;\n *     }\n * }\n */\n\nclass Solution {\n    private Map<Node, NodeCopy> seen;\n\n    public NodeCopy copyRandomBinaryTree(Node root) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for Node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     random: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, random?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.random = (random===undefined ? null : random)\n *     }\n * }\n */\n\nfunction copyRandomBinaryTree(root: Node | null): NodeCopy | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# Definition for Node.\n# class Node:\n#     def __init__(self, val=0, left=None, right=None, random=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\n#         self.random = random\n\n\nclass Solution:\n    def copyRandomBinaryTree(self, root: \"Optional[Node]\") -> \"Optional[NodeCopy]\":\n        def dfs(root: Optional[Node]) -> Optional[NodeCopy]:\n            if root is None:\n                return None\n            if root in seen:\n                return seen[root]\n            copy = NodeCopy(root.val)\n            seen[root] = copy\n            copy.left = dfs(root.left)\n            copy.right = dfs(root.right)\n            copy.random = dfs(root.random)\n            return copy\n\n        seen = {}\n        return dfs(root)",
+    "cpp": "/**\n * Definition for a Node.\n * struct Node {\n *     int val;\n *     Node *left;\n *     Node *right;\n *     Node *random;\n *     Node() : val(0), left(nullptr), right(nullptr), random(nullptr) {}\n *     Node(int x) : val(x), left(nullptr), right(nullptr), random(nullptr) {}\n *     Node(int x, Node *left, Node *right, Node *random) : val(x), left(left), right(right), random(random) {}\n * };\n */\n\nclass Solution {\npublic:\n    NodeCopy* copyRandomBinaryTree(Node* root) {\n        unordered_map<Node*, NodeCopy*> seen;\n        auto dfs = [&](this auto&& dfs, Node* root) -> NodeCopy* {\n            if (!root) {\n                return nullptr;\n            }\n            if (seen.contains(root)) {\n                return seen[root];\n            }\n            NodeCopy* copy = new NodeCopy(root->val);\n            seen[root] = copy;\n            copy->left = dfs(root->left);\n            copy->right = dfs(root->right);\n            copy->random = dfs(root->random);\n            return copy;\n        };\n        return dfs(root);\n    }\n};",
+    "java": "/**\n * Definition for Node.\n * public class Node {\n *     int val;\n *     Node left;\n *     Node right;\n *     Node random;\n *     Node() {}\n *     Node(int val) { this.val = val; }\n *     Node(int val, Node left, Node right, Node random) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *         this.random = random;\n *     }\n * }\n */\n\nclass Solution {\n    private Map<Node, NodeCopy> seen;\n\n    public NodeCopy copyRandomBinaryTree(Node root) {\n        seen = new HashMap<>();\n        return dfs(root);\n    }\n\n    private NodeCopy dfs(Node root) {\n        if (root == null) {\n            return null;\n        }\n        if (seen.containsKey(root)) {\n            return seen.get(root);\n        }\n        NodeCopy copy = new NodeCopy(root.val);\n        seen.put(root, copy);\n        copy.left = dfs(root.left);\n        copy.right = dfs(root.right);\n        copy.random = dfs(root.random);\n        return copy;\n    }\n}",
+    "javascript": "/**\n * Definition for Node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     random: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, random?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.random = (random===undefined ? null : random)\n *     }\n * }\n */\n\nfunction copyRandomBinaryTree(root: Node | null): NodeCopy | null {\n    const seen = new Map<Node, NodeCopy>();\n    const dfs = (root: Node | null): NodeCopy | null => {\n        if (root === null) {\n            return null;\n        }\n        if (seen.has(root)) {\n            return seen.get(root)!;\n        }\n        const copy = new NodeCopy(root.val);\n        seen.set(root, copy);\n        copy.left = dfs(root.left);\n        copy.right = dfs(root.right);\n        copy.random = dfs(root.random);\n        return copy;\n    };\n    return dfs(root);\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,null],null,[4,3],[7,0]]",
+      "expected": "[[1,null],null,[4,3],[7,0]]"
+    },
+    {
+      "input": "[[1,4],null,[1,0],null,[1,5],[1,5]]",
+      "expected": "[[1,4],null,[1,0],null,[1,5],[1,5]]"
+    },
+    {
+      "input": "[[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]",
+      "expected": "[[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Clone Binary Tree With Random Pointer.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

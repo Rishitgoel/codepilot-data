@@ -1,0 +1,74 @@
+{
+  "id": 1151,
+  "slug": "minimum-swaps-to-group-all-1s-together",
+  "title": "Minimum Swaps to Group All 1's Together",
+  "difficulty": "Medium",
+  "rating": 1508,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon",
+    "TikTok",
+    "Expedia"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Swaps%20to%20Group%20All%201's%20Together"
+  },
+  "description": "Given a binary array `data`, return the minimum number of swaps required to group all `1`&rsquo;s present in the array together in **any place** in the array.",
+  "examples": [
+    {
+      "input": "data = [1,0,1,0,1]",
+      "output": "1",
+      "explanation": "There are 3 ways to group all 1's together:\n[1,1,1,0,0] using 1 swap.\n[0,1,1,1,0] using 2 swaps.\n[0,0,1,1,1] using 1 swap.\nThe minimum is 1."
+    },
+    {
+      "input": "data = [0,0,0,1,0]",
+      "output": "0",
+      "explanation": "Since there is only one 1 in the array, no swaps are needed."
+    },
+    {
+      "input": "data = [1,0,1,0,1,0,0,1,1,0,1]",
+      "output": "3",
+      "explanation": "One possible solution that uses 3 swaps is [0,0,0,0,0,1,1,1,1,1,1]."
+    }
+  ],
+  "constraints": [
+    "1 <= data.length <= 10^5",
+    "data[i] is either 0 or 1."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& data) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minSwaps(int[] data) {\n        \n    }\n};\n",
+    "javascript": "function minSwaps(data: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        k = data.count(1)\n        mx = t = sum(data[:k])\n        for i in range(k, len(data)):\n            t += data[i]\n            t -= data[i - k]\n            mx = max(mx, t)\n        return k - mx",
+    "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& data) {\n        int k = 0;\n        for (int& v : data) {\n            k += v;\n        }\n        int t = 0;\n        for (int i = 0; i < k; ++i) {\n            t += data[i];\n        }\n        int mx = t;\n        for (int i = k; i < data.size(); ++i) {\n            t += data[i];\n            t -= data[i - k];\n            mx = max(mx, t);\n        }\n        return k - mx;\n    }\n};",
+    "java": "class Solution {\n    public int minSwaps(int[] data) {\n        int k = 0;\n        for (int v : data) {\n            k += v;\n        }\n        int t = 0;\n        for (int i = 0; i < k; ++i) {\n            t += data[i];\n        }\n        int mx = t;\n        for (int i = k; i < data.length; ++i) {\n            t += data[i];\n            t -= data[i - k];\n            mx = Math.max(mx, t);\n        }\n        return k - mx;\n    }\n}",
+    "javascript": "function minSwaps(data: number[]): number {\n    const k = data.reduce((acc, cur) => acc + cur, 0);\n    let t = data.slice(0, k).reduce((acc, cur) => acc + cur, 0);\n    let mx = t;\n    for (let i = k; i < data.length; ++i) {\n        t += data[i] - data[i - k];\n        mx = Math.max(mx, t);\n    }\n    return k - mx;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,0,1,0,1]",
+      "expected": "1"
+    },
+    {
+      "input": "[0,0,0,1,0]",
+      "expected": "0"
+    },
+    {
+      "input": "[1,0,1,0,1,0,0,1,1,0,1]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Minimum Swaps to Group All 1's Together.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

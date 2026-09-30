@@ -1,0 +1,64 @@
+{
+  "id": 3037,
+  "slug": "find-pattern-in-infinite-stream-ii",
+  "title": "Find Pattern in Infinite Stream II",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Pattern%20in%20Infinite%20Stream%20II"
+  },
+  "description": "You are given a binary array `pattern` and an object `stream` of class `InfiniteStream` representing a **0-indexed** infinite stream of bits.\n\nThe class `InfiniteStream` contains the following function:\n\n\t`int next()`: Reads a **single** bit (which is either `0` or `1`) from the stream and returns it.\n\nReturn *the **first starting** index where the pattern matches the bits read from the stream*. For example, if the pattern is `[1, 0]`, the first match is the highlighted part in the stream `[0, **1, 0**, 1, ...]`.",
+  "examples": [
+    {
+      "input": "stream = [1,1,1,0,1,1,1,...], pattern = [0,1]",
+      "output": "3",
+      "explanation": "The first occurrence of the pattern [0,1] is highlighted in the stream [1,1,1,0,1,...], which starts at index 3."
+    },
+    {
+      "input": "stream = [0,0,0,0,...], pattern = [0]",
+      "output": "0",
+      "explanation": "The first occurrence of the pattern [0] is highlighted in the stream [0,...], which starts at index 0."
+    },
+    {
+      "input": "stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]",
+      "output": "2",
+      "explanation": "The first occurrence of the pattern [1,1,0,1] is highlighted in the stream [1,0,1,1,0,1,...], which starts at index 2."
+    }
+  ],
+  "constraints": [
+    "1 <= pattern.length <= 10^4",
+    "pattern consists only of 0 and 1.",
+    "stream consists only of 0 and 1.",
+    "The input is generated such that the pattern's start index exists in the first 10^5 bits of the stream."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "[1,1,1,0,1,1,1,...], pattern = [0,1]",
+      "expected": "3"
+    },
+    {
+      "input": "[0,0,0,0,...], pattern = [0]",
+      "expected": "0"
+    },
+    {
+      "input": "[1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Pattern in Infinite Stream II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

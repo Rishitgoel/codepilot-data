@@ -1,0 +1,75 @@
+{
+  "id": 1891,
+  "slug": "cutting-ribbons",
+  "title": "Cutting Ribbons",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Facebook"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Cutting%20Ribbons"
+  },
+  "description": "You are given an integer array `ribbons`, where `ribbons[i]` represents the length of the `i^th` ribbon, and an integer `k`. You may cut any of the ribbons into any number of segments of **positive integer** lengths, or perform no cuts at all.\n\n\tFor example, if you have a ribbon of length `4`, you can:\n\n    \n    \tKeep the ribbon of length `4`,\n    \tCut it into one ribbon of length `3` and one ribbon of length `1`,\n    \tCut it into two ribbons of length `2`,\n    \tCut it into one ribbon of length `2` and two ribbons of length `1`, or\n    \tCut it into four ribbons of length `1`.\n    \n    \n\nYour task is to determine the **maximum** length of ribbon, `x`, that allows you to cut *at least* `k` ribbons, each of length `x`. You can discard any leftover ribbon from the cuts. If it is **impossible** to cut `k` ribbons of the same length, return 0.",
+  "examples": [
+    {
+      "input": "ribbons = [9,7,5], k = 3",
+      "output": "5",
+      "explanation": "- Cut the first ribbon to two ribbons, one of length 5 and one of length 4.\n- Cut the second ribbon to two ribbons, one of length 5 and one of length 2.\n- Keep the third ribbon as it is.\nNow you have 3 ribbons of length 5."
+    },
+    {
+      "input": "ribbons = [7,5,9], k = 4",
+      "output": "4",
+      "explanation": "- Cut the first ribbon to two ribbons, one of length 4 and one of length 3.\n- Cut the second ribbon to two ribbons, one of length 4 and one of length 1.\n- Cut the third ribbon to three ribbons, two of length 4 and one of length 1.\nNow you have 4 ribbons of length 4."
+    },
+    {
+      "input": "ribbons = [5,7,9], k = 22",
+      "output": "0",
+      "explanation": "You cannot obtain k ribbons of the same positive integer length."
+    }
+  ],
+  "constraints": [
+    "1 <= ribbons.length <= 10^5",
+    "1 <= ribbons[i] <= 10^5",
+    "1 <= k <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxLength(self, ribbons: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxLength(vector<int>& ribbons, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxLength(int[] ribbons, int k) {\n        \n    }\n};\n",
+    "javascript": "function maxLength(ribbons: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxLength(self, ribbons: List[int], k: int) -> int:\n        left, right = 0, max(ribbons)\n        while left < right:\n            mid = (left + right + 1) >> 1\n            cnt = sum(x // mid for x in ribbons)\n            if cnt >= k:\n                left = mid\n            else:\n                right = mid - 1\n        return left",
+    "cpp": "class Solution {\npublic:\n    int maxLength(vector<int>& ribbons, int k) {\n        int left = 0, right = *max_element(ribbons.begin(), ribbons.end());\n        while (left < right) {\n            int mid = (left + right + 1) >> 1;\n            int cnt = 0;\n            for (int ribbon : ribbons) {\n                cnt += ribbon / mid;\n            }\n            if (cnt >= k) {\n                left = mid;\n            } else {\n                right = mid - 1;\n            }\n        }\n        return left;\n    }\n};",
+    "java": "class Solution {\n    public int maxLength(int[] ribbons, int k) {\n        int left = 0, right = 0;\n        for (int x : ribbons) {\n            right = Math.max(right, x);\n        }\n        while (left < right) {\n            int mid = (left + right + 1) >>> 1;\n            int cnt = 0;\n            for (int x : ribbons) {\n                cnt += x / mid;\n            }\n            if (cnt >= k) {\n                left = mid;\n            } else {\n                right = mid - 1;\n            }\n        }\n        return left;\n    }\n}",
+    "javascript": "function maxLength(ribbons: number[], k: number): number {\n    let left = 0;\n    let right = Math.max(...ribbons);\n    while (left < right) {\n        const mid = (left + right + 1) >> 1;\n        let cnt = 0;\n        for (const x of ribbons) {\n            cnt += Math.floor(x / mid);\n        }\n        if (cnt >= k) {\n            left = mid;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return left;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[9,7,5], k = 3",
+      "expected": "5"
+    },
+    {
+      "input": "[7,5,9], k = 4",
+      "expected": "4"
+    },
+    {
+      "input": "[5,7,9], k = 22",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Cutting Ribbons.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

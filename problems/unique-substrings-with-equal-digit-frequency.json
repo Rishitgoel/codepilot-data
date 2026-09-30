@@ -1,0 +1,59 @@
+{
+  "id": 2168,
+  "slug": "unique-substrings-with-equal-digit-frequency",
+  "title": "Unique Substrings With Equal Digit Frequency",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Expedia"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Unique%20Substrings%20With%20Equal%20Digit%20Frequency"
+  },
+  "description": "Given a digit string `s`, return *the number of **unique substrings **of *`s`* where every digit appears the same number of times.*",
+  "examples": [
+    {
+      "input": "s = \"1212\"",
+      "output": "5",
+      "explanation": "The substrings that meet the requirements are \"1\", \"2\", \"12\", \"21\", \"1212\".\nNote that although the substring \"12\" appears twice, it is only counted once."
+    },
+    {
+      "input": "s = \"12321\"",
+      "output": "9",
+      "explanation": "The substrings that meet the requirements are \"1\", \"2\", \"3\", \"12\", \"23\", \"32\", \"21\", \"123\", \"321\"."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 1000",
+    "s consists of digits."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def equalDigitFrequency(self, s: str) -> int:\n        pass\n",
+    "java": "class Solution {\n    public int equalDigitFrequency(String s) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def equalDigitFrequency(self, s: str) -> int:\n        def check(i, j):\n            v = set()\n            for k in range(10):\n                cnt = presum[j + 1][k] - presum[i][k]\n                if cnt > 0:\n                    v.add(cnt)\n                if len(v) > 1:\n                    return False\n            return True\n\n        n = len(s)\n        presum = [[0] * 10 for _ in range(n + 1)]\n        for i, c in enumerate(s):\n            presum[i + 1][int(c)] += 1\n            for j in range(10):\n                presum[i + 1][j] += presum[i][j]\n        vis = set(s[i : j + 1] for i in range(n) for j in range(i, n) if check(i, j))\n        return len(vis)",
+    "java": "class Solution {\n    public int equalDigitFrequency(String s) {\n        int n = s.length();\n        int[][] presum = new int[n + 1][10];\n        for (int i = 0; i < n; ++i) {\n            ++presum[i + 1][s.charAt(i) - '0'];\n            for (int j = 0; j < 10; ++j) {\n                presum[i + 1][j] += presum[i][j];\n            }\n        }\n        Set<String> vis = new HashSet<>();\n        for (int i = 0; i < n; ++i) {\n            for (int j = i; j < n; ++j) {\n                if (check(i, j, presum)) {\n                    vis.add(s.substring(i, j + 1));\n                }\n            }\n        }\n        return vis.size();\n    }\n\n    private boolean check(int i, int j, int[][] presum) {\n        Set<Integer> v = new HashSet<>();\n        for (int k = 0; k < 10; ++k) {\n            int cnt = presum[j + 1][k] - presum[i][k];\n            if (cnt > 0) {\n                v.add(cnt);\n            }\n            if (v.size() > 1) {\n                return false;\n            }\n        }\n        return true;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"1212\"",
+      "expected": "5"
+    },
+    {
+      "input": "\"12321\"",
+      "expected": "9"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Unique Substrings With Equal Digit Frequency.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

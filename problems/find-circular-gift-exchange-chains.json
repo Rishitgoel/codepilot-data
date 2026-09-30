@@ -1,0 +1,45 @@
+{
+  "id": 3401,
+  "slug": "find-circular-gift-exchange-chains",
+  "title": "Find Circular Gift Exchange Chains",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Find%20Circular%20Gift%20Exchange%20Chains"
+  },
+  "description": "Table: `SecretSanta`\n\n+-------------+------+\n| Column Name | Type |\n+-------------+------+\n| giver_id    | int  |\n| receiver_id | int  |\n| gift_value  | int  |\n+-------------+------+\n(giver_id, receiver_id) is the unique key for this table.   \nEach row represents a record of a gift exchange between two employees, giver_id represents the employee who gives a gift, receiver_id represents the employee who receives the gift and gift_value represents the value of the gift given.  \n\nWrite a solution to find the **total gift value** and **length** of** circular chains** of Secret Santa gift exchanges:\n\nA **circular chain** is defined as a series of exchanges where:\n\n\tEach employee gives a gift to **exactly one** other employee.\n\tEach employee receives a gift **from exactly** one other employee.\n\tThe exchanges form a continuous **loop** (e.g., employee A gives a gift to B, B gives to C, and C gives back to A).\n\nReturn *the result ordered by the chain length and total gift value of the chain in **descending** order*. \n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Find Circular Gift Exchange Chains.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

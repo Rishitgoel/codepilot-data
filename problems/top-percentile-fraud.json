@@ -1,0 +1,46 @@
+{
+  "id": 3055,
+  "slug": "top-percentile-fraud",
+  "title": "Top Percentile Fraud",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Top%20Percentile%20Fraud"
+  },
+  "description": "Table: `Fraud`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| policy_id   | int     |\n| state       | varchar |\n| fraud_score | int     |\n+-------------+---------+\npolicy_id is column of unique values for this table.\nThis table contains policy id, state, and fraud score.\n\nThe Leetcode Insurance Corp has developed an ML-driven **predictive model **to detect the **likelihood** of fraudulent claims. Consequently, they allocate their most seasoned claim adjusters to address the top `5%` of **claims** **flagged** by this model.\n\nWrite a solution to find the top `5` **percentile** of claims from **each state**.\n\nReturn *the result table ordered by *`state`* in **ascending** order, *`fraud_score`* in **descending** order, and *`policy_id`* in **ascending** order.*\n\nThe result format is in the following example.",
+  "examples": [
+    {
+      "input": "Fraud table:\n+-----------+------------+-------------+\n| policy_id | state      | fraud_score | \n+-----------+------------+-------------+\n| 1         | California | 0.92        | \n| 2         | California | 0.68        |   \n| 3         | California | 0.17        | \n| 4         | New York   | 0.94        | \n| 5         | New York   | 0.81        | \n| 6         | New York   | 0.77        |  \n| 7         | Texas      | 0.98        |  \n| 8         | Texas      | 0.97        | \n| 9         | Texas      | 0.96        | \n| 10        | Florida    | 0.97        |  \n| 11        | Florida    | 0.98        | \n| 12        | Florida    | 0.78        | \n| 13        | Florida    | 0.88        | \n| 14        | Florida    | 0.66        | \n+-----------+------------+-------------+",
+      "output": "+-----------+------------+-------------+\n| policy_id | state      | fraud_score |\n+-----------+------------+-------------+\n| 1         | California | 0.92        | \n| 11        | Florida    | 0.98        | \n| 4         | New York   | 0.94        | \n| 7         | Texas      | 0.98        |  \n+-----------+------------+-------------+",
+      "explanation": "- For the state of California, only policy ID 1, with a fraud score of 0.92, falls within the top 5 percentile for this state.\n- For the state of Florida, only policy ID 11, with a fraud score of 0.98, falls within the top 5 percentile for this state. \n- For the state of New York, only policy ID 4, with a fraud score of 0.94, falls within the top 5 percentile for this state. \n- For the state of Texas, only policy ID 7, with a fraud score of 0.98, falls within the top 5 percentile for this state. \nOutput table is ordered by state in ascending order, fraud score in descending order, and policy ID in ascending order."
+    }
+  ],
+  "constraints": [
+    "Standard algorithmic limits apply."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "Fraud table:\n+-----------+------------+-------------+\n| policy_id | state      | fraud_score | \n+-----------+------------+-------------+\n| 1         | California | 0.92        | \n| 2         | California | 0.68        |   \n| 3         | California | 0.17        | \n| 4         | New York   | 0.94        | \n| 5         | New York   | 0.81        | \n| 6         | New York   | 0.77        |  \n| 7         | Texas      | 0.98        |  \n| 8         | Texas      | 0.97        | \n| 9         | Texas      | 0.96        | \n| 10        | Florida    | 0.97        |  \n| 11        | Florida    | 0.98        | \n| 12        | Florida    | 0.78        | \n| 13        | Florida    | 0.88        | \n| 14        | Florida    | 0.66        | \n+-----------+------------+-------------+",
+      "expected": "+-----------+------------+-------------+\n| policy_id | state      | fraud_score |\n+-----------+------------+-------------+\n| 1         | California | 0.92        | \n| 11        | Florida    | 0.98        | \n| 4         | New York   | 0.94        | \n| 7         | Texas      | 0.98        |  \n+-----------+------------+-------------+"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Top Percentile Fraud.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,46 @@
+{
+  "id": 3735,
+  "slug": "lexicographically-smallest-string-after-reverse-ii",
+  "title": "Lexicographically Smallest String After Reverse II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Lexicographically%20Smallest%20String%20After%20Reverse%20II"
+  },
+  "description": "You are given a string `s` of length `n` consisting of lowercase English letters.\n\nYou must perform **exactly** one operation by choosing any integer `k` such that `1 \n\treverse the **first** `k` characters of `s`, or\n\treverse the **last** `k` characters of `s`.\n\nReturn the **lexicographically smallest** string that can be obtained after **exactly** one such operation.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= n == s.length <= 10^5",
+    "s consists of lowercase English letters."
+  ],
+  "starterTemplates": {},
+  "snippets": {},
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Lexicographically Smallest String After Reverse II.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,76 @@
+{
+  "id": 1059,
+  "slug": "all-paths-from-source-lead-to-destination",
+  "title": "All Paths from Source Lead to Destination",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=All%20Paths%20from%20Source%20Lead%20to%20Destination"
+  },
+  "description": "Given the `edges` of a directed graph where `edges[i] = [ai, bi]` indicates there is an edge between nodes `ai` and `bi`, and two nodes `source` and `destination` of this graph, determine whether or not all paths starting from `source` eventually, end at `destination`, that is:\n\n\tAt least one path exists from the `source` node to the `destination` node\n\tIf a path exists from the `source` node to a node with no outgoing edges, then that node is equal to `destination`.\n\tThe number of possible paths from `source` to `destination` is a finite number.\n\nReturn `true` if and only if all roads from `source` lead to `destination`.",
+  "examples": [
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], source = 0, destination = 2",
+      "output": "false",
+      "explanation": "It is possible to reach and get stuck on both node 1 and node 2."
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3",
+      "output": "false",
+      "explanation": "We have two possibilities: to end at node 3, or to loop over node 1 and node 2 indefinitely."
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 10^4",
+    "0 <= edges.length <= 10^4",
+    "edges.length == 2",
+    "0 <= ai, bi <= n - 1",
+    "0 <= source <= n - 1",
+    "0 <= destination <= n - 1",
+    "The given graph may have self-loops and parallel edges."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def leadsToDestination(\n        self, n: int, edges: List[List[int]], source: int, destination: int\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> g;\n    vector<int> st;\n    int destination;\n\n    bool leadsToDestination(int n, vector<vector<int>>& edges, int source, int destination) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] st;\n    private int destination;\n\n    public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {\n        \n    }\n};\n",
+    "javascript": "function leadsToDestination(\n    n: number,\n    edges: number[][],\n    source: number,\n    destination: number,\n): boolean {\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of edges) {\n        g[a].push(b);\n    }\n    if (g[destination].length > 0) {\n        return false;\n    }\n\n    const st: number[] = Array(n).fill(0);\n\n    const dfs = (i: number): boolean => {\n        if (st[i] !== 0) {\n            return st[i] === 2;\n        }\n        if (g[i].length === 0) {\n            return i === destination;\n        }\n        st[i] = 1;\n        for (const j of g[i]) {\n            if (!dfs(j)) {\n                return false;\n            }\n        }\n        st[i] = 2;\n        return true;\n    };\n\n    return dfs(source);\n}"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def leadsToDestination(\n        self, n: int, edges: List[List[int]], source: int, destination: int\n    ) -> bool:\n        def dfs(i: int) -> bool:\n            if st[i]:\n                return st[i] == 2\n            if not g[i]:\n                return i == destination\n\n            st[i] = 1\n            for j in g[i]:\n                if not dfs(j):\n                    return False\n            st[i] = 2\n            return True\n\n        g = [[] for _ in range(n)]\n        for a, b in edges:\n            g[a].append(b)\n        if g[destination]:\n            return False\n\n        st = [0] * n\n        return dfs(source)",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> g;\n    vector<int> st;\n    int destination;\n\n    bool leadsToDestination(int n, vector<vector<int>>& edges, int source, int destination) {\n        this->destination = destination;\n        g.assign(n, {});\n        for (auto& e : edges) {\n            g[e[0]].push_back(e[1]);\n        }\n        if (!g[destination].empty()) {\n            return false;\n        }\n        st.assign(n, 0);\n        return dfs(source);\n    }\n\n    bool dfs(int i) {\n        if (st[i] != 0) {\n            return st[i] == 2;\n        }\n        if (g[i].empty()) {\n            return i == destination;\n        }\n        st[i] = 1;\n        for (int j : g[i]) {\n            if (!dfs(j)) {\n                return false;\n            }\n        }\n        st[i] = 2;\n        return true;\n    }\n};",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] st;\n    private int destination;\n\n    public boolean leadsToDestination(int n, int[][] edges, int source, int destination) {\n        this.destination = destination;\n        g = new List[n];\n        Arrays.setAll(g, k -> new ArrayList<>());\n        for (int[] e : edges) {\n            g[e[0]].add(e[1]);\n        }\n        if (!g[destination].isEmpty()) {\n            return false;\n        }\n        st = new int[n];\n        return dfs(source);\n    }\n\n    private boolean dfs(int i) {\n        if (st[i] != 0) {\n            return st[i] == 2;\n        }\n        if (g[i].isEmpty()) {\n            return i == destination;\n        }\n        st[i] = 1;\n        for (int j : g[i]) {\n            if (!dfs(j)) {\n                return false;\n            }\n        }\n        st[i] = 2;\n        return true;\n    }\n}",
+    "javascript": "function leadsToDestination(\n    n: number,\n    edges: number[][],\n    source: number,\n    destination: number,\n): boolean {\n    const g: number[][] = Array.from({ length: n }, () => []);\n    for (const [a, b] of edges) {\n        g[a].push(b);\n    }\n    if (g[destination].length > 0) {\n        return false;\n    }\n\n    const st: number[] = Array(n).fill(0);\n\n    const dfs = (i: number): boolean => {\n        if (st[i] !== 0) {\n            return st[i] === 2;\n        }\n        if (g[i].length === 0) {\n            return i === destination;\n        }\n        st[i] = 1;\n        for (const j of g[i]) {\n            if (!dfs(j)) {\n                return false;\n            }\n        }\n        st[i] = 2;\n        return true;\n    };\n\n    return dfs(source);\n}"
+  },
+  "testcases": [
+    {
+      "input": "3, edges = [[0,1],[0,2]], source = 0, destination = 2",
+      "expected": "false"
+    },
+    {
+      "input": "4, edges = [[0,1],[0,3],[1,2],[2,1]], source = 0, destination = 3",
+      "expected": "false"
+    },
+    {
+      "input": "4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for All Paths from Source Lead to Destination.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

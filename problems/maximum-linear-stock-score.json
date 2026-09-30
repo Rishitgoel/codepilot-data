@@ -1,0 +1,63 @@
+{
+  "id": 2898,
+  "slug": "maximum-linear-stock-score",
+  "title": "Maximum Linear Stock Score",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Linear%20Stock%20Score"
+  },
+  "description": "Given a **1-indexed** integer array `prices`, where `prices[i]` is the price of a particular stock on the `i^th` day, your task is to select some of the elements of `prices` such that your selection is **linear**.\n\nA selection `indexes`, where `indexes` is a **1-indexed** integer array of length `k` which is a subsequence of the array `[1, 2, ..., n]`, is **linear** if:\n\n\tFor every `1 \n\nA subsequence is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.\n\nThe **score** of a selection `indexes`, is equal to the sum of the following array: `[prices[indexes[1]], prices[indexes[2]], ..., prices[indexes[k]]`.\n\nReturn *the **maximum** **score** that a linear selection can have*.",
+  "examples": [
+    {
+      "input": "prices = [1,5,3,7,8]",
+      "output": "20",
+      "explanation": "We can select the indexes [2,4,5]. We show that our selection is linear:\nFor j = 2, we have:\nindexes[2] - indexes[1] = 4 - 2 = 2.\nprices[4] - prices[2] = 7 - 5 = 2.\nFor j = 3, we have:\nindexes[3] - indexes[2] = 5 - 4 = 1.\nprices[5] - prices[4] = 8 - 7 = 1.\nThe sum of the elements is: prices[2] + prices[4] + prices[5] = 20.\nIt can be shown that the maximum sum a linear selection can have is 20."
+    },
+    {
+      "input": "prices = [5,6,7,8,9]",
+      "output": "35",
+      "explanation": "We can select all of the indexes [1,2,3,4,5]. Since each element has a difference of exactly 1 from its previous element, our selection is linear.\nThe sum of all the elements is 35 which is the maximum possible some out of every selection."
+    }
+  ],
+  "constraints": [
+    "1 <= prices.length <= 10^5",
+    "1 <= prices[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxScore(self, prices: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<int>& prices) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public long maxScore(int[] prices) {\n        \n    }\n};\n",
+    "javascript": "function maxScore(prices: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxScore(self, prices: List[int]) -> int:\n        cnt = Counter()\n        for i, x in enumerate(prices):\n            cnt[x - i] += x\n        return max(cnt.values())",
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<int>& prices) {\n        unordered_map<int, long long> cnt;\n        for (int i = 0; i < prices.size(); ++i) {\n            cnt[prices[i] - i] += prices[i];\n        }\n        long long ans = 0;\n        for (auto& [_, v] : cnt) {\n            ans = max(ans, v);\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public long maxScore(int[] prices) {\n        Map<Integer, Long> cnt = new HashMap<>();\n        for (int i = 0; i < prices.length; ++i) {\n            cnt.merge(prices[i] - i, (long) prices[i], Long::sum);\n        }\n        long ans = 0;\n        for (long v : cnt.values()) {\n            ans = Math.max(ans, v);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxScore(prices: number[]): number {\n    const cnt: Map<number, number> = new Map();\n    for (let i = 0; i < prices.length; ++i) {\n        const j = prices[i] - i;\n        cnt.set(j, (cnt.get(j) || 0) + prices[i]);\n    }\n    return Math.max(...cnt.values());\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,5,3,7,8]",
+      "expected": "20"
+    },
+    {
+      "input": "[5,6,7,8,9]",
+      "expected": "35"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Linear Stock Score.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,57 @@
+{
+  "id": 3400,
+  "slug": "maximum-number-of-matching-indices-after-right-shifts",
+  "title": "Maximum Number of Matching Indices After Right Shifts",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Algorithms"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Number%20of%20Matching%20Indices%20After%20Right%20Shifts"
+  },
+  "description": "You are given two integer arrays, `nums1` and `nums2`, of the same length.\n\nAn index `i` is considered **matching** if `nums1[i] == nums2[i]`.\n\nReturn the **maximum** number of **matching** indices after performing any number of **right shifts** on `nums1`.\n\nA **right shift** is defined as shifting the element at index `i` to index `(i + 1) % n`, for all indices.",
+  "examples": [
+    {
+      "input": "Input per specifications",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "nums1.length == nums2.length",
+    "1 <= nums1.length, nums2.length <= 3000",
+    "1 <= nums1[i], nums2[i] <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\r\n    def maximumMatchingIndices(self, nums1: List[int], nums2: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int maximumMatchingIndices(vector<int>& nums1, vector<int>& nums2) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int maximumMatchingIndices(int[] nums1, int[] nums2) {\r\n        \n    }\n};\n",
+    "javascript": "function maximumMatchingIndices(nums1: number[], nums2: number[]): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\r\n    def maximumMatchingIndices(self, nums1: List[int], nums2: List[int]) -> int:\r\n        n = len(nums1)\r\n        ans = 0\r\n        for k in range(n):\r\n            t = sum(nums1[(i + k) % n] == x for i, x in enumerate(nums2))\r\n            ans = max(ans, t)\r\n        return ans",
+    "cpp": "class Solution {\r\npublic:\r\n    int maximumMatchingIndices(vector<int>& nums1, vector<int>& nums2) {\r\n        int n = nums1.size();\r\n        int ans = 0;\r\n        for (int k = 0; k < n; ++k) {\r\n            int t = 0;\r\n            for (int i = 0; i < n; ++i) {\r\n                if (nums1[(i + k) % n] == nums2[i]) {\r\n                    ++t;\r\n                }\r\n            }\r\n            ans = max(ans, t);\r\n        }\r\n        return ans;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int maximumMatchingIndices(int[] nums1, int[] nums2) {\r\n        int n = nums1.length;\r\n        int ans = 0;\r\n        for (int k = 0; k < n; ++k) {\r\n            int t = 0;\r\n            for (int i = 0; i < n; ++i) {\r\n                if (nums1[(i + k) % n] == nums2[i]) {\r\n                    ++t;\r\n                }\r\n            }\r\n            ans = Math.max(ans, t);\r\n        }\r\n        return ans;\r\n    }\r\n}",
+    "javascript": "function maximumMatchingIndices(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    let ans: number = 0;\n    for (let k = 0; k < n; ++k) {\n        let t: number = 0;\n        for (let i = 0; i < n; ++i) {\n            if (nums1[(i + k) % n] === nums2[i]) {\n                ++t;\n            }\n        }\n        ans = Math.max(ans, t);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "sample",
+      "expected": "sample"
+    }
+  ],
+  "hints": [
+    "Analyze the constraints and data structures appropriate for Maximum Number of Matching Indices After Right Shifts.",
+    "Formulate an optimal state transition or traversal invariant.",
+    "Consider corner testcases and boundary limits."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}
