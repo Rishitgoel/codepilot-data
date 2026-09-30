@@ -22,12 +22,12 @@
     {
       "input": "k = 2",
       "output": "[\"..#\",\"#..\",\"#..\"]",
-      "explanation": "The grid contains exactly 2 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (2, 1) &rarr; (2, 2)"
+      "explanation": "The grid contains exactly 2 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) -> (0, 1) -> (1, 1) -> (1, 2) -> (2, 2)\n\t(0, 0) -> (0, 1) -> (1, 1) -> (2, 1) -> (2, 2)"
     },
     {
       "input": "k = 3",
       "output": "[\"...\",\"#..\",\"#..\"]",
-      "explanation": "​​​​​​​\n\nThe grid contains exactly 3 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) &rarr; (0, 1) &rarr; (0, 2) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (2, 1) &rarr; (2, 2)"
+      "explanation": "​​​​​​​\n\nThe grid contains exactly 3 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) -> (0, 1) -> (0, 2) -> (1, 2) -> (2, 2)\n\t(0, 0) -> (0, 1) -> (1, 1) -> (1, 2) -> (2, 2)\n\t(0, 0) -> (0, 1) -> (1, 1) -> (2, 1) -> (2, 2)"
     }
   ],
   "constraints": [

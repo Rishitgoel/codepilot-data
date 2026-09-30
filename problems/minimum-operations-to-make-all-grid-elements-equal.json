@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20All%20Grid%20Elements%20Equal"
   },
-  "description": "You are given a 2D integer array `grid` of size `m &times; n`, and an integer `k`.\n\nIn one operation, you can:\n\n\t* Select any `k x k` **submatrix** of `grid`, and\n\n\t* Increment **all elements** inside that **submatrix** by 1.\n\nReturn the **minimum** number of operations required to make all elements in the grid **equal**. If it is not possible, return -1.\n\nA submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells `matrix[x][y]` where `x1 <= x <= x2` and `y1 <= y <= y2`.",
+  "description": "You are given a 2D integer array `grid` of size `m * n`, and an integer `k`.\n\nIn one operation, you can:\n\n\t* Select any `k x k` **submatrix** of `grid`, and\n\n\t* Increment **all elements** inside that **submatrix** by 1.\n\nReturn the **minimum** number of operations required to make all elements in the grid **equal**. If it is not possible, return -1.\n\nA submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells `matrix[x][y]` where `x1 <= x <= x2` and `y1 <= y <= y2`.",
   "examples": [
     {
       "input": "grid = [[3,3,5],[3,3,5]], k = 2",

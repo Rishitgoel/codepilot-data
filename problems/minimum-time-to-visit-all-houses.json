@@ -19,12 +19,12 @@
     {
       "input": "forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]",
       "output": "12",
-      "explanation": "The path followed is 0(0) &rarr; 1(1) &rarr;​​​​​​​ 2(5) &rarr; 1(7) &rarr;​​​​​​​ 0(8) &rarr; 2(12).\n\nNote: The notation used is node(total time), &rarr; represents forward road, and &rarr; represents backward road."
+      "explanation": "The path followed is 0(0) -> 1(1) ->​​​​​​​ 2(5) -> 1(7) ->​​​​​​​ 0(8) -> 2(12).\n\nNote: The notation used is node(total time), -> represents forward road, and -> represents backward road."
     },
     {
       "input": "forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]",
       "output": "4",
-      "explanation": "The path travelled is 0 &rarr;​​​​​​​ 1 &rarr;​​​​​​​ 2 &rarr;​​​​​​​ 3 &rarr; 0. Each step is in the forward direction and requires 1 second."
+      "explanation": "The path travelled is 0 ->​​​​​​​ 1 ->​​​​​​​ 2 ->​​​​​​​ 3 -> 0. Each step is in the forward direction and requires 1 second."
     }
   ],
   "constraints": [

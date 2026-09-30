@@ -19,7 +19,7 @@
     {
       "input": "transactions = [2,-5,3,-1,-2]",
       "output": "4",
-      "explanation": "One optimal sequence is [2, 3, -1, -2], balance: 0 &rarr; 2 &rarr; 5 &rarr; 4 &rarr; 2."
+      "explanation": "One optimal sequence is [2, 3, -1, -2], balance: 0 -> 2 -> 5 -> 4 -> 2."
     },
     {
       "input": "transactions = [-1,-2,-3]",
@@ -29,7 +29,7 @@
     {
       "input": "transactions = [3,-2,3,-2,1,-1]",
       "output": "6",
-      "explanation": "All transactions can be taken in order, balance: 0 &rarr; 3 &rarr; 1 &rarr; 4 &rarr; 2 &rarr; 3 &rarr; 2."
+      "explanation": "All transactions can be taken in order, balance: 0 -> 3 -> 1 -> 4 -> 2 -> 3 -> 2."
     }
   ],
   "constraints": [

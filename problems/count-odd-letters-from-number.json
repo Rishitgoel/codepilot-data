@@ -17,17 +17,17 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Count%20Odd%20Letters%20from%20Number"
   },
-  "description": "You are given an integer `n` perform the following steps:\n\n\t* Convert each digit of `n` into its *lowercase English word* (e.g., 4 &rarr; \"four\", 1 &rarr; \"one\").\n\n\t* **Concatenate** those words in the **original digit order** to form a string `s`.\n\nReturn the number of **distinct** characters in `s` that appear an **odd** number of times.",
+  "description": "You are given an integer `n` perform the following steps:\n\n\t* Convert each digit of `n` into its *lowercase English word* (e.g., 4 -> \"four\", 1 -> \"one\").\n\n\t* **Concatenate** those words in the **original digit order** to form a string `s`.\n\nReturn the number of **distinct** characters in `s` that appear an **odd** number of times.",
   "examples": [
     {
       "input": "n = 41",
       "output": "5",
-      "explanation": "41 &rarr; \"fourone\"\n\nCharacters with odd frequencies: 'f', 'u', 'r', 'n', 'e'. Thus, the answer is 5."
+      "explanation": "41 -> \"fourone\"\n\nCharacters with odd frequencies: 'f', 'u', 'r', 'n', 'e'. Thus, the answer is 5."
     },
     {
       "input": "n = 20",
       "output": "5",
-      "explanation": "20 &rarr; \"twozero\"\n\nCharacters with odd frequencies: 't', 'w', 'z', 'e', 'r'. Thus, the answer is 5."
+      "explanation": "20 -> \"twozero\"\n\nCharacters with odd frequencies: 't', 'w', 'z', 'e', 'r'. Thus, the answer is 5."
     }
   ],
   "constraints": [

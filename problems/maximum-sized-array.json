@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Sized%20Array"
   },
-  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n &times; n &times; n`, where each element `A[i][j][k]` is defined as:\n\n\t* `A[i][j][k] = i * (j OR k)`, where `0 <= i, j, k < n`.\n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
+  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n * n * n`, where each element `A[i][j][k]` is defined as:\n\n\t* `A[i][j][k] = i * (j OR k)`, where `0 <= i, j, k < n`.\n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
   "examples": [
     {
       "input": "s = 10",
