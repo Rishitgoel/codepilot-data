@@ -18,7 +18,7 @@
     "id": 640,
     "url": "https://www.lintcode.com/problem/640/"
   },
-  "description": "Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.\n\n\n\nA string `s` is said to be one distance apart from a string `t` if you can:\n\n\n\n\n\tInsert **exactly one** character into `s` to get `t`.\n\tDelete **exactly one** character from `s` to get `t`.\n\tReplace **exactly one** character of `s` with **a different character** to get `t`.",
+  "description": "Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.\n\nA string `s` is said to be one distance apart from a string `t` if you can:\n\n\tInsert **exactly one** character into `s` to get `t`.\n\tDelete **exactly one** character from `s` to get `t`.\n\tReplace **exactly one** character of `s` with **a different character** to get `t`.",
   "examples": [
     {
       "input": "s = \"ab\", t = \"acb\"",

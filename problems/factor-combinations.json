@@ -16,7 +16,7 @@
     "id": 652,
     "url": "https://www.lintcode.com/problem/652/"
   },
-  "description": "Numbers can be regarded as the product of their factors.\n\n\n\n\n\tFor example, `8 = 2 x 2 x 2 = 2 x 4`.\n\n\nGiven an integer `n`, return *all possible combinations of its factors*. You may return the answer in **any order**.\n\n\n\n**Note** that the factors should be in the range `[2, n - 1]`.",
+  "description": "Numbers can be regarded as the product of their factors.\n\n\tFor example, `8 = 2 x 2 x 2 = 2 x 4`.\n\nGiven an integer `n`, return *all possible combinations of its factors*. You may return the answer in **any order**.\n\n**Note** that the factors should be in the range `[2, n - 1]`.",
   "examples": [
     {
       "input": "n = 1",

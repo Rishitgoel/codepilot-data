@@ -17,7 +17,7 @@
     "id": 558,
     "url": "https://www.lintcode.com/problem/558/"
   },
-  "description": "You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.\n\n\n\nThe **depth** of an integer is the number of lists that it is inside of. For example, the nested list `[1,[2,2],[[3],2],1]` has each integer's value set to its **depth**. Let `maxDepth` be the **maximum depth** of any integer.\n\n\n\nThe **weight** of an integer is `maxDepth - (the depth of the integer) + 1`.\n\n\n\nReturn *the sum of each integer in *`nestedList`* multiplied by its **weight***.",
+  "description": "You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.\n\nThe **depth** of an integer is the number of lists that it is inside of. For example, the nested list `[1,[2,2],[[3],2],1]` has each integer's value set to its **depth**. Let `maxDepth` be the **maximum depth** of any integer.\n\nThe **weight** of an integer is `maxDepth - (the depth of the integer) + 1`.\n\nReturn *the sum of each integer in *`nestedList`* multiplied by its **weight***.",
   "examples": [
     {
       "input": "nestedList = [[1,1],2,[1,1]]",

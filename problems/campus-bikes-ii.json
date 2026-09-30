@@ -19,7 +19,7 @@
     "id": 1775,
     "url": "https://www.lintcode.com/problem/1775/"
   },
-  "description": "On a campus represented as a 2D grid, there are `n` workers and `m` bikes, with `n <= m`. Each worker and bike is a 2D coordinate on this grid.\n\n\n\nWe assign one unique bike to each worker so that the sum of the **Manhattan distances** between each worker and their assigned bike is minimized.\n\n\n\nReturn `the minimum possible sum of Manhattan distances between each worker and their assigned bike`.\n\n\n\nThe **Manhattan distance** between two points `p1` and `p2` is `Manhattan(p1, p2) = |p1.x - p2.x| + |p1.y - p2.y|`.",
+  "description": "On a campus represented as a 2D grid, there are `n` workers and `m` bikes, with `n <= m`. Each worker and bike is a 2D coordinate on this grid.\n\nWe assign one unique bike to each worker so that the sum of the **Manhattan distances** between each worker and their assigned bike is minimized.\n\nReturn `the minimum possible sum of Manhattan distances between each worker and their assigned bike`.\n\nThe **Manhattan distance** between two points `p1` and `p2` is `Manhattan(p1, p2) = |p1.x - p2.x| + |p1.y - p2.y|`.",
   "examples": [
     {
       "input": "workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]",

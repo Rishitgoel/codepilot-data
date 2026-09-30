@@ -18,7 +18,7 @@
     "id": 595,
     "url": "https://www.lintcode.com/problem/595/"
   },
-  "description": "Given the `root` of a binary tree, return *the length of the longest **consecutive sequence path***.\n\n\n\nA **consecutive sequence path** is a path where the values **increase by one** along the path.\n\n\n\nNote that the path can start **at any node** in the tree, and you cannot go from a node to its parent in the path.",
+  "description": "Given the `root` of a binary tree, return *the length of the longest **consecutive sequence path***.\n\nA **consecutive sequence path** is a path where the values **increase by one** along the path.\n\nNote that the path can start **at any node** in the tree, and you cannot go from a node to its parent in the path.",
   "examples": [
     {
       "input": "root = [1,null,3,2,4,null,null,null,5]",

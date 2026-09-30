@@ -19,7 +19,7 @@
     "id": 959,
     "url": "https://www.lintcode.com/problem/959/"
   },
-  "description": "Design a phone directory that initially has `maxNumbers` empty slots that can store numbers. The directory should store numbers, check if a certain slot is empty or not, and empty a given slot.\n\n\n\nImplement the `PhoneDirectory` class:\n\n\n\n\n\t`PhoneDirectory(int maxNumbers)` Initializes the phone directory with the number of available slots `maxNumbers`.\n\t`int get()` Provides a number that is not assigned to anyone. Returns `-1` if no number is available.\n\t`bool check(int number)` Returns `true` if the slot `number` is available and `false` otherwise.\n\t`void release(int number)` Recycles or releases the slot `number`.",
+  "description": "Design a phone directory that initially has `maxNumbers` empty slots that can store numbers. The directory should store numbers, check if a certain slot is empty or not, and empty a given slot.\n\nImplement the `PhoneDirectory` class:\n\n\t`PhoneDirectory(int maxNumbers)` Initializes the phone directory with the number of available slots `maxNumbers`.\n\t`int get()` Provides a number that is not assigned to anyone. Returns `-1` if no number is available.\n\t`bool check(int number)` Returns `true` if the slot `number` is available and `false` otherwise.\n\t`void release(int number)` Recycles or releases the slot `number`.",
   "examples": [
     {
       "input": "[\"PhoneDirectory\", \"get\", \"get\", \"check\", \"get\", \"check\", \"release\", \"check\"]\n[[3], [], [], [2], [], [2], [2], [2]]",

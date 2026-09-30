@@ -16,7 +16,7 @@
     "id": 514,
     "url": "https://www.lintcode.com/problem/514/"
   },
-  "description": "You are painting a fence of `n` posts with `k` different colors. You must paint the posts following these rules:\n\n\n\n\n\tEvery post must be painted **exactly one** color.\n\tThere **cannot** be three or more **consecutive** posts with the same color.\n\n\nGiven the two integers `n` and `k`, return *the **number of ways** you can paint the fence*.",
+  "description": "You are painting a fence of `n` posts with `k` different colors. You must paint the posts following these rules:\n\n\tEvery post must be painted **exactly one** color.\n\tThere **cannot** be three or more **consecutive** posts with the same color.\n\nGiven the two integers `n` and `k`, return *the **number of ways** you can paint the fence*.",
   "examples": [
     {
       "input": "n = 3, k = 2",

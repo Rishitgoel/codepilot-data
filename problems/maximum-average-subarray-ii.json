@@ -17,7 +17,7 @@
     "id": 617,
     "url": "https://www.lintcode.com/problem/617/"
   },
-  "description": "You are given an integer array `nums` consisting of `n` elements, and an integer `k`.\n\n\n\nFind a contiguous subarray whose **length is greater than or equal to** `k` that has the maximum average value and return *this value*. Any answer with a calculation error less than `10^-5` will be accepted.",
+  "description": "You are given an integer array `nums` consisting of `n` elements, and an integer `k`.\n\nFind a contiguous subarray whose **length is greater than or equal to** `k` that has the maximum average value and return *this value*. Any answer with a calculation error less than `10^-5` will be accepted.",
   "examples": [
     {
       "input": "nums = [1,12,-5,-6,50,3], k = 4",

@@ -18,7 +18,7 @@
     "id": 650,
     "url": "https://www.lintcode.com/problem/650/"
   },
-  "description": "Given the `root` of a binary tree, collect a tree's nodes as if you were doing this:\n\n\n\n\n\tCollect all the leaf nodes.\n\tRemove all the leaf nodes.\n\tRepeat until the tree is empty.",
+  "description": "Given the `root` of a binary tree, collect a tree's nodes as if you were doing this:\n\n\tCollect all the leaf nodes.\n\tRemove all the leaf nodes.\n\tRepeat until the tree is empty.",
   "examples": [
     {
       "input": "root = [1,2,3,4,5]",

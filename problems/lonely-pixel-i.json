@@ -17,7 +17,7 @@
     "id": 878,
     "url": "https://www.lintcode.com/problem/878/"
   },
-  "description": "Given an `m x n` `picture` consisting of black `'B'` and white `'W'` pixels, return *the number of black lonely pixels*.\n\n\n\nA black lonely pixel is a character `'B'` that located at a specific position where the same row and same column don't have **any other** black pixels.",
+  "description": "Given an `m x n` `picture` consisting of black `'B'` and white `'W'` pixels, return *the number of black lonely pixels*.\n\nA black lonely pixel is a character `'B'` that located at a specific position where the same row and same column don't have **any other** black pixels.",
   "examples": [
     {
       "input": "picture = [[\"W\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"W\"]]",

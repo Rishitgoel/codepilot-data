@@ -20,7 +20,7 @@
     "id": 901,
     "url": "https://www.lintcode.com/problem/901/"
   },
-  "description": "Given the `root` of a binary search tree, a `target` value, and an integer `k`, return *the *`k`* values in the BST that are closest to the* `target`. You may return the answer in **any order**.\n\n\n\nYou are **guaranteed** to have only one unique set of `k` values in the BST that are closest to the `target`.",
+  "description": "Given the `root` of a binary search tree, a `target` value, and an integer `k`, return *the *`k`* values in the BST that are closest to the* `target`. You may return the answer in **any order**.\n\nYou are **guaranteed** to have only one unique set of `k` values in the BST that are closest to the `target`.",
   "examples": [
     {
       "input": "root = [4,2,5,1,3], target = 3.714286, k = 2",

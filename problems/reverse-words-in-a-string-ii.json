@@ -17,7 +17,7 @@
     "id": 927,
     "url": "https://www.lintcode.com/problem/927/"
   },
-  "description": "Given a character array `s`, reverse the order of the **words**.\n\n\n\nA **word** is defined as a sequence of non-space characters. The **words** in `s` will be separated by a single space.\n\n\n\nYour code must solve the problem **in-place,** i.e. without allocating extra space.",
+  "description": "Given a character array `s`, reverse the order of the **words**.\n\nA **word** is defined as a sequence of non-space characters. The **words** in `s` will be separated by a single space.\n\nYour code must solve the problem **in-place,** i.e. without allocating extra space.",
   "examples": [
     {
       "input": "s = [\"t\",\"h\",\"e\",\" \",\"s\",\"k\",\"y\",\" \",\"i\",\"s\",\" \",\"b\",\"l\",\"u\",\"e\"]",
