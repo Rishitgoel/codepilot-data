@@ -17,24 +17,34 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Valid%20Subarrays%20With%20Matching%20Sum%20Digits%20II"
   },
-  "description": "You are given an integer array `nums` and an integer digit `x`.\n\nA **subarray** `nums[l..r]` is considered **valid** if the sum of its elements satisfies both of the following conditions:\n\n\tThe first digit of the sum is equal to `x`.\n\tThe last digit of the sum is equal to `x`.\n\nReturn the number of valid subarrays.",
+  "description": "You are given an integer array `nums` and an integer digit `x`.\n\nA **subarray** `nums[l..r]` is considered **valid** if the sum of its elements satisfies both of the following conditions:\n\n\t* The first digit of the sum is equal to `x`.\n\n\t* The last digit of the sum is equal to `x`.\n\nReturn the number of valid subarrays.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,100,1], x = 1",
+      "output": "4",
+      "explanation": "The valid subarrays are:\n\n\n\tnums[0..0]: sum = 1\n\tnums[0..1]: sum = 1 + 100 = 101\n\tnums[1..2]: sum = 100 + 1 = 101\n\tnums[2..2]: sum = 1\n\n\nThus, the answer is 4."
+    },
+    {
+      "input": "nums = [1], x = 2",
+      "output": "0",
+      "explanation": "The only subarray is nums[0..0] with a sum of 1, which does not satisfy the conditions.\n\nThus, the answer is 0."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^9",
-    "1 <= x <= 9"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^9`",
+    "`1 <= x <= 9`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,100,1], x = 1",
+      "expected": "4"
+    },
+    {
+      "input": "[1], x = 2",
+      "expected": "0"
     }
   ],
   "hints": [

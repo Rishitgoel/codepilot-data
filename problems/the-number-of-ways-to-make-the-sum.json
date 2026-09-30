@@ -20,12 +20,23 @@
   "description": "You have an **infinite** number of coins with values 1, 2, and 6, and **only** 2 coins with value 4.\n\nGiven an integer `n`, return the number of ways to make the sum of `n` with the coins you have.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.\n\n**Note** that the order of the coins doesn't matter and `[2, 2, 3]` is the same as `[2, 3, 2]`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 4",
+      "output": "4",
+      "explanation": "Here are the four combinations: [1, 1, 1, 1], [1, 1, 2], [2, 2], [4]."
+    },
+    {
+      "input": "n = 12",
+      "output": "22",
+      "explanation": "Note that [4, 4, 4] is not a valid combination since we cannot use 4 three times."
+    },
+    {
+      "input": "n = 5",
+      "output": "4",
+      "explanation": "Here are the four combinations: [1, 1, 1, 1, 1], [1, 1, 1, 2], [1, 2, 2], [1, 4]."
     }
   ],
   "constraints": [
-    "1 <= n <= 10^5"
+    "`1 <= n <= 10^5`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def numberOfWays(self, n: int) -> int:\r\n        pass\n",
@@ -41,8 +52,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "4",
+      "expected": "4"
+    },
+    {
+      "input": "12",
+      "expected": "22"
+    },
+    {
+      "input": "5",
+      "expected": "4"
     }
   ],
   "hints": [

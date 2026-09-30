@@ -20,14 +20,25 @@
   "description": "Given 2 integer arrays `nums1` and `nums2` consisting only of 0 and 1, your task is to calculate the **minimum** possible **largest** number in arrays `nums1` and `nums2`, after doing the following.\n\nReplace every 0 with an *even positive integer* and every 1 with an *odd positive integer*. After replacement, both arrays should be **increasing** and each integer should be used **at most** once.\n\nReturn the *minimum possible largest number* after applying the changes.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums1 = [], nums2 = [1,0,1,1]",
+      "output": "5",
+      "explanation": "After replacing, nums1 = [], and nums2 = [1, 2, 3, 5]."
+    },
+    {
+      "input": "nums1 = [0,1,0,1], nums2 = [1,0,0,1]",
+      "output": "9",
+      "explanation": "One way to replace, having 9 as the largest element is nums1 = [2, 3, 8, 9], and nums2 = [1, 4, 6, 7]."
+    },
+    {
+      "input": "nums1 = [0,1,0,0,1], nums2 = [0,0,0,1]",
+      "output": "13",
+      "explanation": "One way to replace, having 13 as the largest element is nums1 = [2, 3, 4, 6, 7], and nums2 = [8, 10, 12, 13]."
     }
   ],
   "constraints": [
-    "0 <= nums1.length <= 1000",
-    "1 <= nums2.length <= 1000",
-    "nums1 and nums2 consist only of 0 and 1."
+    "`0 <= nums1.length <= 1000`",
+    "`1 <= nums2.length <= 1000`",
+    "`nums1` and `nums2` consist only of 0 and 1."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minLargest(self, nums1: List[int], nums2: List[int]) -> int:\r\n        pass\n",
@@ -43,8 +54,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[], nums2 = [1,0,1,1]",
+      "expected": "5"
+    },
+    {
+      "input": "[0,1,0,1], nums2 = [1,0,0,1]",
+      "expected": "9"
+    },
+    {
+      "input": "[0,1,0,0,1], nums2 = [0,0,0,1]",
+      "expected": "13"
     }
   ],
   "hints": [

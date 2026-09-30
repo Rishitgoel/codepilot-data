@@ -20,20 +20,30 @@
   "description": "You are given an integer array `degrees`, where `degrees[i]` represents the desired degree of the `i^th` vertex.\n\nYour task is to determine if there exists an **undirected simple** graph with **exactly** these vertex degrees.\n\nA **simple** graph has no self-loops or parallel edges between the same pair of vertices.\n\nReturn `true` if such a graph exists, otherwise return `false`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "degrees = [3,1,2,2]",
+      "output": "true",
+      "explanation": "​​​​​​​\n\nOne possible undirected simple graph is:\n\n\n\tEdges: (0, 1), (0, 2), (0, 3), (2, 3)\n\tDegrees: deg(0) = 3, deg(1) = 1, deg(2) = 2, deg(3) = 2."
+    },
+    {
+      "input": "degrees = [1,3,3,1]",
+      "output": "false",
+      "explanation": "​​​​​​​\n\n\n\tdegrees[1] = 3 and degrees[2] = 3 means they must be connected to all other vertices.\n\tThis requires degrees[0] and degrees[3] to be at least 2, but both are equal to 1, which contradicts the requirement.\n\tThus, the answer is false."
     }
   ],
   "constraints": [
-    "1 <= n == degrees.length <= 10^​​​​​​​5",
-    "0 <= degrees[i] <= n - 1"
+    "`1 <= n == degrees.length <= 10^​​​​​​​5`",
+    "`0 <= degrees[i] <= n - 1`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,1,2,2]",
+      "expected": "true"
+    },
+    {
+      "input": "[1,3,3,1]",
+      "expected": "false"
     }
   ],
   "hints": [

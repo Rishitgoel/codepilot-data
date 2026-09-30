@@ -20,23 +20,42 @@
   "description": "You are given an integer `n` denoting the number of floors in a building, where the floors are numbered from 0 to `n - 1`.\n\nYou are also given an integer `start` and a 2D integer array `requests`, where `requests[i] = [arrivali, floori]` indicates that a request for `floori` is made at time `arrivali`.\n\nAt time 0, the elevator is at floor `start`.\n\nAt each second, the elevator may move **up** by 1 floor, move **down** by 1 floor, or **remain** on its current floor.\n\nA request can be fulfilled **only** at or after its arrival time; it is fulfilled **instantly** when the elevator is on its requested floor at any time from its arrival time onward.\n\nReturn the **minimum** time needed to fulfill all requests.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 9, start = 0, requests = [[0,8],[6,5]]",
+      "output": "9",
+      "explanation": "Move from floor 0 (start) to floor 5 (requests[1][1]) in 5 seconds, reaching at time 5. Since requests[1][0] = 6, wait until time 6 to fulfill it.\n\tMove from floor 5 to floor 8 (requests[0][1]) in 3 seconds, fulfilling it at time 9.\n\n\nThus, all requests are fulfilled by time 9."
+    },
+    {
+      "input": "n = 8, start = 5, requests = [[1,7],[7,3]]",
+      "output": "7",
+      "explanation": "Move from floor 5 (start) to floor 7 (requests[0][1]) in 2 seconds, reaching at time 2. Since requests[0][0] = 1 has already passed, floor 7 is fulfilled at time 2.\n\tMove from floor 7 to floor 3 (requests[1][1]) in 4 seconds, reaching at time 6. Since requests[1][0] = 7, wait until time 7.\n\n\nThus, all requests are fulfilled by time 7."
+    },
+    {
+      "input": "n = 7, start = 3, requests = [[0,5],[0,1],[6,3]]",
+      "output": "8",
+      "explanation": "Move from floor 3 (start) to floor 5 (requests[0][1]) in 2 seconds, fulfilling it at time 2.\n\tMove from floor 5 to floor 1 (requests[1][1]) in 4 seconds, fulfilling it at time 6.\n\tMove from floor 1 to floor 3 (requests[2][1]) in 2 seconds, reaching at time 8. Its request arrived at requests[2][0] = 6, so floor 3 is fulfilled at time 8.\n\n\nThus, all requests are fulfilled by time 8."
     }
   ],
   "constraints": [
-    "1 <= n <= 10^9",
-    "1 <= requests.length <= 500",
-    "requests[i] == [arrivali, floori]",
-    "0 <= arrivali <= 10^9",
-    "0 <= start, floori <= n - 1"
+    "`1 <= n <= 10^9`",
+    "`1 <= requests.length <= 500`",
+    "`requests[i] == [arrivali, floori]`",
+    "`0 <= arrivali <= 10^9`",
+    "`0 <= start, floori <= n - 1`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "9, start = 0, requests = [[0,8],[6,5]]",
+      "expected": "9"
+    },
+    {
+      "input": "8, start = 5, requests = [[1,7],[7,3]]",
+      "expected": "7"
+    },
+    {
+      "input": "7, start = 3, requests = [[0,5],[0,1],[6,3]]",
+      "expected": "8"
     }
   ],
   "hints": [

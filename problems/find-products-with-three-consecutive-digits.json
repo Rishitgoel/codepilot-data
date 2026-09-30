@@ -20,8 +20,9 @@
   "description": "Table: `Products`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| product_id  | int     |\n| name        | varchar |\n+-------------+---------+\nproduct_id is the unique key for this table.\nEach row of this table contains the ID and name of a product.\n\nWrite a solution to find all **products** whose names contain a **sequence of exactly three consecutive digits in a row**. \n\nReturn *the result table ordered by* `product_id` *in **ascending** order.*\n\nThe result format is in the following example.\n\n**Note** that the name may contain multiple such sequences, but each should have length three.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "products table:\n\n\n+-------------+--------------------+\n| product_id  | name               |\n+-------------+--------------------+\n| 1           | ABC123XYZ          |\n| 2           | A12B34C            |\n| 3           | Product56789       |\n| 4           | NoDigitsHere       |\n| 5           | 789Product         |\n| 6           | Item003Description |\n| 7           | Product12X34       |\n+-------------+--------------------+",
+      "output": "+-------------+--------------------+\n| product_id  | name               |\n+-------------+--------------------+\n| 1           | ABC123XYZ          |\n| 5           | 789Product         |\n| 6           | Item003Description |\n+-------------+--------------------+",
+      "explanation": "Product 1: ABC123XYZ contains the digits 123.\n\tProduct 5: 789Product contains the digits 789.\n\tProduct 6: Item003Description contains 003, which is exactly three digits.\n\n\nNote:\n\n\n\tResults are ordered by product_id in ascending order.\n\tOnly products with exactly three consecutive digits in their names are included in the result."
     }
   ],
   "constraints": [
@@ -35,8 +36,8 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "products table:\n\n\n+-------------+--------------------+\n| product_id  | name               |\n+-------------+--------------------+\n| 1           | ABC123XYZ          |\n| 2           | A12B34C            |\n| 3           | Product56789       |\n| 4           | NoDigitsHere       |\n| 5           | 789Product         |\n| 6           | Item003Description |\n| 7           | Product12X34       |\n+-------------+--------------------+",
+      "expected": "+-------------+--------------------+\n| product_id  | name               |\n+-------------+--------------------+\n| 1           | ABC123XYZ          |\n| 5           | 789Product         |\n| 6           | Item003Description |\n+-------------+--------------------+"
     }
   ],
   "hints": [

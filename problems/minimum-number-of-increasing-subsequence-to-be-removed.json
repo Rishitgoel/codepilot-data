@@ -17,16 +17,25 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Number%20of%20Increasing%20Subsequence%20to%20Be%20Removed"
   },
-  "description": "Given an array of integers `nums`, you are allowed to perform the following operation any number of times:\n\n\tRemove a **strictly increasing** subsequence from the array.\n\nYour task is to find the **minimum** number of operations required to make the array **empty**.",
+  "description": "Given an array of integers `nums`, you are allowed to perform the following operation any number of times:\n\n\t* Remove a **strictly increasing** subsequence from the array.\n\nYour task is to find the **minimum** number of operations required to make the array **empty**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [5,3,1,4,2]",
+      "output": "3",
+      "explanation": "We remove subsequences [1, 2], [3, 4], [5]."
+    },
+    {
+      "input": "nums = [1,2,3,4,5]",
+      "output": "1"
+    },
+    {
+      "input": "nums = [5,4,3,2,1]",
+      "output": "5"
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^5"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^5`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int]) -> int:\r\n        pass\n",
@@ -42,8 +51,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[5,3,1,4,2]",
+      "expected": "3"
+    },
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "1"
+    },
+    {
+      "input": "[5,4,3,2,1]",
+      "expected": "5"
     }
   ],
   "hints": [

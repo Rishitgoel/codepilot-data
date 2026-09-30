@@ -20,15 +20,21 @@
   "description": "There are `n` windows open numbered from `1` to `n`, we want to simulate using alt + tab to navigate between the windows.\n\nYou are given an array `windows` which contains the initial order of the windows (the first element is at the top and the last one is at the bottom).\n\nYou are also given an array `queries` where for each query, the window `queries[i]` is brought to the top.\n\nReturn the final state of the array `windows`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "windows = [1,2,3], queries = [3,3,2]",
+      "output": "[2,3,1]",
+      "explanation": "Here is the window array after each query:\n\n\n\tInitial order: [1,2,3]\n\tAfter the first query: [3,1,2]\n\tAfter the second query: [3,1,2]\n\tAfter the last query: [2,3,1]"
+    },
+    {
+      "input": "windows = [1,4,2,3], queries = [4,1,3]",
+      "output": "[3,1,4,2]",
+      "explanation": "Here is the window array after each query:\n\n\n\tInitial order: [1,4,2,3]\n\tAfter the first query: [4,1,2,3]\n\tAfter the second query: [1,4,2,3]\n\tAfter the last query: [3,1,4,2]"
     }
   ],
   "constraints": [
-    "1 <= n == windows.length <= 10^5",
-    "windows is a permutation of [1, n].",
-    "1 <= queries.length <= 10^5",
-    "1 <= queries[i] <= n"
+    "`1 <= n == windows.length <= 10^5`",
+    "`windows` is a permutation of `[1, n]`.",
+    "`1 <= queries.length <= 10^5`",
+    "`1 <= queries[i] <= n`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def simulationResult(self, windows: List[int], queries: List[int]) -> List[int]:\n        pass\n",
@@ -44,8 +50,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3], queries = [3,3,2]",
+      "expected": "[2,3,1]"
+    },
+    {
+      "input": "[1,4,2,3], queries = [4,1,3]",
+      "expected": "[3,1,4,2]"
     }
   ],
   "hints": [

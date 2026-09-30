@@ -25,9 +25,9 @@
     }
   ],
   "constraints": [
-    "1 <= n <= 2^30 - 1",
-    "0 <= num <= 2^30 - 1",
-    "If you ask for some num out of the given range, the output wouldn't be reliable."
+    "`1 <= n <= 2^30 - 1`",
+    "`0 <= num <= 2^30 - 1`",
+    "If you ask for some `num` out of the given range, the output wouldn't be reliable."
   ],
   "starterTemplates": {
     "python": "# Definition of commonSetBits API.\r\n# def commonSetBits(num: int) -> int:\r\n\r\n\r\nclass Solution:\r\n    def findNumber(self) -> int:\r\n        pass\n",

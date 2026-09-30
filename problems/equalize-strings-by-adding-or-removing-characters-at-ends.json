@@ -17,13 +17,24 @@
   "description": "Given two strings `initial` and `target`, your task is to modify `initial` by performing a series of operations to make it equal to `target`.\n\nIn one operation, you can add or remove **one character** only at the *beginning* or the *end* of the string `initial`.\n\nReturn the **minimum** number of operations required to *transform* `initial` into `target`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "initial = \"abcde\", target = \"cdef\"",
+      "output": "3",
+      "explanation": "Remove 'a' and 'b' from the beginning of initial, then add 'f' to the end."
+    },
+    {
+      "input": "initial = \"axxy\", target = \"yabx\"",
+      "output": "6",
+      "explanation": "Operation\n\t\t\tResulting String\n\t\t\n\t\t\n\t\t\tAdd 'y' to the beginning\n\t\t\t\"yaxxy\"\n\t\t\n\t\t\n\t\t\tRemove from end\n\t\t\t\"yaxx\"\n\t\t\n\t\t\n\t\t\tRemove from end\n\t\t\t\"yax\"\n\t\t\n\t\t\n\t\t\tRemove from end\n\t\t\t\"ya\"\n\t\t\n\t\t\n\t\t\tAdd 'b' to the end\n\t\t\t\"yab\"\n\t\t\n\t\t\n\t\t\tAdd 'x' to the end\n\t\t\t\"yabx\""
+    },
+    {
+      "input": "initial = \"xyz\", target = \"xyz\"",
+      "output": "0",
+      "explanation": "No operations are needed as the strings are already equal."
     }
   ],
   "constraints": [
-    "1 <= initial.length, target.length <= 1000",
-    "initial and target consist only of lowercase English letters."
+    "`1 <= initial.length, target.length <= 1000`",
+    "`initial` and `target` consist only of lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minOperations(self, initial: str, target: str) -> int:\n        pass\n",
@@ -39,8 +50,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abcde\", target = \"cdef\"",
+      "expected": "3"
+    },
+    {
+      "input": "\"axxy\", target = \"yabx\"",
+      "expected": "6"
+    },
+    {
+      "input": "\"xyz\", target = \"xyz\"",
+      "expected": "0"
     }
   ],
   "hints": [

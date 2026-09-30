@@ -17,17 +17,28 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Weight%20in%20Two%20Bags"
   },
-  "description": "You are given an integer array `weights` and two integers `w1` and `w2` representing the **maximum** capacities of two bags.\n\nEach item may be placed in **at most** one bag such that:\n\n\tBag 1 holds **at most** `w1` total weight.\n\tBag 2 holds **at most** `w2` total weight.\n\nReturn the **maximum** total weight that can be packed into the two bags.",
+  "description": "You are given an integer array `weights` and two integers `w1` and `w2` representing the **maximum** capacities of two bags.\n\nEach item may be placed in **at most** one bag such that:\n\n\t* Bag 1 holds **at most** `w1` total weight.\n\n\t* Bag 2 holds **at most** `w2` total weight.\n\nReturn the **maximum** total weight that can be packed into the two bags.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "weights = [1,4,3,2], w1 = 5, w2 = 4",
+      "output": "9",
+      "explanation": "Bag 1: Place weights[2] = 3 and weights[3] = 2 as 3 + 2 = 5 <= w1\n\tBag 2: Place weights[1] = 4 as 4 <= w2\n\tTotal weight: 5 + 4 = 9"
+    },
+    {
+      "input": "weights = [3,6,4,8], w1 = 9, w2 = 7",
+      "output": "15",
+      "explanation": "Bag 1: Place weights[3] = 8 as 8 <= w1\n\tBag 2: Place weights[0] = 3 and weights[2] = 4 as 3 + 4 = 7 <= w2\n\tTotal weight: 8 + 7 = 15"
+    },
+    {
+      "input": "weights = [5,7], w1 = 2, w2 = 3",
+      "output": "0",
+      "explanation": "No weight fits in either bag, thus the answer is 0."
     }
   ],
   "constraints": [
-    "1 <= weights.length <= 100",
-    "1 <= weights[i] <= 100",
-    "1 <= w1, w2 <= 300"
+    "`1 <= weights.length <= 100`",
+    "`1 <= weights[i] <= 100`",
+    "`1 <= w1, w2 <= 300`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxWeight(self, weights: List[int], w1: int, w2: int) -> int:\n        pass\n",
@@ -43,8 +54,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,4,3,2], w1 = 5, w2 = 4",
+      "expected": "9"
+    },
+    {
+      "input": "[3,6,4,8], w1 = 9, w2 = 7",
+      "expected": "15"
+    },
+    {
+      "input": "[5,7], w1 = 2, w2 = 3",
+      "expected": "0"
     }
   ],
   "hints": [

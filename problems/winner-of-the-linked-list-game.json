@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Winner%20of%20the%20Linked%20List%20Game"
   },
-  "description": "You are given the `head` of a linked list of **even** length containing integers.\n\nEach **odd-indexed** node contains an odd integer and each **even-indexed** node contains an even integer.\n\nWe call each even-indexed node and its next node a **pair**, e.g., the nodes with indices `0` and `1` are a pair, the nodes with indices `2` and `3` are a pair, and so on.\n\nFor every **pair**, we compare the values of the nodes in the pair:\n\n\tIf the odd-indexed node is higher, the `\"Odd\"` team gets a point.\n\tIf the even-indexed node is higher, the `\"Even\"` team gets a point.\n\nReturn *the name of the team with the **higher** points, if the points are equal, return* `\"Tie\"`.",
+  "description": "You are given the `head` of a linked list of **even** length containing integers.\n\nEach **odd-indexed** node contains an odd integer and each **even-indexed** node contains an even integer.\n\nWe call each even-indexed node and its next node a **pair**, e.g., the nodes with indices `0` and `1` are a pair, the nodes with indices `2` and `3` are a pair, and so on.\n\nFor every **pair**, we compare the values of the nodes in the pair:\n\n\t* If the odd-indexed node is higher, the `\"Odd\"` team gets a point.\n\n\t* If the even-indexed node is higher, the `\"Even\"` team gets a point.\n\nReturn *the name of the team with the **higher** points, if the points are equal, return* `\"Tie\"`.",
   "examples": [
     {
       "input": "Input per specifications",
@@ -25,9 +25,9 @@
     }
   ],
   "constraints": [
-    "The number of nodes in the list is in the range [2, 100].",
+    "The number of nodes in the list is in the range `[2, 100]`.",
     "The number of nodes in the list is even.",
-    "1 <= Node.val <= 100",
+    "`1 <= Node.val <= 100`",
     "The value of each odd-indexed node is odd.",
     "The value of each even-indexed node is even."
   ],

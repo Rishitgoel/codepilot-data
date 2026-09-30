@@ -20,13 +20,19 @@
   "description": "There is a special keyboard where keys are arranged in a rectangular grid as follows.\n\n\t\n\t\t\n\t\t\tq\n\t\t\tw\n\t\t\te\n\t\t\tr\n\t\t\tt\n\t\t\ty\n\t\t\tu\n\t\t\ti\n\t\t\to\n\t\t\tp\n\t\t\n\t\t\n\t\t\ta\n\t\t\ts\n\t\t\td\n\t\t\tf\n\t\t\tg\n\t\t\th\n\t\t\tj\n\t\t\tk\n\t\t\tl\n\t\t\t \n\t\t\n\t\t\n\t\t\tz\n\t\t\tx\n\t\t\tc\n\t\t\tv\n\t\t\tb\n\t\t\tn\n\t\t\tm\n\t\t\t \n\t\t\t \n\t\t\t \n\t\t\n\t\n\nYou are given a string `s` that consists of lowercase English letters only. Return an integer denoting the total **distance** to type `s` using only one finger. Your finger starts on the key `'a'`.\n\nThe **distance** between two keys at `(r1, c1)` and `(r2, c2)` is `|r1 - r2| + |c1 - c2|`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"hello\"",
+      "output": "17",
+      "explanation": "Your finger starts at 'a', which is at (1, 0).\n\tMove to 'h', which is at (1, 5). The distance is |1 - 1| + |0 - 5| = 5.\n\tMove to 'e', which is at (0, 2). The distance is |1 - 0| + |5 - 2| = 4.\n\tMove to 'l', which is at (1, 8). The distance is |0 - 1| + |2 - 8| = 7.\n\tMove to 'l', which is at (1, 8). The distance is |1 - 1| + |8 - 8| = 0.\n\tMove to 'o', which is at (0, 8). The distance is |1 - 0| + |8 - 8| = 1.\n\tTotal distance is 5 + 4 + 7 + 0 + 1 = 17."
+    },
+    {
+      "input": "s = \"a\"",
+      "output": "0",
+      "explanation": "Your finger starts at 'a', which is at (1, 0).\n\tMove to 'a', which is at (1, 0). The distance is |1 - 1| + |0 - 0| = 0.\n\tTotal distance is 0."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 10^4",
-    "s consists of lowercase English letters only."
+    "`1 <= s.length <= 10^4`",
+    "`s` consists of lowercase English letters only."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def totalDistance(self, s: str) -> int:\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"hello\"",
+      "expected": "17"
+    },
+    {
+      "input": "\"a\"",
+      "expected": "0"
     }
   ],
   "hints": [

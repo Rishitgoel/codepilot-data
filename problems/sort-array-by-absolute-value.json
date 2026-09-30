@@ -14,16 +14,22 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Sort%20Array%20By%20Absolute%20Value"
   },
-  "description": "You are given an integer array `nums`.\n\nRearrange elements of `nums` in **non-decreasing** order of their absolute value.\n\nReturn **any** rearranged array that satisfies this condition.\n\n**Note**: The absolute value of an integer x is defined as:\n\n\t`x` if `x >= 0`\n\t`-x` if `x",
+  "description": "You are given an integer array `nums`.\n\nRearrange elements of `nums` in **non-decreasing** order of their absolute value.\n\nReturn **any** rearranged array that satisfies this condition.\n\n**Note**: The absolute value of an integer x is defined as:\n\n\t* `x` if `x >= 0`\n\n\t* `-x` if `x < 0`",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [3,-1,-4,1,5]",
+      "output": "[-1,1,3,-4,5]",
+      "explanation": "The absolute values of elements in nums are 3, 1, 4, 1, 5 respectively.\n\tRearranging them in increasing order, we get 1, 1, 3, 4, 5.\n\tThis corresponds to [-1, 1, 3, -4, 5]. Another possible rearrangement is [1, -1, 3, -4, 5]."
+    },
+    {
+      "input": "nums = [-100,100]",
+      "output": "[-100,100]",
+      "explanation": "The absolute values of elements in nums are 100, 100 respectively.\n\tRearranging them in increasing order, we get 100, 100.\n\tThis corresponds to [-100, 100]. Another possible rearrangement is [100, -100]."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 100",
-    "-100 <= nums[i] <= 100"
+    "`1 <= nums.length <= 100`",
+    "`-100 <= nums[i] <= 100`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortByAbsoluteValue(self, nums: List[int]) -> List[int]:\n        pass\n",
@@ -39,8 +45,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,-1,-4,1,5]",
+      "expected": "[-1,1,3,-4,5]"
+    },
+    {
+      "input": "[-100,100]",
+      "expected": "[-100,100]"
     }
   ],
   "hints": [

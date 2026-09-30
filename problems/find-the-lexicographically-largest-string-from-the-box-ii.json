@@ -17,17 +17,23 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Find%20the%20Lexicographically%20Largest%20String%20From%20the%20Box%20II"
   },
-  "description": "You are given a string `word`, and an integer `numFriends`.\n\nAlice is organizing a game for her `numFriends` friends. There are multiple rounds in the game, where in each round:\n\n\t`word` is split into `numFriends` **non-empty** strings, such that no previous round has had the **exact** same split.\n\tAll the split words are put into a box.\n\nFind the **lexicographically largest** string from the box after all the rounds are finished.\n\nA string `a` is **lexicographically smaller** than a string `b` if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`.\n\nIf the first `min(a.length, b.length)` characters do not differ, then the shorter string is the lexicographically smaller one.",
+  "description": "You are given a string `word`, and an integer `numFriends`.\n\nAlice is organizing a game for her `numFriends` friends. There are multiple rounds in the game, where in each round:\n\n\t* `word` is split into `numFriends` **non-empty** strings, such that no previous round has had the **exact** same split.\n\n\t* All the split words are put into a box.\n\nFind the **lexicographically largest** string from the box after all the rounds are finished.\n\nA string `a` is **lexicographically smaller** than a string `b` if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`.\n\nIf the first `min(a.length, b.length)` characters do not differ, then the shorter string is the lexicographically smaller one.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "word = \"dbca\", numFriends = 2",
+      "output": "\"dbc\"",
+      "explanation": "All possible splits are:\n\n\n\t\"d\" and \"bca\".\n\t\"db\" and \"ca\".\n\t\"dbc\" and \"a\"."
+    },
+    {
+      "input": "word = \"gggg\", numFriends = 4",
+      "output": "\"g\"",
+      "explanation": "The only possible split is: \"g\", \"g\", \"g\", and \"g\"."
     }
   ],
   "constraints": [
-    "1 <= word.length <= 2 * 10^5",
-    "word consists only of lowercase English letters.",
-    "1 <= numFriends <= word.length"
+    "`1 <= word.length <= 2 * 10^5`",
+    "`word` consists only of lowercase English letters.",
+    "`1 <= numFriends <= word.length`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def answerString(self, word: str, numFriends: int) -> str:\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"dbca\", numFriends = 2",
+      "expected": "\"dbc\""
+    },
+    {
+      "input": "\"gggg\", numFriends = 4",
+      "expected": "\"g\""
     }
   ],
   "hints": [

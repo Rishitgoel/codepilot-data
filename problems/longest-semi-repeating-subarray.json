@@ -20,14 +20,25 @@
   "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nA **semi‑repeating** subarray is a contiguous subarray in which at most `k` elements repeat (i.e., appear more than once).\n\nReturn the length of the longest **semi‑repeating** subarray in `nums`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,2,3,1,2,3,4], k = 2",
+      "output": "6",
+      "explanation": "The longest semi-repeating subarray is [2, 3, 1, 2, 3, 4], which has two repeating elements (2 and 3)."
+    },
+    {
+      "input": "nums = [1,1,1,1,1], k = 4",
+      "output": "5",
+      "explanation": "The longest semi-repeating subarray is [1, 1, 1, 1, 1], which has only one repeating element (1)."
+    },
+    {
+      "input": "nums = [1,1,1,1,1], k = 0",
+      "output": "1",
+      "explanation": "The longest semi-repeating subarray is [1], which has no repeating elements."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^5",
-    "0 <= k <= nums.length"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^5`",
+    "`0 <= k <= nums.length`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def longestSubarray(self, nums: List[int], k: int) -> int:\n        pass\n",
@@ -43,8 +54,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3,1,2,3,4], k = 2",
+      "expected": "6"
+    },
+    {
+      "input": "[1,1,1,1,1], k = 4",
+      "expected": "5"
+    },
+    {
+      "input": "[1,1,1,1,1], k = 0",
+      "expected": "1"
     }
   ],
   "hints": [

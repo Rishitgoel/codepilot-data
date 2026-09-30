@@ -17,17 +17,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Find%20the%20Number%20of%20K-Even%20Arrays"
   },
-  "description": "You are given three integers `n`, `m`, and `k`.\n\nAn array `arr` is called **k-even** if there are **exactly** `k` indices such that, for each of these indices `i` (`0 \n\t`(arr[i] * arr[i + 1]) - arr[i] - arr[i + 1]` is *even*.\n\nReturn the number of possible **k-even** arrays of size `n` where all elements are in the range `[1, m]`.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
+  "description": "You are given three integers `n`, `m`, and `k`.\n\nAn array `arr` is called **k-even** if there are **exactly** `k` indices such that, for each of these indices `i` (`0 <= i < n - 1`):\n\n\t* `(arr[i] * arr[i + 1]) - arr[i] - arr[i + 1]` is *even*.\n\nReturn the number of possible **k-even** arrays of size `n` where all elements are in the range `[1, m]`.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 3, m = 4, k = 2",
+      "output": "8",
+      "explanation": "The 8 possible 2-even arrays are:\n\n\n\t[2, 2, 2]\n\t[2, 2, 4]\n\t[2, 4, 2]\n\t[2, 4, 4]\n\t[4, 2, 2]\n\t[4, 2, 4]\n\t[4, 4, 2]\n\t[4, 4, 4]"
+    },
+    {
+      "input": "n = 5, m = 1, k = 0",
+      "output": "1",
+      "explanation": "The only 0-even array is [1, 1, 1, 1, 1]."
+    },
+    {
+      "input": "n = 7, m = 7, k = 5",
+      "output": "5832"
     }
   ],
   "constraints": [
-    "1 <= n <= 750",
-    "0 <= k <= n - 1",
-    "1 <= m <= 1000"
+    "`1 <= n <= 750`",
+    "`0 <= k <= n - 1`",
+    "`1 <= m <= 1000`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def countOfArrays(self, n: int, m: int, k: int) -> int:\r\n        pass\n",
@@ -43,8 +53,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "3, m = 4, k = 2",
+      "expected": "8"
+    },
+    {
+      "input": "5, m = 1, k = 0",
+      "expected": "1"
+    },
+    {
+      "input": "7, m = 7, k = 5",
+      "expected": "5832"
     }
   ],
   "hints": [

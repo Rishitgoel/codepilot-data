@@ -17,23 +17,42 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20Array%20Equal%20III"
   },
-  "description": "You are given an integer array `nums`.\n\nIn one operation, you may choose **any** element `nums[i]` and perform one of the following:\n\n\t**Multiply** `nums[i]` by an integer `k`, where `k >= 2`.\n\t**Divide** `nums[i]` by an integer `k`, where `2 \n\nReturn the **minimum** number of operations required to make all elements of `nums` **equal**.",
+  "description": "You are given an integer array `nums`.\n\nIn one operation, you may choose **any** element `nums[i]` and perform one of the following:\n\n\t* **Multiply** `nums[i]` by an integer `k`, where `k >= 2`.\n\n\t* **Divide** `nums[i]` by an integer `k`, where `2 <= k < nums[i]`, provided that `nums[i]` is divisible by `k`.\n\nReturn the **minimum** number of operations required to make all elements of `nums` **equal**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [6,12,8]",
+      "output": "3",
+      "explanation": "We can perform following operates to make all numbers to 6:\n\n\n\tDivide nums[1] = 12 by 2 to get 6.\n\tDivide nums[2] = 8 by 4 to get 2.\n\tMultiply nums[2] = 2 by 3 to get 6."
+    },
+    {
+      "input": "nums = [5,15,20]",
+      "output": "2",
+      "explanation": "We can perform following operates to make all numbers to 5:\n\n\n\tDivide nums[1] = 15 by 3 to get 5.\n\tDivide nums[2] = 20 by 4 to get 5."
+    },
+    {
+      "input": "nums = [7,7,7]",
+      "output": "0",
+      "explanation": "All elements are already equal, so no operations are needed."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^​​​​​​​9"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^​​​​​​​9`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[6,12,8]",
+      "expected": "3"
+    },
+    {
+      "input": "[5,15,20]",
+      "expected": "2"
+    },
+    {
+      "input": "[7,7,7]",
+      "expected": "0"
     }
   ],
   "hints": [

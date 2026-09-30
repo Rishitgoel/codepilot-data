@@ -20,8 +20,9 @@
   "description": "Table: `Tasks`\n\n+---------------+----------+\n| Column Name   | Type     |\n+---------------+----------+\n| task_id       | int      |\n| employee_id   | int      |\n| start_time    | datetime |\n| end_time      | datetime |\n+---------------+----------+\n(task_id, employee_id) is the primary key for this table.\nEach row in this table contains the task identifier, the employee identifier, and the start and end times of each task.\n\nWrite a solution to find the **total duration** of tasks for **each** employee and the **maximum number of concurrent tasks** an employee handled at **any point in time**. The total duration should be **rounded down** to the nearest number of **full hours**.\n\nReturn *the result table ordered by* `employee_id`** *ascending**** order*.\n\nThe result format is in the following example.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "Tasks table:\n\n\n+---------+-------------+---------------------+---------------------+\n| task_id | employee_id | start_time          | end_time            |\n+---------+-------------+---------------------+---------------------+\n| 1       | 1001        | 2023-05-01 08:00:00 | 2023-05-01 09:00:00 |\n| 2       | 1001        | 2023-05-01 08:30:00 | 2023-05-01 10:30:00 |\n| 3       | 1001        | 2023-05-01 11:00:00 | 2023-05-01 12:00:00 |\n| 7       | 1001        | 2023-05-01 13:00:00 | 2023-05-01 15:30:00 |\n| 4       | 1002        | 2023-05-01 09:00:00 | 2023-05-01 10:00:00 |\n| 5       | 1002        | 2023-05-01 09:30:00 | 2023-05-01 11:30:00 |\n| 6       | 1003        | 2023-05-01 14:00:00 | 2023-05-01 16:00:00 |\n+---------+-------------+---------------------+---------------------+",
+      "output": "+-------------+------------------+----------------------+\n| employee_id | total_task_hours | max_concurrent_tasks |\n+-------------+------------------+----------------------+\n| 1001        | 6                | 2                    |\n| 1002        | 2                | 2                    |\n| 1003        | 2                | 1                    |\n+-------------+------------------+----------------------+",
+      "explanation": "For employee ID 1001:\n\t\n\t\tTask 1 and Task 2 overlap from 08:30 to 09:00 (30 minutes).\n\t\tTask 7 has a duration of 150 minutes (2 hours and 30 minutes).\n\t\tTotal task time: 60 (Task 1) + 120 (Task 2) + 60 (Task 3) + 150 (Task 7) - 30 (overlap) = 360 minutes = 6 hours.\n\t\tMaximum concurrent tasks: 2 (during the overlap period).\n\t\n\t\n\tFor employee ID 1002:\n\t\n\t\tTask 4 and Task 5 overlap from 09:30 to 10:00 (30 minutes).\n\t\tTotal task time: 60 (Task 4) + 120 (Task 5) - 30 (overlap) = 150 minutes = 2 hours and 30 minutes.\n\t\tTotal task hours (rounded down): 2 hours.\n\t\tMaximum concurrent tasks: 2 (during the overlap period).\n\t\n\t\n\tFor employee ID 1003:\n\t\n\t\tNo overlapping tasks.\n\t\tTotal task time: 120 minutes = 2 hours.\n\t\tMaximum concurrent tasks: 1.\n\t\n\t\n\n\nNote: Output table is ordered by employee_id in ascending order."
     }
   ],
   "constraints": [
@@ -31,8 +32,8 @@
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "Tasks table:\n\n\n+---------+-------------+---------------------+---------------------+\n| task_id | employee_id | start_time          | end_time            |\n+---------+-------------+---------------------+---------------------+\n| 1       | 1001        | 2023-05-01 08:00:00 | 2023-05-01 09:00:00 |\n| 2       | 1001        | 2023-05-01 08:30:00 | 2023-05-01 10:30:00 |\n| 3       | 1001        | 2023-05-01 11:00:00 | 2023-05-01 12:00:00 |\n| 7       | 1001        | 2023-05-01 13:00:00 | 2023-05-01 15:30:00 |\n| 4       | 1002        | 2023-05-01 09:00:00 | 2023-05-01 10:00:00 |\n| 5       | 1002        | 2023-05-01 09:30:00 | 2023-05-01 11:30:00 |\n| 6       | 1003        | 2023-05-01 14:00:00 | 2023-05-01 16:00:00 |\n+---------+-------------+---------------------+---------------------+",
+      "expected": "+-------------+------------------+----------------------+\n| employee_id | total_task_hours | max_concurrent_tasks |\n+-------------+------------------+----------------------+\n| 1001        | 6                | 2                    |\n| 1002        | 2                | 2                    |\n| 1003        | 2                | 1                    |\n+-------------+------------------+----------------------+"
     }
   ],
   "hints": [

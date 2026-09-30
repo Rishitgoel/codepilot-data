@@ -14,20 +14,21 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Design%20Order%20Management%20System"
   },
-  "description": "You are asked to design a simple order management system for a trading platform.\n\nEach order is associated with an `orderId`, an `orderType` (`\"buy\"` or `\"sell\"`), and a `price`.\n\nAn order is considered **active** unless it is canceled.\n\nImplement the `OrderManagementSystem` class:\n\n\t`OrderManagementSystem()`: Initializes the order management system.\n\t`void addOrder(int orderId, string orderType, int price)`: Adds a new **active** order with the given attributes. It is **guaranteed** that `orderId` is unique.\n\t`void modifyOrder(int orderId, int newPrice)`: Modifies the **price** of an existing order. It is **guaranteed** that the order exists and is *active*.\n\t`void cancelOrder(int orderId)`: Cancels an existing order. It is **guaranteed** that the order exists and is *active*.\n\t`vector getOrdersAtPrice(string orderType, int price)`: Returns the `orderId`s of all **active** orders that match the given `orderType` and `price`. If no such orders exist, return an empty list.\n\n**Note:** The order of returned `orderId`s does not matter.",
+  "description": "You are asked to design a simple order management system for a trading platform.\n\nEach order is associated with an `orderId`, an `orderType` (`\"buy\"` or `\"sell\"`), and a `price`.\n\nAn order is considered **active** unless it is canceled.\n\nImplement the `OrderManagementSystem` class:\n\n\t* `OrderManagementSystem()`: Initializes the order management system.\n\n\t* `void addOrder(int orderId, string orderType, int price)`: Adds a new **active** order with the given attributes. It is **guaranteed** that `orderId` is unique.\n\n\t* `void modifyOrder(int orderId, int newPrice)`: Modifies the **price** of an existing order. It is **guaranteed** that the order exists and is *active*.\n\n\t* `void cancelOrder(int orderId)`: Cancels an existing order. It is **guaranteed** that the order exists and is *active*.\n\n\t* `vector<int> getOrdersAtPrice(string orderType, int price)`: Returns the `orderId`s of all **active** orders that match the given `orderType` and `price`. If no such orders exist, return an empty list.\n\n**Note:** The order of returned `orderId`s does not matter.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "[\"OrderManagementSystem\", \"addOrder\", \"addOrder\", \"addOrder\", \"getOrdersAtPrice\", \"modifyOrder\", \"modifyOrder\", \"getOrdersAtPrice\", \"cancelOrder\", \"cancelOrder\", \"getOrdersAtPrice\"]\n[[], [1, \"buy\", 1], [2, \"buy\", 1], [3, \"sell\", 2], [\"buy\", 1], [1, 3], [2, 1], [\"buy\", 1], [3], [2], [\"buy\", 1]]",
+      "output": "[null, null, null, null, [2, 1], null, null, [2], null, null, []]",
+      "explanation": "OrderManagementSystem orderManagementSystem = new OrderManagementSystem();\norderManagementSystem.addOrder(1, \"buy\", 1); // A buy order with ID 1 is added at price 1.\norderManagementSystem.addOrder(2, \"buy\", 1); // A buy order with ID 2 is added at price 1.\norderManagementSystem.addOrder(3, \"sell\", 2); // A sell order with ID 3 is added at price 2.\norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // Both buy orders (IDs 1 and 2) are active at price 1, so the result is [2, 1].\norderManagementSystem.modifyOrder(1, 3); // Order 1 is updated: its price becomes 3.\norderManagementSystem.modifyOrder(2, 1); // Order 2 is updated, but its price remains 1.\norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // Only order 2 is still an active buy order at price 1, so the result is [2].\norderManagementSystem.cancelOrder(3); // The sell order with ID 3 is canceled and removed from active orders.\norderManagementSystem.cancelOrder(2); // The buy order with ID 2 is canceled and removed from active orders.\norderManagementSystem.getOrdersAtPrice(\"buy\", 1); // There are no active buy orders left at price 1, so the result is []."
     }
   ],
   "constraints": [
-    "1 <= orderId <= 2000",
-    "orderId is unique across all orders.",
-    "orderType is either \"buy\" or \"sell\".",
-    "1 <= price <= 10^9",
-    "The total number of calls to addOrder, modifyOrder, cancelOrder, and getOrdersAtPrice does not exceed 2000.",
-    "For modifyOrder and cancelOrder, the specified orderId is guaranteed to exist and be active."
+    "`1 <= orderId <= 2000`",
+    "`orderId` is unique across all orders.",
+    "`orderType` is either `\"buy\"` or `\"sell\"`.",
+    "`1 <= price <= 10^9`",
+    "The total number of calls to `addOrder`, `modifyOrder`, `cancelOrder`, and `getOrdersAtPrice` does not exceed 2000.",
+    "For `modifyOrder` and `cancelOrder`, the specified `orderId` is guaranteed to exist and be active."
   ],
   "starterTemplates": {
     "python": "class OrderManagementSystem:\n    def __init__(self):\n        pass\n\n    def addOrder(self, orderId: int, orderType: str, price: int) -> None:\n        pass\n\n    def modifyOrder(self, orderId: int, newPrice: int) -> None:\n        pass\n\n    def cancelOrder(self, orderId: int) -> None:\n        pass\n\n    def getOrdersAtPrice(self, orderType: str, price: int) -> List[int]:\n        pass\n\n# Your OrderManagementSystem object will be instantiated and called as such:\n# obj = OrderManagementSystem()\n# obj.addOrder(orderId,orderType,price)\n# obj.modifyOrder(orderId,newPrice)\n# obj.cancelOrder(orderId)\n# param_4 = obj.getOrdersAtPrice(orderType,price)\n",
@@ -43,8 +44,8 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[\"OrderManagementSystem\", \"addOrder\", \"addOrder\", \"addOrder\", \"getOrdersAtPrice\", \"modifyOrder\", \"modifyOrder\", \"getOrdersAtPrice\", \"cancelOrder\", \"cancelOrder\", \"getOrdersAtPrice\"]\n[[], [1, \"buy\", 1], [2, \"buy\", 1], [3, \"sell\", 2], [\"buy\", 1], [1, 3], [2, 1], [\"buy\", 1], [3], [2], [\"buy\", 1]]",
+      "expected": "[null, null, null, null, [2, 1], null, null, [2], null, null, []]"
     }
   ],
   "hints": [

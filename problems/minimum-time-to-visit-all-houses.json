@@ -14,28 +14,38 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Time%20to%20Visit%20All%20Houses"
   },
-  "description": "You are given two integer arrays `forward` and `backward`, both of size `n`. You are also given another integer array `queries`.\n\nThere are `n` houses *arranged in a circle*. The houses are connected via roads in a special arrangement:\n\n\tFor all `0 \n\tFor all `1 \n\nYou can walk at a pace of **one** meter per second. Starting from house 0, find the **minimum** time taken to visit each house in the order specified by `queries`.\n\nReturn the **minimum** total time taken to visit the houses.",
+  "description": "You are given two integer arrays `forward` and `backward`, both of size `n`. You are also given another integer array `queries`.\n\nThere are `n` houses *arranged in a circle*. The houses are connected via roads in a special arrangement:\n\n\t* For all `0 <= i <= n - 2`, house `i` is connected to house `i + 1` via a road with length `forward[i]` meters. Additionally, house `n - 1` is connected back to house 0 via a road with length `forward[n - 1]` meters, completing the circle.\n\n\t* For all `1 <= i <= n - 1`, house `i` is connected to house `i - 1` via a road with length `backward[i]` meters. Additionally, house 0 is connected back to house `n - 1` via a road with length `backward[0]` meters, completing the circle.\n\nYou can walk at a pace of **one** meter per second. Starting from house 0, find the **minimum** time taken to visit each house in the order specified by `queries`.\n\nReturn the **minimum** total time taken to visit the houses.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "forward = [1,4,4], backward = [4,1,2], queries = [1,2,0,2]",
+      "output": "12",
+      "explanation": "The path followed is 0(0) &rarr; 1(1) &rarr;​​​​​​​ 2(5) &rarr; 1(7) &rarr;​​​​​​​ 0(8) &rarr; 2(12).\n\nNote: The notation used is node(total time), &rarr; represents forward road, and &rarr; represents backward road."
+    },
+    {
+      "input": "forward = [1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]",
+      "output": "4",
+      "explanation": "The path travelled is 0 &rarr;​​​​​​​ 1 &rarr;​​​​​​​ 2 &rarr;​​​​​​​ 3 &rarr; 0. Each step is in the forward direction and requires 1 second."
     }
   ],
   "constraints": [
-    "2 <= n <= 10^5",
-    "n == forward.length == backward.length",
-    "1 <= forward[i], backward[i] <= 10^5",
-    "1 <= queries.length <= 10^5",
-    "0 <= queries[i] < n",
-    "queries[i] != queries[i + 1]",
-    "queries[0] is not 0."
+    "`2 <= n <= 10^5`",
+    "`n == forward.length == backward.length`",
+    "`1 <= forward[i], backward[i] <= 10^5`",
+    "`1 <= queries.length <= 10^5`",
+    "`0 <= queries[i] < n`",
+    "`queries[i] != queries[i + 1]`",
+    "`queries[0]` is not 0."
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,4,4], backward = [4,1,2], queries = [1,2,0,2]",
+      "expected": "12"
+    },
+    {
+      "input": "[1,1,1,1], backward = [2,2,2,2], queries = [1,2,3,0]",
+      "expected": "4"
     }
   ],
   "hints": [

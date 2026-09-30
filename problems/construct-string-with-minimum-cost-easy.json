@@ -17,19 +17,25 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Construct%20String%20with%20Minimum%20Cost%20(Easy)"
   },
-  "description": "You are given a string `target`, an array of strings `words`, and an integer array `costs`, both arrays of the same length.\n\nImagine an empty string `s`.\n\nYou can perform the following operation any number of times (including **zero**):\n\n\tChoose an index `i` in the range `[0, words.length - 1]`.\n\tAppend `words[i]` to `s`.\n\tThe cost of operation is `costs[i]`.\n\nReturn the **minimum** cost to make `s` equal to `target`. If it's not possible, return -1.",
+  "description": "You are given a string `target`, an array of strings `words`, and an integer array `costs`, both arrays of the same length.\n\nImagine an empty string `s`.\n\nYou can perform the following operation any number of times (including **zero**):\n\n\t* Choose an index `i` in the range `[0, words.length - 1]`.\n\n\t* Append `words[i]` to `s`.\n\n\t* The cost of operation is `costs[i]`.\n\nReturn the **minimum** cost to make `s` equal to `target`. If it's not possible, return -1.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "target = \"abcdef\", words = [\"abdef\",\"abc\",\"d\",\"def\",\"ef\"], costs = [100,1,1,10,5]",
+      "output": "7",
+      "explanation": "The minimum cost can be achieved by performing the following operations:\n\n\n\tSelect index 1 and append \"abc\" to s at a cost of 1, resulting in s = \"abc\".\n\tSelect index 2 and append \"d\" to s at a cost of 1, resulting in s = \"abcd\".\n\tSelect index 4 and append \"ef\" to s at a cost of 5, resulting in s = \"abcdef\"."
+    },
+    {
+      "input": "target = \"aaaa\", words = [\"z\",\"zz\",\"zzz\"], costs = [1,10,100]",
+      "output": "-1",
+      "explanation": "It is impossible to make s equal to target, so we return -1."
     }
   ],
   "constraints": [
-    "1 <= target.length <= 2000",
-    "1 <= words.length == costs.length <= 50",
-    "1 <= words[i].length <= target.length",
-    "target and words[i] consist only of lowercase English letters.",
-    "1 <= costs[i] <= 10^5"
+    "`1 <= target.length <= 2000`",
+    "`1 <= words.length == costs.length <= 50`",
+    "`1 <= words[i].length <= target.length`",
+    "`target` and `words[i]` consist only of lowercase English letters.",
+    "`1 <= costs[i] <= 10^5`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minimumCost(self, target: str, words: List[str], costs: List[int]) -> int:\n        pass\n",
@@ -45,8 +51,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abcdef\", words = [\"abdef\",\"abc\",\"d\",\"def\",\"ef\"], costs = [100,1,1,10,5]",
+      "expected": "7"
+    },
+    {
+      "input": "\"aaaa\", words = [\"z\",\"zz\",\"zzz\"], costs = [1,10,100]",
+      "expected": "-1"
     }
   ],
   "hints": [

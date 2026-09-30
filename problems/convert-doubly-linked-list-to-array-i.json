@@ -20,13 +20,21 @@
   "description": "You are given the `head` of a **doubly linked list**, which contains nodes that have a next pointer and a previous pointer.\n\nReturn an integer array which contains the elements of the linked list **in order**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "head = [1,2,3,4,3,2,1]",
+      "output": "[1,2,3,4,3,2,1]"
+    },
+    {
+      "input": "head = [2,2,2,2,2]",
+      "output": "[2,2,2,2,2]"
+    },
+    {
+      "input": "head = [3,2,3,2,3,2]",
+      "output": "[3,2,3,2,3,2]"
     }
   ],
   "constraints": [
-    "The number of nodes in the given list is in the range [1, 50].",
-    "1 <= Node.val <= 50"
+    "The number of nodes in the given list is in the range `[1, 50]`.",
+    "`1 <= Node.val <= 50`"
   ],
   "starterTemplates": {
     "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def toArray(self, root: \"Optional[Node]\") -> List[int]:\n        pass\n",
@@ -42,8 +50,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3,4,3,2,1]",
+      "expected": "[1,2,3,4,3,2,1]"
+    },
+    {
+      "input": "[2,2,2,2,2]",
+      "expected": "[2,2,2,2,2]"
+    },
+    {
+      "input": "[3,2,3,2,3,2]",
+      "expected": "[3,2,3,2,3,2]"
     }
   ],
   "hints": [

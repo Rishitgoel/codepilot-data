@@ -20,13 +20,24 @@
   "description": "You are given an integer array `nums`.\n\nAn array is called **beautiful** if for every index `i > 0`, the value at `nums[i]` is **divisible** by `nums[i - 1]`.\n\nIn one operation, you may **increment** any element `nums[i]` (with `i > 0`) by `1`.\n\nReturn the **minimum number of operations** required to make the array beautiful.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [3,7,9]",
+      "output": "2",
+      "explanation": "Applying the operation twice on nums[1] makes the array beautiful: [3,9,9]"
+    },
+    {
+      "input": "nums = [1,1,1]",
+      "output": "0",
+      "explanation": "The given array is already beautiful."
+    },
+    {
+      "input": "nums = [4]",
+      "output": "0",
+      "explanation": "The array has only one element, so it's already beautiful."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 100",
-    "1 <= nums[i] <= 50​​​"
+    "`1 <= nums.length <= 100`",
+    "`1 <= nums[i] <= 50​​​`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        pass\n",
@@ -42,8 +53,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,7,9]",
+      "expected": "2"
+    },
+    {
+      "input": "[1,1,1]",
+      "expected": "0"
+    },
+    {
+      "input": "[4]",
+      "expected": "0"
     }
   ],
   "hints": [

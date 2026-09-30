@@ -14,16 +14,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Make%20a%20Positive%20Array"
   },
-  "description": "You are given an array `nums`. An array is considered **positive** if the sum of all numbers in each **subarray** with **more than two** elements is positive.\n\nYou can perform the following operation any number of times:\n\n\tReplace **one** element in `nums` with any integer between -10^18 and 10^18.\n\nFind the **minimum** number of operations needed to make `nums` **positive**.",
+  "description": "You are given an array `nums`. An array is considered **positive** if the sum of all numbers in each **subarray** with **more than two** elements is positive.\n\nYou can perform the following operation any number of times:\n\n\t* Replace **one** element in `nums` with any integer between -10^18 and 10^18.\n\nFind the **minimum** number of operations needed to make `nums` **positive**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [-10,15,-12]",
+      "output": "1",
+      "explanation": "The only subarray with more than 2 elements is the array itself. The sum of all elements is (-10) + 15 + (-12) = -7. By replacing nums[0] with 0, the new sum becomes 0 + 15 + (-12) = 3. Thus, the array is now positive."
+    },
+    {
+      "input": "nums = [-1,-2,3,-1,2,6]",
+      "output": "1",
+      "explanation": "The only subarrays with more than 2 elements and a non-positive sum are:\n\n\n\t\n\t\t\n\t\t\tSubarray Indices\n\t\t\tSubarray\n\t\t\tSum\n\t\t\tSubarray After Replacement (Set nums[1] = 1)\n\t\t\tNew Sum\n\t\t\n\t\t\n\t\t\tnums[0...2]\n\t\t\t[-1, -2, 3]\n\t\t\t0\n\t\t\t[-1, 1, 3]\n\t\t\t3\n\t\t\n\t\t\n\t\t\tnums[0...3]\n\t\t\t[-1, -2, 3, -1]\n\t\t\t-1\n\t\t\t[-1, 1, 3, -1]\n\t\t\t2\n\t\t\n\t\t\n\t\t\tnums[1...3]\n\t\t\t[-2, 3, -1]\n\t\t\t0\n\t\t\t[1, 3, -1]\n\t\t\t3\n\t\t\n\t\n\n\nThus, nums is positive after one operation."
+    },
+    {
+      "input": "nums = [1,2,3]",
+      "output": "0",
+      "explanation": "The array is already positive, so no operations are needed."
     }
   ],
   "constraints": [
-    "3 <= nums.length <= 10^5",
-    "-10^9 <= nums[i] <= 10^9"
+    "`3 <= nums.length <= 10^5`",
+    "`-10^9 <= nums[i] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def makeArrayPositive(self, nums: List[int]) -> int:\n        pass\n",
@@ -39,8 +50,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[-10,15,-12]",
+      "expected": "1"
+    },
+    {
+      "input": "[-1,-2,3,-1,2,6]",
+      "expected": "1"
+    },
+    {
+      "input": "[1,2,3]",
+      "expected": "0"
     }
   ],
   "hints": [

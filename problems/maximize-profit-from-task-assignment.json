@@ -17,19 +17,30 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximize%20Profit%20from%20Task%20Assignment"
   },
-  "description": "You are given an integer array `workers`, where `workers[i]` represents the skill level of the `i^th` worker. You are also given a 2D integer array `tasks`, where:\n\n\t`tasks[i][0]` represents the skill requirement needed to complete the task.\n\t`tasks[i][1]` represents the profit earned from completing the task.\n\nEach worker can complete **at most** one task, and they can only take a task if their skill level is **equal** to the task's skill requirement. An **additional** worker joins today who can take up *any* task, **regardless** of the skill requirement.\n\nReturn the **maximum** total profit that can be earned by optimally assigning the tasks to the workers.",
+  "description": "You are given an integer array `workers`, where `workers[i]` represents the skill level of the `i^th` worker. You are also given a 2D integer array `tasks`, where:\n\n\t* `tasks[i][0]` represents the skill requirement needed to complete the task.\n\n\t* `tasks[i][1]` represents the profit earned from completing the task.\n\nEach worker can complete **at most** one task, and they can only take a task if their skill level is **equal** to the task's skill requirement. An **additional** worker joins today who can take up *any* task, **regardless** of the skill requirement.\n\nReturn the **maximum** total profit that can be earned by optimally assigning the tasks to the workers.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "workers = [1,2,3,4,5], tasks = [[1,100],[2,400],[3,100],[3,400]]",
+      "output": "1000",
+      "explanation": "Worker 0 completes task 0.\n\tWorker 1 completes task 1.\n\tWorker 2 completes task 3.\n\tThe additional worker completes task 2."
+    },
+    {
+      "input": "workers = [10,10000,100000000], tasks = [[1,100]]",
+      "output": "100",
+      "explanation": "Since no worker matches the skill requirement, only the additional worker can complete task 0."
+    },
+    {
+      "input": "workers = [7], tasks = [[3,3],[3,3]]",
+      "output": "3",
+      "explanation": "The additional worker completes task 1. Worker 0 cannot work since no task has a skill requirement of 7."
     }
   ],
   "constraints": [
-    "1 <= workers.length <= 10^5",
-    "1 <= workers[i] <= 10^9",
-    "1 <= tasks.length <= 10^5",
-    "tasks[i].length == 2",
-    "1 <= tasks[i][0], tasks[i][1] <= 10^9"
+    "`1 <= workers.length <= 10^5`",
+    "`1 <= workers[i] <= 10^9`",
+    "`1 <= tasks.length <= 10^5`",
+    "`tasks[i].length == 2`",
+    "`1 <= tasks[i][0], tasks[i][1] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxProfit(self, workers: List[int], tasks: List[List[int]]) -> int:\r\n        pass\n",
@@ -45,8 +56,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3,4,5], tasks = [[1,100],[2,400],[3,100],[3,400]]",
+      "expected": "1000"
+    },
+    {
+      "input": "[10,10000,100000000], tasks = [[1,100]]",
+      "expected": "100"
+    },
+    {
+      "input": "[7], tasks = [[3,3],[3,3]]",
+      "expected": "3"
     }
   ],
   "hints": [

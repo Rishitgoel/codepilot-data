@@ -17,11 +17,12 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=First%20Letter%20Capitalization"
   },
-  "description": "Table: `user_content`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| content_id  | int     |\n| content_text| varchar |\n+-------------+---------+\ncontent_id is the unique key for this table.\nEach row contains a unique ID and the corresponding text content.\n\nWrite a solution to transform the text in the `content_text` column by applying the following rules:\n\n\tConvert the first letter of each word to uppercase\n\tKeep all other letters in lowercase\n\tPreserve all existing spaces\n\n**Note**: There will be no special character in `content_text`.\n\nReturn *the result table that includes both the original `content_text` and the modified text where each word starts with a capital letter*.\n\nThe result format is in the following example.",
+  "description": "Table: `user_content`\n\n+-------------+---------+\n| Column Name | Type    |\n+-------------+---------+\n| content_id  | int     |\n| content_text| varchar |\n+-------------+---------+\ncontent_id is the unique key for this table.\nEach row contains a unique ID and the corresponding text content.\n\nWrite a solution to transform the text in the `content_text` column by applying the following rules:\n\n\t* Convert the first letter of each word to uppercase\n\n\t* Keep all other letters in lowercase\n\n\t* Preserve all existing spaces\n\n**Note**: There will be no special character in `content_text`.\n\nReturn *the result table that includes both the original `content_text` and the modified text where each word starts with a capital letter*.\n\nThe result format is in the following example.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "user_content table:\n\n\n+------------+-----------------------------------+\n| content_id | content_text                      |\n+------------+-----------------------------------+\n| 1          | hello world of SQL                |\n| 2          | the QUICK brown fox               |\n| 3          | data science AND machine learning |\n| 4          | TOP rated programming BOOKS       |\n+------------+-----------------------------------+",
+      "output": "+------------+-----------------------------------+-----------------------------------+\n| content_id | original_text                     | converted_text                    |\n+------------+-----------------------------------+-----------------------------------+\n| 1          | hello world of SQL                | Hello World Of Sql                |\n| 2          | the QUICK brown fox               | The Quick Brown Fox               |\n| 3          | data science AND machine learning | Data Science And Machine Learning |\n| 4          | TOP rated programming BOOKS       | Top Rated Programming Books       |\n+------------+-----------------------------------+-----------------------------------+",
+      "explanation": "For content_id = 1:\n\t\n\t\tEach word's first letter is capitalized: Hello World Of Sql\n\t\n\t\n\tFor content_id = 2:\n\t\n\t\tOriginal mixed-case text is transformed to title case: The Quick Brown Fox\n\t\n\t\n\tFor content_id = 3:\n\t\n\t\tThe word AND is converted to \"And\": \"Data Science And Machine Learning\"\n\t\n\t\n\tFor content_id = 4:\n\t\n\t\tHandles word TOP rated correctly: Top Rated\n\t\tConverts BOOKS from all caps to title case: Books"
     }
   ],
   "constraints": [
@@ -35,8 +36,8 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "user_content table:\n\n\n+------------+-----------------------------------+\n| content_id | content_text                      |\n+------------+-----------------------------------+\n| 1          | hello world of SQL                |\n| 2          | the QUICK brown fox               |\n| 3          | data science AND machine learning |\n| 4          | TOP rated programming BOOKS       |\n+------------+-----------------------------------+",
+      "expected": "+------------+-----------------------------------+-----------------------------------+\n| content_id | original_text                     | converted_text                    |\n+------------+-----------------------------------+-----------------------------------+\n| 1          | hello world of SQL                | Hello World Of Sql                |\n| 2          | the QUICK brown fox               | The Quick Brown Fox               |\n| 3          | data science AND machine learning | Data Science And Machine Learning |\n| 4          | TOP rated programming BOOKS       | Top Rated Programming Books       |\n+------------+-----------------------------------+-----------------------------------+"
     }
   ],
   "hints": [

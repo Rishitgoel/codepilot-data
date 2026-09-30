@@ -20,13 +20,24 @@
   "description": "You are given a string `s` consisting of digits.\n\nAn index `i` is called **good** if there exists a substring of `s` that ends at index `i` and is equal to the decimal representation of `i`.\n\nReturn an integer array of all good indices in **increasing order**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"0234567890112\"",
+      "output": "[0,11,12]",
+      "explanation": "​​​​​​​\n\n\n\t\n\tAt index 0, the decimal representation of the index is \"0\". The substring s[0] is \"0\", which matches, so index 0 is good.\n\t\n\t\n\tAt index 11, the decimal representation is \"11\". The substring s[10..11] is \"11\", which matches, so index 11 is good.\n\t\n\t\n\tAt index 12, the decimal representation is \"12\". The substring s[11..12] is \"12\", which matches, so index 12 is good.\n\t\n\n\nNo other index has a substring ending at it that equals its decimal representation. Therefore, the answer is [0, 11, 12]."
+    },
+    {
+      "input": "s = \"01234\"",
+      "output": "[0,1,2,3,4]",
+      "explanation": "For every index i from 0 to 4, the decimal representation of i is a single digit, and the substring s[i] matches that digit.\n\nTherefore, a valid substring ending at each index exists, making all indices good."
+    },
+    {
+      "input": "s = \"12345\"",
+      "output": "[]",
+      "explanation": "No index has a substring ending at it that matches its decimal representation.\n\nTherefore, there are no good indices and the result is an empty array."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 10^5",
-    "s only consists of digits from '0' to '9'."
+    "`1 <= s.length <= 10^5`",
+    "`s` only consists of digits from `'0'` to `'9'`."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def goodIndices(self, s: str) -> List[int]:\n        pass\n",
@@ -42,8 +53,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"0234567890112\"",
+      "expected": "[0,11,12]"
+    },
+    {
+      "input": "\"01234\"",
+      "expected": "[0,1,2,3,4]"
+    },
+    {
+      "input": "\"12345\"",
+      "expected": "[]"
     }
   ],
   "hints": [

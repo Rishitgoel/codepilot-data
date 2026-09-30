@@ -25,8 +25,8 @@
     }
   ],
   "constraints": [
-    "The number of nodes in the list is in the range [1, 10^5].",
-    "1 <= Node.val <= 10^5"
+    "The number of nodes in the list is in the range `[1, 10^5]`.",
+    "`1 <= Node.val <= 10^5`"
   ],
   "starterTemplates": {
     "python": "# Definition for singly-linked list.\r\n# class ListNode:\r\n#     def __init__(self, val=0, next=None):\r\n#         self.val = val\r\n#         self.next = next\r\nclass Solution:\r\n    def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:\r\n        pass\n",

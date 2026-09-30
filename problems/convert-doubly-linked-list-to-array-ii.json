@@ -20,14 +20,18 @@
   "description": "You are given an **arbitrary** `node` from a **doubly linked list**, which contains nodes that have a next pointer and a previous pointer.\n\nReturn an integer array which contains the elements of the linked list **in order**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "head = [1,2,3,4,5], node = 5",
+      "output": "[1,2,3,4,5]"
+    },
+    {
+      "input": "head = [4,5,6,7,8], node = 8",
+      "output": "[4,5,6,7,8]"
     }
   ],
   "constraints": [
-    "The number of nodes in the given list is in the range [1, 500].",
-    "1 <= Node.val <= 1000",
-    "All nodes have unique Node.val."
+    "The number of nodes in the given list is in the range `[1, 500]`.",
+    "`1 <= Node.val <= 1000`",
+    "All nodes have unique `Node.val`."
   ],
   "starterTemplates": {
     "python": "\"\"\"\n# Definition for a Node.\n\"\"\"\nclass Solution:\n    def toArray(self, node: \"Optional[Node]\") -> List[int]:\n        pass\n",
@@ -43,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3,4,5], node = 5",
+      "expected": "[1,2,3,4,5]"
+    },
+    {
+      "input": "[4,5,6,7,8], node = 8",
+      "expected": "[4,5,6,7,8]"
     }
   ],
   "hints": [

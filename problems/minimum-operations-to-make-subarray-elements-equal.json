@@ -17,17 +17,23 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20Subarray%20Elements%20Equal"
   },
-  "description": "You are given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:\n\n\tIncrease or decrease any element of `nums` by 1.\n\nReturn the **minimum** number of operations required to ensure that **at least** one subarray of size `k` in `nums` has all elements equal.",
+  "description": "You are given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:\n\n\t* Increase or decrease any element of `nums` by 1.\n\nReturn the **minimum** number of operations required to ensure that **at least** one subarray of size `k` in `nums` has all elements equal.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [4,-3,2,1,-4,6], k = 3",
+      "output": "5",
+      "explanation": "Use 4 operations to add 4 to nums[1]. The resulting array is [4, 1, 2, 1, -4, 6].\n\tUse 1 operation to subtract 1 from nums[2]. The resulting array is [4, 1, 1, 1, -4, 6].\n\tThe array now contains a subarray [1, 1, 1] of size k = 3 with all elements equal. Hence, the answer is 5."
+    },
+    {
+      "input": "nums = [-2,-2,3,1,4], k = 2",
+      "output": "0",
+      "explanation": "The subarray [-2, -2] of size k = 2 already contains all equal elements, so no operations are needed. Hence, the answer is 0."
     }
   ],
   "constraints": [
-    "2 <= nums.length <= 10^5",
-    "-10^6 <= nums[i] <= 10^6",
-    "2 <= k <= nums.length"
+    "`2 <= nums.length <= 10^5`",
+    "`-10^6 <= nums[i] <= 10^6`",
+    "`2 <= k <= nums.length`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minOperations(self, nums: List[int], k: int) -> int:\r\n        pass\n",
@@ -41,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[4,-3,2,1,-4,6], k = 3",
+      "expected": "5"
+    },
+    {
+      "input": "[-2,-2,3,1,4], k = 2",
+      "expected": "0"
     }
   ],
   "hints": [

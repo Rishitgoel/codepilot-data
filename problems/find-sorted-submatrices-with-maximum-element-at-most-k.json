@@ -17,25 +17,43 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Find%20Sorted%20Submatrices%20With%20Maximum%20Element%20at%20Most%20K"
   },
-  "description": "You are given a 2D matrix `grid` of size `m x n`. You are also given a **non-negative** integer `k`.\n\nReturn the number of **submatrices** of `grid` that satisfy the following conditions:\n\n\tThe maximum element in the submatrix **less than or equal to** `k`.\n\tEach row in the submatrix is sorted in **non-increasing** order.\n\nA submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells `grid[x][y]` where `x1 <= x <= x2` and `y1 <= y <= y2`.",
+  "description": "You are given a 2D matrix `grid` of size `m x n`. You are also given a **non-negative** integer `k`.\n\nReturn the number of **submatrices** of `grid` that satisfy the following conditions:\n\n\t* The maximum element in the submatrix **less than or equal to** `k`.\n\n\t* Each row in the submatrix is sorted in **non-increasing** order.\n\nA submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells `grid[x][y]` where `x1 <= x <= x2` and `y1 <= y <= y2`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "grid = [[4,3,2,1],[8,7,6,1]], k = 3",
+      "output": "8",
+      "explanation": "The 8 submatrices are:\n\n\n\t[[1]]\n\t[[1]]\n\t[[2,1]]\n\t[[3,2,1]]\n\t[[1],[1]]\n\t[[2]]\n\t[[3]]\n\t[[3,2]]"
+    },
+    {
+      "input": "grid = [[1,1,1],[1,1,1],[1,1,1]], k = 1",
+      "output": "36",
+      "explanation": "There are 36 submatrices of grid. All submatrices have their maximum element equal to 1."
+    },
+    {
+      "input": "grid = [[1]], k = 1",
+      "output": "1"
     }
   ],
   "constraints": [
-    "1 <= m == grid.length <= 10^3",
-    "1 <= n == grid[i].length <= 10^3",
-    "1 <= grid[i][j] <= 10^9",
-    "1 <= k <= 10^9"
+    "`1 <= m == grid.length <= 10^3`",
+    "`1 <= n == grid[i].length <= 10^3`",
+    "`1 <= grid[i][j] <= 10^9`",
+    "`1 <= k <= 10^9`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[[4,3,2,1],[8,7,6,1]], k = 3",
+      "expected": "8"
+    },
+    {
+      "input": "[[1,1,1],[1,1,1],[1,1,1]], k = 1",
+      "expected": "36"
+    },
+    {
+      "input": "[[1]], k = 1",
+      "expected": "1"
     }
   ],
   "hints": [

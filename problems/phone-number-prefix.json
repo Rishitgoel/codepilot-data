@@ -20,14 +20,20 @@
   "description": "You are given a string array `numbers` that represents phone numbers. Return `true` if no phone number is a prefix of any other phone number; otherwise, return `false`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "numbers = [\"1\",\"2\",\"4\",\"3\"]",
+      "output": "true",
+      "explanation": "No number is a prefix of another number, so the output is true."
+    },
+    {
+      "input": "numbers = [\"001\",\"007\",\"15\",\"00153\"]",
+      "output": "false",
+      "explanation": "The string \"001\" is a prefix of the string \"00153\". Thus, the output is false."
     }
   ],
   "constraints": [
-    "2 <= numbers.length <= 50",
-    "1 <= numbers[i].length <= 50",
-    "All numbers contain only digits '0' to '9'."
+    "`2 <= numbers.length <= 50`",
+    "`1 <= numbers[i].length <= 50`",
+    "All numbers contain only digits `'0'` to `'9'`."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def phonePrefix(self, numbers: List[str]) -> bool:\r\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[\"1\",\"2\",\"4\",\"3\"]",
+      "expected": "true"
+    },
+    {
+      "input": "[\"001\",\"007\",\"15\",\"00153\"]",
+      "expected": "false"
     }
   ],
   "hints": [

@@ -20,13 +20,24 @@
   "description": "You are given a circular array `balance` of length `n`, where `balance[i]` is the net balance of person `i`.\n\nIn one move, a person can transfer **exactly** 1 unit of balance to either their left or right neighbor.\n\nReturn the **minimum** number of moves required so that every person has a **non-negative** balance. If it is impossible, return -1.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "balance = [-1,2,-1]",
+      "output": "2",
+      "explanation": "One optimal sequence of moves is:\n\n\n\tMove 1 unit from i = 1 to i = 0, resulting in balance = [0, 1, -1]\n\tMove 1 unit from i = 1 to i = 2, resulting in balance = [0, 0, 0]\n\n\nThus, the minimum number of moves required is 2."
+    },
+    {
+      "input": "balance = [4,-1,-2]",
+      "output": "3",
+      "explanation": "One optimal sequence of moves is:\n\n\n\tMove 1 unit from i = 0 to i = 1, resulting in balance = [3, 0, -2]\n\tMove 1 unit from i = 0 to i = 2, resulting in balance = [2, 0, -1]\n\tMove 1 unit from i = 0 to i = 2, resulting in balance = [1, 0, 0]\n\n\nThus, the minimum number of moves required is 3."
+    },
+    {
+      "input": "balance = [-3,-3,5]",
+      "output": "-1",
+      "explanation": "It is impossible to make all balances non-negative for balance = [-3, -3, 5], so the answer is -1."
     }
   ],
   "constraints": [
-    "1 <= n == balance.length <= 1000",
-    "-10^5 <= balance[i] <= 10^5"
+    "`1 <= n == balance.length <= 1000`",
+    "`-10^5 <= balance[i] <= 10^5`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minMoves(self, balance: List[int]) -> int:\n        pass\n",
@@ -42,8 +53,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[-1,2,-1]",
+      "expected": "2"
+    },
+    {
+      "input": "[4,-1,-2]",
+      "expected": "3"
+    },
+    {
+      "input": "[-3,-3,5]",
+      "expected": "-1"
     }
   ],
   "hints": [

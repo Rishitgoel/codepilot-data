@@ -17,16 +17,27 @@
   "description": "There exists an **undirected** tree with `n` nodes numbered `0` to `n - 1`. You are given a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates that there is an edge between nodes `ui` and `vi` in the tree.\n\nInitially, **all** nodes are **unmarked**. After every second, you mark all unmarked nodes which have **at least** one marked node *adjacent* to them.\n\nReturn an array `nodes` where `nodes[i]` is the last node to get marked in the tree, if you mark node `i` at time `t = 0`. If `nodes[i]` has *multiple* answers for any node `i`, you can choose** any** one answer.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "edges = [[0,1],[0,2]]",
+      "output": "[2,2,1]",
+      "explanation": "For i = 0, the nodes are marked in the sequence: [0] -> [0,1,2]. Either 1 or 2 can be the answer.\n\tFor i = 1, the nodes are marked in the sequence: [1] -> [0,1] -> [0,1,2]. Node 2 is marked last.\n\tFor i = 2, the nodes are marked in the sequence: [2] -> [0,2] -> [0,1,2]. Node 1 is marked last."
+    },
+    {
+      "input": "edges = [[0,1]]",
+      "output": "[1,0]",
+      "explanation": "For i = 0, the nodes are marked in the sequence: [0] -> [0,1].\n\tFor i = 1, the nodes are marked in the sequence: [1] -> [0,1]."
+    },
+    {
+      "input": "edges = [[0,1],[0,2],[2,3],[2,4]]",
+      "output": "[3,3,1,1,1]",
+      "explanation": "For i = 0, the nodes are marked in the sequence: [0] -> [0,1,2] -> [0,1,2,3,4].\n\tFor i = 1, the nodes are marked in the sequence: [1] -> [0,1] -> [0,1,2] -> [0,1,2,3,4].\n\tFor i = 2, the nodes are marked in the sequence: [2] -> [0,2,3,4] -> [0,1,2,3,4].\n\tFor i = 3, the nodes are marked in the sequence: [3] -> [2,3] -> [0,2,3,4] -> [0,1,2,3,4].\n\tFor i = 4, the nodes are marked in the sequence: [4] -> [2,4] -> [0,2,3,4] -> [0,1,2,3,4]."
     }
   ],
   "constraints": [
-    "2 <= n <= 10^5",
-    "edges.length == n - 1",
-    "edges[i].length == 2",
-    "0 <= edges[i][0], edges[i][1] <= n - 1",
-    "The input is generated such that edges represents a valid tree."
+    "`2 <= n <= 10^5`",
+    "`edges.length == n - 1`",
+    "`edges[i].length == 2`",
+    "`0 <= edges[i][0], edges[i][1] <= n - 1`",
+    "The input is generated such that `edges` represents a valid tree."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def lastMarkedNodes(self, edges: List[List[int]]) -> List[int]:\r\n        pass\n",
@@ -42,8 +53,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[[0,1],[0,2]]",
+      "expected": "[2,2,1]"
+    },
+    {
+      "input": "[[0,1]]",
+      "expected": "[1,0]"
+    },
+    {
+      "input": "[[0,1],[0,2],[2,3],[2,4]]",
+      "expected": "[3,3,1,1,1]"
     }
   ],
   "hints": [

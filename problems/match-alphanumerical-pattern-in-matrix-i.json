@@ -15,20 +15,31 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Match%20Alphanumerical%20Pattern%20in%20Matrix%20I"
   },
-  "description": "You are given a 2D integer matrix `board` and a 2D character matrix `pattern`. Where `0 submatrix of `board` that **matches** `pattern`.\n\nAn integer matrix `part` matches `pattern` if we can replace cells containing letters in `pattern` with some digits (each **distinct** letter with a **unique** digit) in such a way that the resulting matrix becomes identical to the integer matrix `part`. In other words,\n\n\tThe matrices have identical dimensions.\n\tIf `pattern[r][c]` is a digit, then `part[r][c]` must be the **same** digit.\n\tIf `pattern[r][c]` is a letter `x`:\n\t\n\t\tFor every `pattern[i][j] == x`, `part[i][j]` must be the **same** as `part[r][c]`.\n\t\tFor every `pattern[i][j] != x`, `part[i][j]` must be **different** than `part[r][c]`. \n\t\n\t\n\nReturn *an array of length *`2`* containing the row number and column number of the upper-left corner of a submatrix of *`board`* which matches *`pattern`*. If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return* `[-1, -1]`.",
+  "description": "You are given a 2D integer matrix `board` and a 2D character matrix `pattern`. Where `0 <= board[r][c] <= 9` and each element of `pattern` is either a digit or a lowercase English letter.\n\nYour task is to find a submatrix of `board` that **matches** `pattern`.\n\nAn integer matrix `part` matches `pattern` if we can replace cells containing letters in `pattern` with some digits (each **distinct** letter with a **unique** digit) in such a way that the resulting matrix becomes identical to the integer matrix `part`. In other words,\n\n\t* The matrices have identical dimensions.\n\n\t* If `pattern[r][c]` is a digit, then `part[r][c]` must be the **same** digit.\n\n\t* If `pattern[r][c]` is a letter `x`:\n\t\n\t\tFor every `pattern[i][j] == x`, `part[i][j]` must be the **same** as `part[r][c]`.\n\n\t\t* For every `pattern[i][j] != x`, `part[i][j]` must be **different** than `part[r][c]`. \n\n\t\n\t\n\nReturn *an array of length *`2`* containing the row number and column number of the upper-left corner of a submatrix of *`board`* which matches *`pattern`*. If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return* `[-1, -1]`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "board = [[1,2,2],[2,2,3],[2,3,3]], pattern = [\"ab\",\"bb\"]",
+      "output": "[0,0]",
+      "explanation": "If we consider this mapping: \"a\" -> 1 and \"b\" -> 2; the submatrix with the upper-left corner (0,0) is a match as outlined in the matrix above.\n\nNote that the submatrix with the upper-left corner (1,1) is also a match but since it comes after the other one, we return [0,0]."
+    },
+    {
+      "input": "board = [[1,1,2],[3,3,4],[6,6,6]], pattern = [\"ab\",\"66\"]",
+      "output": "[1,1]",
+      "explanation": "If we consider this mapping: \"a\" -> 3 and \"b\" -> 4; the submatrix with the upper-left corner (1,1) is a match as outlined in the matrix above.\n\nNote that since the corresponding values of \"a\" and \"b\" must differ, the submatrix with the upper-left corner (1,0) is not a match. Hence, we return [1,1]."
+    },
+    {
+      "input": "board = [[1,2],[2,1]], pattern = [\"xx\"]",
+      "output": "[-1,-1]",
+      "explanation": "Since the values of the matched submatrix must be the same, there is no match. Hence, we return [-1,-1]."
     }
   ],
   "constraints": [
-    "1 <= board.length <= 50",
-    "1 <= board[i].length <= 50",
-    "0 <= board[i][j] <= 9",
-    "1 <= pattern.length <= 50",
-    "1 <= pattern[i].length <= 50",
-    "pattern[i][j] is either a digit represented as a string or a lowercase English letter."
+    "`1 <= board.length <= 50`",
+    "`1 <= board[i].length <= 50`",
+    "`0 <= board[i][j] <= 9`",
+    "`1 <= pattern.length <= 50`",
+    "`1 <= pattern[i].length <= 50`",
+    "`pattern[i][j]` is either a digit represented as a string or a lowercase English letter."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def findPattern(self, board: List[List[int]], pattern: List[str]) -> List[int]:\r\n        pass\n",
@@ -44,8 +55,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[[1,2,2],[2,2,3],[2,3,3]], pattern = [\"ab\",\"bb\"]",
+      "expected": "[0,0]"
+    },
+    {
+      "input": "[[1,1,2],[3,3,4],[6,6,6]], pattern = [\"ab\",\"66\"]",
+      "expected": "[1,1]"
+    },
+    {
+      "input": "[[1,2],[2,1]], pattern = [\"xx\"]",
+      "expected": "[-1,-1]"
     }
   ],
   "hints": [

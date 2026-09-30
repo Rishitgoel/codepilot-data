@@ -20,14 +20,20 @@
   "description": "You are given two integer arrays, `nums1` and `nums2`, of the same length.\n\nAn index `i` is considered **matching** if `nums1[i] == nums2[i]`.\n\nReturn the **maximum** number of **matching** indices after performing any number of **right shifts** on `nums1`.\n\nA **right shift** is defined as shifting the element at index `i` to index `(i + 1) % n`, for all indices.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums1 = [3,1,2,3,1,2], nums2 = [1,2,3,1,2,3]",
+      "output": "6",
+      "explanation": "If we right shift nums1 2 times, it becomes [1, 2, 3, 1, 2, 3]. Every index matches, so the output is 6."
+    },
+    {
+      "input": "nums1 = [1,4,2,5,3,1], nums2 = [2,3,1,2,4,6]",
+      "output": "3",
+      "explanation": "If we right shift nums1 3 times, it becomes [5, 3, 1, 1, 4, 2]. Indices 1, 2, and 4 match, so the output is 3."
     }
   ],
   "constraints": [
-    "nums1.length == nums2.length",
-    "1 <= nums1.length, nums2.length <= 3000",
-    "1 <= nums1[i], nums2[i] <= 10^9"
+    "`nums1.length == nums2.length`",
+    "`1 <= nums1.length, nums2.length <= 3000`",
+    "`1 <= nums1[i], nums2[i] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maximumMatchingIndices(self, nums1: List[int], nums2: List[int]) -> int:\r\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,1,2,3,1,2], nums2 = [1,2,3,1,2,3]",
+      "expected": "6"
+    },
+    {
+      "input": "[1,4,2,5,3,1], nums2 = [2,3,1,2,4,6]",
+      "expected": "3"
     }
   ],
   "hints": [

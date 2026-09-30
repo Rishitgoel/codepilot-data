@@ -14,17 +14,28 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Make%20String%20Anti-palindrome"
   },
-  "description": "We call a string `s` of **even** length `n` an **anti-palindrome** if for each index `0 lexicographically smallest one. If it can't be made into an anti-palindrome, return *`\"-1\"`*.*",
+  "description": "We call a string `s` of **even** length `n` an **anti-palindrome** if for each index `0 <= i < n`, `s[i] != s[n - i - 1]`.\n\nGiven a string `s`, your task is to make `s` an **anti-palindrome** by doing **any** number of operations (including zero).\n\nIn one operation, you can select two characters from `s` and swap them.\n\nReturn *the resulting string. If multiple strings meet the conditions, return the lexicographically smallest one. If it can't be made into an anti-palindrome, return *`\"-1\"`*.*",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"abca\"",
+      "output": "\"aabc\"",
+      "explanation": "\"aabc\" is an anti-palindrome string since s[0] != s[3] and s[1] != s[2]. Also, it is a rearrangement of \"abca\"."
+    },
+    {
+      "input": "s = \"abba\"",
+      "output": "\"aabb\"",
+      "explanation": "\"aabb\" is an anti-palindrome string since s[0] != s[3] and s[1] != s[2]. Also, it is a rearrangement of \"abba\"."
+    },
+    {
+      "input": "s = \"cccd\"",
+      "output": "\"-1\"",
+      "explanation": "You can see that no matter how you rearrange the characters of \"cccd\", either s[0] == s[3] or s[1] == s[2]. So it can not form an anti-palindrome string."
     }
   ],
   "constraints": [
-    "2 <= s.length <= 10^5",
-    "s.length % 2 == 0",
-    "s consists only of lowercase English letters."
+    "`2 <= s.length <= 10^5`",
+    "`s.length % 2 == 0`",
+    "`s` consists only of lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def makeAntiPalindrome(self, s: str) -> str:\r\n        pass\n",
@@ -40,8 +51,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abca\"",
+      "expected": "\"aabc\""
+    },
+    {
+      "input": "\"abba\"",
+      "expected": "\"aabb\""
+    },
+    {
+      "input": "\"cccd\"",
+      "expected": "\"-1\""
     }
   ],
   "hints": [

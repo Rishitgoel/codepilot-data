@@ -17,15 +17,21 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Count%20Odd%20Letters%20from%20Number"
   },
-  "description": "You are given an integer `n` perform the following steps:\n\n\tConvert each digit of `n` into its *lowercase English word* (e.g., 4 -> \"four\", 1 -> \"one\").\n\t**Concatenate** those words in the **original digit order** to form a string `s`.\n\nReturn the number of **distinct** characters in `s` that appear an **odd** number of times.",
+  "description": "You are given an integer `n` perform the following steps:\n\n\t* Convert each digit of `n` into its *lowercase English word* (e.g., 4 &rarr; \"four\", 1 &rarr; \"one\").\n\n\t* **Concatenate** those words in the **original digit order** to form a string `s`.\n\nReturn the number of **distinct** characters in `s` that appear an **odd** number of times.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 41",
+      "output": "5",
+      "explanation": "41 &rarr; \"fourone\"\n\nCharacters with odd frequencies: 'f', 'u', 'r', 'n', 'e'. Thus, the answer is 5."
+    },
+    {
+      "input": "n = 20",
+      "output": "5",
+      "explanation": "20 &rarr; \"twozero\"\n\nCharacters with odd frequencies: 't', 'w', 'z', 'e', 'r'. Thus, the answer is 5."
     }
   ],
   "constraints": [
-    "1 <= n <= 10^9"
+    "`1 <= n <= 10^9`"
   ],
   "starterTemplates": {
     "python": "d = {\n    0: \"zero\",\n    1: \"one\",\n    2: \"two\",\n    3: \"three\",\n    4: \"four\",\n    5: \"five\",\n    6: \"six\",\n    7: \"seven\",\n    8: \"eight\",\n    9: \"nine\",\n}\n\n\nclass Solution:\n    def countOddLetters(self, n: int) -> int:\n        pass\n",
@@ -41,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "41",
+      "expected": "5"
+    },
+    {
+      "input": "20",
+      "expected": "5"
     }
   ],
   "hints": [

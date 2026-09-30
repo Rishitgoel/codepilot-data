@@ -14,21 +14,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Power%20Update%20After%20K-th%20Largest%20Insertion%20I"
   },
-  "description": "You are given an integer array `nums` and an integer `p`.\n\nYou are also given a 2D integer array `queries`, where each `queries[i] = [vali, ki]` and the difference between **consecutive** `ki` values is always **less** than 10.\n\nFor each query:\n\n\tInsert `vali` into `nums`.\n\tLet `x` be the `ki^th` **largest** element in the current `nums`.\n\t**Update** `p` to `p^x % (10^9 + 7)`.\n\nReturn an array `ans` where the `ans[i]` represents the value of `p` after processing the `i^th` query.",
+  "description": "You are given an integer array `nums` and an integer `p`.\n\nYou are also given a 2D integer array `queries`, where each `queries[i] = [vali, ki]` and the difference between **consecutive** `ki` values is always **less** than 10.\n\nFor each query:\n\n\t* Insert `vali` into `nums`.\n\n\t* Let `x` be the `ki^th` **largest** element in the current `nums`.\n\n\t* **Update** `p` to `p^x % (10^9 + 7)`.\n\nReturn an array `ans` where the `ans[i]` represents the value of `p` after processing the `i^th` query.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [2], p = 4, queries = [[3,1],[1,2]]",
+      "output": "[64,4096]",
+      "explanation": "i\n\t\t\tvali\n\t\t\tCurrent\n\t\t\tnums\n\t\t\tki\n\t\t\tkith\n\t\t\tlargest\n\t\t\tp\n\t\t\tNew p = pk % (109 + 7)\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t3\n\t\t\t[2, 3]\n\t\t\t1\n\t\t\t3\n\t\t\t4\n\t\t\t43 % (109 + 7) = 64\n\t\t\n\t\t\n\t\t\t1\n\t\t\t1\n\t\t\t[2, 3, 1]\n\t\t\t2\n\t\t\t2\n\t\t\t64\n\t\t\t642 % (109 + 7) = 4096\n\t\t\n\t\n\n\nThus, ans = [64, 4096]."
+    },
+    {
+      "input": "nums = [7,5], p = 6, queries = [[4,3],[7,2]]",
+      "output": "[1296,220296870]",
+      "explanation": "i\n\t\t\tvali\n\t\t\tCurrent​​​​​​​\n\t\t\tnums\n\t\t\tki\n\t\t\tkith\n\t\t\tlargest\n\t\t\tp\n\t\t\tNew p = pk % (109 + 7)\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t4\n\t\t\t[7, 5, 4]\n\t\t\t3\n\t\t\t4\n\t\t\t6\n\t\t\t64 % (109 + 7) = 1296\n\t\t\n\t\t\n\t\t\t1\n\t\t\t7\n\t\t\t[7, 5, 4, 7]\n\t\t\t2\n\t\t\t7\n\t\t\t1296\n\t\t\t12967 % (109 + 7) = 220296870\n\t\t\n\t\n\n\nThus, ans = [1296, 220296870]"
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 2 * 10^4",
-    "1 <= nums[i] <= 10^6",
-    "​​​​​​​1 <= p <= 10^6",
-    "1 <= queries.length <= 2 * 10^4",
-    "^​​​​​​​1 <= vali <= 10^6",
-    "1 <= ki <= n + i + 1",
-    "|ki - ki - 1| < 10 for i > 0"
+    "`1 <= nums.length <= 2 &times; 10^4`",
+    "`1 <= nums[i] <= 10^6`",
+    "`​​​​​​​1 <= p <= 10^6`",
+    "`1 <= queries.length <= 2 &times; 10^4`",
+    "`^​​​​​​​1 <= vali <= 10^6`",
+    "`1 <= ki <= n + i + 1`",
+    "`|ki - ki - 1| < 10` for `i > 0`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[2], p = 4, queries = [[3,1],[1,2]]",
+      "expected": "[64,4096]"
+    },
+    {
+      "input": "[7,5], p = 6, queries = [[4,3],[7,2]]",
+      "expected": "[1296,220296870]"
     }
   ],
   "hints": [

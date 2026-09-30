@@ -17,16 +17,22 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Operations%20to%20Make%20a%20Rotated%20Palindrome%20II"
   },
-  "description": "You are given a string `s` consisting of lowercase English letters.\n\nYou can perform the following operations any number of times (including zero) and in any order:\n\n\t**Increment**: Choose any index `i` and replace `s[i]` with the next lowercase English letter. The letter after `'z'` is `'a'`.\n\t**Left rotate**: Move the first character of the string to the end.\n\nReturn the **minimum** number of operations required to make `s` a palindrome.",
+  "description": "You are given a string `s` consisting of lowercase English letters.\n\nYou can perform the following operations any number of times (including zero) and in any order:\n\n\t* **Increment**: Choose any index `i` and replace `s[i]` with the next lowercase English letter. The letter after `'z'` is `'a'`.\n\n\t* **Left rotate**: Move the first character of the string to the end.\n\nReturn the **minimum** number of operations required to make `s` a palindrome.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"abc\"",
+      "output": "2",
+      "explanation": "One optimal solution:\n\n\n\tLeft rotate the string: \"abc\" -> \"bca\".\n\tIncrement 'a' to 'b': \"bca\" -> \"bcb\".\n\t\"bcb\" is a palindrome. Thus, the answer is 2."
+    },
+    {
+      "input": "s = \"yb\"",
+      "output": "3",
+      "explanation": "Increment the first character three times: \"yb\" -> \"zb\" -> \"ab\" -> \"bb\".\n\t\"bb\" is a palindrome. Thus, the answer is 3."
     }
   ],
   "constraints": [
-    "2 <= s.length <= 5 * 10^4",
-    "s​​​​​​​​​​​​​​ consists only of lowercase English letters."
+    "`2 <= s.length <= 5 * 10^4`",
+    "`s​​​​​​​​​​​​​​` consists only of lowercase English letters."
   ],
   "starterTemplates": {
     "python": "import numpy as np\n\nclass Solution:\n    def minOperations(self, s: str) -> int:\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abc\"",
+      "expected": "2"
+    },
+    {
+      "input": "\"yb\"",
+      "expected": "3"
     }
   ],
   "hints": [

@@ -20,14 +20,20 @@
   "description": "Given a string `s` and an integer `k`, return the total number of substrings of `s` where **at least one** character appears **at least** `k` times.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"abacb\", k = 2",
+      "output": "4",
+      "explanation": "The valid substrings are:\n\n\n\t\"aba\" (character 'a' appears 2 times).\n\t\"abac\" (character 'a' appears 2 times).\n\t\"abacb\" (character 'a' appears 2 times).\n\t\"bacb\" (character 'b' appears 2 times)."
+    },
+    {
+      "input": "s = \"abcde\", k = 1",
+      "output": "15",
+      "explanation": "All substrings are valid because every character appears at least once."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 3 * 10^5",
-    "1 <= k <= s.length",
-    "s consists only of lowercase English letters."
+    "`1 <= s.length <= 3 * 10^5`",
+    "`1 <= k <= s.length`",
+    "`s` consists only of lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def numberOfSubstrings(self, s: str, k: int) -> int:\r\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abacb\", k = 2",
+      "expected": "4"
+    },
+    {
+      "input": "\"abcde\", k = 1",
+      "expected": "15"
     }
   ],
   "hints": [

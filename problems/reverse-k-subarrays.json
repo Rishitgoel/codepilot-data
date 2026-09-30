@@ -20,15 +20,21 @@
   "description": "You are given an integer array `nums` of length `n` and an integer `k`.\n\nYou must **partition** the array into `k` contiguous subarrays of **equal** length and **reverse** each subarray.\n\nIt is guaranteed that `n` is divisible by `k`.\n\nReturn the resulting array after performing the above operation.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,2,4,3,5,6], k = 3",
+      "output": "[2,1,3,4,6,5]",
+      "explanation": "The array is partitioned into k = 3 subarrays: [1, 2], [4, 3], and [5, 6].\n\tAfter reversing each subarray: [2, 1], [3, 4], and [6, 5].\n\tCombining them gives the final array [2, 1, 3, 4, 6, 5]."
+    },
+    {
+      "input": "nums = [5,4,4,2], k = 1",
+      "output": "[2,4,4,5]",
+      "explanation": "The array is partitioned into k = 1 subarray: [5, 4, 4, 2].\n\tReversing it produces [2, 4, 4, 5], which is the final array."
     }
   ],
   "constraints": [
-    "1 <= n == nums.length <= 1000",
-    "1 <= nums[i] <= 1000",
-    "1 <= k <= n",
-    "n is divisible by k."
+    "`1 <= n == nums.length <= 1000`",
+    "`1 <= nums[i] <= 1000`",
+    "`1 <= k <= n`",
+    "`n` is divisible by `k`."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def reverseSubarrays(self, nums: list[int], k: int) -> list[int]:\n        pass\n",
@@ -44,8 +50,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,4,3,5,6], k = 3",
+      "expected": "[2,1,3,4,6,5]"
+    },
+    {
+      "input": "[5,4,4,2], k = 1",
+      "expected": "[2,4,4,5]"
     }
   ],
   "hints": [

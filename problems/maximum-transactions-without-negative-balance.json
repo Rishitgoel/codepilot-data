@@ -14,16 +14,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Transactions%20Without%20Negative%20Balance"
   },
-  "description": "You are given an integer array `transactions`, where `transactions[i]` represents the amount of the `i^th` transaction:\n\n\tA positive value means money is **received**.\n\tA negative value means money is **sent**.\n\nThe account starts with a balance of 0, and the balance **must never become negative**. Transactions must be considered in the given order, but you are allowed to skip some transactions.\n\nReturn an integer denoting the **maximum number of transactions** that can be performed without the balance ever going negative.",
+  "description": "You are given an integer array `transactions`, where `transactions[i]` represents the amount of the `i^th` transaction:\n\n\t* A positive value means money is **received**.\n\n\t* A negative value means money is **sent**.\n\nThe account starts with a balance of 0, and the balance **must never become negative**. Transactions must be considered in the given order, but you are allowed to skip some transactions.\n\nReturn an integer denoting the **maximum number of transactions** that can be performed without the balance ever going negative.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "transactions = [2,-5,3,-1,-2]",
+      "output": "4",
+      "explanation": "One optimal sequence is [2, 3, -1, -2], balance: 0 &rarr; 2 &rarr; 5 &rarr; 4 &rarr; 2."
+    },
+    {
+      "input": "transactions = [-1,-2,-3]",
+      "output": "0",
+      "explanation": "All transactions are negative. Including any would make the balance negative."
+    },
+    {
+      "input": "transactions = [3,-2,3,-2,1,-1]",
+      "output": "6",
+      "explanation": "All transactions can be taken in order, balance: 0 &rarr; 3 &rarr; 1 &rarr; 4 &rarr; 2 &rarr; 3 &rarr; 2."
     }
   ],
   "constraints": [
-    "1 <= transactions.length <= 10^5",
-    "-10^9 <= transactions[i] <= 10^9"
+    "`1 <= transactions.length <= 10^5`",
+    "`-10^9 <= transactions[i] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxTransactions(self, transactions: List[int]) -> int:\n        pass\n",
@@ -37,8 +48,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[2,-5,3,-1,-2]",
+      "expected": "4"
+    },
+    {
+      "input": "[-1,-2,-3]",
+      "expected": "0"
+    },
+    {
+      "input": "[3,-2,3,-2,1,-1]",
+      "expected": "6"
     }
   ],
   "hints": [

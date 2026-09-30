@@ -17,25 +17,35 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Once%20Twice"
   },
-  "description": "You are given an integer array `nums`. In this array:\n\n\t\n\tExactly one element appears **once**.\n\n\t\n\t\n\tExactly one element appears **twice**.\n\n\t\n\t\n\tAll other elements appear **exactly three times**.\n\n\t\n\nReturn an integer array of length 2, where the first element is the one that appears **once**, and the second is the one that appears **twice**.\n\nYour solution must run in **O(n)** time and **O(1)** space.",
+  "description": "You are given an integer array `nums`. In this array:\n\n\t* \n\tExactly one element appears **once**.\n\n\t\n\n\t* \n\tExactly one element appears **twice**.\n\n\t\n\n\t* \n\tAll other elements appear **exactly three times**.\n\n\t\n\nReturn an integer array of length 2, where the first element is the one that appears **once**, and the second is the one that appears **twice**.\n\nYour solution must run in **O(n)** time and **O(1)** space.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [2,2,3,2,5,5,5,7,7]",
+      "output": "[3,7]",
+      "explanation": "The element 3 appears once, and the element 7 appears twice. The remaining elements each appear three times."
+    },
+    {
+      "input": "nums = [4,4,6,4,9,9,9,6,8]",
+      "output": "[8,6]",
+      "explanation": "The element 8 appears once, and the element 6 appears twice. The remaining elements each appear three times."
     }
   ],
   "constraints": [
-    "3 <= nums.length <= 10^5",
-    "-2^31 <= nums[i] <= 2^31 - 1",
-    "nums.length is a multiple of 3.",
+    "`3 <= nums.length <= 10^5`",
+    "`-2^31 <= nums[i] <= 2^31 - 1`",
+    "`nums.length` is a multiple of 3.",
     "Exactly one element appears once, one element appears twice, and all other elements appear three times."
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[2,2,3,2,5,5,5,7,7]",
+      "expected": "[3,7]"
+    },
+    {
+      "input": "[4,4,6,4,9,9,9,6,8]",
+      "expected": "[8,6]"
     }
   ],
   "hints": [

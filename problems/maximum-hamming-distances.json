@@ -20,14 +20,20 @@
   "description": "Given an array `nums` and an integer `m`, with each element `nums[i]` satisfying `0 <= nums[i] < 2^m`, return an array `answer`. The `answer` array should be of the same length as `nums`, where each element `answer[i]` represents the *maximum* **Hamming distance **between `nums[i]` and any other element `nums[j]` in the array.\n\nThe **Hamming distance** between two binary integers is defined as the number of positions at which the corresponding bits differ (add leading zeroes if needed).",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [9,12,9,11], m = 4",
+      "output": "[2,3,2,3]",
+      "explanation": "The binary representation of nums = [1001,1100,1001,1011].\n\nThe maximum hamming distances for each index are:\n\n\n\tnums[0]: 1001 and 1100 have a distance of 2.\n\tnums[1]: 1100 and 1011 have a distance of 3.\n\tnums[2]: 1001 and 1100 have a distance of 2.\n\tnums[3]: 1011 and 1100 have a distance of 3."
+    },
+    {
+      "input": "nums = [3,4,6,10], m = 4",
+      "output": "[3,3,2,3]",
+      "explanation": "The binary representation of nums = [0011,0100,0110,1010].\n\nThe maximum hamming distances for each index are:\n\n\n\tnums[0]: 0011 and 0100 have a distance of 3.\n\tnums[1]: 0100 and 0011 have a distance of 3.\n\tnums[2]: 0110 and 1010 have a distance of 2.\n\tnums[3]: 1010 and 0100 have a distance of 3."
     }
   ],
   "constraints": [
-    "1 <= m <= 17",
-    "2 <= nums.length <= 2^m",
-    "0 <= nums[i] < 2^m"
+    "`1 <= m <= 17`",
+    "`2 <= nums.length <= 2^m`",
+    "`0 <= nums[i] < 2^m`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxHammingDistances(self, nums: List[int], m: int) -> List[int]:\r\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[9,12,9,11], m = 4",
+      "expected": "[2,3,2,3]"
+    },
+    {
+      "input": "[3,4,6,10], m = 4",
+      "expected": "[3,3,2,3]"
     }
   ],
   "hints": [

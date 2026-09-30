@@ -17,16 +17,22 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Sum%20of%20Consecutive%20Subsequences"
   },
-  "description": "We call an array `arr` of length `n` **consecutive** if one of the following holds:\n\n\t`arr[i] - arr[i - 1] == 1` for *all* `1 \n\t`arr[i] - arr[i - 1] == -1` for *all* `1 \n\nThe **value** of an array is the sum of its elements.\n\nFor example, `[3, 4, 5]` is a consecutive array of value 12 and `[9, 8]` is another of value 17. While `[3, 4, 3]` and `[8, 6]` are not consecutive.\n\nGiven an array of integers `nums`, return the *sum* of the **values** of all **consecutive ***non-empty* subsequences.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7.`\n\n**Note** that an array of length 1 is also considered consecutive.",
+  "description": "We call an array `arr` of length `n` **consecutive** if one of the following holds:\n\n\t* `arr[i] - arr[i - 1] == 1` for *all* `1 <= i < n`.\n\n\t* `arr[i] - arr[i - 1] == -1` for *all* `1 <= i < n`.\n\nThe **value** of an array is the sum of its elements.\n\nFor example, `[3, 4, 5]` is a consecutive array of value 12 and `[9, 8]` is another of value 17. While `[3, 4, 3]` and `[8, 6]` are not consecutive.\n\nGiven an array of integers `nums`, return the *sum* of the **values** of all **consecutive ***non-empty* subsequences.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7.`\n\n**Note** that an array of length 1 is also considered consecutive.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,2]",
+      "output": "6",
+      "explanation": "The consecutive subsequences are: [1], [2], [1, 2]."
+    },
+    {
+      "input": "nums = [1,4,2,3]",
+      "output": "31",
+      "explanation": "The consecutive subsequences are: [1], [4], [2], [3], [1, 2], [2, 3], [4, 3], [1, 2, 3]."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^5"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^5`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        pass\n",
@@ -40,8 +46,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2]",
+      "expected": "6"
+    },
+    {
+      "input": "[1,4,2,3]",
+      "expected": "31"
     }
   ],
   "hints": [

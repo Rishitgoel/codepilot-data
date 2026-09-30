@@ -15,16 +15,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Team%20Size%20with%20Overlapping%20Intervals"
   },
-  "description": "You are given two integer arrays `startTime` and `endTime` of length `n`.\n\n\t`startTime[i]` represents the start time of the `i^th` employee.\n\t`endTime[i]` represents the end time of the `i^th` employee.\n\nTwo employees `i` and `j` can interact if their time intervals **overlap**. Two intervals are considered overlapping if they share **at least one** common time point.\n\nA team is **valid** if there exists **at least one** employee in the team who can interact with every other member of the team.\n\nReturn an integer denoting the **maximum** possible size of such a team.",
+  "description": "You are given two integer arrays `startTime` and `endTime` of length `n`.\n\n\t* `startTime[i]` represents the start time of the `i^th` employee.\n\n\t* `endTime[i]` represents the end time of the `i^th` employee.\n\nTwo employees `i` and `j` can interact if their time intervals **overlap**. Two intervals are considered overlapping if they share **at least one** common time point.\n\nA team is **valid** if there exists **at least one** employee in the team who can interact with every other member of the team.\n\nReturn an integer denoting the **maximum** possible size of such a team.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "startTime = [1,2,3], endTime = [4,5,6]",
+      "output": "3",
+      "explanation": "For i = 0 with interval [1, 4].\n\tIt overlaps with i = 1 having interval [2, 5] and i = 2 having interval [3, 6].\n\tThus, index 0 can interact with all other indices, so the team size is 3."
+    },
+    {
+      "input": "startTime = [2,5,8], endTime = [3,7,9]",
+      "output": "1",
+      "explanation": "For i = 0, interval [2, 3] does not overlap with [5, 7] or [8, 9].\n\tFor i = 1, interval [5, 7] does not overlap with [2, 3] or [8, 9].\n\tFor i = 2, interval [8, 9] does not overlap with [2, 3] or [5, 7].\n\tThus, no index can interact with others, so the maximum team size is 1."
+    },
+    {
+      "input": "startTime = [3,4,6], endTime = [8,5,7]",
+      "output": "3",
+      "explanation": "For i = 0 with interval [3, 8].\n\tIt overlaps with i = 1 having interval [4, 5] and i = 2 having interval [6, 7].\n\tThus, index 0 can interact with all other indices, so the team size is 3."
     }
   ],
   "constraints": [
-    "1 <= n == startTime.length == endTime.length <= 10^5",
-    "0 <= startTime[i] <= endTime[i] <= 10^9"
+    "`1 <= n == startTime.length == endTime.length <= 10^5`",
+    "`0 <= startTime[i] <= endTime[i] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumTeamSize(self, startTime: list[int], endTime: list[int]) -> int:\n        pass\n",
@@ -40,8 +51,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2,3], endTime = [4,5,6]",
+      "expected": "3"
+    },
+    {
+      "input": "[2,5,8], endTime = [3,7,9]",
+      "expected": "1"
+    },
+    {
+      "input": "[3,4,6], endTime = [8,5,7]",
+      "expected": "3"
     }
   ],
   "hints": [

@@ -17,22 +17,32 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Create%20Grid%20With%20Exactly%20K%20Paths%20II"
   },
-  "description": "You are given an integer `k`.\n\nConstruct **any** grid consisting only of the characters `'.'` and `'#'`, where:\n\n\t`'.'` represents a free cell.\n\t`'#'` represents an obstacle cell.\n\nThe grid must contain **at most** 25 rows and **at most** 25 columns.\n\nA **valid path** is a sequence of free cells that:\n\n\tStarts at the top-left cell `(0, 0)`.\n\tEnds at the bottom-right cell `(m - 1, n - 1)`, where `m` and `n` are the dimensions of your constructed grid.\n\tMoves only:\n\t\n\t\tRight, from `(i, j)` to `(i, j + 1)`, or\n\t\tDown, from `(i, j)` to `(i + 1, j)`.\n\t\n\t\n\nReturn any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.",
+  "description": "You are given an integer `k`.\n\nConstruct **any** grid consisting only of the characters `'.'` and `'#'`, where:\n\n\t* `'.'` represents a free cell.\n\n\t* `'#'` represents an obstacle cell.\n\nThe grid must contain **at most** 25 rows and **at most** 25 columns.\n\nA **valid path** is a sequence of free cells that:\n\n\t* Starts at the top-left cell `(0, 0)`.\n\n\t* Ends at the bottom-right cell `(m - 1, n - 1)`, where `m` and `n` are the dimensions of your constructed grid.\n\n\t* Moves only:\n\t\n\t\tRight, from `(i, j)` to `(i, j + 1)`, or\n\n\t\t* Down, from `(i, j)` to `(i + 1, j)`.\n\n\t\n\t\n\nReturn any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "k = 2",
+      "output": "[\"..#\",\"#..\",\"#..\"]",
+      "explanation": "The grid contains exactly 2 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (2, 1) &rarr; (2, 2)"
+    },
+    {
+      "input": "k = 3",
+      "output": "[\"...\",\"#..\",\"#..\"]",
+      "explanation": "​​​​​​​\n\nThe grid contains exactly 3 valid paths from (0, 0) to (2, 2):\n\n\n\t(0, 0) &rarr; (0, 1) &rarr; (0, 2) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (1, 2) &rarr; (2, 2)\n\t(0, 0) &rarr; (0, 1) &rarr; (1, 1) &rarr; (2, 1) &rarr; (2, 2)"
     }
   ],
   "constraints": [
-    "1 <= k <= 1000"
+    "`1 <= k <= 1000`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "2",
+      "expected": "[\"..#\",\"#..\",\"#..\"]"
+    },
+    {
+      "input": "3",
+      "expected": "[\"...\",\"#..\",\"#..\"]"
     }
   ],
   "hints": [

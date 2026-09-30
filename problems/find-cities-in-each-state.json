@@ -20,8 +20,9 @@
   "description": "Table: `cities`\n\n+-------------+---------+\n| Column Name | Type    | \n+-------------+---------+\n| state       | varchar |\n| city        | varchar |\n+-------------+---------+\n(state, city) is the primary key (combination of columns with unique values) for this table.\nEach row of this table contains the state name and the city name within that state.\n\nWrite a solution to find **all the cities in each state** and combine them into a **single comma-separated** string.\n\nReturn *the result table ordered by* `state` *and* `city` *in **ascending** order*.\n\nThe result format is in the following example.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "cities table:\n\n\n+-------------+---------------+\n| state       | city          |\n+-------------+---------------+\n| California  | Los Angeles   |\n| California  | San Francisco |\n| California  | San Diego     |\n| Texas       | Houston       |\n| Texas       | Austin        |\n| Texas       | Dallas        |\n| New York    | New York City |\n| New York    | Buffalo       |\n| New York    | Rochester     |\n+-------------+---------------+",
+      "output": "+-------------+---------------------------------------+\n| state       | cities                                |\n+-------------+---------------------------------------+\n| California  | Los Angeles, San Diego, San Francisco |\n| New York    | Buffalo, New York City, Rochester     |\n| Texas       | Austin, Dallas, Houston               |\n+-------------+---------------------------------------+",
+      "explanation": "California: All cities (\"Los Angeles\", \"San Diego\", \"San Francisco\") are listed in a comma-separated string.\n\tNew York: All cities (\"Buffalo\", \"New York City\", \"Rochester\") are listed in a comma-separated string.\n\tTexas: All cities (\"Austin\", \"Dallas\", \"Houston\") are listed in a comma-separated string.\n\n\nNote: The output table is ordered by the state name in ascending order."
     }
   ],
   "constraints": [
@@ -35,8 +36,8 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "cities table:\n\n\n+-------------+---------------+\n| state       | city          |\n+-------------+---------------+\n| California  | Los Angeles   |\n| California  | San Francisco |\n| California  | San Diego     |\n| Texas       | Houston       |\n| Texas       | Austin        |\n| Texas       | Dallas        |\n| New York    | New York City |\n| New York    | Buffalo       |\n| New York    | Rochester     |\n+-------------+---------------+",
+      "expected": "+-------------+---------------------------------------+\n| state       | cities                                |\n+-------------+---------------------------------------+\n| California  | Los Angeles, San Diego, San Francisco |\n| New York    | Buffalo, New York City, Rochester     |\n| Texas       | Austin, Dallas, Houston               |\n+-------------+---------------------------------------+"
     }
   ],
   "hints": [

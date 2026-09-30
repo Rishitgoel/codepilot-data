@@ -20,8 +20,14 @@
   "description": "You are given **two** strings, `s1` and `s2`. Return the **shortest** *possible* string that contains both `s1` and `s2` as substrings. If there are multiple valid answers, return *any *one of them.\n\nA **substring** is a contiguous sequence of characters within a string.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s1 = \"aba\", s2 = \"bab\"",
+      "output": "\"abab\"",
+      "explanation": "\"abab\" is the shortest string that contains both \"aba\" and \"bab\" as substrings."
+    },
+    {
+      "input": "s1 = \"aa\", s2 = \"aaa\"",
+      "output": "\"aaa\"",
+      "explanation": "\"aa\" is already contained within \"aaa\", so the shortest superstring is \"aaa\"."
     }
   ],
   "constraints": [
@@ -41,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"aba\", s2 = \"bab\"",
+      "expected": "\"abab\""
+    },
+    {
+      "input": "\"aa\", s2 = \"aaa\"",
+      "expected": "\"aaa\""
     }
   ],
   "hints": [

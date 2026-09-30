@@ -15,18 +15,24 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Path%20Sum%20IV"
   },
-  "description": "If the depth of a tree is smaller than `5`, then this tree can be represented by an array of three-digit integers. You are given an **ascending **array `nums` consisting of three-digit integers representing a binary tree with a depth smaller than `5`, where for each integer:\n\n\tThe hundreds digit represents the depth `d` of this node, where `1 \n\tThe tens digit represents the position `p` of this node within its level, where `1 \n\tThe units digit represents the value `v` of this node, where `0 \n\nReturn the **sum** of **all paths** from the **root** towards the **leaves**.\n\nIt is **guaranteed** that the given array represents a valid connected binary tree.",
+  "description": "If the depth of a tree is smaller than `5`, then this tree can be represented by an array of three-digit integers. You are given an **ascending **array `nums` consisting of three-digit integers representing a binary tree with a depth smaller than `5`, where for each integer:\n\n\t* The hundreds digit represents the depth `d` of this node, where `1 <= d <= 4`.\n\n\t* The tens digit represents the position `p` of this node within its level, where `1 <= p <= 8`, corresponding to its position in a **full binary tree**.\n\n\t* The units digit represents the value `v` of this node, where `0 <= v <= 9`.\n\nReturn the **sum** of **all paths** from the **root** towards the **leaves**.\n\nIt is **guaranteed** that the given array represents a valid connected binary tree.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [113,215,221]",
+      "output": "12",
+      "explanation": "The tree that the list represents is shown.\nThe path sum is (3 + 5) + (3 + 1) = 12."
+    },
+    {
+      "input": "nums = [113,221]",
+      "output": "4",
+      "explanation": "The tree that the list represents is shown. \nThe path sum is (3 + 1) = 4."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 15",
-    "110 <= nums[i] <= 489",
-    "nums represents a valid binary tree with depth less than 5.",
-    "nums is sorted in ascending order."
+    "`1 <= nums.length <= 15`",
+    "`110 <= nums[i] <= 489`",
+    "`nums` represents a valid binary tree with depth less than `5`.",
+    "`nums` is sorted in ascending order."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def pathSum(self, nums: List[int]) -> int:\n        pass\n",
@@ -40,8 +46,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[113,215,221]",
+      "expected": "12"
+    },
+    {
+      "input": "[113,221]",
+      "expected": "4"
     }
   ],
   "hints": [

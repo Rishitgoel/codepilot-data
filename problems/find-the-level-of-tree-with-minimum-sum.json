@@ -17,13 +17,21 @@
   "description": "Given the root of a binary tree `root` where each node has a value, return the level of the tree that has the **minimum** sum of values among all the levels (in case of a tie, return the **lowest** level).\n\n**Note** that the root of the tree is at level 1 and the level of any other node is its distance from the root + 1.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "root = [50,6,2,30,80,7]",
+      "output": "2"
+    },
+    {
+      "input": "root = [36,17,10,null,null,24]",
+      "output": "3"
+    },
+    {
+      "input": "root = [5,null,5,null,5]",
+      "output": "1"
     }
   ],
   "constraints": [
-    "The number of nodes in the tree is in the range [1, 10^5].",
-    "1 <= Node.val <= 10^9"
+    "The number of nodes in the tree is in the range `[1, 10^5]`.",
+    "`1 <= Node.val <= 10^9`"
   ],
   "starterTemplates": {
     "python": "# Definition for a binary tree node.\r\n# class TreeNode:\r\n#     def __init__(self, val=0, left=None, right=None):\r\n#         self.val = val\r\n#         self.left = left\r\n#         self.right = right\r\nclass Solution:\r\n    def minimumLevel(self, root: Optional[TreeNode]) -> int:\r\n        pass\n",
@@ -39,8 +47,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[50,6,2,30,80,7]",
+      "expected": "2"
+    },
+    {
+      "input": "[36,17,10,null,null,24]",
+      "expected": "3"
+    },
+    {
+      "input": "[5,null,5,null,5]",
+      "expected": "1"
     }
   ],
   "hints": [

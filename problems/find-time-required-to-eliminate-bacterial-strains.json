@@ -17,17 +17,23 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Find%20Time%20Required%20to%20Eliminate%20Bacterial%20Strains"
   },
-  "description": "You are given an integer array `timeReq` and an integer `splitTime`.\n\nIn the microscopic world of the human body, the immune system faces an extraordinary challenge: combatting a rapidly multiplying bacterial colony that threatens the body's survival.\n\nInitially, only one **white blood cell** (**WBC**) is deployed to eliminate the bacteria. However, the lone WBC quickly realizes it cannot keep up with the bacterial growth rate.\n\nThe WBC devises a clever strategy to fight the bacteria:\n\n\tThe `i^th` bacterial strain takes `timeReq[i]` units of time to be eliminated.\n\tA single WBC can eliminate **only one** bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks.\n\tA WBC can split itself into two WBCs, but this requires `splitTime` units of time. Once split, the two WBCs can work in **parallel** on eliminating the bacteria.\n\t*Only one* WBC can work on a single bacterial strain. Multiple WBCs **cannot** attack one strain in parallel.\n\nYou must determine the **minimum** time required to eliminate all the bacterial strains.\n\n**Note** that the bacterial strains can be eliminated in any order.",
+  "description": "You are given an integer array `timeReq` and an integer `splitTime`.\n\nIn the microscopic world of the human body, the immune system faces an extraordinary challenge: combatting a rapidly multiplying bacterial colony that threatens the body's survival.\n\nInitially, only one **white blood cell** (**WBC**) is deployed to eliminate the bacteria. However, the lone WBC quickly realizes it cannot keep up with the bacterial growth rate.\n\nThe WBC devises a clever strategy to fight the bacteria:\n\n\t* The `i^th` bacterial strain takes `timeReq[i]` units of time to be eliminated.\n\n\t* A single WBC can eliminate **only one** bacterial strain. Afterwards, the WBC is exhausted and cannot perform any other tasks.\n\n\t* A WBC can split itself into two WBCs, but this requires `splitTime` units of time. Once split, the two WBCs can work in **parallel** on eliminating the bacteria.\n\n\t* *Only one* WBC can work on a single bacterial strain. Multiple WBCs **cannot** attack one strain in parallel.\n\nYou must determine the **minimum** time required to eliminate all the bacterial strains.\n\n**Note** that the bacterial strains can be eliminated in any order.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "timeReq = [10,4,5], splitTime = 2",
+      "output": "12",
+      "explanation": "The elimination process goes as follows:\n\n\n\tInitially, there is a single WBC. The WBC splits into 2 WBCs after 2 units of time.\n\tOne of the WBCs eliminates strain 0 at a time t = 2 + 10 = 12. The other WBC splits again, using 2 units of time.\n\tThe 2 new WBCs eliminate the bacteria at times t = 2 + 2 + 4 and t = 2 + 2 + 5."
+    },
+    {
+      "input": "timeReq = [10,4], splitTime = 5",
+      "output": "15",
+      "explanation": "The elimination process goes as follows:\n\n\n\tInitially, there is a single WBC. The WBC splits into 2 WBCs after 5 units of time.\n\tThe 2 new WBCs eliminate the bacteria at times t = 5 + 10 and t = 5 + 4."
     }
   ],
   "constraints": [
-    "2 <= timeReq.length <= 10^5",
-    "1 <= timeReq[i] <= 10^9",
-    "1 <= splitTime <= 10^9"
+    "`2 <= timeReq.length <= 10^5`",
+    "`1 <= timeReq[i] <= 10^9`",
+    "`1 <= splitTime <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:\n        pass\n",
@@ -43,8 +49,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[10,4,5], splitTime = 2",
+      "expected": "12"
+    },
+    {
+      "input": "[10,4], splitTime = 5",
+      "expected": "15"
     }
   ],
   "hints": [

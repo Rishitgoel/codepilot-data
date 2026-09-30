@@ -17,16 +17,22 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Library%20Late%20Fee%20Calculator"
   },
-  "description": "You are given an integer array `daysLate` where `daysLate[i]` indicates how many days late the `i^th` book was returned.\n\nThe penalty is calculated as follows:\n\n\tIf `daysLate[i] == 1`, penalty is 1.\n\tIf `2 \n\tIf `daysLate[i] > 5`, penalty is `3 * daysLate[i]`.\n\nReturn the total penalty for all books.",
+  "description": "You are given an integer array `daysLate` where `daysLate[i]` indicates how many days late the `i^th` book was returned.\n\nThe penalty is calculated as follows:\n\n\t* If `daysLate[i] == 1`, penalty is 1.\n\n\t* If `2 <= daysLate[i] <= 5`, penalty is `2 * daysLate[i]`.\n\n\t* If `daysLate[i] > 5`, penalty is `3 * daysLate[i]`.\n\nReturn the total penalty for all books.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "daysLate = [5,1,7]",
+      "output": "32",
+      "explanation": "daysLate[0] = 5: Penalty is 2 * daysLate[0] = 2 * 5 = 10.\n\tdaysLate[1] = 1: Penalty is 1.\n\tdaysLate[2] = 7: Penalty is 3 * daysLate[2] = 3 * 7 = 21.\n\tThus, the total penalty is 10 + 1 + 21 = 32."
+    },
+    {
+      "input": "daysLate = [1,1]",
+      "output": "2",
+      "explanation": "daysLate[0] = 1: Penalty is 1.\n\tdaysLate[1] = 1: Penalty is 1.\n\tThus, the total penalty is 1 + 1 = 2."
     }
   ],
   "constraints": [
-    "1 <= daysLate.length <= 100",
-    "1 <= daysLate[i] <= 100"
+    "`1 <= daysLate.length <= 100`",
+    "`1 <= daysLate[i] <= 100`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def lateFee(self, daysLate: List[int]) -> int:\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[5,1,7]",
+      "expected": "32"
+    },
+    {
+      "input": "[1,1]",
+      "expected": "2"
     }
   ],
   "hints": [

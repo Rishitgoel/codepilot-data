@@ -17,8 +17,14 @@
   "description": "You are given a `replacements` mapping and a `text` string that may contain **placeholders** formatted as %var%, where each `var` corresponds to a key in the `replacements` mapping. Each replacement value may itself contain **one or more** such **placeholders**. Each **placeholder** is replaced by the value associated with its corresponding replacement key.\n\nReturn the fully substituted `text` string which **does not** contain any **placeholders**.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "replacements = [[\"A\",\"abc\"],[\"B\",\"def\"]], text = \"%A%_%B%\"",
+      "output": "\"abc_def\"",
+      "explanation": "The mapping associates \"A\" with \"abc\" and \"B\" with \"def\".\n\tReplace %A% with \"abc\" and %B% with \"def\" in the text.\n\tThe final text becomes \"abc_def\"."
+    },
+    {
+      "input": "replacements = [[\"A\",\"bce\"],[\"B\",\"ace\"],[\"C\",\"abc%B%\"]], text = \"%A%_%B%_%C%\"",
+      "output": "\"bce_ace_abcace\"",
+      "explanation": "The mapping associates \"A\" with \"bce\", \"B\" with \"ace\", and \"C\" with \"abc%B%\".\n\tReplace %A% with \"bce\" and %B% with \"ace\" in the text.\n\tThen, for %C%, substitute %B% in \"abc%B%\" with \"ace\" to obtain \"abcace\".\n\tThe final text becomes \"bce_ace_abcace\"."
     }
   ],
   "constraints": [
@@ -38,8 +44,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[[\"A\",\"abc\"],[\"B\",\"def\"]], text = \"%A%_%B%\"",
+      "expected": "\"abc_def\""
+    },
+    {
+      "input": "[[\"A\",\"bce\"],[\"B\",\"ace\"],[\"C\",\"abc%B%\"]], text = \"%A%_%B%_%C%\"",
+      "expected": "\"bce_ace_abcace\""
     }
   ],
   "hints": [

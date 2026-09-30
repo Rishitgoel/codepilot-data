@@ -17,13 +17,24 @@
   "description": "Given a string `s`, your task is to find the length of the **longest self-contained** substring of `s`.\n\nA substring `t` of a string `s` is called **self-contained **if `t != s` and for every character in `t`, it doesn't exist in the *rest* of `s`.\n\nReturn the length of the *longest** **self-contained *substring of `s` if it exists, otherwise, return -1.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"abba\"",
+      "output": "2",
+      "explanation": "Let's check the substring \"bb\". You can see that no other \"b\" is outside of this substring. Hence the answer is 2."
+    },
+    {
+      "input": "s = \"abab\"",
+      "output": "-1",
+      "explanation": "Every substring we choose does not satisfy the described property (there is some character which is inside and outside of that substring). So the answer would be -1."
+    },
+    {
+      "input": "s = \"abacd\"",
+      "output": "4",
+      "explanation": "Let's check the substring \"abac\". There is only one character outside of this substring and that is \"d\". There is no \"d\" inside the chosen substring, so it satisfies the condition and the answer is 4."
     }
   ],
   "constraints": [
-    "2 <= s.length <= 5 * 10^4",
-    "s consists only of lowercase English letters."
+    "`2 <= s.length <= 5 * 10^4`",
+    "`s` consists only of lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSubstringLength(self, s: str) -> int:\n        pass\n",
@@ -39,8 +50,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"abba\"",
+      "expected": "2"
+    },
+    {
+      "input": "\"abab\"",
+      "expected": "-1"
+    },
+    {
+      "input": "\"abacd\"",
+      "expected": "4"
     }
   ],
   "hints": [

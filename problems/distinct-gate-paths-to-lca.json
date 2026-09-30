@@ -17,32 +17,42 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Distinct%20Gate%20Paths%20to%20LCA"
   },
-  "description": "You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`, represented by an array `parent` where `parent[i]` is the parent of node `i`.\n\nEach node `i` has three types of gates, given in a 2D array `gates` where `gates[i] = [redi, bluei, whitei]` which represents the number of **red**, **blue**, and **white** gates at node `i`.\n\n\t**Red** gate: usable only with a **red** card.\n\t**Blue** gate: usable only with a **blue** card.\n\t**White** gate: usable with **either** card, but **flips** the card color when used.\n\nAlice and Bob start at given nodes with either a red or blue card (`1` = red, `0` = blue). They must **independently** move **upward** to their **lowest common ancestor (LCA)**.\n\nAt each node, a person may move to their parent **only if** they can use **at least** one gate at that node with their current card. **White** gates may be used any number of times to flip the card color.\n\n**Movement rules (one move = from `u` to `parent[u]`):**\n\n\tMovement is only upward toward the root.\n\tAt node `u`, pick **exactly** one specific gate instance. Identical gates are treated as **separate** and counted individually.\n\tIf holding a **red** card: use a red gate to remain red, or a white gate to **change** to blue.\n\tIf holding a **blue** card: use a blue gate to remain blue, or a white gate to **change** to red.\n\tIf no usable gate exists at `u`, the sequence ends.\n\nYou are also given a 2D array `queries` where `queries[i] = [aNodei, aCardi, bNodei, bCardi]`:\n\n\t`aNodei`, `aCardi`: Alice's starting node and card.\n\t`bNodei`, `bCardi`: Bob's starting node and card.\n\nFor each query, count the number of **distinct** valid ways **modulo** `10^9 + 7` for both to reach their **LCA**.\n\nAfter computing the result for all queries, return the **bitwise XOR** of those values.\n\n**Note:**\n\n\tTwo ways are distinct if the set of gates used **differs** for either Alice or Bob.\n\tIf any person is already at the **LCA**, then the number of ways for them is 1.\n\tThe **lowest common ancestor (LCA)** is defined between two nodes `a` and `b` as the lowest node in a tree that has both `a` and `b` as descendants (where a node is allowed to be a descendant of itself).",
+  "description": "You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to `n - 1`, represented by an array `parent` where `parent[i]` is the parent of node `i`.\n\nEach node `i` has three types of gates, given in a 2D array `gates` where `gates[i] = [redi, bluei, whitei]` which represents the number of **red**, **blue**, and **white** gates at node `i`.\n\n\t* **Red** gate: usable only with a **red** card.\n\n\t* **Blue** gate: usable only with a **blue** card.\n\n\t* **White** gate: usable with **either** card, but **flips** the card color when used.\n\nAlice and Bob start at given nodes with either a red or blue card (`1` = red, `0` = blue). They must **independently** move **upward** to their **lowest common ancestor (LCA)**.\n\nAt each node, a person may move to their parent **only if** they can use **at least** one gate at that node with their current card. **White** gates may be used any number of times to flip the card color.\n\n**Movement rules (one move = from `u` to `parent[u]`):**\n\n\t* Movement is only upward toward the root.\n\n\t* At node `u`, pick **exactly** one specific gate instance. Identical gates are treated as **separate** and counted individually.\n\n\t* If holding a **red** card: use a red gate to remain red, or a white gate to **change** to blue.\n\n\t* If holding a **blue** card: use a blue gate to remain blue, or a white gate to **change** to red.\n\n\t* If no usable gate exists at `u`, the sequence ends.\n\nYou are also given a 2D array `queries` where `queries[i] = [aNodei, aCardi, bNodei, bCardi]`:\n\n\t* `aNodei`, `aCardi`: Alice's starting node and card.\n\n\t* `bNodei`, `bCardi`: Bob's starting node and card.\n\nFor each query, count the number of **distinct** valid ways **modulo** `10^9 + 7` for both to reach their **LCA**.\n\nAfter computing the result for all queries, return the **bitwise XOR** of those values.\n\n**Note:**\n\n\t* Two ways are distinct if the set of gates used **differs** for either Alice or Bob.\n\n\t* If any person is already at the **LCA**, then the number of ways for them is 1.\n\n\t* The **lowest common ancestor (LCA)** is defined between two nodes `a` and `b` as the lowest node in a tree that has both `a` and `b` as descendants (where a node is allowed to be a descendant of itself).",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 3, parent = [-1,0,0], gates = [[1,0,1],[0,1,1],[1,1,0]], queries = [[1,0,2,0],[1,1,2,0],[1,0,2,1]]",
+      "output": "1",
+      "explanation": "i\n\t\t\tAlice\n\t\t\t[Node, Card]\n\t\t\tBob\n\t\t\t[Node, Card]\n\t\t\tLCA\n\t\t\tAlice\n\t\t\tPath\n\t\t\tBob\n\t\t\tPath\n\t\t\tAlice Ways\n\t\t\tBob Ways\n\t\t\tTotal Ways\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[1, 0]: Blue\n\t\t\t[2, 0]: Blue\n\t\t\t0\n\t\t\t1 &rarr; 0\n\t\t\t2 &rarr; 0\n\t\t\t2 (1 Blue + 1 White at node 1)\n\t\t\t1 (1 Blue at node 2)\n\t\t\t2 &times; 1 = 2\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[1, 1]: Red\n\t\t\t[2, 0]: Blue\n\t\t\t0\n\t\t\t1 &rarr; 0\n\t\t\t2 &rarr; 0\n\t\t\t1 (1 White at node 1)\n\t\t\t1 (1 Blue at node 2)\n\t\t\t1 &times; 1 = 1\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1, 0]: Blue\n\t\t\t[2, 1]: Red\n\t\t\t0\n\t\t\t1 &rarr; 0\n\t\t\t2 &rarr; 0\n\t\t\t2 (1 Blue + 1 White at node 1)\n\t\t\t1 (1 Red at node 2)\n\t\t\t2 &times; 1 = 2\n\t\t\n\t\n\n\nThus, the XOR of all values: 2 XOR 1 XOR 2 = 1."
+    },
+    {
+      "input": "n = 3, parent = [-1,0,1], gates = [[0,1,2],[1,0,1],[0,0,3]], queries = [[2,0,1,0],[2,1,0,0],[1,1,2,1]]",
+      "output": "3",
+      "explanation": "i\n\t\t\tAlice\n\t\t\t[Node, Card]\n\t\t\tBob\n\t\t\t[Node, Card]\n\t\t\tLCA\n\t\t\tAlice Path\n\t\t\tBob Path\n\t\t\tAlice Ways\n\t\t\tBob Ways\n\t\t\tTotal Ways\n\t\t\n\t\n\t\n\t\t\n\t\t\t0\n\t\t\t[2, 0]: Blue\n\t\t\t[1, 0]: Blue\n\t\t\t1\n\t\t\t2 &rarr; 1\n\t\t\t1\n\t\t\t3 (3 White at node 2)\n\t\t\t1 (no move)\n\t\t\t3 &times; 1 = 3\n\t\t\n\t\t\n\t\t\t1\n\t\t\t[2, 1]: Red\n\t\t\t[0, 0]: Blue\n\t\t\t0\n\t\t\t2 &rarr; 1 &rarr; 0\n\t\t\t0\n\t\t\t3 (3 White at node 2) &times; 1 (1 White at node 1) = 3\n\t\t\t1 (no move)\n\t\t\t3 &times; 1 = 3\n\t\t\n\t\t\n\t\t\t2\n\t\t\t[1, 1]: Red\n\t\t\t[2, 1]: Red\n\t\t\t1\n\t\t\t1\n\t\t\t2 &rarr; 1\n\t\t\t1 (no move)\n\t\t\t3 (3 White at node 2)\n\t\t\t1 &times; 3 = 3\n\t\t\n\t\n\n\nThus, the XOR of all values: 3 XOR 3 XOR 3 = 3."
     }
   ],
   "constraints": [
-    "2 <= n <= 2 * 10^4",
-    "n == parent.length == gates.length",
-    "parent[0] == -1",
-    "0 <= parent[i] < n for i in [1, n - 1]",
-    "gates[i] == [redi, bluei, whitei]",
-    "0 <= redi, bluei, whitei <= 10",
-    "1 <= queries.length <= 2 * 10^4",
-    "queries[i] = [aNodei, aCardi, bNodei, bCardi]",
-    "0 <= aNodei, bNodei <= n - 1",
-    "0 <= aCardi, bCardi <= 1",
-    "The input is generated such that the array parent represents a valid tree."
+    "`2 <= n <= 2 * 10^4`",
+    "`n == parent.length == gates.length`",
+    "`parent[0] == -1`",
+    "`0 <= parent[i] < n` for `i` in `[1, n - 1]`",
+    "`gates[i] == [redi, bluei, whitei]`",
+    "`0 <= redi, bluei, whitei <= 10`",
+    "`1 <= queries.length <= 2 * 10^4`",
+    "`queries[i] = [aNodei, aCardi, bNodei, bCardi]`",
+    "`0 <= aNodei, bNodei <= n - 1`",
+    "`0 <= aCardi, bCardi <= 1`",
+    "The input is generated such that the array `parent` represents a valid tree."
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "3, parent = [-1,0,0], gates = [[1,0,1],[0,1,1],[1,1,0]], queries = [[1,0,2,0],[1,1,2,0],[1,0,2,1]]",
+      "expected": "1"
+    },
+    {
+      "input": "3, parent = [-1,0,1], gates = [[0,1,2],[1,0,1],[0,0,3]], queries = [[2,0,1,0],[2,1,0,0],[1,1,2,1]]",
+      "expected": "3"
     }
   ],
   "hints": [

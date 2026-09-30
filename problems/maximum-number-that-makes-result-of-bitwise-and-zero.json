@@ -17,12 +17,23 @@
   "description": "Given an integer `n`, return the **maximum** integer `x` such that `x <= n`, and the bitwise `AND` of all the numbers in the range `[x, n]` is 0.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 7",
+      "output": "3",
+      "explanation": "The bitwise AND of [6, 7] is 6.\nThe bitwise AND of [5, 6, 7] is 4.\nThe bitwise AND of [4, 5, 6, 7] is 4.\nThe bitwise AND of [3, 4, 5, 6, 7] is 0."
+    },
+    {
+      "input": "n = 9",
+      "output": "7",
+      "explanation": "The bitwise AND of [7, 8, 9] is 0."
+    },
+    {
+      "input": "n = 17",
+      "output": "15",
+      "explanation": "The bitwise AND of [15, 16, 17] is 0."
     }
   ],
   "constraints": [
-    "1 <= n <= 10^15"
+    "`1 <= n <= 10^15`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxNumber(self, n: int) -> int:\r\n        pass\n",
@@ -36,8 +47,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "7",
+      "expected": "3"
+    },
+    {
+      "input": "9",
+      "expected": "7"
+    },
+    {
+      "input": "17",
+      "expected": "15"
     }
   ],
   "hints": [

@@ -14,17 +14,23 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Time%20to%20Break%20Locks%20II"
   },
-  "description": "Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where `strength[i]` indicates the energy needed to break the `i^th` lock.\n\nTo break a lock, Bob uses a sword with the following characteristics:\n\n\tThe initial energy of the sword is 0.\n\tThe initial factor `X` by which the energy of the sword increases is 1.\n\tEvery minute, the energy of the sword increases by the current factor `X`.\n\tTo break the `i^th` lock, the energy of the sword must reach at least `strength[i]`.\n\tAfter breaking a lock, the energy of the sword resets to 0, and the factor `X` increases by 1.\n\nYour task is to determine the **minimum** time in minutes required for Bob to break all `n` locks and escape the dungeon.\n\nReturn the **minimum **time required for Bob to break all `n` locks.",
+  "description": "Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where `strength[i]` indicates the energy needed to break the `i^th` lock.\n\nTo break a lock, Bob uses a sword with the following characteristics:\n\n\t* The initial energy of the sword is 0.\n\n\t* The initial factor `X` by which the energy of the sword increases is 1.\n\n\t* Every minute, the energy of the sword increases by the current factor `X`.\n\n\t* To break the `i^th` lock, the energy of the sword must reach at least `strength[i]`.\n\n\t* After breaking a lock, the energy of the sword resets to 0, and the factor `X` increases by 1.\n\nYour task is to determine the **minimum** time in minutes required for Bob to break all `n` locks and escape the dungeon.\n\nReturn the **minimum **time required for Bob to break all `n` locks.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "strength = [3,4,1]",
+      "output": "4",
+      "explanation": "Time\n\t\t\tEnergy\n\t\t\tX\n\t\t\tAction\n\t\t\tUpdated X\n\t\t\n\t\t\n\t\t\t0\n\t\t\t0\n\t\t\t1\n\t\t\tNothing\n\t\t\t1\n\t\t\n\t\t\n\t\t\t1\n\t\t\t1\n\t\t\t1\n\t\t\tBreak 3rd Lock\n\t\t\t2\n\t\t\n\t\t\n\t\t\t2\n\t\t\t2\n\t\t\t2\n\t\t\tNothing\n\t\t\t2\n\t\t\n\t\t\n\t\t\t3\n\t\t\t4\n\t\t\t2\n\t\t\tBreak 2nd Lock\n\t\t\t3\n\t\t\n\t\t\n\t\t\t4\n\t\t\t3\n\t\t\t3\n\t\t\tBreak 1st Lock\n\t\t\t3\n\t\t\n\t\n\n\nThe locks cannot be broken in less than 4 minutes; thus, the answer is 4."
+    },
+    {
+      "input": "strength = [2,5,4]",
+      "output": "6",
+      "explanation": "Time\n\t\t\tEnergy\n\t\t\tX\n\t\t\tAction\n\t\t\tUpdated X\n\t\t\n\t\t\n\t\t\t0\n\t\t\t0\n\t\t\t1\n\t\t\tNothing\n\t\t\t1\n\t\t\n\t\t\n\t\t\t1\n\t\t\t1\n\t\t\t1\n\t\t\tNothing\n\t\t\t1\n\t\t\n\t\t\n\t\t\t2\n\t\t\t2\n\t\t\t1\n\t\t\tBreak 1st Lock\n\t\t\t2\n\t\t\n\t\t\n\t\t\t3\n\t\t\t2\n\t\t\t2\n\t\t\tNothing\n\t\t\t2\n\t\t\n\t\t\n\t\t\t4\n\t\t\t4\n\t\t\t2\n\t\t\tBreak 3rd Lock\n\t\t\t3\n\t\t\n\t\t\n\t\t\t5\n\t\t\t3\n\t\t\t3\n\t\t\tNothing\n\t\t\t3\n\t\t\n\t\t\n\t\t\t6\n\t\t\t6\n\t\t\t3\n\t\t\tBreak 2nd Lock\n\t\t\t4\n\t\t\n\t\n\n\nThe locks cannot be broken in less than 6 minutes; thus, the answer is 6."
     }
   ],
   "constraints": [
-    "n == strength.length",
-    "1 <= n <= 80",
-    "1 <= strength[i] <= 10^6"
+    "`n == strength.length`",
+    "`1 <= n <= 80`",
+    "`1 <= strength[i] <= 10^6`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def findMinimumTime(self, a: List[int]) -> int:\r\n        pass\n",
@@ -38,8 +44,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,4,1]",
+      "expected": "4"
+    },
+    {
+      "input": "[2,5,4]",
+      "expected": "6"
     }
   ],
   "hints": [

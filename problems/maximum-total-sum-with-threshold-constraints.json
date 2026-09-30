@@ -17,18 +17,29 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Total%20Sum%20with%20Threshold%20Constraints"
   },
-  "description": "You are given two integer arrays `nums` and `threshold`, both of length `n`.\n\nStarting at `step = 1`, you perform the following repeatedly:\n\n\tChoose an **unused** index `i` such that `threshold[i] \n    \tIf no such index exists, the process ends.\n    \n    \n    Add `nums[i]` to your running total.\n    Mark index `i` as used and increment `step` by 1.\n\nReturn the **maximum** **total sum** you can obtain by choosing indices optimally.",
+  "description": "You are given two integer arrays `nums` and `threshold`, both of length `n`.\n\nStarting at `step = 1`, you perform the following repeatedly:\n\n\t* Choose an **unused** index `i` such that `threshold[i] <= step`.\n\n    \n    \tIf no such index exists, the process ends.\n\n    \n    \n    * Add `nums[i]` to your running total.\n\n    * Mark index `i` as used and increment `step` by 1.\n\nReturn the **maximum** **total sum** you can obtain by choosing indices optimally.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,10,4,2,1,6], threshold = [5,1,5,5,2,2]",
+      "output": "17",
+      "explanation": "At step = 1, choose i = 1 since threshold[1] <= step. The total sum becomes 10. Mark index 1.\n\tAt step = 2, choose i = 4 since threshold[4] <= step. The total sum becomes 11. Mark index 4.\n\tAt step = 3, choose i = 5 since threshold[5] <= step. The total sum becomes 17. Mark index 5.\n\tAt step = 4, we cannot choose indices 0, 2, or 3 because their thresholds are > 4, so we end the process."
+    },
+    {
+      "input": "nums = [4,1,5,2,3], threshold = [3,3,2,3,3]",
+      "output": "0",
+      "explanation": "At step = 1 there is no index i with threshold[i] <= 1, so the process ends immediately. Thus, the total sum is 0."
+    },
+    {
+      "input": "nums = [2,6,10,13], threshold = [2,1,1,1]",
+      "output": "31",
+      "explanation": "At step = 1, choose i = 3 since threshold[3] <= step. The total sum becomes 13. Mark index 3.\n\tAt step = 2, choose i = 2 since threshold[2] <= step. The total sum becomes 23. Mark index 2.\n\tAt step = 3, choose i = 1 since threshold[1] <= step. The total sum becomes 29. Mark index 1.\n\tAt step = 4, choose i = 0 since threshold[0] <= step. The total sum becomes 31. Mark index 0.\n\tAfter step = 4 all indices have been chosen, so the process ends."
     }
   ],
   "constraints": [
-    "n == nums.length == threshold.length",
-    "1 <= n <= 10^5",
-    "1 <= nums[i] <= 10^9",
-    "1 <= threshold[i] <= n"
+    "`n == nums.length == threshold.length`",
+    "`1 <= n <= 10^5`",
+    "`1 <= nums[i] <= 10^9`",
+    "`1 <= threshold[i] <= n`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSum(self, nums: List[int], threshold: List[int]) -> int:\n        pass\n",
@@ -44,8 +55,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,10,4,2,1,6], threshold = [5,1,5,5,2,2]",
+      "expected": "17"
+    },
+    {
+      "input": "[4,1,5,2,3], threshold = [3,3,2,3,3]",
+      "expected": "0"
+    },
+    {
+      "input": "[2,6,10,13], threshold = [2,1,1,1]",
+      "expected": "31"
     }
   ],
   "hints": [

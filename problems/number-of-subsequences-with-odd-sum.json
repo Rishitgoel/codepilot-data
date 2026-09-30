@@ -20,13 +20,19 @@
   "description": "Given an array `nums`, return the number of subsequences with an odd sum of elements.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [1,1,1]",
+      "output": "4",
+      "explanation": "The odd-sum subsequences are: [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]."
+    },
+    {
+      "input": "nums = [1,2,2]",
+      "output": "4",
+      "explanation": "The odd-sum subsequences are: [1, 2, 2], [1, 2, 2], [1, 2, 2], [1, 2, 2]."
     }
   ],
   "constraints": [
-    "1 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^9"
+    "`1 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^9`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def subsequenceCount(self, nums: List[int]) -> int:\r\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,1,1]",
+      "expected": "4"
+    },
+    {
+      "input": "[1,2,2]",
+      "expected": "4"
     }
   ],
   "hints": [

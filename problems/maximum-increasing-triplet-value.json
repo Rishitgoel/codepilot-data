@@ -14,7 +14,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Increasing%20Triplet%20Value"
   },
-  "description": "Given an array `nums`, return *the **maximum value** of a triplet* `(i, j, k)` *such that* `i",
+  "description": "Given an array `nums`, return *the **maximum value** of a triplet* `(i, j, k)` *such that* `i < j < k` *and* `nums[i] < nums[j] < nums[k]`.\n\nThe **value** of a triplet `(i, j, k)` is `nums[i] - nums[j] + nums[k]`.",
   "examples": [
     {
       "input": "Input per specifications",
@@ -22,8 +22,8 @@
     }
   ],
   "constraints": [
-    "3 <= nums.length <= 10^5",
-    "1 <= nums[i] <= 10^9",
+    "`3 <= nums.length <= 10^5`",
+    "`1 <= nums[i] <= 10^9`",
     "The input is generated such that at least one triplet meets the given condition."
   ],
   "starterTemplates": {

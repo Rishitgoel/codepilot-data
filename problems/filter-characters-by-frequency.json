@@ -17,14 +17,20 @@
   "description": "You are given a string `s` consisting of lowercase English letters and an integer `k`.\n\nYour task is to construct a new string that contains only those characters from `s` which appear **fewer** than `k` times in the entire string. The order of characters in the new string must be the **same** as their **order** in `s`.\n\nReturn the resulting string. If no characters qualify, return an empty string.\n\nNote: **Every occurrence** of a character that occurs fewer than `k` times is kept.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"aadbbcccca\", k = 3",
+      "output": "\"dbb\"",
+      "explanation": "Character frequencies in s:\n\n\n\t'a' appears 3 times\n\t'd' appears 1 time\n\t'b' appears 2 times\n\t'c' appears 4 times\n\n\nOnly 'd' and 'b' appear fewer than 3 times. Preserving their order, the result is \"dbb\"."
+    },
+    {
+      "input": "s = \"xyz\", k = 2",
+      "output": "\"xyz\"",
+      "explanation": "All characters ('x', 'y', 'z') appear exactly once, which is fewer than 2. Thus the whole string is returned."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 100",
-    "s consists of lowercase English letters.",
-    "1 <= k <= s.length"
+    "`1 <= s.length <= 100`",
+    "`s` consists of lowercase English letters.",
+    "`1 <= k <= s.length`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def filterCharacters(self, s: str, k: int) -> str:\n        pass\n",
@@ -40,8 +46,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"aadbbcccca\", k = 3",
+      "expected": "\"dbb\""
+    },
+    {
+      "input": "\"xyz\", k = 2",
+      "expected": "\"xyz\""
     }
   ],
   "hints": [

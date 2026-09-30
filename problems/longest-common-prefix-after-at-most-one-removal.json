@@ -20,14 +20,30 @@
   "description": "You are given two strings `s` and `t`.\n\nReturn the **length** of the **longest common prefix** between `s` and `t` after removing **at most** one character from `s`.\n\n**Note:** `s` can be left without any removal.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"madxa\", t = \"madam\"",
+      "output": "4",
+      "explanation": "Removing s[3] from s results in \"mada\", which has a longest common prefix of length 4 with t."
+    },
+    {
+      "input": "s = \"leetcode\", t = \"eetcode\"",
+      "output": "7",
+      "explanation": "Removing s[0] from s results in \"eetcode\", which matches t."
+    },
+    {
+      "input": "s = \"one\", t = \"one\"",
+      "output": "3",
+      "explanation": "No removal is needed."
+    },
+    {
+      "input": "s = \"a\", t = \"b\"",
+      "output": "0",
+      "explanation": "s and t cannot have a common prefix."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 10^5",
-    "1 <= t.length <= 10^5",
-    "s and t contain only lowercase English letters."
+    "`1 <= s.length <= 10^5`",
+    "`1 <= t.length <= 10^5`",
+    "`s` and `t` contain only lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def longestCommonPrefix(self, s: str, t: str) -> int:\r\n        pass\n",
@@ -43,8 +59,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"madxa\", t = \"madam\"",
+      "expected": "4"
+    },
+    {
+      "input": "\"leetcode\", t = \"eetcode\"",
+      "expected": "7"
+    },
+    {
+      "input": "\"one\", t = \"one\"",
+      "expected": "3"
     }
   ],
   "hints": [

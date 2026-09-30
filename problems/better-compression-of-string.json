@@ -15,18 +15,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Better%20Compression%20of%20String"
   },
-  "description": "You are given a string `compressed` representing a compressed version of a string. The format is a character followed by its frequency. For example, `\"a3b1a1c2\"` is a compressed version of the string `\"aaabacc\"`.\n\nWe seek a **better compression** with the following conditions:\n\n\tEach character should appear **only once** in the compressed version.\n\tThe characters should be in **alphabetical order**.\n\nReturn the *better compression* of `compressed`.\n\n**Note:** In the better version of compression, the order of letters may change, which is acceptable.",
+  "description": "You are given a string `compressed` representing a compressed version of a string. The format is a character followed by its frequency. For example, `\"a3b1a1c2\"` is a compressed version of the string `\"aaabacc\"`.\n\nWe seek a **better compression** with the following conditions:\n\n\t* Each character should appear **only once** in the compressed version.\n\n\t* The characters should be in **alphabetical order**.\n\nReturn the *better compression* of `compressed`.\n\n**Note:** In the better version of compression, the order of letters may change, which is acceptable.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "compressed = \"a3c9b2c1\"",
+      "output": "\"a3b2c10\"",
+      "explanation": "Characters \"a\" and \"b\" appear only once in the input, but \"c\" appears twice, once with a size of 9 and once with a size of 1.\n\nHence, in the resulting string, it should have a size of 10."
+    },
+    {
+      "input": "compressed = \"c2b3a1\"",
+      "output": "\"a1b3c2\""
+    },
+    {
+      "input": "compressed = \"a2b4c1\"",
+      "output": "\"a2b4c1\""
     }
   ],
   "constraints": [
-    "1 <= compressed.length <= 6 * 10^4",
-    "compressed consists only of lowercase English letters and digits.",
-    "compressed is a valid compression, i.e., each character is followed by its frequency.",
-    "Frequencies are in the range [1, 10^4] and have no leading zeroes."
+    "`1 <= compressed.length <= 6 * 10^4`",
+    "`compressed` consists only of lowercase English letters and digits.",
+    "`compressed` is a valid compression, i.e., each character is followed by its frequency.",
+    "Frequencies are in the range `[1, 10^4]` and have no leading zeroes."
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def betterCompression(self, compressed: str) -> str:\r\n        pass\n",
@@ -42,8 +51,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"a3c9b2c1\"",
+      "expected": "\"a3b2c10\""
+    },
+    {
+      "input": "\"c2b3a1\"",
+      "expected": "\"a1b3c2\""
+    },
+    {
+      "input": "\"a2b4c1\"",
+      "expected": "\"a2b4c1\""
     }
   ],
   "hints": [

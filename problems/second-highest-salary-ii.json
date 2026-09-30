@@ -20,8 +20,9 @@
   "description": "Table: `employees`\n\n+------------------+---------+\n| Column Name      | Type    |\n+------------------+---------+\n| emp_id           | int     |\n| salary           | int     |\n| dept             | varchar |\n+------------------+---------+\nemp_id is the unique key for this table.\nEach row of this table contains information about an employee including their ID, salary, and department.\n\nWrite a solution to find the employees who earn the **second-highest salary** in each department. If **multiple employees have the second-highest salary**, **include** **all employees** with **that salary**.\n\nReturn *the result table* *ordered by* `emp_id` *in* ***ascending*** *order*.\n\nThe result format is in the following example.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "employees table:\n\n\n+--------+--------+-----------+\n| emp_id | salary | dept      |\n+--------+--------+-----------+\n| 1      | 70000  | Sales     |\n| 2      | 80000  | Sales     |\n| 3      | 80000  | Sales     |\n| 4      | 90000  | Sales     |\n| 5      | 55000  | IT        |\n| 6      | 65000  | IT        |\n| 7      | 65000  | IT        |\n| 8      | 50000  | Marketing |\n| 9      | 55000  | Marketing |\n| 10     | 55000  | HR        |\n+--------+--------+-----------+",
+      "output": "+--------+-----------+\n| emp_id | dept      |\n+--------+-----------+\n| 2      | Sales     |\n| 3      | Sales     |\n| 5      | IT        |\n| 8      | Marketing |\n+--------+-----------+",
+      "explanation": "Sales Department:\n\n    \n    \tHighest salary is 90000 (emp_id: 4)\n    \tSecond-highest salary is 80000 (emp_id: 2, 3)\n    \tBoth employees with salary 80000 are included\n    \n    \n    IT Department:\n    \n    \tHighest salary is 65000 (emp_id: 6, 7)\n    \tSecond-highest salary is 55000 (emp_id: 5)\n    \tOnly emp_id 5 is included as they have the second-highest salary\n    \n    \n    Marketing Department:\n    \n    \tHighest salary is 55000 (emp_id: 9)\n    \tSecond-highest salary is 50000 (emp_id: 8)\n    \tEmployee 8 is included\n    \n    \n    HR Department:\n    \n    \tOnly has one employee\n    \tNot included in the result as it has fewer than 2 employees"
     }
   ],
   "constraints": [
@@ -35,8 +36,8 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "employees table:\n\n\n+--------+--------+-----------+\n| emp_id | salary | dept      |\n+--------+--------+-----------+\n| 1      | 70000  | Sales     |\n| 2      | 80000  | Sales     |\n| 3      | 80000  | Sales     |\n| 4      | 90000  | Sales     |\n| 5      | 55000  | IT        |\n| 6      | 65000  | IT        |\n| 7      | 65000  | IT        |\n| 8      | 50000  | Marketing |\n| 9      | 55000  | Marketing |\n| 10     | 55000  | HR        |\n+--------+--------+-----------+",
+      "expected": "+--------+-----------+\n| emp_id | dept      |\n+--------+-----------+\n| 2      | Sales     |\n| 3      | Sales     |\n| 5      | IT        |\n| 8      | Marketing |\n+--------+-----------+"
     }
   ],
   "hints": [

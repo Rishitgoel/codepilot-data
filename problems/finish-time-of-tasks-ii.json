@@ -17,29 +17,48 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Finish%20Time%20of%20Tasks%20II"
   },
-  "description": "You are given an integer `n` representing the number of tasks in a project, numbered from 0 to `n - 1`. These tasks are connected as an undirected** tree**. This is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an undirected connection between task `ui` and task `vi`.\n\nYou are also given an array `baseTime` of length `n`, where `baseTime[i]` represents the time to complete task `i`.\n\nFor any chosen task as the root, the **finish time** of each task is calculated as follows:\n\n\tLeaf task: The finish time is `baseTime[i]`.\n\tNon-leaf task:\n\t\n\t\tLet `earliest` be the **minimum** finish time among its children, and `latest` be the **maximum** finish time among its children.\n\t\tLet `ownDuration` be `(latest - earliest) + baseTime[i]`.\n\t\tFinish time of task `i` is `latest + ownDuration`.\n\t\n\t\n\nChoose **any** task as the root and compute the finish time of that root based on the rules above.\n\nReturn the **minimum** possible finish time among all choices of root.",
+  "description": "You are given an integer `n` representing the number of tasks in a project, numbered from 0 to `n - 1`. These tasks are connected as an undirected** tree**. This is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an undirected connection between task `ui` and task `vi`.\n\nYou are also given an array `baseTime` of length `n`, where `baseTime[i]` represents the time to complete task `i`.\n\nFor any chosen task as the root, the **finish time** of each task is calculated as follows:\n\n\t* Leaf task: The finish time is `baseTime[i]`.\n\n\t* Non-leaf task:\n\t\n\t\tLet `earliest` be the **minimum** finish time among its children, and `latest` be the **maximum** finish time among its children.\n\n\t\t* Let `ownDuration` be `(latest - earliest) + baseTime[i]`.\n\n\t\t* Finish time of task `i` is `latest + ownDuration`.\n\n\t\n\t\n\nChoose **any** task as the root and compute the finish time of that root based on the rules above.\n\nReturn the **minimum** possible finish time among all choices of root.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 3, edges = [[0,1],[1,2]], baseTime = [9,1,5]",
+      "output": "14",
+      "explanation": "0 9  1 1  2 5 \n\nThe optimal choice is to treat task 1 as the root.\n\n\n\tTask 0 is a leaf, so its finish time is baseTime[0] = 9.\n\tTask 2 is a leaf, so its finish time is baseTime[2] = 5.\n\tTask 1 has two children with finish times 9 and 5:\n\t\n\t\tearliest = 5, latest = 9\n\t\townDuration = (latest - earliest) + baseTime[1] = (9 - 5) + 1 = 5\n\t\tFinish time of task 1 is latest + ownDuration = 9 + 5 = 14\n\t\n\t\n\n\nThus, the minimum possible finish time among all choices of root is 14."
+    },
+    {
+      "input": "n = 3, edges = [[0,1],[0,2]], baseTime = [4,7,6]",
+      "output": "12",
+      "explanation": "0 4  1 7  2 6 \n\nThe optimal choice is to treat task 0 as the root.\n\n\n\tTask 1 is a leaf, so its finish time is baseTime[1] = 7.\n\tTask 2 is a leaf, so its finish time is baseTime[2] = 6.\n\tTask 0 has two children with finish times 7 and 6:\n\t\n\t\tearliest = 6, latest = 7\n\t\townDuration = (latest - earliest) + baseTime[0] = (7 - 6) + 4 = 5\n\t\tFinish time of task 0 is latest + ownDuration = 7 + 5 = 12\n\t\n\t\n\n\nThus, the minimum possible finish time among all choices of root is 12."
+    },
+    {
+      "input": "n = 4, edges = [[0,1],[0,2],[2,3]], baseTime = [5,8,2,1]",
+      "output": "16",
+      "explanation": "0 5  1 8  2 2  3 1 \n\nThe optimal choice is to treat task 1 as the root.\n\n\n\tTask 3 is a leaf, so its finish time is baseTime[3] = 1.\n\tTask 2 has one child task 3:\n\t\n\t\tearliest = latest = 1\n\t\townDuration = (latest - earliest) + baseTime[2] = 0 + 2 = 2\n\t\tFinish time of task 2 is latest + ownDuration = 1 + 2 = 3\n\t\n\t\n\tTask 0 has one child task 2:\n\t\n\t\tearliest = latest = 3\n\t\townDuration = (latest - earliest) + baseTime[0] = 0 + 5 = 5\n\t\tFinish time of task 0 is latest + ownDuration = 3 + 5 = 8\n\t\n\t\n\tTask 1 has one child task 0:\n\t\n\t\tearliest = latest = 8\n\t\townDuration = (latest - earliest) + baseTime[1] = 0 + 8 = 8\n\t\tFinish time of task 1 is latest + ownDuration = 8 + 8 = 16\n\t\n\t\n\n\nThus, the minimum possible finish time among all choices of root is 16."
     }
   ],
   "constraints": [
-    "1 <= n <= 10^5",
-    "edges.length = n - 1",
-    "edges[i] == [ui, vi]",
-    "0 <= ui, vi <= n - 1",
-    "ui != vi",
-    "The input is generated such that edges represents a valid undirected tree.",
-    "baseTime.length == n",
-    "1 <= baseTime[i] <= 10^5"
+    "`1 <= n <= 10^5`",
+    "`edges.length = n - 1`",
+    "`edges[i] == [ui, vi]`",
+    "`0 <= ui, vi <= n - 1`",
+    "`ui != vi`",
+    "The input is generated such that `edges` represents a valid undirected tree.",
+    "`baseTime.length == n`",
+    "`1 <= baseTime[i] <= 10^5`"
   ],
   "starterTemplates": {},
   "snippets": {},
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "3, edges = [[0,1],[1,2]], baseTime = [9,1,5]",
+      "expected": "14"
+    },
+    {
+      "input": "3, edges = [[0,1],[0,2]], baseTime = [4,7,6]",
+      "expected": "12"
+    },
+    {
+      "input": "4, edges = [[0,1],[0,2],[2,3]], baseTime = [5,8,2,1]",
+      "expected": "16"
     }
   ],
   "hints": [

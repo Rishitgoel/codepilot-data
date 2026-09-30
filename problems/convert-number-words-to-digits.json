@@ -17,16 +17,32 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Convert%20Number%20Words%20to%20Digits"
   },
-  "description": "You are given a string `s` consisting of lowercase English letters. `s` may contain **valid concatenated** English words representing the digits 0 to 9, without spaces.\n\nYour task is to **extract** each valid number word **in order** and convert it to its corresponding digit, producing a string of digits.\n\nParse `s` from left to right. At each position:\n\n\tIf a valid number word starts at the current position, append its corresponding digit to the result and advance by the length of that word.\n\tOtherwise, skip **exactly** one character and continue parsing.\n\nReturn the resulting digit string. If no number words are found, return an empty string.",
+  "description": "You are given a string `s` consisting of lowercase English letters. `s` may contain **valid concatenated** English words representing the digits 0 to 9, without spaces.\n\nYour task is to **extract** each valid number word **in order** and convert it to its corresponding digit, producing a string of digits.\n\nParse `s` from left to right. At each position:\n\n\t* If a valid number word starts at the current position, append its corresponding digit to the result and advance by the length of that word.\n\n\t* Otherwise, skip **exactly** one character and continue parsing.\n\nReturn the resulting digit string. If no number words are found, return an empty string.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"onefourthree\"",
+      "output": "\"143\"",
+      "explanation": "Parsing from left to right, extract the valid number words \"one\", \"four\", \"three\".\n\tThese map to digits 1, 4, 3. Thus, the final result is \"143\"."
+    },
+    {
+      "input": "s = \"ninexsix\"",
+      "output": "\"96\"",
+      "explanation": "The substring \"nine\" is a valid number word and maps to 9.\n\tThe character \"x\" does not match any valid number word prefix and is skipped.\n\tThen, the substring \"six\" is a valid number word and maps to 6, so the final result is \"96\"."
+    },
+    {
+      "input": "s = \"zeero\"",
+      "output": "\"\"",
+      "explanation": "No substring forms a valid number word during left-to-right parsing.\n\tAll characters are skipped and incomplete fragments are ignored, so the result is an empty string."
+    },
+    {
+      "input": "s = \"tw\"",
+      "output": "\"\"",
+      "explanation": "No substring forms a valid number word during left-to-right parsing.\n\tAll characters are skipped and incomplete fragments are ignored, so the result is an empty string."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 10^5",
-    "s contains only lowercase English letters."
+    "`1 <= s.length <= 10^5`",
+    "`s` contains only lowercase English letters."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def convertNumber(self, s: str) -> str:\n        pass\n",
@@ -42,8 +58,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"onefourthree\"",
+      "expected": "\"143\""
+    },
+    {
+      "input": "\"ninexsix\"",
+      "expected": "\"96\""
+    },
+    {
+      "input": "\"zeero\"",
+      "expected": "\"\""
     }
   ],
   "hints": [

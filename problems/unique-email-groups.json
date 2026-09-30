@@ -17,20 +17,30 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Unique%20Email%20Groups"
   },
-  "description": "You are given an array of strings `emails`, where each string is a valid email address.\n\nTwo email addresses belong to the same group if **both** their **normalized** local names and **normalized** domain names are **identical**.\n\nThe normalization rules are as follows:\n\n\tThe local name is the part **before** the `'@'` symbol.\n\n    \n    \tIgnore all dots `'.'`.\n    \tIgnore everything after the first `'+'`, if present.\n    \tConvert to lowercase.\n    \n    \n    The domain name is the part **after** the `'@'` symbol.\n    \n    \tConvert to lowercase.\n    \n    \n\nReturn an integer denoting the number of **unique** email groups after normalization.",
+  "description": "You are given an array of strings `emails`, where each string is a valid email address.\n\nTwo email addresses belong to the same group if **both** their **normalized** local names and **normalized** domain names are **identical**.\n\nThe normalization rules are as follows:\n\n\t* The local name is the part **before** the `'@'` symbol.\n\n    \n    \tIgnore all dots `'.'`.\n\n    \t* Ignore everything after the first `'+'`, if present.\n\n    \t* Convert to lowercase.\n\n    \n    \n    * The domain name is the part **after** the `'@'` symbol.\n    \n    \tConvert to lowercase.\n\n    \n    \n\nReturn an integer denoting the number of **unique** email groups after normalization.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "emails = [\"test.email+alex@leetcode.com\", \"test.e.mail+bob.cathy@leetcode.com\", \"testemail+david@lee.tcode.com\"]",
+      "output": "2"
+    },
+    {
+      "input": "emails = [\"A@B.com\", \"a@b.com\", \"ab+xy@b.com\", \"a.b@b.com\"]",
+      "output": "2",
+      "explanation": "Email\n\t\t\tLocal\n\t\t\tNormalized Local\n\t\t\tDomain\n\t\t\tNormalized Domain\n\t\t\tFinal Email\n\t\t\n\t\n\t\n\t\t\n\t\t\tA@B.com\n\t\t\tA\n\t\t\ta\n\t\t\tB.com\n\t\t\tb.com\n\t\t\ta@b.com\n\t\t\n\t\t\n\t\t\ta@b.com\n\t\t\ta\n\t\t\ta\n\t\t\tb.com\n\t\t\tb.com\n\t\t\ta@b.com\n\t\t\n\t\t\n\t\t\tab+xy@b.com\n\t\t\tab+xy\n\t\t\tab\n\t\t\tb.com\n\t\t\tb.com\n\t\t\tab@b.com\n\t\t\n\t\t\n\t\t\ta.b@b.com\n\t\t\ta.b\n\t\t\tab\n\t\t\tb.com\n\t\t\tb.com\n\t\t\tab@b.com\n\t\t\n\t\n\n\nUnique emails are [\"a@b.com\", \"ab@b.com\"]. Thus, the answer is 2."
+    },
+    {
+      "input": "emails = [\"a.b+c.d+e@DoMain.com\", \"ab+xyz@domain.com\", \"ab@domain.com\"]",
+      "output": "1",
+      "explanation": "Email\n\t\t\tLocal\n\t\t\tNormalized Local\n\t\t\tDomain\n\t\t\tNormalized Domain\n\t\t\tFinal Email\n\t\t\n\t\n\t\n\t\t\n\t\t\ta.b+c.d+e@DoMain.com\n\t\t\ta.b+c.d+e\n\t\t\tab\n\t\t\tDoMain.com\n\t\t\tdomain.com\n\t\t\tab@domain.com\n\t\t\n\t\t\n\t\t\tab+xyz@domain.com\n\t\t\tab+xyz\n\t\t\tab\n\t\t\tdomain.com\n\t\t\tdomain.com\n\t\t\tab@domain.com\n\t\t\n\t\t\n\t\t\tab@domain.com\n\t\t\tab\n\t\t\tab\n\t\t\tdomain.com\n\t\t\tdomain.com\n\t\t\tab@domain.com\n\t\t\n\t\n\n\nAll emails normalize to \"ab@domain.com\". Thus, the answer is 1."
     }
   ],
   "constraints": [
-    "1 <= emails.length <= 1000",
-    "1 <= emails[i].length <= 100",
-    "emails[i] consists of lowercase and uppercase English letters, digits, and the characters '.', '+', and '@'.",
-    "Each emails[i] contains exactly one '@' character.",
-    "All local and domain names are non-empty; local names do not start with '+'.",
-    "Domain names end with the \".com\" suffix and contain at least one character before \".com\"."
+    "`1 <= emails.length <= 1000`",
+    "`1 <= emails[i].length <= 100`",
+    "`emails[i]` consists of lowercase and uppercase English letters, digits, and the characters `'.'`, `'+'`, and `'@'`.",
+    "Each `emails[i]` contains exactly one `'@'` character.",
+    "All local and domain names are non-empty; local names do not start with `'+'`.",
+    "Domain names end with the `\".com\"` suffix and contain at least one character before `\".com\"`."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def uniqueEmailGroups(self, emails: list[str]) -> int:\n        pass\n",
@@ -46,8 +56,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[\"test.email+alex@leetcode.com\", \"test.e.mail+bob.cathy@leetcode.com\", \"testemail+david@lee.tcode.com\"]",
+      "expected": "2"
+    },
+    {
+      "input": "[\"A@B.com\", \"a@b.com\", \"ab+xy@b.com\", \"a.b@b.com\"]",
+      "expected": "2"
+    },
+    {
+      "input": "[\"a.b+c.d+e@DoMain.com\", \"ab+xyz@domain.com\", \"ab@domain.com\"]",
+      "expected": "1"
     }
   ],
   "hints": [

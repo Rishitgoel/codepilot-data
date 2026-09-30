@@ -17,15 +17,21 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Minimum%20Cost%20Path%20with%20Alternating%20Directions%20I"
   },
-  "description": "You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.\n\nThe cost to enter cell `(i, j)` is defined as `(i + 1) * (j + 1)`.\n\nThe path will always begin by entering cell `(0, 0)` on move 1 and paying the entrance cost.\n\nAt each step, you move to an **adjacent** cell, following an alternating pattern:\n\n\tOn **odd-numbered** moves, you must move either **right** or **down**.\n\tOn **even-numbered** moves, you must move either** left** or **up**.\n\nReturn the **minimum** total cost required to reach `(m - 1, n - 1)`. If it is impossible, return -1.",
+  "description": "You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.\n\nThe cost to enter cell `(i, j)` is defined as `(i + 1) * (j + 1)`.\n\nThe path will always begin by entering cell `(0, 0)` on move 1 and paying the entrance cost.\n\nAt each step, you move to an **adjacent** cell, following an alternating pattern:\n\n\t* On **odd-numbered** moves, you must move either **right** or **down**.\n\n\t* On **even-numbered** moves, you must move either** left** or **up**.\n\nReturn the **minimum** total cost required to reach `(m - 1, n - 1)`. If it is impossible, return -1.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "m = 1, n = 1",
+      "output": "1",
+      "explanation": "You start at cell (0, 0).\n\tThe cost to enter (0, 0) is (0 + 1) * (0 + 1) = 1.\n\tSince you're at the destination, the total cost is 1."
+    },
+    {
+      "input": "m = 2, n = 1",
+      "output": "3",
+      "explanation": "You start at cell (0, 0) with cost (0 + 1) * (0 + 1) = 1.\n\tMove 1 (odd): You can move down to (1, 0) with cost (1 + 1) * (0 + 1) = 2.\n\tThus, the total cost is 1 + 2 = 3."
     }
   ],
   "constraints": [
-    "1 <= m, n <= 10^6"
+    "`1 <= m, n <= 10^6`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minCost(self, m: int, n: int) -> int:\n        pass\n",
@@ -41,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "1, n = 1",
+      "expected": "1"
+    },
+    {
+      "input": "2, n = 1",
+      "expected": "3"
     }
   ],
   "hints": [

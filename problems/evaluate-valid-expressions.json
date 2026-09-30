@@ -17,16 +17,27 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Evaluate%20Valid%20Expressions"
   },
-  "description": "You are given a string `expression` that represents a nested mathematical expression in a simplified form.\n\nA **valid** expression is either an integer **literal** or follows the format `op(a,b)`, where:\n\n\t`op` is one of `\"add\"`, `\"sub\"`, `\"mul\"`, or `\"div\"`.\n\t`a` and `b` are each valid expressions.\n\nThe **operations** are defined as follows:\n\n\t`add(a,b) = a + b`\n\t`sub(a,b) = a - b`\n\t`mul(a,b) = a * b`\n\t`div(a,b) = a / b`\n\nReturn an integer representing the **result** after fully evaluating the expression.",
+  "description": "You are given a string `expression` that represents a nested mathematical expression in a simplified form.\n\nA **valid** expression is either an integer **literal** or follows the format `op(a,b)`, where:\n\n\t* `op` is one of `\"add\"`, `\"sub\"`, `\"mul\"`, or `\"div\"`.\n\n\t* `a` and `b` are each valid expressions.\n\nThe **operations** are defined as follows:\n\n\t* `add(a,b) = a + b`\n\n\t* `sub(a,b) = a - b`\n\n\t* `mul(a,b) = a * b`\n\n\t* `div(a,b) = a / b`\n\nReturn an integer representing the **result** after fully evaluating the expression.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "expression = \"add(2,3)\"",
+      "output": "5",
+      "explanation": "The operation add(2,3) means 2 + 3 = 5."
+    },
+    {
+      "input": "expression = \"-42\"",
+      "output": "-42",
+      "explanation": "The expression is a single integer literal, so the result is -42."
+    },
+    {
+      "input": "expression = \"div(mul(4,sub(9,5)),add(1,1))\"",
+      "output": "8",
+      "explanation": "First, evaluate the inner expression: sub(9,5) = 9 - 5 = 4\n\tNext, multiply the results: mul(4,4) = 4 * 4 = 16\n\tThen, compute the addition on the right: add(1,1) = 1 + 1 = 2\n\tFinally, divide the two main results: div(16,2) = 16 / 2 = 8\n\n\nTherefore, the entire expression evaluates to 8."
     }
   ],
   "constraints": [
-    "1 <= expression.length <= 10^5",
-    "expression is valid and consists of digits, commas, parentheses, the minus sign '-', and the lowercase strings \"add\", \"sub\", \"mul\", \"div\".",
+    "`1 <= expression.length <= 10^5`",
+    "`expression` is valid and consists of digits, commas, parentheses, the minus sign `'-'`, and the lowercase strings `\"add\"`, `\"sub\"`, `\"mul\"`, `\"div\"`.",
     "All intermediate results fit within the range of a long integer.",
     "All divisions result in integer values."
   ],
@@ -44,8 +55,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"add(2,3)\"",
+      "expected": "5"
+    },
+    {
+      "input": "\"-42\"",
+      "expected": "-42"
+    },
+    {
+      "input": "\"div(mul(4,sub(9,5)),add(1,1))\"",
+      "expected": "8"
     }
   ],
   "hints": [

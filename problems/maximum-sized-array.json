@@ -17,15 +17,21 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Maximum%20Sized%20Array"
   },
-  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n x n x n`, where each element `A[i][j][k]` is defined as:\n\n\t`A[i][j][k] = i * (j OR k)`, where `0 \n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
+  "description": "Given a positive integer `s`, let `A` be a 3D array of dimensions `n &times; n &times; n`, where each element `A[i][j][k]` is defined as:\n\n\t* `A[i][j][k] = i * (j OR k)`, where `0 <= i, j, k < n`.\n\nReturn the **maximum** possible value of `n` such that the **sum** of all elements in array `A` does not exceed `s`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = 10",
+      "output": "2",
+      "explanation": "Elements of the array A for n = 2:\n\n    \n    \tA[0][0][0] = 0 * (0 OR 0) = 0\n    \tA[0][0][1] = 0 * (0 OR 1) = 0\n    \tA[0][1][0] = 0 * (1 OR 0) = 0\n    \tA[0][1][1] = 0 * (1 OR 1) = 0\n    \tA[1][0][0] = 1 * (0 OR 0) = 0\n    \tA[1][0][1] = 1 * (0 OR 1) = 1\n    \tA[1][1][0] = 1 * (1 OR 0) = 1\n    \tA[1][1][1] = 1 * (1 OR 1) = 1\n    \n    \n    The total sum of the elements in array A is 3, which does not exceed 10, so the maximum possible value of n is 2."
+    },
+    {
+      "input": "s = 0",
+      "output": "1",
+      "explanation": "Elements of the array A for n = 1:\n\n    \n    \tA[0][0][0] = 0 * (0 OR 0) = 0\n    \n    \n    The total sum of the elements in array A is 0, which does not exceed 0, so the maximum possible value of n is 1."
     }
   ],
   "constraints": [
-    "0 <= s <= 10^15"
+    "`0 <= s <= 10^15`"
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxSizedArray(self, s: int) -> int:\r\n        pass\n",
@@ -41,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "10",
+      "expected": "2"
+    },
+    {
+      "input": "0",
+      "expected": "1"
     }
   ],
   "hints": [

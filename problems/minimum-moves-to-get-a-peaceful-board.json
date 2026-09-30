@@ -20,13 +20,17 @@
   "description": "Given a 2D array `rooks` of length `n`, where `rooks[i] = [xi, yi]` indicates the position of a rook on an `n x n` chess board. Your task is to move the rooks **1 cell **at a time vertically or horizontally (to an *adjacent* cell) such that the board becomes **peaceful**.\n\nA board is **peaceful** if there is **exactly** one rook in each row and each column.\n\nReturn the **minimum** number of moves required to get a *peaceful board*.\n\n**Note** that **at no point** can there be two rooks in the same cell.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "rooks = [[0,0],[1,0],[1,1]]",
+      "output": "3"
+    },
+    {
+      "input": "rooks = [[0,0],[0,1],[0,2],[0,3]]",
+      "output": "6"
     }
   ],
   "constraints": [
-    "1 <= n == rooks.length <= 500",
-    "0 <= xi, yi <= n - 1",
+    "`1 <= n == rooks.length <= 500`",
+    "`0 <= xi, yi <= n - 1`",
     "The input is generated such that there are no 2 rooks in the same cell."
   ],
   "starterTemplates": {
@@ -43,8 +47,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[[0,0],[1,0],[1,1]]",
+      "expected": "3"
+    },
+    {
+      "input": "[[0,0],[0,1],[0,2],[0,3]]",
+      "expected": "6"
     }
   ],
   "hints": [

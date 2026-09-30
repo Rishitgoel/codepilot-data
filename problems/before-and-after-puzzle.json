@@ -17,13 +17,25 @@
   "description": "Given a list of `phrases`, generate a list of Before and After puzzles.\n\nA *phrase* is a string that consists of lowercase English letters and spaces only. No space appears in the start or the end of a phrase. There are no consecutive spaces in a phrase.\n\n*Before and After puzzles* are phrases that are formed by merging two phrases where the **last word of the first phrase** is the same as the **first word of the second phrase**. Note that only the *last word of the first phrase* and the *first word of the second phrase* are merged in this process.\n\nReturn the Before and After puzzles that can be formed by every two phrases `phrases[i]` and `phrases[j]` where `i != j`. Note that the order of matching two phrases matters, we want to consider both orders.\n\nYou should return a list of **distinct** strings **sorted lexicographically**, after removing all *duplicate* phrases in the generated Before and After puzzles.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "phrases = [\"writing code\",\"code rocks\"]",
+      "output": "[\"writing code rocks\"]"
+    },
+    {
+      "input": "phrases = [\"mission statement\",\"a quick bite to eat\",\"a chip off the old block\",\"chocolate bar\",\"mission impossible\",\"a man on a mission\",\"block party\",\"eat my words\",\"bar of soap\"]",
+      "output": "[\"a chip off the old block party\",\"a man on a mission impossible\",\"a man on a mission statement\",\"a quick bite to eat my words\",\"chocolate bar of soap\"]"
+    },
+    {
+      "input": "phrases = [\"a\",\"b\",\"a\"]",
+      "output": "[\"a\"]"
+    },
+    {
+      "input": "phrases = [\"ab ba\",\"ba ab\",\"ab ba\"]",
+      "output": "[\"ab ba ab\",\"ba ab ba\"]"
     }
   ],
   "constraints": [
-    "1 <= phrases.length <= 100",
-    "1 <= phrases[i].length <= 100"
+    "`1 <= phrases.length <= 100`",
+    "`1 <= phrases[i].length <= 100`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def beforeAndAfterPuzzles(self, phrases: List[str]) -> List[str]:\n        pass\n",
@@ -39,8 +51,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[\"writing code\",\"code rocks\"]",
+      "expected": "[\"writing code rocks\"]"
+    },
+    {
+      "input": "[\"mission statement\",\"a quick bite to eat\",\"a chip off the old block\",\"chocolate bar\",\"mission impossible\",\"a man on a mission\",\"block party\",\"eat my words\",\"bar of soap\"]",
+      "expected": "[\"a chip off the old block party\",\"a man on a mission impossible\",\"a man on a mission statement\",\"a quick bite to eat my words\",\"chocolate bar of soap\"]"
+    },
+    {
+      "input": "[\"a\",\"b\",\"a\"]",
+      "expected": "[\"a\"]"
     }
   ],
   "hints": [

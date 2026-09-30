@@ -17,19 +17,25 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Find%20Kth%20Character%20in%20Expanded%20String"
   },
-  "description": "You are given a string `s` consisting of one or more words separated by single spaces. Each word in `s` consists of lowercase English letters.\n\nWe obtain the **expanded** string `t` from `s` as follows:\n\n\tFor each **word** in `s`, repeat its first character once, then its second character twice, and so on.\n\nFor example, if `s = \"hello world\"`, then `t = \"heelllllllooooo woorrrllllddddd\"`.\n\nYou are also given an integer `k`, representing a **valid** index of the string `t`.\n\nReturn the `k^th` character of the string `t`.",
+  "description": "You are given a string `s` consisting of one or more words separated by single spaces. Each word in `s` consists of lowercase English letters.\n\nWe obtain the **expanded** string `t` from `s` as follows:\n\n\t* For each **word** in `s`, repeat its first character once, then its second character twice, and so on.\n\nFor example, if `s = \"hello world\"`, then `t = \"heelllllllooooo woorrrllllddddd\"`.\n\nYou are also given an integer `k`, representing a **valid** index of the string `t`.\n\nReturn the `k^th` character of the string `t`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "s = \"hello world\", k = 0",
+      "output": "\"h\"",
+      "explanation": "t = \"heelllllllooooo woorrrllllddddd\". Therefore, the answer is t[0] = \"h\"."
+    },
+    {
+      "input": "s = \"hello world\", k = 15",
+      "output": "\" \"",
+      "explanation": "t = \"heelllllllooooo woorrrllllddddd\". Therefore, the answer is t[15] = \" \"."
     }
   ],
   "constraints": [
-    "1 <= s.length <= 10^5",
-    "s contains only lowercase English letters and spaces ' '.",
-    "s does not contain any leading or trailing spaces.",
-    "All the words in s are separated by a single space.",
-    "0 <= k < t.length. That is, k is a valid index of t."
+    "`1 <= s.length <= 10^5`",
+    "`s` contains only lowercase English letters and spaces `' '`.",
+    "`s` does not contain any leading or trailing spaces.",
+    "All the words in `s` are separated by a single space.",
+    "`0 <= k < t.length`. That is, `k` is a valid index of `t`."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def kthCharacter(self, s: str, k: int) -> str:\n        pass\n",
@@ -45,8 +51,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "\"hello world\", k = 0",
+      "expected": "\"h\""
+    },
+    {
+      "input": "\"hello world\", k = 15",
+      "expected": "\" \""
     }
   ],
   "hints": [

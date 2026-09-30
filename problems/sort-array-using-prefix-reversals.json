@@ -20,17 +20,28 @@
   "description": "You are given an integer array `nums` of length `n`, where `nums` is a permutation of the integers in the range `[0, n - 1]`.\n\nYou are also given an integer array `pre`, where each `pre[i]` is a valid prefix length.\n\nIn one operation, you may choose any length `x` from `pre` and reverse the first `x` elements of `nums`.\n\nFor example, applying a prefix reversal of length `3` on `[4, 1, 2, 3]` results in `[2, 1, 4, 3]`.\n\nReturn the minimum number of operations required to sort `nums` in ascending order. If it is impossible to sort `nums`, return `-1`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "nums = [2,0,1], pre = [2,3]",
+      "output": "2",
+      "explanation": "Reverse pre[1] = 3 elements to get nums = [1, 0, 2].\n\tThen reverse pre[0] = 2 elements to get nums = [0, 1, 2].\n\tThus, the minimum number of prefix reversal required is 2."
+    },
+    {
+      "input": "nums = [1,0,2], pre = [1,3]",
+      "output": "-1",
+      "explanation": "It is impossible to sort the array using the given prefix lengths, so the answer is -1."
+    },
+    {
+      "input": "nums = [0,1], pre = [2]",
+      "output": "0",
+      "explanation": "Since nums is already sorted, no prefix reversals are needed. Thus, the answer is 0."
     }
   ],
   "constraints": [
-    "1 <= n == nums.length <= 8",
-    "0 <= nums[i] <= n - 1",
-    "1 <= pre.length <= n",
-    "1 <= pre[i] <= n",
-    "​​​​​​​nums is a permutation of integers from 0 to n - 1.",
-    "pre consists of unique integers."
+    "`1 <= n == nums.length <= 8`",
+    "`0 <= nums[i] <= n - 1`",
+    "`1 <= pre.length <= n`",
+    "`1 <= pre[i] <= n`",
+    "`​​​​​​​nums` is a permutation of integers from 0 to `n - 1`.",
+    "`pre` consists of unique integers."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortArray(self, nums: List[int], pre: List[int]) -> int:\n        pass\n",
@@ -46,8 +57,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[2,0,1], pre = [2,3]",
+      "expected": "2"
+    },
+    {
+      "input": "[1,0,2], pre = [1,3]",
+      "expected": "-1"
+    },
+    {
+      "input": "[0,1], pre = [2]",
+      "expected": "0"
     }
   ],
   "hints": [

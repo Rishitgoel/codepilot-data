@@ -14,17 +14,23 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Design%20an%20Array%20Statistics%20Tracker%20"
   },
-  "description": "Design a data structure that keeps track of the values in it and answers some queries regarding their mean, median, and mode.\n\nImplement the `StatisticsTracker` class.\n\n\t`StatisticsTracker()`: Initialize the `StatisticsTracker` object with an empty array.\n\t`void addNumber(int number)`: Add `number` to the data structure.\n\t`void removeFirstAddedNumber()`: Remove the earliest added number from the data structure.\n\t`int getMean()`: Return the floored **mean** of the numbers in the data structure.\n\t`int getMedian()`: Return the **median** of the numbers in the data structure.\n\t`int getMode()`: Return the **mode** of the numbers in the data structure. If there are multiple modes, return the smallest one.\n\n**Note**:\n\n\tThe **mean** of an array is the sum of all the values divided by the number of values in the array.\n\tThe **median** of an array is the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.\n\tThe **mode** of an array is the element that appears most often in the array.",
+  "description": "Design a data structure that keeps track of the values in it and answers some queries regarding their mean, median, and mode.\n\nImplement the `StatisticsTracker` class.\n\n\t* `StatisticsTracker()`: Initialize the `StatisticsTracker` object with an empty array.\n\n\t* `void addNumber(int number)`: Add `number` to the data structure.\n\n\t* `void removeFirstAddedNumber()`: Remove the earliest added number from the data structure.\n\n\t* `int getMean()`: Return the floored **mean** of the numbers in the data structure.\n\n\t* `int getMedian()`: Return the **median** of the numbers in the data structure.\n\n\t* `int getMode()`: Return the **mode** of the numbers in the data structure. If there are multiple modes, return the smallest one.\n\n**Note**:\n\n\t* The **mean** of an array is the sum of all the values divided by the number of values in the array.\n\n\t* The **median** of an array is the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.\n\n\t* The **mode** of an array is the element that appears most often in the array.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "[\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"addNumber\", \"addNumber\", \"getMean\", \"getMedian\", \"getMode\", \"removeFirstAddedNumber\", \"getMode\"]\n[[], [4], [4], [2], [3], [], [], [], [], []]",
+      "output": "[null, null, null, null, null, 3, 4, 4, null, 2]",
+      "explanation": "StatisticsTracker statisticsTracker = new StatisticsTracker();\nstatisticsTracker.addNumber(4); // The data structure now contains [4]\nstatisticsTracker.addNumber(4); // The data structure now contains [4, 4]\nstatisticsTracker.addNumber(2); // The data structure now contains [4, 4, 2]\nstatisticsTracker.addNumber(3); // The data structure now contains [4, 4, 2, 3]\nstatisticsTracker.getMean(); // return 3\nstatisticsTracker.getMedian(); // return 4\nstatisticsTracker.getMode(); // return 4\nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [4, 2, 3]\nstatisticsTracker.getMode(); // return 2"
+    },
+    {
+      "input": "[\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"getMean\", \"removeFirstAddedNumber\", \"addNumber\", \"addNumber\", \"removeFirstAddedNumber\", \"getMedian\", \"addNumber\", \"getMode\"]\n[[], [9], [5], [], [], [5], [6], [], [], [8], []]",
+      "output": "[null, null, null, 7, null, null, null, null, 6, null, 5]",
+      "explanation": "StatisticsTracker statisticsTracker = new StatisticsTracker();\nstatisticsTracker.addNumber(9); // The data structure now contains [9]\nstatisticsTracker.addNumber(5); // The data structure now contains [9, 5]\nstatisticsTracker.getMean(); // return 7\nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5]\nstatisticsTracker.addNumber(5); // The data structure now contains [5, 5]\nstatisticsTracker.addNumber(6); // The data structure now contains [5, 5, 6]\nstatisticsTracker.removeFirstAddedNumber(); // The data structure now contains [5, 6]\nstatisticsTracker.getMedian(); // return 6\nstatisticsTracker.addNumber(8); // The data structure now contains [5, 6, 8]\nstatisticsTracker.getMode(); // return 5"
     }
   ],
   "constraints": [
-    "1 <= number <= 10^9",
-    "At most, 10^5 calls will be made to addNumber, removeFirstAddedNumber, getMean, getMedian, and getMode in total.",
-    "removeFirstAddedNumber, getMean, getMedian, and getMode will be called only if there is at least one element in the data structure."
+    "`1 <= number <= 10^9`",
+    "At most, `10^5` calls will be made to `addNumber`, `removeFirstAddedNumber`, `getMean`, `getMedian`, and `getMode` in total.",
+    "`removeFirstAddedNumber`, `getMean`, `getMedian`, and `getMode` will be called only if there is at least one element in the data structure."
   ],
   "starterTemplates": {
     "python": "class StatisticsTracker:\n    def __init__(self):\n        pass\n\n    def addNumber(self, number: int) -> None:\n        pass\n\n    def removeFirstAddedNumber(self) -> None:\n        pass\n\n    def getMean(self) -> int:\n        pass\n\n    def getMedian(self) -> int:\n        pass\n\n    def getMode(self) -> int:\n        pass\n\n# Your StatisticsTracker object will be instantiated and called as such:\n# obj = StatisticsTracker()\n# obj.addNumber(number)\n# obj.removeFirstAddedNumber()\n# param_3 = obj.getMean()\n# param_4 = obj.getMedian()\n# param_5 = obj.getMode()\n",
@@ -38,8 +44,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"addNumber\", \"addNumber\", \"getMean\", \"getMedian\", \"getMode\", \"removeFirstAddedNumber\", \"getMode\"]\n[[], [4], [4], [2], [3], [], [], [], [], []]",
+      "expected": "[null, null, null, null, null, 3, 4, 4, null, 2]"
+    },
+    {
+      "input": "[\"StatisticsTracker\", \"addNumber\", \"addNumber\", \"getMean\", \"removeFirstAddedNumber\", \"addNumber\", \"addNumber\", \"removeFirstAddedNumber\", \"getMedian\", \"addNumber\", \"getMode\"]\n[[], [9], [5], [], [], [5], [6], [], [], [8], []]",
+      "expected": "[null, null, null, 7, null, null, null, null, 6, null, 5]"
     }
   ],
   "hints": [

@@ -17,13 +17,24 @@
   "description": "You are given two integers `n` and `m`.\n\nYou have to select a multiset of **prime numbers** from the **first** `m` prime numbers such that the sum of the selected primes is **exactly** `n`. You may use each prime number **multiple** times.\n\nReturn the **minimum** number of prime numbers needed to sum up to `n`, or -1 if it is not possible.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "n = 10, m = 2",
+      "output": "4",
+      "explanation": "The first 2 primes are [2, 3]. The sum 10 can be formed as 2 + 2 + 3 + 3, requiring 4 primes."
+    },
+    {
+      "input": "n = 15, m = 5",
+      "output": "3",
+      "explanation": "The first 5 primes are [2, 3, 5, 7, 11]. The sum 15 can be formed as 5 + 5 + 5, requiring 3 primes."
+    },
+    {
+      "input": "n = 7, m = 6",
+      "output": "1",
+      "explanation": "The first 6 primes are [2, 3, 5, 7, 11, 13]. The sum 7 can be formed directly by prime 7, requiring only 1 prime."
     }
   ],
   "constraints": [
-    "1 <= n <= 1000",
-    "1 <= m <= 1000"
+    "`1 <= n <= 1000`",
+    "`1 <= m <= 1000`"
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minNumberOfPrimes(self, n: int, m: int) -> int:\n        pass\n",
@@ -39,8 +50,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "10, m = 2",
+      "expected": "4"
+    },
+    {
+      "input": "15, m = 5",
+      "expected": "3"
+    },
+    {
+      "input": "7, m = 6",
+      "expected": "1"
     }
   ],
   "hints": [

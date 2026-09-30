@@ -20,13 +20,19 @@
   "description": "Given an array `perm` of length `n` which is a permutation of `[1, 2, ..., n]`, return the index of `perm` in the lexicographically sorted array of all of the permutations of `[1, 2, ..., n]`.\n\nSince the answer may be very large, return it **modulo** `10^9 + 7`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "perm = [1,2]",
+      "output": "0",
+      "explanation": "There are only two permutations in the following order:\n\n[1,2], [2,1]\n\nAnd [1,2] is at index 0."
+    },
+    {
+      "input": "perm = [3,1,2]",
+      "output": "4",
+      "explanation": "There are only six permutations in the following order:\n\n[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]\n\nAnd [3,1,2] is at index 4."
     }
   ],
   "constraints": [
-    "1 <= n == perm.length <= 10^5",
-    "perm is a permutation of [1, 2, ..., n]."
+    "`1 <= n == perm.length <= 10^5`",
+    "`perm` is a permutation of `[1, 2, ..., n]`."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def getPermutationIndex(self, perm: List[int]) -> int:\n        pass\n",
@@ -42,8 +48,12 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[1,2]",
+      "expected": "0"
+    },
+    {
+      "input": "[3,1,2]",
+      "expected": "4"
     }
   ],
   "hints": [

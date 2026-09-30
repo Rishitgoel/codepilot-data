@@ -20,14 +20,25 @@
   "description": "You are given two integer arrays `poly1` and `poly2`, where the element at index `i` in each array represents the coefficient of `x^i` in a polynomial.\n\nLet `A(x)` and `B(x)` be the polynomials represented by `poly1` and `poly2`, respectively.\n\nReturn an integer array `result` of length `(poly1.length + poly2.length - 1)` representing the coefficients of the product polynomial `R(x) = A(x) * B(x)`, where `result[i]` denotes the coefficient of `x^i` in `R(x)`.",
   "examples": [
     {
-      "input": "Input per specifications",
-      "output": "Expected output"
+      "input": "poly1 = [3,2,5], poly2 = [1,4]",
+      "output": "[3,14,13,20]",
+      "explanation": "A(x) = 3 + 2x + 5x2 and B(x) = 1 + 4x\n\tR(x) = (3 + 2x + 5x2) * (1 + 4x)\n\tR(x) = 3 * 1 + (3 * 4 + 2 * 1)x + (2 * 4 + 5 * 1)x2 + (5 * 4)x3\n\tR(x) = 3 + 14x + 13x2 + 20x3\n\tThus, result = [3, 14, 13, 20]."
+    },
+    {
+      "input": "poly1 = [1,0,-2], poly2 = [-1]",
+      "output": "[-1,0,2]",
+      "explanation": "A(x) = 1 + 0x - 2x2 and B(x) = -1\n\tR(x) = (1 + 0x - 2x2) * (-1)\n\tR(x) = -1 + 0x + 2x2\n\tThus, result = [-1, 0, 2]."
+    },
+    {
+      "input": "poly1 = [1,5,-3], poly2 = [-4,2,0]",
+      "output": "[-4,-18,22,-6,0]",
+      "explanation": "A(x) = 1 + 5x - 3x2 and B(x) = -4 + 2x + 0x2\n\tR(x) = (1 + 5x - 3x2) * (-4 + 2x + 0x2)\n\tR(x) = 1 * -4 + (1 * 2 + 5 * -4)x + (5 * 2 + -3 * -4)x2 + (-3 * 2)x3 + 0x4\n\tR(x) = -4 -18x + 22x2 -6x3 + 0x4\n\tThus, result = [-4, -18, 22, -6, 0]."
     }
   ],
   "constraints": [
-    "1 <= poly1.length, poly2.length <= 5 * 10^4",
-    "-10^3 <= poly1[i], poly2[i] <= 10^3",
-    "poly1 and poly2 contain at least one non-zero coefficient."
+    "`1 <= poly1.length, poly2.length <= 5 * 10^4`",
+    "`-10^3 <= poly1[i], poly2[i] <= 10^3`",
+    "`poly1` and `poly2` contain at least one non-zero coefficient."
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def multiply(self, poly1: List[int], poly2: List[int]) -> List[int]:\n        pass\n",
@@ -43,8 +54,16 @@
   },
   "testcases": [
     {
-      "input": "sample",
-      "expected": "sample"
+      "input": "[3,2,5], poly2 = [1,4]",
+      "expected": "[3,14,13,20]"
+    },
+    {
+      "input": "[1,0,-2], poly2 = [-1]",
+      "expected": "[-1,0,2]"
+    },
+    {
+      "input": "[1,5,-3], poly2 = [-4,2,0]",
+      "expected": "[-4,-18,22,-6,0]"
     }
   ],
   "hints": [
