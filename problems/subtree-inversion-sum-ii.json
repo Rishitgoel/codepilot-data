@@ -17,7 +17,7 @@
     "platform": "LintCode Search",
     "url": "https://www.lintcode.com/problem/?search=Subtree%20Inversion%20Sum%20II"
   },
-  "description": "You are given an undirected tree rooted at node 0, with `n` nodes numbered from 0 to `n - 1`. The tree is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an edge between nodes `ui` and `vi`.\n\nYou are also given an integer array `nums` of length `n`, where `nums[i]` represents the value at node `i`, and an integer `k`.\n\nYou may perform **inversion operations** on a subset of nodes subject to the following rules:\n\n\t\n\tSubtree Inversion Operation:\n\n    \n    \t\n    \tWhen you invert a node, every value in the subtree rooted at that node is multiplied by -1.\n\n    \t\n    \n    \n    \n    Distance Constraint on Inversions:\n\n    \n    \t\n    \tYou may only invert a node if it is "sufficiently far" from any other inverted node.\n\n    \t\n    \t\n    \tIf you invert two nodes `a` and `b`, the **distance** (the number of edges on the unique path between them) must be **at least** `k`.\n\n    \t\n    \n    \n\nReturn the **maximum** possible **sum** of the tree's node values after applying **inversion operations**.",
+  "description": "You are given an undirected tree rooted at node 0, with `n` nodes numbered from 0 to `n - 1`. The tree is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [ui, vi]` indicates an edge between nodes `ui` and `vi`.\n\nYou are also given an integer array `nums` of length `n`, where `nums[i]` represents the value at node `i`, and an integer `k`.\n\nYou may perform **inversion operations** on a subset of nodes subject to the following rules:\n\n\t\n\tSubtree Inversion Operation:\n\n    \n    \t\n    \tWhen you invert a node, every value in the subtree rooted at that node is multiplied by -1.\n\n    \t\n    \n    \n    \n    Distance Constraint on Inversions:\n\n    \n    \t\n    \tYou may only invert a node if it is &ldquo;sufficiently far&rdquo; from any other inverted node.\n\n    \t\n    \t\n    \tIf you invert two nodes `a` and `b`, the **distance** (the number of edges on the unique path between them) must be **at least** `k`.\n\n    \t\n    \n    \n\nReturn the **maximum** possible **sum** of the tree&rsquo;s node values after applying **inversion operations**.",
   "examples": [
     {
       "input": "edges = [[0,1],[0,2],[0,3],[1,4],[1,5]], nums = [1,0,-10,3,4,5], k = 2",
@@ -32,7 +32,7 @@
     {
       "input": "edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 2",
       "output": "12",
-      "explanation": "After inverting the subtrees rooted at nodes 1 and 2, nums = [1, 5, 6].\n\tThis is valid because nodes 1 and 2 are two edges apart (1 -> 0 and 0 -> 2), which is at least k.\n\tThe maximum sum is 1 + 5 + 6 = 12."
+      "explanation": "After inverting the subtrees rooted at nodes 1 and 2, nums = [1, 5, 6].\n\tThis is valid because nodes 1 and 2 are two edges apart (1 &rarr; 0 and 0 &rarr; 2), which is at least k.\n\tThe maximum sum is 1 + 5 + 6 = 12."
     },
     {
       "input": "edges = [[0,1],[0,2]], nums = [1,-5,-6], k = 3",
