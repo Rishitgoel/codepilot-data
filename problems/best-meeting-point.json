@@ -1,0 +1,69 @@
+{
+  "id": 296,
+  "slug": "best-meeting-point",
+  "title": "Best Meeting Point",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Math",
+    "Sorting",
+    "Matrix"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Best%20Meeting%20Point"
+  },
+  "description": "Given an `m x n` binary grid `grid` where each `1` marks the home of one friend, return *the minimal **total travel distance***.\n\nThe **total travel distance** is the sum of the distances between the houses of the friends and the meeting point.\n\nThe distance is calculated using Manhattan Distance, where `distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|`.",
+  "examples": [
+    {
+      "input": "grid = [[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]",
+      "output": "6",
+      "explanation": "Given three friends living at (0,0), (0,4), and (2,2).\nThe point (0,2) is an ideal meeting point, as the total travel distance of 2 + 2 + 2 = 6 is minimal.\nSo return 6."
+    },
+    {
+      "input": "grid = [[1,1]]",
+      "output": "1"
+    }
+  ],
+  "constraints": [
+    "m == grid.length",
+    "n == grid[i].length",
+    "1 <= m, n <= 200",
+    "grid[i][j] is either 0 or 1.",
+    "There will be at least two friends in the grid."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minTotalDistance(self, grid: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minTotalDistance(vector<vector<int>>& grid) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minTotalDistance(int[][] grid) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minTotalDistance(self, grid: List[List[int]]) -> int:\n        def f(arr, x):\n            return sum(abs(v - x) for v in arr)\n\n        rows, cols = [], []\n        for i, row in enumerate(grid):\n            for j, v in enumerate(row):\n                if v:\n                    rows.append(i)\n                    cols.append(j)\n        cols.sort()\n        i = rows[len(rows) >> 1]\n        j = cols[len(cols) >> 1]\n        return f(rows, i) + f(cols, j)",
+    "cpp": "class Solution {\npublic:\n    int minTotalDistance(vector<vector<int>>& grid) {\n        int m = grid.size(), n = grid[0].size();\n        vector<int> rows;\n        vector<int> cols;\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j]) {\n                    rows.emplace_back(i);\n                    cols.emplace_back(j);\n                }\n            }\n        }\n        sort(cols.begin(), cols.end());\n        int i = rows[rows.size() / 2];\n        int j = cols[cols.size() / 2];\n        auto f = [](vector<int>& arr, int x) {\n            int s = 0;\n            for (int v : arr) {\n                s += abs(v - x);\n            }\n            return s;\n        };\n        return f(rows, i) + f(cols, j);\n    }\n};",
+    "java": "class Solution {\n    public int minTotalDistance(int[][] grid) {\n        int m = grid.length, n = grid[0].length;\n        List<Integer> rows = new ArrayList<>();\n        List<Integer> cols = new ArrayList<>();\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (grid[i][j] == 1) {\n                    rows.add(i);\n                    cols.add(j);\n                }\n            }\n        }\n        Collections.sort(cols);\n        int i = rows.get(rows.size() >> 1);\n        int j = cols.get(cols.size() >> 1);\n        return f(rows, i) + f(cols, j);\n    }\n\n    private int f(List<Integer> arr, int x) {\n        int s = 0;\n        for (int v : arr) {\n            s += Math.abs(v - x);\n        }\n        return s;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[1,0,0,0,1],[0,0,0,0,0],[0,0,1,0,0]]",
+      "expected": "6"
+    },
+    {
+      "input": "[[1,1]]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Best Meeting Point.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

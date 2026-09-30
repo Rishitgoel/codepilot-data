@@ -1,0 +1,72 @@
+{
+  "id": 708,
+  "slug": "insert-into-a-sorted-circular-linked-list",
+  "title": "Insert into a Sorted Circular Linked List",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Linked List"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Insert%20into%20a%20Sorted%20Circular%20Linked%20List"
+  },
+  "description": "Given a Circular Linked List node, which is sorted in non-descending order, write a function to insert a value `insertVal` into the list such that it remains a sorted circular list. The given node can be a reference to any single node in the list and may not necessarily be the smallest value in the circular list.\n\nIf there are multiple suitable places for insertion, you may choose any place to insert the new value. After the insertion, the circular list should remain sorted.\n\nIf the list is empty (i.e., the given node is `null`), you should create a new single circular list and return the reference to that single node. Otherwise, you should return the originally given node.",
+  "examples": [
+    {
+      "input": "head = [3,4,1], insertVal = 2",
+      "output": "[3,4,1,2]",
+      "explanation": "In the figure above, there is a sorted circular list of three elements. You are given a reference to the node with value 3, and we need to insert 2 into the list. The new node should be inserted between node 1 and node 3. After the insertion, the list should look like this, and we should still return node 3."
+    },
+    {
+      "input": "head = [], insertVal = 1",
+      "output": "[1]",
+      "explanation": "The list is empty (given head is null). We create a new single circular list and return the reference to that single node."
+    },
+    {
+      "input": "head = [1], insertVal = 0",
+      "output": "[1,0]"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the list is in the range [0, 5 * 10^4].",
+    "-10^6 <= Node.val, insertVal <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, next=None):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* next;\n\n    Node() {}\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node next;\n\n    public Node() {}\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, next=None):\n        self.val = val\n        self.next = next\n\"\"\"\n\n\nclass Solution:\n    def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':\n        node = Node(insertVal)\n        if head is None:\n            node.next = node\n            return node\n        prev, curr = head, head.next\n        while curr != head:\n            if prev.val <= insertVal <= curr.val or (\n                prev.val > curr.val and (insertVal >= prev.val or insertVal <= curr.val)\n            ):\n                break\n            prev, curr = curr, curr.next\n        prev.next = node\n        node.next = curr\n        return head",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* next;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        next = NULL;\n    }\n\n    Node(int _val, Node* _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* insert(Node* head, int insertVal) {\n        Node* node = new Node(insertVal);\n        if (!head) {\n            node->next = node;\n            return node;\n        }\n        Node *prev = head, *curr = head->next;\n        while (curr != head) {\n            if ((prev->val <= insertVal && insertVal <= curr->val) || (prev->val > curr->val && (insertVal >= prev->val || insertVal <= curr->val))) break;\n            prev = curr;\n            curr = curr->next;\n        }\n        prev->next = node;\n        node->next = curr;\n        return head;\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node next;\n\n    public Node() {}\n\n    public Node(int _val) {\n        val = _val;\n    }\n\n    public Node(int _val, Node _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\n    public Node insert(Node head, int insertVal) {\n        Node node = new Node(insertVal);\n        if (head == null) {\n            node.next = node;\n            return node;\n        }\n        Node prev = head, curr = head.next;\n        while (curr != head) {\n            if ((prev.val <= insertVal && insertVal <= curr.val)\n                || (prev.val > curr.val && (insertVal >= prev.val || insertVal <= curr.val))) {\n                break;\n            }\n            prev = curr;\n            curr = curr.next;\n        }\n        prev.next = node;\n        node.next = curr;\n        return head;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,4,1], insertVal = 2",
+      "expected": "[3,4,1,2]"
+    },
+    {
+      "input": "[], insertVal = 1",
+      "expected": "[1]"
+    },
+    {
+      "input": "[1], insertVal = 0",
+      "expected": "[1,0]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Insert into a Sorted Circular Linked List.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

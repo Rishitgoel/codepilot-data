@@ -1,0 +1,68 @@
+{
+  "id": 1099,
+  "slug": "two-sum-less-than-k",
+  "title": "Two Sum Less Than K",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Two Pointers",
+    "Binary Search",
+    "Sorting"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Two%20Sum%20Less%20Than%20K"
+  },
+  "description": "Given an array `nums` of integers and integer `k`, return the maximum `sum` such that there exists `i < j` with `nums[i] + nums[j] = sum` and `sum < k`. If no `i`, `j` exist satisfying this equation, return `-1`.",
+  "examples": [
+    {
+      "input": "nums = [34,23,1,24,75,33,54,8], k = 60",
+      "output": "58\nExplanation: We can use 34 and 24 to sum 58 which is less than 60."
+    },
+    {
+      "input": "nums = [10,20,30], k = 15",
+      "output": "-1\nExplanation: In this case it is not possible to get a pair sum less that 15."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 100",
+    "1 <= nums[i] <= 1000",
+    "1 <= k <= 2000"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def twoSumLessThanK(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int twoSumLessThanK(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int twoSumLessThanK(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function twoSumLessThanK(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def twoSumLessThanK(self, nums: List[int], k: int) -> int:\n        nums.sort()\n        ans = -1\n        for i, x in enumerate(nums):\n            j = bisect_left(nums, k - x, lo=i + 1) - 1\n            if i < j:\n                ans = max(ans, x + nums[j])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int twoSumLessThanK(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end());\n        int ans = -1, n = nums.size();\n        for (int i = 0; i < n; ++i) {\n            int j = lower_bound(nums.begin() + i + 1, nums.end(), k - nums[i]) - nums.begin() - 1;\n            if (i < j) {\n                ans = max(ans, nums[i] + nums[j]);\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int twoSumLessThanK(int[] nums, int k) {\n        Arrays.sort(nums);\n        int ans = -1;\n        int n = nums.length;\n        for (int i = 0; i < n; ++i) {\n            int j = search(nums, k - nums[i], i + 1, n) - 1;\n            if (i < j) {\n                ans = Math.max(ans, nums[i] + nums[j]);\n            }\n        }\n        return ans;\n    }\n\n    private int search(int[] nums, int x, int l, int r) {\n        while (l < r) {\n            int mid = (l + r) >> 1;\n            if (nums[mid] >= x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    }\n}",
+    "javascript": "function twoSumLessThanK(nums: number[], k: number): number {\n    nums.sort((a, b) => a - b);\n    let ans = -1;\n    for (let i = 0, j = nums.length - 1; i < j;) {\n        const s = nums[i] + nums[j];\n        if (s < k) {\n            ans = Math.max(ans, s);\n            ++i;\n        } else {\n            --j;\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[34,23,1,24,75,33,54,8], k = 60",
+      "expected": "58\nExplanation: We can use 34 and 24 to sum 58 which is less than 60."
+    },
+    {
+      "input": "[10,20,30], k = 15",
+      "expected": "-1\nExplanation: In this case it is not possible to get a pair sum less that 15."
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Two Sum Less Than K.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

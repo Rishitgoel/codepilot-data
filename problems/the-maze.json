@@ -1,0 +1,82 @@
+{
+  "id": 490,
+  "slug": "the-maze",
+  "title": "The Maze",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=The%20Maze"
+  },
+  "description": "There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.\n\nGiven the `m x n` `maze`, the ball's `start` position and the `destination`, where `start = [startrow, startcol]` and `destination = [destinationrow, destinationcol]`, return `true` if the ball can stop at the destination, otherwise return `false`.\n\nYou may assume that **the borders of the maze are all walls** (see examples).",
+  "examples": [
+    {
+      "input": "maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]",
+      "output": "true",
+      "explanation": "One possible way is : left -> down -> left -> down -> right -> down -> right."
+    },
+    {
+      "input": "maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]",
+      "output": "false",
+      "explanation": "There is no way for the ball to stop at the destination. Notice that you can pass through the destination but you cannot stop there."
+    },
+    {
+      "input": "maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "m == maze.length",
+    "n == maze[i].length",
+    "1 <= m, n <= 100",
+    "maze[i][j] is 0 or 1.",
+    "start.length == 2",
+    "destination.length == 2",
+    "0 <= startrow, destinationrow < m",
+    "0 <= startcol, destinationcol < n",
+    "Both the ball and the destination exist in an empty space, and they will not be in the same position initially.",
+    "The maze contains at least 2 empty spaces."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def hasPath(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> maze;\n    vector<vector<bool>> vis;\n    vector<int> d;\n    int m;\n    int n;\n\n    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private boolean[][] vis;\n    private int[][] maze;\n    private int[] d;\n    private int m;\n    private int n;\n\n    public boolean hasPath(int[][] maze, int[] start, int[] destination) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def hasPath(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> bool:\n        def dfs(i, j):\n            if vis[i][j]:\n                return\n            vis[i][j] = True\n            if [i, j] == destination:\n                return\n            for a, b in [[0, -1], [0, 1], [1, 0], [-1, 0]]:\n                x, y = i, j\n                while 0 <= x + a < m and 0 <= y + b < n and maze[x + a][y + b] == 0:\n                    x, y = x + a, y + b\n                dfs(x, y)\n\n        m, n = len(maze), len(maze[0])\n        vis = [[False] * n for _ in range(m)]\n        dfs(start[0], start[1])\n        return vis[destination[0]][destination[1]]",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> maze;\n    vector<vector<bool>> vis;\n    vector<int> d;\n    int m;\n    int n;\n\n    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        m = maze.size();\n        n = maze[0].size();\n        d = destination;\n        vis.resize(m, vector<bool>(n, false));\n        this->maze = maze;\n        dfs(start[0], start[1]);\n        return vis[d[0]][d[1]];\n    }\n\n    void dfs(int i, int j) {\n        if (vis[i][j]) return;\n        vis[i][j] = true;\n        if (i == d[0] && j == d[1]) return;\n        vector<int> dirs = {-1, 0, 1, 0, -1};\n        for (int k = 0; k < 4; ++k) {\n            int x = i, y = j;\n            int a = dirs[k], b = dirs[k + 1];\n            while (x + a >= 0 && x + a < m && y + b >= 0 && y + b < n && maze[x + a][y + b] == 0) {\n                x += a;\n                y += b;\n            }\n            dfs(x, y);\n        }\n    }\n};",
+    "java": "class Solution {\n    private boolean[][] vis;\n    private int[][] maze;\n    private int[] d;\n    private int m;\n    private int n;\n\n    public boolean hasPath(int[][] maze, int[] start, int[] destination) {\n        m = maze.length;\n        n = maze[0].length;\n        d = destination;\n        this.maze = maze;\n        vis = new boolean[m][n];\n        dfs(start[0], start[1]);\n        return vis[d[0]][d[1]];\n    }\n\n    private void dfs(int i, int j) {\n        if (vis[i][j]) {\n            return;\n        }\n        vis[i][j] = true;\n        if (i == d[0] && j == d[1]) {\n            return;\n        }\n        int[] dirs = {-1, 0, 1, 0, -1};\n        for (int k = 0; k < 4; ++k) {\n            int x = i, y = j;\n            int a = dirs[k], b = dirs[k + 1];\n            while (x + a >= 0 && x + a < m && y + b >= 0 && y + b < n && maze[x + a][y + b] == 0) {\n                x += a;\n                y += b;\n            }\n            dfs(x, y);\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [4,4]",
+      "expected": "true"
+    },
+    {
+      "input": "[[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], start = [0,4], destination = [3,2]",
+      "expected": "false"
+    },
+    {
+      "input": "[[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of The Maze.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

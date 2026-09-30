@@ -1,0 +1,72 @@
+{
+  "id": 302,
+  "slug": "smallest-rectangle-enclosing-black-pixels",
+  "title": "Smallest Rectangle Enclosing Black Pixels",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Binary Search",
+    "Breadth-First Search",
+    "Depth-First Search",
+    "Matrix"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Smallest%20Rectangle%20Enclosing%20Black%20Pixels"
+  },
+  "description": "You are given an `m x n` binary matrix `image` where `0` represents a white pixel and `1` represents a black pixel.\n\nThe black pixels are connected (i.e., there is only one black region). Pixels are connected horizontally and vertically.\n\nGiven two integers `x` and `y` that represents the location of one of the black pixels, return *the area of the smallest (axis-aligned) rectangle that encloses all black pixels*.\n\nYou must write an algorithm with less than `O(mn)` runtime complexity",
+  "examples": [
+    {
+      "input": "image = [[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"1\",\"1\",\"0\"],[\"0\",\"1\",\"0\",\"0\"]], x = 0, y = 2",
+      "output": "6"
+    },
+    {
+      "input": "image = [[\"1\"]], x = 0, y = 0",
+      "output": "1"
+    }
+  ],
+  "constraints": [
+    "m == image.length",
+    "n == image[i].length",
+    "1 <= m, n <= 100",
+    "image[i][j] is either '0' or '1'.",
+    "0 <= x < m",
+    "0 <= y < n",
+    "image[x][y] == '1'.",
+    "The black pixels in the image only form one component."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minArea(self, image: List[List[str]], x: int, y: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minArea(vector<vector<char>>& image, int x, int y) {\n        \n    }\n};\n",
+    "java": "class Solution {\n\n    public int minArea(char[][] image, int x, int y) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minArea(self, image: List[List[str]], x: int, y: int) -> int:\n        m, n = len(image), len(image[0])\n        left, right = 0, x\n        while left < right:\n            mid = (left + right) >> 1\n            c = 0\n            while c < n and image[mid][c] == '0':\n                c += 1\n            if c < n:\n                right = mid\n            else:\n                left = mid + 1\n        u = left\n        left, right = x, m - 1\n        while left < right:\n            mid = (left + right + 1) >> 1\n            c = 0\n            while c < n and image[mid][c] == '0':\n                c += 1\n            if c < n:\n                left = mid\n            else:\n                right = mid - 1\n        d = left\n        left, right = 0, y\n        while left < right:\n            mid = (left + right) >> 1\n            r = 0\n            while r < m and image[r][mid] == '0':\n                r += 1\n            if r < m:\n                right = mid\n            else:\n                left = mid + 1\n        l = left\n        left, right = y, n - 1\n        while left < right:\n            mid = (left + right + 1) >> 1\n            r = 0\n            while r < m and image[r][mid] == '0':\n                r += 1\n            if r < m:\n                left = mid\n            else:\n                right = mid - 1\n        r = left\n        return (d - u + 1) * (r - l + 1)",
+    "cpp": "class Solution {\npublic:\n    int minArea(vector<vector<char>>& image, int x, int y) {\n        int m = image.size(), n = image[0].size();\n        int left = 0, right = x;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            int c = 0;\n            while (c < n && image[mid][c] == '0') ++c;\n            if (c < n)\n                right = mid;\n            else\n                left = mid + 1;\n        }\n        int u = left;\n        left = x;\n        right = m - 1;\n        while (left < right) {\n            int mid = (left + right + 1) >> 1;\n            int c = 0;\n            while (c < n && image[mid][c] == '0') ++c;\n            if (c < n)\n                left = mid;\n            else\n                right = mid - 1;\n        }\n        int d = left;\n        left = 0;\n        right = y;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            int r = 0;\n            while (r < m && image[r][mid] == '0') ++r;\n            if (r < m)\n                right = mid;\n            else\n                left = mid + 1;\n        }\n        int l = left;\n        left = y;\n        right = n - 1;\n        while (left < right) {\n            int mid = (left + right + 1) >> 1;\n            int r = 0;\n            while (r < m && image[r][mid] == '0') ++r;\n            if (r < m)\n                left = mid;\n            else\n                right = mid - 1;\n        }\n        int r = left;\n        return (d - u + 1) * (r - l + 1);\n    }\n};",
+    "java": "class Solution {\n\n    public int minArea(char[][] image, int x, int y) {\n        int m = image.length, n = image[0].length;\n        int left = 0, right = x;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            int c = 0;\n            while (c < n && image[mid][c] == '0') {\n                ++c;\n            }\n            if (c < n) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        int u = left;\n        left = x;\n        right = m - 1;\n        while (left < right) {\n            int mid = (left + right + 1) >> 1;\n            int c = 0;\n            while (c < n && image[mid][c] == '0') {\n                ++c;\n            }\n            if (c < n) {\n                left = mid;\n            } else {\n                right = mid - 1;\n            }\n        }\n        int d = left;\n        left = 0;\n        right = y;\n        while (left < right) {\n            int mid = (left + right) >> 1;\n            int r = 0;\n            while (r < m && image[r][mid] == '0') {\n                ++r;\n            }\n            if (r < m) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        int l = left;\n        left = y;\n        right = n - 1;\n        while (left < right) {\n            int mid = (left + right + 1) >> 1;\n            int r = 0;\n            while (r < m && image[r][mid] == '0') {\n                ++r;\n            }\n            if (r < m) {\n                left = mid;\n            } else {\n                right = mid - 1;\n            }\n        }\n        int r = left;\n        return (d - u + 1) * (r - l + 1);\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[\"0\",\"0\",\"1\",\"0\"],[\"0\",\"1\",\"1\",\"0\"],[\"0\",\"1\",\"0\",\"0\"]], x = 0, y = 2",
+      "expected": "6"
+    },
+    {
+      "input": "[[\"1\"]], x = 0, y = 0",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Smallest Rectangle Enclosing Black Pixels.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

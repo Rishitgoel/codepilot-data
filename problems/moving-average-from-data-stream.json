@@ -1,0 +1,61 @@
+{
+  "id": 346,
+  "slug": "moving-average-from-data-stream",
+  "title": "Moving Average from Data Stream",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Design",
+    "Queue",
+    "Data Stream"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Moving%20Average%20from%20Data%20Stream"
+  },
+  "description": "Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.\n\nImplement the `MovingAverage` class:\n\n\t`MovingAverage(int size)` Initializes the object with the size of the window `size`.\n\t`double next(int val)` Returns the moving average of the last `size` values of the stream.",
+  "examples": [
+    {
+      "input": "[\"MovingAverage\", \"next\", \"next\", \"next\", \"next\"]\n[[3], [1], [10], [3], [5]]",
+      "output": "[null, 1.0, 5.5, 4.66667, 6.0]",
+      "explanation": "MovingAverage movingAverage = new MovingAverage(3);\nmovingAverage.next(1); // return 1.0 = 1 / 1\nmovingAverage.next(10); // return 5.5 = (1 + 10) / 2\nmovingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3\nmovingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3"
+    }
+  ],
+  "constraints": [
+    "1 <= size <= 1000",
+    "-10^5 <= val <= 10^5",
+    "At most 10^4 calls will be made to next."
+  ],
+  "starterTemplates": {
+    "python": "class MovingAverage:\n\n    def __init__(self, size: int):\n        pass\n",
+    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        \n    }\n};\n",
+    "java": "class MovingAverage {\n    private int s;\n    private int cnt;\n    private int[] data;\n\n    public MovingAverage(int size) {\n        \n    }\n};\n",
+    "javascript": "class MovingAverage {\n    private s: number = 0;\n    private cnt: number = 0;\n    private data: number[];\n\n    constructor(size: number) {\n        this.data = Array(size).fill(0);\n    }\n\n    next(val: number): number {\n        const i = this.cnt % this.data.length;\n        this.s += val - this.data[i];\n        this.data[i] = val;\n        this.cnt++;\n        return this.s / Math.min(this.cnt, this.data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * var obj = new MovingAverage(size)\n * var param_1 = obj.next(val)\n */"
+  },
+  "snippets": {
+    "python": "class MovingAverage:\n\n    def __init__(self, size: int):\n        self.s = 0\n        self.data = [0] * size\n        self.cnt = 0\n\n    def next(self, val: int) -> float:\n        i = self.cnt % len(self.data)\n        self.s += val - self.data[i]\n        self.data[i] = val\n        self.cnt += 1\n        return self.s / min(self.cnt, len(self.data))\n\n\n# Your MovingAverage object will be instantiated and called as such:\n# obj = MovingAverage(size)\n# param_1 = obj.next(val)",
+    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        data.resize(size);\n    }\n\n    double next(int val) {\n        int i = cnt % data.size();\n        s += val - data[i];\n        data[i] = val;\n        ++cnt;\n        return s * 1.0 / min(cnt, (int) data.size());\n    }\n\nprivate:\n    int s = 0;\n    int cnt = 0;\n    vector<int> data;\n};\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage* obj = new MovingAverage(size);\n * double param_1 = obj->next(val);\n */",
+    "java": "class MovingAverage {\n    private int s;\n    private int cnt;\n    private int[] data;\n\n    public MovingAverage(int size) {\n        data = new int[size];\n    }\n\n    public double next(int val) {\n        int i = cnt % data.length;\n        s += val - data[i];\n        data[i] = val;\n        ++cnt;\n        return s * 1.0 / Math.min(cnt, data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage obj = new MovingAverage(size);\n * double param_1 = obj.next(val);\n */",
+    "javascript": "class MovingAverage {\n    private s: number = 0;\n    private cnt: number = 0;\n    private data: number[];\n\n    constructor(size: number) {\n        this.data = Array(size).fill(0);\n    }\n\n    next(val: number): number {\n        const i = this.cnt % this.data.length;\n        this.s += val - this.data[i];\n        this.data[i] = val;\n        this.cnt++;\n        return this.s / Math.min(this.cnt, this.data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * var obj = new MovingAverage(size)\n * var param_1 = obj.next(val)\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"MovingAverage\", \"next\", \"next\", \"next\", \"next\"]\n[[3], [1], [10], [3], [5]]",
+      "expected": "[null, 1.0, 5.5, 4.66667, 6.0]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Moving Average from Data Stream.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

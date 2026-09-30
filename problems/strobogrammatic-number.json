@@ -1,0 +1,73 @@
+{
+  "id": 246,
+  "slug": "strobogrammatic-number",
+  "title": "Strobogrammatic Number",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Hash Table",
+    "Two Pointers",
+    "String"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Strobogrammatic%20Number"
+  },
+  "description": "Given a string `num` which represents an integer, return `true` *if* `num` *is a **strobogrammatic number***.\n\nA **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).",
+  "examples": [
+    {
+      "input": "num = \"69\"",
+      "output": "true"
+    },
+    {
+      "input": "num = \"88\"",
+      "output": "true"
+    },
+    {
+      "input": "num = \"962\"",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "1 <= num.length <= 50",
+    "num consists of only digits.",
+    "num does not contain any leading zeros except for zero itself."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def isStrobogrammatic(self, num: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isStrobogrammatic(string num) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isStrobogrammatic(String num) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def isStrobogrammatic(self, num: str) -> bool:\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        i, j = 0, len(num) - 1\n        while i <= j:\n            a, b = int(num[i]), int(num[j])\n            if d[a] != b:\n                return False\n            i, j = i + 1, j - 1\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool isStrobogrammatic(string num) {\n        vector<int> d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n        for (int i = 0, j = num.size() - 1; i <= j; ++i, --j) {\n            int a = num[i] - '0', b = num[j] - '0';\n            if (d[a] != b) {\n                return false;\n            }\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean isStrobogrammatic(String num) {\n        int[] d = new int[] {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n        for (int i = 0, j = num.length() - 1; i <= j; ++i, --j) {\n            int a = num.charAt(i) - '0', b = num.charAt(j) - '0';\n            if (d[a] != b) {\n                return false;\n            }\n        }\n        return true;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"69\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"88\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"962\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Strobogrammatic Number.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

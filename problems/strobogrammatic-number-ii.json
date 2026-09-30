@@ -1,0 +1,62 @@
+{
+  "id": 247,
+  "slug": "strobogrammatic-number-ii",
+  "title": "Strobogrammatic Number II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Recursion",
+    "String"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Strobogrammatic%20Number%20II"
+  },
+  "description": "Given an integer `n`, return all the **strobogrammatic numbers** that are of length `n`. You may return the answer in **any order**.\n\nA **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).",
+  "examples": [
+    {
+      "input": "n = 2",
+      "output": "[\"11\",\"69\",\"88\",\"96\"]"
+    },
+    {
+      "input": "n = 1",
+      "output": "[\"0\",\"1\",\"8\"]"
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 14"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def findStrobogrammatic(self, n: int) -> List[str]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    const vector<pair<char, char>> pairs = {{'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};\n\n    vector<string> findStrobogrammatic(int n) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private static final int[][] PAIRS = {{1, 1}, {8, 8}, {6, 9}, {9, 6}};\n    private int n;\n\n    public List<String> findStrobogrammatic(int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def findStrobogrammatic(self, n: int) -> List[str]:\n        def dfs(u):\n            if u == 0:\n                return ['']\n            if u == 1:\n                return ['0', '1', '8']\n            ans = []\n            for v in dfs(u - 2):\n                for l, r in ('11', '88', '69', '96'):\n                    ans.append(l + v + r)\n                if u != n:\n                    ans.append('0' + v + '0')\n            return ans\n\n        return dfs(n)",
+    "cpp": "class Solution {\npublic:\n    const vector<pair<char, char>> pairs = {{'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};\n\n    vector<string> findStrobogrammatic(int n) {\n        function<vector<string>(int)> dfs = [&](int u) {\n            if (u == 0) return vector<string>{\"\"};\n            if (u == 1) return vector<string>{\"0\", \"1\", \"8\"};\n            vector<string> ans;\n            for (auto& v : dfs(u - 2)) {\n                for (auto& [l, r] : pairs) ans.push_back(l + v + r);\n                if (u != n) ans.push_back('0' + v + '0');\n            }\n            return ans;\n        };\n        return dfs(n);\n    }\n};",
+    "java": "class Solution {\n    private static final int[][] PAIRS = {{1, 1}, {8, 8}, {6, 9}, {9, 6}};\n    private int n;\n\n    public List<String> findStrobogrammatic(int n) {\n        this.n = n;\n        return dfs(n);\n    }\n\n    private List<String> dfs(int u) {\n        if (u == 0) {\n            return Collections.singletonList(\"\");\n        }\n        if (u == 1) {\n            return Arrays.asList(\"0\", \"1\", \"8\");\n        }\n        List<String> ans = new ArrayList<>();\n        for (String v : dfs(u - 2)) {\n            for (var p : PAIRS) {\n                ans.add(p[0] + v + p[1]);\n            }\n            if (u != n) {\n                ans.add(0 + v + 0);\n            }\n        }\n        return ans;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "2",
+      "expected": "[\"11\",\"69\",\"88\",\"96\"]"
+    },
+    {
+      "input": "1",
+      "expected": "[\"0\",\"1\",\"8\"]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Strobogrammatic Number II.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

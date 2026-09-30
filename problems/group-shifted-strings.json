@@ -1,0 +1,52 @@
+{
+  "id": 249,
+  "slug": "group-shifted-strings",
+  "title": "Group Shifted Strings",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "String"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Group%20Shifted%20Strings"
+  },
+  "description": "Perform the following shift operations on a string:\n\n\t**Right shift**: Replace every letter with the **successive** letter of the English alphabet, where 'z' is replaced by 'a'. For example, `\"abc\"` can be right-shifted to `\"bcd\" `or `\"xyz\"` can be right-shifted to `\"yza\"`.\n\t**Left shift**: Replace every letter with the **preceding** letter of the English alphabet, where 'a' is replaced by 'z'. For example, `\"bcd\"` can be left-shifted to `\"abc\" or ``\"yza\"` can be left-shifted to `\"xyz\"`.\n\nWe can keep shifting the string in both directions to form an **endless** **shifting sequence**.\n\n\tFor example, shift `\"abc\"` to form the sequence: `...  \"abc\"  \"bcd\"  ...  \"xyz\"  \"yza\"  ...`.`  \"zab\"  \"abc\"  ...`\n\nYou are given an array of strings `strings`, group together all `strings[i]` that belong to the same shifting sequence. You may return the answer in **any order**.",
+  "examples": [
+    {
+      "input": "Standard input",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= strings.length <= 200",
+    "1 <= strings[i].length <= 50",
+    "strings[i] consists of lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def groupStrings(self, strings: List[str]) -> List[List[str]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> groupStrings(vector<string>& strings) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<List<String>> groupStrings(String[] strings) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def groupStrings(self, strings: List[str]) -> List[List[str]]:\n        g = defaultdict(list)\n        for s in strings:\n            diff = ord(s[0]) - ord(\"a\")\n            t = []\n            for c in s:\n                c = ord(c) - diff\n                if c < ord(\"a\"):\n                    c += 26\n                t.append(chr(c))\n            g[\"\".join(t)].append(s)\n        return list(g.values())",
+    "cpp": "class Solution {\npublic:\n    vector<vector<string>> groupStrings(vector<string>& strings) {\n        unordered_map<string, vector<string>> g;\n        for (auto& s : strings) {\n            string t;\n            int diff = s[0] - 'a';\n            for (int i = 0; i < s.size(); ++i) {\n                char c = s[i] - diff;\n                if (c < 'a') {\n                    c += 26;\n                }\n                t.push_back(c);\n            }\n            g[t].emplace_back(s);\n        }\n        vector<vector<string>> ans;\n        for (auto& p : g) {\n            ans.emplace_back(move(p.second));\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<List<String>> groupStrings(String[] strings) {\n        Map<String, List<String>> g = new HashMap<>();\n        for (var s : strings) {\n            char[] t = s.toCharArray();\n            int diff = t[0] - 'a';\n            for (int i = 0; i < t.length; ++i) {\n                t[i] = (char) (t[i] - diff);\n                if (t[i] < 'a') {\n                    t[i] += 26;\n                }\n            }\n            g.computeIfAbsent(new String(t), k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(g.values());\n    }\n}"
+  },
+  "testcases": [],
+  "hints": [
+    "Analyze the key properties of Group Shifted Strings.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

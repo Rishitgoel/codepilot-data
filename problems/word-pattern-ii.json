@@ -1,0 +1,74 @@
+{
+  "id": 291,
+  "slug": "word-pattern-ii",
+  "title": "Word Pattern II",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Hash Table",
+    "String",
+    "Backtracking"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Word%20Pattern%20II"
+  },
+  "description": "Given a `pattern` and a string `s`, return `true`* if *`s`* **matches** the *`pattern`*.*\n\nA string `s` matches a `pattern` if there is some **bijective mapping** of single characters to **non-empty** strings such that if each character in `pattern` is replaced by the string it maps to, then the resulting string is `s`. A **bijective mapping** means that no two characters map to the same string, and no character maps to two different strings.",
+  "examples": [
+    {
+      "input": "pattern = \"abab\", s = \"redblueredblue\"",
+      "output": "true",
+      "explanation": "One possible mapping is as follows:\n'a' -> \"red\"\n'b' -> \"blue\""
+    },
+    {
+      "input": "pattern = \"aaaa\", s = \"asdasdasdasd\"",
+      "output": "true",
+      "explanation": "One possible mapping is as follows:\n'a' -> \"asd\""
+    },
+    {
+      "input": "pattern = \"aabb\", s = \"xyzabcxzyabc\"",
+      "output": "false"
+    }
+  ],
+  "constraints": [
+    "1 <= pattern.length, s.length <= 20",
+    "pattern and s consist of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def wordPatternMatch(self, pattern: str, s: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool wordPatternMatch(string pattern, string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private Set<String> vis;\n    private Map<Character, String> d;\n    private String p;\n    private String s;\n    private int m;\n    private int n;\n\n    public boolean wordPatternMatch(String pattern, String s) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def wordPatternMatch(self, pattern: str, s: str) -> bool:\n        def dfs(i, j):\n            if i == m and j == n:\n                return True\n            if i == m or j == n or n - j < m - i:\n                return False\n            for k in range(j, n):\n                t = s[j : k + 1]\n                if d.get(pattern[i]) == t:\n                    if dfs(i + 1, k + 1):\n                        return True\n                if pattern[i] not in d and t not in vis:\n                    d[pattern[i]] = t\n                    vis.add(t)\n                    if dfs(i + 1, k + 1):\n                        return True\n                    d.pop(pattern[i])\n                    vis.remove(t)\n            return False\n\n        m, n = len(pattern), len(s)\n        d = {}\n        vis = set()\n        return dfs(0, 0)",
+    "cpp": "class Solution {\npublic:\n    bool wordPatternMatch(string pattern, string s) {\n        unordered_set<string> vis;\n        unordered_map<char, string> d;\n        return dfs(0, 0, pattern, s, vis, d);\n    }\n\n    bool dfs(int i, int j, string& p, string& s, unordered_set<string>& vis, unordered_map<char, string>& d) {\n        int m = p.size(), n = s.size();\n        if (i == m && j == n) return true;\n        if (i == m || j == n || m - i > n - j) return false;\n        char c = p[i];\n        for (int k = j + 1; k <= n; ++k) {\n            string t = s.substr(j, k - j);\n            if (d.count(c) && d[c] == t) {\n                if (dfs(i + 1, k, p, s, vis, d)) return true;\n            }\n            if (!d.count(c) && !vis.count(t)) {\n                d[c] = t;\n                vis.insert(t);\n                if (dfs(i + 1, k, p, s, vis, d)) return true;\n                vis.erase(t);\n                d.erase(c);\n            }\n        }\n        return false;\n    }\n};",
+    "java": "class Solution {\n    private Set<String> vis;\n    private Map<Character, String> d;\n    private String p;\n    private String s;\n    private int m;\n    private int n;\n\n    public boolean wordPatternMatch(String pattern, String s) {\n        vis = new HashSet<>();\n        d = new HashMap<>();\n        this.p = pattern;\n        this.s = s;\n        m = p.length();\n        n = s.length();\n        return dfs(0, 0);\n    }\n\n    private boolean dfs(int i, int j) {\n        if (i == m && j == n) {\n            return true;\n        }\n        if (i == m || j == n || m - i > n - j) {\n            return false;\n        }\n        char c = p.charAt(i);\n        for (int k = j + 1; k <= n; ++k) {\n            String t = s.substring(j, k);\n            if (d.getOrDefault(c, \"\").equals(t)) {\n                if (dfs(i + 1, k)) {\n                    return true;\n                }\n            }\n            if (!d.containsKey(c) && !vis.contains(t)) {\n                d.put(c, t);\n                vis.add(t);\n                if (dfs(i + 1, k)) {\n                    return true;\n                }\n                vis.remove(t);\n                d.remove(c);\n            }\n        }\n        return false;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"abab\", s = \"redblueredblue\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"aaaa\", s = \"asdasdasdasd\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"aabb\", s = \"xyzabcxzyabc\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Word Pattern II.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

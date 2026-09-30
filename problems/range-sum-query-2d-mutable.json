@@ -1,0 +1,67 @@
+{
+  "id": 308,
+  "slug": "range-sum-query-2d-mutable",
+  "title": "Range Sum Query 2D - Mutable",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Design",
+    "Binary Indexed Tree",
+    "Segment Tree",
+    "Matrix"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Range%20Sum%20Query%202D%20-%20Mutable"
+  },
+  "description": "Given a 2D matrix `matrix`, handle multiple queries of the following types:\n\n\t**Update** the value of a cell in `matrix`.\n\tCalculate the **sum** of the elements of `matrix` inside the rectangle defined by its **upper left corner** `(row1, col1)` and **lower right corner** `(row2, col2)`.\n\nImplement the NumMatrix class:\n\n\t`NumMatrix(int[][] matrix)` Initializes the object with the integer matrix `matrix`.\n\t`void update(int row, int col, int val)` **Updates** the value of `matrix[row][col]` to be `val`.\n\t`int sumRegion(int row1, int col1, int row2, int col2)` Returns the **sum** of the elements of `matrix` inside the rectangle defined by its **upper left corner** `(row1, col1)` and **lower right corner** `(row2, col2)`.",
+  "examples": [
+    {
+      "input": "[\"NumMatrix\", \"sumRegion\", \"update\", \"sumRegion\"]\n[[[[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]], [2, 1, 4, 3], [3, 2, 2], [2, 1, 4, 3]]",
+      "output": "[null, 8, null, 10]",
+      "explanation": "NumMatrix numMatrix = new NumMatrix([[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]);\nnumMatrix.sumRegion(2, 1, 4, 3); // return 8 (i.e. sum of the left red rectangle)\nnumMatrix.update(3, 2, 2);       // matrix changes from left image to right image\nnumMatrix.sumRegion(2, 1, 4, 3); // return 10 (i.e. sum of the right red rectangle)"
+    }
+  ],
+  "constraints": [
+    "m == matrix.length",
+    "n == matrix[i].length",
+    "1 <= m, n <= 200",
+    "-1000 <= matrix[i][j] <= 1000",
+    "0 <= row < m",
+    "0 <= col < n",
+    "-1000 <= val <= 1000",
+    "0 <= row1 <= row2 < m",
+    "0 <= col1 <= col2 < n",
+    "At most 5000 calls will be made to sumRegion and update."
+  ],
+  "starterTemplates": {
+    "python": "class BinaryIndexedTree:\n    def __init__(self, n):\n        pass\n",
+    "cpp": "class BinaryIndexedTree {\npublic:\n    int n;\n    vector<int> c;\n\n    BinaryIndexedTree(int _n)\n        : n(_n)\n        , c(_n + 1) {}\n        \n    }\n};\n",
+    "java": "class BinaryIndexedTree {\n    private int n;\n    private int[] c;\n\n    public BinaryIndexedTree(int n) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class BinaryIndexedTree:\n    def __init__(self, n):\n        self.n = n\n        self.c = [0] * (n + 1)\n\n    @staticmethod\n    def lowbit(x):\n        return x & -x\n\n    def update(self, x, delta):\n        while x <= self.n:\n            self.c[x] += delta\n            x += BinaryIndexedTree.lowbit(x)\n\n    def query(self, x):\n        s = 0\n        while x > 0:\n            s += self.c[x]\n            x -= BinaryIndexedTree.lowbit(x)\n        return s\n\n\nclass NumMatrix:\n    def __init__(self, matrix: List[List[int]]):\n        self.trees = []\n        n = len(matrix[0])\n        for row in matrix:\n            tree = BinaryIndexedTree(n)\n            for j, v in enumerate(row):\n                tree.update(j + 1, v)\n            self.trees.append(tree)\n\n    def update(self, row: int, col: int, val: int) -> None:\n        tree = self.trees[row]\n        prev = tree.query(col + 1) - tree.query(col)\n        tree.update(col + 1, val - prev)\n\n    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:\n        return sum(\n            tree.query(col2 + 1) - tree.query(col1)\n            for tree in self.trees[row1 : row2 + 1]\n        )\n\n\n# Your NumMatrix object will be instantiated and called as such:\n# obj = NumMatrix(matrix)\n# obj.update(row,col,val)\n# param_2 = obj.sumRegion(row1,col1,row2,col2)",
+    "cpp": "class BinaryIndexedTree {\npublic:\n    int n;\n    vector<int> c;\n\n    BinaryIndexedTree(int _n)\n        : n(_n)\n        , c(_n + 1) {}\n\n    void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += lowbit(x);\n        }\n    }\n\n    int query(int x) {\n        int s = 0;\n        while (x > 0) {\n            s += c[x];\n            x -= lowbit(x);\n        }\n        return s;\n    }\n\n    int lowbit(int x) {\n        return x & -x;\n    }\n};\n\nclass NumMatrix {\npublic:\n    vector<BinaryIndexedTree*> trees;\n\n    NumMatrix(vector<vector<int>>& matrix) {\n        int m = matrix.size();\n        int n = matrix[0].size();\n        trees.resize(m);\n        for (int i = 0; i < m; ++i) {\n            BinaryIndexedTree* tree = new BinaryIndexedTree(n);\n            for (int j = 0; j < n; ++j) tree->update(j + 1, matrix[i][j]);\n            trees[i] = tree;\n        }\n    }\n\n    void update(int row, int col, int val) {\n        BinaryIndexedTree* tree = trees[row];\n        int prev = tree->query(col + 1) - tree->query(col);\n        tree->update(col + 1, val - prev);\n    }\n\n    int sumRegion(int row1, int col1, int row2, int col2) {\n        int s = 0;\n        for (int i = row1; i <= row2; ++i) {\n            BinaryIndexedTree* tree = trees[i];\n            s += tree->query(col2 + 1) - tree->query(col1);\n        }\n        return s;\n    }\n};\n\n/**\n * Your NumMatrix object will be instantiated and called as such:\n * NumMatrix* obj = new NumMatrix(matrix);\n * obj->update(row,col,val);\n * int param_2 = obj->sumRegion(row1,col1,row2,col2);\n */",
+    "java": "class BinaryIndexedTree {\n    private int n;\n    private int[] c;\n\n    public BinaryIndexedTree(int n) {\n        this.n = n;\n        c = new int[n + 1];\n    }\n\n    public void update(int x, int delta) {\n        while (x <= n) {\n            c[x] += delta;\n            x += lowbit(x);\n        }\n    }\n\n    public int query(int x) {\n        int s = 0;\n        while (x > 0) {\n            s += c[x];\n            x -= lowbit(x);\n        }\n        return s;\n    }\n\n    public static int lowbit(int x) {\n        return x & -x;\n    }\n}\n\nclass NumMatrix {\n    private BinaryIndexedTree[] trees;\n\n    public NumMatrix(int[][] matrix) {\n        int m = matrix.length;\n        int n = matrix[0].length;\n        trees = new BinaryIndexedTree[m];\n        for (int i = 0; i < m; ++i) {\n            BinaryIndexedTree tree = new BinaryIndexedTree(n);\n            for (int j = 0; j < n; ++j) {\n                tree.update(j + 1, matrix[i][j]);\n            }\n            trees[i] = tree;\n        }\n    }\n\n    public void update(int row, int col, int val) {\n        BinaryIndexedTree tree = trees[row];\n        int prev = tree.query(col + 1) - tree.query(col);\n        tree.update(col + 1, val - prev);\n    }\n\n    public int sumRegion(int row1, int col1, int row2, int col2) {\n        int s = 0;\n        for (int i = row1; i <= row2; ++i) {\n            BinaryIndexedTree tree = trees[i];\n            s += tree.query(col2 + 1) - tree.query(col1);\n        }\n        return s;\n    }\n}\n\n/**\n * Your NumMatrix object will be instantiated and called as such:\n * NumMatrix obj = new NumMatrix(matrix);\n * obj.update(row,col,val);\n * int param_2 = obj.sumRegion(row1,col1,row2,col2);\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"NumMatrix\", \"sumRegion\", \"update\", \"sumRegion\"]\n[[[[3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5]]], [2, 1, 4, 3], [3, 2, 2], [2, 1, 4, 3]]",
+      "expected": "[null, 8, null, 10]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Range Sum Query 2D - Mutable.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

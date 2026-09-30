@@ -1,0 +1,68 @@
+{
+  "id": 360,
+  "slug": "sort-transformed-array",
+  "title": "Sort Transformed Array",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Math",
+    "Two Pointers",
+    "Sorting"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Sort%20Transformed%20Array"
+  },
+  "description": "Given a **sorted** integer array `nums` and three integers `a`, `b` and `c`, apply a quadratic function of the form `f(x) = ax^2 + bx + c` to each element `nums[i]` in the array, and return *the array in a sorted order*.",
+  "examples": [
+    {
+      "input": "nums = [-4,-2,2,4], a = 1, b = 3, c = 5",
+      "output": "[3,9,15,33]"
+    },
+    {
+      "input": "nums = [-4,-2,2,4], a = -1, b = 3, c = 5",
+      "output": "[-23,-5,1,7]"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 200",
+    "-100 <= nums[i], a, b, c <= 100",
+    "nums is sorted in ascending order."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def sortTransformedArray(\n        self, nums: List[int], a: int, b: int, c: int\n    ) -> List[int]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {\n        \n    }\n};\n",
+    "javascript": "function sortTransformedArray(nums: number[], a: number, b: number, c: number): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def sortTransformedArray(\n        self, nums: List[int], a: int, b: int, c: int\n    ) -> List[int]:\n        def f(x: int) -> int:\n            return a * x * x + b * x + c\n\n        n = len(nums)\n        i, j = 0, n - 1\n        ans = [0] * n\n        for k in range(n):\n            y1, y2 = f(nums[i]), f(nums[j])\n            if a > 0:\n                if y1 > y2:\n                    ans[n - k - 1] = y1\n                    i += 1\n                else:\n                    ans[n - k - 1] = y2\n                    j -= 1\n            else:\n                if y1 > y2:\n                    ans[k] = y2\n                    j -= 1\n                else:\n                    ans[k] = y1\n                    i += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {\n        int n = nums.size();\n        vector<int> ans(n);\n        int i = 0, j = n - 1;\n\n        auto f = [&](int x) {\n            return a * x * x + b * x + c;\n        };\n\n        for (int k = 0; k < n; k++) {\n            int y1 = f(nums[i]);\n            int y2 = f(nums[j]);\n            if (a > 0) {\n                if (y1 > y2) {\n                    ans[n - k - 1] = y1;\n                    i++;\n                } else {\n                    ans[n - k - 1] = y2;\n                    j--;\n                }\n            } else {\n                if (y1 > y2) {\n                    ans[k] = y2;\n                    j--;\n                } else {\n                    ans[k] = y1;\n                    i++;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {\n        int n = nums.length;\n        int[] ans = new int[n];\n        int i = 0, j = n - 1;\n\n        IntUnaryOperator f = x -> a * x * x + b * x + c;\n\n        for (int k = 0; k < n; k++) {\n            int y1 = f.applyAsInt(nums[i]);\n            int y2 = f.applyAsInt(nums[j]);\n            if (a > 0) {\n                if (y1 > y2) {\n                    ans[n - k - 1] = y1;\n                    i++;\n                } else {\n                    ans[n - k - 1] = y2;\n                    j--;\n                }\n            } else {\n                if (y1 > y2) {\n                    ans[k] = y2;\n                    j--;\n                } else {\n                    ans[k] = y1;\n                    i++;\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function sortTransformedArray(nums: number[], a: number, b: number, c: number): number[] {\n    const f = (x: number): number => a * x * x + b * x + c;\n    const n = nums.length;\n    let [i, j] = [0, n - 1];\n    const ans: number[] = Array(n);\n    for (let k = 0; k < n; ++k) {\n        const y1 = f(nums[i]);\n        const y2 = f(nums[j]);\n        if (a > 0) {\n            if (y1 > y2) {\n                ans[n - k - 1] = y1;\n                ++i;\n            } else {\n                ans[n - k - 1] = y2;\n                --j;\n            }\n        } else {\n            if (y1 > y2) {\n                ans[k] = y2;\n                --j;\n            } else {\n                ans[k] = y1;\n                ++i;\n            }\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[-4,-2,2,4], a = 1, b = 3, c = 5",
+      "expected": "[3,9,15,33]"
+    },
+    {
+      "input": "[-4,-2,2,4], a = -1, b = 3, c = 5",
+      "expected": "[-23,-5,1,7]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Sort Transformed Array.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,53 @@
+{
+  "id": 1244,
+  "slug": "design-a-leaderboard",
+  "title": "Design A Leaderboard",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Hash Table",
+    "Design",
+    "Sorting"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Design%20A%20Leaderboard"
+  },
+  "description": "Design a Leaderboard class, which has 3 functions:\n\n\t`addScore(playerId, score)`: Update the leaderboard by adding `score` to the given player's score. If there is no player with such id in the leaderboard, add him to the leaderboard with the given `score`.\n\t`top(K)`: Return the score sum of the top `K` players.\n\t`reset(playerId)`: Reset the score of the player with the given id to 0 (in other words erase it from the leaderboard). It is guaranteed that the player was added to the leaderboard before calling this function.\n\nInitially, the leaderboard is empty.",
+  "examples": [
+    {
+      "input": "Standard input",
+      "output": "Expected output"
+    }
+  ],
+  "constraints": [
+    "1 <= playerId, K <= 10000",
+    "It's guaranteed that K is less than or equal to the current number of players.",
+    "1 <= score <= 100",
+    "There will be at most 1000 function calls."
+  ],
+  "starterTemplates": {
+    "python": "class Leaderboard:\n    def __init__(self):\n        pass\n",
+    "cpp": "class Leaderboard {\npublic:\n    Leaderboard() {\n        \n    }\n};\n",
+    "java": "class Leaderboard {\n    private Map<Integer, Integer> d = new HashMap<>();\n    private TreeMap<Integer, Integer> rank = new TreeMap<>((a, b) -> b - a);\n\n    public Leaderboard() {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Leaderboard:\n    def __init__(self):\n        self.d = defaultdict(int)\n        self.rank = SortedList()\n\n    def addScore(self, playerId: int, score: int) -> None:\n        if playerId not in self.d:\n            self.d[playerId] = score\n            self.rank.add(score)\n        else:\n            self.rank.remove(self.d[playerId])\n            self.d[playerId] += score\n            self.rank.add(self.d[playerId])\n\n    def top(self, K: int) -> int:\n        return sum(self.rank[-K:])\n\n    def reset(self, playerId: int) -> None:\n        self.rank.remove(self.d.pop(playerId))\n\n\n# Your Leaderboard object will be instantiated and called as such:\n# obj = Leaderboard()\n# obj.addScore(playerId,score)\n# param_2 = obj.top(K)\n# obj.reset(playerId)",
+    "cpp": "class Leaderboard {\npublic:\n    Leaderboard() {\n    }\n\n    void addScore(int playerId, int score) {\n        d[playerId] += score;\n        int newScore = d[playerId];\n        if (newScore != score) {\n            rank.erase(rank.find(newScore - score));\n        }\n        rank.insert(newScore);\n    }\n\n    int top(int K) {\n        int ans = 0;\n        for (auto& x : rank) {\n            ans += x;\n            if (--K == 0) {\n                break;\n            }\n        }\n        return ans;\n    }\n\n    void reset(int playerId) {\n        int score = d[playerId];\n        d.erase(playerId);\n        rank.erase(rank.find(score));\n    }\n\nprivate:\n    unordered_map<int, int> d;\n    multiset<int, greater<int>> rank;\n};\n\n/**\n * Your Leaderboard object will be instantiated and called as such:\n * Leaderboard* obj = new Leaderboard();\n * obj->addScore(playerId,score);\n * int param_2 = obj->top(K);\n * obj->reset(playerId);\n */",
+    "java": "class Leaderboard {\n    private Map<Integer, Integer> d = new HashMap<>();\n    private TreeMap<Integer, Integer> rank = new TreeMap<>((a, b) -> b - a);\n\n    public Leaderboard() {\n    }\n\n    public void addScore(int playerId, int score) {\n        d.merge(playerId, score, Integer::sum);\n        int newScore = d.get(playerId);\n        if (newScore != score) {\n            rank.merge(newScore - score, -1, Integer::sum);\n        }\n        rank.merge(newScore, 1, Integer::sum);\n    }\n\n    public int top(int K) {\n        int ans = 0;\n        for (var e : rank.entrySet()) {\n            int score = e.getKey(), cnt = e.getValue();\n            cnt = Math.min(cnt, K);\n            ans += score * cnt;\n            K -= cnt;\n            if (K == 0) {\n                break;\n            }\n        }\n        return ans;\n    }\n\n    public void reset(int playerId) {\n        int score = d.remove(playerId);\n        if (rank.merge(score, -1, Integer::sum) == 0) {\n            rank.remove(score);\n        }\n    }\n}\n\n/**\n * Your Leaderboard object will be instantiated and called as such:\n * Leaderboard obj = new Leaderboard();\n * obj.addScore(playerId,score);\n * int param_2 = obj.top(K);\n * obj.reset(playerId);\n */"
+  },
+  "testcases": [],
+  "hints": [
+    "Analyze the key properties of Design A Leaderboard.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

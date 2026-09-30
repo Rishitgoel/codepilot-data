@@ -1,0 +1,70 @@
+{
+  "id": 305,
+  "slug": "number-of-islands-ii",
+  "title": "Number of Islands II",
+  "difficulty": "Hard",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Union Find"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Number%20of%20Islands%20II"
+  },
+  "description": "You are given an empty 2D binary grid `grid` of size `m x n`. The grid represents a map where `0`'s represent water and `1`'s represent land. Initially, all the cells of `grid` are water cells (i.e., all the cells are `0`'s).\n\nWe may perform an add land operation which turns the water at position into a land. You are given an array `positions` where `positions[i] = [ri, ci]` is the position `(ri, ci)` at which we should operate the `i^th` operation.\n\nReturn *an array of integers* `answer` *where* `answer[i]` *is the number of islands after turning the cell* `(ri, ci)` *into a land*.\n\nAn **island** is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.",
+  "examples": [
+    {
+      "input": "m = 3, n = 3, positions = [[0,0],[0,1],[1,2],[2,1]]",
+      "output": "[1,1,2,3]",
+      "explanation": "Initially, the 2d grid is filled with water.\n- Operation #1: addLand(0, 0) turns the water at grid[0][0] into a land. We have 1 island.\n- Operation #2: addLand(0, 1) turns the water at grid[0][1] into a land. We still have 1 island.\n- Operation #3: addLand(1, 2) turns the water at grid[1][2] into a land. We have 2 islands.\n- Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land. We have 3 islands."
+    },
+    {
+      "input": "m = 1, n = 1, positions = [[0,0]]",
+      "output": "[1]"
+    }
+  ],
+  "constraints": [
+    "1 <= m, n, positions.length <= 10^4",
+    "1 <= m * n <= 10^4",
+    "positions[i].length == 2",
+    "0 <= ri < m",
+    "0 <= ci < n"
+  ],
+  "starterTemplates": {
+    "python": "class UnionFind:\n    def __init__(self, n: int):\n        pass\n",
+    "cpp": "class UnionFind {\npublic:\n    UnionFind(int n) {\n        \n    }\n};\n",
+    "java": "class UnionFind {\n    private final int[] p;\n    private final int[] size;\n\n    public UnionFind(int n) {\n        \n    }\n};\n",
+    "javascript": "class UnionFind {\n    p: number[];\n    size: number[];\n    constructor(n: number) {\n        this.p = Array(n)\n            .fill(0)\n            .map((_, i) => i);\n        this.size = Array(n).fill(1);\n    }\n\n    find(x: number): number {\n        if (this.p[x] !== x) {\n            this.p[x] = this.find(this.p[x]);\n        }\n        return this.p[x];\n    }\n\n    union(a: number, b: number): boolean {\n        const [pa, pb] = [this.find(a), this.find(b)];\n        if (pa === pb) {\n            return false;\n        }\n        if (this.size[pa] > this.size[pb]) {\n            this.p[pb] = pa;\n            this.size[pa] += this.size[pb];\n        } else {\n            this.p[pa] = pb;\n            this.size[pb] += this.size[pa];\n        }\n        return true;\n    }\n}\n\nfunction numIslands2(m: number, n: number, positions: number[][]): number[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class UnionFind:\n    def __init__(self, n: int):\n        self.p = list(range(n))\n        self.size = [1] * n\n\n    def find(self, x: int):\n        if self.p[x] != x:\n            self.p[x] = self.find(self.p[x])\n        return self.p[x]\n\n    def union(self, a: int, b: int) -> bool:\n        pa, pb = self.find(a - 1), self.find(b - 1)\n        if pa == pb:\n            return False\n        if self.size[pa] > self.size[pb]:\n            self.p[pb] = pa\n            self.size[pa] += self.size[pb]\n        else:\n            self.p[pa] = pb\n            self.size[pb] += self.size[pa]\n        return True\n\n\nclass Solution:\n    def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:\n        uf = UnionFind(m * n)\n        grid = [[0] * n for _ in range(m)]\n        ans = []\n        dirs = (-1, 0, 1, 0, -1)\n        cnt = 0\n        for i, j in positions:\n            if grid[i][j]:\n                ans.append(cnt)\n                continue\n            grid[i][j] = 1\n            cnt += 1\n            for a, b in pairwise(dirs):\n                x, y = i + a, j + b\n                if (\n                    0 <= x < m\n                    and 0 <= y < n\n                    and grid[x][y]\n                    and uf.union(i * n + j, x * n + y)\n                ):\n                    cnt -= 1\n            ans.append(cnt)\n        return ans",
+    "cpp": "class UnionFind {\npublic:\n    UnionFind(int n) {\n        p = vector<int>(n);\n        size = vector<int>(n, 1);\n        iota(p.begin(), p.end(), 0);\n    }\n\n    bool unite(int a, int b) {\n        int pa = find(a), pb = find(b);\n        if (pa == pb) {\n            return false;\n        }\n        if (size[pa] > size[pb]) {\n            p[pb] = pa;\n            size[pa] += size[pb];\n        } else {\n            p[pa] = pb;\n            size[pb] += size[pa];\n        }\n        return true;\n    }\n\n    int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n\nprivate:\n    vector<int> p, size;\n};\n\nclass Solution {\npublic:\n    vector<int> numIslands2(int m, int n, vector<vector<int>>& positions) {\n        int grid[m][n];\n        memset(grid, 0, sizeof(grid));\n        UnionFind uf(m * n);\n        int dirs[5] = {-1, 0, 1, 0, -1};\n        int cnt = 0;\n        vector<int> ans;\n        for (auto& p : positions) {\n            int i = p[0], j = p[1];\n            if (grid[i][j]) {\n                ans.push_back(cnt);\n                continue;\n            }\n            grid[i][j] = 1;\n            ++cnt;\n            for (int k = 0; k < 4; ++k) {\n                int x = i + dirs[k], y = j + dirs[k + 1];\n                if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] && uf.unite(i * n + j, x * n + y)) {\n                    --cnt;\n                }\n            }\n            ans.push_back(cnt);\n        }\n        return ans;\n    }\n};",
+    "java": "class UnionFind {\n    private final int[] p;\n    private final int[] size;\n\n    public UnionFind(int n) {\n        p = new int[n];\n        size = new int[n];\n        for (int i = 0; i < n; ++i) {\n            p[i] = i;\n            size[i] = 1;\n        }\n    }\n\n    public int find(int x) {\n        if (p[x] != x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    }\n\n    public boolean union(int a, int b) {\n        int pa = find(a), pb = find(b);\n        if (pa == pb) {\n            return false;\n        }\n        if (size[pa] > size[pb]) {\n            p[pb] = pa;\n            size[pa] += size[pb];\n        } else {\n            p[pa] = pb;\n            size[pb] += size[pa];\n        }\n        return true;\n    }\n}\n\nclass Solution {\n    public List<Integer> numIslands2(int m, int n, int[][] positions) {\n        int[][] grid = new int[m][n];\n        UnionFind uf = new UnionFind(m * n);\n        int[] dirs = {-1, 0, 1, 0, -1};\n        int cnt = 0;\n        List<Integer> ans = new ArrayList<>();\n        for (var p : positions) {\n            int i = p[0], j = p[1];\n            if (grid[i][j] == 1) {\n                ans.add(cnt);\n                continue;\n            }\n            grid[i][j] = 1;\n            ++cnt;\n            for (int k = 0; k < 4; ++k) {\n                int x = i + dirs[k], y = j + dirs[k + 1];\n                if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1\n                    && uf.union(i * n + j, x * n + y)) {\n                    --cnt;\n                }\n            }\n            ans.add(cnt);\n        }\n        return ans;\n    }\n}",
+    "javascript": "class UnionFind {\n    p: number[];\n    size: number[];\n    constructor(n: number) {\n        this.p = Array(n)\n            .fill(0)\n            .map((_, i) => i);\n        this.size = Array(n).fill(1);\n    }\n\n    find(x: number): number {\n        if (this.p[x] !== x) {\n            this.p[x] = this.find(this.p[x]);\n        }\n        return this.p[x];\n    }\n\n    union(a: number, b: number): boolean {\n        const [pa, pb] = [this.find(a), this.find(b)];\n        if (pa === pb) {\n            return false;\n        }\n        if (this.size[pa] > this.size[pb]) {\n            this.p[pb] = pa;\n            this.size[pa] += this.size[pb];\n        } else {\n            this.p[pa] = pb;\n            this.size[pb] += this.size[pa];\n        }\n        return true;\n    }\n}\n\nfunction numIslands2(m: number, n: number, positions: number[][]): number[] {\n    const grid: number[][] = Array.from({ length: m }, () => Array(n).fill(0));\n    const uf = new UnionFind(m * n);\n    const ans: number[] = [];\n    const dirs: number[] = [-1, 0, 1, 0, -1];\n    let cnt = 0;\n    for (const [i, j] of positions) {\n        if (grid[i][j]) {\n            ans.push(cnt);\n            continue;\n        }\n        grid[i][j] = 1;\n        ++cnt;\n        for (let k = 0; k < 4; ++k) {\n            const [x, y] = [i + dirs[k], j + dirs[k + 1]];\n            if (x < 0 || x >= m || y < 0 || y >= n || !grid[x][y]) {\n                continue;\n            }\n            if (uf.union(i * n + j, x * n + y)) {\n                --cnt;\n            }\n        }\n        ans.push(cnt);\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "3, n = 3, positions = [[0,0],[0,1],[1,2],[2,1]]",
+      "expected": "[1,1,2,3]"
+    },
+    {
+      "input": "1, n = 1, positions = [[0,0]]",
+      "expected": "[1]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Number of Islands II.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

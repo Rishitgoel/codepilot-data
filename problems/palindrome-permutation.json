@@ -1,0 +1,74 @@
+{
+  "id": 266,
+  "slug": "palindrome-permutation",
+  "title": "Palindrome Permutation",
+  "difficulty": "Easy",
+  "rating": null,
+  "topics": [
+    "Hash Table",
+    "String",
+    "Bit Manipulation"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Palindrome%20Permutation"
+  },
+  "description": "Given a string `s`, return `true` *if a permutation of the string could form a ****palindrome**** and *`false`* otherwise*.",
+  "examples": [
+    {
+      "input": "s = \"code\"",
+      "output": "false"
+    },
+    {
+      "input": "s = \"aab\"",
+      "output": "true"
+    },
+    {
+      "input": "s = \"carerac\"",
+      "output": "true"
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 5000",
+    "s consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool canPermutePalindrome(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean canPermutePalindrome(String s) {\n        \n    }\n};\n",
+    "javascript": "function canPermutePalindrome(s: string): boolean {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        return sum(v & 1 for v in Counter(s).values()) < 2",
+    "cpp": "class Solution {\npublic:\n    bool canPermutePalindrome(string s) {\n        vector<int> cnt(26);\n        for (char& c : s) {\n            ++cnt[c - 'a'];\n        }\n        int odd = 0;\n        for (int x : cnt) {\n            odd += x & 1;\n        }\n        return odd < 2;\n    }\n};",
+    "java": "class Solution {\n    public boolean canPermutePalindrome(String s) {\n        int[] cnt = new int[26];\n        for (char c : s.toCharArray()) {\n            ++cnt[c - 'a'];\n        }\n        int odd = 0;\n        for (int x : cnt) {\n            odd += x & 1;\n        }\n        return odd < 2;\n    }\n}",
+    "javascript": "function canPermutePalindrome(s: string): boolean {\n    const cnt: number[] = Array(26).fill(0);\n    for (const c of s) {\n        ++cnt[c.charCodeAt(0) - 97];\n    }\n    return cnt.filter(c => c % 2 === 1).length < 2;\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"code\"",
+      "expected": "false"
+    },
+    {
+      "input": "\"aab\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"carerac\"",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Palindrome Permutation.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

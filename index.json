@@ -1,15 +1,264 @@
 {
-  "version": "1.0.0",
-  "totalProblems": 52,
-  "cdnBase": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems",
+  "repository": "Rishitgoel/codepilot-data",
+  "cdnBaseUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems",
   "updatedAt": "2026-09-30",
+  "totalProblems": 85,
   "problems": [
+    {
+      "id": 156,
+      "slug": "binary-tree-upside-down",
+      "title": "Binary Tree Upside Down",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/binary-tree-upside-down.json"
+    },
+    {
+      "id": 159,
+      "slug": "longest-substring-with-at-most-two-distinct-characters",
+      "title": "Longest Substring with At Most Two Distinct Characters",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Table",
+        "String",
+        "Sliding Window"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/longest-substring-with-at-most-two-distinct-characters.json"
+    },
+    {
+      "id": 161,
+      "slug": "one-edit-distance",
+      "title": "One Edit Distance",
+      "difficulty": "Medium",
+      "topics": [
+        "Two Pointers",
+        "String"
+      ],
+      "companies": [
+        "Meta",
+        "Google",
+        "Uber"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/one-edit-distance.json"
+    },
+    {
+      "id": 163,
+      "slug": "missing-ranges",
+      "title": "Missing Ranges",
+      "difficulty": "Easy",
+      "topics": [
+        "Array"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/missing-ranges.json"
+    },
+    {
+      "id": 170,
+      "slug": "two-sum-iii-data-structure-design",
+      "title": "Two Sum III - Data structure design",
+      "difficulty": "Easy",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Two Pointers",
+        "Design"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/two-sum-iii-data-structure-design.json"
+    },
+    {
+      "id": 186,
+      "slug": "reverse-words-in-a-string-ii",
+      "title": "Reverse Words in a String II",
+      "difficulty": "Medium",
+      "topics": [
+        "Two Pointers",
+        "String"
+      ],
+      "companies": [
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/reverse-words-in-a-string-ii.json"
+    },
+    {
+      "id": 243,
+      "slug": "shortest-word-distance",
+      "title": "Shortest Word Distance",
+      "difficulty": "Easy",
+      "topics": [
+        "Array",
+        "String"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/shortest-word-distance.json"
+    },
+    {
+      "id": 244,
+      "slug": "shortest-word-distance-ii",
+      "title": "Shortest Word Distance II",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Two Pointers",
+        "Design"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/shortest-word-distance-ii.json"
+    },
+    {
+      "id": 245,
+      "slug": "shortest-word-distance-iii",
+      "title": "Shortest Word Distance III",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "String"
+      ],
+      "companies": [
+        "LinkedIn"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/shortest-word-distance-iii.json"
+    },
+    {
+      "id": 246,
+      "slug": "strobogrammatic-number",
+      "title": "Strobogrammatic Number",
+      "difficulty": "Easy",
+      "topics": [
+        "Hash Table",
+        "Two Pointers",
+        "String"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/strobogrammatic-number.json"
+    },
+    {
+      "id": 247,
+      "slug": "strobogrammatic-number-ii",
+      "title": "Strobogrammatic Number II",
+      "difficulty": "Medium",
+      "topics": [
+        "Recursion",
+        "String"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/strobogrammatic-number-ii.json"
+    },
+    {
+      "id": 248,
+      "slug": "strobogrammatic-number-iii",
+      "title": "Strobogrammatic Number III",
+      "difficulty": "Hard",
+      "topics": [
+        "Recursion",
+        "String"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/strobogrammatic-number-iii.json"
+    },
+    {
+      "id": 249,
+      "slug": "group-shifted-strings",
+      "title": "Group Shifted Strings",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "String"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/group-shifted-strings.json"
+    },
+    {
+      "id": 250,
+      "slug": "count-univalue-subtrees",
+      "title": "Count Univalue Subtrees",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/count-univalue-subtrees.json"
+    },
+    {
+      "id": 251,
+      "slug": "flatten-2d-vector",
+      "title": "Flatten 2D Vector",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Design",
+        "Iterator"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/flatten-2d-vector.json"
+    },
     {
       "id": 252,
       "slug": "meeting-rooms",
       "title": "Meeting Rooms",
       "difficulty": "Easy",
-      "rating": 1350,
       "topics": [
         "Array",
         "Sorting"
@@ -21,14 +270,13 @@
         "Microsoft",
         "Bloomberg"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/meeting-rooms.json"
     },
     {
       "id": 253,
       "slug": "meeting-rooms-ii",
       "title": "Meeting Rooms II",
       "difficulty": "Medium",
-      "rating": 1680,
       "topics": [
         "Array",
         "Two Pointers",
@@ -44,14 +292,77 @@
         "Microsoft",
         "Uber"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/meeting-rooms-ii.json"
+    },
+    {
+      "id": 254,
+      "slug": "factor-combinations",
+      "title": "Factor Combinations",
+      "difficulty": "Medium",
+      "topics": [
+        "Backtracking"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Uber"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/factor-combinations.json"
+    },
+    {
+      "id": 255,
+      "slug": "verify-preorder-sequence-in-binary-search-tree",
+      "title": "Verify Preorder Sequence in Binary Search Tree",
+      "difficulty": "Medium",
+      "topics": [
+        "Stack",
+        "Tree",
+        "Binary Search Tree",
+        "Monotonic Stack"
+      ],
+      "companies": [
+        "Zenefits"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/verify-preorder-sequence-in-binary-search-tree.json"
+    },
+    {
+      "id": 256,
+      "slug": "paint-house",
+      "title": "Paint House",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Dynamic Programming"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/paint-house.json"
+    },
+    {
+      "id": 259,
+      "slug": "3sum-smaller",
+      "title": "3Sum Smaller",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Binary Search",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/3sum-smaller.json"
     },
     {
       "id": 261,
       "slug": "graph-valid-tree",
       "title": "Graph Valid Tree",
       "difficulty": "Medium",
-      "rating": 1620,
       "topics": [
         "Depth-First Search",
         "Breadth-First Search",
@@ -66,14 +377,64 @@
         "LinkedIn",
         "ByteDance"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/graph-valid-tree.json"
+    },
+    {
+      "id": 265,
+      "slug": "paint-house-ii",
+      "title": "Paint House II",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Dynamic Programming"
+      ],
+      "companies": [
+        "Meta",
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/paint-house-ii.json"
+    },
+    {
+      "id": 266,
+      "slug": "palindrome-permutation",
+      "title": "Palindrome Permutation",
+      "difficulty": "Easy",
+      "topics": [
+        "Hash Table",
+        "String",
+        "Bit Manipulation"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/palindrome-permutation.json"
+    },
+    {
+      "id": 267,
+      "slug": "palindrome-permutation-ii",
+      "title": "Palindrome Permutation II",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Table",
+        "String",
+        "Backtracking"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/palindrome-permutation-ii.json"
     },
     {
       "id": 269,
       "slug": "alien-dictionary",
       "title": "Alien Dictionary",
       "difficulty": "Hard",
-      "rating": 2050,
       "topics": [
         "Array",
         "String",
@@ -90,14 +451,30 @@
         "Microsoft",
         "Uber"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/alien-dictionary.json"
+    },
+    {
+      "id": 270,
+      "slug": "closest-binary-search-tree-value",
+      "title": "Closest Binary Search Tree Value",
+      "difficulty": "Easy",
+      "topics": [
+        "Tree",
+        "Binary Search Tree",
+        "Binary Search"
+      ],
+      "companies": [
+        "Meta",
+        "Microsoft",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/closest-binary-search-tree-value.json"
     },
     {
       "id": 271,
       "slug": "encode-and-decode-strings",
       "title": "Encode and Decode Strings",
       "difficulty": "Medium",
-      "rating": 1540,
       "topics": [
         "Array",
         "String",
@@ -110,35 +487,117 @@
         "Microsoft",
         "Bloomberg"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/encode-and-decode-strings.json"
     },
     {
-      "id": 323,
-      "slug": "number-of-connected-components-in-an-undirected-graph",
-      "title": "Number of Connected Components in an Undirected Graph",
-      "difficulty": "Medium",
-      "rating": 1560,
+      "id": 272,
+      "slug": "closest-binary-search-tree-value-ii",
+      "title": "Closest Binary Search Tree Value II",
+      "difficulty": "Hard",
       "topics": [
-        "Depth-First Search",
-        "Breadth-First Search",
-        "Union Find",
-        "Graph"
+        "Two Pointers",
+        "Stack",
+        "Tree",
+        "Binary Search Tree",
+        "Heap"
+      ],
+      "companies": [
+        "Meta",
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/closest-binary-search-tree-value-ii.json"
+    },
+    {
+      "id": 276,
+      "slug": "paint-fence",
+      "title": "Paint Fence",
+      "difficulty": "Medium",
+      "topics": [
+        "Dynamic Programming"
       ],
       "companies": [
         "Google",
-        "Amazon",
-        "Meta",
-        "Microsoft",
-        "Bloomberg"
+        "Meta"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/paint-fence.json"
+    },
+    {
+      "id": 277,
+      "slug": "find-the-celebrity",
+      "title": "Find the Celebrity",
+      "difficulty": "Medium",
+      "topics": [
+        "Two Pointers",
+        "Greedy",
+        "Graph",
+        "Interactive"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Meta",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/find-the-celebrity.json"
+    },
+    {
+      "id": 280,
+      "slug": "wiggle-sort",
+      "title": "Wiggle Sort",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Greedy",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/wiggle-sort.json"
+    },
+    {
+      "id": 281,
+      "slug": "zigzag-iterator",
+      "title": "Zigzag Iterator",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Design",
+        "Queue",
+        "Iterator"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/zigzag-iterator.json"
+    },
+    {
+      "id": 285,
+      "slug": "inorder-successor-in-bst",
+      "title": "Inorder Successor in BST",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Binary Search Tree",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/inorder-successor-in-bst.json"
     },
     {
       "id": 286,
       "slug": "walls-and-gates",
       "title": "Walls and Gates",
       "difficulty": "Medium",
-      "rating": 1650,
       "topics": [
         "Array",
         "Breadth-First Search",
@@ -151,71 +610,178 @@
         "ByteDance",
         "Microsoft"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/walls-and-gates.json"
     },
     {
-      "id": 317,
-      "slug": "shortest-distance-from-all-buildings",
-      "title": "Shortest Distance from All Buildings",
-      "difficulty": "Hard",
-      "rating": 2280,
+      "id": 288,
+      "slug": "unique-word-abbreviation",
+      "title": "Unique Word Abbreviation",
+      "difficulty": "Medium",
       "topics": [
         "Array",
+        "Hash Table",
+        "String",
+        "Design"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/unique-word-abbreviation.json"
+    },
+    {
+      "id": 291,
+      "slug": "word-pattern-ii",
+      "title": "Word Pattern II",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Table",
+        "String",
+        "Backtracking"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/word-pattern-ii.json"
+    },
+    {
+      "id": 294,
+      "slug": "flip-game-ii",
+      "title": "Flip Game II",
+      "difficulty": "Medium",
+      "topics": [
+        "Math",
+        "Dynamic Programming",
+        "Backtracking",
+        "Game Theory"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/flip-game-ii.json"
+    },
+    {
+      "id": 296,
+      "slug": "best-meeting-point",
+      "title": "Best Meeting Point",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Math",
+        "Sorting",
+        "Matrix"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/best-meeting-point.json"
+    },
+    {
+      "id": 298,
+      "slug": "binary-tree-longest-consecutive-sequence",
+      "title": "Binary Tree Longest Consecutive Sequence",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/binary-tree-longest-consecutive-sequence.json"
+    },
+    {
+      "id": 302,
+      "slug": "smallest-rectangle-enclosing-black-pixels",
+      "title": "Smallest Rectangle Enclosing Black Pixels",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Binary Search",
         "Breadth-First Search",
+        "Depth-First Search",
+        "Matrix"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/smallest-rectangle-enclosing-black-pixels.json"
+    },
+    {
+      "id": 305,
+      "slug": "number-of-islands-ii",
+      "title": "Number of Islands II",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Union Find"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/number-of-islands-ii.json"
+    },
+    {
+      "id": 308,
+      "slug": "range-sum-query-2d-mutable",
+      "title": "Range Sum Query 2D - Mutable",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Design",
+        "Binary Indexed Tree",
+        "Segment Tree",
+        "Matrix"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/range-sum-query-2d-mutable.json"
+    },
+    {
+      "id": 311,
+      "slug": "sparse-matrix-multiplication",
+      "title": "Sparse Matrix Multiplication",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
         "Matrix"
       ],
       "companies": [
         "Meta",
-        "Google",
-        "Amazon",
-        "Microsoft"
+        "Bloomberg"
       ],
-      "hasData": true
-    },
-    {
-      "id": 159,
-      "slug": "longest-substring-with-at-most-two-distinct-characters",
-      "title": "Longest Substring with At Most Two Distinct Characters",
-      "difficulty": "Medium",
-      "rating": 1580,
-      "topics": [
-        "Hash Table",
-        "String",
-        "Sliding Window"
-      ],
-      "companies": [
-        "Google",
-        "Meta",
-        "Amazon",
-        "Microsoft"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 340,
-      "slug": "longest-substring-with-at-most-k-distinct-characters",
-      "title": "Longest Substring with At Most K Distinct Characters",
-      "difficulty": "Medium",
-      "rating": 1650,
-      "topics": [
-        "Hash Table",
-        "String",
-        "Sliding Window"
-      ],
-      "companies": [
-        "Google",
-        "Meta",
-        "Amazon",
-        "Microsoft"
-      ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/sparse-matrix-multiplication.json"
     },
     {
       "id": 314,
       "slug": "binary-tree-vertical-order-traversal",
       "title": "Binary Tree Vertical Order Traversal",
       "difficulty": "Medium",
-      "rating": 1610,
       "topics": [
         "Hash Table",
         "Tree",
@@ -230,14 +796,107 @@
         "Google",
         "Microsoft"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/binary-tree-vertical-order-traversal.json"
+    },
+    {
+      "id": 317,
+      "slug": "shortest-distance-from-all-buildings",
+      "title": "Shortest Distance from All Buildings",
+      "difficulty": "Hard",
+      "topics": [
+        "Array",
+        "Breadth-First Search",
+        "Matrix"
+      ],
+      "companies": [
+        "Meta",
+        "Google",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/shortest-distance-from-all-buildings.json"
+    },
+    {
+      "id": 320,
+      "slug": "generalized-abbreviation",
+      "title": "Generalized Abbreviation",
+      "difficulty": "Medium",
+      "topics": [
+        "String",
+        "Backtracking",
+        "Bit Manipulation"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/generalized-abbreviation.json"
+    },
+    {
+      "id": 323,
+      "slug": "number-of-connected-components-in-an-undirected-graph",
+      "title": "Number of Connected Components in an Undirected Graph",
+      "difficulty": "Medium",
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Union Find",
+        "Graph"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/number-of-connected-components-in-an-undirected-graph.json"
+    },
+    {
+      "id": 325,
+      "slug": "maximum-size-subarray-sum-equals-k",
+      "title": "Maximum Size Subarray Sum Equals k",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Prefix Sum"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/maximum-size-subarray-sum-equals-k.json"
+    },
+    {
+      "id": 333,
+      "slug": "largest-bst-subtree",
+      "title": "Largest BST Subtree",
+      "difficulty": "Medium",
+      "topics": [
+        "Dynamic Programming",
+        "Tree",
+        "Depth-First Search",
+        "Binary Search Tree",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/largest-bst-subtree.json"
     },
     {
       "id": 339,
       "slug": "nested-list-weight-sum",
       "title": "Nested List Weight Sum",
       "difficulty": "Medium",
-      "rating": 1450,
       "topics": [
         "Depth-First Search",
         "Breadth-First Search"
@@ -249,14 +908,120 @@
         "Google",
         "Bloomberg"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/nested-list-weight-sum.json"
+    },
+    {
+      "id": 340,
+      "slug": "longest-substring-with-at-most-k-distinct-characters",
+      "title": "Longest Substring with At Most K Distinct Characters",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Table",
+        "String",
+        "Sliding Window"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/longest-substring-with-at-most-k-distinct-characters.json"
+    },
+    {
+      "id": 346,
+      "slug": "moving-average-from-data-stream",
+      "title": "Moving Average from Data Stream",
+      "difficulty": "Easy",
+      "topics": [
+        "Array",
+        "Design",
+        "Queue",
+        "Data Stream"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/moving-average-from-data-stream.json"
+    },
+    {
+      "id": 348,
+      "slug": "design-tic-tac-toe",
+      "title": "Design Tic-Tac-Toe",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Design",
+        "Matrix",
+        "Simulation"
+      ],
+      "companies": [
+        "Meta",
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/design-tic-tac-toe.json"
+    },
+    {
+      "id": 351,
+      "slug": "android-unlock-patterns",
+      "title": "Android Unlock Patterns",
+      "difficulty": "Medium",
+      "topics": [
+        "Dynamic Programming",
+        "Backtracking"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/android-unlock-patterns.json"
+    },
+    {
+      "id": 353,
+      "slug": "design-snake-game",
+      "title": "Design Snake Game",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Design",
+        "Queue",
+        "Matrix",
+        "Simulation"
+      ],
+      "companies": [
+        "Google",
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/design-snake-game.json"
+    },
+    {
+      "id": 356,
+      "slug": "line-reflection",
+      "title": "Line Reflection",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Math"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/line-reflection.json"
     },
     {
       "id": 359,
       "slug": "logger-rate-limiter",
       "title": "Logger Rate Limiter",
       "difficulty": "Easy",
-      "rating": 1320,
       "topics": [
         "Hash Table",
         "Design"
@@ -268,14 +1033,47 @@
         "Microsoft",
         "Bloomberg"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/logger-rate-limiter.json"
+    },
+    {
+      "id": 360,
+      "slug": "sort-transformed-array",
+      "title": "Sort Transformed Array",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Math",
+        "Two Pointers",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/sort-transformed-array.json"
+    },
+    {
+      "id": 361,
+      "slug": "bomb-enemy",
+      "title": "Bomb Enemy",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Dynamic Programming",
+        "Matrix"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/bomb-enemy.json"
     },
     {
       "id": 362,
       "slug": "design-hit-counter",
       "title": "Design Hit Counter",
       "difficulty": "Medium",
-      "rating": 1510,
       "topics": [
         "Array",
         "Hash Table",
@@ -290,409 +1088,13 @@
         "Dropbox",
         "Uber"
       ],
-      "hasData": true
-    },
-    {
-      "id": 1167,
-      "slug": "minimum-cost-to-connect-sticks",
-      "title": "Minimum Cost to Connect Sticks",
-      "difficulty": "Medium",
-      "rating": 1470,
-      "topics": [
-        "Array",
-        "Greedy",
-        "Heap (Priority Queue)"
-      ],
-      "companies": [
-        "Amazon",
-        "Google",
-        "Microsoft",
-        "Bloomberg"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 161,
-      "slug": "one-edit-distance",
-      "title": "One Edit Distance",
-      "difficulty": "Medium",
-      "rating": 1530,
-      "topics": [
-        "Two Pointers",
-        "String"
-      ],
-      "companies": [
-        "Meta",
-        "Google",
-        "Uber"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 163,
-      "slug": "missing-ranges",
-      "title": "Missing Ranges",
-      "difficulty": "Easy",
-      "rating": 1310,
-      "topics": [
-        "Array"
-      ],
-      "companies": [
-        "Google",
-        "Meta",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 170,
-      "slug": "two-sum-iii-data-structure-design",
-      "title": "Two Sum III - Data structure design",
-      "difficulty": "Easy",
-      "rating": 1320,
-      "topics": [
-        "Array",
-        "Hash Table",
-        "Two Pointers",
-        "Design"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 186,
-      "slug": "reverse-words-in-a-string-ii",
-      "title": "Reverse Words in a String II",
-      "difficulty": "Medium",
-      "rating": 1420,
-      "topics": [
-        "Two Pointers",
-        "String"
-      ],
-      "companies": [
-        "Amazon",
-        "Microsoft"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 243,
-      "slug": "shortest-word-distance",
-      "title": "Shortest Word Distance",
-      "difficulty": "Easy",
-      "rating": 1290,
-      "topics": [
-        "Array",
-        "String"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 244,
-      "slug": "shortest-word-distance-ii",
-      "title": "Shortest Word Distance II",
-      "difficulty": "Medium",
-      "rating": 1480,
-      "topics": [
-        "Array",
-        "Hash Table",
-        "Two Pointers",
-        "Design"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 245,
-      "slug": "shortest-word-distance-iii",
-      "title": "Shortest Word Distance III",
-      "difficulty": "Medium",
-      "rating": 1520,
-      "topics": [
-        "Array",
-        "String"
-      ],
-      "companies": [
-        "LinkedIn"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 250,
-      "slug": "count-univalue-subtrees",
-      "title": "Count Univalue Subtrees",
-      "difficulty": "Medium",
-      "rating": 1590,
-      "topics": [
-        "Tree",
-        "Depth-First Search",
-        "Binary Tree"
-      ],
-      "companies": [
-        "Google",
-        "Meta"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 254,
-      "slug": "factor-combinations",
-      "title": "Factor Combinations",
-      "difficulty": "Medium",
-      "rating": 1640,
-      "topics": [
-        "Backtracking"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Uber"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 255,
-      "slug": "verify-preorder-sequence-in-binary-search-tree",
-      "title": "Verify Preorder Sequence in Binary Search Tree",
-      "difficulty": "Medium",
-      "rating": 1690,
-      "topics": [
-        "Stack",
-        "Tree",
-        "Binary Search Tree",
-        "Monotonic Stack"
-      ],
-      "companies": [
-        "Zenefits"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 256,
-      "slug": "paint-house",
-      "title": "Paint House",
-      "difficulty": "Medium",
-      "rating": 1530,
-      "topics": [
-        "Array",
-        "Dynamic Programming"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Google"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 265,
-      "slug": "paint-house-ii",
-      "title": "Paint House II",
-      "difficulty": "Hard",
-      "rating": 1920,
-      "topics": [
-        "Array",
-        "Dynamic Programming"
-      ],
-      "companies": [
-        "Meta",
-        "Google"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 270,
-      "slug": "closest-binary-search-tree-value",
-      "title": "Closest Binary Search Tree Value",
-      "difficulty": "Easy",
-      "rating": 1280,
-      "topics": [
-        "Tree",
-        "Binary Search Tree",
-        "Binary Search"
-      ],
-      "companies": [
-        "Meta",
-        "Microsoft",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 272,
-      "slug": "closest-binary-search-tree-value-ii",
-      "title": "Closest Binary Search Tree Value II",
-      "difficulty": "Hard",
-      "rating": 2010,
-      "topics": [
-        "Two Pointers",
-        "Stack",
-        "Tree",
-        "Binary Search Tree",
-        "Heap"
-      ],
-      "companies": [
-        "Meta",
-        "Google"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 276,
-      "slug": "paint-fence",
-      "title": "Paint Fence",
-      "difficulty": "Medium",
-      "rating": 1520,
-      "topics": [
-        "Dynamic Programming"
-      ],
-      "companies": [
-        "Google",
-        "Meta"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 277,
-      "slug": "find-the-celebrity",
-      "title": "Find the Celebrity",
-      "difficulty": "Medium",
-      "rating": 1580,
-      "topics": [
-        "Two Pointers",
-        "Greedy",
-        "Graph",
-        "Interactive"
-      ],
-      "companies": [
-        "LinkedIn",
-        "Meta",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 285,
-      "slug": "inorder-successor-in-bst",
-      "title": "Inorder Successor in BST",
-      "difficulty": "Medium",
-      "rating": 1560,
-      "topics": [
-        "Tree",
-        "Binary Search Tree",
-        "Binary Tree"
-      ],
-      "companies": [
-        "Meta",
-        "Amazon",
-        "Microsoft"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 298,
-      "slug": "binary-tree-longest-consecutive-sequence",
-      "title": "Binary Tree Longest Consecutive Sequence",
-      "difficulty": "Medium",
-      "rating": 1570,
-      "topics": [
-        "Tree",
-        "Depth-First Search",
-        "Binary Tree"
-      ],
-      "companies": [
-        "Google",
-        "Meta"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 311,
-      "slug": "sparse-matrix-multiplication",
-      "title": "Sparse Matrix Multiplication",
-      "difficulty": "Medium",
-      "rating": 1610,
-      "topics": [
-        "Array",
-        "Hash Table",
-        "Matrix"
-      ],
-      "companies": [
-        "Meta",
-        "Bloomberg"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 348,
-      "slug": "design-tic-tac-toe",
-      "title": "Design Tic-Tac-Toe",
-      "difficulty": "Medium",
-      "rating": 1550,
-      "topics": [
-        "Array",
-        "Hash Table",
-        "Design",
-        "Matrix",
-        "Simulation"
-      ],
-      "companies": [
-        "Meta",
-        "Amazon",
-        "Microsoft",
-        "Google"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 353,
-      "slug": "design-snake-game",
-      "title": "Design Snake Game",
-      "difficulty": "Medium",
-      "rating": 1720,
-      "topics": [
-        "Array",
-        "Design",
-        "Queue",
-        "Matrix",
-        "Simulation"
-      ],
-      "companies": [
-        "Google",
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 361,
-      "slug": "bomb-enemy",
-      "title": "Bomb Enemy",
-      "difficulty": "Medium",
-      "rating": 1680,
-      "topics": [
-        "Array",
-        "Dynamic Programming",
-        "Matrix"
-      ],
-      "companies": [
-        "Google"
-      ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/design-hit-counter.json"
     },
     {
       "id": 364,
       "slug": "nested-list-weight-sum-ii",
       "title": "Nested List Weight Sum II",
       "difficulty": "Medium",
-      "rating": 1620,
       "topics": [
         "Depth-First Search",
         "Breadth-First Search"
@@ -701,14 +1103,13 @@
         "LinkedIn",
         "Meta"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/nested-list-weight-sum-ii.json"
     },
     {
       "id": 366,
       "slug": "find-leaves-of-binary-tree",
       "title": "Find Leaves of Binary Tree",
       "difficulty": "Medium",
-      "rating": 1580,
       "topics": [
         "Tree",
         "Depth-First Search",
@@ -718,14 +1119,30 @@
         "Google",
         "LinkedIn"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/find-leaves-of-binary-tree.json"
+    },
+    {
+      "id": 379,
+      "slug": "design-phone-directory",
+      "title": "Design Phone Directory",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Linked List",
+        "Design",
+        "Queue"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/design-phone-directory.json"
     },
     {
       "id": 418,
       "slug": "sentence-screen-fitting",
       "title": "Sentence Screen Fitting",
       "difficulty": "Medium",
-      "rating": 1750,
       "topics": [
         "String",
         "Dynamic Programming",
@@ -734,14 +1151,13 @@
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/sentence-screen-fitting.json"
     },
     {
       "id": 487,
       "slug": "max-consecutive-ones-ii",
       "title": "Max Consecutive Ones II",
       "difficulty": "Medium",
-      "rating": 1540,
       "topics": [
         "Array",
         "Dynamic Programming",
@@ -751,14 +1167,51 @@
         "Google",
         "Meta"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/max-consecutive-ones-ii.json"
+    },
+    {
+      "id": 490,
+      "slug": "the-maze",
+      "title": "The Maze",
+      "difficulty": "Medium",
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Graph"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/the-maze.json"
+    },
+    {
+      "id": 505,
+      "slug": "the-maze-ii",
+      "title": "The Maze II",
+      "difficulty": "Medium",
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Graph",
+        "Heap",
+        "Shortest Path"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/the-maze-ii.json"
     },
     {
       "id": 531,
       "slug": "lonely-pixel-i",
       "title": "Lonely Pixel I",
       "difficulty": "Medium",
-      "rating": 1490,
       "topics": [
         "Array",
         "Hash Table",
@@ -767,14 +1220,13 @@
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/lonely-pixel-i.json"
     },
     {
       "id": 544,
       "slug": "output-contest-matches",
       "title": "Output Contest Matches",
       "difficulty": "Medium",
-      "rating": 1570,
       "topics": [
         "String",
         "Recursion",
@@ -783,14 +1235,13 @@
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/output-contest-matches.json"
     },
     {
       "id": 549,
       "slug": "binary-tree-longest-consecutive-sequence-ii",
       "title": "Binary Tree Longest Consecutive Sequence II",
       "difficulty": "Medium",
-      "rating": 1710,
       "topics": [
         "Tree",
         "Depth-First Search",
@@ -799,64 +1250,13 @@
       "companies": [
         "Google"
       ],
-      "hasData": true
-    },
-    {
-      "id": 1057,
-      "slug": "campus-bikes",
-      "title": "Campus Bikes",
-      "difficulty": "Medium",
-      "rating": 1680,
-      "topics": [
-        "Array",
-        "Greedy",
-        "Sorting"
-      ],
-      "companies": [
-        "Google",
-        "ByteDance"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 1086,
-      "slug": "high-five",
-      "title": "High Five",
-      "difficulty": "Easy",
-      "rating": 1300,
-      "topics": [
-        "Array",
-        "Hash Table",
-        "Sorting",
-        "Heap"
-      ],
-      "companies": [
-        "Amazon"
-      ],
-      "hasData": true
-    },
-    {
-      "id": 1168,
-      "slug": "optimize-water-distribution-in-a-village",
-      "title": "Optimize Water Distribution in a Village",
-      "difficulty": "Hard",
-      "rating": 2110,
-      "topics": [
-        "Union Find",
-        "Graph",
-        "Minimum Spanning Tree"
-      ],
-      "companies": [
-        "Google"
-      ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/binary-tree-longest-consecutive-sequence-ii.json"
     },
     {
       "id": 582,
       "slug": "kill-process",
       "title": "Kill Process",
       "difficulty": "Medium",
-      "rating": 1470,
       "topics": [
         "Array",
         "Hash Table",
@@ -869,48 +1269,60 @@
         "Amazon",
         "Bloomberg"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/kill-process.json"
     },
     {
-      "id": 379,
-      "slug": "design-phone-directory",
-      "title": "Design Phone Directory",
-      "difficulty": "Medium",
-      "rating": 1510,
+      "id": 644,
+      "slug": "maximum-average-subarray-ii",
+      "title": "Maximum Average Subarray II",
+      "difficulty": "Hard",
       "topics": [
         "Array",
-        "Hash Table",
-        "Linked List",
-        "Design",
-        "Queue"
+        "Binary Search",
+        "Prefix Sum"
       ],
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/maximum-average-subarray-ii.json"
     },
     {
-      "id": 356,
-      "slug": "line-reflection",
-      "title": "Line Reflection",
+      "id": 708,
+      "slug": "insert-into-a-sorted-circular-linked-list",
+      "title": "Insert into a Sorted Circular Linked List",
       "difficulty": "Medium",
-      "rating": 1670,
       "topics": [
-        "Array",
-        "Hash Table",
-        "Math"
+        "Linked List"
       ],
       "companies": [
-        "Google"
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/insert-into-a-sorted-circular-linked-list.json"
+    },
+    {
+      "id": 1057,
+      "slug": "campus-bikes",
+      "title": "Campus Bikes",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Greedy",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "ByteDance"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/campus-bikes.json"
     },
     {
       "id": 1066,
       "slug": "campus-bikes-ii",
       "title": "Campus Bikes II",
       "difficulty": "Medium",
-      "rating": 1880,
       "topics": [
         "Array",
         "Dynamic Programming",
@@ -921,23 +1333,164 @@
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/campus-bikes-ii.json"
     },
     {
-      "id": 644,
-      "slug": "maximum-average-subarray-ii",
-      "title": "Maximum Average Subarray II",
-      "difficulty": "Hard",
-      "rating": 2150,
+      "id": 1086,
+      "slug": "high-five",
+      "title": "High Five",
+      "difficulty": "Easy",
       "topics": [
         "Array",
+        "Hash Table",
+        "Sorting",
+        "Heap"
+      ],
+      "companies": [
+        "Amazon"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/high-five.json"
+    },
+    {
+      "id": 1099,
+      "slug": "two-sum-less-than-k",
+      "title": "Two Sum Less Than K",
+      "difficulty": "Easy",
+      "topics": [
+        "Array",
+        "Two Pointers",
         "Binary Search",
-        "Prefix Sum"
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/two-sum-less-than-k.json"
+    },
+    {
+      "id": 1167,
+      "slug": "minimum-cost-to-connect-sticks",
+      "title": "Minimum Cost to Connect Sticks",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Greedy",
+        "Heap (Priority Queue)"
+      ],
+      "companies": [
+        "Amazon",
+        "Google",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/minimum-cost-to-connect-sticks.json"
+    },
+    {
+      "id": 1168,
+      "slug": "optimize-water-distribution-in-a-village",
+      "title": "Optimize Water Distribution in a Village",
+      "difficulty": "Hard",
+      "topics": [
+        "Union Find",
+        "Graph",
+        "Minimum Spanning Tree"
       ],
       "companies": [
         "Google"
       ],
-      "hasData": true
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/optimize-water-distribution-in-a-village.json"
+    },
+    {
+      "id": 1197,
+      "slug": "minimum-knight-moves",
+      "title": "Minimum Knight Moves",
+      "difficulty": "Medium",
+      "topics": [
+        "Breadth-First Search"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/minimum-knight-moves.json"
+    },
+    {
+      "id": 1244,
+      "slug": "design-a-leaderboard",
+      "title": "Design A Leaderboard",
+      "difficulty": "Medium",
+      "topics": [
+        "Hash Table",
+        "Design",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/design-a-leaderboard.json"
+    },
+    {
+      "id": 1428,
+      "slug": "leftmost-column-with-at-least-a-one",
+      "title": "Leftmost Column with at Least a One",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Binary Search",
+        "Matrix",
+        "Interactive"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/leftmost-column-with-at-least-a-one.json"
+    },
+    {
+      "id": 1570,
+      "slug": "dot-product-of-two-sparse-vectors",
+      "title": "Dot Product of Two Sparse Vectors",
+      "difficulty": "Medium",
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Two Pointers",
+        "Design"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/dot-product-of-two-sparse-vectors.json"
+    },
+    {
+      "id": 1650,
+      "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+      "title": "Lowest Common Ancestor of a Binary Tree III",
+      "difficulty": "Medium",
+      "topics": [
+        "Tree",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "cdnUrl": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems/lowest-common-ancestor-of-a-binary-tree-iii.json"
     }
   ]
 }

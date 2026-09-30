@@ -1,0 +1,62 @@
+{
+  "id": 1197,
+  "slug": "minimum-knight-moves",
+  "title": "Minimum Knight Moves",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Breadth-First Search"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Minimum%20Knight%20Moves"
+  },
+  "description": "In an **infinite** chess board with coordinates from `-infinity` to `+infinity`, you have a **knight** at square `[0, 0]`.\n\nA knight has 8 possible moves it can make, as illustrated below. Each move is two squares in a cardinal direction, then one square in an orthogonal direction.\n\nReturn *the minimum number of steps needed to move the knight to the square* `[x, y]`. It is guaranteed the answer exists.",
+  "examples": [
+    {
+      "input": "x = 2, y = 1",
+      "output": "1\nExplanation: [0, 0] &rarr; [2, 1]"
+    },
+    {
+      "input": "x = 5, y = 5",
+      "output": "4\nExplanation: [0, 0] &rarr; [2, 1] &rarr; [4, 2] &rarr; [3, 4] &rarr; [5, 5]"
+    }
+  ],
+  "constraints": [
+    "-300 <= x, y <= 300",
+    "0 <= |x| + |y| <= 300"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minKnightMoves(self, x: int, y: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minKnightMoves(int x, int y) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minKnightMoves(int x, int y) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minKnightMoves(self, x: int, y: int) -> int:\n        q = deque([(0, 0)])\n        ans = 0\n        vis = {(0, 0)}\n        dirs = ((-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1))\n        while q:\n            for _ in range(len(q)):\n                i, j = q.popleft()\n                if (i, j) == (x, y):\n                    return ans\n                for a, b in dirs:\n                    c, d = i + a, j + b\n                    if (c, d) not in vis:\n                        vis.add((c, d))\n                        q.append((c, d))\n            ans += 1\n        return -1",
+    "cpp": "class Solution {\npublic:\n    int minKnightMoves(int x, int y) {\n        x += 310;\n        y += 310;\n        int ans = 0;\n        queue<pair<int, int>> q;\n        q.push({310, 310});\n        vector<vector<bool>> vis(700, vector<bool>(700));\n        vis[310][310] = true;\n        vector<vector<int>> dirs = {{-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}};\n        while (!q.empty()) {\n            for (int k = q.size(); k > 0; --k) {\n                auto p = q.front();\n                q.pop();\n                if (p.first == x && p.second == y) return ans;\n                for (auto& dir : dirs) {\n                    int c = p.first + dir[0], d = p.second + dir[1];\n                    if (!vis[c][d]) {\n                        vis[c][d] = true;\n                        q.push({c, d});\n                    }\n                }\n            }\n            ++ans;\n        }\n        return -1;\n    }\n};",
+    "java": "class Solution {\n    public int minKnightMoves(int x, int y) {\n        x += 310;\n        y += 310;\n        int ans = 0;\n        Queue<int[]> q = new ArrayDeque<>();\n        q.offer(new int[] {310, 310});\n        boolean[][] vis = new boolean[700][700];\n        vis[310][310] = true;\n        int[][] dirs = {{-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}};\n        while (!q.isEmpty()) {\n            for (int k = q.size(); k > 0; --k) {\n                int[] p = q.poll();\n                if (p[0] == x && p[1] == y) {\n                    return ans;\n                }\n                for (int[] dir : dirs) {\n                    int c = p[0] + dir[0];\n                    int d = p[1] + dir[1];\n                    if (!vis[c][d]) {\n                        vis[c][d] = true;\n                        q.offer(new int[] {c, d});\n                    }\n                }\n            }\n            ++ans;\n        }\n        return -1;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "2, y = 1",
+      "expected": "1\nExplanation: [0, 0] &rarr; [2, 1]"
+    },
+    {
+      "input": "5, y = 5",
+      "expected": "4\nExplanation: [0, 0] &rarr; [2, 1] &rarr; [4, 2] &rarr; [3, 4] &rarr; [5, 5]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Minimum Knight Moves.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

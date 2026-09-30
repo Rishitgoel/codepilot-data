@@ -1,0 +1,66 @@
+{
+  "id": 280,
+  "slug": "wiggle-sort",
+  "title": "Wiggle Sort",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Wiggle%20Sort"
+  },
+  "description": "Given an integer array `nums`, reorder it such that `nums[0] = nums[2] <= nums[3]...`.\n\nYou may assume the input array always has a valid answer.",
+  "examples": [
+    {
+      "input": "nums = [3,5,2,1,6,4]",
+      "output": "[3,5,1,6,2,4]",
+      "explanation": "[1,6,2,5,3,4] is also accepted."
+    },
+    {
+      "input": "nums = [6,6,5,6,3,8]",
+      "output": "[6,6,5,6,3,8]"
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 5 * 10^4",
+    "0 <= nums[i] <= 10^4",
+    "It is guaranteed that there will be an answer for the given input nums."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    void wiggleSort(vector<int>& nums) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        \n    }\n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        for i in range(1, len(nums)):\n            if (i % 2 == 1 and nums[i] < nums[i - 1]) or (\n                i % 2 == 0 and nums[i] > nums[i - 1]\n            ):\n                nums[i], nums[i - 1] = nums[i - 1], nums[i]",
+    "cpp": "class Solution {\npublic:\n    void wiggleSort(vector<int>& nums) {\n        for (int i = 1; i < nums.size(); ++i) {\n            if ((i % 2 == 1 && nums[i] < nums[i - 1]) || (i % 2 == 0 && nums[i] > nums[i - 1])) {\n                swap(nums[i], nums[i - 1]);\n            }\n        }\n    }\n};",
+    "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        for (int i = 1; i < nums.length; ++i) {\n            if ((i % 2 == 1 && nums[i] < nums[i - 1]) || (i % 2 == 0 && nums[i] > nums[i - 1])) {\n                swap(nums, i, i - 1);\n            }\n        }\n    }\n\n    private void swap(int[] nums, int i, int j) {\n        int t = nums[i];\n        nums[i] = nums[j];\n        nums[j] = t;\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,5,2,1,6,4]",
+      "expected": "[3,5,1,6,2,4]"
+    },
+    {
+      "input": "[6,6,5,6,3,8]",
+      "expected": "[6,6,5,6,3,8]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Wiggle Sort.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

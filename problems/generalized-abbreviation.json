@@ -1,0 +1,66 @@
+{
+  "id": 320,
+  "slug": "generalized-abbreviation",
+  "title": "Generalized Abbreviation",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "String",
+    "Backtracking",
+    "Bit Manipulation"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Generalized%20Abbreviation"
+  },
+  "description": "A word's **generalized abbreviation** can be constructed by taking any number of **non-overlapping** and **non-adjacent** substrings and replacing them with their respective lengths.\n\n\tFor example, `\"abcde\"` can be abbreviated into:\n\n    \n    \t`\"a3e\"` (`\"bcd\"` turned into `\"3\"`)\n    \t`\"1bcd1\"` (`\"a\"` and `\"e\"` both turned into `\"1\"`)\n    \t`\"5\"` (`\"abcde\"` turned into `\"5\"`)\n    \t`\"abcde\"` (no substrings replaced)\n    \n    \n    However, these abbreviations are **invalid**:\n    \n    \t`\"23\"` (`\"ab\"` turned into `\"2\"` and `\"cde\"` turned into `\"3\"`) is invalid as the substrings chosen are adjacent.\n    \t`\"22de\"` (`\"ab\"` turned into `\"2\"` and `\"bc\"` turned into `\"2\"`) is invalid as the substring chosen overlap.\n    \n    \n\nGiven a string `word`, return *a list of all the possible **generalized abbreviations** of* `word`. Return the answer in **any order**.",
+  "examples": [
+    {
+      "input": "word = \"word\"",
+      "output": "[\"4\",\"3d\",\"2r1\",\"2rd\",\"1o2\",\"1o1d\",\"1or1\",\"1ord\",\"w3\",\"w2d\",\"w1r1\",\"w1rd\",\"wo2\",\"wo1d\",\"wor1\",\"word\"]"
+    },
+    {
+      "input": "word = \"a\"",
+      "output": "[\"1\",\"a\"]"
+    }
+  ],
+  "constraints": [
+    "1 <= word.length <= 15",
+    "word consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def generateAbbreviations(self, word: str) -> List[str]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<string> generateAbbreviations(string word) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private String word;\n    private int n;\n\n    public List<String> generateAbbreviations(String word) {\n        \n    }\n};\n",
+    "javascript": "function generateAbbreviations(word: string): string[] {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def generateAbbreviations(self, word: str) -> List[str]:\n        def dfs(i: int) -> List[str]:\n            if i >= n:\n                return [\"\"]\n            ans = [word[i] + s for s in dfs(i + 1)]\n            for j in range(i + 1, n + 1):\n                for s in dfs(j + 1):\n                    ans.append(str(j - i) + (word[j] if j < n else \"\") + s)\n            return ans\n\n        n = len(word)\n        return dfs(0)",
+    "cpp": "class Solution {\npublic:\n    vector<string> generateAbbreviations(string word) {\n        int n = word.size();\n        function<vector<string>(int)> dfs = [&](int i) -> vector<string> {\n            if (i >= n) {\n                return {\"\"};\n            }\n            vector<string> ans;\n            for (auto& s : dfs(i + 1)) {\n                string p(1, word[i]);\n                ans.emplace_back(p + s);\n            }\n            for (int j = i + 1; j <= n; ++j) {\n                for (auto& s : dfs(j + 1)) {\n                    string p = j < n ? string(1, word[j]) : \"\";\n                    ans.emplace_back(to_string(j - i) + p + s);\n                }\n            }\n            return ans;\n        };\n        return dfs(0);\n    }\n};",
+    "java": "class Solution {\n    private String word;\n    private int n;\n\n    public List<String> generateAbbreviations(String word) {\n        this.word = word;\n        n = word.length();\n        return dfs(0);\n    }\n\n    private List<String> dfs(int i) {\n        if (i >= n) {\n            return List.of(\"\");\n        }\n        List<String> ans = new ArrayList<>();\n        for (String s : dfs(i + 1)) {\n            ans.add(String.valueOf(word.charAt(i)) + s);\n        }\n        for (int j = i + 1; j <= n; ++j) {\n            for (String s : dfs(j + 1)) {\n                ans.add((j - i) + \"\" + (j < n ? String.valueOf(word.charAt(j)) : \"\") + s);\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function generateAbbreviations(word: string): string[] {\n    const n = word.length;\n    const dfs = (i: number): string[] => {\n        if (i >= n) {\n            return [''];\n        }\n        const ans: string[] = [];\n        for (const s of dfs(i + 1)) {\n            ans.push(word[i] + s);\n        }\n        for (let j = i + 1; j <= n; ++j) {\n            for (const s of dfs(j + 1)) {\n                ans.push((j - i).toString() + (j < n ? word[j] : '') + s);\n            }\n        }\n        return ans;\n    };\n    return dfs(0);\n}"
+  },
+  "testcases": [
+    {
+      "input": "\"word\"",
+      "expected": "[\"4\",\"3d\",\"2r1\",\"2rd\",\"1o2\",\"1o1d\",\"1or1\",\"1ord\",\"w3\",\"w2d\",\"w1r1\",\"w1rd\",\"wo2\",\"wo1d\",\"wor1\",\"word\"]"
+    },
+    {
+      "input": "\"a\"",
+      "expected": "[\"1\",\"a\"]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Generalized Abbreviation.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

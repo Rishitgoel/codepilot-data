@@ -1,0 +1,64 @@
+{
+  "id": 288,
+  "slug": "unique-word-abbreviation",
+  "title": "Unique Word Abbreviation",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "String",
+    "Design"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Unique%20Word%20Abbreviation"
+  },
+  "description": "The **abbreviation** of a word is a concatenation of its first letter, the number of characters between the first and last letter, and its last letter. If a word has only two characters, then it is an **abbreviation** of itself.\n\nFor example:\n\n\t`dog --> d1g` because there is one letter between the first letter `'d'` and the last letter `'g'`.\n\t`internationalization --> i18n` because there are 18 letters between the first letter `'i'` and the last letter `'n'`.\n\t`it --> it` because any word with only two characters is an **abbreviation** of itself.\n\nImplement the `ValidWordAbbr` class:\n\n\t`ValidWordAbbr(String[] dictionary)` Initializes the object with a `dictionary` of words.\n\t`boolean isUnique(string word)` Returns `true` if **either** of the following conditions are met (otherwise returns `false`):\n\t\n\t\tThere is no word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**.\n\t\tFor any word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**, that word and `word` are **the same**.",
+  "examples": [
+    {
+      "input": "[\"ValidWordAbbr\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\"]\n[[[\"deer\", \"door\", \"cake\", \"card\"]], [\"dear\"], [\"cart\"], [\"cane\"], [\"make\"], [\"cake\"]]",
+      "output": "[null, false, true, false, true, true]",
+      "explanation": "ValidWordAbbr validWordAbbr = new ValidWordAbbr([\"deer\", \"door\", \"cake\", \"card\"]);\nvalidWordAbbr.isUnique(\"dear\"); // return false, dictionary word \"deer\" and word \"dear\" have the same abbreviation \"d2r\" but are not the same.\nvalidWordAbbr.isUnique(\"cart\"); // return true, no words in the dictionary have the abbreviation \"c2t\".\nvalidWordAbbr.isUnique(\"cane\"); // return false, dictionary word \"cake\" and word \"cane\" have the same abbreviation  \"c2e\" but are not the same.\nvalidWordAbbr.isUnique(\"make\"); // return true, no words in the dictionary have the abbreviation \"m2e\".\nvalidWordAbbr.isUnique(\"cake\"); // return true, because \"cake\" is already in the dictionary and no other word in the dictionary has \"c2e\" abbreviation."
+    }
+  ],
+  "constraints": [
+    "1 <= dictionary.length <= 3 * 10^4",
+    "1 <= dictionary[i].length <= 20",
+    "dictionary[i] consists of lowercase English letters.",
+    "1 <= word.length <= 20",
+    "word consists of lowercase English letters.",
+    "At most 5000 calls will be made to isUnique."
+  ],
+  "starterTemplates": {
+    "python": "class ValidWordAbbr:\n    def __init__(self, dictionary: List[str]):\n        pass\n",
+    "cpp": "class ValidWordAbbr {\npublic:\n    ValidWordAbbr(vector<string>& dictionary) {\n        \n    }\n};\n",
+    "java": "class ValidWordAbbr {\n    private Map<String, Set<String>> d = new HashMap<>();\n\n    public ValidWordAbbr(String[] dictionary) {\n        \n    }\n};\n",
+    "javascript": "class ValidWordAbbr {\n    private d: Map<string, Set<string>> = new Map();\n\n    constructor(dictionary: string[]) {\n        for (const s of dictionary) {\n            const abbr = this.abbr(s);\n            if (!this.d.has(abbr)) {\n                this.d.set(abbr, new Set());\n            }\n            this.d.get(abbr)!.add(s);\n        }\n    }\n\n    isUnique(word: string): boolean {\n        const ws = this.d.get(this.abbr(word));\n        return ws === undefined || (ws.size === 1 && ws.has(word));\n    }\n\n    abbr(s: string): string {\n        const n = s.length;\n        return n < 3 ? s : s[0] + (n - 2) + s[n - 1];\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * var obj = new ValidWordAbbr(dictionary)\n * var param_1 = obj.isUnique(word)\n */"
+  },
+  "snippets": {
+    "python": "class ValidWordAbbr:\n    def __init__(self, dictionary: List[str]):\n        self.d = defaultdict(set)\n        for s in dictionary:\n            self.d[self.abbr(s)].add(s)\n\n    def isUnique(self, word: str) -> bool:\n        s = self.abbr(word)\n        return s not in self.d or all(word == t for t in self.d[s])\n\n    def abbr(self, s: str) -> str:\n        return s if len(s) < 3 else s[0] + str(len(s) - 2) + s[-1]\n\n\n# Your ValidWordAbbr object will be instantiated and called as such:\n# obj = ValidWordAbbr(dictionary)\n# param_1 = obj.isUnique(word)",
+    "cpp": "class ValidWordAbbr {\npublic:\n    ValidWordAbbr(vector<string>& dictionary) {\n        for (auto& s : dictionary) {\n            d[abbr(s)].insert(s);\n        }\n    }\n\n    bool isUnique(string word) {\n        string s = abbr(word);\n        return !d.count(s) || (d[s].size() == 1 && d[s].count(word));\n    }\n\nprivate:\n    unordered_map<string, unordered_set<string>> d;\n\n    string abbr(string& s) {\n        int n = s.size();\n        return n < 3 ? s : s.substr(0, 1) + to_string(n - 2) + s.substr(n - 1, 1);\n    }\n};\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * ValidWordAbbr* obj = new ValidWordAbbr(dictionary);\n * bool param_1 = obj->isUnique(word);\n */",
+    "java": "class ValidWordAbbr {\n    private Map<String, Set<String>> d = new HashMap<>();\n\n    public ValidWordAbbr(String[] dictionary) {\n        for (var s : dictionary) {\n            d.computeIfAbsent(abbr(s), k -> new HashSet<>()).add(s);\n        }\n    }\n\n    public boolean isUnique(String word) {\n        var ws = d.get(abbr(word));\n        return ws == null || (ws.size() == 1 && ws.contains(word));\n    }\n\n    private String abbr(String s) {\n        int n = s.length();\n        return n < 3 ? s : s.substring(0, 1) + (n - 2) + s.substring(n - 1);\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * ValidWordAbbr obj = new ValidWordAbbr(dictionary);\n * boolean param_1 = obj.isUnique(word);\n */",
+    "javascript": "class ValidWordAbbr {\n    private d: Map<string, Set<string>> = new Map();\n\n    constructor(dictionary: string[]) {\n        for (const s of dictionary) {\n            const abbr = this.abbr(s);\n            if (!this.d.has(abbr)) {\n                this.d.set(abbr, new Set());\n            }\n            this.d.get(abbr)!.add(s);\n        }\n    }\n\n    isUnique(word: string): boolean {\n        const ws = this.d.get(this.abbr(word));\n        return ws === undefined || (ws.size === 1 && ws.has(word));\n    }\n\n    abbr(s: string): string {\n        const n = s.length;\n        return n < 3 ? s : s[0] + (n - 2) + s[n - 1];\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * var obj = new ValidWordAbbr(dictionary)\n * var param_1 = obj.isUnique(word)\n */"
+  },
+  "testcases": [
+    {
+      "input": "[\"ValidWordAbbr\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\", \"isUnique\"]\n[[[\"deer\", \"door\", \"cake\", \"card\"]], [\"dear\"], [\"cart\"], [\"cane\"], [\"make\"], [\"cake\"]]",
+      "expected": "[null, false, true, false, true, true]"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Unique Word Abbreviation.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

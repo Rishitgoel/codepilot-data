@@ -1,0 +1,78 @@
+{
+  "id": 1650,
+  "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+  "title": "Lowest Common Ancestor of a Binary Tree III",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Tree",
+    "Binary Tree"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree%20III"
+  },
+  "description": "Given two nodes of a binary tree `p` and `q`, return *their lowest common ancestor (LCA)*.\n\nEach node will have a reference to its parent node. The definition for `Node` is below:\n\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n}\n\nAccording to the **definition of LCA on Wikipedia**: \"The lowest common ancestor of two nodes p and q in a tree T is the lowest node that has both p and q as descendants (where we allow a node to be a descendant of itself).\"",
+  "examples": [
+    {
+      "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+      "output": "3",
+      "explanation": "The LCA of nodes 5 and 1 is 3."
+    },
+    {
+      "input": "root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+      "output": "5",
+      "explanation": "The LCA of nodes 5 and 4 is 5 since a node can be a descendant of itself according to the LCA definition."
+    },
+    {
+      "input": "root = [1,2], p = 1, q = 2",
+      "output": "1"
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [2, 10^5].",
+    "-10^9 <= Node.val <= 10^9",
+    "All Node.val are unique.",
+    "p != q",
+    "p and q exist in the tree."
+  ],
+  "starterTemplates": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        pass\n",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* lowestCommonAncestor(Node* p, Node* q) {\n        \n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node lowestCommonAncestor(Node p, Node q) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     parent: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, parent?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.parent = (parent===undefined ? null : parent)\n *     }\n * }\n */\n\nfunction lowestCommonAncestor(p: Node | null, q: Node | null): Node | null {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\"\"\"\n\n\nclass Solution:\n    def lowestCommonAncestor(self, p: \"Node\", q: \"Node\") -> \"Node\":\n        vis = set()\n        node = p\n        while node:\n            vis.add(node)\n            node = node.parent\n        node = q\n        while node not in vis:\n            node = node.parent\n        return node",
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* lowestCommonAncestor(Node* p, Node* q) {\n        unordered_set<Node*> vis;\n        for (Node* node = p; node; node = node->parent) {\n            vis.insert(node);\n        }\n        for (Node* node = q;; node = node->parent) {\n            if (vis.count(node)) {\n                return node;\n            }\n        }\n    }\n};",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node lowestCommonAncestor(Node p, Node q) {\n        Set<Node> vis = new HashSet<>();\n        for (Node node = p; node != null; node = node.parent) {\n            vis.add(node);\n        }\n        for (Node node = q;; node = node.parent) {\n            if (!vis.add(node)) {\n                return node;\n            }\n        }\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class Node {\n *     val: number\n *     left: Node | null\n *     right: Node | null\n *     parent: Node | null\n *     constructor(val?: number, left?: Node | null, right?: Node | null, parent?: Node | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *         this.parent = (parent===undefined ? null : parent)\n *     }\n * }\n */\n\nfunction lowestCommonAncestor(p: Node | null, q: Node | null): Node | null {\n    const vis: Set<Node> = new Set();\n    for (let node = p; node; node = node.parent) {\n        vis.add(node);\n    }\n    for (let node = q; ; node = node.parent) {\n        if (vis.has(node)) {\n            return node;\n        }\n    }\n}"
+  },
+  "testcases": [
+    {
+      "input": "[3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1",
+      "expected": "3"
+    },
+    {
+      "input": "[3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4",
+      "expected": "5"
+    },
+    {
+      "input": "[1,2], p = 1, q = 2",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Lowest Common Ancestor of a Binary Tree III.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

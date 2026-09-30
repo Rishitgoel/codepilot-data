@@ -1,0 +1,69 @@
+{
+  "id": 325,
+  "slug": "maximum-size-subarray-sum-equals-k",
+  "title": "Maximum Size Subarray Sum Equals k",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Prefix Sum"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Maximum%20Size%20Subarray%20Sum%20Equals%20k"
+  },
+  "description": "Given an integer array `nums` and an integer `k`, return *the maximum length of a **subarray** that sums to* `k`. If there is not one, return `0` instead.",
+  "examples": [
+    {
+      "input": "nums = [1,-1,5,-2,3], k = 3",
+      "output": "4",
+      "explanation": "The subarray [1, -1, 5, -2] sums to 3 and is the longest."
+    },
+    {
+      "input": "nums = [-2,-1,2,1], k = 1",
+      "output": "2",
+      "explanation": "The subarray [-1, 2] sums to 1 and is the longest."
+    }
+  ],
+  "constraints": [
+    "1 <= nums.length <= 2 * 10^5",
+    "-10^4 <= nums[i] <= 10^4",
+    "-10^9 <= k <= 10^9"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int maxSubArrayLen(vector<int>& nums, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        \n    }\n};\n",
+    "javascript": "function maxSubArrayLen(nums: number[], k: number): number {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        d = {0: -1}\n        ans = s = 0\n        for i, x in enumerate(nums):\n            s += x\n            if s - k in d:\n                ans = max(ans, i - d[s - k])\n            if s not in d:\n                d[s] = i\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int maxSubArrayLen(vector<int>& nums, int k) {\n        unordered_map<long long, int> d{{0, -1}};\n        int ans = 0;\n        long long s = 0;\n        for (int i = 0; i < nums.size(); ++i) {\n            s += nums[i];\n            if (d.count(s - k)) {\n                ans = max(ans, i - d[s - k]);\n            }\n            if (!d.count(s)) {\n                d[s] = i;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        Map<Long, Integer> d = new HashMap<>();\n        d.put(0L, -1);\n        int ans = 0;\n        long s = 0;\n        for (int i = 0; i < nums.length; ++i) {\n            s += nums[i];\n            ans = Math.max(ans, i - d.getOrDefault(s - k, i));\n            d.putIfAbsent(s, i);\n        }\n        return ans;\n    }\n}",
+    "javascript": "function maxSubArrayLen(nums: number[], k: number): number {\n    const d: Map<number, number> = new Map();\n    d.set(0, -1);\n    let ans = 0;\n    let s = 0;\n    for (let i = 0; i < nums.length; ++i) {\n        s += nums[i];\n        if (d.has(s - k)) {\n            ans = Math.max(ans, i - d.get(s - k)!);\n        }\n        if (!d.has(s)) {\n            d.set(s, i);\n        }\n    }\n    return ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[1,-1,5,-2,3], k = 3",
+      "expected": "4"
+    },
+    {
+      "input": "[-2,-1,2,1], k = 1",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Maximum Size Subarray Sum Equals k.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

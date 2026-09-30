@@ -1,0 +1,78 @@
+{
+  "id": 1428,
+  "slug": "leftmost-column-with-at-least-a-one",
+  "title": "Leftmost Column with at Least a One",
+  "difficulty": "Medium",
+  "rating": null,
+  "topics": [
+    "Array",
+    "Binary Search",
+    "Matrix",
+    "Interactive"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode Search",
+    "url": "https://www.lintcode.com/problem/?search=Leftmost%20Column%20with%20at%20Least%20a%20One"
+  },
+  "description": "A **row-sorted binary matrix** means that all elements are `0` or `1` and each row of the matrix is sorted in non-decreasing order.\n\nGiven a **row-sorted binary matrix** `binaryMatrix`, return *the index (0-indexed) of the **leftmost column** with a 1 in it*. If such an index does not exist, return `-1`.\n\n**You can't access the Binary Matrix directly.** You may only access the matrix using a `BinaryMatrix` interface:\n\n\t`BinaryMatrix.get(row, col)` returns the element of the matrix at index `(row, col)` (0-indexed).\n\t`BinaryMatrix.dimensions()` returns the dimensions of the matrix as a list of 2 elements `[rows, cols]`, which means the matrix is `rows x cols`.\n\nSubmissions making more than `1000` calls to `BinaryMatrix.get` will be judged *Wrong Answer*. Also, any solutions that attempt to circumvent the judge will result in disqualification.\n\nFor custom testing purposes, the input will be the entire binary matrix `mat`. You will not have access to the binary matrix directly.",
+  "examples": [
+    {
+      "input": "mat = [[0,0],[1,1]]",
+      "output": "0"
+    },
+    {
+      "input": "mat = [[0,0],[0,1]]",
+      "output": "1"
+    },
+    {
+      "input": "mat = [[0,0],[0,0]]",
+      "output": "-1"
+    }
+  ],
+  "constraints": [
+    "rows == mat.length",
+    "cols == mat[i].length",
+    "1 <= rows, cols <= 100",
+    "mat[i][j] is either 0 or 1.",
+    "mat[i] is sorted in non-decreasing order."
+  ],
+  "starterTemplates": {
+    "python": "# \"\"\"\n# This is BinaryMatrix's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class BinaryMatrix(object):\n#    def get(self, row: int, col: int) -> int:\n        pass\n",
+    "cpp": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *   public:\n *     int get(int row, int col);\n *     vector<int> dimensions();\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface BinaryMatrix {\n *     public int get(int row, int col) {}\n        \n    }\n};\n",
+    "javascript": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *      get(row: number, col: number): number {}\n *\n *      dimensions(): number[] {}\n * }\n */\n\nfunction leftMostColumnWithOne(binaryMatrix: BinaryMatrix) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "# \"\"\"\n# This is BinaryMatrix's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class BinaryMatrix(object):\n#    def get(self, row: int, col: int) -> int:\n#    def dimensions(self) -> list[]:\n\n\nclass Solution:\n    def leftMostColumnWithOne(self, binaryMatrix: \"BinaryMatrix\") -> int:\n        m, n = binaryMatrix.dimensions()\n        ans = n\n        for i in range(m):\n            j = bisect_left(range(n), 1, key=lambda k: binaryMatrix.get(i, k))\n            ans = min(ans, j)\n        return -1 if ans >= n else ans",
+    "cpp": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *   public:\n *     int get(int row, int col);\n *     vector<int> dimensions();\n * };\n */\n\nclass Solution {\npublic:\n    int leftMostColumnWithOne(BinaryMatrix& binaryMatrix) {\n        auto e = binaryMatrix.dimensions();\n        int m = e[0], n = e[1];\n        int ans = n;\n        for (int i = 0; i < m; ++i) {\n            int l = 0, r = n;\n            while (l < r) {\n                int mid = (l + r) >> 1;\n                if (binaryMatrix.get(i, mid)) {\n                    r = mid;\n                } else {\n                    l = mid + 1;\n                }\n            }\n            ans = min(ans, l);\n        }\n        return ans >= n ? -1 : ans;\n    }\n};",
+    "java": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface BinaryMatrix {\n *     public int get(int row, int col) {}\n *     public List<Integer> dimensions {}\n * };\n */\n\nclass Solution {\n    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {\n        List<Integer> e = binaryMatrix.dimensions();\n        int m = e.get(0), n = e.get(1);\n        int ans = n;\n        for (int i = 0; i < m; ++i) {\n            int l = 0, r = n;\n            while (l < r) {\n                int mid = (l + r) >> 1;\n                if (binaryMatrix.get(i, mid) == 1) {\n                    r = mid;\n                } else {\n                    l = mid + 1;\n                }\n            }\n            ans = Math.min(ans, l);\n        }\n        return ans >= n ? -1 : ans;\n    }\n}",
+    "javascript": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *      get(row: number, col: number): number {}\n *\n *      dimensions(): number[] {}\n * }\n */\n\nfunction leftMostColumnWithOne(binaryMatrix: BinaryMatrix) {\n    const [m, n] = binaryMatrix.dimensions();\n    let ans = n;\n    for (let i = 0; i < m; ++i) {\n        let [l, r] = [0, n];\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (binaryMatrix.get(i, mid) === 1) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        ans = Math.min(ans, l);\n    }\n    return ans >= n ? -1 : ans;\n}"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0],[1,1]]",
+      "expected": "0"
+    },
+    {
+      "input": "[[0,0],[0,1]]",
+      "expected": "1"
+    },
+    {
+      "input": "[[0,0],[0,0]]",
+      "expected": "-1"
+    }
+  ],
+  "hints": [
+    "Analyze the key properties of Leftmost Column with at Least a One.",
+    "Formulate an optimal space-time trade-off approach.",
+    "Consider edge cases and bounds."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}
