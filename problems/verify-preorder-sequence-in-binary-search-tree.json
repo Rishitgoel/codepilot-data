@@ -18,26 +18,32 @@
     "id": 1307,
     "url": "https://www.lintcode.com/problem/1307/"
   },
-  "description": "Given an array of unique integers `preorder`, return `true` if it is the correct preorder traversal sequence of a binary search tree.",
+  "description": "Given an array of **unique** integers `preorder`, return `true` *if it is the correct preorder traversal sequence of a binary search tree*.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "preorder = [5,2,1,3,6]",
+      "output": "true"
+    },
+    {
+      "input": "preorder = [5,2,6,1,3]",
+      "output": "false"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "1 <= preorder.length <= 10^4",
+    "1 <= preorder[i] <= 10^4",
+    "All the elements of preorder are unique."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Verify Preorder Sequence in Binary Search Tree\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
-    "java": "class Solution {\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "python": "class Solution:\n    def verifyPreorder(self, preorder: List[int]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool verifyPreorder(vector<int>& preorder) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean verifyPreorder(int[] preorder) {\n        \n    }\n};\n",
     "javascript": "var solution = function() {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Verify Preorder Sequence in Binary Search Tree\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
-    "java": "class Solution {\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "python": "class Solution:\n    def verifyPreorder(self, preorder: List[int]) -> bool:\n        stk = []\n        last = -inf\n        for x in preorder:\n            if x < last:\n                return False\n            while stk and stk[-1] < x:\n                last = stk.pop()\n            stk.append(x)\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool verifyPreorder(vector<int>& preorder) {\n        stack<int> stk;\n        int last = INT_MIN;\n        for (int x : preorder) {\n            if (x < last) return false;\n            while (!stk.empty() && stk.top() < x) {\n                last = stk.top();\n                stk.pop();\n            }\n            stk.push(x);\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean verifyPreorder(int[] preorder) {\n        Deque<Integer> stk = new ArrayDeque<>();\n        int last = Integer.MIN_VALUE;\n        for (int x : preorder) {\n            if (x < last) {\n                return false;\n            }\n            while (!stk.isEmpty() && stk.peek() < x) {\n                last = stk.poll();\n            }\n            stk.push(x);\n        }\n        return true;\n    }\n}",
     "javascript": "var solution = function() {\n    \n};"
   },
   "testcases": [

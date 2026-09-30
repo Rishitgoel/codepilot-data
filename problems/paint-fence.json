@@ -16,32 +16,50 @@
     "id": 514,
     "url": "https://www.lintcode.com/problem/514/"
   },
-  "description": "You are painting a fence of `n` posts with `k` different colors. No more than two adjacent fence posts have the same color. Return total number of valid ways.",
+  "description": "You are painting a fence of `n` posts with `k` different colors. You must paint the posts following these rules:\n\n\n\n\n\tEvery post must be painted **exactly one** color.\n\tThere **cannot** be three or more **consecutive** posts with the same color.\n\n\nGiven the two integers `n` and `k`, return *the **number of ways** you can paint the fence*.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "n = 3, k = 2",
+      "output": "6\nExplanation: All the possibilities are shown.\nNote that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with the same color."
+    },
+    {
+      "input": "n = 1, k = 1",
+      "output": "1"
+    },
+    {
+      "input": "n = 7, k = 2",
+      "output": "42"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "1 <= n <= 50",
+    "1 <= k <= 10^5",
+    "The testcases are generated such that the answer is in the range [0, 2^31 - 1] for the given n and k."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Paint Fence\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Paint Fence\n};",
-    "java": "class Solution {\n    // Solution for Paint Fence\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def numWays(self, n: int, k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int numWays(int n, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int numWays(int n, int k) {\n        \n    }\n};\n",
+    "javascript": "function numWays(n: number, k: number): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Paint Fence\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Paint Fence\n};",
-    "java": "class Solution {\n    // Solution for Paint Fence\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def numWays(self, n: int, k: int) -> int:\n        f = [0] * n\n        g = [0] * n\n        f[0] = k\n        for i in range(1, n):\n            f[i] = (f[i - 1] + g[i - 1]) * (k - 1)\n            g[i] = f[i - 1]\n        return f[-1] + g[-1]",
+    "cpp": "class Solution {\npublic:\n    int numWays(int n, int k) {\n        vector<int> f(n);\n        vector<int> g(n);\n        f[0] = k;\n        for (int i = 1; i < n; ++i) {\n            f[i] = (f[i - 1] + g[i - 1]) * (k - 1);\n            g[i] = f[i - 1];\n        }\n        return f[n - 1] + g[n - 1];\n    }\n};",
+    "java": "class Solution {\n    public int numWays(int n, int k) {\n        int[] f = new int[n];\n        int[] g = new int[n];\n        f[0] = k;\n        for (int i = 1; i < n; ++i) {\n            f[i] = (f[i - 1] + g[i - 1]) * (k - 1);\n            g[i] = f[i - 1];\n        }\n        return f[n - 1] + g[n - 1];\n    }\n}",
+    "javascript": "function numWays(n: number, k: number): number {\n    const f: number[] = Array(n).fill(0);\n    const g: number[] = Array(n).fill(0);\n    f[0] = k;\n    for (let i = 1; i < n; ++i) {\n        f[i] = (f[i - 1] + g[i - 1]) * (k - 1);\n        g[i] = f[i - 1];\n    }\n    return f[n - 1] + g[n - 1];\n}"
   },
   "testcases": [
     {
-      "input": "3\n2",
-      "expected": "6"
+      "input": "3, k = 2",
+      "expected": "6\nExplanation: All the possibilities are shown.\nNote that painting all the posts red or all the posts green is invalid because there cannot be three posts in a row with the same color."
+    },
+    {
+      "input": "1, k = 1",
+      "expected": "1"
+    },
+    {
+      "input": "7, k = 2",
+      "expected": "42"
     }
   ],
   "hints": [

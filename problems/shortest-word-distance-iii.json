@@ -16,32 +16,43 @@
     "id": 926,
     "url": "https://www.lintcode.com/problem/926/"
   },
-  "description": "Given an array of strings `wordsDict` and two strings that may be identical (`word1 == word2`), return the shortest distance between two occurrences.",
+  "description": "Given an array of strings `wordsDict` and two strings that already exist in the array `word1` and `word2`, return *the shortest distance between the occurrence of these two words in the list*.\n\n\n\n**Note** that `word1` and `word2` may be the same. It is guaranteed that they represent **two individual words** in the list.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"coding\"",
+      "output": "1"
+    },
+    {
+      "input": "wordsDict = [\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"makes\"",
+      "output": "3"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "1 <= wordsDict.length <= 10^5",
+    "1 <= wordsDict[i].length <= 10",
+    "wordsDict[i] consists of lowercase English letters.",
+    "word1 and word2 are in wordsDict."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Shortest Word Distance III\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance III\n};",
-    "java": "class Solution {\n    // Solution for Shortest Word Distance III\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int shortestWordDistance(vector<string>& wordsDict, string word1, string word2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int shortestWordDistance(String[] wordsDict, String word1, String word2) {\n        \n    }\n};\n",
+    "javascript": "function shortestWordDistance(wordsDict: string[], word1: string, word2: string): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Shortest Word Distance III\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance III\n};",
-    "java": "class Solution {\n    // Solution for Shortest Word Distance III\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        ans = len(wordsDict)\n        if word1 == word2:\n            j = -1\n            for i, w in enumerate(wordsDict):\n                if w == word1:\n                    if j != -1:\n                        ans = min(ans, i - j)\n                    j = i\n        else:\n            i = j = -1\n            for k, w in enumerate(wordsDict):\n                if w == word1:\n                    i = k\n                if w == word2:\n                    j = k\n                if i != -1 and j != -1:\n                    ans = min(ans, abs(i - j))\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int shortestWordDistance(vector<string>& wordsDict, string word1, string word2) {\n        int n = wordsDict.size();\n        int ans = n;\n        if (word1 == word2) {\n            for (int i = 0, j = -1; i < n; ++i) {\n                if (wordsDict[i] == word1) {\n                    if (j != -1) {\n                        ans = min(ans, i - j);\n                    }\n                    j = i;\n                }\n            }\n        } else {\n            for (int k = 0, i = -1, j = -1; k < n; ++k) {\n                if (wordsDict[k] == word1) {\n                    i = k;\n                }\n                if (wordsDict[k] == word2) {\n                    j = k;\n                }\n                if (i != -1 && j != -1) {\n                    ans = min(ans, abs(i - j));\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int shortestWordDistance(String[] wordsDict, String word1, String word2) {\n        int ans = wordsDict.length;\n        if (word1.equals(word2)) {\n            for (int i = 0, j = -1; i < wordsDict.length; ++i) {\n                if (wordsDict[i].equals(word1)) {\n                    if (j != -1) {\n                        ans = Math.min(ans, i - j);\n                    }\n                    j = i;\n                }\n            }\n        } else {\n            for (int k = 0, i = -1, j = -1; k < wordsDict.length; ++k) {\n                if (wordsDict[k].equals(word1)) {\n                    i = k;\n                }\n                if (wordsDict[k].equals(word2)) {\n                    j = k;\n                }\n                if (i != -1 && j != -1) {\n                    ans = Math.min(ans, Math.abs(i - j));\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function shortestWordDistance(wordsDict: string[], word1: string, word2: string): number {\n    let ans = wordsDict.length;\n    if (word1 === word2) {\n        let j = -1;\n        for (let i = 0; i < wordsDict.length; i++) {\n            if (wordsDict[i] === word1) {\n                if (j !== -1) {\n                    ans = Math.min(ans, i - j);\n                }\n                j = i;\n            }\n        }\n    } else {\n        let i = -1,\n            j = -1;\n        for (let k = 0; k < wordsDict.length; k++) {\n            if (wordsDict[k] === word1) {\n                i = k;\n            }\n            if (wordsDict[k] === word2) {\n                j = k;\n            }\n            if (i !== -1 && j !== -1) {\n                ans = Math.min(ans, Math.abs(i - j));\n            }\n        }\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
-      "input": "[\"makes\",\"makes\"]\n\"makes\"\n\"makes\"",
+      "input": "[\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"coding\"",
       "expected": "1"
+    },
+    {
+      "input": "[\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"], word1 = \"makes\", word2 = \"makes\"",
+      "expected": "3"
     }
   ],
   "hints": [

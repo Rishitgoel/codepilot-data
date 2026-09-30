@@ -18,32 +18,44 @@
     "id": 1740,
     "url": "https://www.lintcode.com/problem/1740/"
   },
-  "description": "Given a list of scores of different students, return the average of the top five scores for each student sorted by student ID.",
+  "description": "Given a list of the scores of different students, `items`, where `items[i] = [IDi, scorei]` represents one score from a student with `IDi`, calculate each student's **top five average**.\n\n\n\nReturn *the answer as an array of pairs *`result`*, where *`result[j] = [IDj, topFiveAveragej]`* represents the student with *`IDj`* and their **top five average**. Sort *`result`* by *`IDj`* in **increasing order**.*\n\n\n\nA student's **top five average** is calculated by taking the sum of their top five scores and dividing it by `5` using **integer division**.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "items = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]",
+      "output": "[[1,87],[2,88]]\nExplanation: \nThe student with ID = 1 got scores 91, 92, 60, 65, 87, and 100. Their top five average is (100 + 92 + 91 + 87 + 65) / 5 = 87.\nThe student with ID = 2 got scores 93, 97, 77, 100, and 76. Their top five average is (100 + 97 + 93 + 77 + 76) / 5 = 88.6, but with integer division their average converts to 88."
+    },
+    {
+      "input": "items = [[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]]",
+      "output": "[[1,100],[7,100]]"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "1 <= items.length <= 1000",
+    "items[i].length == 2",
+    "1 <= IDi <= 1000",
+    "0 <= scorei <= 100",
+    "For each IDi, there will be at least five scores."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for High Five\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for High Five\n};",
-    "java": "class Solution {\n    // Solution for High Five\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def highFive(self, items: List[List[int]]) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> highFive(vector<vector<int>>& items) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[][] highFive(int[][] items) {\n        \n    }\n};\n",
+    "javascript": "function highFive(items: number[][]): number[][] {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for High Five\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for High Five\n};",
-    "java": "class Solution {\n    // Solution for High Five\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def highFive(self, items: List[List[int]]) -> List[List[int]]:\n        d = defaultdict(list)\n        m = 0\n        for i, x in items:\n            d[i].append(x)\n            m = max(m, i)\n        ans = []\n        for i in range(1, m + 1):\n            if xs := d[i]:\n                avg = sum(nlargest(5, xs)) // 5\n                ans.append([i, avg])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> highFive(vector<vector<int>>& items) {\n        vector<int> d[1001];\n        for (auto& item : items) {\n            int i = item[0], x = item[1];\n            d[i].push_back(x);\n        }\n        vector<vector<int>> ans;\n        for (int i = 1; i <= 1000; ++i) {\n            if (!d[i].empty()) {\n                sort(d[i].begin(), d[i].end(), greater<int>());\n                int s = 0;\n                for (int j = 0; j < 5; ++j) {\n                    s += d[i][j];\n                }\n                ans.push_back({i, s / 5});\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[][] highFive(int[][] items) {\n        int size = 0;\n        PriorityQueue[] s = new PriorityQueue[101];\n        int n = 5;\n        for (int[] item : items) {\n            int i = item[0], score = item[1];\n            if (s[i] == null) {\n                ++size;\n                s[i] = new PriorityQueue<>(n);\n            }\n            s[i].offer(score);\n            if (s[i].size() > n) {\n                s[i].poll();\n            }\n        }\n        int[][] res = new int[size][2];\n        int j = 0;\n        for (int i = 0; i < 101; ++i) {\n            if (s[i] == null) {\n                continue;\n            }\n            int avg = sum(s[i]) / n;\n            res[j][0] = i;\n            res[j++][1] = avg;\n        }\n        return res;\n    }\n\n    private int sum(PriorityQueue<Integer> q) {\n        int s = 0;\n        while (!q.isEmpty()) {\n            s += q.poll();\n        }\n        return s;\n    }\n}",
+    "javascript": "function highFive(items: number[][]): number[][] {\n    const d: number[][] = Array(1001)\n        .fill(0)\n        .map(() => Array(0));\n    for (const [i, x] of items) {\n        d[i].push(x);\n    }\n    const ans: number[][] = [];\n    for (let i = 1; i <= 1000; ++i) {\n        if (d[i].length > 0) {\n            d[i].sort((a, b) => b - a);\n            const s = d[i].slice(0, 5).reduce((a, b) => a + b);\n            ans.push([i, Math.floor(s / 5)]);\n        }\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
       "input": "[[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]",
-      "expected": "[[1,87],[2,88]]"
+      "expected": "[[1,87],[2,88]]\nExplanation: \nThe student with ID = 1 got scores 91, 92, 60, 65, 87, and 100. Their top five average is (100 + 92 + 91 + 87 + 65) / 5 = 87.\nThe student with ID = 2 got scores 93, 97, 77, 100, and 76. Their top five average is (100 + 97 + 93 + 77 + 76) / 5 = 88.6, but with integer division their average converts to 88."
+    },
+    {
+      "input": "[[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]]",
+      "expected": "[[1,100],[7,100]]"
     }
   ],
   "hints": [

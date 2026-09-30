@@ -17,32 +17,44 @@
     "id": 515,
     "url": "https://www.lintcode.com/problem/515/"
   },
-  "description": "There are a row of `n` houses, each house can be painted with one of the three colors: red, blue, or green. No two adjacent houses have the same color. Return the minimum cost.",
+  "description": "There is a row of `n` houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.\n\n\n\nThe cost of painting each house with a certain color is represented by an `n x 3` cost matrix `costs`.\n\n\n\n\n\tFor example, `costs[0][0]` is the cost of painting house `0` with the color red; `costs[1][2]` is the cost of painting house 1 with color green, and so on...\n\n\nReturn *the minimum cost to paint all houses*.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "costs = [[17,2,17],[16,16,5],[14,3,19]]",
+      "output": "10",
+      "explanation": "Paint house 0 into blue, paint house 1 into green, paint house 2 into blue.\nMinimum cost: 2 + 5 + 3 = 10."
+    },
+    {
+      "input": "costs = [[7,6,2]]",
+      "output": "2"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "costs.length == n",
+    "costs[i].length == 3",
+    "1 <= n <= 100",
+    "1 <= costs[i][j] <= 20"
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Paint House\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Paint House\n};",
-    "java": "class Solution {\n    // Solution for Paint House\n};",
+    "python": "class Solution:\n    def minCost(self, costs: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& costs) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minCost(int[][] costs) {\n        \n    }\n};\n",
     "javascript": "var solution = function() {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Paint House\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Paint House\n};",
-    "java": "class Solution {\n    // Solution for Paint House\n};",
+    "python": "class Solution:\n    def minCost(self, costs: List[List[int]]) -> int:\n        a = b = c = 0\n        for ca, cb, cc in costs:\n            a, b, c = min(b, c) + ca, min(a, c) + cb, min(a, b) + cc\n        return min(a, b, c)",
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& costs) {\n        int r = 0, g = 0, b = 0;\n        for (auto& cost : costs) {\n            int _r = r, _g = g, _b = b;\n            r = min(_g, _b) + cost[0];\n            g = min(_r, _b) + cost[1];\n            b = min(_r, _g) + cost[2];\n        }\n        return min(r, min(g, b));\n    }\n};",
+    "java": "class Solution {\n    public int minCost(int[][] costs) {\n        int r = 0, g = 0, b = 0;\n        for (int[] cost : costs) {\n            int _r = r, _g = g, _b = b;\n            r = Math.min(_g, _b) + cost[0];\n            g = Math.min(_r, _b) + cost[1];\n            b = Math.min(_r, _g) + cost[2];\n        }\n        return Math.min(r, Math.min(g, b));\n    }\n}",
     "javascript": "var solution = function() {\n    \n};"
   },
   "testcases": [
     {
       "input": "[[17,2,17],[16,16,5],[14,3,19]]",
       "expected": "10"
+    },
+    {
+      "input": "[[7,6,2]]",
+      "expected": "2"
     }
   ],
   "hints": [

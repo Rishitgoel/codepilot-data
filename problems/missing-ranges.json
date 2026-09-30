@@ -17,32 +17,45 @@
     "id": 641,
     "url": "https://www.lintcode.com/problem/641/"
   },
-  "description": "You are given an inclusive range `[lower, upper]` and a sorted unique integer array `nums`, where all elements are in the inclusive range. Return the shortest sorted list of ranges that exactly covers all the missing numbers.",
+  "description": "You are given an inclusive range `[lower, upper]` and a **sorted unique** integer array `nums`, where all elements are within the inclusive range.\n\n\n\nA number `x` is considered **missing** if `x` is in the range `[lower, upper]` and `x` is not in `nums`.\n\n\n\nReturn *the **shortest sorted** list of ranges that exactly covers all the missing numbers*. That is, no element of `nums` is included in any of the ranges, and each missing number is covered by one of the ranges.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "nums = [0,1,3,50,75], lower = 0, upper = 99",
+      "output": "[[2,2],[4,49],[51,74],[76,99]]",
+      "explanation": "The ranges are:\n[2,2]\n[4,49]\n[51,74]\n[76,99]"
+    },
+    {
+      "input": "nums = [-1], lower = -1, upper = -1",
+      "output": "[]",
+      "explanation": "There are no missing ranges since there are no missing numbers."
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "-10^9 <= lower <= upper <= 10^9",
+    "0 <= nums.length <= 100",
+    "lower <= nums[i] <= upper",
+    "All the values of nums are unique."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Missing Ranges\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Missing Ranges\n};",
-    "java": "class Solution {\n    // Solution for Missing Ranges\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def findMissingRanges(\n        self, nums: List[int], lower: int, upper: int\n    ) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> findMissingRanges(int[] nums, int lower, int upper) {\n        \n    }\n};\n",
+    "javascript": "function findMissingRanges(nums: number[], lower: number, upper: number): number[][] {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Missing Ranges\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Missing Ranges\n};",
-    "java": "class Solution {\n    // Solution for Missing Ranges\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def findMissingRanges(\n        self, nums: List[int], lower: int, upper: int\n    ) -> List[List[int]]:\n        n = len(nums)\n        if n == 0:\n            return [[lower, upper]]\n        ans = []\n        if nums[0] > lower:\n            ans.append([lower, nums[0] - 1])\n        for a, b in pairwise(nums):\n            if b - a > 1:\n                ans.append([a + 1, b - 1])\n        if nums[-1] < upper:\n            ans.append([nums[-1] + 1, upper])\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {\n        int n = nums.size();\n        if (n == 0) {\n            return {{lower, upper}};\n        }\n        vector<vector<int>> ans;\n        if (nums[0] > lower) {\n            ans.push_back({lower, nums[0] - 1});\n        }\n        for (int i = 1; i < nums.size(); ++i) {\n            if (nums[i] - nums[i - 1] > 1) {\n                ans.push_back({nums[i - 1] + 1, nums[i] - 1});\n            }\n        }\n        if (nums[n - 1] < upper) {\n            ans.push_back({nums[n - 1] + 1, upper});\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> findMissingRanges(int[] nums, int lower, int upper) {\n        int n = nums.length;\n        if (n == 0) {\n            return List.of(List.of(lower, upper));\n        }\n        List<List<Integer>> ans = new ArrayList<>();\n        if (nums[0] > lower) {\n            ans.add(List.of(lower, nums[0] - 1));\n        }\n        for (int i = 1; i < n; ++i) {\n            if (nums[i] - nums[i - 1] > 1) {\n                ans.add(List.of(nums[i - 1] + 1, nums[i] - 1));\n            }\n        }\n        if (nums[n - 1] < upper) {\n            ans.add(List.of(nums[n - 1] + 1, upper));\n        }\n        return ans;\n    }\n}",
+    "javascript": "function findMissingRanges(nums: number[], lower: number, upper: number): number[][] {\n    const n = nums.length;\n    if (n === 0) {\n        return [[lower, upper]];\n    }\n    const ans: number[][] = [];\n    if (nums[0] > lower) {\n        ans.push([lower, nums[0] - 1]);\n    }\n    for (let i = 1; i < n; ++i) {\n        if (nums[i] - nums[i - 1] > 1) {\n            ans.push([nums[i - 1] + 1, nums[i] - 1]);\n        }\n    }\n    if (nums[n - 1] < upper) {\n        ans.push([nums[n - 1] + 1, upper]);\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
-      "input": "[0,1,3,50,75]\n0\n99",
+      "input": "[0,1,3,50,75], lower = 0, upper = 99",
       "expected": "[[2,2],[4,49],[51,74],[76,99]]"
+    },
+    {
+      "input": "[-1], lower = -1, upper = -1",
+      "expected": "[]"
     }
   ],
   "hints": [

@@ -18,32 +18,44 @@
     "id": 654,
     "url": "https://www.lintcode.com/problem/654/"
   },
-  "description": "Given two sparse matrices `mat1` of size `m x k` and `mat2` of size `k x n`, return the result of `mat1 x mat2`. Optimize to avoid multiplying zeroes.",
+  "description": "Given two sparse matrices `mat1` of size `m x k` and `mat2` of size `k x n`, return the result of `mat1 x mat2`. You may assume that multiplication is always possible.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "mat1 = [[1,0,0],[-1,0,3]], mat2 = [[7,0,0],[0,0,0],[0,0,1]]",
+      "output": "[[7,0,0],[-7,0,3]]"
+    },
+    {
+      "input": "mat1 = [[0]], mat2 = [[0]]",
+      "output": "[[0]]"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "m == mat1.length",
+    "k == mat1[i].length == mat2.length",
+    "n == mat2[i].length",
+    "1 <= m, n, k <= 100",
+    "-100 <= mat1[i][j], mat2[i][j] <= 100"
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Sparse Matrix Multiplication\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Sparse Matrix Multiplication\n};",
-    "java": "class Solution {\n    // Solution for Sparse Matrix Multiplication\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[][] multiply(int[][] mat1, int[][] mat2) {\n        \n    }\n};\n",
+    "javascript": "function multiply(mat1: number[][], mat2: number[][]): number[][] {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Sparse Matrix Multiplication\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Sparse Matrix Multiplication\n};",
-    "java": "class Solution {\n    // Solution for Sparse Matrix Multiplication\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:\n        m, n = len(mat1), len(mat2[0])\n        ans = [[0] * n for _ in range(m)]\n        for i in range(m):\n            for j in range(n):\n                for k in range(len(mat2)):\n                    ans[i][j] += mat1[i][k] * mat2[k][j]\n        return ans",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {\n        int m = mat1.size(), n = mat2[0].size();\n        vector<vector<int>> ans(m, vector<int>(n));\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                for (int k = 0; k < mat2.size(); ++k) {\n                    ans[i][j] += mat1[i][k] * mat2[k][j];\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int[][] multiply(int[][] mat1, int[][] mat2) {\n        int m = mat1.length, n = mat2[0].length;\n        int[][] ans = new int[m][n];\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                for (int k = 0; k < mat2.length; ++k) {\n                    ans[i][j] += mat1[i][k] * mat2[k][j];\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function multiply(mat1: number[][], mat2: number[][]): number[][] {\n    const [m, n] = [mat1.length, mat2[0].length];\n    const ans: number[][] = Array.from({ length: m }, () => Array.from({ length: n }, () => 0));\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            for (let k = 0; k < mat2.length; ++k) {\n                ans[i][j] += mat1[i][k] * mat2[k][j];\n            }\n        }\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
-      "input": "[[1,0,0],[-1,0,3]]\n[[7,0,0],[0,0,0],[0,0,1]]",
+      "input": "[[1,0,0],[-1,0,3]], mat2 = [[7,0,0],[0,0,0],[0,0,1]]",
       "expected": "[[7,0,0],[-7,0,3]]"
+    },
+    {
+      "input": "[[0]], mat2 = [[0]]",
+      "expected": "[[0]]"
     }
   ],
   "hints": [

@@ -19,32 +19,55 @@
     "id": 1775,
     "url": "https://www.lintcode.com/problem/1775/"
   },
-  "description": "Assign each worker to a unique bike such that the sum of the Manhattan distances between each worker and their assigned bike is minimized.",
+  "description": "On a campus represented as a 2D grid, there are `n` workers and `m` bikes, with `n <= m`. Each worker and bike is a 2D coordinate on this grid.\n\n\n\nWe assign one unique bike to each worker so that the sum of the **Manhattan distances** between each worker and their assigned bike is minimized.\n\n\n\nReturn `the minimum possible sum of Manhattan distances between each worker and their assigned bike`.\n\n\n\nThe **Manhattan distance** between two points `p1` and `p2` is `Manhattan(p1, p2) = |p1.x - p2.x| + |p1.y - p2.y|`.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "workers = [[0,0],[2,1]], bikes = [[1,2],[3,3]]",
+      "output": "6",
+      "explanation": "We assign bike 0 to worker 0, bike 1 to worker 1. The Manhattan distance of both assignments is 3, so the output is 6."
+    },
+    {
+      "input": "workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]",
+      "output": "4\nExplanation: \nWe first assign bike 0 to worker 0, then assign bike 1 to worker 1 or worker 2, bike 2 to worker 2 or worker 1. Both assignments lead to sum of the Manhattan distances as 4."
+    },
+    {
+      "input": "workers = [[0,0],[1,0],[2,0],[3,0],[4,0]], bikes = [[0,999],[1,999],[2,999],[3,999],[4,999]]",
+      "output": "4995"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "n == workers.length",
+    "m == bikes.length",
+    "1 <= n <= m <= 10",
+    "workers[i].length == 2",
+    "bikes[i].length == 2",
+    "0 <= workers[i][0], workers[i][1], bikes[i][0], bikes[i][1] < 1000",
+    "All the workers and the bikes locations are unique."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Campus Bikes II\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes II\n};",
-    "java": "class Solution {\n    // Solution for Campus Bikes II\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int assignBikes(int[][] workers, int[][] bikes) {\n        \n    }\n};\n",
+    "javascript": "function assignBikes(workers: number[][], bikes: number[][]): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Campus Bikes II\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes II\n};",
-    "java": "class Solution {\n    // Solution for Campus Bikes II\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:\n        n, m = len(workers), len(bikes)\n        f = [[inf] * (1 << m) for _ in range(n + 1)]\n        f[0][0] = 0\n        for i, (x1, y1) in enumerate(workers, 1):\n            for j in range(1 << m):\n                for k, (x2, y2) in enumerate(bikes):\n                    if j >> k & 1:\n                        f[i][j] = min(\n                            f[i][j],\n                            f[i - 1][j ^ (1 << k)] + abs(x1 - x2) + abs(y1 - y2),\n                        )\n        return min(f[n])",
+    "cpp": "class Solution {\npublic:\n    int assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {\n        int n = workers.size(), m = bikes.size();\n        int f[n + 1][1 << m];\n        memset(f, 0x3f, sizeof(f));\n        f[0][0] = 0;\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 0; j < 1 << m; ++j) {\n                for (int k = 0; k < m; ++k) {\n                    if (j >> k & 1) {\n                        int d = abs(workers[i - 1][0] - bikes[k][0]) + abs(workers[i - 1][1] - bikes[k][1]);\n                        f[i][j] = min(f[i][j], f[i - 1][j ^ (1 << k)] + d);\n                    }\n                }\n            }\n        }\n        return *min_element(f[n], f[n] + (1 << m));\n    }\n};",
+    "java": "class Solution {\n    public int assignBikes(int[][] workers, int[][] bikes) {\n        int n = workers.length;\n        int m = bikes.length;\n        int[][] f = new int[n + 1][1 << m];\n        for (var g : f) {\n            Arrays.fill(g, 1 << 30);\n        }\n        f[0][0] = 0;\n        for (int i = 1; i <= n; ++i) {\n            for (int j = 0; j < 1 << m; ++j) {\n                for (int k = 0; k < m; ++k) {\n                    if ((j >> k & 1) == 1) {\n                        int d = Math.abs(workers[i - 1][0] - bikes[k][0])\n                            + Math.abs(workers[i - 1][1] - bikes[k][1]);\n                        f[i][j] = Math.min(f[i][j], f[i - 1][j ^ (1 << k)] + d);\n                    }\n                }\n            }\n        }\n        return Arrays.stream(f[n]).min().getAsInt();\n    }\n}",
+    "javascript": "function assignBikes(workers: number[][], bikes: number[][]): number {\n    const n = workers.length;\n    const m = bikes.length;\n    const inf = 1 << 30;\n    const f: number[][] = new Array(n + 1).fill(0).map(() => new Array(1 << m).fill(inf));\n    f[0][0] = 0;\n    for (let i = 1; i <= n; ++i) {\n        for (let j = 0; j < 1 << m; ++j) {\n            for (let k = 0; k < m; ++k) {\n                if (((j >> k) & 1) === 1) {\n                    const d =\n                        Math.abs(workers[i - 1][0] - bikes[k][0]) +\n                        Math.abs(workers[i - 1][1] - bikes[k][1]);\n                    f[i][j] = Math.min(f[i][j], f[i - 1][j ^ (1 << k)] + d);\n                }\n            }\n        }\n    }\n    return Math.min(...f[n]);\n}"
   },
   "testcases": [
     {
-      "input": "[[0,0],[2,1]]\n[[1,2],[3,3]]",
+      "input": "[[0,0],[2,1]], bikes = [[1,2],[3,3]]",
       "expected": "6"
+    },
+    {
+      "input": "[[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]",
+      "expected": "4\nExplanation: \nWe first assign bike 0 to worker 0, then assign bike 1 to worker 1 or worker 2, bike 2 to worker 2 or worker 1. Both assignments lead to sum of the Manhattan distances as 4."
+    },
+    {
+      "input": "[[0,0],[1,0],[2,0],[3,0],[4,0]], bikes = [[0,999],[1,999],[2,999],[3,999],[4,999]]",
+      "expected": "4995"
     }
   ],
   "hints": [

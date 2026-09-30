@@ -19,32 +19,42 @@
     "id": 900,
     "url": "https://www.lintcode.com/problem/900/"
   },
-  "description": "Given the `root` of a binary search tree and a target value `target`, return the value in the BST that is closest to the `target`.",
+  "description": "Given the `root` of a binary search tree and a `target` value, return *the value in the BST that is closest to the* `target`. If there are multiple answers, print the smallest.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "root = [4,2,5,1,3], target = 3.714286",
+      "output": "4"
+    },
+    {
+      "input": "root = [1], target = 4.428571",
+      "output": "1"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "0 <= Node.val <= 10^9",
+    "-10^9 <= target <= 10^9"
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Closest Binary Search Tree Value\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Closest Binary Search Tree Value\n};",
-    "java": "class Solution {\n    // Solution for Closest Binary Search Tree Value\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private int ans;\n    private double target;\n    private double diff = Double.MAX_VALUE;\n\n    public int closestValue(TreeNode root, double target) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction closestValue(root: TreeNode | null, target: number): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Closest Binary Search Tree Value\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Closest Binary Search Tree Value\n};",
-    "java": "class Solution {\n    // Solution for Closest Binary Search Tree Value\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def closestValue(self, root: Optional[TreeNode], target: float) -> int:\n        def dfs(node: Optional[TreeNode]):\n            if node is None:\n                return\n            nxt = abs(target - node.val)\n            nonlocal ans, diff\n            if nxt < diff or (nxt == diff and node.val < ans):\n                diff = nxt\n                ans = node.val\n            node = node.left if target < node.val else node.right\n            dfs(node)\n\n        ans = 0\n        diff = inf\n        dfs(root)\n        return ans",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    int closestValue(TreeNode* root, double target) {\n        int ans = root->val;\n        double diff = INT_MAX;\n        function<void(TreeNode*)> dfs = [&](TreeNode* node) {\n            if (!node) {\n                return;\n            }\n            double nxt = abs(node->val - target);\n            if (nxt < diff || (nxt == diff && node->val < ans)) {\n                diff = nxt;\n                ans = node->val;\n            }\n            node = target < node->val ? node->left : node->right;\n            dfs(node);\n        };\n        dfs(root);\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode() {}\n *     TreeNode(int val) { this.val = val; }\n *     TreeNode(int val, TreeNode left, TreeNode right) {\n *         this.val = val;\n *         this.left = left;\n *         this.right = right;\n *     }\n * }\n */\nclass Solution {\n    private int ans;\n    private double target;\n    private double diff = Double.MAX_VALUE;\n\n    public int closestValue(TreeNode root, double target) {\n        this.target = target;\n        dfs(root);\n        return ans;\n    }\n\n    private void dfs(TreeNode node) {\n        if (node == null) {\n            return;\n        }\n        double nxt = Math.abs(node.val - target);\n        if (nxt < diff || (nxt == diff && node.val < ans)) {\n            diff = nxt;\n            ans = node.val;\n        }\n        node = target < node.val ? node.left : node.right;\n        dfs(node);\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction closestValue(root: TreeNode | null, target: number): number {\n    let ans = 0;\n    let diff = Number.POSITIVE_INFINITY;\n\n    const dfs = (node: TreeNode | null): void => {\n        if (!node) {\n            return;\n        }\n\n        const nxt = Math.abs(target - node.val);\n        if (nxt < diff || (nxt === diff && node.val < ans)) {\n            diff = nxt;\n            ans = node.val;\n        }\n\n        node = target < node.val ? node.left : node.right;\n        dfs(node);\n    };\n\n    dfs(root);\n    return ans;\n}"
   },
   "testcases": [
     {
-      "input": "[4,2,5,1,3]\n3.714286",
+      "input": "[4,2,5,1,3], target = 3.714286",
       "expected": "4"
+    },
+    {
+      "input": "[1], target = 4.428571",
+      "expected": "1"
     }
   ],
   "hints": [

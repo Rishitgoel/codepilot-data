@@ -17,32 +17,44 @@
     "id": 878,
     "url": "https://www.lintcode.com/problem/878/"
   },
-  "description": "Given an `m x n` picture consisting of black `B` and white `W` pixels, return the number of black lonely pixels (alone in its row and column).",
+  "description": "Given an `m x n` `picture` consisting of black `'B'` and white `'W'` pixels, return *the number of black lonely pixels*.\n\n\n\nA black lonely pixel is a character `'B'` that located at a specific position where the same row and same column don't have **any other** black pixels.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "picture = [[\"W\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"W\"]]",
+      "output": "3",
+      "explanation": "All the three 'B's are black lonely pixels."
+    },
+    {
+      "input": "picture = [[\"B\",\"B\",\"B\"],[\"B\",\"B\",\"W\"],[\"B\",\"B\",\"B\"]]",
+      "output": "0"
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "m == picture.length",
+    "n == picture[i].length",
+    "1 <= m, n <= 500",
+    "picture[i][j] is 'W' or 'B'."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Lonely Pixel I\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Lonely Pixel I\n};",
-    "java": "class Solution {\n    // Solution for Lonely Pixel I\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def findLonelyPixel(self, picture: List[List[str]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int findLonelyPixel(vector<vector<char>>& picture) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int findLonelyPixel(char[][] picture) {\n        \n    }\n};\n",
+    "javascript": "function findLonelyPixel(picture: string[][]): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Lonely Pixel I\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Lonely Pixel I\n};",
-    "java": "class Solution {\n    // Solution for Lonely Pixel I\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def findLonelyPixel(self, picture: List[List[str]]) -> int:\n        rows = [0] * len(picture)\n        cols = [0] * len(picture[0])\n        for i, row in enumerate(picture):\n            for j, x in enumerate(row):\n                if x == \"B\":\n                    rows[i] += 1\n                    cols[j] += 1\n        ans = 0\n        for i, row in enumerate(picture):\n            for j, x in enumerate(row):\n                if x == \"B\" and rows[i] == 1 and cols[j] == 1:\n                    ans += 1\n        return ans",
+    "cpp": "class Solution {\npublic:\n    int findLonelyPixel(vector<vector<char>>& picture) {\n        int m = picture.size(), n = picture[0].size();\n        vector<int> rows(m);\n        vector<int> cols(n);\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (picture[i][j] == 'B') {\n                    ++rows[i];\n                    ++cols[j];\n                }\n            }\n        }\n        int ans = 0;\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (picture[i][j] == 'B' && rows[i] == 1 && cols[j] == 1) {\n                    ++ans;\n                }\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "class Solution {\n    public int findLonelyPixel(char[][] picture) {\n        int m = picture.length, n = picture[0].length;\n        int[] rows = new int[m];\n        int[] cols = new int[n];\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (picture[i][j] == 'B') {\n                    ++rows[i];\n                    ++cols[j];\n                }\n            }\n        }\n        int ans = 0;\n        for (int i = 0; i < m; ++i) {\n            for (int j = 0; j < n; ++j) {\n                if (picture[i][j] == 'B' && rows[i] == 1 && cols[j] == 1) {\n                    ++ans;\n                }\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "function findLonelyPixel(picture: string[][]): number {\n    const m = picture.length;\n    const n = picture[0].length;\n    const rows: number[] = Array(m).fill(0);\n    const cols: number[] = Array(n).fill(0);\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            if (picture[i][j] === 'B') {\n                ++rows[i];\n                ++cols[j];\n            }\n        }\n    }\n    let ans = 0;\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            if (picture[i][j] === 'B' && rows[i] === 1 && cols[j] === 1) {\n                ++ans;\n            }\n        }\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
       "input": "[[\"W\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"W\"]]",
       "expected": "3"
+    },
+    {
+      "input": "[[\"B\",\"B\",\"B\"],[\"B\",\"B\",\"W\"],[\"B\",\"B\",\"B\"]]",
+      "expected": "0"
     }
   ],
   "hints": [

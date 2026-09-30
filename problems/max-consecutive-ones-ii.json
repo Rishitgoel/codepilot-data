@@ -18,31 +18,42 @@
     "id": 883,
     "url": "https://www.lintcode.com/problem/883/"
   },
-  "description": "Given a binary array `nums`, return the maximum number of consecutive `1`'s in the array if you can flip at most one `0`.",
+  "description": "Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s in the array if you can flip at most one* `0`.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "nums = [1,0,1,1,0]",
+      "output": "4",
+      "explanation": "- If we flip the first zero, nums becomes [1,1,1,1,0] and we have 4 consecutive ones.\n- If we flip the second zero, nums becomes [1,0,1,1,1] and we have 3 consecutive ones.\nThe max number of consecutive ones is 4."
+    },
+    {
+      "input": "nums = [1,0,1,1,0,1]",
+      "output": "4",
+      "explanation": "- If we flip the first zero, nums becomes [1,1,1,1,0,1] and we have 4 consecutive ones.\n- If we flip the second zero, nums becomes [1,0,1,1,1,1] and we have 4 consecutive ones.\nThe max number of consecutive ones is 4."
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "1 <= nums.length <= 10^5",
+    "nums[i] is either 0 or 1."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Max Consecutive Ones II\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Max Consecutive Ones II\n};",
-    "java": "class Solution {\n    // Solution for Max Consecutive Ones II\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\r\n    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:\r\n        pass\n",
+    "cpp": "class Solution {\r\npublic:\r\n    int findMaxConsecutiveOnes(vector<int>& nums) {\r\n        \n    }\n};\n",
+    "java": "class Solution {\r\n    public int findMaxConsecutiveOnes(int[] nums) {\r\n        \n    }\n};\n",
+    "javascript": "function findMaxConsecutiveOnes(nums: number[]): number {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Max Consecutive Ones II\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Max Consecutive Ones II\n};",
-    "java": "class Solution {\n    // Solution for Max Consecutive Ones II\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\r\n    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:\r\n        l = cnt = 0\r\n        for x in nums:\r\n            cnt += x ^ 1\r\n            if cnt > 1:\r\n                cnt -= nums[l] ^ 1\r\n                l += 1\r\n        return len(nums) - l",
+    "cpp": "class Solution {\r\npublic:\r\n    int findMaxConsecutiveOnes(vector<int>& nums) {\r\n        int l = 0, cnt = 0;\r\n        for (int x : nums) {\r\n            cnt += x ^ 1;\r\n            if (cnt > 1) {\r\n                cnt -= nums[l++] ^ 1;\r\n            }\r\n        }\r\n        return nums.size() - l;\r\n    }\r\n};",
+    "java": "class Solution {\r\n    public int findMaxConsecutiveOnes(int[] nums) {\r\n        int l = 0, cnt = 0;\r\n        for (int x : nums) {\r\n            cnt += x ^ 1;\r\n            if (cnt > 1) {\r\n                cnt -= nums[l++] ^ 1;\r\n            }\r\n        }\r\n        return nums.length - l;\r\n    }\r\n}",
+    "javascript": "function findMaxConsecutiveOnes(nums: number[]): number {\n    let [l, cnt] = [0, 0];\n    for (const x of nums) {\n        cnt += x ^ 1;\n        if (cnt > 1) {\n            cnt -= nums[l++] ^ 1;\n        }\n    }\n    return nums.length - l;\n}"
   },
   "testcases": [
     {
       "input": "[1,0,1,1,0]",
+      "expected": "4"
+    },
+    {
+      "input": "[1,0,1,1,0,1]",
       "expected": "4"
     }
   ],

@@ -19,32 +19,44 @@
     "id": 448,
     "url": "https://www.lintcode.com/problem/448/"
   },
-  "description": "Given the `root` of a binary search tree and a node `p` in it, return the in-order successor of that node in the BST. If no successor, return `null`.",
+  "description": "Given the `root` of a binary search tree and a node `p` in it, return *the in-order successor of that node in the BST*. If the given node has no in-order successor in the tree, return `null`.\n\n\n\nThe successor of a node `p` is the node with the smallest key greater than `p.val`.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "root = [2,1,3], p = 1",
+      "output": "2",
+      "explanation": "1's in-order successor node is 2. Note that both p and the return value is of TreeNode type."
+    },
+    {
+      "input": "root = [5,3,6,2,4,null,null,1], p = 6",
+      "output": "null",
+      "explanation": "There is no in-order successor of the current node, so the answer is null."
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "The number of nodes in the tree is in the range [1, 10^4].",
+    "-10^5 <= Node.val <= 10^5",
+    "All Nodes will have unique values."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for Inorder Successor in BST\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Inorder Successor in BST\n};",
-    "java": "class Solution {\n    // Solution for Inorder Successor in BST\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n        pass\n",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n        \n    }\n};\n",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {\n        \n    }\n};\n",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction inorderSuccessor(root: TreeNode | null, p: TreeNode | null): TreeNode | null {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for Inorder Successor in BST\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for Inorder Successor in BST\n};",
-    "java": "class Solution {\n    // Solution for Inorder Successor in BST\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, x):\n#         self.val = x\n#         self.left = None\n#         self.right = None\n\n\nclass Solution:\n    def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:\n        ans = None\n        while root:\n            if root.val > p.val:\n                ans = root\n                root = root.left\n            else:\n                root = root.right\n        return ans",
+    "cpp": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}\n * };\n */\nclass Solution {\npublic:\n    TreeNode* inorderSuccessor(TreeNode* root, TreeNode* p) {\n        TreeNode* ans = nullptr;\n        while (root) {\n            if (root->val > p->val) {\n                ans = root;\n                root = root->left;\n            } else {\n                root = root->right;\n            }\n        }\n        return ans;\n    }\n};",
+    "java": "/**\n * Definition for a binary tree node.\n * public class TreeNode {\n *     int val;\n *     TreeNode left;\n *     TreeNode right;\n *     TreeNode(int x) { val = x; }\n * }\n */\nclass Solution {\n    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {\n        TreeNode ans = null;\n        while (root != null) {\n            if (root.val > p.val) {\n                ans = root;\n                root = root.left;\n            } else {\n                root = root.right;\n            }\n        }\n        return ans;\n    }\n}",
+    "javascript": "/**\n * Definition for a binary tree node.\n * class TreeNode {\n *     val: number\n *     left: TreeNode | null\n *     right: TreeNode | null\n *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {\n *         this.val = (val===undefined ? 0 : val)\n *         this.left = (left===undefined ? null : left)\n *         this.right = (right===undefined ? null : right)\n *     }\n * }\n */\n\nfunction inorderSuccessor(root: TreeNode | null, p: TreeNode | null): TreeNode | null {\n    let ans: TreeNode | null = null;\n    while (root) {\n        if (root.val > p.val) {\n            ans = root;\n            root = root.left;\n        } else {\n            root = root.right;\n        }\n    }\n    return ans;\n}"
   },
   "testcases": [
     {
-      "input": "[2,1,3]\n1",
+      "input": "[2,1,3], p = 1",
       "expected": "2"
+    },
+    {
+      "input": "[5,3,6,2,4,null,null,1], p = 6",
+      "expected": "null"
     }
   ],
   "hints": [

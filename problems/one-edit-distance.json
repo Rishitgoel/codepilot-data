@@ -18,35 +18,42 @@
     "id": 640,
     "url": "https://www.lintcode.com/problem/640/"
   },
-  "description": "Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`. One edit distance means inserting, deleting, or replacing exactly one character.",
+  "description": "Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.\n\n\n\nA string `s` is said to be one distance apart from a string `t` if you can:\n\n\n\n\n\tInsert **exactly one** character into `s` to get `t`.\n\tDelete **exactly one** character from `s` to get `t`.\n\tReplace **exactly one** character of `s` with **a different character** to get `t`.",
   "examples": [
     {
-      "input": "Example input",
-      "output": "Example output"
+      "input": "s = \"ab\", t = \"acb\"",
+      "output": "true",
+      "explanation": "We can insert 'c' into s to get t."
+    },
+    {
+      "input": "s = \"\", t = \"\"",
+      "output": "false",
+      "explanation": "We cannot get t from s by only one step."
     }
   ],
   "constraints": [
-    "Constraints according to standard problem specifications."
+    "0 <= s.length, t.length <= 10^4",
+    "s and t consist of lowercase letters, uppercase letters, and digits."
   ],
   "starterTemplates": {
-    "python": "class Solution:\n    # Solution for One Edit Distance\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for One Edit Distance\n};",
-    "java": "class Solution {\n    // Solution for One Edit Distance\n};",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "python": "class Solution:\n    def isOneEditDistance(self, s: str, t: str) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool isOneEditDistance(string s, string t) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isOneEditDistance(String s, String t) {\n        \n    }\n};\n",
+    "javascript": "function isOneEditDistance(s: string, t: string): boolean {\n    \n};\n"
   },
   "snippets": {
-    "python": "class Solution:\n    # Solution for One Edit Distance\n    pass",
-    "cpp": "class Solution {\npublic:\n    // Solution for One Edit Distance\n};",
-    "java": "class Solution {\n    // Solution for One Edit Distance\n};",
-    "javascript": "var solution = function() {\n    \n};"
+    "python": "class Solution:\n    def isOneEditDistance(self, s: str, t: str) -> bool:\n        if len(s) < len(t):\n            return self.isOneEditDistance(t, s)\n        m, n = len(s), len(t)\n        if m - n > 1:\n            return False\n        for i, c in enumerate(t):\n            if c != s[i]:\n                return s[i + 1 :] == t[i + 1 :] if m == n else s[i + 1 :] == t[i:]\n        return m == n + 1",
+    "cpp": "class Solution {\npublic:\n    bool isOneEditDistance(string s, string t) {\n        int m = s.size(), n = t.size();\n        if (m < n) return isOneEditDistance(t, s);\n        if (m - n > 1) return false;\n        for (int i = 0; i < n; ++i) {\n            if (s[i] != t[i]) {\n                if (m == n) return s.substr(i + 1) == t.substr(i + 1);\n                return s.substr(i + 1) == t.substr(i);\n            }\n        }\n        return m == n + 1;\n    }\n};",
+    "java": "class Solution {\n    public boolean isOneEditDistance(String s, String t) {\n        int m = s.length(), n = t.length();\n        if (m < n) {\n            return isOneEditDistance(t, s);\n        }\n        if (m - n > 1) {\n            return false;\n        }\n        for (int i = 0; i < n; ++i) {\n            if (s.charAt(i) != t.charAt(i)) {\n                if (m == n) {\n                    return s.substring(i + 1).equals(t.substring(i + 1));\n                }\n                return s.substring(i + 1).equals(t.substring(i));\n            }\n        }\n        return m == n + 1;\n    }\n}",
+    "javascript": "function isOneEditDistance(s: string, t: string): boolean {\n    const [m, n] = [s.length, t.length];\n    if (m < n) {\n        return isOneEditDistance(t, s);\n    }\n    if (m - n > 1) {\n        return false;\n    }\n    for (let i = 0; i < n; ++i) {\n        if (s[i] !== t[i]) {\n            return s.slice(i + 1) === t.slice(i + (m === n ? 1 : 0));\n        }\n    }\n    return m === n + 1;\n}"
   },
   "testcases": [
     {
-      "input": "\"ab\"\n\"acb\"",
+      "input": "\"ab\", t = \"acb\"",
       "expected": "true"
     },
     {
-      "input": "\"\"\n\"\"",
+      "input": "\"\", t = \"\"",
       "expected": "false"
     }
   ],
