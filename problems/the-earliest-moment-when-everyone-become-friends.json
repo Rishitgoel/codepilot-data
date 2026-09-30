@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def earliestAcq(self, logs: List[List[int]], n: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int earliestAcq(vector<vector<int>>& logs, int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[] p;\n\n    public int earliestAcq(int[][] logs, int n) {\n        \n    }\n};\n",
-    "javascript": "function earliestAcq(logs: number[][], n: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int earliestAcq(vector<vector<int>>& logs, int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[] p;\n\n    public int earliestAcq(int[][] logs, int n) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function earliestAcq(logs: number[][], n: number): number {\n    const p: number[] = Array(n)\n        .fill(0)\n        .map((_, i) => i);\n    const find = (x: number): number => {\n        if (p[x] !== x) {\n            p[x] = find(p[x]);\n        }\n        return p[x];\n    };\n    logs.sort((a, b) => a[0] - b[0]);\n    for (const [t, x, y] of logs) {\n        const rx = find(x);\n        const ry = find(y);\n        if (rx !== ry) {\n            p[rx] = ry;\n            if (--n === 1) {\n                return t;\n            }\n        }\n    }\n    return -1;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def earliestAcq(self, logs: List[List[int]], n: int) -> int:\n        def find(x):\n            if p[x] != x:\n                p[x] = find(p[x])\n            return p[x]\n\n        p = list(range(n))\n        for t, x, y in sorted(logs):\n            if find(x) == find(y):\n                continue\n            p[find(x)] = find(y)\n            n -= 1\n            if n == 1:\n                return t\n        return -1",

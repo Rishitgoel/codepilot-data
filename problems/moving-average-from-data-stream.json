@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class MovingAverage:\n\n    def __init__(self, size: int):\n        pass\n",
-    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        \n    }\n};\n",
-    "java": "class MovingAverage {\n    private int s;\n    private int cnt;\n    private int[] data;\n\n    public MovingAverage(int size) {\n        \n    }\n};\n",
+    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        data.resize(size);\n    }\n\n    double next(int val) {\n        int i = cnt % data.size();\n        s += val - data[i];\n        data[i] = val;\n        ++cnt;\n        return s * 1.0 / min(cnt, (int) data.size());\n    }\n\nprivate:\n    int s = 0;\n    int cnt = 0;\n    vector<int> data;\n};\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage* obj = new MovingAverage(size);\n * double param_1 = obj->next(val);\n */",
+    "java": "class MovingAverage {\n    private int s;\n    private int cnt;\n    private int[] data;\n\n    public MovingAverage(int size) {\n        data = new int[size];\n    }\n\n    public double next(int val) {\n        int i = cnt % data.length;\n        s += val - data[i];\n        data[i] = val;\n        ++cnt;\n        return s * 1.0 / Math.min(cnt, data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage obj = new MovingAverage(size);\n * double param_1 = obj.next(val);\n */",
     "javascript": "class MovingAverage {\n    private s: number = 0;\n    private cnt: number = 0;\n    private data: number[];\n\n    constructor(size: number) {\n        this.data = Array(size).fill(0);\n    }\n\n    next(val: number): number {\n        const i = this.cnt % this.data.length;\n        this.s += val - this.data[i];\n        this.data[i] = val;\n        this.cnt++;\n        return this.s / Math.min(this.cnt, this.data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * var obj = new MovingAverage(size)\n * var param_1 = obj.next(val)\n */"
   },
   "snippets": {

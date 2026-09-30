@@ -39,8 +39,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def parseTernary(self, expression: str) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string parseTernary(string expression) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String parseTernary(String expression) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string parseTernary(string expression) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String parseTernary(String expression) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def parseTernary(self, expression: str) -> str:\n        stk = []\n        cond = False\n        for c in expression[::-1]:\n            if c == ':':\n                continue\n            if c == '?':\n                cond = True\n            else:\n                if cond:\n                    if c == 'T':\n                        x = stk.pop()\n                        stk.pop()\n                        stk.append(x)\n                    else:\n                        stk.pop()\n                    cond = False\n                else:\n                    stk.append(c)\n        return stk[0]",

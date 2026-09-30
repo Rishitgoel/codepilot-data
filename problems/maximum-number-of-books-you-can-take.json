@@ -38,8 +38,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumBooks(self, books: List[int]) -> int:\n        pass\n",
-    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long maximumBooks(vector<int>& books) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long maximumBooks(int[] books) {\n        \n    }\n};\n"
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long maximumBooks(vector<int>& books) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maximumBooks(int[] books) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumBooks(self, books: List[int]) -> int:\n        nums = [v - i for i, v in enumerate(books)]\n        n = len(nums)\n        left = [-1] * n\n        stk = []\n        for i, v in enumerate(nums):\n            while stk and nums[stk[-1]] >= v:\n                stk.pop()\n            if stk:\n                left[i] = stk[-1]\n            stk.append(i)\n        ans = 0\n        dp = [0] * n\n        dp[0] = books[0]\n        for i, v in enumerate(books):\n            j = left[i]\n            cnt = min(v, i - j)\n            u = v - cnt + 1\n            s = (u + v) * cnt // 2\n            dp[i] = s + (0 if j == -1 else dp[j])\n            ans = max(ans, dp[i])\n        return ans",

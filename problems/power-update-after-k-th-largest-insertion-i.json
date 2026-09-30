@@ -32,8 +32,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    using ll = long long;\n\n    void add(map<int, int>& mp, int x) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private void add(TreeMap<Integer, Integer> t, int x) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    using ll = long long;\n\n    void add(map<int, int>& mp, int x) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private void add(TreeMap<Integer, Integer> t, int x) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def powerUpdate(\n        self, nums: list[int], p: int, queries: list[list[int]]\n    ) -> list[int]:\n        l = SortedList()\n        r = SortedList(nums)\n        ans = []\n        mod = 10**9 + 7\n        for val, k in queries:\n            r.add(val)\n            l.add(r.pop(0))\n            while len(r) < k:\n                r.add(l.pop())\n            while len(r) > k:\n                l.add(r.pop(0))\n            x = r[0]\n            p = pow(p, x, mod)\n            ans.append(p)\n        return ans",

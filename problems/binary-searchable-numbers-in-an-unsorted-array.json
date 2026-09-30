@@ -36,8 +36,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def binarySearchableNumbers(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int binarySearchableNumbers(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int binarySearchableNumbers(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int binarySearchableNumbers(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int binarySearchableNumbers(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def binarySearchableNumbers(self, nums: List[int]) -> int:\n        n = len(nums)\n        ok = [1] * n\n        mx, mi = -1000000, 1000000\n        for i, x in enumerate(nums):\n            if x < mx:\n                ok[i] = 0\n            else:\n                mx = x\n        for i in range(n - 1, -1, -1):\n            if nums[i] > mi:\n                ok[i] = 0\n            else:\n                mi = nums[i]\n        return sum(ok)",

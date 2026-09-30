@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int f[251][251][27];\n\n    int longestPalindromeSubseq(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[][][] f;\n    private String s;\n\n    public int longestPalindromeSubseq(String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int f[251][251][27];\n\n    int longestPalindromeSubseq(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[][][] f;\n    private String s;\n\n    public int longestPalindromeSubseq(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def longestPalindromeSubseq(self, s: str) -> int:\n        @cache\n        def dfs(i, j, x):\n            if i >= j:\n                return 0\n            if s[i] == s[j] and s[i] != x:\n                return dfs(i + 1, j - 1, s[i]) + 2\n            return max(dfs(i + 1, j, x), dfs(i, j - 1, x))\n\n        ans = dfs(0, len(s) - 1, '')\n        dfs.cache_clear()\n        return ans",

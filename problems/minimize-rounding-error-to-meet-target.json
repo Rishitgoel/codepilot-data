@@ -38,8 +38,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minimizeError(self, prices: List[str], target: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string minimizeError(vector<string>& prices, int target) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String minimizeError(String[] prices, int target) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string minimizeError(vector<string>& prices, int target) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String minimizeError(String[] prices, int target) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimizeError(self, prices: List[str], target: int) -> str:\n        mi = 0\n        arr = []\n        for p in prices:\n            p = float(p)\n            mi += int(p)\n            if d := p - int(p):\n                arr.append(d)\n        if not mi <= target <= mi + len(arr):\n            return \"-1\"\n        d = target - mi\n        arr.sort(reverse=True)\n        ans = d - sum(arr[:d]) + sum(arr[d:])\n        return f'{ans:.3f}'",

@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def confusingNumberII(self, n: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int confusingNumberII(int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private final int[] d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n    private String s;\n\n    public int confusingNumberII(int n) {\n        \n    }\n};\n",
-    "javascript": "function confusingNumberII(n: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int confusingNumberII(int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private final int[] d = {0, 1, -1, -1, -1, -1, 9, -1, 8, 6};\n    private String s;\n\n    public int confusingNumberII(int n) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function confusingNumberII(n: number): number {\n    const s = n.toString();\n    const d: number[] = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6];\n    const check = (x: number) => {\n        let y = 0;\n        for (let t = x; t > 0; t = Math.floor(t / 10)) {\n            const v = t % 10;\n            y = y * 10 + d[v];\n        }\n        return x !== y;\n    };\n    const dfs = (pos: number, limit: boolean, x: number): number => {\n        if (pos >= s.length) {\n            return check(x) ? 1 : 0;\n        }\n        const up = limit ? parseInt(s[pos]) : 9;\n        let ans = 0;\n        for (let i = 0; i <= up; ++i) {\n            if (d[i] !== -1) {\n                ans += dfs(pos + 1, limit && i === up, x * 10 + i);\n            }\n        }\n        return ans;\n    };\n    return dfs(0, true, 0);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def confusingNumberII(self, n: int) -> int:\n        def check(x: int) -> bool:\n            y, t = 0, x\n            while t:\n                t, v = divmod(t, 10)\n                y = y * 10 + d[v]\n            return x != y\n\n        def dfs(pos: int, limit: bool, x: int) -> int:\n            if pos >= len(s):\n                return int(check(x))\n            up = int(s[pos]) if limit else 9\n            ans = 0\n            for i in range(up + 1):\n                if d[i] != -1:\n                    ans += dfs(pos + 1, limit and i == up, x * 10 + i)\n            return ans\n\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        s = str(n)\n        return dfs(0, True, 0)",

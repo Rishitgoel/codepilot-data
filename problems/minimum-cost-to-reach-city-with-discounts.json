@@ -45,8 +45,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minimumCost(self, n: int, highways: List[List[int]], discounts: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minimumCost(int n, vector<vector<int>>& highways, int discounts) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minimumCost(int n, int[][] highways, int discounts) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int minimumCost(int n, vector<vector<int>>& highways, int discounts) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minimumCost(int n, int[][] highways, int discounts) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumCost(self, n: int, highways: List[List[int]], discounts: int) -> int:\n        g = defaultdict(list)\n        for a, b, c in highways:\n            g[a].append((b, c))\n            g[b].append((a, c))\n        q = [(0, 0, 0)]\n        dist = [[inf] * (discounts + 1) for _ in range(n)]\n        while q:\n            cost, i, k = heappop(q)\n            if k > discounts:\n                continue\n            if i == n - 1:\n                return cost\n            if dist[i][k] > cost:\n                dist[i][k] = cost\n                for j, v in g[i]:\n                    heappush(q, (cost + v, j, k))\n                    heappush(q, (cost + v // 2, j, k + 1))\n        return -1",

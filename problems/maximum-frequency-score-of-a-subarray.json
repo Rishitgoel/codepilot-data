@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxFrequencyScore(self, nums: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxFrequencyScore(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private final int mod = (int) 1e9 + 7;\n\n    public int maxFrequencyScore(int[] nums, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxFrequencyScore(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private final int mod = (int) 1e9 + 7;\n\n    public int maxFrequencyScore(int[] nums, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxFrequencyScore(self, nums: List[int], k: int) -> int:\n        mod = 10**9 + 7\n        cnt = Counter(nums[:k])\n        ans = cur = sum(pow(k, v, mod) for k, v in cnt.items()) % mod\n        i = k\n        while i < len(nums):\n            a, b = nums[i - k], nums[i]\n            if a != b:\n                cur += (b - 1) * pow(b, cnt[b], mod) if cnt[b] else b\n                cur -= (a - 1) * pow(a, cnt[a] - 1, mod) if cnt[a] > 1 else a\n                cur %= mod\n                cnt[b] += 1\n                cnt[a] -= 1\n                ans = max(ans, cur)\n            i += 1\n        return ans",

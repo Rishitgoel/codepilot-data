@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minScore(self, grid: List[List[int]]) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> minScore(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[][] minScore(int[][] grid) {\n        \n    }\n};\n",
-    "javascript": "function minScore(grid: number[][]): number[][] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> minScore(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[][] minScore(int[][] grid) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minScore(grid: number[][]): number[][] {\n    const m = grid.length;\n    const n = grid[0].length;\n    const nums = [];\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            nums.push([grid[i][j], i, j]);\n        }\n    }\n    nums.sort((a, b) => a[0] - b[0]);\n    const rowMax = new Array(m).fill(0);\n    const colMax = new Array(n).fill(0);\n    const ans = Array.from({ length: m }, _ => new Array(n));\n    for (const [_, i, j] of nums) {\n        ans[i][j] = Math.max(rowMax[i], colMax[j]) + 1;\n        rowMax[i] = colMax[j] = ans[i][j];\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minScore(self, grid: List[List[int]]) -> List[List[int]]:\n        m, n = len(grid), len(grid[0])\n        nums = [(v, i, j) for i, row in enumerate(grid) for j, v in enumerate(row)]\n        nums.sort()\n        row_max = [0] * m\n        col_max = [0] * n\n        ans = [[0] * n for _ in range(m)]\n        for _, i, j in nums:\n            ans[i][j] = max(row_max[i], col_max[j]) + 1\n            row_max[i] = col_max[j] = ans[i][j]\n        return ans",

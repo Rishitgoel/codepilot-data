@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def digitsCount(self, d: int, low: int, high: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int d;\n    int a[11];\n    int dp[11][11];\n\n    int digitsCount(int d, int low, int high) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int d;\n    private int[] a = new int[11];\n    private int[][] dp = new int[11][11];\n\n    public int digitsCount(int d, int low, int high) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int d;\n    int a[11];\n    int dp[11][11];\n\n    int digitsCount(int d, int low, int high) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int d;\n    private int[] a = new int[11];\n    private int[][] dp = new int[11][11];\n\n    public int digitsCount(int d, int low, int high) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def digitsCount(self, d: int, low: int, high: int) -> int:\n        return self.f(high, d) - self.f(low - 1, d)\n\n    def f(self, n, d):\n        @cache\n        def dfs(pos, cnt, lead, limit):\n            if pos <= 0:\n                return cnt\n            up = a[pos] if limit else 9\n            ans = 0\n            for i in range(up + 1):\n                if i == 0 and lead:\n                    ans += dfs(pos - 1, cnt, lead, limit and i == up)\n                else:\n                    ans += dfs(pos - 1, cnt + (i == d), False, limit and i == up)\n            return ans\n\n        a = [0] * 11\n        l = 0\n        while n:\n            l += 1\n            a[l] = n % 10\n            n //= 10\n        return dfs(l, 0, True, True)",

@@ -41,7 +41,7 @@
     "0 <= arr.length <= 10^5"
   ],
   "starterTemplates": {
-    "javascript": "Array.prototype.forEach = function (callback: Function, context: any): void {\n    \n};\n"
+    "javascript": "Array.prototype.forEach = function (callback: Function, context: any): void {\n    for (let i = 0; i < this.length; ++i) {\n        callback.call(context, this[i], i, this);\n    }\n};\n\n/**\n *  const arr = [1,2,3];\n *  const callback = (val, i, arr) => arr[i] = val * 2;\n *  const context = {\"context\":true};\n *\n *  arr.forEach(callback, context)\n *\n *  console.log(arr) // [2,4,6]\n */"
   },
   "snippets": {
     "javascript": "Array.prototype.forEach = function (callback: Function, context: any): void {\n    for (let i = 0; i < this.length; ++i) {\n        callback.call(context, this[i], i, this);\n    }\n};\n\n/**\n *  const arr = [1,2,3];\n *  const callback = (val, i, arr) => arr[i] = val * 2;\n *  const context = {\"context\":true};\n *\n *  arr.forEach(callback, context)\n *\n *  console.log(arr) // [2,4,6]\n */"

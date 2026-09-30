@@ -42,7 +42,7 @@
     "1 <= JSON.stringify(obj2).length <= 5 * 10^5"
   ],
   "starterTemplates": {
-    "javascript": "function deepMerge(obj1: any, obj2: any): any {\n    \n};\n"
+    "javascript": "function deepMerge(obj1: any, obj2: any): any {\n    const isObj = (obj: any) => obj && typeof obj === 'object';\n    const isArr = (obj: any) => Array.isArray(obj);\n    if (!isObj(obj1) || !isObj(obj2)) {\n        return obj2;\n    }\n    if (isArr(obj1) !== isArr(obj2)) {\n        return obj2;\n    }\n    for (const key in obj2) {\n        obj1[key] = deepMerge(obj1[key], obj2[key]);\n    }\n    return obj1;\n}\n\n/**\n * let obj1 = {\"a\": 1, \"c\": 3}, obj2 = {\"a\": 2, \"b\": 2};\n * deepMerge(obj1, obj2); // {\"a\": 2, \"c\": 3, \"b\": 2}\n */"
   },
   "snippets": {
     "javascript": "function deepMerge(obj1: any, obj2: any): any {\n    const isObj = (obj: any) => obj && typeof obj === 'object';\n    const isArr = (obj: any) => Array.isArray(obj);\n    if (!isObj(obj1) || !isObj(obj2)) {\n        return obj2;\n    }\n    if (isArr(obj1) !== isArr(obj2)) {\n        return obj2;\n    }\n    for (const key in obj2) {\n        obj1[key] = deepMerge(obj1[key], obj2[key]);\n    }\n    return obj1;\n}\n\n/**\n * let obj1 = {\"a\": 1, \"c\": 3}, obj2 = {\"a\": 2, \"b\": 2};\n * deepMerge(obj1, obj2); // {\"a\": 2, \"c\": 3, \"b\": 2}\n */"

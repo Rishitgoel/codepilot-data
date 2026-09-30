@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findPermutation(self, s: str) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> findPermutation(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] findPermutation(String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> findPermutation(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] findPermutation(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findPermutation(self, s: str) -> List[int]:\n        n = len(s)\n        ans = list(range(1, n + 2))\n        i = 0\n        while i < n:\n            j = i\n            while j < n and s[j] == 'D':\n                j += 1\n            ans[i : j + 1] = ans[i : j + 1][::-1]\n            i = max(i + 1, j)\n        return ans",

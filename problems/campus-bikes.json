@@ -42,9 +42,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def assignBikes(\n        self, workers: List[List[int]], bikes: List[List[int]]\n    ) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] assignBikes(int[][] workers, int[][] bikes) {\n        \n    }\n};\n",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> assignBikes(vector<vector<int>>& workers, vector<vector<int>>& bikes) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] assignBikes(int[][] workers, int[][] bikes) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var solution = function() {\n    \n};"
   },
   "snippets": {
     "python": "class Solution:\n    def assignBikes(\n        self, workers: List[List[int]], bikes: List[List[int]]\n    ) -> List[int]:\n        n, m = len(workers), len(bikes)\n        arr = []\n        for i, j in product(range(n), range(m)):\n            dist = abs(workers[i][0] - bikes[j][0]) + abs(workers[i][1] - bikes[j][1])\n            arr.append((dist, i, j))\n        arr.sort()\n        vis1 = [False] * n\n        vis2 = [False] * m\n        ans = [0] * n\n        for _, i, j in arr:\n            if not vis1[i] and not vis2[j]:\n                vis1[i] = vis2[j] = True\n                ans[i] = j\n        return ans",

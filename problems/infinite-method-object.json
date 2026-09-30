@@ -34,7 +34,7 @@
     "0 <= method.length <= 1000"
   ],
   "starterTemplates": {
-    "javascript": "function createInfiniteObject(): Record<string, () => string> {\n    \n};\n"
+    "javascript": "function createInfiniteObject(): Record<string, () => string> {\n    return new Proxy(\n        {},\n        {\n            get: (_, prop) => () => prop.toString(),\n        },\n    );\n}\n\n/**\n * const obj = createInfiniteObject();\n * obj['abc123'](); // \"abc123\"\n */"
   },
   "snippets": {
     "javascript": "function createInfiniteObject(): Record<string, () => string> {\n    return new Proxy(\n        {},\n        {\n            get: (_, prop) => () => prop.toString(),\n        },\n    );\n}\n\n/**\n * const obj = createInfiniteObject();\n * obj['abc123'](); // \"abc123\"\n */"

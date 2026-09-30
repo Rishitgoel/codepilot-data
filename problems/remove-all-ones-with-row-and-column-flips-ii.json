@@ -42,8 +42,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int removeOnes(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int removeOnes(int[][] grid) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int removeOnes(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int removeOnes(int[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> int:\n        m, n = len(grid), len(grid[0])\n        state = sum(1 << (i * n + j) for i in range(m) for j in range(n) if grid[i][j])\n        q = deque([state])\n        vis = {state}\n        ans = 0\n        while q:\n            for _ in range(len(q)):\n                state = q.popleft()\n                if state == 0:\n                    return ans\n                for i in range(m):\n                    for j in range(n):\n                        if grid[i][j] == 0:\n                            continue\n                        nxt = state\n                        for r in range(m):\n                            nxt &= ~(1 << (r * n + j))\n                        for c in range(n):\n                            nxt &= ~(1 << (i * n + c))\n                        if nxt not in vis:\n                            vis.add(nxt)\n                            q.append(nxt)\n            ans += 1\n        return -1",

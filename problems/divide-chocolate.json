@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximizeSweetness(self, sweetness: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maximizeSweetness(vector<int>& sweetness, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maximizeSweetness(int[] sweetness, int k) {\n        \n    }\n};\n",
-    "javascript": "function maximizeSweetness(sweetness: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maximizeSweetness(vector<int>& sweetness, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maximizeSweetness(int[] sweetness, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maximizeSweetness(sweetness: number[], k: number): number {\n    let l = 0;\n    let r = sweetness.reduce((a, b) => a + b);\n    const check = (x: number): boolean => {\n        let s = 0;\n        let cnt = 0;\n        for (const v of sweetness) {\n            s += v;\n            if (s >= x) {\n                s = 0;\n                ++cnt;\n            }\n        }\n        return cnt > k;\n    };\n    while (l < r) {\n        const mid = (l + r + 1) >> 1;\n        if (check(mid)) {\n            l = mid;\n        } else {\n            r = mid - 1;\n        }\n    }\n    return l;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maximizeSweetness(self, sweetness: List[int], k: int) -> int:\n        def check(x: int) -> bool:\n            s = cnt = 0\n            for v in sweetness:\n                s += v\n                if s >= x:\n                    s = 0\n                    cnt += 1\n            return cnt > k\n\n        l, r = 0, sum(sweetness)\n        while l < r:\n            mid = (l + r + 1) >> 1\n            if check(mid):\n                l = mid\n            else:\n                r = mid - 1\n        return l",

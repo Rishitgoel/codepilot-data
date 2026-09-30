@@ -42,7 +42,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxDepthBST(self, order: List[int]) -> int:\n        pass\n",
-    "java": "class Solution {\n    public int maxDepthBST(int[] order) {\n        \n    }\n};\n"
+    "java": "class Solution {\n    public int maxDepthBST(int[] order) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxDepthBST(self, order: List[int]) -> int:\n        sd = SortedDict({0: 0, inf: 0, order[0]: 1})\n        ans = 1\n        for v in order[1:]:\n            lower = sd.bisect_left(v) - 1\n            higher = lower + 1\n            depth = 1 + max(sd.values()[lower], sd.values()[higher])\n            ans = max(ans, depth)\n            sd[v] = depth\n        return ans",

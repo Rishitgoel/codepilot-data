@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def uniqueEmailGroups(self, emails: list[str]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int uniqueEmailGroups(vector<string>& emails) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int uniqueEmailGroups(String[] emails) {\n        \n    }\n};\n",
-    "javascript": "function uniqueEmailGroups(emails: string[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int uniqueEmailGroups(vector<string>& emails) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int uniqueEmailGroups(String[] emails) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function uniqueEmailGroups(emails: string[]): number {\n    const st = new Set<string>();\n\n    for (const email of emails) {\n        let [local, domain] = email.split('@');\n        local = local.split('+')[0].replace(/\\./g, '').toLowerCase();\n        domain = domain.toLowerCase();\n\n        const normalized = local + domain;\n        st.add(normalized);\n    }\n\n    return st.size;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def uniqueEmailGroups(self, emails: list[str]) -> int:\n        st = set()\n        for email in emails:\n            local, domain = email.split(\"@\")\n            local = local.split(\"+\")[0].replace(\".\", \"\").lower()\n            domain = domain.lower()\n            normalized = local + domain\n            st.add(normalized)\n        return len(st)",

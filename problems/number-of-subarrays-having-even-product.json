@@ -36,8 +36,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def evenProduct(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long evenProduct(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long evenProduct(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    long long evenProduct(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long evenProduct(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def evenProduct(self, nums: List[int]) -> int:\n        ans, last = 0, -1\n        for i, v in enumerate(nums):\n            if v % 2 == 0:\n                last = i\n            ans += last + 1\n        return ans",

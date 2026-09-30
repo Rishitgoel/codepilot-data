@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumCoins(\n        self, heroes: List[int], monsters: List[int], coins: List[int]\n    ) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<long long> maximumCoins(vector<int>& heroes, vector<int>& monsters, vector<int>& coins) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long[] maximumCoins(int[] heroes, int[] monsters, int[] coins) {\n        \n    }\n};\n",
-    "javascript": "function maximumCoins(heroes: number[], monsters: number[], coins: number[]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<long long> maximumCoins(vector<int>& heroes, vector<int>& monsters, vector<int>& coins) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long[] maximumCoins(int[] heroes, int[] monsters, int[] coins) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maximumCoins(heroes: number[], monsters: number[], coins: number[]): number[] {\n    const m = monsters.length;\n    const idx: number[] = Array.from({ length: m }, (_, i) => i);\n    idx.sort((i, j) => monsters[i] - monsters[j]);\n    const s: number[] = Array(m + 1).fill(0);\n    for (let i = 0; i < m; ++i) {\n        s[i + 1] = s[i] + coins[idx[i]];\n    }\n    const search = (x: number): number => {\n        let l = 0;\n        let r = m;\n        while (l < r) {\n            const mid = (l + r) >> 1;\n            if (monsters[idx[mid]] > x) {\n                r = mid;\n            } else {\n                l = mid + 1;\n            }\n        }\n        return l;\n    };\n    return heroes.map(h => s[search(h)]);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumCoins(\n        self, heroes: List[int], monsters: List[int], coins: List[int]\n    ) -> List[int]:\n        m = len(monsters)\n        idx = sorted(range(m), key=lambda i: monsters[i])\n        s = list(accumulate((coins[i] for i in idx), initial=0))\n        ans = []\n        for h in heroes:\n            i = bisect_right(idx, h, key=lambda i: monsters[i])\n            ans.append(s[i])\n        return ans",

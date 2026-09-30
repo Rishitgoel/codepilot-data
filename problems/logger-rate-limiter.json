@@ -36,9 +36,9 @@
   ],
   "starterTemplates": {
     "python": "class Logger:\n    def __init__(self):\n        pass\n",
-    "cpp": "class Logger {\n    unordered_map<string, int> lastPrinted;\npublic:\n    Logger() {}\n        \n    }\n};\n",
-    "java": "class Logger {\n    private Map<String, Integer> lastPrinted = new HashMap<>();\n    public Logger() {}\n        \n    }\n};\n",
-    "javascript": "var Logger = function() {\n    \n};\n"
+    "cpp": "class Logger {\n    unordered_map<string, int> lastPrinted;\npublic:\n    Logger() {}\n    bool shouldPrintMessage(int timestamp, string message) {\n        if (!lastPrinted.count(message) || timestamp - lastPrinted[message] >= 10) {\n            lastPrinted[message] = timestamp;\n            return true;\n        }\n        return false;\n    }\n};",
+    "java": "class Logger {\n    private Map<String, Integer> lastPrinted = new HashMap<>();\n    public Logger() {}\n    public boolean shouldPrintMessage(int timestamp, String message) {\n        if (!lastPrinted.containsKey(message) || timestamp - lastPrinted.get(message) >= 10) {\n            lastPrinted.put(message, timestamp);\n            return true;\n        }\n        return false;\n    }\n}",
+    "javascript": "var Logger = function() {\n    this.lastPrinted = new Map();\n};\nLogger.prototype.shouldPrintMessage = function(timestamp, message) {\n    if (!this.lastPrinted.has(message) || timestamp - this.lastPrinted.get(message) >= 10) {\n        this.lastPrinted.set(message, timestamp);\n        return true;\n    }\n    return false;\n};"
   },
   "snippets": {
     "python": "class Logger:\n    def __init__(self):\n        self.last_printed = {}\n\n    def shouldPrintMessage(self, timestamp: int, message: str) -> bool:\n        if message not in self.last_printed or timestamp - self.last_printed[message] >= 10:\n            self.last_printed[message] = timestamp\n            return True\n        return False",

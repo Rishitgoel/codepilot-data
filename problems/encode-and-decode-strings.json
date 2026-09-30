@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Codec:\n    def encode(self, strs: List[str]) -> str:\n        pass\n",
-    "cpp": "class Codec {\npublic:\n    string encode(vector<string>& strs) {\n        \n    }\n};\n",
-    "java": "public class Codec {\n    public String encode(List<String> strs) {\n        \n    }\n};\n",
-    "javascript": "var encode = function(strs) {\n    \n};\n"
+    "cpp": "class Codec {\npublic:\n    string encode(vector<string>& strs) {\n        string encoded = \"\";\n        for (const string& s : strs) {\n            encoded += to_string(s.size()) + \"#\" + s;\n        }\n        return encoded;\n    }\n\n    vector<string> decode(string s) {\n        vector<string> res;\n        int i = 0;\n        while (i < (int)s.size()) {\n            int j = s.find(\"#\", i);\n            int len = stoi(s.substr(i, j - i));\n            res.push_back(s.substr(j + 1, len));\n            i = j + 1 + len;\n        }\n        return res;\n    }\n};",
+    "java": "public class Codec {\n    public String encode(List<String> strs) {\n        StringBuilder sb = new StringBuilder();\n        for (String s : strs) {\n            sb.append(s.length()).append(\"#\").append(s);\n        }\n        return sb.toString();\n    }\n\n    public List<String> decode(String s) {\n        List<String> res = new ArrayList<>();\n        int i = 0;\n        while (i < s.length()) {\n            int j = s.indexOf(\"#\", i);\n            int len = Integer.parseInt(s.substring(i, j));\n            res.add(s.substring(j + 1, j + 1 + len));\n            i = j + 1 + len;\n        }\n        return res;\n    }\n}",
+    "javascript": "var encode = function(strs) {\n    return strs.map(s => `${s.length}#${s}`).join(\"\");\n};\n\nvar decode = function(s) {\n    const res = [];\n    let i = 0;\n    while (i < s.length) {\n        const j = s.indexOf(\"#\", i);\n        const len = parseInt(s.substring(i, j), 10);\n        res.push(s.substring(j + 1, j + 1 + len));\n        i = j + 1 + len;\n    }\n    return res;\n};"
   },
   "snippets": {
     "python": "class Codec:\n    def encode(self, strs: List[str]) -> str:\n        return \"\".join(f\"{len(s)}#{s}\" for s in strs)\n\n    def decode(self, s: str) -> List[str]:\n        res, i = [], 0\n        while i < len(s):\n            j = s.find(\"#\", i)\n            length = int(s[i:j])\n            res.append(s[j + 1:j + 1 + length])\n            i = j + 1 + length\n        return res",

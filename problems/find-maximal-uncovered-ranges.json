@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findMaximalUncoveredRanges(\n        self, n: int, ranges: List[List[int]]\n    ) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMaximalUncoveredRanges(int n, vector<vector<int>>& ranges) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[][] findMaximalUncoveredRanges(int n, int[][] ranges) {\n        \n    }\n};\n",
-    "javascript": "function findMaximalUncoveredRanges(n: number, ranges: number[][]): number[][] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMaximalUncoveredRanges(int n, vector<vector<int>>& ranges) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[][] findMaximalUncoveredRanges(int n, int[][] ranges) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function findMaximalUncoveredRanges(n: number, ranges: number[][]): number[][] {\n    ranges.sort((a, b) => a[0] - b[0]);\n    let last = -1;\n    const ans: number[][] = [];\n    for (const [l, r] of ranges) {\n        if (last + 1 < l) {\n            ans.push([last + 1, l - 1]);\n        }\n        last = Math.max(last, r);\n    }\n    if (last + 1 < n) {\n        ans.push([last + 1, n - 1]);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findMaximalUncoveredRanges(\n        self, n: int, ranges: List[List[int]]\n    ) -> List[List[int]]:\n        ranges.sort()\n        last = -1\n        ans = []\n        for l, r in ranges:\n            if last + 1 < l:\n                ans.append([last + 1, l - 1])\n            last = max(last, r)\n        if last + 1 < n:\n            ans.append([last + 1, n - 1])\n        return ans",

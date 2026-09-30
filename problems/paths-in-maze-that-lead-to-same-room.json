@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def numberOfPaths(self, n: int, corridors: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int numberOfPaths(int n, vector<vector<int>>& corridors) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int numberOfPaths(int n, int[][] corridors) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int numberOfPaths(int n, vector<vector<int>>& corridors) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int numberOfPaths(int n, int[][] corridors) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfPaths(self, n: int, corridors: List[List[int]]) -> int:\n        g = defaultdict(set)\n        for a, b in corridors:\n            g[a].add(b)\n            g[b].add(a)\n        ans = 0\n        for i in range(1, n + 1):\n            for j, k in combinations(g[i], 2):\n                if j in g[k]:\n                    ans += 1\n        return ans // 3",

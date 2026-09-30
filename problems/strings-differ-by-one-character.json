@@ -39,8 +39,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def differByOne(self, dict: List[str]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool differByOne(vector<string>& dict) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean differByOne(String[] dict) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool differByOne(vector<string>& dict) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean differByOne(String[] dict) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def differByOne(self, dict: List[str]) -> bool:\n        s = set()\n        for word in dict:\n            for i in range(len(word)):\n                t = word[:i] + \"*\" + word[i + 1 :]\n                if t in s:\n                    return True\n                s.add(t)\n        return False",

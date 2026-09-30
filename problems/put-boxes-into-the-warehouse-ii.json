@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxBoxesInWarehouse(vector<int>& boxes, vector<int>& warehouse) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxBoxesInWarehouse(vector<int>& boxes, vector<int>& warehouse) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxBoxesInWarehouse(int[] boxes, int[] warehouse) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:\n        n = len(warehouse)\n        left = [0] * n\n        right = [0] * n\n        left[0] = right[-1] = inf\n        for i in range(1, n):\n            left[i] = min(left[i - 1], warehouse[i - 1])\n        for i in range(n - 2, -1, -1):\n            right[i] = min(right[i + 1], warehouse[i + 1])\n        for i in range(n):\n            warehouse[i] = min(warehouse[i], max(left[i], right[i]))\n        boxes.sort()\n        warehouse.sort()\n        ans = i = 0\n        for x in boxes:\n            while i < n and warehouse[i] < x:\n                i += 1\n            if i == n:\n                break\n            ans, i = ans + 1, i + 1\n        return ans",

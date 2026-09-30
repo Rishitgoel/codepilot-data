@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def smallestNumber(self, n: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string smallestNumber(long long n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String smallestNumber(long n) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string smallestNumber(long long n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String smallestNumber(long n) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def smallestNumber(self, n: int) -> str:\n        cnt = [0] * 10\n        for i in range(9, 1, -1):\n            while n % i == 0:\n                n //= i\n                cnt[i] += 1\n        if n > 1:\n            return \"-1\"\n        ans = \"\".join(str(i) * cnt[i] for i in range(2, 10))\n        return ans if ans else \"1\"",

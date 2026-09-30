@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minmaxGasDist(self, stations: List[int], k: int) -> float:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    double minmaxGasDist(vector<int>& stations, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public double minmaxGasDist(int[] stations, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    double minmaxGasDist(vector<int>& stations, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public double minmaxGasDist(int[] stations, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minmaxGasDist(self, stations: List[int], k: int) -> float:\n        def check(x):\n            return sum(int((b - a) / x) for a, b in pairwise(stations)) <= k\n\n        left, right = 0, 1e8\n        while right - left > 1e-6:\n            mid = (left + right) / 2\n            if check(mid):\n                right = mid\n            else:\n                left = mid\n        return left",

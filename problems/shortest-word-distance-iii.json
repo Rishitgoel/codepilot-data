@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int shortestWordDistance(vector<string>& wordsDict, string word1, string word2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int shortestWordDistance(String[] wordsDict, String word1, String word2) {\n        \n    }\n};\n",
-    "javascript": "function shortestWordDistance(wordsDict: string[], word1: string, word2: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int shortestWordDistance(vector<string>& wordsDict, string word1, string word2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int shortestWordDistance(String[] wordsDict, String word1, String word2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function shortestWordDistance(wordsDict: string[], word1: string, word2: string): number {\n    let ans = wordsDict.length;\n    if (word1 === word2) {\n        let j = -1;\n        for (let i = 0; i < wordsDict.length; i++) {\n            if (wordsDict[i] === word1) {\n                if (j !== -1) {\n                    ans = Math.min(ans, i - j);\n                }\n                j = i;\n            }\n        }\n    } else {\n        let i = -1,\n            j = -1;\n        for (let k = 0; k < wordsDict.length; k++) {\n            if (wordsDict[k] === word1) {\n                i = k;\n            }\n            if (wordsDict[k] === word2) {\n                j = k;\n            }\n            if (i !== -1 && j !== -1) {\n                ans = Math.min(ans, Math.abs(i - j));\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:\n        ans = len(wordsDict)\n        if word1 == word2:\n            j = -1\n            for i, w in enumerate(wordsDict):\n                if w == word1:\n                    if j != -1:\n                        ans = min(ans, i - j)\n                    j = i\n        else:\n            i = j = -1\n            for k, w in enumerate(wordsDict):\n                if w == word1:\n                    i = k\n                if w == word2:\n                    j = k\n                if i != -1 and j != -1:\n                    ans = min(ans, abs(i - j))\n        return ans",

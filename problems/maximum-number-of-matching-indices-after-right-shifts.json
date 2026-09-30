@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maximumMatchingIndices(self, nums1: List[int], nums2: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int maximumMatchingIndices(vector<int>& nums1, vector<int>& nums2) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int maximumMatchingIndices(int[] nums1, int[] nums2) {\r\n        \n    }\n};\n",
-    "javascript": "function maximumMatchingIndices(nums1: number[], nums2: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int maximumMatchingIndices(vector<int>& nums1, vector<int>& nums2) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int maximumMatchingIndices(int[] nums1, int[] nums2) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function maximumMatchingIndices(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    let ans: number = 0;\n    for (let k = 0; k < n; ++k) {\n        let t: number = 0;\n        for (let i = 0; i < n; ++i) {\n            if (nums1[(i + k) % n] === nums2[i]) {\n                ++t;\n            }\n        }\n        ans = Math.max(ans, t);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maximumMatchingIndices(self, nums1: List[int], nums2: List[int]) -> int:\r\n        n = len(nums1)\r\n        ans = 0\r\n        for k in range(n):\r\n            t = sum(nums1[(i + k) % n] == x for i, x in enumerate(nums2))\r\n            ans = max(ans, t)\r\n        return ans",

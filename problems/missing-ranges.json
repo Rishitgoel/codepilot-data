@@ -38,9 +38,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findMissingRanges(\n        self, nums: List[int], lower: int, upper: int\n    ) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<List<Integer>> findMissingRanges(int[] nums, int lower, int upper) {\n        \n    }\n};\n",
-    "javascript": "function findMissingRanges(nums: number[], lower: number, upper: number): number[][] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> findMissingRanges(int[] nums, int lower, int upper) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function findMissingRanges(nums: number[], lower: number, upper: number): number[][] {\n    const n = nums.length;\n    if (n === 0) {\n        return [[lower, upper]];\n    }\n    const ans: number[][] = [];\n    if (nums[0] > lower) {\n        ans.push([lower, nums[0] - 1]);\n    }\n    for (let i = 1; i < n; ++i) {\n        if (nums[i] - nums[i - 1] > 1) {\n            ans.push([nums[i - 1] + 1, nums[i] - 1]);\n        }\n    }\n    if (nums[n - 1] < upper) {\n        ans.push([nums[n - 1] + 1, upper]);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findMissingRanges(\n        self, nums: List[int], lower: int, upper: int\n    ) -> List[List[int]]:\n        n = len(nums)\n        if n == 0:\n            return [[lower, upper]]\n        ans = []\n        if nums[0] > lower:\n            ans.append([lower, nums[0] - 1])\n        for a, b in pairwise(nums):\n            if b - a > 1:\n                ans.append([a + 1, b - 1])\n        if nums[-1] < upper:\n            ans.append([nums[-1] + 1, upper])\n        return ans",

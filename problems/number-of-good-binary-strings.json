@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def goodBinaryStrings(\n        self, minLength: int, maxLength: int, oneGroup: int, zeroGroup: int\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int goodBinaryStrings(int minLength, int maxLength, int oneGroup, int zeroGroup) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int goodBinaryStrings(int minLength, int maxLength, int oneGroup, int zeroGroup) {\n        \n    }\n};\n",
+    "cpp": "class Solution {\npublic:\n    int goodBinaryStrings(int minLength, int maxLength, int oneGroup, int zeroGroup) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int goodBinaryStrings(int minLength, int maxLength, int oneGroup, int zeroGroup) {\n        // Your code here\n    }\n}\n",
     "javascript": "function goodBinaryStrings(\n    minLength: number,\n    maxLength: number,\n    oneGroup: number,\n    zeroGroup: number,\n): number {\n    const mod = 10 ** 9 + 7;\n    const f: number[] = Array(maxLength + 1).fill(0);\n    f[0] = 1;\n    for (let i = 1; i <= maxLength; ++i) {\n        if (i >= oneGroup) {\n            f[i] += f[i - oneGroup];\n        }\n        if (i >= zeroGroup) {\n            f[i] += f[i - zeroGroup];\n        }\n        f[i] %= mod;\n    }\n    return f.slice(minLength).reduce((a, b) => a + b, 0) % mod;\n}"
   },
   "snippets": {

@@ -38,8 +38,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    void wiggleSort(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    void wiggleSort(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public void wiggleSort(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def wiggleSort(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        for i in range(1, len(nums)):\n            if (i % 2 == 1 and nums[i] < nums[i - 1]) or (\n                i % 2 == 0 and nums[i] > nums[i - 1]\n            ):\n                nums[i], nums[i - 1] = nums[i - 1], nums[i]",

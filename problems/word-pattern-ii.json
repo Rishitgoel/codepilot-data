@@ -42,8 +42,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def wordPatternMatch(self, pattern: str, s: str) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool wordPatternMatch(string pattern, string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private Set<String> vis;\n    private Map<Character, String> d;\n    private String p;\n    private String s;\n    private int m;\n    private int n;\n\n    public boolean wordPatternMatch(String pattern, String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool wordPatternMatch(string pattern, string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private Set<String> vis;\n    private Map<Character, String> d;\n    private String p;\n    private String s;\n    private int m;\n    private int n;\n\n    public boolean wordPatternMatch(String pattern, String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def wordPatternMatch(self, pattern: str, s: str) -> bool:\n        def dfs(i, j):\n            if i == m and j == n:\n                return True\n            if i == m or j == n or n - j < m - i:\n                return False\n            for k in range(j, n):\n                t = s[j : k + 1]\n                if d.get(pattern[i]) == t:\n                    if dfs(i + 1, k + 1):\n                        return True\n                if pattern[i] not in d and t not in vis:\n                    d[pattern[i]] = t\n                    vis.add(t)\n                    if dfs(i + 1, k + 1):\n                        return True\n                    d.pop(pattern[i])\n                    vis.remove(t)\n            return False\n\n        m, n = len(pattern), len(s)\n        d = {}\n        vis = set()\n        return dfs(0, 0)",

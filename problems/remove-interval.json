@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def removeInterval(\n        self, intervals: List[List[int]], toBeRemoved: List[int]\n    ) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> removeInterval(vector<vector<int>>& intervals, vector<int>& toBeRemoved) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<List<Integer>> removeInterval(int[][] intervals, int[] toBeRemoved) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> removeInterval(vector<vector<int>>& intervals, vector<int>& toBeRemoved) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> removeInterval(int[][] intervals, int[] toBeRemoved) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def removeInterval(\n        self, intervals: List[List[int]], toBeRemoved: List[int]\n    ) -> List[List[int]]:\n        x, y = toBeRemoved\n        ans = []\n        for a, b in intervals:\n            if a >= y or b <= x:\n                ans.append([a, b])\n            else:\n                if a < x:\n                    ans.append([a, x])\n                if b > y:\n                    ans.append([y, b])\n        return ans",

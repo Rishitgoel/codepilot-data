@@ -36,9 +36,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def generateAbbreviations(self, word: str) -> List[str]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<string> generateAbbreviations(string word) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private String word;\n    private int n;\n\n    public List<String> generateAbbreviations(String word) {\n        \n    }\n};\n",
-    "javascript": "function generateAbbreviations(word: string): string[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<string> generateAbbreviations(string word) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private String word;\n    private int n;\n\n    public List<String> generateAbbreviations(String word) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function generateAbbreviations(word: string): string[] {\n    const n = word.length;\n    const dfs = (i: number): string[] => {\n        if (i >= n) {\n            return [''];\n        }\n        const ans: string[] = [];\n        for (const s of dfs(i + 1)) {\n            ans.push(word[i] + s);\n        }\n        for (let j = i + 1; j <= n; ++j) {\n            for (const s of dfs(j + 1)) {\n                ans.push((j - i).toString() + (j < n ? word[j] : '') + s);\n            }\n        }\n        return ans;\n    };\n    return dfs(0);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def generateAbbreviations(self, word: str) -> List[str]:\n        def dfs(i: int) -> List[str]:\n            if i >= n:\n                return [\"\"]\n            ans = [word[i] + s for s in dfs(i + 1)]\n            for j in range(i + 1, n + 1):\n                for s in dfs(j + 1):\n                    ans.append(str(j - i) + (word[j] if j < n else \"\") + s)\n            return ans\n\n        n = len(word)\n        return dfs(0)",

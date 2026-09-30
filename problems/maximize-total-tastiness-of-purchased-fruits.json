@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxTastiness(\n        self, price: List[int], tastiness: List[int], maxAmount: int, maxCoupons: int\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxTastiness(vector<int>& price, vector<int>& tastiness, int maxAmount, int maxCoupons) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[][][] f;\n    private int[] price;\n    private int[] tastiness;\n    private int n;\n\n    public int maxTastiness(int[] price, int[] tastiness, int maxAmount, int maxCoupons) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxTastiness(vector<int>& price, vector<int>& tastiness, int maxAmount, int maxCoupons) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[][][] f;\n    private int[] price;\n    private int[] tastiness;\n    private int n;\n\n    public int maxTastiness(int[] price, int[] tastiness, int maxAmount, int maxCoupons) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxTastiness(\n        self, price: List[int], tastiness: List[int], maxAmount: int, maxCoupons: int\n    ) -> int:\n        @cache\n        def dfs(i, j, k):\n            if i == len(price):\n                return 0\n            ans = dfs(i + 1, j, k)\n            if j >= price[i]:\n                ans = max(ans, dfs(i + 1, j - price[i], k) + tastiness[i])\n            if j >= price[i] // 2 and k:\n                ans = max(ans, dfs(i + 1, j - price[i] // 2, k - 1) + tastiness[i])\n            return ans\n\n        return dfs(0, maxAmount, maxCoupons)",

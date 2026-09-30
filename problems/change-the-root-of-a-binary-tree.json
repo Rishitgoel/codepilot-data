@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        pass\n",
-    "cpp": "/*\n// Definition for a Node->\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        \n    }\n};\n",
-    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node flipBinaryTree(Node root, Node leaf) {\n        \n    }\n};\n"
+    "cpp": "/*\n// Definition for a Node->\nclass Node {\npublic:\n    int val;\n    Node* left;\n    Node* right;\n    Node* parent;\n};\n*/\n\nclass Solution {\npublic:\n    Node* flipBinaryTree(Node* root, Node* leaf) {\n        // Your code here\n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node left;\n    public Node right;\n    public Node parent;\n};\n*/\n\nclass Solution {\n    public Node flipBinaryTree(Node root, Node leaf) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.left = None\n        self.right = None\n        self.parent = None\n\"\"\"\n\n\nclass Solution:\n    def flipBinaryTree(self, root: \"Node\", leaf: \"Node\") -> \"Node\":\n        cur = leaf\n        p = cur.parent\n        while cur != root:\n            gp = p.parent\n            if cur.left:\n                cur.right = cur.left\n            cur.left = p\n            p.parent = cur\n            if p.left == cur:\n                p.left = None\n            elif p.right == cur:\n                p.right = None\n            cur = p\n            p = gp\n        leaf.parent = None\n        return leaf",

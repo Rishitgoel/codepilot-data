@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def simulationResult(self, windows: List[int], queries: List[int]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> simulationResult(vector<int>& windows, vector<int>& queries) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] simulationResult(int[] windows, int[] queries) {\n        \n    }\n};\n",
-    "javascript": "function simulationResult(windows: number[], queries: number[]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> simulationResult(vector<int>& windows, vector<int>& queries) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] simulationResult(int[] windows, int[] queries) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function simulationResult(windows: number[], queries: number[]): number[] {\n    const n = windows.length;\n    const s: boolean[] = Array(n + 1).fill(false);\n    const ans: number[] = [];\n    for (let i = queries.length - 1; i >= 0; i--) {\n        const q = queries[i];\n        if (!s[q]) {\n            s[q] = true;\n            ans.push(q);\n        }\n    }\n    for (const w of windows) {\n        if (!s[w]) {\n            ans.push(w);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def simulationResult(self, windows: List[int], queries: List[int]) -> List[int]:\n        s = set()\n        ans = []\n        for q in queries[::-1]:\n            if q not in s:\n                ans.append(q)\n                s.add(q)\n        for w in windows:\n            if w not in s:\n                ans.append(w)\n        return ans",

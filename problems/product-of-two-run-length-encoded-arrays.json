@@ -40,8 +40,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findRLEArray(\n        self, encoded1: List[List[int]], encoded2: List[List[int]]\n    ) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findRLEArray(vector<vector<int>>& encoded1, vector<vector<int>>& encoded2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<List<Integer>> findRLEArray(int[][] encoded1, int[][] encoded2) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> findRLEArray(vector<vector<int>>& encoded1, vector<vector<int>>& encoded2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> findRLEArray(int[][] encoded1, int[][] encoded2) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findRLEArray(\n        self, encoded1: List[List[int]], encoded2: List[List[int]]\n    ) -> List[List[int]]:\n        ans = []\n        j = 0\n        for vi, fi in encoded1:\n            while fi:\n                f = min(fi, encoded2[j][1])\n                v = vi * encoded2[j][0]\n                if ans and ans[-1][0] == v:\n                    ans[-1][1] += f\n                else:\n                    ans.append([v, f])\n                fi -= f\n                encoded2[j][1] -= f\n                if encoded2[j][1] == 0:\n                    j += 1\n        return ans",

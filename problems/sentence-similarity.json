@@ -45,8 +45,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def areSentencesSimilar(\n        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]\n    ) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool areSentencesSimilar(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean areSentencesSimilar(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        \n    }\n};\n",
+    "cpp": "class Solution {\npublic:\n    bool areSentencesSimilar(vector<string>& sentence1, vector<string>& sentence2, vector<vector<string>>& similarPairs) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean areSentencesSimilar(\n        String[] sentence1, String[] sentence2, List<List<String>> similarPairs) {\n        // Your code here\n    }\n}\n",
     "javascript": "function areSentencesSimilar(\n    sentence1: string[],\n    sentence2: string[],\n    similarPairs: string[][],\n): boolean {\n    if (sentence1.length !== sentence2.length) {\n        return false;\n    }\n    const s = new Set<string>();\n    for (const [x, y] of similarPairs) {\n        s.add(x + '#' + y);\n        s.add(y + '#' + x);\n    }\n    for (let i = 0; i < sentence1.length; i++) {\n        if (sentence1[i] !== sentence2[i] && !s.has(sentence1[i] + '#' + sentence2[i])) {\n            return false;\n        }\n    }\n    return true;\n}"
   },
   "snippets": {

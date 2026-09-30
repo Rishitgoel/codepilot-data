@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def totalReplacements(self, ranks: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int totalReplacements(vector<int>& ranks) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int totalReplacements(int[] ranks) {\n        \n    }\n};\n",
-    "javascript": "function totalReplacements(ranks: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int totalReplacements(vector<int>& ranks) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int totalReplacements(int[] ranks) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function totalReplacements(ranks: number[]): number {\n    let [ans, cur] = [0, ranks[0]];\n    for (const x of ranks) {\n        if (x < cur) {\n            cur = x;\n            ans++;\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def totalReplacements(self, ranks: List[int]) -> int:\n        ans, cur = 0, ranks[0]\n        for x in ranks:\n            if x < cur:\n                cur = x\n                ans += 1\n        return ans",

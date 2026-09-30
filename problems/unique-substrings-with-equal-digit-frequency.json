@@ -33,7 +33,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def equalDigitFrequency(self, s: str) -> int:\n        pass\n",
-    "java": "class Solution {\n    public int equalDigitFrequency(String s) {\n        \n    }\n};\n"
+    "java": "class Solution {\n    public int equalDigitFrequency(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def equalDigitFrequency(self, s: str) -> int:\n        def check(i, j):\n            v = set()\n            for k in range(10):\n                cnt = presum[j + 1][k] - presum[i][k]\n                if cnt > 0:\n                    v.add(cnt)\n                if len(v) > 1:\n                    return False\n            return True\n\n        n = len(s)\n        presum = [[0] * 10 for _ in range(n + 1)]\n        for i, c in enumerate(s):\n            presum[i + 1][int(c)] += 1\n            for j in range(10):\n                presum[i + 1][j] += presum[i][j]\n        vis = set(s[i : j + 1] for i in range(n) for j in range(i, n) if check(i, j))\n        return len(vis)",

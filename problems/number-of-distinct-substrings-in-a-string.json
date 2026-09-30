@@ -36,8 +36,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countDistinct(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int countDistinct(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int countDistinct(String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int countDistinct(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int countDistinct(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def countDistinct(self, s: str) -> int:\n        n = len(s)\n        return len({s[i:j] for i in range(n) for j in range(i + 1, n + 1)})",

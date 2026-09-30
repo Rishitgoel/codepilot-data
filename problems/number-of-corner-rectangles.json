@@ -42,9 +42,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countCornerRectangles(self, grid: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int countCornerRectangles(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int countCornerRectangles(int[][] grid) {\n        \n    }\n};\n",
-    "javascript": "function countCornerRectangles(grid: number[][]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int countCornerRectangles(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int countCornerRectangles(int[][] grid) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function countCornerRectangles(grid: number[][]): number {\n    const n = grid[0].length;\n    let ans = 0;\n    const cnt: Map<number, number> = new Map();\n    for (const row of grid) {\n        for (let i = 0; i < n; ++i) {\n            if (row[i] === 1) {\n                for (let j = i + 1; j < n; ++j) {\n                    if (row[j] === 1) {\n                        const t = i * 200 + j;\n                        ans += cnt.get(t) ?? 0;\n                        cnt.set(t, (cnt.get(t) ?? 0) + 1);\n                    }\n                }\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countCornerRectangles(self, grid: List[List[int]]) -> int:\n        ans = 0\n        cnt = Counter()\n        n = len(grid[0])\n        for row in grid:\n            for i, c1 in enumerate(row):\n                if c1:\n                    for j in range(i + 1, n):\n                        if row[j]:\n                            ans += cnt[(i, j)]\n                            cnt[(i, j)] += 1\n        return ans",

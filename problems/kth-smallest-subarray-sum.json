@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def kthSmallestSubarraySum(self, nums: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int kthSmallestSubarraySum(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int kthSmallestSubarraySum(int[] nums, int k) {\n        \n    }\n};\n",
-    "javascript": "function kthSmallestSubarraySum(nums: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int kthSmallestSubarraySum(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int kthSmallestSubarraySum(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function kthSmallestSubarraySum(nums: number[], k: number): number {\n    let l = Math.min(...nums);\n    let r = nums.reduce((sum, x) => sum + x, 0);\n\n    const f = (s: number): number => {\n        let cnt = 0;\n        let t = 0;\n        let j = 0;\n\n        for (let i = 0; i < nums.length; i++) {\n            t += nums[i];\n            while (t > s) {\n                t -= nums[j];\n                j++;\n            }\n            cnt += i - j + 1;\n        }\n        return cnt;\n    };\n\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (f(mid) >= k) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return l;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def kthSmallestSubarraySum(self, nums: List[int], k: int) -> int:\n        def f(s):\n            t = j = 0\n            cnt = 0\n            for i, x in enumerate(nums):\n                t += x\n                while t > s:\n                    t -= nums[j]\n                    j += 1\n                cnt += i - j + 1\n            return cnt >= k\n\n        l, r = min(nums), sum(nums)\n        return l + bisect_left(range(l, r + 1), True, key=f)",

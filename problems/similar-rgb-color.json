@@ -33,7 +33,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def similarRGB(self, color: str) -> str:\n        pass\n",
-    "java": "class Solution {\n    public String similarRGB(String color) {\n        \n    }\n};\n"
+    "java": "class Solution {\n    public String similarRGB(String color) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def similarRGB(self, color: str) -> str:\n        def f(x):\n            y, z = divmod(int(x, 16), 17)\n            if z > 8:\n                y += 1\n            return '{:02x}'.format(17 * y)\n\n        a, b, c = color[1:3], color[3:5], color[5:7]\n        return f'#{f(a)}{f(b)}{f(c)}'",

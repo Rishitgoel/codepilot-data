@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minCost(self, costs: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& costs) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minCost(int[][] costs) {\n        \n    }\n};\n",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int minCost(vector<vector<int>>& costs) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minCost(int[][] costs) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var solution = function() {\n    \n};"
   },
   "snippets": {
     "python": "class Solution:\n    def minCost(self, costs: List[List[int]]) -> int:\n        a = b = c = 0\n        for ca, cb, cc in costs:\n            a, b, c = min(b, c) + ca, min(a, c) + cb, min(a, b) + cc\n        return min(a, b, c)",

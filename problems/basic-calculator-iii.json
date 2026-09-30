@@ -43,8 +43,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def calculate(self, s: str) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int calculate(String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int calculate(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int calculate(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def calculate(self, s: str) -> int:\r\n        def dfs(q):\r\n            num, sign, stk = 0, \"+\", []\r\n            while q:\r\n                c = q.popleft()\r\n                if c.isdigit():\r\n                    num = num * 10 + int(c)\r\n                if c == \"(\":\r\n                    num = dfs(q)\r\n                if c in \"+-*/)\" or not q:\r\n                    match sign:\r\n                        case \"+\":\r\n                            stk.append(num)\r\n                        case \"-\":\r\n                            stk.append(-num)\r\n                        case \"*\":\r\n                            stk.append(stk.pop() * num)\r\n                        case \"/\":\r\n                            stk.append(int(stk.pop() / num))\r\n                    num, sign = 0, c\r\n                if c == \")\":\r\n                    break\r\n            return sum(stk)\r\n\r\n        return dfs(deque(s))",

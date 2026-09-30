@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minSubarraySort(self, nums: List[int], k: int) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> minSubarraySort(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[] nums;\n    private final int inf = 1 << 30;\n\n    public int[] minSubarraySort(int[] nums, int k) {\n        \n    }\n};\n",
-    "javascript": "function minSubarraySort(nums: number[], k: number): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> minSubarraySort(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[] nums;\n    private final int inf = 1 << 30;\n\n    public int[] minSubarraySort(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minSubarraySort(nums: number[], k: number): number[] {\n    const inf = Infinity;\n    const n = nums.length;\n    const f = (i: number, j: number): number => {\n        let mi = inf;\n        let mx = -inf;\n        let l = -1,\n            r = -1;\n        for (let p = i; p <= j; ++p) {\n            if (nums[p] < mx) {\n                r = p;\n            } else {\n                mx = nums[p];\n            }\n            const q = j - p + i;\n            if (nums[q] > mi) {\n                l = q;\n            } else {\n                mi = nums[q];\n            }\n        }\n        return r === -1 ? 0 : r - l + 1;\n    };\n\n    const ans: number[] = [];\n    for (let i = 0; i <= n - k; ++i) {\n        ans.push(f(i, i + k - 1));\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minSubarraySort(self, nums: List[int], k: int) -> List[int]:\n        def f(i: int, j: int) -> int:\n            mi, mx = inf, -inf\n            l = r = -1\n            for k in range(i, j + 1):\n                if mx > nums[k]:\n                    r = k\n                else:\n                    mx = nums[k]\n                p = j - k + i\n                if mi < nums[p]:\n                    l = p\n                else:\n                    mi = nums[p]\n            return 0 if r == -1 else r - l + 1\n\n        n = len(nums)\n        return [f(i, i + k - 1) for i in range(n - k + 1)]",

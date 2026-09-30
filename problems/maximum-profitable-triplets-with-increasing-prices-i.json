@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxProfit(self, prices: List[int], profits: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, vector<int>& profits) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxProfit(int[] prices, int[] profits) {\n        \n    }\n};\n",
-    "javascript": "function maxProfit(prices: number[], profits: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices, vector<int>& profits) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxProfit(int[] prices, int[] profits) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxProfit(prices: number[], profits: number[]): number {\n    const n = prices.length;\n    let ans = -1;\n    for (let j = 0; j < n; ++j) {\n        let [left, right] = [0, 0];\n        for (let i = 0; i < j; ++i) {\n            if (prices[i] < prices[j]) {\n                left = Math.max(left, profits[i]);\n            }\n        }\n        for (let k = j + 1; k < n; ++k) {\n            if (prices[j] < prices[k]) {\n                right = Math.max(right, profits[k]);\n            }\n        }\n        if (left > 0 && right > 0) {\n            ans = Math.max(ans, left + profits[j] + right);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxProfit(self, prices: List[int], profits: List[int]) -> int:\n        n = len(prices)\n        ans = -1\n        for j, x in enumerate(profits):\n            left = right = 0\n            for i in range(j):\n                if prices[i] < prices[j] and left < profits[i]:\n                    left = profits[i]\n            for k in range(j + 1, n):\n                if prices[j] < prices[k] and right < profits[k]:\n                    right = profits[k]\n            if left and right:\n                ans = max(ans, left + x + right)\n        return ans",

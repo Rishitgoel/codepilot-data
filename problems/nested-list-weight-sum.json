@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def depthSum(self, nestedList: List[NestedInteger]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int depthSum(vector<NestedInteger>& nestedList) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int depthSum(List<NestedInteger> nestedList) {\n        \n    }\n};\n",
-    "javascript": "var depthSum = function(nestedList) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int depthSum(vector<NestedInteger>& nestedList) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int depthSum(List<NestedInteger> nestedList) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var depthSum = function(nestedList) {\n    function dfs(list, depth) {\n        let total = 0;\n        for (const item of list) {\n            if (item.isInteger()) total += item.getInteger() * depth;\n            else total += dfs(item.getList(), depth + 1);\n        }\n        return total;\n    }\n    return dfs(nestedList, 1);\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def depthSum(self, nestedList: List[NestedInteger]) -> int:\n        def dfs(items, depth):\n            total = 0\n            for x in items:\n                if x.isInteger():\n                    total += x.getInteger() * depth\n                else:\n                    total += dfs(x.getList(), depth + 1)\n            return total\n        return dfs(nestedList, 1)",

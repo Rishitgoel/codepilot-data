@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] getModifiedArray(int length, int[][] updates) {\n        \n    }\n};\n",
-    "javascript": "function getModifiedArray(length: number, updates: number[][]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> getModifiedArray(int length, vector<vector<int>>& updates) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] getModifiedArray(int length, int[][] updates) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function getModifiedArray(length: number, updates: number[][]): number[] {\n    const d: number[] = Array(length).fill(0);\n    for (const [l, r, c] of updates) {\n        d[l] += c;\n        if (r + 1 < length) {\n            d[r + 1] -= c;\n        }\n    }\n    for (let i = 1; i < length; ++i) {\n        d[i] += d[i - 1];\n    }\n    return d;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:\n        d = [0] * length\n        for l, r, c in updates:\n            d[l] += c\n            if r + 1 < length:\n                d[r + 1] -= c\n        return list(accumulate(d))",

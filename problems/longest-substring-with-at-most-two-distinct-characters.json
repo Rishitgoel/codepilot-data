@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringTwoDistinct(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int lengthOfLongestSubstringTwoDistinct(String s) {\n        \n    }\n};\n",
-    "javascript": "var lengthOfLongestSubstringTwoDistinct = function(s) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringTwoDistinct(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int lengthOfLongestSubstringTwoDistinct(String s) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var lengthOfLongestSubstringTwoDistinct = function(s) {\n    const counts = new Map();\n    let left = 0, maxLen = 0;\n    for (let right = 0; right < s.length; right++) {\n        const c = s[right];\n        counts.set(c, (counts.get(c) || 0) + 1);\n        while (counts.size > 2) {\n            const lc = s[left];\n            counts.set(lc, counts.get(lc) - 1);\n            if (counts.get(lc) === 0) counts.delete(lc);\n            left++;\n        }\n        maxLen = Math.max(maxLen, right - left + 1);\n    }\n    return maxLen;\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:\n        counts = defaultdict(int)\n        left = 0\n        max_len = 0\n        for right, c in enumerate(s):\n            counts[c] += 1\n            while len(counts) > 2:\n                counts[s[left]] -= 1\n                if counts[s[left]] == 0:\n                    del counts[s[left]]\n                left += 1\n            max_len = max(max_len, right - left + 1)\n        return max_len",

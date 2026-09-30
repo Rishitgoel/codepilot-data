@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def validSubarrays(self, nums: list[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long validSubarrays(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long validSubarrays(int[] nums, int k) {\n        \n    }\n};\n",
-    "javascript": "function validSubarrays(nums: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long validSubarrays(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long validSubarrays(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function validSubarrays(nums: number[], k: number): number {\n    const n = nums.length;\n    const peaks: number[] = [];\n\n    for (let i = 1; i < n - 1; i++) {\n        if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) {\n            peaks.push(i);\n        }\n    }\n\n    let ans = 0;\n    for (let j = 0; j < peaks.length; j++) {\n        const p = peaks[j];\n\n        let leftMin = Math.max(p - k, 0);\n        if (j > 0) {\n            leftMin = Math.max(leftMin, peaks[j - 1] + 1);\n        }\n\n        let rightMax = Math.min(p + k, n - 1);\n        if (j < peaks.length - 1) {\n            rightMax = Math.min(rightMax, peaks[j + 1] - 1);\n        }\n\n        ans += (p - leftMin + 1) * (rightMax - p + 1);\n    }\n\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def validSubarrays(self, nums: list[int], k: int) -> int:\n        n = len(nums)\n        peaks = []\n        for i in range(1, n - 1):\n            if nums[i] > nums[i - 1] and nums[i] > nums[i + 1]:\n                peaks.append(i)\n\n        ans = 0\n        for j, p in enumerate(peaks):\n            left_min = max(p - k, 0)\n            if j > 0:\n                left_min = max(left_min, peaks[j - 1] + 1)\n\n            right_max = min(p + k, n - 1)\n            if j < len(peaks) - 1:\n                right_max = min(right_max, peaks[j + 1] - 1)\n\n            ans += (p - left_min + 1) * (right_max - p + 1)\n        return ans",

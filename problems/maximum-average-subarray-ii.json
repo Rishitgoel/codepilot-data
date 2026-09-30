@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findMaxAverage(self, nums: List[int], k: int) -> float:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    double findMaxAverage(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public double findMaxAverage(int[] nums, int k) {\n        \n    }\n};\n",
-    "javascript": "function findMaxAverage(nums: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    double findMaxAverage(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public double findMaxAverage(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function findMaxAverage(nums: number[], k: number): number {\n    const eps = 1e-5;\n    let l = Math.min(...nums);\n    let r = Math.max(...nums);\n    const check = (v: number): boolean => {\n        let s = nums.slice(0, k).reduce((a, b) => a + b) - v * k;\n        if (s >= 0) {\n            return true;\n        }\n        let t = 0;\n        let mi = 0;\n        for (let i = k; i < nums.length; ++i) {\n            s += nums[i] - v;\n            t += nums[i - k] - v;\n            mi = Math.min(mi, t);\n            if (s >= mi) {\n                return true;\n            }\n        }\n        return false;\n    };\n    while (r - l >= eps) {\n        const mid = (l + r) / 2;\n        if (check(mid)) {\n            l = mid;\n        } else {\n            r = mid;\n        }\n    }\n    return l;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findMaxAverage(self, nums: List[int], k: int) -> float:\n        def check(v: float) -> bool:\n            s = sum(nums[:k]) - k * v\n            if s >= 0:\n                return True\n            t = mi = 0\n            for i in range(k, len(nums)):\n                s += nums[i] - v\n                t += nums[i - k] - v\n                mi = min(mi, t)\n                if s >= mi:\n                    return True\n            return False\n\n        eps = 1e-5\n        l, r = min(nums), max(nums)\n        while r - l >= eps:\n            mid = (l + r) / 2\n            if check(mid):\n                l = mid\n            else:\n                r = mid\n        return l",

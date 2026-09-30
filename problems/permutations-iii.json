@@ -26,9 +26,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def permute(self, n: int) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> permute(int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private List<int[]> ans = new ArrayList<>();\n    private boolean[] vis;\n    private int[] t;\n    private int n;\n\n    public int[][] permute(int n) {\n        \n    }\n};\n",
-    "javascript": "function permute(n: number): number[][] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> permute(int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private List<int[]> ans = new ArrayList<>();\n    private boolean[] vis;\n    private int[] t;\n    private int n;\n\n    public int[][] permute(int n) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function permute(n: number): number[][] {\n    const ans: number[][] = [];\n    const vis: boolean[] = Array(n).fill(false);\n    const t: number[] = Array(n).fill(0);\n    const dfs = (i: number) => {\n        if (i >= n) {\n            ans.push([...t]);\n            return;\n        }\n        for (let j = 1; j <= n; ++j) {\n            if (!vis[j] && (i === 0 || t[i - 1] % 2 !== j % 2)) {\n                vis[j] = true;\n                t[i] = j;\n                dfs(i + 1);\n                vis[j] = false;\n            }\n        }\n    };\n    dfs(0);\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def permute(self, n: int) -> List[List[int]]:\n        def dfs(i: int) -> None:\n            if i >= n:\n                ans.append(t[:])\n                return\n            for j in range(1, n + 1):\n                if not vis[j] and (i == 0 or t[-1] % 2 != j % 2):\n                    t.append(j)\n                    vis[j] = True\n                    dfs(i + 1)\n                    vis[j] = False\n                    t.pop()\n\n        ans = []\n        t = []\n        vis = [False] * (n + 1)\n        dfs(0)\n        return ans",

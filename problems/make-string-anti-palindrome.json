@@ -28,9 +28,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def makeAntiPalindrome(self, s: str) -> str:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    string makeAntiPalindrome(string s) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public String makeAntiPalindrome(String s) {\r\n        \n    }\n};\n",
-    "javascript": "function makeAntiPalindrome(s: string): string {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    string makeAntiPalindrome(string s) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public String makeAntiPalindrome(String s) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function makeAntiPalindrome(s: string): string {\n    const cs: string[] = s.split('').sort();\n    const n: number = cs.length;\n    const m = n >> 1;\n    if (cs[m] === cs[m - 1]) {\n        let i = m;\n        for (; i < n && cs[i] === cs[i - 1]; i++);\n        for (let j = m; j < n && cs[j] === cs[n - j - 1]; ++i, ++j) {\n            if (i >= n) {\n                return '-1';\n            }\n            [cs[j], cs[i]] = [cs[i], cs[j]];\n        }\n    }\n    return cs.join('');\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def makeAntiPalindrome(self, s: str) -> str:\r\n        cs = sorted(s)\r\n        n = len(cs)\r\n        m = n // 2\r\n        if cs[m] == cs[m - 1]:\r\n            i = m\r\n            while i < n and cs[i] == cs[i - 1]:\r\n                i += 1\r\n            j = m\r\n            while j < n and cs[j] == cs[n - j - 1]:\r\n                if i >= n:\r\n                    return \"-1\"\r\n                cs[i], cs[j] = cs[j], cs[i]\r\n                i, j = i + 1, j + 1\r\n        return \"\".join(cs)",

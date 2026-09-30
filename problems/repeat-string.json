@@ -40,7 +40,7 @@
     "1 <= str.length <= 1000"
   ],
   "starterTemplates": {
-    "javascript": "declare global {\n    interface String {\n        replicate(times: number): string;\n    }\n}\n\nString.prototype.replicate = function (times: number) {\n    \n};\n"
+    "javascript": "declare global {\n    interface String {\n        replicate(times: number): string;\n    }\n}\n\nString.prototype.replicate = function (times: number) {\n    return new Array(times).fill(this).join('');\n};"
   },
   "snippets": {
     "javascript": "declare global {\n    interface String {\n        replicate(times: number): string;\n    }\n}\n\nString.prototype.replicate = function (times: number) {\n    return new Array(times).fill(this).join('');\n};"

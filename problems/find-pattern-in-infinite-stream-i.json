@@ -39,9 +39,9 @@
     "The input is generated such that the pattern's start index exists in the first 10^5 bits of the stream."
   ],
   "starterTemplates": {
-    "python": "# Definition for an infinite stream.\n# class InfiniteStream:\n#     def next(self) -> int:\n        pass\n",
-    "cpp": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n * public:\n *     InfiniteStream(vector<int> bits);\n *     int next();\n * };\n */\nclass Solution {\n        \n    }\n};\n",
-    "java": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n *     public InfiniteStream(int[] bits);\n *     public int next();\n * }\n */\nclass Solution {\n        \n    }\n};\n"
+    "python": "# Definition for an infinite stream.\n# class InfiniteStream:\n#     def next(self) -> int:\n#         pass\nclass Solution:\n    def findPattern(\n        self, stream: Optional[\"InfiniteStream\"], pattern: List[int]\n    ) -> int:\n        pass\n",
+    "cpp": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n * public:\n *     InfiniteStream(vector<int> bits);\n *     int next();\n * };\n */\nclass Solution {\npublic:\n    int findPattern(InfiniteStream* stream, vector<int>& pattern) {\n        // Your code here\n    }\n};\n",
+    "java": "/**\n * Definition for an infinite stream.\n * class InfiniteStream {\n *     public InfiniteStream(int[] bits);\n *     public int next();\n * }\n */\nclass Solution {\n    public int findPattern(InfiniteStream infiniteStream, int[] pattern) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "# Definition for an infinite stream.\n# class InfiniteStream:\n#     def next(self) -> int:\n#         pass\nclass Solution:\n    def findPattern(\n        self, stream: Optional[\"InfiniteStream\"], pattern: List[int]\n    ) -> int:\n        a = b = 0\n        m = len(pattern)\n        half = m >> 1\n        mask1 = (1 << half) - 1\n        mask2 = (1 << (m - half)) - 1\n        for i in range(half):\n            a |= pattern[i] << (half - 1 - i)\n        for i in range(half, m):\n            b |= pattern[i] << (m - 1 - i)\n        x = y = 0\n        for i in count(1):\n            v = stream.next()\n            y = y << 1 | v\n            v = y >> (m - half) & 1\n            y &= mask2\n            x = x << 1 | v\n            x &= mask1\n            if i >= m and a == x and b == y:\n                return i - m",

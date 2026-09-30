@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def confusingNumber(self, n: int) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool confusingNumber(int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean confusingNumber(int n) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool confusingNumber(int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean confusingNumber(int n) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def confusingNumber(self, n: int) -> bool:\n        x, y = n, 0\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        while x:\n            x, v = divmod(x, 10)\n            if d[v] < 0:\n                return False\n            y = y * 10 + d[v]\n        return y != n",

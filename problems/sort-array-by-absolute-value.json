@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortByAbsoluteValue(self, nums: List[int]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> sortByAbsoluteValue(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] sortByAbsoluteValue(int[] nums) {\n        \n    }\n};\n",
-    "javascript": "function sortByAbsoluteValue(nums: number[]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> sortByAbsoluteValue(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] sortByAbsoluteValue(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function sortByAbsoluteValue(nums: number[]): number[] {\n    return nums.sort((a, b) => Math.abs(a) - Math.abs(b));\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def sortByAbsoluteValue(self, nums: List[int]) -> List[int]:\n        return sorted(nums, key=lambda x: abs(x))",

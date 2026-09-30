@@ -43,9 +43,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def wordsTyping(self, sentence: List[str], rows: int, cols: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int wordsTyping(vector<string>& sentence, int rows, int cols) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int wordsTyping(String[] sentence, int rows, int cols) {\n        \n    }\n};\n",
-    "javascript": "function wordsTyping(sentence: string[], rows: number, cols: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int wordsTyping(vector<string>& sentence, int rows, int cols) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int wordsTyping(String[] sentence, int rows, int cols) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function wordsTyping(sentence: string[], rows: number, cols: number): number {\n    const s = sentence.join(' ') + ' ';\n    let cur = 0;\n    const m = s.length;\n    for (let i = 0; i < rows; ++i) {\n        cur += cols;\n        if (s[cur % m] === ' ') {\n            ++cur;\n        } else {\n            while (cur > 0 && s[(cur - 1) % m] !== ' ') {\n                --cur;\n            }\n        }\n    }\n    return Math.floor(cur / m);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def wordsTyping(self, sentence: List[str], rows: int, cols: int) -> int:\n        s = \" \".join(sentence) + \" \"\n        m = len(s)\n        cur = 0\n        for _ in range(rows):\n            cur += cols\n            if s[cur % m] == \" \":\n                cur += 1\n            while cur and s[(cur - 1) % m] != \" \":\n                cur -= 1\n        return cur // m",

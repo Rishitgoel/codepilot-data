@@ -27,8 +27,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxTransactions(self, transactions: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxTransactions(vector<int>& transactions) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxTransactions(int[] transactions) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxTransactions(vector<int>& transactions) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxTransactions(int[] transactions) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxTransactions(self, transactions: List[int]) -> int:\n        st = SortedList()\n        s = 0\n        ans = len(transactions)\n        for x in transactions:\n            s += x\n            st.add(x)\n            while s < 0:\n                y = st.pop(0)\n                s -= y\n                ans -= 1\n        return ans",

@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def shareCandies(self, candies: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int shareCandies(vector<int>& candies, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int shareCandies(int[] candies, int k) {\n        \n    }\n};\n",
-    "javascript": "function shareCandies(candies: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int shareCandies(vector<int>& candies, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int shareCandies(int[] candies, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function shareCandies(candies: number[], k: number): number {\n    const cnt: Map<number, number> = new Map();\n    for (const x of candies.slice(k)) {\n        cnt.set(x, (cnt.get(x) || 0) + 1);\n    }\n    let ans = cnt.size;\n    for (let i = k; i < candies.length; ++i) {\n        cnt.set(candies[i - k], (cnt.get(candies[i - k]) || 0) + 1);\n        cnt.set(candies[i], (cnt.get(candies[i]) || 0) - 1);\n        if (cnt.get(candies[i]) === 0) {\n            cnt.delete(candies[i]);\n        }\n        ans = Math.max(ans, cnt.size);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def shareCandies(self, candies: List[int], k: int) -> int:\n        cnt = Counter(candies[k:])\n        ans = len(cnt)\n        for i in range(k, len(candies)):\n            cnt[candies[i - k]] += 1\n            cnt[candies[i]] -= 1\n            if cnt[candies[i]] == 0:\n                cnt.pop(candies[i])\n            ans = max(ans, len(cnt))\n        return ans",

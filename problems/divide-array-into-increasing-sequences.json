@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool canDivideIntoSubsequences(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean canDivideIntoSubsequences(int[] nums, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool canDivideIntoSubsequences(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean canDivideIntoSubsequences(int[] nums, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:\n        mx = max(len(list(x)) for _, x in groupby(nums))\n        return mx * k <= len(nums)",

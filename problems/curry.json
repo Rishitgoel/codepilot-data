@@ -50,7 +50,7 @@
     "If fn.length === 0 then inputs.length === 1 "
   ],
   "starterTemplates": {
-    "javascript": "function curry(fn: Function): Function {\n    \n};\n"
+    "javascript": "function curry(fn: Function): Function {\n    return function curried(...args) {\n        if (args.length >= fn.length) {\n            return fn(...args);\n        }\n        return (...nextArgs) => curried(...args, ...nextArgs);\n    };\n}\n\n/**\n * function sum(a, b) { return a + b; }\n * const csum = curry(sum);\n * csum(1)(2) // 3\n */"
   },
   "snippets": {
     "javascript": "function curry(fn: Function): Function {\n    return function curried(...args) {\n        if (args.length >= fn.length) {\n            return fn(...args);\n        }\n        return (...nextArgs) => curried(...args, ...nextArgs);\n    };\n}\n\n/**\n * function sum(a, b) { return a + b; }\n * const csum = curry(sum);\n * csum(1)(2) // 3\n */"

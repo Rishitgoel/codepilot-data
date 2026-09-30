@@ -43,8 +43,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def mostVisitedPattern(\n        self, username: List[str], timestamp: List[int], website: List[str]\n    ) -> List[str]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<string> mostVisitedPattern(vector<string>& username, vector<int>& timestamp, vector<string>& website) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<string> mostVisitedPattern(vector<string>& username, vector<int>& timestamp, vector<string>& website) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<String> mostVisitedPattern(String[] username, int[] timestamp, String[] website) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def mostVisitedPattern(\n        self, username: List[str], timestamp: List[int], website: List[str]\n    ) -> List[str]:\n        d = defaultdict(list)\n        for user, _, site in sorted(\n            zip(username, timestamp, website), key=lambda x: x[1]\n        ):\n            d[user].append(site)\n\n        cnt = Counter()\n        for sites in d.values():\n            m = len(sites)\n            s = set()\n            if m > 2:\n                for i in range(m - 2):\n                    for j in range(i + 1, m - 1):\n                        for k in range(j + 1, m):\n                            s.add((sites[i], sites[j], sites[k]))\n            for t in s:\n                cnt[t] += 1\n        return sorted(cnt.items(), key=lambda x: (-x[1], x[0]))[0][0]",

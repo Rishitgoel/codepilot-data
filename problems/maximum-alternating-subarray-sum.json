@@ -38,9 +38,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long maximumAlternatingSubarraySum(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long maximumAlternatingSubarraySum(int[] nums) {\n        \n    }\n};\n",
-    "javascript": "function maximumAlternatingSubarraySum(nums: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long maximumAlternatingSubarraySum(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maximumAlternatingSubarraySum(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maximumAlternatingSubarraySum(nums: number[]): number {\n    let [ans, f, g] = [-Infinity, -Infinity, -Infinity];\n    for (const x of nums) {\n        [f, g] = [Math.max(g, 0) + x, f - x];\n        ans = Math.max(ans, f, g);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:\n        ans = f = g = -inf\n        for x in nums:\n            f, g = max(g, 0) + x, f - x\n            ans = max(ans, f, g)\n        return ans",

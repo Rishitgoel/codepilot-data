@@ -40,7 +40,7 @@
     "20 <= cancelTime <= 1000"
   ],
   "starterTemplates": {
-    "javascript": "const intervalMap = new Map<number, NodeJS.Timeout>();\n\nfunction customInterval(fn: Function, delay: number, period: number): number {\n    \n};\n"
+    "javascript": "const intervalMap = new Map<number, NodeJS.Timeout>();\n\nfunction customInterval(fn: Function, delay: number, period: number): number {\n    let count = 0;\n    function recursiveTimeout() {\n        intervalMap.set(\n            id,\n            setTimeout(\n                () => {\n                    fn();\n                    count++;\n                    recursiveTimeout();\n                },\n                delay + period * count,\n            ),\n        );\n    }\n\n    const id = Date.now();\n    recursiveTimeout();\n    return id;\n}\n\nfunction customClearInterval(id: number) {\n    if (intervalMap.has(id)) {\n        clearTimeout(intervalMap.get(id)!);\n        intervalMap.delete(id);\n    }\n}"
   },
   "snippets": {
     "javascript": "const intervalMap = new Map<number, NodeJS.Timeout>();\n\nfunction customInterval(fn: Function, delay: number, period: number): number {\n    let count = 0;\n    function recursiveTimeout() {\n        intervalMap.set(\n            id,\n            setTimeout(\n                () => {\n                    fn();\n                    count++;\n                    recursiveTimeout();\n                },\n                delay + period * count,\n            ),\n        );\n    }\n\n    const id = Date.now();\n    recursiveTimeout();\n    return id;\n}\n\nfunction customClearInterval(id: number) {\n    if (intervalMap.has(id)) {\n        clearTimeout(intervalMap.get(id)!);\n        intervalMap.delete(id);\n    }\n}"

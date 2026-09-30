@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSubstringLength(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxSubstringLength(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxSubstringLength(String s) {\n        \n    }\n};\n",
-    "javascript": "function maxSubstringLength(s: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxSubstringLength(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxSubstringLength(String s) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxSubstringLength(s: string): number {\n    const first: number[] = Array(26).fill(-1);\n    const last: number[] = Array(26).fill(0);\n    const n = s.length;\n    for (let i = 0; i < n; ++i) {\n        const j = s.charCodeAt(i) - 97;\n        if (first[j] === -1) {\n            first[j] = i;\n        }\n        last[j] = i;\n    }\n    let ans = -1;\n    for (let k = 0; k < 26; ++k) {\n        const i = first[k];\n        if (i === -1) {\n            continue;\n        }\n        let mx = last[k];\n        for (let j = i; j < n; ++j) {\n            const a = first[s.charCodeAt(j) - 97];\n            if (a < i) {\n                break;\n            }\n            const b = last[s.charCodeAt(j) - 97];\n            mx = Math.max(mx, b);\n            if (mx === j && j - i + 1 < n) {\n                ans = Math.max(ans, j - i + 1);\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSubstringLength(self, s: str) -> int:\n        first, last = {}, {}\n        for i, c in enumerate(s):\n            if c not in first:\n                first[c] = i\n            last[c] = i\n        ans, n = -1, len(s)\n        for c, i in first.items():\n            mx = last[c]\n            for j in range(i, n):\n                a, b = first[s[j]], last[s[j]]\n                if a < i:\n                    break\n                mx = max(mx, b)\n                if mx == j and j - i + 1 < n:\n                    ans = max(ans, j - i + 1)\n        return ans",

@@ -36,9 +36,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def verifyPreorder(self, preorder: List[int]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool verifyPreorder(vector<int>& preorder) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean verifyPreorder(int[] preorder) {\n        \n    }\n};\n",
-    "javascript": "var solution = function() {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    bool verifyPreorder(vector<int>& preorder) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean verifyPreorder(int[] preorder) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var solution = function() {\n    \n};"
   },
   "snippets": {
     "python": "class Solution:\n    def verifyPreorder(self, preorder: List[int]) -> bool:\n        stk = []\n        last = -inf\n        for x in preorder:\n            if x < last:\n                return False\n            while stk and stk[-1] < x:\n                last = stk.pop()\n            stk.append(x)\n        return True",

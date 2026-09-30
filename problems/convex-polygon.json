@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def isConvex(self, points: List[List[int]]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool isConvex(vector<vector<int>>& points) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean isConvex(List<List<Integer>> points) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool isConvex(vector<vector<int>>& points) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean isConvex(List<List<Integer>> points) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def isConvex(self, points: List[List[int]]) -> bool:\n        n = len(points)\n        pre = cur = 0\n        for i in range(n):\n            x1 = points[(i + 1) % n][0] - points[i][0]\n            y1 = points[(i + 1) % n][1] - points[i][1]\n            x2 = points[(i + 2) % n][0] - points[i][0]\n            y2 = points[(i + 2) % n][1] - points[i][1]\n            cur = x1 * y2 - x2 * y1\n            if cur != 0:\n                if cur * pre < 0:\n                    return False\n                pre = cur\n        return True",

@@ -38,9 +38,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[][] multiply(int[][] mat1, int[][] mat2) {\n        \n    }\n};\n",
-    "javascript": "function multiply(mat1: number[][], mat2: number[][]): number[][] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> multiply(vector<vector<int>>& mat1, vector<vector<int>>& mat2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[][] multiply(int[][] mat1, int[][] mat2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function multiply(mat1: number[][], mat2: number[][]): number[][] {\n    const [m, n] = [mat1.length, mat2[0].length];\n    const ans: number[][] = Array.from({ length: m }, () => Array.from({ length: n }, () => 0));\n    for (let i = 0; i < m; ++i) {\n        for (let j = 0; j < n; ++j) {\n            for (let k = 0; k < mat2.length; ++k) {\n                ans[i][j] += mat1[i][k] * mat2[k][j];\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:\n        m, n = len(mat1), len(mat2[0])\n        ans = [[0] * n for _ in range(m)]\n        for i in range(m):\n            for j in range(n):\n                for k in range(len(mat2)):\n                    ans[i][j] += mat1[i][k] * mat2[k][j]\n        return ans",

@@ -41,8 +41,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def validSubarraySplit(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    const int inf = 0x3f3f3f3f;\n    int validSubarraySplit(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int n;\n    private int[] f;\n    private int[] nums;\n    private int inf = 0x3f3f3f3f;\n\n    public int validSubarraySplit(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    const int inf = 0x3f3f3f3f;\n    int validSubarraySplit(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int n;\n    private int[] f;\n    private int[] nums;\n    private int inf = 0x3f3f3f3f;\n\n    public int validSubarraySplit(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def validSubarraySplit(self, nums: List[int]) -> int:\n        @cache\n        def dfs(i):\n            if i >= n:\n                return 0\n            ans = inf\n            for j in range(i, n):\n                if gcd(nums[i], nums[j]) > 1:\n                    ans = min(ans, 1 + dfs(j + 1))\n            return ans\n\n        n = len(nums)\n        ans = dfs(0)\n        dfs.cache_clear()\n        return ans if ans < inf else -1",

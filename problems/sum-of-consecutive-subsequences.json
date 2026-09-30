@@ -30,8 +30,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    private final int mod = (int) 1e9 + 7;\r\n\r\n    public int getSum(int[] nums) {\r\n        \n    }\n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int getSum(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    private final int mod = (int) 1e9 + 7;\r\n\r\n    public int getSum(int[] nums) {\r\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\r\n    def getSum(self, nums: List[int]) -> int:\r\n        def calc(nums: List[int]) -> int:\r\n            n = len(nums)\r\n            left = [0] * n\r\n            right = [0] * n\r\n            cnt = Counter()\r\n            for i in range(1, n):\r\n                cnt[nums[i - 1]] += 1 + cnt[nums[i - 1] - 1]\r\n                left[i] = cnt[nums[i] - 1]\r\n            cnt = Counter()\r\n            for i in range(n - 2, -1, -1):\r\n                cnt[nums[i + 1]] += 1 + cnt[nums[i + 1] + 1]\r\n                right[i] = cnt[nums[i] + 1]\r\n            return sum((l + r + l * r) * x for l, r, x in zip(left, right, nums)) % mod\r\n\r\n        mod = 10**9 + 7\r\n        x = calc(nums)\r\n        nums.reverse()\r\n        y = calc(nums)\r\n        return (x + y + sum(nums)) % mod",

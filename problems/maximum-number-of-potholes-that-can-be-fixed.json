@@ -29,9 +29,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxPotholes(self, road: str, budget: int) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int maxPotholes(string road, int budget) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int maxPotholes(String road, int budget) {\r\n        \n    }\n};\n",
-    "javascript": "function maxPotholes(road: string, budget: number): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int maxPotholes(string road, int budget) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int maxPotholes(String road, int budget) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxPotholes(road: string, budget: number): number {\n    road += '.';\n    const n = road.length;\n    const cnt: number[] = Array(n).fill(0);\n    let k = 0;\n    for (const c of road) {\n        if (c === 'x') {\n            ++k;\n        } else if (k) {\n            ++cnt[k];\n            k = 0;\n        }\n    }\n    let ans = 0;\n    for (k = n - 1; k && budget; --k) {\n        const t = Math.min(Math.floor(budget / (k + 1)), cnt[k]);\n        ans += t * k;\n        budget -= t * (k + 1);\n        cnt[k - 1] += cnt[k] - t;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maxPotholes(self, road: str, budget: int) -> int:\r\n        road += \".\"\r\n        n = len(road)\r\n        cnt = [0] * n\r\n        k = 0\r\n        for c in road:\r\n            if c == \"x\":\r\n                k += 1\r\n            elif k:\r\n                cnt[k] += 1\r\n                k = 0\r\n        ans = 0\r\n        for k in range(n - 1, 0, -1):\r\n            if cnt[k] == 0:\r\n                continue\r\n            t = min(budget // (k + 1), cnt[k])\r\n            ans += t * k\r\n            budget -= t * (k + 1)\r\n            if budget == 0:\r\n                break\r\n            cnt[k - 1] += cnt[k] - t\r\n        return ans",

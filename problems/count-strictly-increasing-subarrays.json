@@ -33,9 +33,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countSubarrays(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long countSubarrays(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long countSubarrays(int[] nums) {\n        \n    }\n};\n",
-    "javascript": "function countSubarrays(nums: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long countSubarrays(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long countSubarrays(int[] nums) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function countSubarrays(nums: number[]): number {\n    let [ans, cnt] = [1, 1];\n    for (let i = 1; i < nums.length; ++i) {\n        if (nums[i - 1] < nums[i]) {\n            ++cnt;\n        } else {\n            cnt = 1;\n        }\n        ans += cnt;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countSubarrays(self, nums: List[int]) -> int:\n        ans = cnt = 1\n        for x, y in pairwise(nums):\n            if x < y:\n                cnt += 1\n            else:\n                cnt = 1\n            ans += cnt\n        return ans",

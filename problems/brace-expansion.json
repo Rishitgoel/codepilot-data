@@ -40,7 +40,7 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def expand(self, s: str) -> List[str]:\n        pass\n",
-    "java": "class Solution {\n    private List<String> ans;\n    private List<String[]> items;\n\n    public String[] expand(String s) {\n        \n    }\n};\n"
+    "java": "class Solution {\n    private List<String> ans;\n    private List<String[]> items;\n\n    public String[] expand(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def expand(self, s: str) -> List[str]:\n        def convert(s):\n            if not s:\n                return\n            if s[0] == '{':\n                j = s.find('}')\n                items.append(s[1:j].split(','))\n                convert(s[j + 1 :])\n            else:\n                j = s.find('{')\n                if j != -1:\n                    items.append(s[:j].split(','))\n                    convert(s[j:])\n                else:\n                    items.append(s.split(','))\n\n        def dfs(i, t):\n            if i == len(items):\n                ans.append(''.join(t))\n                return\n            for c in items[i]:\n                t.append(c)\n                dfs(i + 1, t)\n                t.pop()\n\n        items = []\n        convert(s)\n        ans = []\n        dfs(0, [])\n        ans.sort()\n        return ans",

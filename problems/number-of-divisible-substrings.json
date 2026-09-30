@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countDivisibleSubstrings(self, word: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int countDivisibleSubstrings(string word) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int countDivisibleSubstrings(String word) {\n        \n    }\n};\n",
-    "javascript": "function countDivisibleSubstrings(word: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int countDivisibleSubstrings(string word) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int countDivisibleSubstrings(String word) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function countDivisibleSubstrings(word: string): number {\n    const d: string[] = ['ab', 'cde', 'fgh', 'ijk', 'lmn', 'opq', 'rst', 'uvw', 'xyz'];\n    const mp: number[] = Array(26).fill(0);\n    for (let i = 0; i < d.length; ++i) {\n        for (const c of d[i]) {\n            mp[c.charCodeAt(0) - 'a'.charCodeAt(0)] = i + 1;\n        }\n    }\n    const n = word.length;\n    let ans = 0;\n    for (let i = 0; i < n; ++i) {\n        let s = 0;\n        for (let j = i; j < n; ++j) {\n            s += mp[word.charCodeAt(j) - 'a'.charCodeAt(0)];\n            if (s % (j - i + 1) === 0) {\n                ++ans;\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countDivisibleSubstrings(self, word: str) -> int:\n        d = [\"ab\", \"cde\", \"fgh\", \"ijk\", \"lmn\", \"opq\", \"rst\", \"uvw\", \"xyz\"]\n        mp = {}\n        for i, s in enumerate(d, 1):\n            for c in s:\n                mp[c] = i\n        ans = 0\n        n = len(word)\n        for i in range(n):\n            s = 0\n            for j in range(i, n):\n                s += mp[word[j]]\n                ans += s % (j - i + 1) == 0\n        return ans",

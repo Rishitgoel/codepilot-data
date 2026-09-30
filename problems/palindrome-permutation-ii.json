@@ -36,8 +36,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def generatePalindromes(self, s: str) -> List[str]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int n;\n    vector<string> ans;\n    unordered_map<char, int> cnt;\n\n    vector<string> generatePalindromes(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private List<String> ans = new ArrayList<>();\n    private int[] cnt = new int[26];\n    private int n;\n\n    public List<String> generatePalindromes(String s) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int n;\n    vector<string> ans;\n    unordered_map<char, int> cnt;\n\n    vector<string> generatePalindromes(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private List<String> ans = new ArrayList<>();\n    private int[] cnt = new int[26];\n    private int n;\n\n    public List<String> generatePalindromes(String s) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def generatePalindromes(self, s: str) -> List[str]:\n        def dfs(t):\n            if len(t) == len(s):\n                ans.append(t)\n                return\n            for c, v in cnt.items():\n                if v > 1:\n                    cnt[c] -= 2\n                    dfs(c + t + c)\n                    cnt[c] += 2\n\n        cnt = Counter(s)\n        mid = ''\n        for c, v in cnt.items():\n            if v & 1:\n                if mid:\n                    return []\n                mid = c\n                cnt[c] -= 1\n        ans = []\n        dfs(mid)\n        return ans",

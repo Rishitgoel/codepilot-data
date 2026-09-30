@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def strobogrammaticInRange(self, low: str, high: str) -> int:\n        pass\n",
-    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    const vector<pair<char, char>> pairs = {{'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};\n\n    int strobogrammaticInRange(string low, string high) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private static final int[][] PAIRS = {{1, 1}, {8, 8}, {6, 9}, {9, 6}};\n    private int n;\n\n    public int strobogrammaticInRange(String low, String high) {\n        \n    }\n};\n"
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    const vector<pair<char, char>> pairs = {{'1', '1'}, {'8', '8'}, {'6', '9'}, {'9', '6'}};\n\n    int strobogrammaticInRange(string low, string high) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private static final int[][] PAIRS = {{1, 1}, {8, 8}, {6, 9}, {9, 6}};\n    private int n;\n\n    public int strobogrammaticInRange(String low, String high) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def strobogrammaticInRange(self, low: str, high: str) -> int:\n        def dfs(u):\n            if u == 0:\n                return ['']\n            if u == 1:\n                return ['0', '1', '8']\n            ans = []\n            for v in dfs(u - 2):\n                for l, r in ('11', '88', '69', '96'):\n                    ans.append(l + v + r)\n                if u != n:\n                    ans.append('0' + v + '0')\n            return ans\n\n        a, b = len(low), len(high)\n        low, high = int(low), int(high)\n        ans = 0\n        for n in range(a, b + 1):\n            for s in dfs(n):\n                if low <= int(s) <= high:\n                    ans += 1\n        return ans",

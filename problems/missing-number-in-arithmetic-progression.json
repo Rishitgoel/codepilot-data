@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def missingNumber(self, arr: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int missingNumber(vector<int>& arr) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int missingNumber(int[] arr) {\n        \n    }\n};\n",
-    "javascript": "function missingNumber(arr: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int missingNumber(vector<int>& arr) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int missingNumber(int[] arr) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function missingNumber(arr: number[]): number {\n    const x = ((arr[0] + arr.at(-1)!) * (arr.length + 1)) >> 1;\n    const y = arr.reduce((acc, cur) => acc + cur, 0);\n    return x - y;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def missingNumber(self, arr: List[int]) -> int:\n        return (arr[0] + arr[-1]) * (len(arr) + 1) // 2 - sum(arr)",

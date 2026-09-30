@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def lateFee(self, daysLate: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int lateFee(vector<int>& daysLate) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int lateFee(int[] daysLate) {\n        \n    }\n};\n",
-    "javascript": "function lateFee(daysLate: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int lateFee(vector<int>& daysLate) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int lateFee(int[] daysLate) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function lateFee(daysLate: number[]): number {\n    const f = (x: number): number => {\n        if (x === 1) {\n            return 1;\n        } else if (x > 5) {\n            return 3 * x;\n        }\n        return 2 * x;\n    };\n    return daysLate.reduce((acc, days) => acc + f(days), 0);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def lateFee(self, daysLate: List[int]) -> int:\n        def f(x: int) -> int:\n            if x == 1:\n                return 1\n            if x > 5:\n                return 3 * x\n            return 2 * x\n\n        return sum(f(x) for x in daysLate)",

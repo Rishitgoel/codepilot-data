@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sumOfDigits(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int sumOfDigits(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int sumOfDigits(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int sumOfDigits(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int sumOfDigits(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def sumOfDigits(self, nums: List[int]) -> int:\n        x = min(nums)\n        s = 0\n        while x:\n            s += x % 10\n            x //= 10\n        return s & 1 ^ 1",

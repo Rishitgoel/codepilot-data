@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def subsequenceCount(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int subsequenceCount(vector<int>& nums) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int subsequenceCount(int[] nums) {\r\n        \n    }\n};\n",
-    "javascript": "function subsequenceCount(nums: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int subsequenceCount(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int subsequenceCount(int[] nums) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function subsequenceCount(nums: number[]): number {\n    const mod = 1e9 + 7;\n    let f = [0, 0];\n    for (const x of nums) {\n        const g = [0, 0];\n        if (x % 2 === 1) {\n            g[0] = (f[0] + f[1]) % mod;\n            g[1] = (f[0] + f[1] + 1) % mod;\n        } else {\n            g[0] = (f[0] + f[0] + 1) % mod;\n            g[1] = (f[1] + f[1]) % mod;\n        }\n        f = g;\n    }\n    return f[1];\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def subsequenceCount(self, nums: List[int]) -> int:\r\n        mod = 10**9 + 7\r\n        f = [0] * 2\r\n        for x in nums:\r\n            if x % 2:\r\n                f[0], f[1] = (f[0] + f[1]) % mod, (f[0] + f[1] + 1) % mod\r\n            else:\r\n                f[0], f[1] = (f[0] + f[0] + 1) % mod, (f[1] + f[1]) % mod\r\n        return f[1]",

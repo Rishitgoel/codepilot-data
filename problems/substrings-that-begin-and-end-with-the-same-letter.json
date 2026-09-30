@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long numberOfSubstrings(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long numberOfSubstrings(String s) {\n        \n    }\n};\n",
-    "javascript": "function numberOfSubstrings(s: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long numberOfSubstrings(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long numberOfSubstrings(String s) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function numberOfSubstrings(s: string): number {\n    const cnt: Record<string, number> = {};\n    let ans = 0;\n    for (const c of s) {\n        cnt[c] = (cnt[c] || 0) + 1;\n        ans += cnt[c];\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        cnt = Counter()\n        ans = 0\n        for c in s:\n            cnt[c] += 1\n            ans += cnt[c]\n        return ans",

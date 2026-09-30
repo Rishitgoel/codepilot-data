@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minOperations(self, nums: List[int], x: int, y: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int x, int y) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[] nums;\n    private int x;\n    private int y;\n\n    public int minOperations(int[] nums, int x, int y) {\n        \n    }\n};\n",
-    "javascript": "function minOperations(nums: number[], x: number, y: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int minOperations(vector<int>& nums, int x, int y) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[] nums;\n    private int x;\n    private int y;\n\n    public int minOperations(int[] nums, int x, int y) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minOperations(nums: number[], x: number, y: number): number {\n    let l = 0;\n    let r = Math.max(...nums);\n    const check = (t: number): boolean => {\n        let cnt = 0;\n        for (const v of nums) {\n            if (v > t * y) {\n                cnt += Math.ceil((v - t * y) / (x - y));\n            }\n        }\n        return cnt <= t;\n    };\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (check(mid)) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return l;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minOperations(self, nums: List[int], x: int, y: int) -> int:\n        def check(t: int) -> bool:\n            cnt = 0\n            for v in nums:\n                if v > t * y:\n                    cnt += ceil((v - t * y) / (x - y))\n            return cnt <= t\n\n        l, r = 0, max(nums)\n        while l < r:\n            mid = (l + r) >> 1\n            if check(mid):\n                r = mid\n            else:\n                l = mid + 1\n        return l",

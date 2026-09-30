@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxStudentsOnBench(self, students: List[List[int]]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int maxStudentsOnBench(vector<vector<int>>& students) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int maxStudentsOnBench(int[][] students) {\r\n        \n    }\n};\n",
-    "javascript": "function maxStudentsOnBench(students: number[][]): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int maxStudentsOnBench(vector<vector<int>>& students) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int maxStudentsOnBench(int[][] students) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxStudentsOnBench(students: number[][]): number {\n    const d: Map<number, Set<number>> = new Map();\n    for (const [studentId, benchId] of students) {\n        if (!d.has(benchId)) {\n            d.set(benchId, new Set());\n        }\n        d.get(benchId)?.add(studentId);\n    }\n    let ans = 0;\n    for (const s of d.values()) {\n        ans = Math.max(ans, s.size);\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maxStudentsOnBench(self, students: List[List[int]]) -> int:\r\n        if not students:\r\n            return 0\r\n        d = defaultdict(set)\r\n        for student_id, bench_id in students:\r\n            d[bench_id].add(student_id)\r\n        return max(map(len, d.values()))",

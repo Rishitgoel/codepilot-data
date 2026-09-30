@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minDistance(\n        self,\n        height: int,\n        width: int,\n        tree: List[int],\n        squirrel: List[int],\n        nuts: List[List[int]],\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {\n        \n    }\n};\n",
-    "java": "import static java.lang.Math.*;\n\nclass Solution {\n    public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {\n        \n    }\n};\n",
+    "cpp": "class Solution {\npublic:\n    int minDistance(int height, int width, vector<int>& tree, vector<int>& squirrel, vector<vector<int>>& nuts) {\n        // Your code here\n    }\n};\n",
+    "java": "import static java.lang.Math.*;\n\nclass Solution {\n    public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {\n        // Your code here\n    }\n}\n",
     "javascript": "function minDistance(\n    height: number,\n    width: number,\n    tree: number[],\n    squirrel: number[],\n    nuts: number[][],\n): number {\n    const [tr, tc] = tree;\n    const [sr, sc] = squirrel;\n    const s = nuts.reduce((acc, [r, c]) => acc + (Math.abs(tr - r) + Math.abs(tc - c)) * 2, 0);\n    let ans = Infinity;\n    for (const [r, c] of nuts) {\n        const a = Math.abs(tr - r) + Math.abs(tc - c);\n        const b = Math.abs(sr - r) + Math.abs(sc - c);\n        ans = Math.min(ans, s - a + b);\n    }\n    return ans;\n}"
   },
   "snippets": {

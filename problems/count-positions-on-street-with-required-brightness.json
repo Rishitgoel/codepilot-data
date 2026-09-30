@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def meetRequirement(\n        self, n: int, lights: List[List[int]], requirement: List[int]\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int meetRequirement(int n, vector<vector<int>>& lights, vector<int>& requirement) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int meetRequirement(int n, int[][] lights, int[] requirement) {\n        \n    }\n};\n",
-    "javascript": "function meetRequirement(n: number, lights: number[][], requirement: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int meetRequirement(int n, vector<vector<int>>& lights, vector<int>& requirement) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int meetRequirement(int n, int[][] lights, int[] requirement) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function meetRequirement(n: number, lights: number[][], requirement: number[]): number {\n    const d: number[] = Array(n + 1).fill(0);\n    for (const [p, r] of lights) {\n        const [i, j] = [Math.max(0, p - r), Math.min(n - 1, p + r)];\n        ++d[i];\n        --d[j + 1];\n    }\n    let [ans, s] = [0, 0];\n    for (let i = 0; i < n; ++i) {\n        s += d[i];\n        if (s >= requirement[i]) {\n            ++ans;\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def meetRequirement(\n        self, n: int, lights: List[List[int]], requirement: List[int]\n    ) -> int:\n        d = [0] * (n + 1)\n        for p, r in lights:\n            i, j = max(0, p - r), min(n - 1, p + r)\n            d[i] += 1\n            d[j + 1] -= 1\n        return sum(s >= r for s, r in zip(accumulate(d), requirement))",

@@ -42,8 +42,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def catchMaximumAmountofPeople(self, team: List[int], dist: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int catchMaximumAmountofPeople(vector<int>& team, int dist) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int catchMaximumAmountofPeople(int[] team, int dist) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int catchMaximumAmountofPeople(vector<int>& team, int dist) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int catchMaximumAmountofPeople(int[] team, int dist) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def catchMaximumAmountofPeople(self, team: List[int], dist: int) -> int:\n        ans = j = 0\n        n = len(team)\n        for i, x in enumerate(team):\n            if x:\n                while j < n and (team[j] or i - j > dist):\n                    j += 1\n                if j < n and abs(i - j) <= dist:\n                    ans += 1\n                    j += 1\n        return ans",

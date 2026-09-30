@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findMaximums(self, nums: List[int]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> findMaximums(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] findMaximums(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> findMaximums(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] findMaximums(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findMaximums(self, nums: List[int]) -> List[int]:\n        n = len(nums)\n        left = [-1] * n\n        right = [n] * n\n        stk = []\n        for i, x in enumerate(nums):\n            while stk and nums[stk[-1]] >= x:\n                stk.pop()\n            if stk:\n                left[i] = stk[-1]\n            stk.append(i)\n        stk = []\n        for i in range(n - 1, -1, -1):\n            while stk and nums[stk[-1]] >= nums[i]:\n                stk.pop()\n            if stk:\n                right[i] = stk[-1]\n            stk.append(i)\n        ans = [0] * n\n        for i in range(n):\n            m = right[i] - left[i] - 1\n            ans[m - 1] = max(ans[m - 1], nums[i])\n        for i in range(n - 2, -1, -1):\n            ans[i] = max(ans[i], ans[i + 1])\n        return ans",

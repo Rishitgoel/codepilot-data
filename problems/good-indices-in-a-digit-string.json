@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def goodIndices(self, s: str) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> goodIndices(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<Integer> goodIndices(String s) {\n        \n    }\n};\n",
-    "javascript": "function goodIndices(s: string): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> goodIndices(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> goodIndices(String s) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function goodIndices(s: string): number[] {\n    const ans: number[] = [];\n    for (let i = 0; i < s.length; i++) {\n        const t = String(i);\n        const k = t.length;\n        if (s.slice(i + 1 - k, i + 1) === t) {\n            ans.push(i);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def goodIndices(self, s: str) -> List[int]:\n        ans = []\n        for i in range(len(s)):\n            t = str(i)\n            k = len(t)\n            if s[i + 1 - k : i + 1] == t:\n                ans.append(i)\n        return ans",

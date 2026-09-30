@@ -40,8 +40,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def convertArray(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int convertArray(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int convertArray(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int convertArray(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int convertArray(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def convertArray(self, nums: List[int]) -> int:\n        def solve(nums):\n            n = len(nums)\n            f = [[0] * 1001 for _ in range(n + 1)]\n            for i, x in enumerate(nums, 1):\n                mi = inf\n                for j in range(1001):\n                    if mi > f[i - 1][j]:\n                        mi = f[i - 1][j]\n                    f[i][j] = mi + abs(x - j)\n            return min(f[n])\n\n        return min(solve(nums), solve(nums[::-1]))",

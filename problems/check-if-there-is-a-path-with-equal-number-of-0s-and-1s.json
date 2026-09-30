@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def isThereAPath(self, grid: List[List[int]]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool isThereAPath(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int s;\n    private int m;\n    private int n;\n    private int[][] grid;\n    private Boolean[][][] f;\n\n    public boolean isThereAPath(int[][] grid) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool isThereAPath(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int s;\n    private int m;\n    private int n;\n    private int[][] grid;\n    private Boolean[][][] f;\n\n    public boolean isThereAPath(int[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def isThereAPath(self, grid: List[List[int]]) -> bool:\n        @cache\n        def dfs(i, j, k):\n            if i >= m or j >= n:\n                return False\n            k += grid[i][j]\n            if k > s or i + j + 1 - k > s:\n                return False\n            if i == m - 1 and j == n - 1:\n                return k == s\n            return dfs(i + 1, j, k) or dfs(i, j + 1, k)\n\n        m, n = len(grid), len(grid[0])\n        s = m + n - 1\n        if s & 1:\n            return False\n        s >>= 1\n        return dfs(0, 0, 0)",

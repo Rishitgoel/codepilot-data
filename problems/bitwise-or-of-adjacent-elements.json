@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def orArray(self, nums: List[int]) -> List[int]:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    vector<int> orArray(vector<int>& nums) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int[] orArray(int[] nums) {\r\n        \n    }\n};\n",
-    "javascript": "function orArray(nums: number[]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    vector<int> orArray(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int[] orArray(int[] nums) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function orArray(nums: number[]): number[] {\n    return nums.slice(0, -1).map((v, i) => v | nums[i + 1]);\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def orArray(self, nums: List[int]) -> List[int]:\r\n        return [a | b for a, b in pairwise(nums)]",

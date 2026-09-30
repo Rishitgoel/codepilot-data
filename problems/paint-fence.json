@@ -38,9 +38,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def numWays(self, n: int, k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int numWays(int n, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int numWays(int n, int k) {\n        \n    }\n};\n",
-    "javascript": "function numWays(n: number, k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int numWays(int n, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int numWays(int n, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function numWays(n: number, k: number): number {\n    const f: number[] = Array(n).fill(0);\n    const g: number[] = Array(n).fill(0);\n    f[0] = k;\n    for (let i = 1; i < n; ++i) {\n        f[i] = (f[i - 1] + g[i - 1]) * (k - 1);\n        g[i] = f[i - 1];\n    }\n    return f[n - 1] + g[n - 1];\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def numWays(self, n: int, k: int) -> int:\n        f = [0] * n\n        g = [0] * n\n        f[0] = k\n        for i in range(1, n):\n            f[i] = (f[i - 1] + g[i - 1]) * (k - 1)\n            g[i] = f[i - 1]\n        return f[-1] + g[-1]",

@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxCount(vector<int>& banned, int n, long long maxSum) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxCount(int[] banned, int n, long maxSum) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxCount(vector<int>& banned, int n, long long maxSum) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxCount(int[] banned, int n, long maxSum) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:\n        banned.extend([0, n + 1])\n        ban = sorted(set(banned))\n        ans = 0\n        for i, j in pairwise(ban):\n            left, right = 0, j - i - 1\n            while left < right:\n                mid = (left + right + 1) >> 1\n                if (i + 1 + i + mid) * mid // 2 <= maxSum:\n                    left = mid\n                else:\n                    right = mid - 1\n            ans += left\n            maxSum -= (i + 1 + i + left) * left // 2\n            if maxSum <= 0:\n                break\n        return ans",

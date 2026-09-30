@@ -41,8 +41,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minTotalDistance(self, grid: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minTotalDistance(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minTotalDistance(int[][] grid) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int minTotalDistance(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minTotalDistance(int[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minTotalDistance(self, grid: List[List[int]]) -> int:\n        def f(arr, x):\n            return sum(abs(v - x) for v in arr)\n\n        rows, cols = [], []\n        for i, row in enumerate(grid):\n            for j, v in enumerate(row):\n                if v:\n                    rows.append(i)\n                    cols.append(j)\n        cols.sort()\n        i = rows[len(rows) >> 1]\n        j = cols[len(cols) >> 1]\n        return f(rows, i) + f(cols, j)",

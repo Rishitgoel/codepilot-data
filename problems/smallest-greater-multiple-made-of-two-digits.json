@@ -39,8 +39,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findInteger(self, k: int, digit1: int, digit2: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int findInteger(int k, int digit1, int digit2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int findInteger(int k, int digit1, int digit2) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int findInteger(int k, int digit1, int digit2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int findInteger(int k, int digit1, int digit2) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findInteger(self, k: int, digit1: int, digit2: int) -> int:\n        if digit1 == 0 and digit2 == 0:\n            return -1\n        if digit1 > digit2:\n            return self.findInteger(k, digit2, digit1)\n        q = deque([0])\n        while 1:\n            x = q.popleft()\n            if x > 2**31 - 1:\n                return -1\n            if x > k and x % k == 0:\n                return x\n            q.append(x * 10 + digit1)\n            if digit1 != digit2:\n                q.append(x * 10 + digit2)",

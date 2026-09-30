@@ -29,9 +29,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sumOfBlocks(self, n: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int sumOfBlocks(int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int sumOfBlocks(int n) {\n        \n    }\n};\n",
-    "javascript": "function sumOfBlocks(n: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int sumOfBlocks(int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int sumOfBlocks(int n) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function sumOfBlocks(n: number): number {\n    const mod = 1000000007;\n    let k = 1;\n    let ans = 0;\n    for (let i = 1; i <= n; i++) {\n        let x = 1;\n        for (let j = k; j < k + i; j++) {\n            x = (x * j) % mod;\n        }\n        ans = (ans + x) % mod;\n        k += i;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def sumOfBlocks(self, n: int) -> int:\n        ans = 0\n        mod = 10**9 + 7\n        k = 1\n        for i in range(1, n + 1):\n            x = 1\n            for j in range(k, k + i):\n                x = (x * j) % mod\n            ans = (ans + x) % mod\n            k += i\n        return ans",

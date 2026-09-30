@@ -33,9 +33,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def cheapestJump(self, coins: List[int], maxJump: int) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> cheapestJump(vector<int>& coins, int maxJump) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<Integer> cheapestJump(int[] coins, int maxJump) {\n        \n    }\n};\n",
-    "javascript": "function cheapestJump(coins: number[], maxJump: number): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> cheapestJump(vector<int>& coins, int maxJump) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<Integer> cheapestJump(int[] coins, int maxJump) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function cheapestJump(coins: number[], maxJump: number): number[] {\n    const n = coins.length;\n    const ans: number[] = [];\n    if (coins[n - 1] == -1) {\n        return ans;\n    }\n    const inf = 1 << 30;\n    const f: number[] = new Array(n).fill(inf);\n    f[n - 1] = coins[n - 1];\n    for (let i = n - 2; i >= 0; --i) {\n        if (coins[i] !== -1) {\n            for (let j = i + 1; j < Math.min(n, i + maxJump + 1); ++j) {\n                f[i] = Math.min(f[i], f[j] + coins[i]);\n            }\n        }\n    }\n    if (f[0] === inf) {\n        return ans;\n    }\n    for (let i = 0, s = f[0]; i < n; ++i) {\n        if (f[i] == s) {\n            s -= coins[i];\n            ans.push(i + 1);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def cheapestJump(self, coins: List[int], maxJump: int) -> List[int]:\n        if coins[-1] == -1:\n            return []\n        n = len(coins)\n        f = [inf] * n\n        f[-1] = coins[-1]\n        for i in range(n - 2, -1, -1):\n            if coins[i] != -1:\n                for j in range(i + 1, min(n, i + maxJump + 1)):\n                    if f[i] > f[j] + coins[i]:\n                        f[i] = f[j] + coins[i]\n        if f[0] == inf:\n            return []\n        ans = []\n        s = f[0]\n        for i in range(n):\n            if f[i] == s:\n                s -= coins[i]\n                ans.append(i + 1)\n        return ans",

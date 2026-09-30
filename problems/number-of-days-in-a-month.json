@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def numberOfDays(self, year: int, month: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int numberOfDays(int year, int month) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int numberOfDays(int year, int month) {\n        \n    }\n};\n",
-    "javascript": "function numberOfDays(year: number, month: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int numberOfDays(int year, int month) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int numberOfDays(int year, int month) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function numberOfDays(year: number, month: number): number {\n    const leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;\n    const days = [0, 31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];\n    return days[month];\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def numberOfDays(self, year: int, month: int) -> int:\n        leap = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)\n        days = [0, 31, 29 if leap else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n        return days[month]",

@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minWindow(self, s1: str, s2: str) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string minWindow(string s1, string s2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String minWindow(String s1, String s2) {\n        \n    }\n};\n",
-    "javascript": "function minWindow(s1: string, s2: string): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string minWindow(string s1, string s2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String minWindow(String s1, String s2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minWindow(s1: string, s2: string): string {\n    const m = s1.length;\n    const n = s2.length;\n    const f: number[][] = Array(m + 1)\n        .fill(0)\n        .map(() => Array(n + 1).fill(0));\n    for (let i = 1; i <= m; ++i) {\n        for (let j = 1; j <= n; ++j) {\n            if (s1[i - 1] === s2[j - 1]) {\n                f[i][j] = j === 1 ? i : f[i - 1][j - 1];\n            } else {\n                f[i][j] = f[i - 1][j];\n            }\n        }\n    }\n    let p = 0;\n    let k = m + 1;\n    for (let i = 1; i <= m; ++i) {\n        if (s1[i - 1] === s2[n - 1] && f[i][n]) {\n            const j = f[i][n] - 1;\n            if (i - j < k) {\n                k = i - j;\n                p = j;\n            }\n        }\n    }\n    return k > m ? '' : s1.slice(p, p + k);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minWindow(self, s1: str, s2: str) -> str:\n        m, n = len(s1), len(s2)\n        f = [[0] * (n + 1) for _ in range(m + 1)]\n        for i, a in enumerate(s1, 1):\n            for j, b in enumerate(s2, 1):\n                if a == b:\n                    f[i][j] = i if j == 1 else f[i - 1][j - 1]\n                else:\n                    f[i][j] = f[i - 1][j]\n        p, k = 0, m + 1\n        for i, a in enumerate(s1, 1):\n            if a == s2[n - 1] and f[i][n]:\n                j = f[i][n] - 1\n                if i - j < k:\n                    k = i - j\n                    p = j\n        return \"\" if k > m else s1[p : p + k]",

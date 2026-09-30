@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def nextPalindrome(self, num: str) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string nextPalindrome(string num) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String nextPalindrome(String num) {\n        \n    }\n};\n",
-    "javascript": "function nextPalindrome(num: string): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string nextPalindrome(string num) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String nextPalindrome(String num) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function nextPalindrome(num: string): string {\n    const nums = num.split('');\n    const n = nums.length;\n    if (!nextPermutation(nums)) {\n        return '';\n    }\n    for (let i = 0; i < n >> 1; ++i) {\n        nums[n - 1 - i] = nums[i];\n    }\n    return nums.join('');\n}\n\nfunction nextPermutation(nums: string[]): boolean {\n    const n = nums.length >> 1;\n    let i = n - 2;\n    while (i >= 0 && nums[i] >= nums[i + 1]) {\n        i--;\n    }\n    if (i < 0) {\n        return false;\n    }\n    let j = n - 1;\n    while (j >= 0 && nums[i] >= nums[j]) {\n        j--;\n    }\n    [nums[i], nums[j]] = [nums[j], nums[i]];\n    for (i = i + 1, j = n - 1; i < j; ++i, --j) {\n        [nums[i], nums[j]] = [nums[j], nums[i]];\n    }\n    return true;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def nextPalindrome(self, num: str) -> str:\n        def next_permutation(nums: List[str]) -> bool:\n            n = len(nums) // 2\n            i = n - 2\n            while i >= 0 and nums[i] >= nums[i + 1]:\n                i -= 1\n            if i < 0:\n                return False\n            j = n - 1\n            while j >= 0 and nums[j] <= nums[i]:\n                j -= 1\n            nums[i], nums[j] = nums[j], nums[i]\n            nums[i + 1 : n] = nums[i + 1 : n][::-1]\n            return True\n\n        nums = list(num)\n        if not next_permutation(nums):\n            return \"\"\n        n = len(nums)\n        for i in range(n // 2):\n            nums[n - i - 1] = nums[i]\n        return \"\".join(nums)",

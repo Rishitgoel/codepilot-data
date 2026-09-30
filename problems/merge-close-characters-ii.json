@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def mergeCharacters(self, s: str, k: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string mergeCharacters(string s, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String mergeCharacters(String s, int k) {\n        \n    }\n};\n",
-    "javascript": "function mergeCharacters(s: string, k: number): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string mergeCharacters(string s, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String mergeCharacters(String s, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function mergeCharacters(s: string, k: number): string {\n    const last = new Map<string, number>();\n    const ans: string[] = [];\n    for (const c of s) {\n        const cur = ans.length;\n        if (last.has(c) && cur - last.get(c)! <= k) {\n            continue;\n        }\n        ans.push(c);\n        last.set(c, cur);\n    }\n    return ans.join('');\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def mergeCharacters(self, s: str, k: int) -> str:\n        last = {}\n        ans = []\n        for c in s:\n            cur = len(ans)\n            if c in last and cur - last[c] <= k:\n                continue\n            ans.append(c)\n            last[c] = cur\n        return ''.join(ans)",

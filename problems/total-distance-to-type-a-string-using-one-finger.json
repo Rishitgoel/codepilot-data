@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "pos = {}\nkeys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']\nfor i, row in enumerate(keys):\n    for j, key in enumerate(row):\n        pos[key] = (i, j)\n\n\nclass Solution:\n    def totalDistance(self, s: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int totalDistance(string s) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private static final Map<Character, int[]> pos = new HashMap<>();\n\n    static {\n        \n    }\n};\n",
-    "javascript": "const pos: Record<string, [number, number]> = {};\n\nconst keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];\nkeys.forEach((row, i) => {\n    [...row].forEach((key, j) => {\n        pos[key] = [i, j];\n    });\n});\n\nfunction totalDistance(s: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int totalDistance(string s) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private static final Map<Character, int[]> pos = new HashMap<>();\n\n    static {\n        // Your code here\n    }\n}\n",
+    "javascript": "const pos: Record<string, [number, number]> = {};\n\nconst keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'];\nkeys.forEach((row, i) => {\n    [...row].forEach((key, j) => {\n        pos[key] = [i, j];\n    });\n});\n\nfunction totalDistance(s: string): number {\n    let pre = 'a';\n    let ans = 0;\n\n    for (const cur of s) {\n        const [x1, y1] = pos[pre];\n        const [x2, y2] = pos[cur];\n        ans += Math.abs(x1 - x2) + Math.abs(y1 - y2);\n        pre = cur;\n    }\n\n    return ans;\n}"
   },
   "snippets": {
     "python": "pos = {}\nkeys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']\nfor i, row in enumerate(keys):\n    for j, key in enumerate(row):\n        pos[key] = (i, j)\n\n\nclass Solution:\n    def totalDistance(self, s: str) -> int:\n        pre = 'a'\n        ans = 0\n        for cur in s:\n            x1, y1 = pos[pre]\n            x2, y2 = pos[cur]\n            dist = abs(x1 - x2) + abs(y1 - y2)\n            ans += dist\n            pre = cur\n        return ans",

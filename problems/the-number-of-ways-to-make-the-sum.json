@@ -29,9 +29,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def numberOfWays(self, n: int) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int numberOfWays(int n) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int numberOfWays(int n) {\r\n        \n    }\n};\n",
-    "javascript": "function numberOfWays(n: number): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int numberOfWays(int n) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int numberOfWays(int n) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function numberOfWays(n: number): number {\n    const mod = 10 ** 9 + 7;\n    const f: number[] = Array(n + 1).fill(0);\n    f[0] = 1;\n    for (const x of [1, 2, 6]) {\n        for (let j = x; j <= n; ++j) {\n            f[j] = (f[j] + f[j - x]) % mod;\n        }\n    }\n    let ans = f[n];\n    if (n >= 4) {\n        ans = (ans + f[n - 4]) % mod;\n    }\n    if (n >= 8) {\n        ans = (ans + f[n - 8]) % mod;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def numberOfWays(self, n: int) -> int:\r\n        mod = 10**9 + 7\r\n        coins = [1, 2, 6]\r\n        f = [0] * (n + 1)\r\n        f[0] = 1\r\n        for x in coins:\r\n            for j in range(x, n + 1):\r\n                f[j] = (f[j] + f[j - x]) % mod\r\n        ans = f[n]\r\n        if n >= 4:\r\n            ans = (ans + f[n - 4]) % mod\r\n        if n >= 8:\r\n            ans = (ans + f[n - 8]) % mod\r\n        return ans",

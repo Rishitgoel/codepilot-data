@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortArray(self, nums: List[int], pre: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums, vector<int>& pre) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int sortArray(int[] nums, int[] pre) {\n        \n    }\n};\n",
-    "javascript": "function sortArray(nums: number[], pre: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums, vector<int>& pre) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int sortArray(int[] nums, int[] pre) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function sortArray(nums: number[], pre: number[]): number {\n    const n = nums.length;\n\n    let target = 0;\n    for (let i = 0; i < n; i++) {\n        target = target * 8 + i;\n    }\n\n    let start = 0;\n    for (const x of nums) {\n        start = start * 8 + x;\n    }\n\n    if (start === target) {\n        return 0;\n    }\n\n    const vis = new Set<number>();\n    vis.add(start);\n\n    const q: [number[], number][] = [[nums.slice(), 0]];\n\n    while (q.length) {\n        const [state, dist] = q.shift()!;\n        const nd = dist + 1;\n\n        for (const x of pre) {\n            const nxt = state.slice();\n\n            for (let l = 0, r = x - 1; l < r; l++, r--) {\n                [nxt[l], nxt[r]] = [nxt[r], nxt[l]];\n            }\n\n            let key = 0;\n            for (const v of nxt) {\n                key = key * 8 + v;\n            }\n\n            if (key === target) {\n                return nd;\n            }\n\n            if (!vis.has(key)) {\n                vis.add(key);\n                q.push([nxt, nd]);\n            }\n        }\n    }\n\n    return -1;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def sortArray(self, nums: List[int], pre: List[int]) -> int:\n        n = len(nums)\n        target = tuple(range(n))\n        start = tuple(nums)\n\n        if start == target:\n            return 0\n\n        vis = {start}\n        q = deque([(start, 0)])\n\n        while q:\n            state, dist = q.popleft()\n            nd = dist + 1\n            for x in pre:\n                nxt = state[:x][::-1] + state[x:]\n                if nxt == target:\n                    return nd\n                if nxt not in vis:\n                    vis.add(nxt)\n                    q.append((nxt, nd))\n        return -1",

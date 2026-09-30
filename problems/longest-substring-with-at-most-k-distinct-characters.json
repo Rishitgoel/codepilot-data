@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringKDistinct(string s, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        \n    }\n};\n",
-    "javascript": "var lengthOfLongestSubstringKDistinct = function(s, k) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringKDistinct(string s, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var lengthOfLongestSubstringKDistinct = function(s, k) {\n    if (k === 0) return 0;\n    const counts = new Map();\n    let left = 0, maxLen = 0;\n    for (let right = 0; right < s.length; right++) {\n        const c = s[right];\n        counts.set(c, (counts.get(c) || 0) + 1);\n        while (counts.size > k) {\n            const lc = s[left];\n            counts.set(lc, counts.get(lc) - 1);\n            if (counts.get(lc) === 0) counts.delete(lc);\n            left++;\n        }\n        maxLen = Math.max(maxLen, right - left + 1);\n    }\n    return maxLen;\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        if k == 0: return 0\n        counts = defaultdict(int)\n        left = 0\n        max_len = 0\n        for right, c in enumerate(s):\n            counts[c] += 1\n            while len(counts) > k:\n                counts[s[left]] -= 1\n                if counts[s[left]] == 0:\n                    del counts[s[left]]\n                left += 1\n            max_len = max(max_len, right - left + 1)\n        return max_len",

@@ -28,9 +28,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maximumTeamSize(self, startTime: list[int], endTime: list[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maximumTeamSize(vector<int>& startTime, vector<int>& endTime) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maximumTeamSize(int[] startTime, int[] endTime) {\n        \n    }\n};\n",
-    "javascript": "function maximumTeamSize(startTime: number[], endTime: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maximumTeamSize(vector<int>& startTime, vector<int>& endTime) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maximumTeamSize(int[] startTime, int[] endTime) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maximumTeamSize(startTime: number[], endTime: number[]): number {\n    const n = startTime.length;\n    const intervals: [number, number][] = Array.from({ length: n }, (_, i) => [\n        startTime[i],\n        endTime[i],\n    ]);\n\n    startTime.sort((a, b) => a - b);\n    endTime.sort((a, b) => a - b);\n\n    let ans = 0;\n    for (const [l, r] of intervals) {\n        const i = search(endTime, l - 1);\n        const j = search(startTime, r);\n\n        ans = Math.max(ans, j - i);\n    }\n\n    return ans;\n}\n\nfunction search(arr: number[], x: number): number {\n    let l = 0;\n    let r = arr.length;\n    while (l < r) {\n        const mid = (l + r) >> 1;\n        if (arr[mid] > x) {\n            r = mid;\n        } else {\n            l = mid + 1;\n        }\n    }\n    return l;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maximumTeamSize(self, startTime: list[int], endTime: list[int]) -> int:\n        intervals = list(zip(startTime, endTime))\n        startTime.sort()\n        endTime.sort()\n        ans = 0\n        for l, r in intervals:\n            i = bisect_right(endTime, l - 1)\n            j = bisect_right(startTime, r)\n            ans = max(ans, j - i)\n        return ans",

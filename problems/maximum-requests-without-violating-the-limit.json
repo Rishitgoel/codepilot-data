@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxRequests(vector<vector<int>>& requests, int k, int window) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxRequests(int[][] requests, int k, int window) {\n        \n    }\n};\n",
-    "javascript": "function maxRequests(requests: number[][], k: number, window: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxRequests(vector<vector<int>>& requests, int k, int window) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxRequests(int[][] requests, int k, int window) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxRequests(requests: number[][], k: number, window: number): number {\n    const g = new Map<number, number[]>();\n    for (const [u, t] of requests) {\n        if (!g.has(u)) g.set(u, []);\n        g.get(u)!.push(t);\n    }\n    let ans = requests.length;\n    for (const ts of g.values()) {\n        ts.sort((a, b) => a - b);\n        const kept: number[] = [];\n        let head = 0;\n        for (const t of ts) {\n            while (head < kept.length && t - kept[head] > window) {\n                head++;\n            }\n            if (kept.length - head < k) {\n                kept.push(t);\n            } else {\n                --ans;\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxRequests(self, requests: list[list[int]], k: int, window: int) -> int:\n        g = defaultdict(list)\n        for u, t in requests:\n            g[u].append(t)\n        ans = len(requests)\n        for ts in g.values():\n            ts.sort()\n            kept = deque()\n            for t in ts:\n                while kept and t - kept[0] > window:\n                    kept.popleft()\n                if len(kept) < k:\n                    kept.append(t)\n                else:\n                    ans -= 1\n        return ans",

@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def widestPairOfIndices(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int widestPairOfIndices(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int widestPairOfIndices(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
-    "javascript": "function widestPairOfIndices(nums1: number[], nums2: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int widestPairOfIndices(vector<int>& nums1, vector<int>& nums2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int widestPairOfIndices(int[] nums1, int[] nums2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function widestPairOfIndices(nums1: number[], nums2: number[]): number {\n    const d: Map<number, number> = new Map();\n    d.set(0, -1);\n    const n: number = nums1.length;\n    let s: number = 0;\n    let ans: number = 0;\n    for (let i = 0; i < n; ++i) {\n        s += nums1[i] - nums2[i];\n        if (d.has(s)) {\n            ans = Math.max(ans, i - (d.get(s) as number));\n        } else {\n            d.set(s, i);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def widestPairOfIndices(self, nums1: List[int], nums2: List[int]) -> int:\n        d = {0: -1}\n        ans = s = 0\n        for i, (a, b) in enumerate(zip(nums1, nums2)):\n            s += a - b\n            if s in d:\n                ans = max(ans, i - d[s])\n            else:\n                d[s] = i\n        return ans",

@@ -45,8 +45,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def brightestPosition(self, lights: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int brightestPosition(vector<vector<int>>& lights) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int brightestPosition(int[][] lights) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int brightestPosition(vector<vector<int>>& lights) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int brightestPosition(int[][] lights) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def brightestPosition(self, lights: List[List[int]]) -> int:\n        d = defaultdict(int)\n        for i, j in lights:\n            l, r = i - j, i + j\n            d[l] += 1\n            d[r + 1] -= 1\n        ans = s = mx = 0\n        for k in sorted(d):\n            s += d[k]\n            if mx < s:\n                mx = s\n                ans = k\n        return ans",

@@ -31,8 +31,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def modeWeight(self, nums: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long modeWeight(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long modeWeight(int[] nums, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    long long modeWeight(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long modeWeight(int[] nums, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def modeWeight(self, nums: List[int], k: int) -> int:\n        pq = []\n        cnt = defaultdict(int)\n        for x in nums[:k]:\n            cnt[x] += 1\n            heappush(pq, (-cnt[x], x))\n\n        def get_mode() -> int:\n            while -pq[0][0] != cnt[pq[0][1]]:\n                heappop(pq)\n            freq, val = -pq[0][0], pq[0][1]\n            return freq * val\n\n        ans = 0\n        ans += get_mode()\n\n        for i in range(k, len(nums)):\n            x, y = nums[i], nums[i - k]\n            cnt[x] += 1\n            cnt[y] -= 1\n            heappush(pq, (-cnt[x], x))\n            heappush(pq, (-cnt[y], y))\n\n            ans += get_mode()\n\n        return ans",

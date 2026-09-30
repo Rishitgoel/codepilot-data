@@ -39,8 +39,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxScore(self, edges: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<vector<int>>& edges) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private List<int[]>[] g;\n\n    public long maxScore(int[][] edges) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<vector<int>>& edges) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private List<int[]>[] g;\n\n    public long maxScore(int[][] edges) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxScore(self, edges: List[List[int]]) -> int:\n        def dfs(i):\n            a = b = t = 0\n            for j, w in g[i]:\n                x, y = dfs(j)\n                a += y\n                b += y\n                t = max(t, x - y + w)\n            b += t\n            return a, b\n\n        g = defaultdict(list)\n        for i, (p, w) in enumerate(edges[1:], 1):\n            g[p].append((i, w))\n        return dfs(0)[1]",

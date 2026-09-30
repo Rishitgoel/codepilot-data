@@ -48,8 +48,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def getFood(self, grid: List[List[str]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    const static inline vector<int> dirs = {-1, 0, 1, 0, -1};\n\n    int getFood(vector<vector<char>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int[] dirs = {-1, 0, 1, 0, -1};\n\n    public int getFood(char[][] grid) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    const static inline vector<int> dirs = {-1, 0, 1, 0, -1};\n\n    int getFood(vector<vector<char>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int[] dirs = {-1, 0, 1, 0, -1};\n\n    public int getFood(char[][] grid) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def getFood(self, grid: List[List[str]]) -> int:\n        m, n = len(grid), len(grid[0])\n        i, j = next((i, j) for i in range(m) for j in range(n) if grid[i][j] == '*')\n        q = deque([(i, j)])\n        dirs = (-1, 0, 1, 0, -1)\n        ans = 0\n        while q:\n            ans += 1\n            for _ in range(len(q)):\n                i, j = q.popleft()\n                for a, b in pairwise(dirs):\n                    x, y = i + a, j + b\n                    if 0 <= x < m and 0 <= y < n:\n                        if grid[x][y] == '#':\n                            return ans\n                        if grid[x][y] == 'O':\n                            grid[x][y] = 'X'\n                            q.append((x, y))\n        return -1",

@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def betterCompression(self, compressed: str) -> str:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    string betterCompression(string compressed) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public String betterCompression(String compressed) {\r\n        \n    }\n};\n",
-    "javascript": "function betterCompression(compressed: string): string {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    string betterCompression(string compressed) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public String betterCompression(String compressed) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function betterCompression(compressed: string): string {\n    const cnt = new Map<string, number>();\n    const n = compressed.length;\n    let i = 0;\n\n    while (i < n) {\n        const c = compressed[i];\n        let j = i + 1;\n        let x = 0;\n        while (j < n && /\\d/.test(compressed[j])) {\n            x = x * 10 + +compressed[j];\n            j++;\n        }\n        cnt.set(c, (cnt.get(c) || 0) + x);\n        i = j;\n    }\n    const keys = Array.from(cnt.keys()).sort();\n    const ans: string[] = [];\n    for (const k of keys) {\n        ans.push(`${k}${cnt.get(k)}`);\n    }\n    return ans.join('');\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def betterCompression(self, compressed: str) -> str:\r\n        cnt = Counter()\r\n        i, n = 0, len(compressed)\r\n        while i < n:\r\n            j = i + 1\r\n            x = 0\r\n            while j < n and compressed[j].isdigit():\r\n                x = x * 10 + int(compressed[j])\r\n                j += 1\r\n            cnt[compressed[i]] += x\r\n            i = j\r\n        return \"\".join(sorted(f\"{k}{v}\" for k, v in cnt.items()))",

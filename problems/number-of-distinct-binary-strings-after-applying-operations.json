@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countDistinctStrings(self, s: str, k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    const int mod = 1e9 + 7;\n\n    int countDistinctStrings(string s, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public static final int MOD = (int) 1e9 + 7;\n\n    public int countDistinctStrings(String s, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    const int mod = 1e9 + 7;\n\n    int countDistinctStrings(string s, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public static final int MOD = (int) 1e9 + 7;\n\n    public int countDistinctStrings(String s, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def countDistinctStrings(self, s: str, k: int) -> int:\n        return pow(2, len(s) - k + 1) % (10**9 + 7)",

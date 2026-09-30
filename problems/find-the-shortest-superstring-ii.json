@@ -29,9 +29,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def shortestSuperstring(self, s1: str, s2: str) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string shortestSuperstring(string s1, string s2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String shortestSuperstring(String s1, String s2) {\n        \n    }\n};\n",
-    "javascript": "function shortestSuperstring(s1: string, s2: string): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string shortestSuperstring(string s1, string s2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String shortestSuperstring(String s1, String s2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function shortestSuperstring(s1: string, s2: string): string {\n    const m = s1.length,\n        n = s2.length;\n\n    if (m > n) {\n        return shortestSuperstring(s2, s1);\n    }\n\n    if (s2.includes(s1)) {\n        return s2;\n    }\n\n    for (let i = 0; i < m; i++) {\n        if (s2.startsWith(s1.slice(i))) {\n            return s1.slice(0, i) + s2;\n        }\n        if (s2.endsWith(s1.slice(0, m - i))) {\n            return s2 + s1.slice(m - i);\n        }\n    }\n\n    return s1 + s2;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def shortestSuperstring(self, s1: str, s2: str) -> str:\n        m, n = len(s1), len(s2)\n        if m > n:\n            return self.shortestSuperstring(s2, s1)\n        if s1 in s2:\n            return s2\n        for i in range(m):\n            if s2.startswith(s1[i:]):\n                return s1[:i] + s2\n            if s2.endswith(s1[: m - i]):\n                return s2 + s1[m - i :]\n        return s1 + s2",

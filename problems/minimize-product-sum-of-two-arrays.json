@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minProductSum(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minProductSum(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minProductSum(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
-    "javascript": "function minProductSum(nums1: number[], nums2: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int minProductSum(vector<int>& nums1, vector<int>& nums2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minProductSum(int[] nums1, int[] nums2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minProductSum(nums1: number[], nums2: number[]): number {\n    nums1.sort((a, b) => a - b);\n    nums2.sort((a, b) => b - a);\n    let ans = 0;\n    for (let i = 0; i < nums1.length; ++i) {\n        ans += nums1[i] * nums2[i];\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minProductSum(self, nums1: List[int], nums2: List[int]) -> int:\n        nums1.sort()\n        nums2.sort(reverse=True)\n        return sum(x * y for x, y in zip(nums1, nums2))",

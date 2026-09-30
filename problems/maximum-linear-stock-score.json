@@ -33,9 +33,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxScore(self, prices: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<int>& prices) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long maxScore(int[] prices) {\n        \n    }\n};\n",
-    "javascript": "function maxScore(prices: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long maxScore(vector<int>& prices) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maxScore(int[] prices) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxScore(prices: number[]): number {\n    const cnt: Map<number, number> = new Map();\n    for (let i = 0; i < prices.length; ++i) {\n        const j = prices[i] - i;\n        cnt.set(j, (cnt.get(j) || 0) + prices[i]);\n    }\n    return Math.max(...cnt.values());\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxScore(self, prices: List[int]) -> int:\n        cnt = Counter()\n        for i, x in enumerate(prices):\n            cnt[x - i] += x\n        return max(cnt.values())",

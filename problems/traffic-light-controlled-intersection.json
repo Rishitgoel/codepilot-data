@@ -39,7 +39,7 @@
   ],
   "starterTemplates": {
     "python": "from threading import Lock\n\n\nclass TrafficLight:\n    def __init__(self):\n        pass\n",
-    "java": "class TrafficLight {\n    private int road = 1;\n\n    public TrafficLight() {\n        \n    }\n};\n"
+    "java": "class TrafficLight {\n    private int road = 1;\n\n    public TrafficLight() {\n    }\n\n    public synchronized void carArrived(int carId, // ID of the car\n        int roadId, // ID of the road the car travels on. Can be 1 (road A) or 2 (road B)\n        int direction, // Direction of the car\n        Runnable turnGreen, // Use turnGreen.run() to turn light to green on current road\n        Runnable crossCar // Use crossCar.run() to make car cross the intersection\n    ) {\n        if (roadId != road) {\n            turnGreen.run();\n            road = roadId;\n        }\n        crossCar.run();\n    }\n}"
   },
   "snippets": {
     "python": "from threading import Lock\n\n\nclass TrafficLight:\n    def __init__(self):\n        self.lock = Lock()\n        self.road = 1\n\n    def carArrived(\n        self,\n        carId: int,  # ID of the car\n        # ID of the road the car travels on. Can be 1 (road A) or 2 (road B)\n        roadId: int,\n        direction: int,  # Direction of the car\n        # Use turnGreen() to turn light to green on current road\n        turnGreen: 'Callable[[], None]',\n        # Use crossCar() to make car cross the intersection\n        crossCar: 'Callable[[], None]',\n    ) -> None:\n        self.lock.acquire()\n        if self.road != roadId:\n            self.road = roadId\n            turnGreen()\n        crossCar()\n        self.lock.release()",

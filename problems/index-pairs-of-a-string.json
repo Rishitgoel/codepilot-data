@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> indexPairs(string text, vector<string>& words) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[][] indexPairs(String text, String[] words) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> indexPairs(string text, vector<string>& words) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[][] indexPairs(String text, String[] words) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def indexPairs(self, text: str, words: List[str]) -> List[List[int]]:\n        words = set(words)\n        n = len(text)\n        return [\n            [i, j] for i in range(n) for j in range(i, n) if text[i : j + 1] in words\n        ]",

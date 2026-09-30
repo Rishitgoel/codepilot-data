@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def toHexspeak(self, num: str) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string toHexspeak(string num) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private static final Set<Character> S = Set.of('A', 'B', 'C', 'D', 'E', 'F', 'I', 'O');\n\n    public String toHexspeak(String num) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string toHexspeak(string num) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private static final Set<Character> S = Set.of('A', 'B', 'C', 'D', 'E', 'F', 'I', 'O');\n\n    public String toHexspeak(String num) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def toHexspeak(self, num: str) -> str:\n        s = set('ABCDEFIO')\n        t = hex(int(num))[2:].upper().replace('0', 'O').replace('1', 'I')\n        return t if all(c in s for c in t) else 'ERROR'",

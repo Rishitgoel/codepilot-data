@@ -39,7 +39,7 @@
     "0 <= n <= 18"
   ],
   "starterTemplates": {
-    "javascript": "function* factorial(n: number): Generator<number> {\n    \n};\n"
+    "javascript": "function* factorial(n: number): Generator<number> {\n    if (n === 0) {\n        yield 1;\n    }\n    let ans = 1;\n    for (let i = 1; i <= n; ++i) {\n        ans *= i;\n        yield ans;\n    }\n}\n\n/**\n * const gen = factorial(2);\n * gen.next().value; // 1\n * gen.next().value; // 2\n */"
   },
   "snippets": {
     "javascript": "function* factorial(n: number): Generator<number> {\n    if (n === 0) {\n        yield 1;\n    }\n    let ans = 1;\n    for (let i = 1; i <= n; ++i) {\n        ans *= i;\n        yield ans;\n    }\n}\n\n/**\n * const gen = factorial(2);\n * gen.next().value; // 1\n * gen.next().value; // 2\n */"

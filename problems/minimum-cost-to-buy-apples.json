@@ -41,8 +41,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minCost(\n        self, n: int, roads: List[List[int]], appleCost: List[int], k: int\n    ) -> List[int]:\n        pass\n",
-    "cpp": "using ll = long long;\nusing pii = pair<int, int>;\n\nclass Solution {\npublic:\n    const int inf = 0x3f3f3f3f;\n\n    vector<long long> minCost(int n, vector<vector<int>>& roads, vector<int>& appleCost, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private int k;\n    private int[] cost;\n    private int[] dist;\n    private List<int[]>[] g;\n    private static final int INF = 0x3f3f3f3f;\n\n    public long[] minCost(int n, int[][] roads, int[] appleCost, int k) {\n        \n    }\n};\n"
+    "cpp": "using ll = long long;\nusing pii = pair<int, int>;\n\nclass Solution {\npublic:\n    const int inf = 0x3f3f3f3f;\n\n    vector<long long> minCost(int n, vector<vector<int>>& roads, vector<int>& appleCost, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private int k;\n    private int[] cost;\n    private int[] dist;\n    private List<int[]>[] g;\n    private static final int INF = 0x3f3f3f3f;\n\n    public long[] minCost(int n, int[][] roads, int[] appleCost, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minCost(\n        self, n: int, roads: List[List[int]], appleCost: List[int], k: int\n    ) -> List[int]:\n        def dijkstra(i):\n            q = [(0, i)]\n            dist = [inf] * n\n            dist[i] = 0\n            ans = inf\n            while q:\n                d, u = heappop(q)\n                ans = min(ans, appleCost[u] + d * (k + 1))\n                for v, w in g[u]:\n                    if dist[v] > dist[u] + w:\n                        dist[v] = dist[u] + w\n                        heappush(q, (dist[v], v))\n            return ans\n\n        g = defaultdict(list)\n        for a, b, c in roads:\n            a, b = a - 1, b - 1\n            g[a].append((b, c))\n            g[b].append((a, c))\n        return [dijkstra(i) for i in range(n)]",

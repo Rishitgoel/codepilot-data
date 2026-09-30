@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def isMajorityElement(self, nums: List[int], target: int) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool isMajorityElement(vector<int>& nums, int target) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean isMajorityElement(int[] nums, int target) {\n        \n    }\n};\n",
-    "javascript": "function isMajorityElement(nums: number[], target: number): boolean {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    bool isMajorityElement(vector<int>& nums, int target) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean isMajorityElement(int[] nums, int target) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function isMajorityElement(nums: number[], target: number): boolean {\n    const search = (x: number) => {\n        let left = 0;\n        let right = nums.length;\n        while (left < right) {\n            const mid = (left + right) >> 1;\n            if (nums[mid] >= x) {\n                right = mid;\n            } else {\n                left = mid + 1;\n            }\n        }\n        return left;\n    };\n    const left = search(target);\n    const right = search(target + 1);\n    return right - left > nums.length >> 1;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def isMajorityElement(self, nums: List[int], target: int) -> bool:\n        left = bisect_left(nums, target)\n        right = bisect_right(nums, target)\n        return right - left > len(nums) // 2",

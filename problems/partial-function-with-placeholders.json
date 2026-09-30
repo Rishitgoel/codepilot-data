@@ -43,7 +43,7 @@
     "0 <= number of placeholders <= restArgs.length"
   ],
   "starterTemplates": {
-    "javascript": "function partial(fn: Function, args: any[]): Function {\n    \n};\n"
+    "javascript": "function partial(fn: Function, args: any[]): Function {\n    return function (...restArgs) {\n        let i = 0;\n        for (let j = 0; j < args.length; ++j) {\n            if (args[j] === '_') {\n                args[j] = restArgs[i++];\n            }\n        }\n        while (i < restArgs.length) {\n            args.push(restArgs[i++]);\n        }\n        return fn(...args);\n    };\n}"
   },
   "snippets": {
     "javascript": "function partial(fn: Function, args: any[]): Function {\n    return function (...restArgs) {\n        let i = 0;\n        for (let j = 0; j < args.length; ++j) {\n            if (args[j] === '_') {\n                args[j] = restArgs[i++];\n            }\n        }\n        while (i < restArgs.length) {\n            args.push(restArgs[i++]);\n        }\n        return fn(...args);\n    };\n}"

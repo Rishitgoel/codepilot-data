@@ -45,8 +45,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findShortestWay(\n        self, maze: List[List[int]], ball: List[int], hole: List[int]\n    ) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String findShortestWay(int[][] maze, int[] ball, int[] hole) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String findShortestWay(int[][] maze, int[] ball, int[] hole) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def findShortestWay(\n        self, maze: List[List[int]], ball: List[int], hole: List[int]\n    ) -> str:\n        m, n = len(maze), len(maze[0])\n        r, c = ball\n        rh, ch = hole\n        q = deque([(r, c)])\n        dist = [[inf] * n for _ in range(m)]\n        dist[r][c] = 0\n        path = [[None] * n for _ in range(m)]\n        path[r][c] = ''\n        while q:\n            i, j = q.popleft()\n            for a, b, d in [(-1, 0, 'u'), (1, 0, 'd'), (0, -1, 'l'), (0, 1, 'r')]:\n                x, y, step = i, j, dist[i][j]\n                while (\n                    0 <= x + a < m\n                    and 0 <= y + b < n\n                    and maze[x + a][y + b] == 0\n                    and (x != rh or y != ch)\n                ):\n                    x, y = x + a, y + b\n                    step += 1\n                if dist[x][y] > step or (\n                    dist[x][y] == step and path[i][j] + d < path[x][y]\n                ):\n                    dist[x][y] = step\n                    path[x][y] = path[i][j] + d\n                    if x != rh or y != ch:\n                        q.append((x, y))\n        return path[rh][ch] or 'impossible'",

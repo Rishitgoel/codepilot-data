@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def solve(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> solve(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] solve(int[] nums, int[][] queries) {\n        \n    }\n};\n",
-    "javascript": "function solve(nums: number[], queries: number[][]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> solve(vector<int>& nums, vector<vector<int>>& queries) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] solve(int[] nums, int[][] queries) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function solve(nums: number[], queries: number[][]): number[] {\n    const n = nums.length;\n    const m = Math.floor(Math.sqrt(n));\n    const mod = 10 ** 9 + 7;\n    const suf: number[][] = Array(m + 1)\n        .fill(0)\n        .map(() => Array(n + 1).fill(0));\n    for (let i = 1; i <= m; ++i) {\n        for (let j = n - 1; j >= 0; --j) {\n            suf[i][j] = (suf[i][Math.min(n, j + i)] + nums[j]) % mod;\n        }\n    }\n    const ans: number[] = [];\n    for (const [x, y] of queries) {\n        if (y <= m) {\n            ans.push(suf[y][x]);\n        } else {\n            let s = 0;\n            for (let i = x; i < n; i += y) {\n                s = (s + nums[i]) % mod;\n            }\n            ans.push(s);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def solve(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        mod = 10**9 + 7\n        n = len(nums)\n        m = int(sqrt(n))\n        suf = [[0] * (n + 1) for _ in range(m + 1)]\n        for i in range(1, m + 1):\n            for j in range(n - 1, -1, -1):\n                suf[i][j] = suf[i][min(n, j + i)] + nums[j]\n        ans = []\n        for x, y in queries:\n            if y <= m:\n                ans.append(suf[y][x] % mod)\n            else:\n                ans.append(sum(nums[x::y]) % mod)\n        return ans",

@@ -41,9 +41,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxLength(self, ribbons: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxLength(vector<int>& ribbons, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxLength(int[] ribbons, int k) {\n        \n    }\n};\n",
-    "javascript": "function maxLength(ribbons: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxLength(vector<int>& ribbons, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxLength(int[] ribbons, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxLength(ribbons: number[], k: number): number {\n    let left = 0;\n    let right = Math.max(...ribbons);\n    while (left < right) {\n        const mid = (left + right + 1) >> 1;\n        let cnt = 0;\n        for (const x of ribbons) {\n            cnt += Math.floor(x / mid);\n        }\n        if (cnt >= k) {\n            left = mid;\n        } else {\n            right = mid - 1;\n        }\n    }\n    return left;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxLength(self, ribbons: List[int], k: int) -> int:\n        left, right = 0, max(ribbons)\n        while left < right:\n            mid = (left + right + 1) >> 1\n            cnt = sum(x // mid for x in ribbons)\n            if cnt >= k:\n                left = mid\n            else:\n                right = mid - 1\n        return left",

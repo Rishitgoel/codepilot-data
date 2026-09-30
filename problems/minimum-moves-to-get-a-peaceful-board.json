@@ -31,9 +31,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def minMoves(self, rooks: List[List[int]]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    int minMoves(vector<vector<int>>& rooks) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public int minMoves(int[][] rooks) {\r\n        \n    }\n};\n",
-    "javascript": "function minMoves(rooks: number[][]): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    int minMoves(vector<vector<int>>& rooks) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public int minMoves(int[][] rooks) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function minMoves(rooks: number[][]): number {\n    rooks.sort((a, b) => a[0] - b[0]);\n    let ans = rooks.reduce((sum, rook, i) => sum + Math.abs(rook[0] - i), 0);\n    rooks.sort((a, b) => a[1] - b[1]);\n    ans += rooks.reduce((sum, rook, j) => sum + Math.abs(rook[1] - j), 0);\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def minMoves(self, rooks: List[List[int]]) -> int:\r\n        rooks.sort()\r\n        ans = sum(abs(x - i) for i, (x, _) in enumerate(rooks))\r\n        rooks.sort(key=lambda x: x[1])\r\n        ans += sum(abs(y - j) for j, (_, y) in enumerate(rooks))\r\n        return ans",

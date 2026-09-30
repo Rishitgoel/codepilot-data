@@ -45,9 +45,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def rearrangeString(self, s: str, k: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string rearrangeString(string s, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String rearrangeString(String s, int k) {\n        \n    }\n};\n",
-    "javascript": "export function rearrangeString(s: string, k: number): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string rearrangeString(string s, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String rearrangeString(String s, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "export function rearrangeString(s: string, k: number): string {\n    const cnt: number[] = Array(26).fill(0);\n    for (const c of s) {\n        cnt[c.charCodeAt(0) - 'a'.charCodeAt(0)]++;\n    }\n\n    const pq = new PriorityQueue<[number, number]>((a, b) => b[0] - a[0]);\n    for (let i = 0; i < 26; i++) {\n        if (cnt[i] > 0) {\n            pq.enqueue([cnt[i], i]);\n        }\n    }\n\n    const q: [number, number][] = [];\n    const ans: string[] = [];\n    while (!pq.isEmpty()) {\n        const [count, idx] = pq.dequeue()!;\n        const newCount = count - 1;\n        ans.push(String.fromCharCode('a'.charCodeAt(0) + idx));\n        q.push([newCount, idx]);\n        if (q.length >= k) {\n            const [frontCount, frontIdx] = q.shift()!;\n            if (frontCount > 0) {\n                pq.enqueue([frontCount, frontIdx]);\n            }\n        }\n    }\n    return ans.length < s.length ? '' : ans.join('');\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def rearrangeString(self, s: str, k: int) -> str:\n        cnt = Counter(s)\n        pq = [(-v, c) for c, v in cnt.items()]\n        heapify(pq)\n        q = deque()\n        ans = []\n        while pq:\n            v, c = heappop(pq)\n            ans.append(c)\n            q.append((v + 1, c))\n            if len(q) >= k:\n                e = q.popleft()\n                if e[0]:\n                    heappush(pq, e)\n        return \"\" if len(ans) < len(s) else \"\".join(ans)",

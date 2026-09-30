@@ -30,9 +30,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def encode(self, num: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string encode(int num) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String encode(int num) {\n        \n    }\n};\n",
-    "javascript": "function encode(num: number): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string encode(int num) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String encode(int num) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function encode(num: number): string {\n    ++num;\n    let s = num.toString(2);\n    return s.slice(1);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def encode(self, num: int) -> str:\n        return bin(num + 1)[3:]",

@@ -40,8 +40,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int sortArray(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int sortArray(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int sortArray(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def sortArray(self, nums: List[int]) -> int:\n        def f(nums, k):\n            vis = [False] * n\n            cnt = 0\n            for i, v in enumerate(nums):\n                if i == v or vis[i]:\n                    continue\n                cnt += 1\n                j = i\n                while not vis[j]:\n                    vis[j] = True\n                    cnt += 1\n                    j = nums[j]\n            return cnt - 2 * (nums[k] != k)\n\n        n = len(nums)\n        a = f(nums, 0)\n        b = f([(v - 1 + n) % n for v in nums], n - 1)\n        return min(a, b)",

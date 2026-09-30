@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& data) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minSwaps(int[] data) {\n        \n    }\n};\n",
-    "javascript": "function minSwaps(data: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int minSwaps(vector<int>& data) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minSwaps(int[] data) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minSwaps(data: number[]): number {\n    const k = data.reduce((acc, cur) => acc + cur, 0);\n    let t = data.slice(0, k).reduce((acc, cur) => acc + cur, 0);\n    let mx = t;\n    for (let i = k; i < data.length; ++i) {\n        t += data[i] - data[i - k];\n        mx = Math.max(mx, t);\n    }\n    return k - mx;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minSwaps(self, data: List[int]) -> int:\n        k = data.count(1)\n        mx = t = sum(data[:k])\n        for i in range(k, len(data)):\n            t += data[i]\n            t -= data[i - k]\n            mx = max(mx, t)\n        return k - mx",

@@ -43,9 +43,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        \n    }\n};\n",
-    "javascript": "var minMeetingRooms = function(intervals) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var minMeetingRooms = function(intervals) {\n    if (!intervals.length) return 0;\n    const starts = intervals.map(x => x[0]).sort((a, b) => a - b);\n    const ends = intervals.map(x => x[1]).sort((a, b) => a - b);\n    let rooms = 0, endIdx = 0;\n    for (let i = 0; i < starts.length; i++) {\n        if (starts[i] < ends[endIdx]) {\n            rooms++;\n        } else {\n            endIdx++;\n        }\n    }\n    return rooms;\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        if not intervals:\n            return 0\n        intervals.sort(key=lambda x: x[0])\n        heap = []\n        for start, end in intervals:\n            if heap and heap[0] <= start:\n                heapq.heappop(heap)\n            heapq.heappush(heap, end)\n        return len(heap)",

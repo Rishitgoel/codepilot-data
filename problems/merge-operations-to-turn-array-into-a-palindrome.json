@@ -37,8 +37,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minimumOperations(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minimumOperations(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int minimumOperations(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minimumOperations(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumOperations(self, nums: List[int]) -> int:\n        i, j = 0, len(nums) - 1\n        a, b = nums[i], nums[j]\n        ans = 0\n        while i < j:\n            if a < b:\n                i += 1\n                a += nums[i]\n                ans += 1\n            elif b < a:\n                j -= 1\n                b += nums[j]\n                ans += 1\n            else:\n                i, j = i + 1, j - 1\n                a, b = nums[i], nums[j]\n        return ans",

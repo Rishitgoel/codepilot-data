@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def kthLuckyNumber(self, k: int) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string kthLuckyNumber(int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String kthLuckyNumber(int k) {\n        \n    }\n};\n",
-    "javascript": "function kthLuckyNumber(k: number): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string kthLuckyNumber(int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String kthLuckyNumber(int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function kthLuckyNumber(k: number): string {\n    let n = 1;\n    while (k > 1 << n) {\n        k -= 1 << n;\n        ++n;\n    }\n    const ans: string[] = [];\n    while (n-- > 0) {\n        if (k <= 1 << n) {\n            ans.push('4');\n        } else {\n            ans.push('7');\n            k -= 1 << n;\n        }\n    }\n    return ans.join('');\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def kthLuckyNumber(self, k: int) -> str:\n        n = 1\n        while k > 1 << n:\n            k -= 1 << n\n            n += 1\n        ans = []\n        while n:\n            n -= 1\n            if k <= 1 << n:\n                ans.append(\"4\")\n            else:\n                ans.append(\"7\")\n                k -= 1 << n\n        return \"\".join(ans)",

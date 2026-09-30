@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] anagramMappings(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
-    "javascript": "function anagramMappings(nums1: number[], nums2: number[]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> anagramMappings(vector<int>& nums1, vector<int>& nums2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] anagramMappings(int[] nums1, int[] nums2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function anagramMappings(nums1: number[], nums2: number[]): number[] {\n    const d: Map<number, number> = new Map();\n    for (let i = 0; i < nums2.length; ++i) {\n        d.set(nums2[i], i);\n    }\n    return nums1.map(num => d.get(num)!);\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        d = {x: i for i, x in enumerate(nums2)}\n        return [d[x] for x in nums1]",

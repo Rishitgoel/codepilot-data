@@ -49,7 +49,7 @@
     "2 <= JSON.stringify(obj2).length <= 10^4"
   ],
   "starterTemplates": {
-    "javascript": "function objDiff(obj1: any, obj2: any): any {\n    \n};\n"
+    "javascript": "function objDiff(obj1: any, obj2: any): any {\n    if (type(obj1) !== type(obj2)) return [obj1, obj2];\n    if (!isObject(obj1)) return obj1 === obj2 ? {} : [obj1, obj2];\n    const diff: Record<string, unknown> = {};\n    const sameKeys = Object.keys(obj1).filter(key => key in obj2);\n    sameKeys.forEach(key => {\n        const subDiff = objDiff(obj1[key], obj2[key]);\n        if (Object.keys(subDiff).length) diff[key] = subDiff;\n    });\n    return diff;\n}\n\nfunction type(obj: unknown): string {\n    return Object.prototype.toString.call(obj).slice(8, -1);\n}\n\nfunction isObject(obj: unknown): obj is Record<string, unknown> {\n    return typeof obj === 'object' && obj !== null;\n}"
   },
   "snippets": {
     "javascript": "function objDiff(obj1: any, obj2: any): any {\n    if (type(obj1) !== type(obj2)) return [obj1, obj2];\n    if (!isObject(obj1)) return obj1 === obj2 ? {} : [obj1, obj2];\n    const diff: Record<string, unknown> = {};\n    const sameKeys = Object.keys(obj1).filter(key => key in obj2);\n    sameKeys.forEach(key => {\n        const subDiff = objDiff(obj1[key], obj2[key]);\n        if (Object.keys(subDiff).length) diff[key] = subDiff;\n    });\n    return diff;\n}\n\nfunction type(obj: unknown): string {\n    return Object.prototype.toString.call(obj).slice(8, -1);\n}\n\nfunction isObject(obj: unknown): obj is Record<string, unknown> {\n    return typeof obj === 'object' && obj !== null;\n}"

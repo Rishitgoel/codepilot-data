@@ -44,8 +44,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def shortestPathWithHops(\n        self, n: int, edges: List[List[int]], s: int, d: int, k: int\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int shortestPathWithHops(int n, vector<vector<int>>& edges, int s, int d, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int shortestPathWithHops(int n, int[][] edges, int s, int d, int k) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int shortestPathWithHops(int n, vector<vector<int>>& edges, int s, int d, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int shortestPathWithHops(int n, int[][] edges, int s, int d, int k) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def shortestPathWithHops(\n        self, n: int, edges: List[List[int]], s: int, d: int, k: int\n    ) -> int:\n        g = [[] for _ in range(n)]\n        for u, v, w in edges:\n            g[u].append((v, w))\n            g[v].append((u, w))\n        dist = [[inf] * (k + 1) for _ in range(n)]\n        dist[s][0] = 0\n        pq = [(0, s, 0)]\n        while pq:\n            dis, u, t = heappop(pq)\n            for v, w in g[u]:\n                if t + 1 <= k and dist[v][t + 1] > dis:\n                    dist[v][t + 1] = dis\n                    heappush(pq, (dis, v, t + 1))\n                if dist[v][t] > dis + w:\n                    dist[v][t] = dis + w\n                    heappush(pq, (dis + w, v, t))\n        return int(min(dist[d]))",

@@ -32,9 +32,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSum(self, nums: List[int], threshold: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, vector<int>& threshold) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long maxSum(int[] nums, int[] threshold) {\n        \n    }\n};\n",
-    "javascript": "function maxSum(nums: number[], threshold: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long maxSum(vector<int>& nums, vector<int>& threshold) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maxSum(int[] nums, int[] threshold) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxSum(nums: number[], threshold: number[]): number {\n    const n = nums.length;\n    const idx = Array.from({ length: n }, (_, i) => i).sort((a, b) => threshold[a] - threshold[b]);\n    const pq = new MaxPriorityQueue<number>();\n    let ans = 0;\n    for (let i = 0, step = 1; ; ++step) {\n        while (i < n && threshold[idx[i]] <= step) {\n            pq.enqueue(nums[idx[i]]);\n            ++i;\n        }\n        if (pq.isEmpty()) {\n            break;\n        }\n        ans += pq.dequeue();\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSum(self, nums: List[int], threshold: List[int]) -> int:\n        n = len(nums)\n        idx = sorted(range(n), key=lambda i: threshold[i])\n        sl = SortedList()\n        step = 1\n        ans = i = 0\n        while True:\n            while i < n and threshold[idx[i]] <= step:\n                sl.add(nums[idx[i]])\n                i += 1\n            if not sl:\n                break\n            ans += sl.pop()\n            step += 1\n        return ans",

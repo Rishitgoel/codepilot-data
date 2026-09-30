@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxSubArrayLen(vector<int>& nums, int k) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        \n    }\n};\n",
-    "javascript": "function maxSubArrayLen(nums: number[], k: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxSubArrayLen(vector<int>& nums, int k) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxSubArrayLen(int[] nums, int k) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxSubArrayLen(nums: number[], k: number): number {\n    const d: Map<number, number> = new Map();\n    d.set(0, -1);\n    let ans = 0;\n    let s = 0;\n    for (let i = 0; i < nums.length; ++i) {\n        s += nums[i];\n        if (d.has(s - k)) {\n            ans = Math.max(ans, i - d.get(s - k)!);\n        }\n        if (!d.has(s)) {\n            d.set(s, i);\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSubArrayLen(self, nums: List[int], k: int) -> int:\n        d = {0: -1}\n        ans = s = 0\n        for i, x in enumerate(nums):\n            s += x\n            if s - k in d:\n                ans = max(ans, i - d[s - k])\n            if s not in d:\n                d[s] = i\n        return ans",

@@ -35,9 +35,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxPrice(self, items: List[List[int]], capacity: int) -> float:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    double maxPrice(vector<vector<int>>& items, int capacity) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public double maxPrice(int[][] items, int capacity) {\n        \n    }\n};\n",
-    "javascript": "function maxPrice(items: number[][], capacity: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    double maxPrice(vector<vector<int>>& items, int capacity) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public double maxPrice(int[][] items, int capacity) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxPrice(items: number[][], capacity: number): number {\n    items.sort((a, b) => a[1] * b[0] - a[0] * b[1]);\n    let ans = 0;\n    for (const [p, w] of items) {\n        const v = Math.min(w, capacity);\n        ans += (v / w) * p;\n        capacity -= v;\n    }\n    return capacity ? -1 : ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxPrice(self, items: List[List[int]], capacity: int) -> float:\n        ans = 0\n        for p, w in sorted(items, key=lambda x: x[1] / x[0]):\n            v = min(w, capacity)\n            ans += v / w * p\n            capacity -= v\n        return -1 if capacity else ans",

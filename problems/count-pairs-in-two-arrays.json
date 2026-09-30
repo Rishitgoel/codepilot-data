@@ -36,9 +36,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countPairs(self, nums1: List[int], nums2: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long countPairs(vector<int>& nums1, vector<int>& nums2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long countPairs(int[] nums1, int[] nums2) {\n        \n    }\n};\n",
-    "javascript": "function countPairs(nums1: number[], nums2: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long countPairs(vector<int>& nums1, vector<int>& nums2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long countPairs(int[] nums1, int[] nums2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function countPairs(nums1: number[], nums2: number[]): number {\n    const n = nums1.length;\n    const nums: number[] = [];\n    for (let i = 0; i < n; ++i) {\n        nums.push(nums1[i] - nums2[i]);\n    }\n    nums.sort((a, b) => a - b);\n    let ans = 0;\n    let [l, r] = [0, n - 1];\n    while (l < r) {\n        while (l < r && nums[l] + nums[r] <= 0) {\n            ++l;\n        }\n        ans += r - l;\n        --r;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countPairs(self, nums1: List[int], nums2: List[int]) -> int:\n        nums = [a - b for a, b in zip(nums1, nums2)]\n        nums.sort()\n        l, r = 0, len(nums) - 1\n        ans = 0\n        while l < r:\n            while l < r and nums[l] + nums[r] <= 0:\n                l += 1\n            ans += r - l\n            r -= 1\n        return ans",

@@ -40,8 +40,8 @@
   ],
   "starterTemplates": {
     "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, next=None):\n        pass\n",
-    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* next;\n\n    Node() {}\n        \n    }\n};\n",
-    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node next;\n\n    public Node() {}\n        \n    }\n};\n"
+    "cpp": "/*\n// Definition for a Node.\nclass Node {\npublic:\n    int val;\n    Node* next;\n\n    Node() {}\n\n    Node(int _val) {\n        val = _val;\n        next = NULL;\n    }\n\n    Node(int _val, Node* _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\npublic:\n    Node* insert(Node* head, int insertVal) {\n        // Your code here\n    }\n};\n",
+    "java": "/*\n// Definition for a Node.\nclass Node {\n    public int val;\n    public Node next;\n\n    public Node() {}\n\n    public Node(int _val) {\n        val = _val;\n    }\n\n    public Node(int _val, Node _next) {\n        val = _val;\n        next = _next;\n    }\n};\n*/\n\nclass Solution {\n    public Node insert(Node head, int insertVal) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "\"\"\"\n# Definition for a Node.\nclass Node:\n    def __init__(self, val=None, next=None):\n        self.val = val\n        self.next = next\n\"\"\"\n\n\nclass Solution:\n    def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':\n        node = Node(insertVal)\n        if head is None:\n            node.next = node\n            return node\n        prev, curr = head, head.next\n        while curr != head:\n            if prev.val <= insertVal <= curr.val or (\n                prev.val > curr.val and (insertVal >= prev.val or insertVal <= curr.val)\n            ):\n                break\n            prev, curr = curr, curr.next\n        prev.next = node\n        node.next = curr\n        return head",

@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxSumAfterOperation(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int maxSumAfterOperation(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int maxSumAfterOperation(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int maxSumAfterOperation(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int maxSumAfterOperation(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def maxSumAfterOperation(self, nums: List[int]) -> int:\n        f = g = 0\n        ans = -inf\n        for x in nums:\n            ff = max(f, 0) + x\n            gg = max(max(f, 0) + x * x, g + x)\n            f, g = ff, gg\n            ans = max(ans, f, g)\n        return ans",

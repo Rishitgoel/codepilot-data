@@ -35,7 +35,7 @@
     "2 <= JSON.stringify(obj).length <= 10^5"
   ],
   "starterTemplates": {
-    "javascript": "function undefinedToNull(obj: Record<any, any>): Record<any, any> {\n    \n};\n"
+    "javascript": "function undefinedToNull(obj: Record<any, any>): Record<any, any> {\n    for (const key in obj) {\n        if (typeof obj[key] === 'object') {\n            obj[key] = undefinedToNull(obj[key]);\n        }\n        if (obj[key] === undefined) {\n            obj[key] = null;\n        }\n    }\n    return obj;\n}\n\n/**\n * undefinedToNull({\"a\": undefined, \"b\": 3}) // {\"a\": null, \"b\": 3}\n * undefinedToNull([undefined, undefined]) // [null, null]\n */"
   },
   "snippets": {
     "javascript": "function undefinedToNull(obj: Record<any, any>): Record<any, any> {\n    for (const key in obj) {\n        if (typeof obj[key] === 'object') {\n            obj[key] = undefinedToNull(obj[key]);\n        }\n        if (obj[key] === undefined) {\n            obj[key] = null;\n        }\n    }\n    return obj;\n}\n\n/**\n * undefinedToNull({\"a\": undefined, \"b\": 3}) // {\"a\": null, \"b\": 3}\n * undefinedToNull([undefined, undefined]) // [null, null]\n */"

@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def mostExpensiveItem(self, primeOne: int, primeTwo: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int mostExpensiveItem(int primeOne, int primeTwo) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int mostExpensiveItem(int primeOne, int primeTwo) {\n        \n    }\n};\n",
-    "javascript": "function mostExpensiveItem(primeOne: number, primeTwo: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int mostExpensiveItem(int primeOne, int primeTwo) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int mostExpensiveItem(int primeOne, int primeTwo) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function mostExpensiveItem(primeOne: number, primeTwo: number): number {\n    return primeOne * primeTwo - primeOne - primeTwo;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def mostExpensiveItem(self, primeOne: int, primeTwo: int) -> int:\n        return primeOne * primeTwo - primeOne - primeTwo",

@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def fixedRatio(self, s: str, num1: int, num2: int) -> int:\n        pass\n",
-    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long fixedRatio(string s, int num1, int num2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long fixedRatio(String s, int num1, int num2) {\n        \n    }\n};\n"
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    long long fixedRatio(string s, int num1, int num2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long fixedRatio(String s, int num1, int num2) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def fixedRatio(self, s: str, num1: int, num2: int) -> int:\n        n0 = n1 = 0\n        ans = 0\n        cnt = Counter({0: 1})\n        for c in s:\n            n0 += c == '0'\n            n1 += c == '1'\n            x = n1 * num1 - n0 * num2\n            ans += cnt[x]\n            cnt[x] += 1\n        return ans",

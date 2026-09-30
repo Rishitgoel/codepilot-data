@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def visibleMountains(self, peaks: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int visibleMountains(vector<vector<int>>& peaks) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int visibleMountains(int[][] peaks) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int visibleMountains(vector<vector<int>>& peaks) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int visibleMountains(int[][] peaks) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def visibleMountains(self, peaks: List[List[int]]) -> int:\n        arr = [(x - y, x + y) for x, y in peaks]\n        cnt = Counter(arr)\n        arr.sort(key=lambda x: (x[0], -x[1]))\n        ans, cur = 0, -inf\n        for l, r in arr:\n            if r <= cur:\n                continue\n            cur = r\n            if cnt[(l, r)] == 1:\n                ans += 1\n        return ans",

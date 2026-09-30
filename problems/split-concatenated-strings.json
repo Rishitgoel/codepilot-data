@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def splitLoopedString(self, strs: List[str]) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string splitLoopedString(vector<string>& strs) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String splitLoopedString(String[] strs) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    string splitLoopedString(vector<string>& strs) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String splitLoopedString(String[] strs) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def splitLoopedString(self, strs: List[str]) -> str:\n        strs = [s[::-1] if s[::-1] > s else s for s in strs]\n        ans = ''.join(strs)\n        for i, s in enumerate(strs):\n            t = ''.join(strs[i + 1 :]) + ''.join(strs[:i])\n            for j in range(len(s)):\n                a = s[j:]\n                b = s[:j]\n                ans = max(ans, a + t + b)\n                ans = max(ans, b[::-1] + t + a[::-1])\n        return ans",

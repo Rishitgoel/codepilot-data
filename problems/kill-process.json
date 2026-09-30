@@ -45,9 +45,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def killProcess(self, pid: List[int], ppid: List[int], kill: int) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private Map<Integer, List<Integer>> g = new HashMap<>();\n    private List<Integer> ans = new ArrayList<>();\n\n    public List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {\n        \n    }\n};\n",
-    "javascript": "function killProcess(pid: number[], ppid: number[], kill: number): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> killProcess(vector<int>& pid, vector<int>& ppid, int kill) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private Map<Integer, List<Integer>> g = new HashMap<>();\n    private List<Integer> ans = new ArrayList<>();\n\n    public List<Integer> killProcess(List<Integer> pid, List<Integer> ppid, int kill) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function killProcess(pid: number[], ppid: number[], kill: number): number[] {\n    const g: Map<number, number[]> = new Map();\n    for (let i = 0; i < pid.length; ++i) {\n        if (!g.has(ppid[i])) {\n            g.set(ppid[i], []);\n        }\n        g.get(ppid[i])?.push(pid[i]);\n    }\n    const ans: number[] = [];\n    const dfs = (i: number) => {\n        ans.push(i);\n        for (const j of g.get(i) ?? []) {\n            dfs(j);\n        }\n    };\n    dfs(kill);\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def killProcess(self, pid: List[int], ppid: List[int], kill: int) -> List[int]:\n        def dfs(i: int):\n            ans.append(i)\n            for j in g[i]:\n                dfs(j)\n\n        g = defaultdict(list)\n        for i, p in zip(pid, ppid):\n            g[p].append(i)\n        ans = []\n        dfs(kill)\n        return ans",

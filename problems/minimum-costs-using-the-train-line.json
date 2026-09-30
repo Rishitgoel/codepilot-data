@@ -34,9 +34,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minimumCosts(\n        self, regular: List[int], express: List[int], expressCost: int\n    ) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<long long> minimumCosts(vector<int>& regular, vector<int>& express, int expressCost) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long[] minimumCosts(int[] regular, int[] express, int expressCost) {\n        \n    }\n};\n",
-    "javascript": "function minimumCosts(regular: number[], express: number[], expressCost: number): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<long long> minimumCosts(vector<int>& regular, vector<int>& express, int expressCost) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long[] minimumCosts(int[] regular, int[] express, int expressCost) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function minimumCosts(regular: number[], express: number[], expressCost: number): number[] {\n    const n = regular.length;\n    const f: number[] = new Array(n + 1).fill(0);\n    const g: number[] = new Array(n + 1).fill(0);\n    g[0] = 1 << 30;\n    const cost: number[] = new Array(n).fill(0);\n    for (let i = 1; i <= n; ++i) {\n        const [a, b] = [regular[i - 1], express[i - 1]];\n        f[i] = Math.min(f[i - 1] + a, g[i - 1] + a);\n        g[i] = Math.min(f[i - 1] + expressCost + b, g[i - 1] + b);\n        cost[i - 1] = Math.min(f[i], g[i]);\n    }\n    return cost;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def minimumCosts(\n        self, regular: List[int], express: List[int], expressCost: int\n    ) -> List[int]:\n        n = len(regular)\n        f = [0] * (n + 1)\n        g = [inf] * (n + 1)\n        cost = [0] * n\n        for i, (a, b) in enumerate(zip(regular, express), 1):\n            f[i] = min(f[i - 1] + a, g[i - 1] + a)\n            g[i] = min(f[i - 1] + expressCost + b, g[i - 1] + b)\n            cost[i - 1] = min(f[i], g[i])\n        return cost",

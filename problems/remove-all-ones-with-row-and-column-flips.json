@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool removeOnes(vector<vector<int>>& grid) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean removeOnes(int[][] grid) {\n        \n    }\n};\n",
-    "javascript": "function removeOnes(grid: number[][]): boolean {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    bool removeOnes(vector<vector<int>>& grid) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean removeOnes(int[][] grid) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function removeOnes(grid: number[][]): boolean {\n    const s = new Set<string>();\n    for (const row of grid) {\n        if (row[0] === 1) {\n            for (let i = 0; i < row.length; i++) {\n                row[i] ^= 1;\n            }\n        }\n        const t = row.join('');\n        s.add(t);\n    }\n    return s.size === 1;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def removeOnes(self, grid: List[List[int]]) -> bool:\n        s = set()\n        for row in grid:\n            t = tuple(row) if row[0] == grid[0][0] else tuple(x ^ 1 for x in row)\n            s.add(t)\n        return len(s) == 1",

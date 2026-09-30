@@ -39,9 +39,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def equalCountSubstrings(self, s: str, count: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int equalCountSubstrings(string s, int count) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int equalCountSubstrings(String s, int count) {\n        \n    }\n};\n",
-    "javascript": "function equalCountSubstrings(s: string, count: number): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int equalCountSubstrings(string s, int count) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int equalCountSubstrings(String s, int count) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function equalCountSubstrings(s: string, count: number): number {\n    const n = s.length;\n    let ans = 0;\n    for (let i = 1; i < 27 && i * count <= n; ++i) {\n        const k = i * count;\n        const cnt: number[] = Array(26).fill(0);\n        let t = 0;\n        for (let j = 0; j < n; ++j) {\n            const a = s.charCodeAt(j) - 97;\n            t += ++cnt[a] === count ? 1 : 0;\n            t -= cnt[a] === count + 1 ? 1 : 0;\n            if (j >= k) {\n                const b = s.charCodeAt(j - k) - 97;\n                t += --cnt[b] === count ? 1 : 0;\n                t -= cnt[b] === count - 1 ? 1 : 0;\n            }\n            ans += i === t ? 1 : 0;\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def equalCountSubstrings(self, s: str, count: int) -> int:\n        ans = 0\n        for i in range(1, 27):\n            k = i * count\n            if k > len(s):\n                break\n            cnt = Counter()\n            t = 0\n            for j, c in enumerate(s):\n                cnt[c] += 1\n                t += cnt[c] == count\n                t -= cnt[c] == count + 1\n                if j >= k:\n                    cnt[s[j - k]] -= 1\n                    t += cnt[s[j - k]] == count\n                    t -= cnt[s[j - k]] == count - 1\n                ans += i == t\n        return ans",

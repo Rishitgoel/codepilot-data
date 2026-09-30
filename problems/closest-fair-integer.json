@@ -35,8 +35,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def closestFair(self, n: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int closestFair(int n) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int closestFair(int n) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int closestFair(int n) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int closestFair(int n) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def closestFair(self, n: int) -> int:\n        a = b = k = 0\n        t = n\n        while t:\n            if (t % 10) & 1:\n                a += 1\n            else:\n                b += 1\n            t //= 10\n            k += 1\n        if k & 1:\n            x = 10**k\n            y = int('1' * (k >> 1) or '0')\n            return x + y\n        if a == b:\n            return n\n        return self.closestFair(n + 1)",

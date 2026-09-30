@@ -36,9 +36,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def findSmallestRegion(\n        self, regions: List[List[str]], region1: str, region2: str\n    ) -> str:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {\n        \n    }\n};\n",
-    "javascript": "function findSmallestRegion(regions: string[][], region1: string, region2: string): string {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    string findSmallestRegion(vector<vector<string>>& regions, string region1, string region2) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function findSmallestRegion(regions: string[][], region1: string, region2: string): string {\n    const g: Record<string, string> = {};\n\n    for (const r of regions) {\n        const x = r[0];\n        for (const y of r.slice(1)) {\n            g[y] = x;\n        }\n    }\n\n    const s: Set<string> = new Set();\n    for (let x: string = region1; x !== undefined; x = g[x]) {\n        s.add(x);\n    }\n\n    let x: string = region2;\n    while (g[x] !== undefined && !s.has(x)) {\n        x = g[x];\n    }\n\n    return x;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def findSmallestRegion(\n        self, regions: List[List[str]], region1: str, region2: str\n    ) -> str:\n        g = {}\n        for r in regions:\n            x = r[0]\n            for y in r[1:]:\n                g[y] = x\n        s = set()\n        x = region1\n        while x in g:\n            s.add(x)\n            x = g[x]\n        x = region2\n        while x in g and x not in s:\n            x = g[x]\n        return x",

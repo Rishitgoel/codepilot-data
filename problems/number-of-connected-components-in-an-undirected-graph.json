@@ -45,9 +45,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        \n    }\n};\n",
-    "javascript": "var countComponents = function(n, edges) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var countComponents = function(n, edges) {\n    const parent = Array.from({ length: n }, (_, i) => i);\n    let count = n;\n    function find(x) {\n        return parent[x] === x ? x : (parent[x] = find(parent[x]));\n    }\n    for (const [u, v] of edges) {\n        const ru = find(u), rv = find(v);\n        if (ru !== rv) {\n            parent[ru] = rv;\n            count--;\n        }\n    }\n    return count;\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        parent = list(range(n))\n        count = n\n        def find(x):\n            if parent[x] != x:\n                parent[x] = find(parent[x])\n            return parent[x]\n        for u, v in edges:\n            ru, rv = find(u), find(v)\n            if ru != rv:\n                parent[ru] = rv\n                count -= 1\n        return count",

@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def splitArray(self, nums: List[int]) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool splitArray(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public boolean splitArray(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool splitArray(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public boolean splitArray(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def splitArray(self, nums: List[int]) -> bool:\n        n = len(nums)\n        s = [0] * (n + 1)\n        for i, v in enumerate(nums):\n            s[i + 1] = s[i] + v\n        for j in range(3, n - 3):\n            seen = set()\n            for i in range(1, j - 1):\n                if s[i] == s[j] - s[i + 1]:\n                    seen.add(s[i])\n            for k in range(j + 2, n - 1):\n                if s[n] - s[k + 1] == s[k] - s[j + 1] and s[n] - s[k + 1] in seen:\n                    return True\n        return False",

@@ -34,8 +34,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minKnightMoves(self, x: int, y: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minKnightMoves(int x, int y) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int minKnightMoves(int x, int y) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int minKnightMoves(int x, int y) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int minKnightMoves(int x, int y) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minKnightMoves(self, x: int, y: int) -> int:\n        q = deque([(0, 0)])\n        ans = 0\n        vis = {(0, 0)}\n        dirs = ((-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1))\n        while q:\n            for _ in range(len(q)):\n                i, j = q.popleft()\n                if (i, j) == (x, y):\n                    return ans\n                for a, b in dirs:\n                    c, d = i + a, j + b\n                    if (c, d) not in vis:\n                        vis.add((c, d))\n                        q.append((c, d))\n            ans += 1\n        return -1",

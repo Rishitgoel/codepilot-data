@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        pass\n",
-    "cpp": "class Solution {\r\npublic:\r\n    long long maxScore(vector<int>& nums) {\r\n        \n    }\n};\n",
-    "java": "class Solution {\r\n    public long maxScore(int[] nums) {\r\n        \n    }\n};\n",
-    "javascript": "function maxScore(nums: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\r\npublic:\r\n    long long maxScore(vector<int>& nums) {\r\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\r\n    public long maxScore(int[] nums) {\r\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxScore(nums: number[]): number {\n    const stk: number[] = [];\n    for (let i = 0; i < nums.length; ++i) {\n        while (stk.length && nums[stk.at(-1)!] <= nums[i]) {\n            stk.pop();\n        }\n        stk.push(i);\n    }\n    let ans = 0;\n    let i = 0;\n    for (const j of stk) {\n        ans += (j - i) * nums[j];\n        i = j;\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\r\n    def maxScore(self, nums: List[int]) -> int:\r\n        stk = []\r\n        for i, x in enumerate(nums):\r\n            while stk and nums[stk[-1]] <= x:\r\n                stk.pop()\r\n            stk.append(i)\r\n        ans = i = 0\r\n        for j in stk:\r\n            ans += nums[j] * (j - i)\r\n            i = j\r\n        return ans",

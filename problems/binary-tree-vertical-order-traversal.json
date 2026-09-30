@@ -42,9 +42,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<vector<int>> verticalOrder(TreeNode* root) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public List<List<Integer>> verticalOrder(TreeNode root) {\n        \n    }\n};\n",
-    "javascript": "var verticalOrder = function(root) {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> verticalOrder(TreeNode* root) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> verticalOrder(TreeNode root) {\n        // Your code here\n    }\n}\n",
+    "javascript": "var verticalOrder = function(root) {\n    if (!root) return [];\n    const cols = new Map();\n    const q = [[root, 0]];\n    let minC = 0, maxC = 0;\n    while (q.length) {\n        const [node, c] = q.shift();\n        if (!cols.has(c)) cols.set(c, []);\n        cols.get(c).push(node.val);\n        minC = Math.min(minC, c);\n        maxC = Math.max(maxC, c);\n        if (node.left) q.push([node.left, c - 1]);\n        if (node.right) q.push([node.right, c + 1]);\n    }\n    const res = [];\n    for (let i = minC; i <= maxC; i++) if (cols.has(i)) res.push(cols.get(i));\n    return res;\n};"
   },
   "snippets": {
     "python": "class Solution:\n    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        if not root: return []\n        cols = defaultdict(list)\n        q = deque([(root, 0)])\n        min_c = max_c = 0\n        while q:\n            node, c = q.popleft()\n            cols[c].append(node.val)\n            min_c, max_c = min(min_c, c), max(max_c, c)\n            if node.left: q.append((node.left, c - 1))\n            if node.right: q.append((node.right, c + 1))\n        return [cols[x] for x in range(min_c, max_c + 1)]",

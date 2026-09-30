@@ -27,9 +27,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def maxCaloriesBurnt(self, heights: list[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long maxCaloriesBurnt(vector<int>& heights) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long maxCaloriesBurnt(int[] heights) {\n        \n    }\n};\n",
-    "javascript": "function maxCaloriesBurnt(heights: number[]): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    long long maxCaloriesBurnt(vector<int>& heights) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long maxCaloriesBurnt(int[] heights) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function maxCaloriesBurnt(heights: number[]): number {\n    heights.sort((a, b) => a - b);\n    let ans = 0;\n    let pre = 0;\n    let [l, r] = [0, heights.length - 1];\n    while (l < r) {\n        ans += (heights[r] - pre) ** 2;\n        ans += (heights[l] - heights[r]) ** 2;\n        pre = heights[l];\n        l++;\n        r--;\n    }\n    ans += (heights[r] - pre) ** 2;\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def maxCaloriesBurnt(self, heights: list[int]) -> int:\n        heights.sort()\n        pre = 0\n        l, r = 0, len(heights) - 1\n        ans = 0\n        while l < r:\n            ans += (heights[r] - pre) ** 2\n            ans += (heights[l] - heights[r]) ** 2\n            pre = heights[l]\n            l, r = l + 1, r - 1\n        ans += (heights[r] - pre) ** 2\n        return ans",

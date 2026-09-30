@@ -33,8 +33,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def subsequenceSumOr(self, nums: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    long long subsequenceSumOr(vector<int>& nums) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public long subsequenceSumOr(int[] nums) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    long long subsequenceSumOr(vector<int>& nums) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public long subsequenceSumOr(int[] nums) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def subsequenceSumOr(self, nums: List[int]) -> int:\n        cnt = [0] * 64\n        ans = 0\n        for v in nums:\n            for i in range(31):\n                if (v >> i) & 1:\n                    cnt[i] += 1\n        for i in range(63):\n            if cnt[i]:\n                ans |= 1 << i\n            cnt[i + 1] += cnt[i] // 2\n        return ans",

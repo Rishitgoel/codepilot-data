@@ -33,9 +33,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def countQuadruples(self, firstString: str, secondString: str) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int countQuadruples(string firstString, string secondString) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int countQuadruples(String firstString, String secondString) {\n        \n    }\n};\n",
-    "javascript": "function countQuadruples(firstString: string, secondString: string): number {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    int countQuadruples(string firstString, string secondString) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int countQuadruples(String firstString, String secondString) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function countQuadruples(firstString: string, secondString: string): number {\n    const last: number[] = new Array(26).fill(0);\n    for (let i = 0; i < secondString.length; ++i) {\n        last[secondString.charCodeAt(i) - 97] = i + 1;\n    }\n    let [ans, mi] = [0, Infinity];\n    for (let i = 0; i < firstString.length; ++i) {\n        const j = last[firstString.charCodeAt(i) - 97];\n        if (j) {\n            const t = i - j;\n            if (mi > t) {\n                mi = t;\n                ans = 1;\n            } else if (mi === t) {\n                ++ans;\n            }\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def countQuadruples(self, firstString: str, secondString: str) -> int:\n        last = {c: i for i, c in enumerate(secondString)}\n        ans, mi = 0, inf\n        for i, c in enumerate(firstString):\n            if c in last:\n                t = i - last[c]\n                if mi > t:\n                    mi = t\n                    ans = 1\n                elif mi == t:\n                    ans += 1\n        return ans",

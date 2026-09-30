@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] elementInNums(int[] nums, int[][] queries) {\n        \n    }\n};\n",
-    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] elementInNums(int[] nums, int[][] queries) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function elementInNums(nums: number[], queries: number[][]): number[] {\n    const n = nums.length;\n    const m = queries.length;\n    const ans: number[] = Array(m).fill(-1);\n    for (let j = 0; j < m; ++j) {\n        let [t, i] = queries[j];\n        t %= 2 * n;\n        if (t < n && i < n - t) {\n            ans[j] = nums[i + t];\n        } else if (t >= n && i < t - n) {\n            ans[j] = nums[i];\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        n, m = len(nums), len(queries)\n        ans = [-1] * m\n        for j, (t, i) in enumerate(queries):\n            t %= 2 * n\n            if t < n and i < n - t:\n                ans[j] = nums[i + t]\n            elif t > n and i < t - n:\n                ans[j] = nums[i]\n        return ans",

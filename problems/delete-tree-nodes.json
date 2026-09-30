@@ -36,8 +36,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] value;\n\n    public int deleteTreeNodes(int nodes, int[] parent, int[] value) {\n        \n    }\n};\n"
+    "cpp": "class Solution {\npublic:\n    int deleteTreeNodes(int nodes, vector<int>& parent, vector<int>& value) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    private List<Integer>[] g;\n    private int[] value;\n\n    public int deleteTreeNodes(int nodes, int[] parent, int[] value) {\n        // Your code here\n    }\n}\n"
   },
   "snippets": {
     "python": "class Solution:\n    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:\n        def dfs(i):\n            s, m = value[i], 1\n            for j in g[i]:\n                t, n = dfs(j)\n                s += t\n                m += n\n            if s == 0:\n                m = 0\n            return (s, m)\n\n        g = defaultdict(list)\n        for i in range(1, nodes):\n            g[parent[i]].append(i)\n        return dfs(0)[1]",

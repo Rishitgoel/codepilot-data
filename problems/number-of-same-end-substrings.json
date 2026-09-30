@@ -37,9 +37,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> sameEndSubstringCount(string s, vector<vector<int>>& queries) {\n        \n    }\n};\n",
-    "java": "class Solution {\n    public int[] sameEndSubstringCount(String s, int[][] queries) {\n        \n    }\n};\n",
-    "javascript": "function sameEndSubstringCount(s: string, queries: number[][]): number[] {\n    \n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> sameEndSubstringCount(string s, vector<vector<int>>& queries) {\n        // Your code here\n    }\n};\n",
+    "java": "class Solution {\n    public int[] sameEndSubstringCount(String s, int[][] queries) {\n        // Your code here\n    }\n}\n",
+    "javascript": "function sameEndSubstringCount(s: string, queries: number[][]): number[] {\n    const n: number = s.length;\n    const cnt: number[][] = Array.from({ length: 26 }, () => Array(n + 1).fill(0));\n    for (let j = 1; j <= n; j++) {\n        for (let i = 0; i < 26; i++) {\n            cnt[i][j] = cnt[i][j - 1];\n        }\n        cnt[s.charCodeAt(j - 1) - 'a'.charCodeAt(0)][j]++;\n    }\n    const ans: number[] = [];\n    for (const [l, r] of queries) {\n        ans.push(r - l + 1);\n        for (let i = 0; i < 26; i++) {\n            const x: number = cnt[i][r + 1] - cnt[i][l];\n            ans[ans.length - 1] += (x * (x - 1)) / 2;\n        }\n    }\n    return ans;\n}"
   },
   "snippets": {
     "python": "class Solution:\n    def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:\n        n = len(s)\n        cs = set(s)\n        cnt = {c: [0] * (n + 1) for c in cs}\n        for i, a in enumerate(s, 1):\n            for c in cs:\n                cnt[c][i] = cnt[c][i - 1]\n            cnt[a][i] += 1\n        ans = []\n        for l, r in queries:\n            t = r - l + 1\n            for c in cs:\n                x = cnt[c][r + 1] - cnt[c][l]\n                t += x * (x - 1) // 2\n            ans.append(t)\n        return ans",
