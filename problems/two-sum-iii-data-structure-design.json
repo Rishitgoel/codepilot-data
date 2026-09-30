@@ -1,0 +1,57 @@
+{
+  "id": 170,
+  "slug": "two-sum-iii-data-structure-design",
+  "title": "Two Sum III - Data structure design",
+  "difficulty": "Easy",
+  "rating": 1320,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Design"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 607,
+    "url": "https://www.lintcode.com/problem/607/"
+  },
+  "description": "Design a data structure that accepts a stream of integers and checks if it contains a pair of integers that sum up to a specific value.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Two Sum III - Data structure design\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Two Sum III - Data structure design\n};",
+    "java": "class Solution {\n    // Solution for Two Sum III - Data structure design\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Two Sum III - Data structure design\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Two Sum III - Data structure design\n};",
+    "java": "class Solution {\n    // Solution for Two Sum III - Data structure design\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "add(1),add(3),add(5),find(4),find(7)",
+      "expected": "true,false"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

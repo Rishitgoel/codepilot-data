@@ -1,0 +1,56 @@
+{
+  "id": 311,
+  "slug": "sparse-matrix-multiplication",
+  "title": "Sparse Matrix Multiplication",
+  "difficulty": "Medium",
+  "rating": 1610,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "companies": [
+    "Meta",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 654,
+    "url": "https://www.lintcode.com/problem/654/"
+  },
+  "description": "Given two sparse matrices `mat1` of size `m x k` and `mat2` of size `k x n`, return the result of `mat1 x mat2`. Optimize to avoid multiplying zeroes.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Sparse Matrix Multiplication\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Sparse Matrix Multiplication\n};",
+    "java": "class Solution {\n    // Solution for Sparse Matrix Multiplication\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Sparse Matrix Multiplication\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Sparse Matrix Multiplication\n};",
+    "java": "class Solution {\n    // Solution for Sparse Matrix Multiplication\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,0,0],[-1,0,3]]\n[[7,0,0],[0,0,0],[0,0,1]]",
+      "expected": "[[7,0,0],[-7,0,3]]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

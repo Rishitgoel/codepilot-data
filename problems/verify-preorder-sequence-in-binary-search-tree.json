@@ -1,0 +1,60 @@
+{
+  "id": 255,
+  "slug": "verify-preorder-sequence-in-binary-search-tree",
+  "title": "Verify Preorder Sequence in Binary Search Tree",
+  "difficulty": "Medium",
+  "rating": 1690,
+  "topics": [
+    "Stack",
+    "Tree",
+    "Binary Search Tree",
+    "Monotonic Stack"
+  ],
+  "companies": [
+    "Zenefits"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1307,
+    "url": "https://www.lintcode.com/problem/1307/"
+  },
+  "description": "Given an array of unique integers `preorder`, return `true` if it is the correct preorder traversal sequence of a binary search tree.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Verify Preorder Sequence in Binary Search Tree\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "java": "class Solution {\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Verify Preorder Sequence in Binary Search Tree\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "java": "class Solution {\n    // Solution for Verify Preorder Sequence in Binary Search Tree\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[5,2,1,3,6]",
+      "expected": "true"
+    },
+    {
+      "input": "[5,2,6,1,3]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

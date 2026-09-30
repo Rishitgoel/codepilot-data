@@ -1,0 +1,55 @@
+{
+  "id": 364,
+  "slug": "nested-list-weight-sum-ii",
+  "title": "Nested List Weight Sum II",
+  "difficulty": "Medium",
+  "rating": 1620,
+  "topics": [
+    "Depth-First Search",
+    "Breadth-First Search"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 558,
+    "url": "https://www.lintcode.com/problem/558/"
+  },
+  "description": "You are given a nested list of integers `nestedList`. Integers are weighted inversely by depth: weight = maxDepth - depth + 1.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Nested List Weight Sum II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Nested List Weight Sum II\n};",
+    "java": "class Solution {\n    // Solution for Nested List Weight Sum II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Nested List Weight Sum II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Nested List Weight Sum II\n};",
+    "java": "class Solution {\n    // Solution for Nested List Weight Sum II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1],2,[1,1]]",
+      "expected": "8"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

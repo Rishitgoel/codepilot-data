@@ -1,0 +1,57 @@
+{
+  "id": 244,
+  "slug": "shortest-word-distance-ii",
+  "title": "Shortest Word Distance II",
+  "difficulty": "Medium",
+  "rating": 1480,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Two Pointers",
+    "Design"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 925,
+    "url": "https://www.lintcode.com/problem/925/"
+  },
+  "description": "Design a class which receives a list of words, and solves the shortest word distance query efficiently for multiple queries.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance II\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance II\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "shortest(\"coding\",\"makes\")",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

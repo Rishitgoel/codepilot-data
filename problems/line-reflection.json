@@ -1,0 +1,59 @@
+{
+  "id": 356,
+  "slug": "line-reflection",
+  "title": "Line Reflection",
+  "difficulty": "Medium",
+  "rating": 1670,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Math"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 909,
+    "url": "https://www.lintcode.com/problem/909/"
+  },
+  "description": "Given `n` points on a 2D plane, find if there is such a line parallel to the y-axis that reflects the given points symmetrically.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Line Reflection\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Line Reflection\n};",
+    "java": "class Solution {\n    // Solution for Line Reflection\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Line Reflection\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Line Reflection\n};",
+    "java": "class Solution {\n    // Solution for Line Reflection\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1],[-1,1]]",
+      "expected": "true"
+    },
+    {
+      "input": "[[1,1],[-1,-1]]",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

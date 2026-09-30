@@ -1,0 +1,55 @@
+{
+  "id": 163,
+  "slug": "missing-ranges",
+  "title": "Missing Ranges",
+  "difficulty": "Easy",
+  "rating": 1310,
+  "topics": [
+    "Array"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 641,
+    "url": "https://www.lintcode.com/problem/641/"
+  },
+  "description": "You are given an inclusive range `[lower, upper]` and a sorted unique integer array `nums`, where all elements are in the inclusive range. Return the shortest sorted list of ranges that exactly covers all the missing numbers.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Missing Ranges\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Missing Ranges\n};",
+    "java": "class Solution {\n    // Solution for Missing Ranges\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Missing Ranges\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Missing Ranges\n};",
+    "java": "class Solution {\n    // Solution for Missing Ranges\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[0,1,3,50,75]\n0\n99",
+      "expected": "[[2,2],[4,49],[51,74],[76,99]]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

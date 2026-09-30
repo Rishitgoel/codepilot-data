@@ -1,0 +1,72 @@
+{
+  "id": 314,
+  "slug": "binary-tree-vertical-order-traversal",
+  "title": "Binary Tree Vertical Order Traversal",
+  "difficulty": "Medium",
+  "rating": 1610,
+  "topics": [
+    "Hash Table",
+    "Tree",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Binary Tree"
+  ],
+  "companies": [
+    "Meta",
+    "Bloomberg",
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 651,
+    "url": "https://www.lintcode.com/problem/651/"
+  },
+  "description": "Given the `root` of a binary tree, return the vertical order traversal of its nodes' values. (i.e., from top to bottom, column by column).\n\nIf two nodes are in the same row and column, the order should be from left to right.",
+  "examples": [
+    {
+      "input": "root = [3,9,20,null,null,15,7]",
+      "output": "[[9],[3,15],[20],[7]]",
+      "explanation": "Column -1: 9; Column 0: 3, 15; Column 1: 20; Column 2: 7."
+    },
+    {
+      "input": "root = [3,9,8,4,0,1,7]",
+      "output": "[[4],[9],[3,0,1],[8],[7]]",
+      "explanation": "Nodes ordered vertically left to right."
+    }
+  ],
+  "constraints": [
+    "The number of nodes in the tree is in the range [0, 100].",
+    "-100 <= Node.val <= 100"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> verticalOrder(TreeNode* root) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public List<List<Integer>> verticalOrder(TreeNode root) {\n        \n    }\n};\n",
+    "javascript": "var verticalOrder = function(root) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:\n        if not root: return []\n        cols = defaultdict(list)\n        q = deque([(root, 0)])\n        min_c = max_c = 0\n        while q:\n            node, c = q.popleft()\n            cols[c].append(node.val)\n            min_c, max_c = min(min_c, c), max(max_c, c)\n            if node.left: q.append((node.left, c - 1))\n            if node.right: q.append((node.right, c + 1))\n        return [cols[x] for x in range(min_c, max_c + 1)]",
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> verticalOrder(TreeNode* root) {\n        if (!root) return {};\n        map<int, vector<int>> cols;\n        queue<pair<TreeNode*, int>> q;\n        q.push({root, 0});\n        while (!q.empty()) {\n            auto [node, c] = q.front(); q.pop();\n            cols[c].push_back(node->val);\n            if (node->left) q.push({node->left, c - 1});\n            if (node->right) q.push({node->right, c + 1});\n        }\n        vector<vector<int>> res;\n        for (auto& [_, v] : cols) res.push_back(v);\n        return res;\n    }\n};",
+    "java": "class Solution {\n    public List<List<Integer>> verticalOrder(TreeNode root) {\n        List<List<Integer>> res = new ArrayList<>();\n        if (root == null) return res;\n        Map<Integer, List<Integer>> cols = new HashMap<>();\n        Queue<TreeNode> qNode = new LinkedList<>();\n        Queue<Integer> qCol = new LinkedList<>();\n        qNode.add(root); qCol.add(0);\n        int minC = 0, maxC = 0;\n        while (!qNode.isEmpty()) {\n            TreeNode node = qNode.poll();\n            int c = qCol.poll();\n            cols.computeIfAbsent(c, k -> new ArrayList<>()).add(node.val);\n            minC = Math.min(minC, c); maxC = Math.max(maxC, c);\n            if (node.left != null) { qNode.add(node.left); qCol.add(c - 1); }\n            if (node.right != null) { qNode.add(node.right); qCol.add(c + 1); }\n        }\n        for (int i = minC; i <= maxC; i++) if (cols.containsKey(i)) res.add(cols.get(i));\n        return res;\n    }\n};",
+    "javascript": "var verticalOrder = function(root) {\n    if (!root) return [];\n    const cols = new Map();\n    const q = [[root, 0]];\n    let minC = 0, maxC = 0;\n    while (q.length) {\n        const [node, c] = q.shift();\n        if (!cols.has(c)) cols.set(c, []);\n        cols.get(c).push(node.val);\n        minC = Math.min(minC, c);\n        maxC = Math.max(maxC, c);\n        if (node.left) q.push([node.left, c - 1]);\n        if (node.right) q.push([node.right, c + 1]);\n    }\n    const res = [];\n    for (let i = minC; i <= maxC; i++) if (cols.has(i)) res.push(cols.get(i));\n    return res;\n};"
+  },
+  "testcases": [
+    {
+      "input": "[3,9,20,null,null,15,7]",
+      "expected": "[[9],[3,15],[20],[7]]"
+    },
+    {
+      "input": "[3,9,8,4,0,1,7]",
+      "expected": "[[4],[9],[3,0,1],[8],[7]]"
+    }
+  ],
+  "hints": [
+    "Use BFS instead of DFS so nodes in the same column are naturally visited in top-to-bottom order.",
+    "Assign column 0 to root, col - 1 to left child, and col + 1 to right child.",
+    "Track minColumn and maxColumn to output ordered result without sorting map keys."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

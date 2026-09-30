@@ -1,0 +1,55 @@
+{
+  "id": 644,
+  "slug": "maximum-average-subarray-ii",
+  "title": "Maximum Average Subarray II",
+  "difficulty": "Hard",
+  "rating": 2150,
+  "topics": [
+    "Array",
+    "Binary Search",
+    "Prefix Sum"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 617,
+    "url": "https://www.lintcode.com/problem/617/"
+  },
+  "description": "Given an integer array `nums` and an integer `k`, find a contiguous subarray whose length is greater than or equal to `k` that has the maximum average value.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Maximum Average Subarray II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Maximum Average Subarray II\n};",
+    "java": "class Solution {\n    // Solution for Maximum Average Subarray II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Maximum Average Subarray II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Maximum Average Subarray II\n};",
+    "java": "class Solution {\n    // Solution for Maximum Average Subarray II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[1,12,-5,-6,50,3]\n4",
+      "expected": "12.75"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

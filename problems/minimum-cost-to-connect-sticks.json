@@ -1,0 +1,73 @@
+{
+  "id": 1167,
+  "slug": "minimum-cost-to-connect-sticks",
+  "title": "Minimum Cost to Connect Sticks",
+  "difficulty": "Medium",
+  "rating": 1470,
+  "topics": [
+    "Array",
+    "Greedy",
+    "Heap (Priority Queue)"
+  ],
+  "companies": [
+    "Amazon",
+    "Google",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1872,
+    "url": "https://www.lintcode.com/problem/1872/"
+  },
+  "description": "You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where `sticks[i]` is the length of the `i-th` stick.\n\nYou can connect any two sticks of lengths `x` and `y` by paying a cost of `x + y`. After connecting, you now have one stick of length `x + y`.\n\nYou must connect all sticks until there is only one stick remaining.\n\nReturn the minimum cost to connect all the given sticks into one stick in this way.",
+  "examples": [
+    {
+      "input": "sticks = [2,4,3]",
+      "output": "14",
+      "explanation": "Connect 2 and 3 for cost 5 -> [4, 5]. Connect 4 and 5 for cost 9. Total cost = 5 + 9 = 14."
+    },
+    {
+      "input": "sticks = [1,8,3,5]",
+      "output": "30",
+      "explanation": "Connect 1 and 3 (cost 4) -> [4,5,8]. Connect 4 and 5 (cost 9) -> [9,8]. Connect 8 and 9 (cost 17). Total = 4 + 9 + 17 = 30."
+    }
+  ],
+  "constraints": [
+    "1 <= sticks.length <= 10^4",
+    "1 <= sticks[i] <= 10^4"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int connectSticks(vector<int>& sticks) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int connectSticks(int[] sticks) {\n        \n    }\n};\n",
+    "javascript": "var connectSticks = function(sticks) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def connectSticks(self, sticks: List[int]) -> int:\n        heapq.heapify(sticks)\n        total_cost = 0\n        while len(sticks) > 1:\n            x = heapq.heappop(sticks)\n            y = heapq.heappop(sticks)\n            cost = x + y\n            total_cost += cost\n            heapq.heappush(sticks, cost)\n        return total_cost",
+    "cpp": "class Solution {\npublic:\n    int connectSticks(vector<int>& sticks) {\n        priority_queue<int, vector<int>, greater<int>> minHeap(sticks.begin(), sticks.end());\n        int totalCost = 0;\n        while (minHeap.size() > 1) {\n            int x = minHeap.top(); minHeap.pop();\n            int y = minHeap.top(); minHeap.pop();\n            totalCost += x + y;\n            minHeap.push(x + y);\n        }\n        return totalCost;\n    }\n};",
+    "java": "class Solution {\n    public int connectSticks(int[] sticks) {\n        PriorityQueue<Integer> pq = new PriorityQueue<>();\n        for (int s : sticks) pq.add(s);\n        int totalCost = 0;\n        while (pq.size() > 1) {\n            int cost = pq.poll() + pq.poll();\n            totalCost += cost;\n            pq.add(cost);\n        }\n        return totalCost;\n    }\n};",
+    "javascript": "var connectSticks = function(sticks) {\n    // Simple min-heap simulation or sorting\n    sticks.sort((a, b) => a - b);\n    let totalCost = 0;\n    while (sticks.length > 1) {\n        const cost = sticks.shift() + sticks.shift();\n        totalCost += cost;\n        // insert cost keeping sorted\n        let idx = 0;\n        while (idx < sticks.length && sticks[idx] < cost) idx++;\n        sticks.splice(idx, 0, cost);\n    }\n    return totalCost;\n};"
+  },
+  "testcases": [
+    {
+      "input": "[2,4,3]",
+      "expected": "14"
+    },
+    {
+      "input": "[1,8,3,5]",
+      "expected": "30"
+    },
+    {
+      "input": "[5]",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Classic Huffman Coding greedy strategy.",
+    "Always pick the two smallest sticks available.",
+    "Use a min-heap to repeatedly extract the two minimum elements."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

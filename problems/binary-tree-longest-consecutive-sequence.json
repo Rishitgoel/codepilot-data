@@ -1,0 +1,56 @@
+{
+  "id": 298,
+  "slug": "binary-tree-longest-consecutive-sequence",
+  "title": "Binary Tree Longest Consecutive Sequence",
+  "difficulty": "Medium",
+  "rating": 1570,
+  "topics": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "companies": [
+    "Google",
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 595,
+    "url": "https://www.lintcode.com/problem/595/"
+  },
+  "description": "Given the `root` of a binary tree, return the length of the longest consecutive sequence path (parent to child where child.val == parent.val + 1).",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Binary Tree Longest Consecutive Sequence\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Binary Tree Longest Consecutive Sequence\n};",
+    "java": "class Solution {\n    // Solution for Binary Tree Longest Consecutive Sequence\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Binary Tree Longest Consecutive Sequence\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Binary Tree Longest Consecutive Sequence\n};",
+    "java": "class Solution {\n    // Solution for Binary Tree Longest Consecutive Sequence\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[1,null,3,2,4,null,null,null,5]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

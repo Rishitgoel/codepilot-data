@@ -1,0 +1,58 @@
+{
+  "id": 353,
+  "slug": "design-snake-game",
+  "title": "Design Snake Game",
+  "difficulty": "Medium",
+  "rating": 1720,
+  "topics": [
+    "Array",
+    "Design",
+    "Queue",
+    "Matrix",
+    "Simulation"
+  ],
+  "companies": [
+    "Google",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 960,
+    "url": "https://www.lintcode.com/problem/960/"
+  },
+  "description": "Design a Snake game that is played on a screen with size `height x width`. The snake starts at (0, 0) and grows when it eats food.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Design Snake Game\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Snake Game\n};",
+    "java": "class Solution {\n    // Solution for Design Snake Game\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Design Snake Game\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Snake Game\n};",
+    "java": "class Solution {\n    // Solution for Design Snake Game\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "SnakeGame(3,2,[[1,2],[0,1]])",
+      "expected": "0"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

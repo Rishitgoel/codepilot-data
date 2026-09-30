@@ -1,0 +1,75 @@
+{
+  "id": 271,
+  "slug": "encode-and-decode-strings",
+  "title": "Encode and Decode Strings",
+  "difficulty": "Medium",
+  "rating": 1540,
+  "topics": [
+    "Array",
+    "String",
+    "Design"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 659,
+    "url": "https://www.lintcode.com/problem/659/"
+  },
+  "description": "Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.\n\nPlease implement `encode` and `decode`.",
+  "examples": [
+    {
+      "input": "dummy_input = [\"Hello\",\"World\"]",
+      "output": "[\"Hello\",\"World\"]",
+      "explanation": "One possible encoding is \"5#Hello5#World\"."
+    },
+    {
+      "input": "dummy_input = [\"\"]",
+      "output": "[\"\"]",
+      "explanation": "One possible encoding is \"0#\"."
+    }
+  ],
+  "constraints": [
+    "1 <= strs.length <= 200",
+    "0 <= strs[i].length <= 200",
+    "strs[i] contains any possible characters among 256 valid ASCII characters."
+  ],
+  "starterTemplates": {
+    "python": "class Codec:\n    def encode(self, strs: List[str]) -> str:\n        pass\n",
+    "cpp": "class Codec {\npublic:\n    string encode(vector<string>& strs) {\n        \n    }\n};\n",
+    "java": "public class Codec {\n    public String encode(List<String> strs) {\n        \n    }\n};\n",
+    "javascript": "var encode = function(strs) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Codec:\n    def encode(self, strs: List[str]) -> str:\n        return \"\".join(f\"{len(s)}#{s}\" for s in strs)\n\n    def decode(self, s: str) -> List[str]:\n        res, i = [], 0\n        while i < len(s):\n            j = s.find(\"#\", i)\n            length = int(s[i:j])\n            res.append(s[j + 1:j + 1 + length])\n            i = j + 1 + length\n        return res",
+    "cpp": "class Codec {\npublic:\n    string encode(vector<string>& strs) {\n        string encoded = \"\";\n        for (const string& s : strs) {\n            encoded += to_string(s.size()) + \"#\" + s;\n        }\n        return encoded;\n    }\n\n    vector<string> decode(string s) {\n        vector<string> res;\n        int i = 0;\n        while (i < (int)s.size()) {\n            int j = s.find(\"#\", i);\n            int len = stoi(s.substr(i, j - i));\n            res.push_back(s.substr(j + 1, len));\n            i = j + 1 + len;\n        }\n        return res;\n    }\n};",
+    "java": "public class Codec {\n    public String encode(List<String> strs) {\n        StringBuilder sb = new StringBuilder();\n        for (String s : strs) {\n            sb.append(s.length()).append(\"#\").append(s);\n        }\n        return sb.toString();\n    }\n\n    public List<String> decode(String s) {\n        List<String> res = new ArrayList<>();\n        int i = 0;\n        while (i < s.length()) {\n            int j = s.indexOf(\"#\", i);\n            int len = Integer.parseInt(s.substring(i, j));\n            res.add(s.substring(j + 1, j + 1 + len));\n            i = j + 1 + len;\n        }\n        return res;\n    }\n}",
+    "javascript": "var encode = function(strs) {\n    return strs.map(s => `${s.length}#${s}`).join(\"\");\n};\n\nvar decode = function(s) {\n    const res = [];\n    let i = 0;\n    while (i < s.length) {\n        const j = s.indexOf(\"#\", i);\n        const len = parseInt(s.substring(i, j), 10);\n        res.push(s.substring(j + 1, j + 1 + len));\n        i = j + 1 + len;\n    }\n    return res;\n};"
+  },
+  "testcases": [
+    {
+      "input": "[\"Hello\",\"World\"]",
+      "expected": "[\"Hello\",\"World\"]"
+    },
+    {
+      "input": "[\"\"]",
+      "expected": "[\"\"]"
+    },
+    {
+      "input": "[\"lint\",\"code\",\"love\",\"you\"]",
+      "expected": "[\"lint\",\"code\",\"love\",\"you\"]"
+    }
+  ],
+  "hints": [
+    "Delimiters alone will fail if strings contain that delimiter (e.g. comma, colon, newline).",
+    "Prefix each string with its length and a separator: [length] + \"#\" + [string].",
+    "When decoding, read digits until \"#\" to know exactly how many characters to slice."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

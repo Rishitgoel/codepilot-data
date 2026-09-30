@@ -1,0 +1,943 @@
+{
+  "version": "1.0.0",
+  "totalProblems": 52,
+  "cdnBase": "https://cdn.jsdelivr.net/gh/Rishitgoel/codepilot-data@main/problems",
+  "updatedAt": "2026-09-30",
+  "problems": [
+    {
+      "id": 252,
+      "slug": "meeting-rooms",
+      "title": "Meeting Rooms",
+      "difficulty": "Easy",
+      "rating": 1350,
+      "topics": [
+        "Array",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 253,
+      "slug": "meeting-rooms-ii",
+      "title": "Meeting Rooms II",
+      "difficulty": "Medium",
+      "rating": 1680,
+      "topics": [
+        "Array",
+        "Two Pointers",
+        "Greedy",
+        "Sorting",
+        "Heap (Priority Queue)"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Bloomberg",
+        "Microsoft",
+        "Uber"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 261,
+      "slug": "graph-valid-tree",
+      "title": "Graph Valid Tree",
+      "difficulty": "Medium",
+      "rating": 1620,
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Union Find",
+        "Graph"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "LinkedIn",
+        "ByteDance"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 269,
+      "slug": "alien-dictionary",
+      "title": "Alien Dictionary",
+      "difficulty": "Hard",
+      "rating": 2050,
+      "topics": [
+        "Array",
+        "String",
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Graph",
+        "Topological Sort"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Airbnb",
+        "Microsoft",
+        "Uber"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 271,
+      "slug": "encode-and-decode-strings",
+      "title": "Encode and Decode Strings",
+      "difficulty": "Medium",
+      "rating": 1540,
+      "topics": [
+        "Array",
+        "String",
+        "Design"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 323,
+      "slug": "number-of-connected-components-in-an-undirected-graph",
+      "title": "Number of Connected Components in an Undirected Graph",
+      "difficulty": "Medium",
+      "rating": 1560,
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Union Find",
+        "Graph"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 286,
+      "slug": "walls-and-gates",
+      "title": "Walls and Gates",
+      "difficulty": "Medium",
+      "rating": 1650,
+      "topics": [
+        "Array",
+        "Breadth-First Search",
+        "Matrix"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "ByteDance",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 317,
+      "slug": "shortest-distance-from-all-buildings",
+      "title": "Shortest Distance from All Buildings",
+      "difficulty": "Hard",
+      "rating": 2280,
+      "topics": [
+        "Array",
+        "Breadth-First Search",
+        "Matrix"
+      ],
+      "companies": [
+        "Meta",
+        "Google",
+        "Amazon",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 159,
+      "slug": "longest-substring-with-at-most-two-distinct-characters",
+      "title": "Longest Substring with At Most Two Distinct Characters",
+      "difficulty": "Medium",
+      "rating": 1580,
+      "topics": [
+        "Hash Table",
+        "String",
+        "Sliding Window"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 340,
+      "slug": "longest-substring-with-at-most-k-distinct-characters",
+      "title": "Longest Substring with At Most K Distinct Characters",
+      "difficulty": "Medium",
+      "rating": 1650,
+      "topics": [
+        "Hash Table",
+        "String",
+        "Sliding Window"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 314,
+      "slug": "binary-tree-vertical-order-traversal",
+      "title": "Binary Tree Vertical Order Traversal",
+      "difficulty": "Medium",
+      "rating": 1610,
+      "topics": [
+        "Hash Table",
+        "Tree",
+        "Depth-First Search",
+        "Breadth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Meta",
+        "Bloomberg",
+        "Amazon",
+        "Google",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 339,
+      "slug": "nested-list-weight-sum",
+      "title": "Nested List Weight Sum",
+      "difficulty": "Medium",
+      "rating": 1450,
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Meta",
+        "Amazon",
+        "Google",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 359,
+      "slug": "logger-rate-limiter",
+      "title": "Logger Rate Limiter",
+      "difficulty": "Easy",
+      "rating": 1320,
+      "topics": [
+        "Hash Table",
+        "Design"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 362,
+      "slug": "design-hit-counter",
+      "title": "Design Hit Counter",
+      "difficulty": "Medium",
+      "rating": 1510,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Binary Search",
+        "Design",
+        "Queue"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Meta",
+        "Dropbox",
+        "Uber"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 1167,
+      "slug": "minimum-cost-to-connect-sticks",
+      "title": "Minimum Cost to Connect Sticks",
+      "difficulty": "Medium",
+      "rating": 1470,
+      "topics": [
+        "Array",
+        "Greedy",
+        "Heap (Priority Queue)"
+      ],
+      "companies": [
+        "Amazon",
+        "Google",
+        "Microsoft",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 161,
+      "slug": "one-edit-distance",
+      "title": "One Edit Distance",
+      "difficulty": "Medium",
+      "rating": 1530,
+      "topics": [
+        "Two Pointers",
+        "String"
+      ],
+      "companies": [
+        "Meta",
+        "Google",
+        "Uber"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 163,
+      "slug": "missing-ranges",
+      "title": "Missing Ranges",
+      "difficulty": "Easy",
+      "rating": 1310,
+      "topics": [
+        "Array"
+      ],
+      "companies": [
+        "Google",
+        "Meta",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 170,
+      "slug": "two-sum-iii-data-structure-design",
+      "title": "Two Sum III - Data structure design",
+      "difficulty": "Easy",
+      "rating": 1320,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Two Pointers",
+        "Design"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 186,
+      "slug": "reverse-words-in-a-string-ii",
+      "title": "Reverse Words in a String II",
+      "difficulty": "Medium",
+      "rating": 1420,
+      "topics": [
+        "Two Pointers",
+        "String"
+      ],
+      "companies": [
+        "Amazon",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 243,
+      "slug": "shortest-word-distance",
+      "title": "Shortest Word Distance",
+      "difficulty": "Easy",
+      "rating": 1290,
+      "topics": [
+        "Array",
+        "String"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 244,
+      "slug": "shortest-word-distance-ii",
+      "title": "Shortest Word Distance II",
+      "difficulty": "Medium",
+      "rating": 1480,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Two Pointers",
+        "Design"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 245,
+      "slug": "shortest-word-distance-iii",
+      "title": "Shortest Word Distance III",
+      "difficulty": "Medium",
+      "rating": 1520,
+      "topics": [
+        "Array",
+        "String"
+      ],
+      "companies": [
+        "LinkedIn"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 250,
+      "slug": "count-univalue-subtrees",
+      "title": "Count Univalue Subtrees",
+      "difficulty": "Medium",
+      "rating": 1590,
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 254,
+      "slug": "factor-combinations",
+      "title": "Factor Combinations",
+      "difficulty": "Medium",
+      "rating": 1640,
+      "topics": [
+        "Backtracking"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Uber"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 255,
+      "slug": "verify-preorder-sequence-in-binary-search-tree",
+      "title": "Verify Preorder Sequence in Binary Search Tree",
+      "difficulty": "Medium",
+      "rating": 1690,
+      "topics": [
+        "Stack",
+        "Tree",
+        "Binary Search Tree",
+        "Monotonic Stack"
+      ],
+      "companies": [
+        "Zenefits"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 256,
+      "slug": "paint-house",
+      "title": "Paint House",
+      "difficulty": "Medium",
+      "rating": 1530,
+      "topics": [
+        "Array",
+        "Dynamic Programming"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 265,
+      "slug": "paint-house-ii",
+      "title": "Paint House II",
+      "difficulty": "Hard",
+      "rating": 1920,
+      "topics": [
+        "Array",
+        "Dynamic Programming"
+      ],
+      "companies": [
+        "Meta",
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 270,
+      "slug": "closest-binary-search-tree-value",
+      "title": "Closest Binary Search Tree Value",
+      "difficulty": "Easy",
+      "rating": 1280,
+      "topics": [
+        "Tree",
+        "Binary Search Tree",
+        "Binary Search"
+      ],
+      "companies": [
+        "Meta",
+        "Microsoft",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 272,
+      "slug": "closest-binary-search-tree-value-ii",
+      "title": "Closest Binary Search Tree Value II",
+      "difficulty": "Hard",
+      "rating": 2010,
+      "topics": [
+        "Two Pointers",
+        "Stack",
+        "Tree",
+        "Binary Search Tree",
+        "Heap"
+      ],
+      "companies": [
+        "Meta",
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 276,
+      "slug": "paint-fence",
+      "title": "Paint Fence",
+      "difficulty": "Medium",
+      "rating": 1520,
+      "topics": [
+        "Dynamic Programming"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 277,
+      "slug": "find-the-celebrity",
+      "title": "Find the Celebrity",
+      "difficulty": "Medium",
+      "rating": 1580,
+      "topics": [
+        "Two Pointers",
+        "Greedy",
+        "Graph",
+        "Interactive"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Meta",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 285,
+      "slug": "inorder-successor-in-bst",
+      "title": "Inorder Successor in BST",
+      "difficulty": "Medium",
+      "rating": 1560,
+      "topics": [
+        "Tree",
+        "Binary Search Tree",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Meta",
+        "Amazon",
+        "Microsoft"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 298,
+      "slug": "binary-tree-longest-consecutive-sequence",
+      "title": "Binary Tree Longest Consecutive Sequence",
+      "difficulty": "Medium",
+      "rating": 1570,
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 311,
+      "slug": "sparse-matrix-multiplication",
+      "title": "Sparse Matrix Multiplication",
+      "difficulty": "Medium",
+      "rating": 1610,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Matrix"
+      ],
+      "companies": [
+        "Meta",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 348,
+      "slug": "design-tic-tac-toe",
+      "title": "Design Tic-Tac-Toe",
+      "difficulty": "Medium",
+      "rating": 1550,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Design",
+        "Matrix",
+        "Simulation"
+      ],
+      "companies": [
+        "Meta",
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 353,
+      "slug": "design-snake-game",
+      "title": "Design Snake Game",
+      "difficulty": "Medium",
+      "rating": 1720,
+      "topics": [
+        "Array",
+        "Design",
+        "Queue",
+        "Matrix",
+        "Simulation"
+      ],
+      "companies": [
+        "Google",
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 361,
+      "slug": "bomb-enemy",
+      "title": "Bomb Enemy",
+      "difficulty": "Medium",
+      "rating": 1680,
+      "topics": [
+        "Array",
+        "Dynamic Programming",
+        "Matrix"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 364,
+      "slug": "nested-list-weight-sum-ii",
+      "title": "Nested List Weight Sum II",
+      "difficulty": "Medium",
+      "rating": 1620,
+      "topics": [
+        "Depth-First Search",
+        "Breadth-First Search"
+      ],
+      "companies": [
+        "LinkedIn",
+        "Meta"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 366,
+      "slug": "find-leaves-of-binary-tree",
+      "title": "Find Leaves of Binary Tree",
+      "difficulty": "Medium",
+      "rating": 1580,
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google",
+        "LinkedIn"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 418,
+      "slug": "sentence-screen-fitting",
+      "title": "Sentence Screen Fitting",
+      "difficulty": "Medium",
+      "rating": 1750,
+      "topics": [
+        "String",
+        "Dynamic Programming",
+        "Simulation"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 487,
+      "slug": "max-consecutive-ones-ii",
+      "title": "Max Consecutive Ones II",
+      "difficulty": "Medium",
+      "rating": 1540,
+      "topics": [
+        "Array",
+        "Dynamic Programming",
+        "Sliding Window"
+      ],
+      "companies": [
+        "Google",
+        "Meta"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 531,
+      "slug": "lonely-pixel-i",
+      "title": "Lonely Pixel I",
+      "difficulty": "Medium",
+      "rating": 1490,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Matrix"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 544,
+      "slug": "output-contest-matches",
+      "title": "Output Contest Matches",
+      "difficulty": "Medium",
+      "rating": 1570,
+      "topics": [
+        "String",
+        "Recursion",
+        "Simulation"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 549,
+      "slug": "binary-tree-longest-consecutive-sequence-ii",
+      "title": "Binary Tree Longest Consecutive Sequence II",
+      "difficulty": "Medium",
+      "rating": 1710,
+      "topics": [
+        "Tree",
+        "Depth-First Search",
+        "Binary Tree"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 1057,
+      "slug": "campus-bikes",
+      "title": "Campus Bikes",
+      "difficulty": "Medium",
+      "rating": 1680,
+      "topics": [
+        "Array",
+        "Greedy",
+        "Sorting"
+      ],
+      "companies": [
+        "Google",
+        "ByteDance"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 1086,
+      "slug": "high-five",
+      "title": "High Five",
+      "difficulty": "Easy",
+      "rating": 1300,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Sorting",
+        "Heap"
+      ],
+      "companies": [
+        "Amazon"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 1168,
+      "slug": "optimize-water-distribution-in-a-village",
+      "title": "Optimize Water Distribution in a Village",
+      "difficulty": "Hard",
+      "rating": 2110,
+      "topics": [
+        "Union Find",
+        "Graph",
+        "Minimum Spanning Tree"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 582,
+      "slug": "kill-process",
+      "title": "Kill Process",
+      "difficulty": "Medium",
+      "rating": 1470,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Tree",
+        "Breadth-First Search",
+        "Queue"
+      ],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Bloomberg"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 379,
+      "slug": "design-phone-directory",
+      "title": "Design Phone Directory",
+      "difficulty": "Medium",
+      "rating": 1510,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Linked List",
+        "Design",
+        "Queue"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 356,
+      "slug": "line-reflection",
+      "title": "Line Reflection",
+      "difficulty": "Medium",
+      "rating": 1670,
+      "topics": [
+        "Array",
+        "Hash Table",
+        "Math"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 1066,
+      "slug": "campus-bikes-ii",
+      "title": "Campus Bikes II",
+      "difficulty": "Medium",
+      "rating": 1880,
+      "topics": [
+        "Array",
+        "Dynamic Programming",
+        "Backtracking",
+        "Bit Manipulation",
+        "Bitmask"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    },
+    {
+      "id": 644,
+      "slug": "maximum-average-subarray-ii",
+      "title": "Maximum Average Subarray II",
+      "difficulty": "Hard",
+      "rating": 2150,
+      "topics": [
+        "Array",
+        "Binary Search",
+        "Prefix Sum"
+      ],
+      "companies": [
+        "Google"
+      ],
+      "hasData": true
+    }
+  ]
+}

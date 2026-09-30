@@ -1,0 +1,55 @@
+{
+  "id": 243,
+  "slug": "shortest-word-distance",
+  "title": "Shortest Word Distance",
+  "difficulty": "Easy",
+  "rating": 1290,
+  "topics": [
+    "Array",
+    "String"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 924,
+    "url": "https://www.lintcode.com/problem/924/"
+  },
+  "description": "Given an array of strings `wordsDict` and two different strings `word1` and `word2` that already exist in the array, return the shortest distance between them.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[\"practice\", \"makes\", \"perfect\", \"coding\", \"makes\"]\n\"coding\"\n\"practice\"",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

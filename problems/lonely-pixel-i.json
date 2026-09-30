@@ -1,0 +1,55 @@
+{
+  "id": 531,
+  "slug": "lonely-pixel-i",
+  "title": "Lonely Pixel I",
+  "difficulty": "Medium",
+  "rating": 1490,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Matrix"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 878,
+    "url": "https://www.lintcode.com/problem/878/"
+  },
+  "description": "Given an `m x n` picture consisting of black `B` and white `W` pixels, return the number of black lonely pixels (alone in its row and column).",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Lonely Pixel I\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Lonely Pixel I\n};",
+    "java": "class Solution {\n    // Solution for Lonely Pixel I\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Lonely Pixel I\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Lonely Pixel I\n};",
+    "java": "class Solution {\n    // Solution for Lonely Pixel I\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[\"W\",\"W\",\"B\"],[\"W\",\"B\",\"W\"],[\"B\",\"W\",\"W\"]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

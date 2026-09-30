@@ -1,0 +1,57 @@
+{
+  "id": 270,
+  "slug": "closest-binary-search-tree-value",
+  "title": "Closest Binary Search Tree Value",
+  "difficulty": "Easy",
+  "rating": 1280,
+  "topics": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Search"
+  ],
+  "companies": [
+    "Meta",
+    "Microsoft",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 900,
+    "url": "https://www.lintcode.com/problem/900/"
+  },
+  "description": "Given the `root` of a binary search tree and a target value `target`, return the value in the BST that is closest to the `target`.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Closest Binary Search Tree Value\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Closest Binary Search Tree Value\n};",
+    "java": "class Solution {\n    // Solution for Closest Binary Search Tree Value\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Closest Binary Search Tree Value\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Closest Binary Search Tree Value\n};",
+    "java": "class Solution {\n    // Solution for Closest Binary Search Tree Value\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[4,2,5,1,3]\n3.714286",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

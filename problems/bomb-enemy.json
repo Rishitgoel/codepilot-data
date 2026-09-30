@@ -1,0 +1,55 @@
+{
+  "id": 361,
+  "slug": "bomb-enemy",
+  "title": "Bomb Enemy",
+  "difficulty": "Medium",
+  "rating": 1680,
+  "topics": [
+    "Array",
+    "Dynamic Programming",
+    "Matrix"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 553,
+    "url": "https://www.lintcode.com/problem/553/"
+  },
+  "description": "Given an `m x n` matrix `grid` where each cell is either a wall `W`, an enemy `E` or empty `0`, return the maximum enemies you can kill with one bomb.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Bomb Enemy\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Bomb Enemy\n};",
+    "java": "class Solution {\n    // Solution for Bomb Enemy\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Bomb Enemy\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Bomb Enemy\n};",
+    "java": "class Solution {\n    // Solution for Bomb Enemy\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[\"0\",\"E\",\"0\",\"0\"],[\"E\",\"0\",\"W\",\"E\"],[\"0\",\"E\",\"0\",\"0\"]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

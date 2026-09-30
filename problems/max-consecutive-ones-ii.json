@@ -1,0 +1,56 @@
+{
+  "id": 487,
+  "slug": "max-consecutive-ones-ii",
+  "title": "Max Consecutive Ones II",
+  "difficulty": "Medium",
+  "rating": 1540,
+  "topics": [
+    "Array",
+    "Dynamic Programming",
+    "Sliding Window"
+  ],
+  "companies": [
+    "Google",
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 883,
+    "url": "https://www.lintcode.com/problem/883/"
+  },
+  "description": "Given a binary array `nums`, return the maximum number of consecutive `1`'s in the array if you can flip at most one `0`.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Max Consecutive Ones II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Max Consecutive Ones II\n};",
+    "java": "class Solution {\n    // Solution for Max Consecutive Ones II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Max Consecutive Ones II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Max Consecutive Ones II\n};",
+    "java": "class Solution {\n    // Solution for Max Consecutive Ones II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[1,0,1,1,0]",
+      "expected": "4"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

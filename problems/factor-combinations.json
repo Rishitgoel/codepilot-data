@@ -1,0 +1,54 @@
+{
+  "id": 254,
+  "slug": "factor-combinations",
+  "title": "Factor Combinations",
+  "difficulty": "Medium",
+  "rating": 1640,
+  "topics": [
+    "Backtracking"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 652,
+    "url": "https://www.lintcode.com/problem/652/"
+  },
+  "description": "Numbers can be regarded as the product of their factors. Return all possible combinations of factors of `n` that multiply to `n` (factors in range [2, n-1]).",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Factor Combinations\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Factor Combinations\n};",
+    "java": "class Solution {\n    // Solution for Factor Combinations\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Factor Combinations\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Factor Combinations\n};",
+    "java": "class Solution {\n    // Solution for Factor Combinations\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "12",
+      "expected": "[[2,6],[2,2,3],[3,4]]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,80 @@
+{
+  "id": 261,
+  "slug": "graph-valid-tree",
+  "title": "Graph Valid Tree",
+  "difficulty": "Medium",
+  "rating": 1620,
+  "topics": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union Find",
+    "Graph"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "LinkedIn",
+    "ByteDance"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 178,
+    "url": "https://www.lintcode.com/problem/178/"
+  },
+  "description": "You have a graph of `n` nodes labeled from `0` to `n - 1`. You are given an integer `n` and a list of `edges` where `edges[i] = [a_i, b_i]` indicates that there is an undirected edge between nodes `a_i` and `b_i` in the graph.\n\nReturn `true` if the edges of the given graph make up a valid tree, and `false` otherwise.",
+  "examples": [
+    {
+      "input": "n = 5, edges = [[0,1],[0,2],[0,3],[1,4]]",
+      "output": "true",
+      "explanation": "Graph is connected and has no cycles."
+    },
+    {
+      "input": "n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]",
+      "output": "false",
+      "explanation": "Graph contains a cycle between nodes 1, 2, and 3."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 2000",
+    "0 <= edges.length <= 5000",
+    "edges[i].length == 2",
+    "0 <= a_i, b_i < n",
+    "a_i != b_i",
+    "There are no self-loops or repeated edges."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def validTree(self, n: int, edges: List[List[int]]) -> bool:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    bool validTree(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean validTree(int n, int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "var validTree = function(n, edges) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def validTree(self, n: int, edges: List[List[int]]) -> bool:\n        if len(edges) != n - 1:\n            return False\n        parent = list(range(n))\n        def find(x):\n            if parent[x] != x:\n                parent[x] = find(parent[x])\n            return parent[x]\n        for u, v in edges:\n            root_u, root_v = find(u), find(v)\n            if root_u == root_v:\n                return False\n            parent[root_u] = root_v\n        return True",
+    "cpp": "class Solution {\npublic:\n    bool validTree(int n, vector<vector<int>>& edges) {\n        if (edges.size() != n - 1) return false;\n        vector<int> parent(n);\n        iota(parent.begin(), parent.end(), 0);\n        function<int(int)> find = [&](int x) {\n            return parent[x] == x ? x : parent[x] = find(parent[x]);\n        };\n        for (const auto& e : edges) {\n            int ru = find(e[0]), rv = find(e[1]);\n            if (ru == rv) return false;\n            parent[ru] = rv;\n        }\n        return true;\n    }\n};",
+    "java": "class Solution {\n    public boolean validTree(int n, int[][] edges) {\n        if (edges.length != n - 1) return false;\n        int[] parent = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n        for (int[] e : edges) {\n            int ru = find(parent, e[0]), rv = find(parent, e[1]);\n            if (ru == rv) return false;\n            parent[ru] = rv;\n        }\n        return true;\n    }\n    private int find(int[] p, int x) {\n        return p[x] == x ? x : (p[x] = find(p, p[x]));\n    }\n};",
+    "javascript": "var validTree = function(n, edges) {\n    if (edges.length !== n - 1) return false;\n    const parent = Array.from({ length: n }, (_, i) => i);\n    function find(x) {\n        return parent[x] === x ? x : (parent[x] = find(parent[x]));\n    }\n    for (const [u, v] of edges) {\n        const ru = find(u), rv = find(v);\n        if (ru === rv) return false;\n        parent[ru] = rv;\n    }\n    return true;\n};"
+  },
+  "testcases": [
+    {
+      "input": "5\n[[0,1],[0,2],[0,3],[1,4]]",
+      "expected": "true"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[2,3],[1,3],[1,4]]",
+      "expected": "false"
+    },
+    {
+      "input": "1\n[]",
+      "expected": "true"
+    }
+  ],
+  "hints": [
+    "A valid tree with n nodes must have exactly n - 1 edges and be fully connected with no cycles.",
+    "Check if len(edges) == n - 1 first. If not, return false immediately.",
+    "Use Disjoint Set Union (Union-Find) or BFS/DFS to check for cycle and connectivity."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

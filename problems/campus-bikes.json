@@ -1,0 +1,56 @@
+{
+  "id": 1057,
+  "slug": "campus-bikes",
+  "title": "Campus Bikes",
+  "difficulty": "Medium",
+  "rating": 1680,
+  "topics": [
+    "Array",
+    "Greedy",
+    "Sorting"
+  ],
+  "companies": [
+    "Google",
+    "ByteDance"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1774,
+    "url": "https://www.lintcode.com/problem/1774/"
+  },
+  "description": "On a campus with `n` workers and `m` bikes, assign each worker to their closest bike using Manhattan distance. Break ties by worker index, then bike index.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Campus Bikes\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes\n};",
+    "java": "class Solution {\n    // Solution for Campus Bikes\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Campus Bikes\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes\n};",
+    "java": "class Solution {\n    // Solution for Campus Bikes\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0],[2,1]]\n[[1,2],[3,3]]",
+      "expected": "[1,0]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,60 @@
+{
+  "id": 348,
+  "slug": "design-tic-tac-toe",
+  "title": "Design Tic-Tac-Toe",
+  "difficulty": "Medium",
+  "rating": 1550,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Design",
+    "Matrix",
+    "Simulation"
+  ],
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft",
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 730,
+    "url": "https://www.lintcode.com/problem/730/"
+  },
+  "description": "Design a Tic-tac-toe game that is played between two players on an `n x n` grid. Optimize `move(row, col, player)` to run in O(1) time.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Design Tic-Tac-Toe\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Tic-Tac-Toe\n};",
+    "java": "class Solution {\n    // Solution for Design Tic-Tac-Toe\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Design Tic-Tac-Toe\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Tic-Tac-Toe\n};",
+    "java": "class Solution {\n    // Solution for Design Tic-Tac-Toe\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "move(0,0,1),move(0,2,2),move(2,2,1),move(1,1,2),move(2,0,1),move(1,0,2),move(2,1,1)",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

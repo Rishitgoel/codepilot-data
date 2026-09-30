@@ -1,0 +1,56 @@
+{
+  "id": 1086,
+  "slug": "high-five",
+  "title": "High Five",
+  "difficulty": "Easy",
+  "rating": 1300,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Sorting",
+    "Heap"
+  ],
+  "companies": [
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1740,
+    "url": "https://www.lintcode.com/problem/1740/"
+  },
+  "description": "Given a list of scores of different students, return the average of the top five scores for each student sorted by student ID.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for High Five\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for High Five\n};",
+    "java": "class Solution {\n    // Solution for High Five\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for High Five\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for High Five\n};",
+    "java": "class Solution {\n    // Solution for High Five\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]",
+      "expected": "[[1,87],[2,88]]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

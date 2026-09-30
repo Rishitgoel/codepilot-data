@@ -1,0 +1,75 @@
+{
+  "id": 323,
+  "slug": "number-of-connected-components-in-an-undirected-graph",
+  "title": "Number of Connected Components in an Undirected Graph",
+  "difficulty": "Medium",
+  "rating": 1560,
+  "topics": [
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Union Find",
+    "Graph"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Microsoft",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 3651,
+    "url": "https://www.lintcode.com/problem/3651/"
+  },
+  "description": "You have a graph of `n` nodes. You are given an integer `n` and an array `edges` where `edges[i] = [a_i, b_i]` indicates that there is an edge between `a_i` and `b_i` in the graph.\n\nReturn the number of connected components in the graph.",
+  "examples": [
+    {
+      "input": "n = 5, edges = [[0,1],[1,2],[3,4]]",
+      "output": "2",
+      "explanation": "Nodes 0, 1, 2 form one component, and nodes 3, 4 form another."
+    },
+    {
+      "input": "n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]",
+      "output": "1",
+      "explanation": "All nodes are connected in a single path."
+    }
+  ],
+  "constraints": [
+    "1 <= n <= 2000",
+    "1 <= edges.length <= 5000",
+    "edges[i].length == 2",
+    "0 <= a_i <= b_i < n",
+    "a_i != b_i",
+    "There are no repeated edges."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        \n    }\n};\n",
+    "javascript": "var countComponents = function(n, edges) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def countComponents(self, n: int, edges: List[List[int]]) -> int:\n        parent = list(range(n))\n        count = n\n        def find(x):\n            if parent[x] != x:\n                parent[x] = find(parent[x])\n            return parent[x]\n        for u, v in edges:\n            ru, rv = find(u), find(v)\n            if ru != rv:\n                parent[ru] = rv\n                count -= 1\n        return count",
+    "cpp": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        vector<int> parent(n);\n        iota(parent.begin(), parent.end(), 0);\n        int count = n;\n        function<int(int)> find = [&](int x) {\n            return parent[x] == x ? x : parent[x] = find(parent[x]);\n        };\n        for (const auto& e : edges) {\n            int ru = find(e[0]), rv = find(e[1]);\n            if (ru != rv) {\n                parent[ru] = rv;\n                count--;\n            }\n        }\n        return count;\n    }\n};",
+    "java": "class Solution {\n    public int countComponents(int n, int[][] edges) {\n        int[] parent = new int[n];\n        for (int i = 0; i < n; i++) parent[i] = i;\n        int count = n;\n        for (int[] e : edges) {\n            int ru = find(parent, e[0]), rv = find(parent, e[1]);\n            if (ru != rv) {\n                parent[ru] = rv;\n                count--;\n            }\n        }\n        return count;\n    }\n    private int find(int[] p, int x) {\n        return p[x] == x ? x : (p[x] = find(p, p[x]));\n    }\n};",
+    "javascript": "var countComponents = function(n, edges) {\n    const parent = Array.from({ length: n }, (_, i) => i);\n    let count = n;\n    function find(x) {\n        return parent[x] === x ? x : (parent[x] = find(parent[x]));\n    }\n    for (const [u, v] of edges) {\n        const ru = find(u), rv = find(v);\n        if (ru !== rv) {\n            parent[ru] = rv;\n            count--;\n        }\n    }\n    return count;\n};"
+  },
+  "testcases": [
+    {
+      "input": "5\n[[0,1],[1,2],[3,4]]",
+      "expected": "2"
+    },
+    {
+      "input": "5\n[[0,1],[1,2],[2,3],[3,4]]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Initialize component count to n.",
+    "For each edge, union the two endpoints. If they were in different sets, decrement component count.",
+    "Can also be solved with BFS/DFS marking visited nodes."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

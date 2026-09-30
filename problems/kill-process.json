@@ -1,0 +1,59 @@
+{
+  "id": 582,
+  "slug": "kill-process",
+  "title": "Kill Process",
+  "difficulty": "Medium",
+  "rating": 1470,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Tree",
+    "Breadth-First Search",
+    "Queue"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Bloomberg"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 872,
+    "url": "https://www.lintcode.com/problem/872/"
+  },
+  "description": "You have `n` processes with IDs `pid` and parent IDs `ppid`. When a process is killed, all of its children are killed as well. Given `kill`, return a list of IDs of processes that will be killed.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Kill Process\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Kill Process\n};",
+    "java": "class Solution {\n    // Solution for Kill Process\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Kill Process\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Kill Process\n};",
+    "java": "class Solution {\n    // Solution for Kill Process\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[1,3,10,5]\n[3,0,5,3]\n5",
+      "expected": "[5,10]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

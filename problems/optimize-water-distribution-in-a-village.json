@@ -1,0 +1,55 @@
+{
+  "id": 1168,
+  "slug": "optimize-water-distribution-in-a-village",
+  "title": "Optimize Water Distribution in a Village",
+  "difficulty": "Hard",
+  "rating": 2110,
+  "topics": [
+    "Union Find",
+    "Graph",
+    "Minimum Spanning Tree"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1871,
+    "url": "https://www.lintcode.com/problem/1871/"
+  },
+  "description": "There are `n` houses. Build wells with costs `wells[i]` or pipes between houses with costs `pipes[j]`. Return the minimum total cost to supply water to all houses.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Optimize Water Distribution in a Village\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Optimize Water Distribution in a Village\n};",
+    "java": "class Solution {\n    // Solution for Optimize Water Distribution in a Village\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Optimize Water Distribution in a Village\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Optimize Water Distribution in a Village\n};",
+    "java": "class Solution {\n    // Solution for Optimize Water Distribution in a Village\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "3\n[1,2,2]\n[[1,2,1],[2,3,1]]",
+      "expected": "3"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

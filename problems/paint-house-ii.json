@@ -1,0 +1,55 @@
+{
+  "id": 265,
+  "slug": "paint-house-ii",
+  "title": "Paint House II",
+  "difficulty": "Hard",
+  "rating": 1920,
+  "topics": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "companies": [
+    "Meta",
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 516,
+    "url": "https://www.lintcode.com/problem/516/"
+  },
+  "description": "There are a row of `n` houses, each house can be painted with one of the `k` colors. No two adjacent houses may have the same color. Optimize to O(nk) time.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Paint House II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint House II\n};",
+    "java": "class Solution {\n    // Solution for Paint House II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Paint House II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint House II\n};",
+    "java": "class Solution {\n    // Solution for Paint House II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,5,3],[2,9,4]]",
+      "expected": "5"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

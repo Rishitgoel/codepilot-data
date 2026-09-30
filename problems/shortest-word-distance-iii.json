@@ -1,0 +1,54 @@
+{
+  "id": 245,
+  "slug": "shortest-word-distance-iii",
+  "title": "Shortest Word Distance III",
+  "difficulty": "Medium",
+  "rating": 1520,
+  "topics": [
+    "Array",
+    "String"
+  ],
+  "companies": [
+    "LinkedIn"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 926,
+    "url": "https://www.lintcode.com/problem/926/"
+  },
+  "description": "Given an array of strings `wordsDict` and two strings that may be identical (`word1 == word2`), return the shortest distance between two occurrences.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance III\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance III\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance III\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Shortest Word Distance III\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Shortest Word Distance III\n};",
+    "java": "class Solution {\n    // Solution for Shortest Word Distance III\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[\"makes\",\"makes\"]\n\"makes\"\n\"makes\"",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,55 @@
+{
+  "id": 256,
+  "slug": "paint-house",
+  "title": "Paint House",
+  "difficulty": "Medium",
+  "rating": 1530,
+  "topics": [
+    "Array",
+    "Dynamic Programming"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 515,
+    "url": "https://www.lintcode.com/problem/515/"
+  },
+  "description": "There are a row of `n` houses, each house can be painted with one of the three colors: red, blue, or green. No two adjacent houses have the same color. Return the minimum cost.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Paint House\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint House\n};",
+    "java": "class Solution {\n    // Solution for Paint House\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Paint House\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint House\n};",
+    "java": "class Solution {\n    // Solution for Paint House\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[17,2,17],[16,16,5],[14,3,19]]",
+      "expected": "10"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,57 @@
+{
+  "id": 1066,
+  "slug": "campus-bikes-ii",
+  "title": "Campus Bikes II",
+  "difficulty": "Medium",
+  "rating": 1880,
+  "topics": [
+    "Array",
+    "Dynamic Programming",
+    "Backtracking",
+    "Bit Manipulation",
+    "Bitmask"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 1775,
+    "url": "https://www.lintcode.com/problem/1775/"
+  },
+  "description": "Assign each worker to a unique bike such that the sum of the Manhattan distances between each worker and their assigned bike is minimized.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Campus Bikes II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes II\n};",
+    "java": "class Solution {\n    // Solution for Campus Bikes II\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Campus Bikes II\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Campus Bikes II\n};",
+    "java": "class Solution {\n    // Solution for Campus Bikes II\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[0,0],[2,1]]\n[[1,2],[3,3]]",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

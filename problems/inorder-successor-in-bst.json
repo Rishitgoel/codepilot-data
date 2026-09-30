@@ -1,0 +1,57 @@
+{
+  "id": 285,
+  "slug": "inorder-successor-in-bst",
+  "title": "Inorder Successor in BST",
+  "difficulty": "Medium",
+  "rating": 1560,
+  "topics": [
+    "Tree",
+    "Binary Search Tree",
+    "Binary Tree"
+  ],
+  "companies": [
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 448,
+    "url": "https://www.lintcode.com/problem/448/"
+  },
+  "description": "Given the `root` of a binary search tree and a node `p` in it, return the in-order successor of that node in the BST. If no successor, return `null`.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Inorder Successor in BST\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Inorder Successor in BST\n};",
+    "java": "class Solution {\n    // Solution for Inorder Successor in BST\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Inorder Successor in BST\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Inorder Successor in BST\n};",
+    "java": "class Solution {\n    // Solution for Inorder Successor in BST\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[2,1,3]\n1",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

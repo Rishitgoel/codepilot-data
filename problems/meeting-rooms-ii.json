@@ -1,0 +1,77 @@
+{
+  "id": 253,
+  "slug": "meeting-rooms-ii",
+  "title": "Meeting Rooms II",
+  "difficulty": "Medium",
+  "rating": 1680,
+  "topics": [
+    "Array",
+    "Two Pointers",
+    "Greedy",
+    "Sorting",
+    "Heap (Priority Queue)"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Bloomberg",
+    "Microsoft",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 919,
+    "url": "https://www.lintcode.com/problem/919/"
+  },
+  "description": "Given an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return the minimum number of conference rooms required to hold all meetings without overlaps.",
+  "examples": [
+    {
+      "input": "intervals = [[0,30],[5,10],[15,20]]",
+      "output": "2",
+      "explanation": "Room 1 holds [0,30]. Room 2 holds [5,10] and [15,20]."
+    },
+    {
+      "input": "intervals = [[7,10],[2,4]]",
+      "output": "1",
+      "explanation": "No meetings overlap, so 1 room suffices."
+    }
+  ],
+  "constraints": [
+    "1 <= intervals.length <= 10^4",
+    "0 <= start_i < end_i <= 10^6"
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        \n    }\n};\n",
+    "javascript": "var minMeetingRooms = function(intervals) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def minMeetingRooms(self, intervals: List[List[int]]) -> int:\n        if not intervals:\n            return 0\n        intervals.sort(key=lambda x: x[0])\n        heap = []\n        for start, end in intervals:\n            if heap and heap[0] <= start:\n                heapq.heappop(heap)\n            heapq.heappush(heap, end)\n        return len(heap)",
+    "cpp": "class Solution {\npublic:\n    int minMeetingRooms(vector<vector<int>>& intervals) {\n        if (intervals.empty()) return 0;\n        sort(intervals.begin(), intervals.end());\n        priority_queue<int, vector<int>, greater<int>> minHeap;\n        for (const auto& iv : intervals) {\n            if (!minHeap.empty() && minHeap.top() <= iv[0]) {\n                minHeap.pop();\n            }\n            minHeap.push(iv[1]);\n        }\n        return minHeap.size();\n    }\n};",
+    "java": "class Solution {\n    public int minMeetingRooms(int[][] intervals) {\n        if (intervals == null || intervals.length == 0) return 0;\n        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));\n        PriorityQueue<Integer> pq = new PriorityQueue<>();\n        for (int[] iv : intervals) {\n            if (!pq.isEmpty() && pq.peek() <= iv[0]) {\n                pq.poll();\n            }\n            pq.add(iv[1]);\n        }\n        return pq.size();\n    }\n};",
+    "javascript": "var minMeetingRooms = function(intervals) {\n    if (!intervals.length) return 0;\n    const starts = intervals.map(x => x[0]).sort((a, b) => a - b);\n    const ends = intervals.map(x => x[1]).sort((a, b) => a - b);\n    let rooms = 0, endIdx = 0;\n    for (let i = 0; i < starts.length; i++) {\n        if (starts[i] < ends[endIdx]) {\n            rooms++;\n        } else {\n            endIdx++;\n        }\n    }\n    return rooms;\n};"
+  },
+  "testcases": [
+    {
+      "input": "[[0,30],[5,10],[15,20]]",
+      "expected": "2"
+    },
+    {
+      "input": "[[7,10],[2,4]]",
+      "expected": "1"
+    },
+    {
+      "input": "[[1,5],[8,9],[8,9]]",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Think about events: when a meeting starts, room count increases; when a meeting ends, room count decreases.",
+    "Sort start times and end times independently, or use a min-heap tracking earliest ending meetings.",
+    "If the earliest ending meeting ends before or at the start time of the next meeting, reuse the room."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,59 @@
+{
+  "id": 544,
+  "slug": "output-contest-matches",
+  "title": "Output Contest Matches",
+  "difficulty": "Medium",
+  "rating": 1570,
+  "topics": [
+    "String",
+    "Recursion",
+    "Simulation"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 880,
+    "url": "https://www.lintcode.com/problem/880/"
+  },
+  "description": "During the NBA playoffs, pairs are matched as (1 vs n), (2 vs n-1), etc. Given `n`, output the contest match pairing string.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Output Contest Matches\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Output Contest Matches\n};",
+    "java": "class Solution {\n    // Solution for Output Contest Matches\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Output Contest Matches\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Output Contest Matches\n};",
+    "java": "class Solution {\n    // Solution for Output Contest Matches\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "4",
+      "expected": "\"((1,4),(2,3))\""
+    },
+    {
+      "input": "8",
+      "expected": "\"(((1,8),(4,5)),((2,7),(3,6)))\""
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

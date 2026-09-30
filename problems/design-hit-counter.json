@@ -1,0 +1,64 @@
+{
+  "id": 362,
+  "slug": "design-hit-counter",
+  "title": "Design Hit Counter",
+  "difficulty": "Medium",
+  "rating": 1510,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Binary Search",
+    "Design",
+    "Queue"
+  ],
+  "companies": [
+    "Google",
+    "Amazon",
+    "Meta",
+    "Dropbox",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 3600,
+    "url": "https://www.lintcode.com/problem/3600/"
+  },
+  "description": "Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds).\n\nYour system should accept a `timestamp` parameter (in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., `timestamp` is monotonically increasing). Several hits may arrive roughly at the same time.\n\nImplement the `HitCounter` class:\n- `HitCounter()` Initializes the object of the hit counter system.\n- `void hit(int timestamp)` Records a hit that happened at `timestamp` (in seconds).\n- `int getHits(int timestamp)` Returns the number of hits in the past 5 minutes from `timestamp` (i.e., the past 300 seconds).",
+  "examples": [
+    {
+      "input": "[\"HitCounter\", \"hit\", \"hit\", \"hit\", \"getHits\", \"hit\", \"getHits\", \"getHits\"]\n[[], [1], [2], [3], [4], [300], [300], [301]]",
+      "output": "[null, null, null, null, 3, null, 4, 3]",
+      "explanation": "At 301, hit at 1 expired (301 - 300 = 1)."
+    }
+  ],
+  "constraints": [
+    "1 <= timestamp <= 2 * 10^9",
+    "All the calls are being made to the system in chronological order (i.e., timestamp is monotonically increasing).",
+    "At most 300 calls will be made to hit and getHits."
+  ],
+  "starterTemplates": {
+    "python": "class HitCounter:\n    def __init__(self):\n        pass\n",
+    "cpp": "class HitCounter {\n    queue<int> hits;\npublic:\n    HitCounter() {}\n        \n    }\n};\n",
+    "java": "class HitCounter {\n    private Queue<Integer> hits = new LinkedList<>();\n    public HitCounter() {}\n        \n    }\n};\n",
+    "javascript": "var HitCounter = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class HitCounter:\n    def __init__(self):\n        self.hits = deque()\n\n    def hit(self, timestamp: int) -> None:\n        self.hits.append(timestamp)\n\n    def getHits(self, timestamp: int) -> int:\n        while self.hits and self.hits[0] <= timestamp - 300:\n            self.hits.popleft()\n        return len(self.hits)",
+    "cpp": "class HitCounter {\n    queue<int> hits;\npublic:\n    HitCounter() {}\n    void hit(int timestamp) {\n        hits.push(timestamp);\n    }\n    int getHits(int timestamp) {\n        while (!hits.empty() && hits.front() <= timestamp - 300) {\n            hits.pop();\n        }\n        return hits.size();\n    }\n};",
+    "java": "class HitCounter {\n    private Queue<Integer> hits = new LinkedList<>();\n    public HitCounter() {}\n    public void hit(int timestamp) {\n        hits.add(timestamp);\n    }\n    public int getHits(int timestamp) {\n        while (!hits.isEmpty() && hits.peek() <= timestamp - 300) {\n            hits.poll();\n        }\n        return hits.size();\n    }\n}",
+    "javascript": "var HitCounter = function() {\n    this.hits = [];\n};\nHitCounter.prototype.hit = function(timestamp) {\n    this.hits.push(timestamp);\n};\nHitCounter.prototype.getHits = function(timestamp) {\n    while (this.hits.length && this.hits[0] <= timestamp - 300) {\n        this.hits.shift();\n    }\n    return this.hits.length;\n};"
+  },
+  "testcases": [
+    {
+      "input": "[\"hit(1)\",\"hit(2)\",\"hit(3)\",\"getHits(4)\",\"hit(300)\",\"getHits(300)\",\"getHits(301)\"]",
+      "expected": "[null,null,null,3,null,4,3]"
+    }
+  ],
+  "hints": [
+    "Use a FIFO Queue to maintain timestamps.",
+    "When getHits(t) is called, evict timestamps <= t - 300 from queue front.",
+    "To scale for millions of hits per second, use circular array of size 300: times[300] and hits[300]."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

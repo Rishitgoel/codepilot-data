@@ -1,0 +1,70 @@
+{
+  "id": 340,
+  "slug": "longest-substring-with-at-most-k-distinct-characters",
+  "title": "Longest Substring with At Most K Distinct Characters",
+  "difficulty": "Medium",
+  "rating": 1650,
+  "topics": [
+    "Hash Table",
+    "String",
+    "Sliding Window"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Microsoft"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 386,
+    "url": "https://www.lintcode.com/problem/386/"
+  },
+  "description": "Given a string `s` and an integer `k`, return the length of the longest substring of `s` that contains at most `k` distinct characters.",
+  "examples": [
+    {
+      "input": "s = \"eceba\", k = 2",
+      "output": "3",
+      "explanation": "The substring is \"ece\" with length 3."
+    },
+    {
+      "input": "s = \"aa\", k = 1",
+      "output": "2",
+      "explanation": "The substring is \"aa\" with length 2."
+    }
+  ],
+  "constraints": [
+    "1 <= s.length <= 5 * 10^4",
+    "0 <= k <= 50",
+    "s consists of English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringKDistinct(string s, int k) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        \n    }\n};\n",
+    "javascript": "var lengthOfLongestSubstringKDistinct = function(s, k) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:\n        if k == 0: return 0\n        counts = defaultdict(int)\n        left = 0\n        max_len = 0\n        for right, c in enumerate(s):\n            counts[c] += 1\n            while len(counts) > k:\n                counts[s[left]] -= 1\n                if counts[s[left]] == 0:\n                    del counts[s[left]]\n                left += 1\n            max_len = max(max_len, right - left + 1)\n        return max_len",
+    "cpp": "class Solution {\npublic:\n    int lengthOfLongestSubstringKDistinct(string s, int k) {\n        if (k == 0) return 0;\n        unordered_map<char, int> counts;\n        int left = 0, maxLen = 0;\n        for (int right = 0; right < (int)s.size(); ++right) {\n            counts[s[right]]++;\n            while (counts.size() > (size_t)k) {\n                if (--counts[s[left]] == 0) counts.erase(s[left]);\n                left++;\n            }\n            maxLen = max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n};",
+    "java": "class Solution {\n    public int lengthOfLongestSubstringKDistinct(String s, int k) {\n        if (k == 0) return 0;\n        Map<Character, Integer> counts = new HashMap<>();\n        int left = 0, maxLen = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char c = s.charAt(right);\n            counts.put(c, counts.getOrDefault(c, 0) + 1);\n            while (counts.size() > k) {\n                char lc = s.charAt(left);\n                counts.put(lc, counts.get(lc) - 1);\n                if (counts.get(lc) == 0) counts.remove(lc);\n                left++;\n            }\n            maxLen = Math.max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n};",
+    "javascript": "var lengthOfLongestSubstringKDistinct = function(s, k) {\n    if (k === 0) return 0;\n    const counts = new Map();\n    let left = 0, maxLen = 0;\n    for (let right = 0; right < s.length; right++) {\n        const c = s[right];\n        counts.set(c, (counts.get(c) || 0) + 1);\n        while (counts.size > k) {\n            const lc = s[left];\n            counts.set(lc, counts.get(lc) - 1);\n            if (counts.get(lc) === 0) counts.delete(lc);\n            left++;\n        }\n        maxLen = Math.max(maxLen, right - left + 1);\n    }\n    return maxLen;\n};"
+  },
+  "testcases": [
+    {
+      "input": "\"eceba\"\n2",
+      "expected": "3"
+    },
+    {
+      "input": "\"aa\"\n1",
+      "expected": "2"
+    }
+  ],
+  "hints": [
+    "Generalization of LC 159 (at most 2 distinct characters).",
+    "Sliding window with frequency map or last seen position map.",
+    "Edge case: if k == 0, return 0."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

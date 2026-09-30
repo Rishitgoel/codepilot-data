@@ -1,0 +1,54 @@
+{
+  "id": 276,
+  "slug": "paint-fence",
+  "title": "Paint Fence",
+  "difficulty": "Medium",
+  "rating": 1520,
+  "topics": [
+    "Dynamic Programming"
+  ],
+  "companies": [
+    "Google",
+    "Meta"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 514,
+    "url": "https://www.lintcode.com/problem/514/"
+  },
+  "description": "You are painting a fence of `n` posts with `k` different colors. No more than two adjacent fence posts have the same color. Return total number of valid ways.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Paint Fence\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint Fence\n};",
+    "java": "class Solution {\n    // Solution for Paint Fence\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Paint Fence\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Paint Fence\n};",
+    "java": "class Solution {\n    // Solution for Paint Fence\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "3\n2",
+      "expected": "6"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

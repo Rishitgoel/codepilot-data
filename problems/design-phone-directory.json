@@ -1,0 +1,57 @@
+{
+  "id": 379,
+  "slug": "design-phone-directory",
+  "title": "Design Phone Directory",
+  "difficulty": "Medium",
+  "rating": 1510,
+  "topics": [
+    "Array",
+    "Hash Table",
+    "Linked List",
+    "Design",
+    "Queue"
+  ],
+  "companies": [
+    "Google"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 959,
+    "url": "https://www.lintcode.com/problem/959/"
+  },
+  "description": "Design a Phone Directory which allocates or releases numbers in range [0, maxNumbers - 1]. Implement `get()`, `check(number)`, and `release(number)`.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Design Phone Directory\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Phone Directory\n};",
+    "java": "class Solution {\n    // Solution for Design Phone Directory\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Design Phone Directory\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Design Phone Directory\n};",
+    "java": "class Solution {\n    // Solution for Design Phone Directory\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "get(),check(0),release(0),check(0)",
+      "expected": "0,false,null,true"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

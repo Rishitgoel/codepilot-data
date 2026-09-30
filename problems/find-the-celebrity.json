@@ -1,0 +1,58 @@
+{
+  "id": 277,
+  "slug": "find-the-celebrity",
+  "title": "Find the Celebrity",
+  "difficulty": "Medium",
+  "rating": 1580,
+  "topics": [
+    "Two Pointers",
+    "Greedy",
+    "Graph",
+    "Interactive"
+  ],
+  "companies": [
+    "LinkedIn",
+    "Meta",
+    "Amazon"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 645,
+    "url": "https://www.lintcode.com/problem/645/"
+  },
+  "description": "In a party of `n` people, a celebrity is someone who is known by everyone, but knows nobody. Find the celebrity using the API `knows(a, b)` in O(n) calls.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Find the Celebrity\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Find the Celebrity\n};",
+    "java": "class Solution {\n    // Solution for Find the Celebrity\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Find the Celebrity\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Find the Celebrity\n};",
+    "java": "class Solution {\n    // Solution for Find the Celebrity\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[[1,1,0],[0,1,0],[1,1,1]]",
+      "expected": "1"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

@@ -1,0 +1,84 @@
+{
+  "id": 269,
+  "slug": "alien-dictionary",
+  "title": "Alien Dictionary",
+  "difficulty": "Hard",
+  "rating": 2050,
+  "topics": [
+    "Array",
+    "String",
+    "Depth-First Search",
+    "Breadth-First Search",
+    "Graph",
+    "Topological Sort"
+  ],
+  "companies": [
+    "Google",
+    "Meta",
+    "Amazon",
+    "Airbnb",
+    "Microsoft",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 892,
+    "url": "https://www.lintcode.com/problem/892/"
+  },
+  "description": "There is a new alien language that uses the English alphabet. However, the order of the letters is unknown to you.\n\nYou are given a list of strings `words` from the alien language's dictionary, where the strings are sorted lexicographically by the rules of this new language.\n\nReturn a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return `\"\"`. If there are multiple solutions, return any of them.",
+  "examples": [
+    {
+      "input": "words = [\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]",
+      "output": "\"wertf\"",
+      "explanation": "From \"wrt\" and \"wrf\", t -> f. From \"wrt\" and \"er\", w -> e. From \"er\" and \"ett\", r -> t. From \"ett\" and \"rftt\", e -> r."
+    },
+    {
+      "input": "words = [\"z\",\"x\"]",
+      "output": "\"zx\"",
+      "explanation": "From \"z\" and \"x\", z -> x."
+    },
+    {
+      "input": "words = [\"z\",\"x\",\"z\"]",
+      "output": "\"\"",
+      "explanation": "The order is invalid because z cannot precede x and follow x."
+    }
+  ],
+  "constraints": [
+    "1 <= words.length <= 100",
+    "1 <= words[i].length <= 100",
+    "words[i] consists of only lowercase English letters."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    def alienOrder(self, words: List[str]) -> str:\n        pass\n",
+    "cpp": "class Solution {\npublic:\n    string alienOrder(vector<string>& words) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public String alienOrder(String[] words) {\n        \n    }\n};\n",
+    "javascript": "var alienOrder = function(words) {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    def alienOrder(self, words: List[str]) -> str:\n        adj = {c: set() for w in words for c in w}\n        in_degree = {c: 0 for c in adj}\n        for i in range(len(words) - 1):\n            w1, w2 = words[i], words[i + 1]\n            min_len = min(len(w1), len(w2))\n            if len(w1) > len(w2) and w1[:min_len] == w2[:min_len]:\n                return \"\"\n            for j in range(min_len):\n                if w1[j] != w2[j]:\n                    if w2[j] not in adj[w1[j]]:\n                        adj[w1[j]].add(w2[j])\n                        in_degree[w2[j]] += 1\n                    break\n        queue = deque([c for c, deg in in_degree.items() if deg == 0])\n        res = []\n        while queue:\n            c = queue.popleft()\n            res.append(c)\n            for neighbor in adj[c]:\n                in_degree[neighbor] -= 1\n                if in_degree[neighbor] == 0:\n                    queue.append(neighbor)\n        return \"\".join(res) if len(res) == len(in_degree) else \"\"",
+    "cpp": "class Solution {\npublic:\n    string alienOrder(vector<string>& words) {\n        unordered_map<char, unordered_set<char>> adj;\n        unordered_map<char, int> inDegree;\n        for (const auto& w : words) {\n            for (char c : w) inDegree[c] = 0;\n        }\n        for (int i = 0; i + 1 < (int)words.size(); ++i) {\n            const string& w1 = words[i], &w2 = words[i + 1];\n            int len = min(w1.size(), w2.size());\n            if (w1.size() > w2.size() && w1.substr(0, len) == w2.substr(0, len)) return \"\";\n            for (int j = 0; j < len; ++j) {\n                if (w1[j] != w2[j]) {\n                    if (!adj[w1[j]].count(w2[j])) {\n                        adj[w1[j]].insert(w2[j]);\n                        inDegree[w2[j]]++;\n                    }\n                    break;\n                }\n            }\n        }\n        queue<char> q;\n        for (auto& [c, deg] : inDegree) if (deg == 0) q.push(c);\n        string res = \"\";\n        while (!q.empty()) {\n            char c = q.front(); q.pop();\n            res += c;\n            for (char nxt : adj[c]) {\n                if (--inDegree[nxt] == 0) q.push(nxt);\n            }\n        }\n        return res.size() == inDegree.size() ? res : \"\";\n    }\n};",
+    "java": "class Solution {\n    public String alienOrder(String[] words) {\n        Map<Character, Set<Character>> adj = new HashMap<>();\n        Map<Character, Integer> inDegree = new HashMap<>();\n        for (String w : words) {\n            for (char c : w.toCharArray()) inDegree.put(c, 0);\n        }\n        for (int i = 0; i + 1 < words.length; i++) {\n            String w1 = words[i], w2 = words[i + 1];\n            int len = Math.min(w1.length(), w2.length());\n            if (w1.length() > w2.length() && w1.startsWith(w2)) return \"\";\n            for (int j = 0; j < len; j++) {\n                if (w1.charAt(j) != w2.charAt(j)) {\n                    adj.computeIfAbsent(w1.charAt(j), k -> new HashSet<>());\n                    if (adj.get(w1.charAt(j)).add(w2.charAt(j))) {\n                        inDegree.put(w2.charAt(j), inDegree.get(w2.charAt(j)) + 1);\n                    }\n                    break;\n                }\n            }\n        }\n        Queue<Character> q = new LinkedList<>();\n        for (char c : inDegree.keySet()) if (inDegree.get(c) == 0) q.add(c);\n        StringBuilder sb = new StringBuilder();\n        while (!q.isEmpty()) {\n            char c = q.poll();\n            sb.append(c);\n            if (adj.containsKey(c)) {\n                for (char nxt : adj.get(c)) {\n                    inDegree.put(nxt, inDegree.get(nxt) - 1);\n                    if (inDegree.get(nxt) == 0) q.add(nxt);\n                }\n            }\n        }\n        return sb.length() == inDegree.size() ? sb.toString() : \"\";\n    }\n};",
+    "javascript": "var alienOrder = function(words) {\n    const adj = new Map();\n    const inDegree = new Map();\n    for (const w of words) for (const c of w) inDegree.set(c, 0);\n    for (let i = 0; i + 1 < words.length; i++) {\n        const w1 = words[i], w2 = words[i + 1];\n        const len = Math.min(w1.length, w2.length);\n        if (w1.length > w2.length && w1.startsWith(w2)) return \"\";\n        for (let j = 0; j < len; j++) {\n            if (w1[j] !== w2[j]) {\n                if (!adj.has(w1[j])) adj.set(w1[j], new Set());\n                if (!adj.get(w1[j]).has(w2[j])) {\n                    adj.get(w1[j]).add(w2[j]);\n                    inDegree.set(w2[j], inDegree.get(w2[j]) + 1);\n                }\n                break;\n            }\n        }\n    }\n    const queue = [];\n    for (const [c, deg] of inDegree.entries()) if (deg === 0) queue.push(c);\n    const res = [];\n    while (queue.length) {\n        const c = queue.shift();\n        res.push(c);\n        if (adj.has(c)) {\n            for (const nxt of adj.get(c)) {\n                inDegree.set(nxt, inDegree.get(nxt) - 1);\n                if (inDegree.get(nxt) === 0) queue.push(nxt);\n            }\n        }\n    }\n    return res.length === inDegree.size ? res.join(\"\") : \"\";\n};"
+  },
+  "testcases": [
+    {
+      "input": "[\"wrt\",\"wrf\",\"er\",\"ett\",\"rftt\"]",
+      "expected": "\"wertf\""
+    },
+    {
+      "input": "[\"z\",\"x\"]",
+      "expected": "\"zx\""
+    },
+    {
+      "input": "[\"z\",\"x\",\"z\"]",
+      "expected": "\"\""
+    }
+  ],
+  "hints": [
+    "Compare adjacent words: the first differing character establishes a directed edge (char1 -> char2).",
+    "If a longer prefix word appears before a shorter word (e.g. [\"abc\", \"ab\"]), order is invalid.",
+    "Use Kahn algorithm (BFS Topological Sort) or DFS postorder cycle detection."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

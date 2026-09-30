@@ -1,0 +1,56 @@
+{
+  "id": 366,
+  "slug": "find-leaves-of-binary-tree",
+  "title": "Find Leaves of Binary Tree",
+  "difficulty": "Medium",
+  "rating": 1580,
+  "topics": [
+    "Tree",
+    "Depth-First Search",
+    "Binary Tree"
+  ],
+  "companies": [
+    "Google",
+    "LinkedIn"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 650,
+    "url": "https://www.lintcode.com/problem/650/"
+  },
+  "description": "Given the `root` of a binary tree, collect a tree's nodes as if you were doing this: collect and remove all leaves, repeat until the tree is empty.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for Find Leaves of Binary Tree\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Find Leaves of Binary Tree\n};",
+    "java": "class Solution {\n    // Solution for Find Leaves of Binary Tree\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for Find Leaves of Binary Tree\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for Find Leaves of Binary Tree\n};",
+    "java": "class Solution {\n    // Solution for Find Leaves of Binary Tree\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "[1,2,3,4,5]",
+      "expected": "[[4,5,3],[2],[1]]"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

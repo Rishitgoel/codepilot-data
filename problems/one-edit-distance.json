@@ -1,0 +1,60 @@
+{
+  "id": 161,
+  "slug": "one-edit-distance",
+  "title": "One Edit Distance",
+  "difficulty": "Medium",
+  "rating": 1530,
+  "topics": [
+    "Two Pointers",
+    "String"
+  ],
+  "companies": [
+    "Meta",
+    "Google",
+    "Uber"
+  ],
+  "freeMirror": {
+    "platform": "LintCode",
+    "id": 640,
+    "url": "https://www.lintcode.com/problem/640/"
+  },
+  "description": "Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`. One edit distance means inserting, deleting, or replacing exactly one character.",
+  "examples": [
+    {
+      "input": "Example input",
+      "output": "Example output"
+    }
+  ],
+  "constraints": [
+    "Constraints according to standard problem specifications."
+  ],
+  "starterTemplates": {
+    "python": "class Solution:\n    # Solution for One Edit Distance\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for One Edit Distance\n};",
+    "java": "class Solution {\n    // Solution for One Edit Distance\n};",
+    "javascript": "var solution = function() {\n    \n};\n"
+  },
+  "snippets": {
+    "python": "class Solution:\n    # Solution for One Edit Distance\n    pass",
+    "cpp": "class Solution {\npublic:\n    // Solution for One Edit Distance\n};",
+    "java": "class Solution {\n    // Solution for One Edit Distance\n};",
+    "javascript": "var solution = function() {\n    \n};"
+  },
+  "testcases": [
+    {
+      "input": "\"ab\"\n\"acb\"",
+      "expected": "true"
+    },
+    {
+      "input": "\"\"\n\"\"",
+      "expected": "false"
+    }
+  ],
+  "hints": [
+    "Analyze the problem constraints and patterns.",
+    "Formulate the invariant.",
+    "Implement the optimal solution."
+  ],
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-30"
+}

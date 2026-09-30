@@ -1,0 +1,25 @@
+{
+  "name": "codepilot-data",
+  "version": "1.0.0",
+  "description": "Official LeetCode problem dataset and high-speed global CDN for CodePilot",
+  "main": "index.json",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rishitgoel/codepilot-data.git"
+  },
+  "keywords": [
+    "codepilot",
+    "leetcode",
+    "leetcode-premium",
+    "dsa",
+    "algorithms",
+    "cdn",
+    "interview-prep"
+  ],
+  "author": "Rishit Goel (https://github.com/Rishitgoel)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rishitgoel/codepilot-data/issues"
+  },
+  "homepage": "https://github.com/Rishitgoel/codepilot-data#readme"
+}
