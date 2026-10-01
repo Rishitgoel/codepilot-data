@@ -34,10 +34,10 @@
     "At most 10^4 calls will be made to next."
   ],
   "starterTemplates": {
-    "python": "class MovingAverage:\n    def __init__(self, size: int):\n        pass\n\n    def next(self, val: int) -> float:\n        pass\n\n# Your MovingAverage object will be instantiated and called as such:\n# obj = MovingAverage(size)\n# param_1 = obj.next(val)\n",
-    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        // Your code here\n    }\n\n    double next(int val) {\n        // Your code here\n    }\n};\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage* obj = new MovingAverage(size);\n * double param_1 = obj->next(val);\n */\n",
-    "java": "class MovingAverage {\n    public MovingAverage(int size) {\n        // Your code here\n    }\n\n    public double next(int val) {\n        // Your code here\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * MovingAverage obj = new MovingAverage(size);\n * double param_1 = obj.next(val);\n */\n",
-    "javascript": "class MovingAverage {\n    constructor(size: number) {\n        // Your code here\n    }\n\n    next(val: number): number {\n        // Your code here\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * var obj = new MovingAverage(size)\n * var param_1 = obj.next(val)\n */\n"
+    "python": "class MovingAverage:\n\n    def __init__(self, size: int):\n        pass\n",
+    "cpp": "class MovingAverage {\npublic:\n    MovingAverage(int size) {\n        \n    }\n};\n",
+    "java": "class MovingAverage {\n    private int s;\n    private int cnt;\n    private int[] data;\n\n    public MovingAverage(int size) {\n        \n    }\n};\n",
+    "javascript": "class MovingAverage {\n    private s: number = 0;\n    private cnt: number = 0;\n    private data: number[];\n\n    constructor(size: number) {\n        this.data = Array(size).fill(0);\n    }\n\n    next(val: number): number {\n        const i = this.cnt % this.data.length;\n        this.s += val - this.data[i];\n        this.data[i] = val;\n        this.cnt++;\n        return this.s / Math.min(this.cnt, this.data.length);\n    }\n}\n\n/**\n * Your MovingAverage object will be instantiated and called as such:\n * var obj = new MovingAverage(size)\n * var param_1 = obj.next(val)\n */"
   },
   "snippets": {
     "python": "class MovingAverage:\n\n    def __init__(self, size: int):\n        self.s = 0\n        self.data = [0] * size\n        self.cnt = 0\n\n    def next(self, val: int) -> float:\n        i = self.cnt % len(self.data)\n        self.s += val - self.data[i]\n        self.data[i] = val\n        self.cnt += 1\n        return self.s / min(self.cnt, len(self.data))\n\n\n# Your MovingAverage object will be instantiated and called as such:\n# obj = MovingAverage(size)\n# param_1 = obj.next(val)",
@@ -57,5 +57,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

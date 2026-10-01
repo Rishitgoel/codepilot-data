@@ -43,10 +43,10 @@
     "mat[i] is sorted in non-decreasing order."
   ],
   "starterTemplates": {
-    "python": "# \"\"\"\n# This is BinaryMatrix's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class BinaryMatrix(object):\n#    def get(self, row: int, col: int) -> int:\n#    def dimensions(self) -> list[]:\n\n\nclass Solution:\n    def leftMostColumnWithOne(self, binaryMatrix: \"BinaryMatrix\") -> int:\n        pass\n",
-    "cpp": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *   public:\n *     int get(int row, int col);\n *     vector<int> dimensions();\n * };\n */\n\nclass Solution {\npublic:\n    int leftMostColumnWithOne(BinaryMatrix& binaryMatrix) {\n        // Your code here\n    }\n};\n",
-    "java": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface BinaryMatrix {\n *     public int get(int row, int col) {}\n *     public List<Integer> dimensions {}\n * };\n */\n\nclass Solution {\n    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {\n        // Your code here\n    }\n}\n",
-    "javascript": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *      get(row: number, col: number): number {}\n *\n *      dimensions(): number[] {}\n * }\n */\n\nfunction leftMostColumnWithOne(binaryMatrix: BinaryMatrix) {\n    // Your code here\n}"
+    "python": "# \"\"\"\n# This is BinaryMatrix's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class BinaryMatrix(object):\n#    def get(self, row: int, col: int) -> int:\n        pass\n",
+    "cpp": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *   public:\n *     int get(int row, int col);\n *     vector<int> dimensions();\n * };\n */\n\nclass Solution {\n        \n    }\n};\n",
+    "java": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * interface BinaryMatrix {\n *     public int get(int row, int col) {}\n        \n    }\n};\n",
+    "javascript": "/**\n * // This is the BinaryMatrix's API interface.\n * // You should not implement it, or speculate about its implementation\n * class BinaryMatrix {\n *      get(row: number, col: number): number {}\n *\n *      dimensions(): number[] {}\n * }\n */\n\nfunction leftMostColumnWithOne(binaryMatrix: BinaryMatrix) {\n    \n};\n"
   },
   "snippets": {
     "python": "# \"\"\"\n# This is BinaryMatrix's API interface.\n# You should not implement it, or speculate about its implementation\n# \"\"\"\n# class BinaryMatrix(object):\n#    def get(self, row: int, col: int) -> int:\n#    def dimensions(self) -> list[]:\n\n\nclass Solution:\n    def leftMostColumnWithOne(self, binaryMatrix: \"BinaryMatrix\") -> int:\n        m, n = binaryMatrix.dimensions()\n        ans = n\n        for i in range(m):\n            j = bisect_left(range(n), 1, key=lambda k: binaryMatrix.get(i, k))\n            ans = min(ans, j)\n        return -1 if ans >= n else ans",
@@ -74,5 +74,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

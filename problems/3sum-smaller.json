@@ -45,9 +45,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def threeSumSmaller(self, nums: List[int], target: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int threeSumSmaller(vector<int>& nums, int target) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public int threeSumSmaller(int[] nums, int target) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function threeSumSmaller(nums: number[], target: number): number {\n    // Your code here\n}"
+    "cpp": "class Solution {\npublic:\n    int threeSumSmaller(vector<int>& nums, int target) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int threeSumSmaller(int[] nums, int target) {\n        \n    }\n};\n",
+    "javascript": "function threeSumSmaller(nums: number[], target: number): number {\n    \n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def threeSumSmaller(self, nums: List[int], target: int) -> int:\n        nums.sort()\n        ans, n = 0, len(nums)\n        for i in range(n - 2):\n            j, k = i + 1, n - 1\n            while j < k:\n                x = nums[i] + nums[j] + nums[k]\n                if x < target:\n                    ans += k - j\n                    j += 1\n                else:\n                    k -= 1\n        return ans",
@@ -75,5 +75,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

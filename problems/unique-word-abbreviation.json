@@ -37,10 +37,10 @@
     "At most 5000 calls will be made to isUnique."
   ],
   "starterTemplates": {
-    "python": "class ValidWordAbbr:\n    def __init__(self, dictionary: List[str]):\n        pass\n\n    def isUnique(self, word: str) -> bool:\n        pass\n\n    def abbr(self, s: str) -> str:\n        pass\n\n# Your ValidWordAbbr object will be instantiated and called as such:\n# obj = ValidWordAbbr(dictionary)\n# param_1 = obj.isUnique(word)\n",
-    "cpp": "class ValidWordAbbr {\npublic:\n    ValidWordAbbr(vector<string>& dictionary) {\n        // Your code here\n    }\n\n    bool isUnique(string word) {\n        // Your code here\n    }\n\n    string abbr(string& s) {\n        // Your code here\n    }\n};\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * ValidWordAbbr* obj = new ValidWordAbbr(dictionary);\n * bool param_1 = obj->isUnique(word);\n */\n",
-    "java": "class ValidWordAbbr {\n    public ValidWordAbbr(String[] dictionary) {\n        // Your code here\n    }\n\n    public boolean isUnique(String word) {\n        // Your code here\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * ValidWordAbbr obj = new ValidWordAbbr(dictionary);\n * boolean param_1 = obj.isUnique(word);\n */\n",
-    "javascript": "class ValidWordAbbr {\n    constructor(dictionary: string[]) {\n        // Your code here\n    }\n\n    isUnique(word: string): boolean {\n        // Your code here\n    }\n\n    abbr(s: string): string {\n        // Your code here\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * var obj = new ValidWordAbbr(dictionary)\n * var param_1 = obj.isUnique(word)\n */\n"
+    "python": "class ValidWordAbbr:\n    def __init__(self, dictionary: List[str]):\n        pass\n",
+    "cpp": "class ValidWordAbbr {\npublic:\n    ValidWordAbbr(vector<string>& dictionary) {\n        \n    }\n};\n",
+    "java": "class ValidWordAbbr {\n    private Map<String, Set<String>> d = new HashMap<>();\n\n    public ValidWordAbbr(String[] dictionary) {\n        \n    }\n};\n",
+    "javascript": "class ValidWordAbbr {\n    private d: Map<string, Set<string>> = new Map();\n\n    constructor(dictionary: string[]) {\n        for (const s of dictionary) {\n            const abbr = this.abbr(s);\n            if (!this.d.has(abbr)) {\n                this.d.set(abbr, new Set());\n            }\n            this.d.get(abbr)!.add(s);\n        }\n    }\n\n    isUnique(word: string): boolean {\n        const ws = this.d.get(this.abbr(word));\n        return ws === undefined || (ws.size === 1 && ws.has(word));\n    }\n\n    abbr(s: string): string {\n        const n = s.length;\n        return n < 3 ? s : s[0] + (n - 2) + s[n - 1];\n    }\n}\n\n/**\n * Your ValidWordAbbr object will be instantiated and called as such:\n * var obj = new ValidWordAbbr(dictionary)\n * var param_1 = obj.isUnique(word)\n */"
   },
   "snippets": {
     "python": "class ValidWordAbbr:\n    def __init__(self, dictionary: List[str]):\n        self.d = defaultdict(set)\n        for s in dictionary:\n            self.d[self.abbr(s)].add(s)\n\n    def isUnique(self, word: str) -> bool:\n        s = self.abbr(word)\n        return s not in self.d or all(word == t for t in self.d[s])\n\n    def abbr(self, s: str) -> str:\n        return s if len(s) < 3 else s[0] + str(len(s) - 2) + s[-1]\n\n\n# Your ValidWordAbbr object will be instantiated and called as such:\n# obj = ValidWordAbbr(dictionary)\n# param_1 = obj.isUnique(word)",
@@ -60,5 +60,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

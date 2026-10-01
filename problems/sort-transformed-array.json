@@ -38,9 +38,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def sortTransformedArray(\n        self, nums: List[int], a: int, b: int, c: int\n    ) -> List[int]:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function sortTransformedArray(nums: number[], a: number, b: number, c: number): number[] {\n    // Your code here\n};\n"
+    "cpp": "class Solution {\npublic:\n    vector<int> sortTransformedArray(vector<int>& nums, int a, int b, int c) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {\n        \n    }\n};\n",
+    "javascript": "function sortTransformedArray(nums: number[], a: number, b: number, c: number): number[] {\n    \n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def sortTransformedArray(\n        self, nums: List[int], a: int, b: int, c: int\n    ) -> List[int]:\n        def f(x: int) -> int:\n            return a * x * x + b * x + c\n\n        n = len(nums)\n        i, j = 0, n - 1\n        ans = [0] * n\n        for k in range(n):\n            y1, y2 = f(nums[i]), f(nums[j])\n            if a > 0:\n                if y1 > y2:\n                    ans[n - k - 1] = y1\n                    i += 1\n                else:\n                    ans[n - k - 1] = y2\n                    j -= 1\n            else:\n                if y1 > y2:\n                    ans[k] = y2\n                    j -= 1\n                else:\n                    ans[k] = y1\n                    i += 1\n        return ans",
@@ -64,5 +64,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

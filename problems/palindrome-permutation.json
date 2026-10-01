@@ -40,9 +40,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool canPermutePalindrome(string s) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public boolean canPermutePalindrome(String s) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function canPermutePalindrome(s: string): boolean {\n    // Your code here\n};\n"
+    "cpp": "class Solution {\npublic:\n    bool canPermutePalindrome(string s) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean canPermutePalindrome(String s) {\n        \n    }\n};\n",
+    "javascript": "function canPermutePalindrome(s: string): boolean {\n    \n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def canPermutePalindrome(self, s: str) -> bool:\n        return sum(v & 1 for v in Counter(s).values()) < 2",
@@ -70,5 +70,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

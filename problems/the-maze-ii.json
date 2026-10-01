@@ -52,9 +52,9 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def shortestDistance(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public int shortestDistance(int[][] maze, int[] start, int[] destination) {\n        // Your code here\n    }\n}\n",
-    "javascript": "function shortestDistance(maze: number[][], start: number[], destination: number[]): number {\n    // Your code here\n};\n"
+    "cpp": "class Solution {\npublic:\n    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public int shortestDistance(int[][] maze, int[] start, int[] destination) {\n        \n    }\n};\n",
+    "javascript": "function shortestDistance(maze: number[][], start: number[], destination: number[]): number {\n    \n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def shortestDistance(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> int:\n        m, n = len(maze), len(maze[0])\n        dirs = (-1, 0, 1, 0, -1)\n        si, sj = start\n        di, dj = destination\n        q = deque([(si, sj)])\n        dist = [[inf] * n for _ in range(m)]\n        dist[si][sj] = 0\n        while q:\n            i, j = q.popleft()\n            for a, b in pairwise(dirs):\n                x, y, k = i, j, dist[i][j]\n                while 0 <= x + a < m and 0 <= y + b < n and maze[x + a][y + b] == 0:\n                    x, y, k = x + a, y + b, k + 1\n                if k < dist[x][y]:\n                    dist[x][y] = k\n                    q.append((x, y))\n        return -1 if dist[di][dj] == inf else dist[di][dj]",
@@ -82,5 +82,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

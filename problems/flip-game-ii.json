@@ -39,8 +39,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def canWin(self, currentState: str) -> bool:\n        pass\n",
-    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    int n;\n    unordered_map<ll, bool> memo;\n\n    bool canWin(string currentState) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    private int n;\n    private Map<Long, Boolean> memo = new HashMap<>();\n\n    public boolean canWin(String currentState) {\n        // Your code here\n    }\n}\n"
+    "cpp": "using ll = long long;\n\nclass Solution {\npublic:\n    int n;\n    unordered_map<ll, bool> memo;\n\n    bool canWin(string currentState) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private int n;\n    private Map<Long, Boolean> memo = new HashMap<>();\n\n    public boolean canWin(String currentState) {\n        \n    }\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def canWin(self, currentState: str) -> bool:\n        @cache\n        def dfs(mask):\n            for i in range(n - 1):\n                if (mask & (1 << i)) == 0 or (mask & (1 << (i + 1)) == 0):\n                    continue\n                if dfs(mask ^ (1 << i) ^ (1 << (i + 1))):\n                    continue\n                return True\n            return False\n\n        mask, n = 0, len(currentState)\n        for i, c in enumerate(currentState):\n            if c == '+':\n                mask |= 1 << i\n        return dfs(mask)",
@@ -63,5 +63,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

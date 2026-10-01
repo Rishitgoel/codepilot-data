@@ -35,10 +35,10 @@
     "At most 10^5 calls will be made to next and hasNext."
   ],
   "starterTemplates": {
-    "python": "class Vector2D:\n    def __init__(self, vec: List[List[int]]):\n        pass\n\n    def next(self) -> int:\n        pass\n\n    def hasNext(self) -> bool:\n        pass\n\n    def forward(self):\n        pass\n\n# Your Vector2D object will be instantiated and called as such:\n# obj = Vector2D(vec)\n# param_1 = obj.next()\n# param_2 = obj.hasNext()\n",
-    "cpp": "class Vector2D {\npublic:\n    Vector2D(vector<vector<int>>& vec) {\n        // Your code here\n    }\n\n    int next() {\n        // Your code here\n    }\n\n    bool hasNext() {\n        // Your code here\n    }\n};\n\n/**\n * Your Vector2D object will be instantiated and called as such:\n * Vector2D* obj = new Vector2D(vec);\n * int param_1 = obj->next();\n * bool param_2 = obj->hasNext();\n */\n",
-    "java": "class Vector2D {\n\n    public Vector2D(int[][] vec) {\n        // Your code here\n    }\n\n    public int next() {\n        // Your code here\n    }\n\n    public boolean hasNext() {\n        // Your code here\n    }\n}\n\n/**\n * Your Vector2D object will be instantiated and called as such:\n * Vector2D obj = new Vector2D(vec);\n * int param_1 = obj.next();\n * boolean param_2 = obj.hasNext();\n */\n",
-    "javascript": "class Vector2D {\n    constructor(vec: number[][]) {\n        // Your code here\n    }\n\n    next(): number {\n        // Your code here\n    }\n\n    hasNext(): boolean {\n        // Your code here\n    }\n}\n\n/**\n * Your Vector2D object will be instantiated and called as such:\n * var obj = new Vector2D(vec)\n * var param_1 = obj.next()\n * var param_2 = obj.hasNext()\n */\n"
+    "python": "class Vector2D:\n    def __init__(self, vec: List[List[int]]):\n        pass\n",
+    "cpp": "class Vector2D {\npublic:\n    Vector2D(vector<vector<int>>& vec) {\n        \n    }\n};\n",
+    "java": "class Vector2D {\n    private int i;\n    private int j;\n    private int[][] vec;\n\n    public Vector2D(int[][] vec) {\n        \n    }\n};\n",
+    "javascript": "class Vector2D {\n    i: number;\n    j: number;\n    vec: number[][];\n\n    constructor(vec: number[][]) {\n        this.i = 0;\n        this.j = 0;\n        this.vec = vec;\n    }\n\n    next(): number {\n        this.forward();\n        return this.vec[this.i][this.j++];\n    }\n\n    hasNext(): boolean {\n        this.forward();\n        return this.i < this.vec.length;\n    }\n\n    forward(): void {\n        while (this.i < this.vec.length && this.j >= this.vec[this.i].length) {\n            ++this.i;\n            this.j = 0;\n        }\n    }\n}\n\n/**\n * Your Vector2D object will be instantiated and called as such:\n * var obj = new Vector2D(vec)\n * var param_1 = obj.next()\n * var param_2 = obj.hasNext()\n */"
   },
   "snippets": {
     "python": "class Vector2D:\n    def __init__(self, vec: List[List[int]]):\n        self.i = 0\n        self.j = 0\n        self.vec = vec\n\n    def next(self) -> int:\n        self.forward()\n        ans = self.vec[self.i][self.j]\n        self.j += 1\n        return ans\n\n    def hasNext(self) -> bool:\n        self.forward()\n        return self.i < len(self.vec)\n\n    def forward(self):\n        while self.i < len(self.vec) and self.j >= len(self.vec[self.i]):\n            self.i += 1\n            self.j = 0\n\n\n# Your Vector2D object will be instantiated and called as such:\n# obj = Vector2D(vec)\n# param_1 = obj.next()\n# param_2 = obj.hasNext()",
@@ -58,5 +58,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

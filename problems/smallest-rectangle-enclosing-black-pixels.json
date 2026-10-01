@@ -44,8 +44,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def minArea(self, image: List[List[str]], x: int, y: int) -> int:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    int minArea(vector<vector<char>>& image, int x, int y) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public int minArea(char[][] image, int x, int y) {\n        // Your code here\n    }\n}\n"
+    "cpp": "class Solution {\npublic:\n    int minArea(vector<vector<char>>& image, int x, int y) {\n        \n    }\n};\n",
+    "java": "class Solution {\n\n    public int minArea(char[][] image, int x, int y) {\n        \n    }\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def minArea(self, image: List[List[str]], x: int, y: int) -> int:\n        m, n = len(image), len(image[0])\n        left, right = 0, x\n        while left < right:\n            mid = (left + right) >> 1\n            c = 0\n            while c < n and image[mid][c] == '0':\n                c += 1\n            if c < n:\n                right = mid\n            else:\n                left = mid + 1\n        u = left\n        left, right = x, m - 1\n        while left < right:\n            mid = (left + right + 1) >> 1\n            c = 0\n            while c < n and image[mid][c] == '0':\n                c += 1\n            if c < n:\n                left = mid\n            else:\n                right = mid - 1\n        d = left\n        left, right = 0, y\n        while left < right:\n            mid = (left + right) >> 1\n            r = 0\n            while r < m and image[r][mid] == '0':\n                r += 1\n            if r < m:\n                right = mid\n            else:\n                left = mid + 1\n        l = left\n        left, right = y, n - 1\n        while left < right:\n            mid = (left + right + 1) >> 1\n            r = 0\n            while r < m and image[r][mid] == '0':\n                r += 1\n            if r < m:\n                left = mid\n            else:\n                right = mid - 1\n        r = left\n        return (d - u + 1) * (r - l + 1)",
@@ -68,5 +68,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

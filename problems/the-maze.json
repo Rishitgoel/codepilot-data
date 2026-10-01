@@ -50,8 +50,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def hasPath(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public boolean hasPath(int[][] maze, int[] start, int[] destination) {\n        // Your code here\n    }\n}\n"
+    "cpp": "class Solution {\npublic:\n    vector<vector<int>> maze;\n    vector<vector<bool>> vis;\n    vector<int> d;\n    int m;\n    int n;\n\n    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    private boolean[][] vis;\n    private int[][] maze;\n    private int[] d;\n    private int m;\n    private int n;\n\n    public boolean hasPath(int[][] maze, int[] start, int[] destination) {\n        \n    }\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def hasPath(\n        self, maze: List[List[int]], start: List[int], destination: List[int]\n    ) -> bool:\n        def dfs(i, j):\n            if vis[i][j]:\n                return\n            vis[i][j] = True\n            if [i, j] == destination:\n                return\n            for a, b in [[0, -1], [0, 1], [1, 0], [-1, 0]]:\n                x, y = i, j\n                while 0 <= x + a < m and 0 <= y + b < n and maze[x + a][y + b] == 0:\n                    x, y = x + a, y + b\n                dfs(x, y)\n\n        m, n = len(maze), len(maze[0])\n        vis = [[False] * n for _ in range(m)]\n        dfs(start[0], start[1])\n        return vis[destination[0]][destination[1]]",
@@ -78,5 +78,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }

@@ -41,8 +41,8 @@
   ],
   "starterTemplates": {
     "python": "class Solution:\n    def isStrobogrammatic(self, num: str) -> bool:\n        pass\n",
-    "cpp": "class Solution {\npublic:\n    bool isStrobogrammatic(string num) {\n        // Your code here\n    }\n};\n",
-    "java": "class Solution {\n    public boolean isStrobogrammatic(String num) {\n        // Your code here\n    }\n}\n"
+    "cpp": "class Solution {\npublic:\n    bool isStrobogrammatic(string num) {\n        \n    }\n};\n",
+    "java": "class Solution {\n    public boolean isStrobogrammatic(String num) {\n        \n    }\n};\n"
   },
   "snippets": {
     "python": "class Solution:\n    def isStrobogrammatic(self, num: str) -> bool:\n        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]\n        i, j = 0, len(num) - 1\n        while i <= j:\n            a, b = int(num[i]), int(num[j])\n            if d[a] != b:\n                return False\n            i, j = i + 1, j - 1\n        return True",
@@ -69,5 +69,5 @@
     "Consider edge cases and bounds."
   ],
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-30"
+  "updatedAt": "2026-10-01"
 }
